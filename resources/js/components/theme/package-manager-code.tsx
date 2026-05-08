@@ -63,7 +63,9 @@ export function PackageManagerCode({
                             id: m,
                             label: m,
                         }))}
-                        tabsClassName="p-1"
+                        tabsClassName="p-1 bg-primary/10"
+                        activeTabClassName="text-primary-foreground"
+                        indicatorClassName={`bg-primary`}
                         tabClassName="px-2 py-1 text-xs font-medium "
                     />
                 </div>

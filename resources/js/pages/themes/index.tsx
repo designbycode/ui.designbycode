@@ -1,11 +1,11 @@
+import { InfiniteScroll } from '@inertiajs/react';
 import { Plus } from 'lucide-react';
 import { useState } from 'react';
 import Heading from '@/components/heading';
 import { CardsPreview } from '@/components/preview/CardsPreview';
-import ThemeCard from '@/components/theme/theme-card';
+import ThemeCard2 from '@/components/theme/theme-card-2';
 import { ThemeSearch } from '@/components/theme/theme-search';
 import { Button } from '@/components/ui/button';
-import { Pagination } from '@/components/ui/pagination';
 import MainLayout from '@/layouts/main-layout';
 import type { PaginatedData, Registry } from '@/types';
 import MainWrapper from '../../layouts/main/main-wrapper';
@@ -41,17 +41,17 @@ function ThemesIndex({
                 availableCategories={availableCategories}
             />
 
-            <div className="mb-4 grid grid-cols-1 gap-4 md:grid-cols-4">
-                {themes.data.map((theme: Registry, _index) => (
-                    <ThemeCard
-                        onClick={() => setThemeNumber(_index)}
-                        key={_index}
-                        theme={theme}
-                    />
-                ))}
-            </div>
-
-            <Pagination pagination={themes} />
+            <InfiniteScroll data="themes">
+                <div className="mb-4 grid grid-cols-1 gap-4 md:grid-cols-4">
+                    {themes.data.map((theme: Registry, _index) => (
+                        <ThemeCard2
+                            onClick={() => setThemeNumber(_index)}
+                            key={_index}
+                            theme={theme}
+                        />
+                    ))}
+                </div>
+            </InfiniteScroll>
 
             <CardsPreview theme={themes.data[themeNumber]} />
         </MainWrapper>

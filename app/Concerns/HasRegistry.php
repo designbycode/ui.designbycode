@@ -16,7 +16,6 @@ trait HasRegistry
         'registry:component',
         'registry:ui',
         'registry:hook',
-        'registry:theme',
         'registry:page',
         'registry:file',
         'registry:style',
@@ -31,7 +30,6 @@ trait HasRegistry
         'registry:component',
         'registry:ui',
         'registry:hook',
-        'registry:theme',
         'registry:page',
         'registry:file',
         'registry:style',
@@ -42,7 +40,7 @@ trait HasRegistry
     public const FONT_PROVIDERS = ['google'];
 
     /** Types that emit cssVars in toRegistry() */
-    private const CSS_VAR_TYPES = ['registry:theme', 'registry:style', 'registry:base'];
+    private const CSS_VAR_TYPES = ['registry:style', 'registry:base'];
 
     /** CSS properties that are NOT colour tokens and must not get --color- prefix */
     private const NON_COLOR_KEYS = [
@@ -435,11 +433,6 @@ trait HasRegistry
     public function isStyle(): bool
     {
         return $this->type === 'registry:style';
-    }
-
-    public function isTheme(): bool
-    {
-        return $this->type === 'registry:theme';
     }
 
     public function isComponent(): bool

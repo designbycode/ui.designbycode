@@ -2,18 +2,20 @@ import { Check } from 'lucide-react';
 import Heading from '@/components/heading';
 import { useCSSVars } from '@/hooks/use-css-vars';
 import { cn } from '@/lib/utils';
-import type { Registry } from '@/types';
+import type { Theme } from '@/types/theme';
 
 function ThemeList({
     theme,
     onSelect,
     selected = false,
     compact = false,
+    className,
 }: {
-    theme: Registry;
-    onSelect?: (theme: Registry) => void;
+    theme: Theme;
+    onSelect?: (theme: Theme) => void;
     selected?: boolean;
     compact?: boolean;
+    className?: string;
 }) {
     const { cssVars } = useCSSVars(theme);
 
@@ -26,6 +28,7 @@ function ThemeList({
                 'flex w-full items-center justify-between rounded-md border border-border bg-background text-left transition-colors hover:bg-accent',
                 compact ? 'gap-2 px-4 py-2' : 'gap-4 p-4',
                 selected && 'border-primary ring-1 ring-primary',
+                className,
             )}
         >
             <div className="flex min-w-0 flex-1 items-center space-x-1 transition-all duration-500">

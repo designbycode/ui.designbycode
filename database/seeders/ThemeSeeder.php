@@ -2,21 +2,27 @@
 
 namespace Database\Seeders;
 
-use App\Models\Registry;
+use App\Models\Theme;
 use Illuminate\Database\Seeder;
 
 class ThemeSeeder extends Seeder
 {
     public function run(): void
     {
+        if (Theme::count() > 0) {
+            $this->command->warn('Themes table is not empty — skipping seeder.');
+
+            return;
+        }
+
         $total = 0;
 
         foreach (static::themes() as $theme) {
-            Registry::create(array_merge($theme, ['user_id' => 1]));
+            Theme::create(array_merge($theme, ['user_id' => 1]));
             $total++;
         }
 
-        $this->command->info("Registry seeded with {$total} themes.");
+        $this->command->info("Seeded {$total} themes.");
     }
 
     /**
@@ -27,7 +33,6 @@ class ThemeSeeder extends Seeder
         return [
             [
                 'name' => 'polar-drift',
-                'type' => 'registry:theme',
                 'title' => 'Polar Drift',
                 'description' => 'Minimal frozen tundra theme with cool blue tones, frosted surfaces, and crisp arctic typography.',
                 'font_family' => 'Inter, sans-serif',
@@ -135,7 +140,6 @@ class ThemeSeeder extends Seeder
             ],
             [
                 'name' => 'yeti',
-                'type' => 'registry:theme',
                 'title' => 'Yeti',
                 'description' => 'Snowstorm-inspired dark alpine theme with rugged mountain contrast and frozen cyan highlights.',
                 'font_family' => 'Space Grotesk, sans-serif',
@@ -243,7 +247,6 @@ class ThemeSeeder extends Seeder
             ],
             [
                 'name' => 'boho',
-                'type' => 'registry:theme',
                 'title' => 'Boho',
                 'description' => 'Warm earthy artisan theme with soft paper tones, handcrafted shadows, and artistic serif typography.',
                 'font_family' => 'Cormorant Garamond, Inter, serif',
@@ -387,7 +390,6 @@ class ThemeSeeder extends Seeder
             ],
             [
                 'name' => 'tide',
-                'type' => 'registry:theme',
                 'title' => 'Tide',
                 'description' => 'Bright tropical coastal theme with ocean blues, citrus warmth, and sunny coral surfaces.',
                 'font_family' => 'Poppins, sans-serif',
@@ -482,7 +484,6 @@ class ThemeSeeder extends Seeder
             ],
             [
                 'name' => 'ember',
-                'type' => 'registry:theme',
                 'title' => 'Ember',
                 'description' => 'Earthy harvest-inspired theme with amber leaves, rustic warmth, and crackling fire tones.',
                 'font_family' => 'Merriweather, serif',
@@ -577,7 +578,6 @@ class ThemeSeeder extends Seeder
             ],
             [
                 'name' => 'noir-ice',
-                'type' => 'registry:theme',
                 'title' => 'Noir Ice',
                 'description' => 'Elegant frozen theme with snowy neutrals, deep navy noir contrast, and icy silver highlights.',
                 'font_family' => 'Inter, sans-serif',
@@ -672,7 +672,6 @@ class ThemeSeeder extends Seeder
             ],
             [
                 'name' => 'verdant-future',
-                'type' => 'registry:theme',
                 'title' => 'Verdant Future',
                 'description' => 'Bright ecological future theme with lush greens, solar golds, soft natural gradients, and optimistic clean design.',
                 'font_family' => 'Nunito, sans-serif',
@@ -794,7 +793,6 @@ class ThemeSeeder extends Seeder
             ],
             [
                 'name' => 'brutal-industry',
-                'type' => 'registry:theme',
                 'title' => 'Brutal Industry',
                 'description' => 'Retro-futuristic interwar industrial theme with steel blues, oil blacks, riveted metal, and smoky amber lighting.',
                 'font_family' => 'Oswald, sans-serif',
@@ -913,7 +911,6 @@ class ThemeSeeder extends Seeder
 
             [
                 'name' => 'retrowave',
-                'type' => 'registry:theme',
                 'title' => 'Retrowave',
                 'description' => 'Retro analog-future aesthetic with neon magentas, teal glows, VHS warmth, and cassette-inspired UI surfaces.',
                 'font_family' => 'Orbitron, sans-serif',
@@ -1036,7 +1033,6 @@ class ThemeSeeder extends Seeder
 
             [
                 'name' => 'synth-organica',
-                'type' => 'registry:theme',
                 'title' => 'Synth Organica',
                 'description' => 'Bio-engineered aesthetic with organic neon greens, wet bio-surface blacks, and glowing cellular UI elements.',
                 'font_family' => 'IBM Plex Sans, sans-serif',
@@ -1157,7 +1153,6 @@ class ThemeSeeder extends Seeder
             ],
             [
                 'name' => 'dreamscape',
-                'type' => 'registry:theme',
                 'title' => 'Dreamscape',
                 'description' => 'Dreamy retro internet aesthetic with pastel pinks, soft purples, cyan glow, and nostalgic sunset gradients.',
                 'font_family' => 'Varela Round, sans-serif',
@@ -1278,7 +1273,6 @@ class ThemeSeeder extends Seeder
             ],
             [
                 'name' => 'minimalism',
-                'type' => 'registry:theme',
                 'title' => 'Minimalism',
                 'description' => 'Ultra-clean whitespace-heavy design focused on typography, subtle grey contrast, and quiet UI structure with almost no ornamentation.',
                 'font_family' => 'Inter, sans-serif',
@@ -1401,7 +1395,6 @@ class ThemeSeeder extends Seeder
             ],
             [
                 'name' => 'soft-extrude',
-                'type' => 'registry:theme',
                 'title' => 'Soft Extrude',
                 'description' => 'Soft extruded UI style with subtle inner/outer shadows, minimal contrast, and tactile depth surfaces with a neumorphic feel.',
                 'font_family' => 'Inter, sans-serif',
@@ -1519,7 +1512,6 @@ class ThemeSeeder extends Seeder
             ],
             [
                 'name' => 'frost',
-                'type' => 'registry:theme',
                 'title' => 'Frost',
                 'description' => 'Frosted glass UI with layered transparency, soft blur effects, subtle borders, and luminous gradient depth with a glassmorphism feel.',
                 'font_family' => 'Inter, sans-serif',
@@ -1644,7 +1636,6 @@ class ThemeSeeder extends Seeder
             ],
             [
                 'name' => 'structured',
-                'type' => 'registry:theme',
                 'title' => 'Structured',
                 'description' => 'Google-inspired structured UI system with elevation layers, bold primary colors, predictable surface hierarchy, and clean material aesthetics.',
                 'font_family' => 'Roboto, Inter, sans-serif',
@@ -1766,7 +1757,6 @@ class ThemeSeeder extends Seeder
             ],
             [
                 'name' => 'corporate',
-                'type' => 'registry:theme',
                 'title' => 'Corporate',
                 'description' => 'Neutral, scalable enterprise design system for data-heavy dashboards with a focus on clarity, hierarchy, and dense information layouts.',
                 'font_family' => 'Inter, system-ui, sans-serif',
@@ -1892,7 +1882,6 @@ class ThemeSeeder extends Seeder
             ],
             [
                 'name' => 'treasury',
-                'type' => 'registry:theme',
                 'title' => 'Treasury',
                 'description' => 'Trust-focused financial UI with clean blue/green palettes, strong hierarchy, data-first chart clarity, and professional polish.',
                 'font_family' => 'Inter, system-ui, sans-serif',
@@ -2015,7 +2004,6 @@ class ThemeSeeder extends Seeder
             ],
             [
                 'name' => 'canopy',
-                'type' => 'registry:theme',
                 'title' => 'Canopy',
                 'description' => 'Deep nature-integrated UI inspired by forest canopies, organic plant forms, soft textures, and natural light harmony through layered greens.',
                 'font_family' => 'Inter, system-ui, sans-serif',
@@ -2143,7 +2131,6 @@ class ThemeSeeder extends Seeder
             ],
             [
                 'name' => 'wabi-sabi',
-                'type' => 'registry:theme',
                 'title' => 'Wabi-Sabi',
                 'description' => 'Rustic wabi-sabi minimalism inspired by natural aging, asymmetry, imperfect textures, and quiet calmness.',
                 'font_family' => 'Inter, system-ui, sans-serif',
@@ -2264,7 +2251,6 @@ class ThemeSeeder extends Seeder
             ],
             [
                 'name' => 'gatsby',
-                'type' => 'registry:theme',
                 'title' => 'Gatsby',
                 'description' => 'Geometric Art Deco luxury UI inspired by symmetry, bold gold-accented structure, elegant refinement, and jazz-age opulence.',
                 'font_family' => 'Inter, system-ui, sans-serif',
@@ -2398,7 +2384,6 @@ class ThemeSeeder extends Seeder
             ],
             [
                 'name' => 'comic-pop',
-                'type' => 'registry:theme',
                 'title' => 'Comic Pop',
                 'description' => 'Bold pop-art comic-inspired UI with high contrast colors, playful graphic energy, and punchy illustrative punch.',
                 'font_family' => 'Inter, system-ui, sans-serif',
@@ -2524,7 +2509,6 @@ class ThemeSeeder extends Seeder
             ],
             [
                 'name' => 'storybook',
-                'type' => 'registry:theme',
                 'title' => 'Storybook',
                 'description' => 'Hand-drawn playful UI with sketch-like aesthetics, warm illustrated tones, and whimsical character-inspired visual charm.',
                 'font_family' => 'Inter, system-ui, sans-serif',
@@ -2653,7 +2637,6 @@ class ThemeSeeder extends Seeder
             ],
             [
                 'name' => 'millennium',
-                'type' => 'registry:theme',
                 'title' => 'Millennium',
                 'description' => 'Chrome gradients, glossy surfaces, bubbly Y2K futuristic nostalgia inspired by early 2000s digital aesthetics.',
                 'font_family' => 'Inter, system-ui, sans-serif',
@@ -2786,7 +2769,6 @@ class ThemeSeeder extends Seeder
             ],
             [
                 'name' => 'neon-horizon',
-                'type' => 'registry:theme',
                 'title' => 'Neon Horizon',
                 'description' => 'Neon sunsets, retro-futuristic glow, grid horizons, and vapor-lit 80s synthwave digital nostalgia on infinite霓虹 horizons.',
                 'font_family' => 'Inter, system-ui, sans-serif',
@@ -2913,7 +2895,6 @@ class ThemeSeeder extends Seeder
             ],
             [
                 'name' => 'web-10',
-                'type' => 'registry:theme',
                 'title' => 'Web 1.0',
                 'description' => 'Early internet aesthetic with pixelated elements, default system fonts, blue links, and raw browser-era styling straight from the 90s.',
                 'font_family' => 'Courier New, ui-monospace, monospace',
@@ -3054,7 +3035,6 @@ class ThemeSeeder extends Seeder
             ],
             [
                 'name' => 'letterpress',
-                'type' => 'registry:theme',
                 'title' => 'Letterpress',
                 'description' => 'Paper-textured vintage print-inspired UI with serif-heavy typography, ink tones, and classic print aesthetic charm.',
                 'font_family' => 'Merriweather, ui-serif, Georgia, serif',
@@ -3190,7 +3170,6 @@ class ThemeSeeder extends Seeder
             ],
             [
                 'name' => 'green-screen',
-                'type' => 'registry:theme',
                 'title' => 'Green Screen',
                 'description' => 'Classic CRT terminal aesthetics with green-on-black and amber phosphor variants, glowing monospace text, and retro scanline-inspired depth.',
                 'font_family' => 'JetBrains Mono, ui-monospace, monospace',
@@ -3331,7 +3310,6 @@ class ThemeSeeder extends Seeder
             ],
             [
                 'name' => 'cosmos',
-                'type' => 'registry:theme',
                 'title' => 'Cosmos',
                 'description' => 'Deep-space inspired UI with cosmic nebula gradients, celestial glows, and clean futuristic star-trekking interfaces.',
                 'font_family' => 'Inter, system-ui, sans-serif',
@@ -3457,7 +3435,6 @@ class ThemeSeeder extends Seeder
             ],
             [
                 'name' => 'tactical',
-                'type' => 'registry:theme',
                 'title' => 'Tactical',
                 'description' => 'Tactical heads-up display inspired UI with grid overlays, radar greens, warning reds, and utilitarian data-heavy military design.',
                 'font_family' => 'Roboto Mono, ui-monospace, monospace',
@@ -3597,7 +3574,6 @@ class ThemeSeeder extends Seeder
             ],
             [
                 'name' => 'inferno',
-                'type' => 'registry:theme',
                 'title' => 'Inferno',
                 'description' => 'Blazing firebrick-and-lava theme with deep crimson warmth, molten orange glows, and ashen charcoal foundations.',
                 'font_family' => 'Barlow Condensed, sans-serif',
@@ -3710,7 +3686,6 @@ class ThemeSeeder extends Seeder
             ],
             [
                 'name' => 'mauve',
-                'type' => 'registry:theme',
                 'title' => 'Mauve',
                 'description' => 'Elegant plum-toned theme with mauve primary colors, taupe neutrals, and sophisticated muted purple ambiance.',
                 'font_family' => 'Inter, sans-serif',
@@ -3807,7 +3782,6 @@ class ThemeSeeder extends Seeder
             ],
             [
                 'name' => 'haze',
-                'type' => 'registry:theme',
                 'title' => 'Haze',
                 'description' => 'Cool atmospheric theme with misty blue-gray primary, olive earthy accents, and fog-kissed neutral surfaces.',
                 'font_family' => 'Inter, sans-serif',
@@ -3904,7 +3878,6 @@ class ThemeSeeder extends Seeder
             ],
             [
                 'name' => 'gothic',
-                'type' => 'registry:theme',
                 'title' => 'Gothic',
                 'description' => 'Dark cathedral-inspired theme with stone masonry grays, stained-glass jewel tones, and dramatic rose-window accents.',
                 'font_family' => 'Cinzel, serif',
@@ -4001,7 +3974,6 @@ class ThemeSeeder extends Seeder
             ],
             [
                 'name' => 'fantasy',
-                'type' => 'registry:theme',
                 'title' => 'Fantasy',
                 'description' => 'Enchanted realm theme with amethyst purples, emerald greens, magical gold highlights, and ethereal glowing accents.',
                 'font_family' => 'Cormorant Garamond, serif',
@@ -4098,7 +4070,6 @@ class ThemeSeeder extends Seeder
             ],
             [
                 'name' => 'mythological',
-                'type' => 'registry:theme',
                 'title' => 'Mythological',
                 'description' => 'Ancient Greco-Roman inspired theme with marble-white surfaces, Aegean deep blues, terracotta accents, and gilded highlights.',
                 'font_family' => 'Cinzel, serif',
@@ -4195,7 +4166,6 @@ class ThemeSeeder extends Seeder
             ],
             [
                 'name' => 'urban',
-                'type' => 'registry:theme',
                 'title' => 'Urban',
                 'description' => 'City-concrete inspired theme with pavement grays, steel-blue accents, grafitti-bright highlights, and industrial edge.',
                 'font_family' => 'Barlow Condensed, sans-serif',
@@ -4292,7 +4262,6 @@ class ThemeSeeder extends Seeder
             ],
             [
                 'name' => 'mid-century',
-                'type' => 'registry:theme',
                 'title' => 'Mid-Century',
                 'description' => 'Retro 1950s-60s inspired theme with teal hues, mustard yellows, burnt orange accents, and warm walnut browns.',
                 'font_family' => 'Space Grotesk, sans-serif',
@@ -4389,7 +4358,6 @@ class ThemeSeeder extends Seeder
             ],
             [
                 'name' => 'japanese-zen',
-                'type' => 'registry:theme',
                 'title' => 'Japanese Zen',
                 'description' => 'Serene Zen-inspired theme with rice-paper whites, bamboo greens, ink-black calligraphy, and vermillion accents.',
                 'font_family' => 'Inter, sans-serif',
@@ -4486,7 +4454,6 @@ class ThemeSeeder extends Seeder
             ],
             [
                 'name' => 'art-nouveau',
-                'type' => 'registry:theme',
                 'title' => 'Art Nouveau',
                 'description' => 'Flowery Belle Époque theme with peacock teals, gilded gold, deep purples, and organic flowing ornament.',
                 'font_family' => 'Cormorant Garamond, serif',
@@ -4583,7 +4550,6 @@ class ThemeSeeder extends Seeder
             ],
             [
                 'name' => 'coastal',
-                'type' => 'registry:theme',
                 'title' => 'Coastal',
                 'description' => 'Seaside retreat theme with sandy beige shores, ocean-blue waves, sea-foam greens, and driftwood warmth.',
                 'font_family' => 'Quicksand, sans-serif',
@@ -4680,7 +4646,6 @@ class ThemeSeeder extends Seeder
             ],
             [
                 'name' => 'scandinavian',
-                'type' => 'registry:theme',
                 'title' => 'Scandinavian',
                 'description' => 'Hygge-inspired Nordic theme with crisp white expanses, light birch woods, soft blush accents, and serene minimalism.',
                 'font_family' => 'Inter, sans-serif',
@@ -4777,7 +4742,6 @@ class ThemeSeeder extends Seeder
             ],
             [
                 'name' => 'techno',
-                'type' => 'registry:theme',
                 'title' => 'Techno',
                 'description' => 'Rave-inspired digital theme with electric cyan, neon purple strobes, deep black voids, and high-voltage accent flashes.',
                 'font_family' => 'Rajdhani, sans-serif',
@@ -4874,7 +4838,6 @@ class ThemeSeeder extends Seeder
             ],
             [
                 'name' => 'rustic',
-                'type' => 'registry:theme',
                 'title' => 'Rustic',
                 'description' => 'Weathered countryside theme with barn-red timbers, sage meadow greens, creamery whites, and worn leather browns.',
                 'font_family' => 'Merriweather, serif',
@@ -4971,7 +4934,6 @@ class ThemeSeeder extends Seeder
             ],
             [
                 'name' => 'surreal',
-                'type' => 'registry:theme',
                 'title' => 'Surreal',
                 'description' => 'Dreamscape-defying theme with unexpected color collisions, liminal lavender-greens, floating coral pinks, and impossible indigos.',
                 'font_family' => 'Space Grotesk, sans-serif',
@@ -5074,7 +5036,6 @@ class ThemeSeeder extends Seeder
 
             [
                 'name' => 'spring',
-                'type' => 'registry:theme',
                 'title' => 'Spring',
                 'description' => 'Fresh floral palette with soft greens, blossom pinks, and airy surfaces.',
                 'font_family' => 'Nunito, sans-serif',
@@ -5175,7 +5136,6 @@ class ThemeSeeder extends Seeder
 
             [
                 'name' => 'summer',
-                'type' => 'registry:theme',
                 'title' => 'Summer',
                 'description' => 'Bright tropical theme with ocean blues, citrus warmth, and sunny surfaces.',
                 'font_family' => 'Poppins, sans-serif',
@@ -5252,7 +5212,6 @@ class ThemeSeeder extends Seeder
 
             [
                 'name' => 'autumn',
-                'type' => 'registry:theme',
                 'title' => 'Autumn',
                 'description' => 'Earthy harvest-inspired theme with amber leaves and rustic warmth.',
                 'font_family' => 'Merriweather, serif',
@@ -5329,7 +5288,6 @@ class ThemeSeeder extends Seeder
 
             [
                 'name' => 'winter',
-                'type' => 'registry:theme',
                 'title' => 'Winter',
                 'description' => 'Elegant frozen theme with snowy neutrals, deep navy contrast, and icy highlights.',
                 'font_family' => 'Inter, sans-serif',
@@ -5399,7 +5357,6 @@ class ThemeSeeder extends Seeder
             ],
             [
                 'name' => 'solarpunk',
-                'type' => 'registry:theme',
                 'title' => 'Solarpunk',
                 'description' => 'Bright ecological future theme with lush greens, solar golds, soft natural gradients, and optimistic clean design.',
                 'font_family' => 'Nunito, sans-serif',
@@ -5415,8 +5372,7 @@ class ThemeSeeder extends Seeder
                             'background' => 'var(--background)',
                             'color' => 'var(--foreground)',
                             'letter-spacing' => 'var(--tracking-normal)',
-                            'background-image' =>
-                                'radial-gradient(circle at top left, oklch(0.92 0.08 145 / 0.30), transparent 45%),
+                            'background-image' => 'radial-gradient(circle at top left, oklch(0.92 0.08 145 / 0.30), transparent 45%),
                      radial-gradient(circle at bottom right, oklch(0.90 0.10 85 / 0.25), transparent 50%)',
                         ],
                     ],
@@ -5593,7 +5549,6 @@ class ThemeSeeder extends Seeder
             ],
             [
                 'name' => 'steampunk',
-                'type' => 'registry:theme',
                 'title' => 'Steampunk',
                 'description' => 'Victorian industrial theme with brass, copper, leather tones, and mechanical elegance.',
                 'font_family' => 'Cinzel, serif',
@@ -5609,8 +5564,7 @@ class ThemeSeeder extends Seeder
                             'background' => 'var(--background)',
                             'color' => 'var(--foreground)',
                             'letter-spacing' => 'var(--tracking-normal)',
-                            'background-image' =>
-                                'radial-gradient(circle at top left, oklch(0.55 0.08 60 / 0.20), transparent 45%),
+                            'background-image' => 'radial-gradient(circle at top left, oklch(0.55 0.08 60 / 0.20), transparent 45%),
                      radial-gradient(circle at bottom right, oklch(0.35 0.05 30 / 0.25), transparent 55%)',
                         ],
                     ],
@@ -5775,7 +5729,6 @@ class ThemeSeeder extends Seeder
             ],
             [
                 'name' => 'dieselpunk',
-                'type' => 'registry:theme',
                 'title' => 'Dieselpunk',
                 'description' => 'Retro-futuristic interwar industrial theme with steel blues, oil blacks, riveted metal, and smoky amber lighting.',
                 'font_family' => 'Oswald, sans-serif',
@@ -5791,8 +5744,7 @@ class ThemeSeeder extends Seeder
                             'background' => 'var(--background)',
                             'color' => 'var(--foreground)',
                             'letter-spacing' => 'var(--tracking-normal)',
-                            'background-image' =>
-                                'radial-gradient(circle at top left, oklch(0.40 0.06 240 / 0.25), transparent 45%),
+                            'background-image' => 'radial-gradient(circle at top left, oklch(0.40 0.06 240 / 0.25), transparent 45%),
                      radial-gradient(circle at bottom right, oklch(0.35 0.05 40 / 0.20), transparent 55%)',
                         ],
                     ],
@@ -5958,7 +5910,6 @@ class ThemeSeeder extends Seeder
             ],
             [
                 'name' => 'lunarpunk',
-                'type' => 'registry:theme',
                 'title' => 'Lunarpunk',
                 'description' => 'Mystical nocturnal eco-future theme with moonlit violets, bioluminescent greens, deep cosmic blues, and soft ethereal glow.',
                 'font_family' => 'Space Grotesk, sans-serif',
@@ -5975,8 +5926,7 @@ class ThemeSeeder extends Seeder
                             'background' => 'var(--background)',
                             'color' => 'var(--foreground)',
                             'letter-spacing' => 'var(--tracking-normal)',
-                            'background-image' =>
-                                'radial-gradient(circle at top left, oklch(0.45 0.10 280 / 0.25), transparent 45%),
+                            'background-image' => 'radial-gradient(circle at top left, oklch(0.45 0.10 280 / 0.25), transparent 45%),
                      radial-gradient(circle at bottom right, oklch(0.50 0.12 160 / 0.20), transparent 55%),
                      radial-gradient(circle at center, oklch(0.60 0.08 220 / 0.12), transparent 60%)',
                         ],
@@ -6142,7 +6092,6 @@ class ThemeSeeder extends Seeder
             ],
             [
                 'name' => 'decopunk',
-                'type' => 'registry:theme',
                 'title' => 'Decopunk',
                 'description' => 'Art Deco-inspired futuristic elegance with geometric gold accents, marble whites, deep blacks, and luxurious symmetry.',
                 'font_family' => 'Playfair Display, serif',
@@ -6159,8 +6108,7 @@ class ThemeSeeder extends Seeder
                             'background' => 'var(--background)',
                             'color' => 'var(--foreground)',
                             'letter-spacing' => 'var(--tracking-normal)',
-                            'background-image' =>
-                                'linear-gradient(135deg, oklch(0.98 0.01 90), oklch(0.94 0.02 240))',
+                            'background-image' => 'linear-gradient(135deg, oklch(0.98 0.01 90), oklch(0.94 0.02 240))',
                         ],
 
                         'h1, h2, h3, h4, h5, h6' => [
@@ -6330,7 +6278,6 @@ class ThemeSeeder extends Seeder
             ],
             [
                 'name' => 'atompunk',
-                'type' => 'registry:theme',
                 'title' => 'Atompunk',
                 'description' => 'Retro-futuristic atomic age optimism with uranium greens, chrome whites, radiation yellows, and mid-century sci-fi UI glow.',
                 'font_family' => 'Rajdhani, sans-serif',
@@ -6347,8 +6294,7 @@ class ThemeSeeder extends Seeder
                             'background' => 'var(--background)',
                             'color' => 'var(--foreground)',
                             'letter-spacing' => 'var(--tracking-normal)',
-                            'background-image' =>
-                                'radial-gradient(circle at top left, oklch(0.75 0.18 130 / 0.25), transparent 45%),
+                            'background-image' => 'radial-gradient(circle at top left, oklch(0.75 0.18 130 / 0.25), transparent 45%),
                      radial-gradient(circle at bottom right, oklch(0.80 0.20 90 / 0.22), transparent 55%),
                      linear-gradient(to bottom, oklch(0.98 0.01 120), oklch(0.94 0.02 140))',
                         ],
@@ -6519,7 +6465,6 @@ class ThemeSeeder extends Seeder
             ],
             [
                 'name' => 'biopunk',
-                'type' => 'registry:theme',
                 'title' => 'Biopunk',
                 'description' => 'Bio-engineered cyberpunk aesthetic with organic neon greens, wet bio-surface blacks, and glowing cellular UI elements.',
                 'font_family' => 'IBM Plex Sans, sans-serif',
@@ -6536,8 +6481,7 @@ class ThemeSeeder extends Seeder
                             'background' => 'var(--background)',
                             'color' => 'var(--foreground)',
                             'letter-spacing' => 'var(--tracking-normal)',
-                            'background-image' =>
-                                'radial-gradient(circle at 20% 20%, oklch(0.55 0.22 145 / 0.25), transparent 45%),
+                            'background-image' => 'radial-gradient(circle at 20% 20%, oklch(0.55 0.22 145 / 0.25), transparent 45%),
                      radial-gradient(circle at 80% 30%, oklch(0.60 0.20 165 / 0.20), transparent 50%),
                      radial-gradient(circle at 50% 80%, oklch(0.50 0.18 120 / 0.18), transparent 55%)',
                         ],
@@ -6707,7 +6651,6 @@ class ThemeSeeder extends Seeder
             ],
             [
                 'name' => 'ashwood-minimal',
-                'type' => 'registry:theme',
                 'title' => 'Ashwood Minimal',
                 'description' => 'Soft Scandinavian ash wood aesthetic with pale grain textures, muted neutrals, and calm minimalist surfaces.',
                 'font_family' => 'Manrope, sans-serif',
@@ -6723,8 +6666,7 @@ class ThemeSeeder extends Seeder
                         'body' => [
                             'background' => 'var(--background)',
                             'color' => 'var(--foreground)',
-                            'background-image' =>
-                                'linear-gradient(to bottom right, oklch(0.98 0.01 80), oklch(0.94 0.01 85))',
+                            'background-image' => 'linear-gradient(to bottom right, oklch(0.98 0.01 80), oklch(0.94 0.01 85))',
                         ],
                     ],
                 ],
@@ -6786,7 +6728,6 @@ class ThemeSeeder extends Seeder
 
             [
                 'name' => 'walnut-luxe',
-                'type' => 'registry:theme',
                 'title' => 'Walnut Luxe',
                 'description' => 'Luxury dark walnut wood theme with polished brass highlights, rich espresso surfaces, and premium warm contrast.',
                 'font_family' => 'Cormorant Garamond, serif',
@@ -6798,8 +6739,7 @@ class ThemeSeeder extends Seeder
                         'body' => [
                             'background' => 'var(--background)',
                             'color' => 'var(--foreground)',
-                            'background-image' =>
-                                'radial-gradient(circle at top, oklch(0.40 0.04 45 / 0.15), transparent 45%),
+                            'background-image' => 'radial-gradient(circle at top, oklch(0.40 0.04 45 / 0.15), transparent 45%),
                          linear-gradient(to bottom, oklch(0.18 0.02 40), oklch(0.12 0.01 30))',
                         ],
 
@@ -6866,7 +6806,6 @@ class ThemeSeeder extends Seeder
 
             [
                 'name' => 'cedar-harmony',
-                'type' => 'registry:theme',
                 'title' => 'Cedar Harmony',
                 'description' => 'Warm cedar cabin inspired theme with handcrafted earthy tones, soft cream surfaces, and cozy rustic balance.',
                 'font_family' => 'Nunito, sans-serif',
@@ -6878,8 +6817,7 @@ class ThemeSeeder extends Seeder
                         'body' => [
                             'background' => 'var(--background)',
                             'color' => 'var(--foreground)',
-                            'background-image' =>
-                                'linear-gradient(to bottom, oklch(0.97 0.02 70), oklch(0.93 0.03 60))',
+                            'background-image' => 'linear-gradient(to bottom, oklch(0.97 0.02 70), oklch(0.93 0.03 60))',
                         ],
                     ],
                 ],
@@ -6941,7 +6879,6 @@ class ThemeSeeder extends Seeder
 
             [
                 'name' => 'ebony-woodcraft',
-                'type' => 'registry:theme',
                 'title' => 'Ebony Woodcraft',
                 'description' => 'Dark ebony timber theme with blackened wood textures, gold accents, and bold handcrafted workshop aesthetics.',
                 'font_family' => 'Space Grotesk, sans-serif',
@@ -6953,8 +6890,7 @@ class ThemeSeeder extends Seeder
                         'body' => [
                             'background' => 'var(--background)',
                             'color' => 'var(--foreground)',
-                            'background-image' =>
-                                'radial-gradient(circle at center, oklch(0.35 0.03 40 / 0.18), transparent 50%),
+                            'background-image' => 'radial-gradient(circle at center, oklch(0.35 0.03 40 / 0.18), transparent 50%),
                          linear-gradient(to bottom, oklch(0.12 0.01 40), oklch(0.08 0.01 30))',
                         ],
                     ],

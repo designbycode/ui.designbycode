@@ -2,11 +2,14 @@
 
 namespace App\Providers;
 
+use App\Models\Theme;
 use Carbon\CarbonImmutable;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Validation\Rules\Password;
+use Inertia\Inertia;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -24,6 +27,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->configureDefaults();
+        $this->shareThemes();
     }
 
     /**
@@ -46,5 +50,30 @@ class AppServiceProvider extends ServiceProvider
                 ->uncompromised()
             : null,
         );
+    }
+
+    protected function shareThemes(): void
+    {
+        if (! Schema::hasTable('themes')) {
+            return;
+        }
+
+        Inertia::share('themes', fn () => Inertia::scroll(function () {
+            $query = Theme::query();
+
+            if ($search = request('search')) {
+                $query->where(fn ($q) => $q
+                    ->where('name', 'like', "%{$search}%")
+                    ->orWhere('title', 'like', "%{$search}%")
+                    ->orWhere('description', 'like', "%{$search}%")
+                );
+            }
+
+            if ($category = request('category')) {
+                $query->whereJsonContains('categories', $category);
+            }
+
+            return $query->paginate(50)->withQueryString();
+        }));
     }
 }

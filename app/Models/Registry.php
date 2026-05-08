@@ -60,15 +60,6 @@ class Registry extends Model
     // Routing
     // =========================================================================
 
-    public function scopeThemes(Builder $query): Builder
-    {
-        return $query->ofType('registry:theme');
-    }
-
-    // =========================================================================
-    // Query scopes – per type
-    // =========================================================================
-
     public function scopeHooks(Builder $query): Builder
     {
         return $query->ofType('registry:hook');

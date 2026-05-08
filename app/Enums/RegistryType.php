@@ -15,5 +15,4 @@ enum RegistryType: string
     case File = 'registry:file';
     case Base = 'registry:base';
     case Item = 'registry:item';
-    case Theme = 'registry:theme';
 }

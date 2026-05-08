@@ -24,7 +24,7 @@ class StoreRequest extends FormRequest
     {
         return [
             'name' => 'required|string|unique:registries,name',
-            'type' => 'required|string|in:registry:lib,registry:block,registry:component,registry:ui,registry:hook,registry:theme,registry:page,registry:file,registry:style,registry:base,registry:font,registry:item',
+            'type' => 'required|string|in:registry:lib,registry:block,registry:component,registry:ui,registry:hook,registry:page,registry:file,registry:style,registry:base,registry:font,registry:item',
             'title' => 'nullable|string',
             'description' => 'nullable|string',
             'author' => 'nullable|string',

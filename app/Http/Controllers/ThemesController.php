@@ -2,30 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Registry;
+use App\Models\Theme;
 use Inertia\Inertia;
 
 class ThemesController extends Controller
 {
-    public function index(Registry $registry)
+    public function index()
     {
-        $query = $registry->themes();
-
-        if ($search = request('search')) {
-            $query->where(function ($q) use ($search) {
-                $q->where('name', 'like', "%{$search}%")
-                    ->orWhere('title', 'like', "%{$search}%")
-                    ->orWhere('description', 'like', "%{$search}%");
-            });
-        }
-
-        if ($category = request('category')) {
-            $query->whereJsonContains('categories', $category);
-        }
-
-        $themes = $query->paginate(12)->withQueryString();
-
-        $availableCategories = $registry->themes()
+        $availableCategories = Theme::query()
             ->select('categories')
             ->get()
             ->pluck('categories')
@@ -36,19 +20,23 @@ class ThemesController extends Controller
             ->all();
 
         return Inertia::render('themes/index', [
-            'themes' => $themes,
             'filters' => request()->only(['search', 'category']),
             'availableCategories' => $availableCategories,
         ]);
     }
 
-    public function apiIndex(Registry $registry): array
+    public function show(string $name)
     {
-        return $registry
-            ->themes()
-            ->get()
-            ->map(fn ($theme) => $theme->toRegistry())
-            ->values()
-            ->all();
+        return response()->json(
+            Theme::where('name', $name)->firstOrFail()->toRegistry()
+        );
+    }
+
+    public function css(string $name)
+    {
+        return response(
+            Theme::where('name', $name)->firstOrFail()->toCss(),
+            200
+        )->header('Content-Type', 'text/css');
     }
 }

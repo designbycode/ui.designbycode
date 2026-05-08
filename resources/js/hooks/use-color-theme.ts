@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useSyncExternalStore } from 'react';
 import { useAppearance } from '@/hooks/use-appearance';
 import { buildCSSVars } from '@/lib/build-css-vars';
-import type { Registry } from '@/types';
+import type { Theme } from '@/types/theme';
 
 const STORAGE_KEY = 'color-theme';
 
@@ -110,7 +110,7 @@ export function initializeColorTheme(): void {
     }
 }
 
-export function setColorTheme(registry: Registry): void {
+export function setColorTheme(registry: Theme): void {
     const stored: StoredTheme = {
         name: registry.name,
         varsLight: registry.cssVars?.light ?? registry.vars_light ?? {},

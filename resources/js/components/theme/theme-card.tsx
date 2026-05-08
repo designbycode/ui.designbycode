@@ -18,15 +18,17 @@ function ThemeCard({ theme, ...props }: ThemeCardProps) {
     return (
         <Card
             {...props}
-            style={cssVars}
             className={`shadow-primary/15 transition-transform duration-300 hover:scale-105 hover:shadow-lg`}
         >
             <CardHeader className={`flex flex-1`}>
                 <CardTitle>{theme.title}</CardTitle>
                 <CardDescription>{theme.description}</CardDescription>
             </CardHeader>
-            <CardContent>
-                <div className="grid grid-cols-4 gap-4">
+            <CardContent className={`p-2`}>
+                <div
+                    style={cssVars}
+                    className="grid grid-cols-4 gap-4 rounded-md bg-background p-4"
+                >
                     <div className="aspect-square rounded-md border border-border bg-primary"></div>
                     <div className="aspect-square rounded-md border border-border bg-secondary"></div>
                     <div className="aspect-square rounded-md border border-border bg-accent"></div>

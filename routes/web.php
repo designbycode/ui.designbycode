@@ -6,7 +6,10 @@ use App\Http\Controllers\ThemesController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomePageController::class)->name('home');
-Route::resource('themes', ThemesController::class)->only(['index']);
+Route::get('/themes', [ThemesController::class, 'index'])->name('themes.index');
+
+Route::get('/r/theme/{name}.json', [ThemesController::class, 'show']);
+Route::get('/r/theme/{name}.css', [ThemesController::class, 'css']);
 
 Route::get('/r/registry.json', [RegistryController::class, 'index']);
 Route::get('/r/{name}.json', [RegistryController::class, 'show']);

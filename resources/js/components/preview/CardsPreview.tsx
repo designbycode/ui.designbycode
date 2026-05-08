@@ -25,7 +25,7 @@ import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Textarea } from '@/components/ui/textarea';
 import { useCSSVars } from '@/hooks/use-css-vars';
-import type { Registry } from '@/types';
+import type { Registry } from '@/types/registry';
 
 const lineData = Array.from({ length: 12 }, (_, i) => ({
     v: 30 + Math.sin(i / 1.5) * 20 + i * 3,

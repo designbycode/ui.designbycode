@@ -25,7 +25,7 @@ class UploadRequest extends FormRequest
         return [
             'css' => 'required|file|mimes:css,txt|max:512',
             'name' => 'required|string|unique:registries,name',
-            'type' => 'nullable|string|in:registry:lib,registry:block,registry:component,registry:ui,registry:hook,registry:theme,registry:page,registry:file,registry:style,registry:base,registry:font,registry:item',
+            'type' => 'nullable|string|in:registry:lib,registry:block,registry:component,registry:ui,registry:hook,registry:page,registry:file,registry:style,registry:base,registry:font,registry:item',
         ];
     }
 }
