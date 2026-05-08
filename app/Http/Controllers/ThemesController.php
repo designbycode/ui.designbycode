@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Theme;
+use Illuminate\Support\Facades\Cache;
 use Inertia\Inertia;
 
 class ThemesController extends Controller
 {
     public function index()
     {
-        $availableCategories = Theme::query()
+        $availableCategories = Cache::remember('themes:available_categories', 3600, fn () => Theme::query()
             ->select('categories')
             ->get()
             ->pluck('categories')
@@ -17,11 +18,12 @@ class ThemesController extends Controller
             ->unique()
             ->sort()
             ->values()
-            ->all();
+            ->all());
 
         return Inertia::render('themes/index', [
             'filters' => request()->only(['search', 'category']),
             'availableCategories' => $availableCategories,
+            'totalThemesCount' => Cache::remember('themes:total_count', 3600, fn () => Theme::count()),
         ]);
     }
 

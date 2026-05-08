@@ -103,8 +103,8 @@ function ThemeCard2({ theme, ...props }: ThemeCard2Props) {
             <div className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 ring-1 ring-primary/30 transition-opacity duration-500 ring-inset group-hover:opacity-100" />
             <GlowRadial
                 borderWidth={3}
-                size={150}
-                colors={['var(--primary)', 'var(--secondary)']}
+                size={250}
+                colors={['var(--primary)', 'var(--primary)', 'var(--muted)']}
                 className={`absolute -inset-0.5 z-10`}
             />
         </Card>

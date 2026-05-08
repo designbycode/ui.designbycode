@@ -1,8 +1,7 @@
 import { InfiniteScroll } from '@inertiajs/react';
-import { Plus } from 'lucide-react';
+import { Plus, SearchX } from 'lucide-react';
 import { useState } from 'react';
 import Heading from '@/components/heading';
-import { CardsPreview } from '@/components/preview/CardsPreview';
 import ThemeCard2 from '@/components/theme/theme-card-2';
 import { ThemeSearch } from '@/components/theme/theme-search';
 import { Button } from '@/components/ui/button';
@@ -14,10 +13,12 @@ function ThemesIndex({
     themes,
     filters,
     availableCategories,
+    totalThemesCount,
 }: {
     themes: PaginatedData<Registry>;
     filters?: { search?: string; category?: string };
     availableCategories: string[];
+    totalThemesCount: number;
 }) {
     const [themeNumber, setThemeNumber] = useState<number>(0);
 
@@ -26,9 +27,7 @@ function ThemesIndex({
             <div className="flex items-center justify-between">
                 <Heading
                     title={`Themes`}
-                    description={`  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto
-            esse hic illo ipsum, laudantium molestiae nesciunt quia quo totam
-            veniam.`}
+                    description={`Choose from ${totalThemesCount} themes to customize your site's look and feel. Preview, install, and manage them all in one place.`}
                 />
                 <Button>
                     <Plus className={`h-4`} />
@@ -42,7 +41,7 @@ function ThemesIndex({
             />
 
             <InfiniteScroll data="themes">
-                <div className="mb-4 grid grid-cols-1 gap-4 md:grid-cols-4">
+                <div className="mb-4 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
                     {themes.data.map((theme: Registry, _index) => (
                         <ThemeCard2
                             onClick={() => setThemeNumber(_index)}
@@ -53,7 +52,21 @@ function ThemesIndex({
                 </div>
             </InfiniteScroll>
 
-            <CardsPreview theme={themes.data[themeNumber]} />
+            {themes.data.length === 0 &&
+                (filters?.search || filters?.category) && (
+                    <div className="flex flex-col items-center justify-center py-16 text-center">
+                        <SearchX className="mb-4 size-12 text-muted-foreground" />
+                        <h3 className="text-lg font-semibold">
+                            Theme not found
+                        </h3>
+                        <p className="text-muted-foreground">
+                            No themes match your search. Try adjusting your
+                            filters.
+                        </p>
+                    </div>
+                )}
+
+            {/*<CardsPreview theme={themes.data[themeNumber]} />*/}
         </MainWrapper>
     );
 }
