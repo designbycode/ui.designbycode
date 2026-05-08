@@ -1,0 +1,1 @@
+import{t as e}from"./createLucideIcon-CzKw5Ulu.js";var t=e(`Minus`,[[`path`,{d:`M5 12h14`,key:`1ays0h`}]]);export{t};
