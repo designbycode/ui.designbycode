@@ -1,14 +1,24 @@
-import { Heart } from 'lucide-react';
+import { Plus } from 'lucide-react';
 import { useState } from 'react';
 import Heading from '@/components/heading';
 import { CardsPreview } from '@/components/preview/CardsPreview';
 import ThemeCard from '@/components/theme/theme-card';
+import { ThemeSearch } from '@/components/theme/theme-search';
+import { Button } from '@/components/ui/button';
 import { Pagination } from '@/components/ui/pagination';
 import MainLayout from '@/layouts/main-layout';
 import MainWrapper from '@/pages/main/main-wrapper';
 import type { PaginatedData, Registry } from '@/types';
 
-function ThemesIndex({ themes }: { themes: PaginatedData<Registry> }) {
+function ThemesIndex({
+    themes,
+    filters,
+    availableCategories,
+}: {
+    themes: PaginatedData<Registry>;
+    filters?: { search?: string; category?: string };
+    availableCategories: string[];
+}) {
     const [themeNumber, setThemeNumber] = useState<number>(0);
 
     return (
@@ -20,10 +30,16 @@ function ThemesIndex({ themes }: { themes: PaginatedData<Registry> }) {
             esse hic illo ipsum, laudantium molestiae nesciunt quia quo totam
             veniam.`}
                 />
-                <div className="grid size-10 place-items-center rounded-md bg-muted">
-                    <Heart className={`h-4`} />
-                </div>
+                <Button>
+                    <Plus className={`h-4`} />
+                    <span>Create new theme</span>
+                </Button>
             </div>
+
+            <ThemeSearch
+                filters={filters}
+                availableCategories={availableCategories}
+            />
 
             <div className="mb-4 grid grid-cols-1 gap-4 md:grid-cols-4">
                 {themes.data.map((theme: Registry, _index) => (

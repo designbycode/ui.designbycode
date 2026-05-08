@@ -1,4 +1,5 @@
 import { Link } from '@inertiajs/react';
+import ThemeSwitcher from '@/components/theme/theme-switcher';
 import AppearanceToggle from '@/components/ui/appearance-toggle';
 import MainWrapper from '@/pages/main/main-wrapper';
 import { home } from '@/routes';
@@ -51,8 +52,9 @@ function MainNavigation() {
                     </Link>
                 </div>
 
-                <div className="flex space-x-4">
+                <div className="flex space-x-2">
                     <AppearanceToggle />
+                    <ThemeSwitcher />
                 </div>
             </MainWrapper>
         </div>

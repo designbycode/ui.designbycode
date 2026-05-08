@@ -6,6 +6,7 @@ use App\Concerns\HasRegistry;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 #[Fillable([
@@ -33,6 +34,15 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Registry extends Model
 {
     use HasRegistry, SoftDeletes;
+
+    // =========================================================================
+    // Relationships
+    // =========================================================================
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 
     // =========================================================================
     // Casts

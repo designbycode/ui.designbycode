@@ -24,6 +24,7 @@ export default function AppearanceToggle({
         <Button
             onClick={() => updateAppearance(next.value)}
             aria-label={`Switch to ${next.label} mode`}
+            size={`icon`}
             {...props}
             className={cn('', className)}
         >

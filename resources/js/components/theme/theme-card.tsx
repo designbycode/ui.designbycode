@@ -21,7 +21,7 @@ function ThemeCard({ theme, ...props }: ThemeCardProps) {
             style={cssVars}
             className={`shadow-primary/15 transition-transform duration-300 hover:scale-105 hover:shadow-lg`}
         >
-            <CardHeader>
+            <CardHeader className={`flex flex-1`}>
                 <CardTitle>{theme.title}</CardTitle>
                 <CardDescription>{theme.description}</CardDescription>
             </CardHeader>
