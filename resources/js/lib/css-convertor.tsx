@@ -1,0 +1,143 @@
+type ThemeInput = {
+    css_vars: {
+        theme?: Record<string, string>;
+        light: Record<string, string>;
+        dark: Record<string, string>;
+    };
+    css?: any;
+};
+
+const normalizeKey = (key: string) => {
+    const map: Record<string, string> = {
+        'shadow-offset-x': 'shadow-x',
+        'shadow-offset-y': 'shadow-y',
+    };
+
+    return map[key] || key;
+};
+
+const toVar = (key: string) => `--${normalizeKey(key)}`;
+
+const objectToVars = (obj: Record<string, string>) =>
+    Object.entries(obj)
+        .sort(([a], [b]) => a.localeCompare(b))
+        .map(([k, v]) => `  ${toVar(k)}: ${v};`)
+        .join('\n');
+
+const mergeVars = (
+    base: Record<string, string>,
+    theme?: Record<string, string>,
+) => {
+    return {
+        ...base,
+        ...(theme || {}),
+    };
+};
+
+const convertLayerBase = (css?: any) => {
+    if (!css?.['@layer base']) {
+        return '';
+    }
+
+    const rules = css['@layer base'];
+
+    const body = Object.entries(rules)
+        .map(([selector, styles]) => {
+            if (typeof styles === 'string') {
+                // Handle @apply and other string-based styles
+                const indentedStyles = styles
+                    .split('\n')
+                    .map((line: string) => `    ${line}`)
+                    .join('\n');
+                return `  ${selector} {\n${indentedStyles}\n  }`;
+            }
+
+            const props = Object.entries(styles as Record<string, string>)
+                .map(([k, v]) => {
+                    return `    ${k}: ${v};`;
+                })
+                .join('\n');
+
+            return `  ${selector} {\n${props}\n  }`;
+        })
+        .join('\n');
+
+    return `@layer base {\n${body}\n}`;
+};
+
+export function convertTheme(input: ThemeInput): string {
+    const { light, dark, theme } = input.css_vars;
+
+    const root = mergeVars(light, theme);
+    const darkMode = mergeVars(dark, theme);
+
+    const layerBase = convertLayerBase(input.css);
+
+    return `@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+${objectToVars(root)}
+}
+
+.dark {
+${objectToVars(darkMode)}
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+  --font-serif: var(--font-serif);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --shadow-2xs: var(--shadow-2xs);
+  --shadow-xs: var(--shadow-xs);
+  --shadow-sm: var(--shadow-sm);
+  --shadow: var(--shadow);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+  --shadow-xl: var(--shadow-xl);
+  --shadow-2xl: var(--shadow-2xl);
+}
+
+${layerBase}
+`;
+}

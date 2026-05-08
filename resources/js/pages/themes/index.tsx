@@ -3,13 +3,12 @@ import { useState } from 'react';
 import Heading from '@/components/heading';
 import { CardsPreview } from '@/components/preview/CardsPreview';
 import ThemeCard from '@/components/theme/theme-card';
-import ThemeList from '@/components/theme/theme-list';
 import { ThemeSearch } from '@/components/theme/theme-search';
 import { Button } from '@/components/ui/button';
 import { Pagination } from '@/components/ui/pagination';
 import MainLayout from '@/layouts/main-layout';
-import MainWrapper from '@/pages/main/main-wrapper';
 import type { PaginatedData, Registry } from '@/types';
+import MainWrapper from '../../layouts/main/main-wrapper';
 
 function ThemesIndex({
     themes,
@@ -41,11 +40,7 @@ function ThemesIndex({
                 filters={filters}
                 availableCategories={availableCategories}
             />
-            <div className="mb-4 grid grid-cols-1 gap-4 md:grid-cols-4">
-                {themes.data.map((theme: Registry, _index) => (
-                    <ThemeList theme={theme} key={_index} />
-                ))}
-            </div>
+
             <div className="mb-4 grid grid-cols-1 gap-4 md:grid-cols-4">
                 {themes.data.map((theme: Registry, _index) => (
                     <ThemeCard

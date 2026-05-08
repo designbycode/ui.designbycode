@@ -1,4 +1,4 @@
-import MainWrapper from '@/pages/main/main-wrapper';
+import MainWrapper from '@/layouts/main/main-wrapper';
 
 function MainFooter() {
     return (

@@ -1,15 +1,12 @@
-import { usePage } from '@inertiajs/react';
+import RegistryInstaller from '@/components/theme/registry-installer';
+import MainWrapper from '@/layouts/main/main-wrapper';
 import MainLayout from '@/layouts/main-layout';
-import MainWrapper from '@/pages/main/main-wrapper';
 
 function Home() {
-    const { url } = usePage().props;
-
     return (
         <MainWrapper as={`section`}>
             <h1 className="text-7xl">Home</h1>
-
-            {JSON.stringify(url)}
+            <RegistryInstaller code={`boho`} />
         </MainWrapper>
     );
 }

@@ -41,4 +41,14 @@ class ThemesController extends Controller
             'availableCategories' => $availableCategories,
         ]);
     }
+
+    public function apiIndex(Registry $registry): array
+    {
+        return $registry
+            ->themes()
+            ->get()
+            ->map(fn ($theme) => $theme->toRegistry())
+            ->values()
+            ->all();
+    }
 }

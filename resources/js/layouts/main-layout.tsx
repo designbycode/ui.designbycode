@@ -1,24 +1,20 @@
-import MainNavigation from '@/pages/main/main-navigation';
-import MainFooter from '@/pages/main/main-footer';
+import MainFooter from '@/layouts/main/main-footer';
+import MainNavigation from '@/layouts/main/main-navigation';
 
 interface MainLayoutProps {
-    children: React.ReactNode
+    children: React.ReactNode;
 }
 
-function MainLayout({children}: MainLayoutProps) {
+function MainLayout({ children }: MainLayoutProps) {
     return (
-        <div className={`min-h-screen flex flex-col`}>
+        <div className={`flex min-h-screen flex-col`}>
             <MainNavigation />
-            <div className={`flex-1`}>
-                {children}
-            </div>
+            <div className={`flex-1`}>{children}</div>
             <MainFooter />
         </div>
-    )
+    );
 }
 
-MainLayout.displayName = 'MainLayout'
+MainLayout.displayName = 'MainLayout';
 
-export default MainLayout
-
-
+export default MainLayout;

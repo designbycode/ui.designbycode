@@ -4,7 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     public function up(): void
     {
         Schema::create('registries', function (Blueprint $table) {
@@ -15,8 +16,8 @@ return new class extends Migration {
             // ── Core identity ────────────────────────────────────────────────
             $table->string('name')->unique()->comment('Unique registry item identifier');
             $table->string('type')->comment(
-                'registry:lib | registry:block | registry:component | registry:ui | ' .
-                'registry:hook | registry:theme | registry:page | registry:file | ' .
+                'registry:lib | registry:block | registry:component | registry:ui | '.
+                'registry:hook | registry:theme | registry:page | registry:file | '.
                 'registry:style | registry:base | registry:font | registry:item'
             );
             $table->string('title')->nullable()->comment('Human-readable title');

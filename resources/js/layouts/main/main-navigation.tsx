@@ -1,14 +1,33 @@
 import { Link } from '@inertiajs/react';
 import ThemeSwitcher from '@/components/theme/theme-switcher';
 import AppearanceToggle from '@/components/ui/appearance-toggle';
-import MainWrapper from '@/pages/main/main-wrapper';
+import { useIsMobile } from '@/hooks/use-mobile';
+import MainWrapper from '@/layouts/main/main-wrapper';
+import { cn } from '@/lib/utils';
+import type { UseHeadroomOptions } from '@/registry/new-york/hooks/use-headroom';
+import useHeadroom from '@/registry/new-york/hooks/use-headroom';
 import { home } from '@/routes';
 import { index as themesIndex } from '@/routes/themes';
 
 function MainNavigation() {
+    const isMobile = useIsMobile();
+    const { ref, pinned } = useHeadroom({
+        enabled: !isMobile,
+        offset: 16,
+        tolerance: {
+            down: 5,
+            up: 5,
+        },
+    } as UseHeadroomOptions);
+
     return (
         <div
-            className={`grid min-h-16 place-items-center border-b border-border`}
+            ref={ref}
+            suppressHydrationWarning
+            className={cn(
+                `fixed inset-x-0 top-0 isolate z-50 flex min-h-16 items-center border-b! border-solid! border-border/50! bg-background/50 text-foreground backdrop-blur transition-transform duration-700`,
+                pinned ? 'translate-y-0' : '-translate-y-full',
+            )}
         >
             <MainWrapper className={`flex justify-between`}>
                 <Link

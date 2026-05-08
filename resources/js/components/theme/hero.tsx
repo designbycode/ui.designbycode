@@ -1,0 +1,108 @@
+import { Crown } from 'lucide-react';
+import Wrapper from '@/components/app/wrapper';
+import { ButtonParticles } from '@/registry/new-york/components/ui/buttons/button-particles';
+import { GlowRadial } from '@/registry/new-york/components/ui/glow/glow-radial';
+
+const Hero = () => {
+    const colors = `var(--primary)`;
+
+    return (
+        <Wrapper className="relative isolate grid min-h-120 place-items-center rounded-md border border-border">
+            <GlowRadial colors={colors} className={`absolute inset-0`} />
+            <GlowRadial
+                colors={colors}
+                borderWidth={15}
+                className={`absolute -inset-2 opacity-25 blur-xs`}
+            />
+            <div className={`flex flex-col space-y-3 p-6`}>
+                <div className="relative mx-auto inline-flex translate-y-2 justify-center rounded-full border border-border px-6 py-1">
+                    <p
+                        className={`font-mono text-sm tracking-wide text-balance text-primary`}
+                    >
+                        copy it, paste it, ship it
+                    </p>
+                    <GlowRadial
+                        size={150}
+                        borderWidth={2}
+                        colors={['var(--color-accent)', 'var(--color-primary)']}
+                    />
+                    <GlowRadial
+                        size={150}
+                        borderWidth={4}
+                        className={`blur`}
+                        colors={['var(--color-accent)', 'var(--color-primary)']}
+                    />
+                </div>
+                <h1 className={`text-[clamp(2rem,6vw,5rem)] font-black`}>
+                    Component{' '}
+                    <span className={`inline-block scale-150 font-serif`}>
+                        &
+                    </span>{' '}
+                    Animations
+                </h1>
+                <p
+                    className={`mx-auto max-w-3xl text-center tracking-wide text-balance md:text-lg`}
+                >
+                    We are a team of passionate designers and developers
+                    dedicated to creating beautiful and functional user
+                    interfaces.
+                </p>
+                <div className="group flex justify-center space-x-4">
+                    <ButtonParticles
+                        colors={['var(--primary)', 'var(--color-muted)']}
+                    >
+                        <GlowRadial
+                            size={150}
+                            colors={[`var(--primary), transparent`]}
+                            borderWidth={3}
+                            className={`absolute -inset-1 blur-xs`}
+                        />
+                        <GlowRadial
+                            size={150}
+                            colors={[`var(--primary), transparent`]}
+                            borderWidth={2}
+                            className={`absolute -inset-0.5`}
+                        />
+                        <GlowRadial
+                            size={150}
+                            colors={[`var(--primary), transparent`]}
+                            borderWidth={2}
+                            className={`absolute -inset-1.5 mix-blend-color-dodge blur-xs`}
+                        />
+                        <Crown className="group-hover:text-brand size-4" />
+                        <span>Premium Components</span>
+                    </ButtonParticles>
+                    <ButtonParticles
+                        colors={['var(--secondary)', 'var(--color-muted)']}
+                        className={`relative`}
+                        variant="secondary"
+                    >
+                        <GlowRadial
+                            colors={colors}
+                            size={150}
+                            borderWidth={3}
+                            className={`absolute -inset-1 blur-xs`}
+                        />
+                        <GlowRadial
+                            colors={colors}
+                            size={150}
+                            borderWidth={2}
+                            className={`absolute -inset-0.5`}
+                        />
+                        <GlowRadial
+                            colors={colors}
+                            size={150}
+                            borderWidth={2}
+                            className={`absolute -inset-1.5 mix-blend-color-dodge blur-xs`}
+                        />
+                        View Components
+                    </ButtonParticles>
+                </div>
+            </div>
+        </Wrapper>
+    );
+};
+
+Hero.displayName = 'Hero';
+
+export default Hero;
