@@ -6,7 +6,7 @@ function Home() {
     return (
         <MainWrapper as={`section`}>
             <h1 className="text-7xl">Home</h1>
-            <RegistryInstaller code={`boho`} />
+            <RegistryInstaller code={`yeti`} />
         </MainWrapper>
     );
 }
