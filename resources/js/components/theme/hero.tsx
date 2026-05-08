@@ -1,13 +1,13 @@
 import { Crown } from 'lucide-react';
-import Wrapper from '@/components/app/wrapper';
 import { ButtonParticles } from '@/registry/new-york/components/ui/buttons/button-particles';
 import { GlowRadial } from '@/registry/new-york/components/ui/glow/glow-radial';
+import WavesThree from '@/registry/new-york/components/ui/threejs/waves-three';
 
 const Hero = () => {
     const colors = `var(--primary)`;
 
     return (
-        <Wrapper className="relative isolate grid min-h-120 place-items-center rounded-md border border-border">
+        <section className="relative isolate my-4 grid min-h-120 place-items-center rounded-md border border-border">
             <GlowRadial colors={colors} className={`absolute inset-0`} />
             <GlowRadial
                 colors={colors}
@@ -99,7 +99,13 @@ const Hero = () => {
                     </ButtonParticles>
                 </div>
             </div>
-        </Wrapper>
+            <WavesThree
+                cameraPosition={{ x: 0, y: -20, z: 5 }}
+                style="wireframe"
+                colors={['#a1a1a1', '#646464']}
+                className={`mask-linear inset-0 -z-20 rounded-[inherit] mask-linear-from-10% mask-linear-to-50% opacity-20`}
+            />
+        </section>
     );
 };
 
