@@ -1,6 +1,14 @@
 import { Link } from '@inertiajs/react';
+import { Menu } from 'lucide-react';
 import ThemeSwitcher from '@/components/theme/theme-switcher';
 import AppearanceToggle from '@/components/ui/appearance-toggle';
+import { Button } from '@/components/ui/button';
+import {
+    Sheet,
+    SheetContent,
+    SheetTitle,
+    SheetTrigger,
+} from '@/components/ui/sheet';
 import { useIsMobile } from '@/hooks/use-mobile';
 import MainWrapper from '@/layouts/main/main-wrapper';
 import { cn } from '@/lib/utils';
@@ -40,7 +48,7 @@ function MainNavigation() {
                     </span>
                     <span>designbycode</span>
                 </Link>
-                <div className="flex space-x-4 text-sm">
+                <div className="hidden space-x-4 text-sm md:flex">
                     <Link
                         prefetch={'hover'}
                         className={`rounded-md px-4 py-2 hover:bg-muted`}
@@ -71,7 +79,55 @@ function MainNavigation() {
                     </Link>
                 </div>
 
-                <div className="flex space-x-2">
+                <div className="flex items-center space-x-2">
+                    <div className="md:hidden">
+                        <Sheet>
+                            <SheetTrigger asChild>
+                                <Button
+                                    variant="ghost"
+                                    size="icon"
+                                    aria-label="Open navigation menu"
+                                >
+                                    <Menu className="size-5" />
+                                </Button>
+                            </SheetTrigger>
+                            <SheetContent side="right" className="w-64">
+                                <SheetTitle className="sr-only">
+                                    Navigation menu
+                                </SheetTitle>
+                                <div className="mt-8 flex flex-col space-y-1">
+                                    <Link
+                                        prefetch={'hover'}
+                                        className="rounded-md px-4 py-2 hover:bg-muted"
+                                        href={home()}
+                                    >
+                                        Home
+                                    </Link>
+                                    <Link
+                                        prefetch={'hover'}
+                                        className="rounded-md px-4 py-2 hover:bg-muted"
+                                        href={themesIndex()}
+                                    >
+                                        Themes
+                                    </Link>
+                                    <Link
+                                        prefetch={'hover'}
+                                        className="rounded-md px-4 py-2 hover:bg-muted"
+                                        href={home()}
+                                    >
+                                        Components
+                                    </Link>
+                                    <Link
+                                        prefetch={'hover'}
+                                        className="rounded-md px-4 py-2 hover:bg-muted"
+                                        href={home()}
+                                    >
+                                        Blocks
+                                    </Link>
+                                </div>
+                            </SheetContent>
+                        </Sheet>
+                    </div>
                     <AppearanceToggle />
                     <ThemeSwitcher />
                 </div>

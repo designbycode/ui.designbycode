@@ -1,6 +1,5 @@
 import { InfiniteScroll } from '@inertiajs/react';
 import { Plus, SearchX } from 'lucide-react';
-import { useState } from 'react';
 import Heading from '@/components/heading';
 import ThemeCard2 from '@/components/theme/theme-card-2';
 import { ThemeSearch } from '@/components/theme/theme-search';
@@ -20,19 +19,24 @@ function ThemesIndex({
     availableCategories: string[];
     totalThemesCount: number;
 }) {
-    const [themeNumber, setThemeNumber] = useState<number>(0);
-
     return (
         <MainWrapper className={`pt-4`}>
-            <div className="flex items-center justify-between">
+            <div className="flex items-start justify-between md:items-center">
                 <Heading
                     title={`Themes`}
                     description={`Choose from ${totalThemesCount} themes to customize your site's look and feel. Preview, install, and manage them all in one place.`}
                 />
-                <Button>
-                    <Plus className={`h-4`} />
-                    <span>Create new theme</span>
-                </Button>
+                <div className={`shrink-0`}>
+                    <Button
+                        variant="outline"
+                        className={`transition-colors duration-300`}
+                    >
+                        <Plus className={`h-4`} />
+                        <span className={`sr-only md:not-sr-only`}>
+                            Create new theme
+                        </span>
+                    </Button>
+                </div>
             </div>
 
             <ThemeSearch
@@ -43,11 +47,7 @@ function ThemesIndex({
             <InfiniteScroll data="themes">
                 <div className="mb-4 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
                     {themes.data.map((theme: Registry, _index) => (
-                        <ThemeCard2
-                            onClick={() => setThemeNumber(_index)}
-                            key={_index}
-                            theme={theme}
-                        />
+                        <ThemeCard2 key={_index} theme={theme} />
                     ))}
                 </div>
             </InfiniteScroll>

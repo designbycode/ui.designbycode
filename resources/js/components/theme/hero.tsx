@@ -7,7 +7,7 @@ const Hero = () => {
     const colors = `var(--primary)`;
 
     return (
-        <section className="relative isolate my-4 grid min-h-120 place-items-center rounded-md border border-border">
+        <section className="relative isolate my-4 grid min-h-90 place-items-center rounded-md border border-border md:min-h-120">
             <GlowRadial colors={colors} className={`absolute inset-0`} />
             <GlowRadial
                 colors={colors}
@@ -17,7 +17,7 @@ const Hero = () => {
             <div className={`flex flex-col space-y-3 p-6`}>
                 <div className="relative mx-auto inline-flex translate-y-2 justify-center rounded-full border border-border px-6 py-1">
                     <p
-                        className={`font-mono text-sm tracking-wide text-balance text-primary`}
+                        className={`font-mono text-xs tracking-wide text-balance text-primary md:text-sm`}
                     >
                         copy it, paste it, ship it
                     </p>
@@ -33,15 +33,19 @@ const Hero = () => {
                         colors={['var(--color-accent)', 'var(--color-primary)']}
                     />
                 </div>
-                <h1 className={`text-[clamp(2rem,6vw,5rem)] font-black`}>
-                    Component{' '}
-                    <span className={`inline-block scale-150 font-serif`}>
-                        &
-                    </span>{' '}
-                    Animations
+                <h1
+                    className={`flex gap-2 text-center text-[clamp(1.2rem,6vw,5rem)] font-black`}
+                >
+                    <span>Component</span>
+                    <span
+                        className={`inline-block scale-150 text-center font-serif`}
+                    >
+                        &amp;
+                    </span>
+                    <span>Animations</span>
                 </h1>
                 <p
-                    className={`mx-auto max-w-3xl text-center tracking-wide text-balance md:text-lg`}
+                    className={`mx-auto max-w-3xl text-center text-sm tracking-wide text-balance md:text-lg`}
                 >
                     We are a team of passionate designers and developers
                     dedicated to creating beautiful and functional user
@@ -50,6 +54,7 @@ const Hero = () => {
                 <div className="group flex justify-center space-x-4">
                     <ButtonParticles
                         colors={['var(--primary)', 'var(--color-muted)']}
+                        className={`text-xs md:text-sm`}
                     >
                         <GlowRadial
                             size={150}
@@ -74,7 +79,7 @@ const Hero = () => {
                     </ButtonParticles>
                     <ButtonParticles
                         colors={['var(--secondary)', 'var(--color-muted)']}
-                        className={`relative`}
+                        className={`text-xs md:text-sm`}
                         variant="secondary"
                     >
                         <GlowRadial
