@@ -75,7 +75,7 @@ const Hero = () => {
                             className={`absolute -inset-1.5 mix-blend-color-dodge blur-xs`}
                         />
                         <Crown className="group-hover:text-brand size-4" />
-                        <span>Premium Components</span>
+                        <span>Premium</span>
                     </ButtonParticles>
                     <ButtonParticles
                         colors={['var(--secondary)', 'var(--color-muted)']}
@@ -100,7 +100,7 @@ const Hero = () => {
                             borderWidth={2}
                             className={`absolute -inset-1.5 mix-blend-color-dodge blur-xs`}
                         />
-                        View Components
+                        Free
                     </ButtonParticles>
                 </div>
             </div>
