@@ -34,11 +34,11 @@ const Hero = () => {
                     />
                 </div>
                 <h1
-                    className={`flex gap-2 text-center text-[clamp(1.2rem,6vw,5rem)] font-black`}
+                    className={`flex gap-2 text-center text-[clamp(1rem,6vw,5rem)] font-black`}
                 >
                     <span>Component</span>
                     <span
-                        className={`inline-block scale-150 text-center font-serif`}
+                        className={`inline-block scale-150 px-1 text-center font-serif`}
                     >
                         &amp;
                     </span>
@@ -51,7 +51,7 @@ const Hero = () => {
                     dedicated to creating beautiful and functional user
                     interfaces.
                 </p>
-                <div className="group flex justify-center space-x-4">
+                <div className="group flex justify-center space-x-2">
                     <ButtonParticles
                         colors={['var(--primary)', 'var(--color-muted)']}
                         className={`text-xs md:text-sm`}
@@ -100,7 +100,7 @@ const Hero = () => {
                             borderWidth={2}
                             className={`absolute -inset-1.5 mix-blend-color-dodge blur-xs`}
                         />
-                        Free
+                        Themes
                     </ButtonParticles>
                 </div>
             </div>

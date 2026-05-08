@@ -45,7 +45,7 @@ function ThemesIndex({
             />
 
             <InfiniteScroll data="themes">
-                <div className="mb-4 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+                <div className="mb-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
                     {themes.data.map((theme: Registry, _index) => (
                         <ThemeCard2 key={_index} theme={theme} />
                     ))}

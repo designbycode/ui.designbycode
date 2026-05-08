@@ -3,6 +3,7 @@ import { Menu } from 'lucide-react';
 import ThemeSwitcher from '@/components/theme/theme-switcher';
 import AppearanceToggle from '@/components/ui/appearance-toggle';
 import { Button } from '@/components/ui/button';
+import { PlaceholderPattern } from '@/components/ui/placeholder-pattern';
 import {
     Sheet,
     SheetContent,
@@ -91,11 +92,13 @@ function MainNavigation() {
                                     <Menu className="size-5" />
                                 </Button>
                             </SheetTrigger>
-                            <SheetContent side="right" className="w-64">
+                            <SheetContent side="right">
+                                <PlaceholderPattern className="absolute inset-y-0 left-0 h-full w-2 border-r border-border/75 stroke-border/75 md:w-5" />
+
                                 <SheetTitle className="sr-only">
                                     Navigation menu
                                 </SheetTitle>
-                                <div className="mt-8 flex flex-col space-y-1">
+                                <div className="mt-8 flex flex-col space-y-1 px-4">
                                     <Link
                                         prefetch={'hover'}
                                         className="rounded-md px-4 py-2 hover:bg-muted"

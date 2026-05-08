@@ -1,21 +1,12 @@
 import { Check, Palette, RotateCcw, Search, X } from 'lucide-react';
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { flushSync } from 'react-dom';
 import ThemeList from '@/components/theme/theme-list';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import {
-    Sheet,
-    SheetContent,
-    SheetDescription,
-    SheetHeader,
-    SheetTitle,
-    SheetTrigger,
-} from '@/components/ui/sheet';
-import {
-    clearColorTheme,
-    setColorTheme,
-    useColorTheme,
-} from '@/hooks/use-color-theme';
+import { PlaceholderPattern } from '@/components/ui/placeholder-pattern';
+import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
+import { clearColorTheme, setColorTheme, useColorTheme } from '@/hooks/use-color-theme';
 import { useDebounce } from '@/hooks/use-debounce';
 import type { Theme } from '@/types/theme';
 
@@ -36,39 +27,56 @@ function ThemeSwitcher() {
     const [activeSearch, setActiveSearch] = useState('');
     const loaderRef = useRef<HTMLDivElement>(null);
 
-    const fetchPage = useCallback(async (pageNum: number, search: string, append: boolean) => {
-        setLoading(true);
+    const fetchPage = useCallback(
+        async (pageNum: number, search: string, append: boolean) => {
+            setLoading(true);
 
-        const params = new URLSearchParams();
-        params.set('page', String(pageNum));
-        if (search) params.set('search', search);
+            const params = new URLSearchParams();
+            params.set('page', String(pageNum));
 
-        try {
-            const res = await fetch(`/api/themes?${params}`);
-            const json: Page = await res.json();
-            setThemes(prev => (append ? [...prev, ...json.data] : json.data));
-            setHasMore(json.current_page < json.last_page);
-            setPage(pageNum);
-        } finally {
-            setLoading(false);
-        }
-    }, []);
+            if (search) {
+                params.set('search', search);
+            }
+
+            try {
+                const res = await fetch(`/api/themes?${params}`);
+                const json: Page = await res.json();
+                setThemes((prev) =>
+                    append ? [...prev, ...json.data] : json.data,
+                );
+                setHasMore(json.current_page < json.last_page);
+                setPage(pageNum);
+            } finally {
+                setLoading(false);
+            }
+        },
+        [],
+    );
 
     useEffect(() => {
-        fetchPage(1, '', false);
+        requestAnimationFrame(() => {
+            fetchPage(1, '', false);
+        });
     }, [fetchPage]);
 
     useEffect(() => {
         if (debouncedSearch !== activeSearch) {
-            setActiveSearch(debouncedSearch);
-            setThemes([]);
-            fetchPage(1, debouncedSearch, false);
+            flushSync(() => {
+                setActiveSearch(debouncedSearch);
+                setThemes([]);
+            });
+            requestAnimationFrame(() => {
+                fetchPage(1, debouncedSearch, false);
+            });
         }
     }, [debouncedSearch, activeSearch, fetchPage]);
 
     useEffect(() => {
         const el = loaderRef.current;
-        if (!el) return;
+
+        if (!el) {
+            return;
+        }
 
         const observer = new IntersectionObserver(
             (entries) => {
@@ -91,7 +99,8 @@ function ThemeSwitcher() {
                     <Palette className="size-4" />
                 </Button>
             </SheetTrigger>
-            <SheetContent className="flex flex-col gap-0 p-0">
+            <SheetContent className="flex flex-col gap-0 pl-5">
+                <PlaceholderPattern className="absolute inset-y-0 left-0 h-full w-2 border-r border-border/75 stroke-border/75 md:w-5" />
                 <SheetHeader className="px-4 pt-4 pb-2">
                     <SheetTitle>Theme Color</SheetTitle>
                     <SheetDescription>
@@ -166,7 +175,9 @@ function ThemeSwitcher() {
                             </div>
                         )}
 
-                        {hasMore && !loading && <div ref={loaderRef} className="h-4" />}
+                        {hasMore && !loading && (
+                            <div ref={loaderRef} className="h-4" />
+                        )}
 
                         {!hasMore && themes.length > 0 && (
                             <p className="py-4 text-center text-xs text-muted-foreground">
