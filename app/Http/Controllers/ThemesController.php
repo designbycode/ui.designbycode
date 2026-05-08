@@ -25,6 +25,21 @@ class ThemesController extends Controller
         ]);
     }
 
+    public function apiIndex()
+    {
+        $query = Theme::query();
+
+        if ($search = request('search')) {
+            $query->where(fn ($q) => $q
+                ->where('name', 'like', "%{$search}%")
+                ->orWhere('title', 'like', "%{$search}%")
+                ->orWhere('description', 'like', "%{$search}%")
+            );
+        }
+
+        return $query->paginate(50)->withQueryString();
+    }
+
     public function show(string $name)
     {
         return response()->json(

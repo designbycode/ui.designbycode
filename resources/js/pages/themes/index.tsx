@@ -25,7 +25,7 @@ function ThemesIndex({
         <MainWrapper className={`pt-4`}>
             <div className="flex items-center justify-between">
                 <Heading
-                    title={`Themes ${themes.total}`}
+                    title={`Themes`}
                     description={`  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto
             esse hic illo ipsum, laudantium molestiae nesciunt quia quo totam
             veniam.`}

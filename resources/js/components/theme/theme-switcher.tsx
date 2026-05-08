@@ -1,6 +1,5 @@
-import { InfiniteScroll, router, usePage } from '@inertiajs/react';
 import { Check, Palette, RotateCcw, Search, X } from 'lucide-react';
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import ThemeList from '@/components/theme/theme-list';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -20,24 +19,70 @@ import {
 import { useDebounce } from '@/hooks/use-debounce';
 import type { Theme } from '@/types/theme';
 
+interface Page {
+    data: Theme[];
+    current_page: number;
+    last_page: number;
+}
+
 function ThemeSwitcher() {
     const { themeName } = useColorTheme();
-    const { themes } = usePage().props as unknown as { themes: any };
+    const [themes, setThemes] = useState<Theme[]>([]);
+    const [page, setPage] = useState(1);
+    const [hasMore, setHasMore] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [searchInput, setSearchInput] = useState('');
     const debouncedSearch = useDebounce(searchInput, 300);
-    const lastSearchedRef = useRef('');
+    const [activeSearch, setActiveSearch] = useState('');
+    const loaderRef = useRef<HTMLDivElement>(null);
+
+    const fetchPage = useCallback(async (pageNum: number, search: string, append: boolean) => {
+        setLoading(true);
+
+        const params = new URLSearchParams();
+        params.set('page', String(pageNum));
+        if (search) params.set('search', search);
+
+        try {
+            const res = await fetch(`/api/themes?${params}`);
+            const json: Page = await res.json();
+            setThemes(prev => (append ? [...prev, ...json.data] : json.data));
+            setHasMore(json.current_page < json.last_page);
+            setPage(pageNum);
+        } finally {
+            setLoading(false);
+        }
+    }, []);
 
     useEffect(() => {
-        if (debouncedSearch !== lastSearchedRef.current) {
-            lastSearchedRef.current = debouncedSearch;
+        fetchPage(1, '', false);
+    }, [fetchPage]);
 
-            router.reload({
-                data: debouncedSearch ? { search: debouncedSearch } : {},
-                // preserveState: true,
-                only: ['themes'],
-            });
+    useEffect(() => {
+        if (debouncedSearch !== activeSearch) {
+            setActiveSearch(debouncedSearch);
+            setThemes([]);
+            fetchPage(1, debouncedSearch, false);
         }
-    }, [debouncedSearch]);
+    }, [debouncedSearch, activeSearch, fetchPage]);
+
+    useEffect(() => {
+        const el = loaderRef.current;
+        if (!el) return;
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                if (entries[0].isIntersecting && hasMore && !loading) {
+                    fetchPage(page + 1, activeSearch, true);
+                }
+            },
+            { rootMargin: '400px' },
+        );
+
+        observer.observe(el);
+
+        return () => observer.disconnect();
+    }, [hasMore, loading, page, activeSearch, fetchPage]);
 
     return (
         <Sheet>
@@ -99,28 +144,40 @@ function ThemeSwitcher() {
                             )}
                         </button>
 
-                        {themes ? (
-                            <InfiniteScroll data="themes">
-                                {themes.data.map((theme: Theme) => (
-                                    <ThemeList
-                                        key={theme.name}
-                                        theme={theme}
-                                        className="mb-2"
-                                        compact
-                                        selected={theme.name === themeName}
-                                        onSelect={setColorTheme}
-                                    />
-                                ))}
-                            </InfiniteScroll>
-                        ) : (
+                        {themes.map((theme) => (
+                            <ThemeList
+                                key={theme.name}
+                                theme={theme}
+                                className="mb-2"
+                                compact
+                                selected={theme.name === themeName}
+                                onSelect={setColorTheme}
+                            />
+                        ))}
+
+                        {loading && (
                             <div className="space-y-2">
-                                {Array.from({ length: 6 }).map((_, i) => (
+                                {Array.from({ length: 3 }).map((_, i) => (
                                     <div
                                         key={i}
                                         className="h-14 animate-pulse rounded-md bg-muted"
                                     />
                                 ))}
                             </div>
+                        )}
+
+                        {hasMore && !loading && <div ref={loaderRef} className="h-4" />}
+
+                        {!hasMore && themes.length > 0 && (
+                            <p className="py-4 text-center text-xs text-muted-foreground">
+                                All themes loaded
+                            </p>
+                        )}
+
+                        {!loading && themes.length === 0 && (
+                            <p className="py-8 text-center text-sm text-muted-foreground">
+                                No themes found
+                            </p>
                         )}
                     </div>
                 </div>
