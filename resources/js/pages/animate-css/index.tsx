@@ -196,6 +196,7 @@ function AnimationCard({ anim }: { anim: AnimationItem }) {
                 onLeave: () => textRef.current?.classList.remove(anim.name),
                 onEnterBack: () => textRef.current?.classList.add(anim.name),
                 onLeaveBack: () => textRef.current?.classList.remove(anim.name),
+                markers: false,
             });
         }
     }, [anim.name]);
