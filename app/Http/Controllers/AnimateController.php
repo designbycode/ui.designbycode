@@ -24,11 +24,4 @@ class AnimateController extends Controller
             'categories' => $categories,
         ]);
     }
-
-    public function show(string $name)
-    {
-        return response()->json(
-            Animate::where('name', $name)->firstOrFail()->toRegistry()
-        );
-    }
 }

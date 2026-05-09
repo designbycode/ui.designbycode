@@ -23,11 +23,4 @@ class FontsController extends Controller
             ]),
         ]);
     }
-
-    public function show(string $name)
-    {
-        $font = Font::where('name', $name)->firstOrFail();
-
-        return response()->json($font->toRegistry());
-    }
 }

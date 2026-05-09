@@ -1,8 +1,7 @@
 import Heading from '@/components/heading';
-import { CodeBlock } from '@/components/theme/code-block';
 import RegistryInstaller from '@/components/theme/registry-installer';
 import { Badge } from '@/components/ui/badge';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import MainWrapper from '@/layouts/main/main-wrapper';
 import MainLayout from '@/layouts/main-layout';
 
@@ -47,79 +46,56 @@ export default function FontsIndex({ fonts }: { fonts: FontItem[] }) {
 FontsIndex.layout = MainLayout;
 
 function FontCard({ font }: { font: FontItem }) {
-    const npmCommand = font.fontDependency
-        ? `npm install ${font.fontDependency}`
-        : null;
-
-    const sampleText = 'A B C D E F G H I J K L M N O P Q R S T U V W X Y Z';
+    const sampleText = 'Aa Bb Cc';
 
     return (
-        <Card className="group flex flex-col overflow-hidden transition-colors hover:bg-muted/50">
-            <CardHeader>
-                <CardTitle className="flex items-center justify-between">
-                    <span>{font.title}</span>
+        <Card className="group overflow-hidden transition-colors hover:bg-muted/50">
+            <CardHeader className="pb-0">
+                <div className="flex items-center justify-between">
+                    <span className="font-semibold">{font.title}</span>
                     {font.fontProvider && (
                         <Badge variant="outline" className="text-xs">
                             {font.fontProvider}
                         </Badge>
                     )}
-                </CardTitle>
+                </div>
             </CardHeader>
-            <CardContent className="flex flex-1 flex-col gap-3">
+            <CardContent className="space-y-3 pt-3">
                 <div
-                    className="flex min-h-[80px] items-center justify-center rounded-md border border-border bg-card/50 px-4 text-center text-xl"
+                    className="flex min-h-[88px] items-center justify-center rounded-lg bg-card/50 px-4 text-2xl tracking-wider"
                     style={{ fontFamily: font.fontFamily ?? 'inherit' }}
                 >
-                    <span className="leading-relaxed tracking-wide">
-                        {sampleText}
-                    </span>
+                    <span className="text-muted-foreground/60">{sampleText}</span>
                 </div>
 
-                <div className="space-y-1.5 text-sm text-muted-foreground">
+                <div className="space-y-1 text-sm text-muted-foreground">
                     {font.fontFamily && (
-                        <div className="flex justify-between">
-                            <span>Family:</span>
-                            <span className="text-right font-medium text-foreground">
+                        <div className="flex justify-between gap-2">
+                            <span className="shrink-0">Family:</span>
+                            <span className="truncate text-right font-medium text-foreground">
                                 {font.fontFamily}
                             </span>
                         </div>
                     )}
                     {font.fontVariable && (
-                        <div className="flex justify-between">
-                            <span>Variable:</span>
-                            <code className="text-right text-xs text-foreground">
+                        <div className="flex justify-between gap-2">
+                            <span className="shrink-0">Variable:</span>
+                            <code className="truncate text-right text-xs text-foreground">
                                 {font.fontVariable}
                             </code>
                         </div>
                     )}
                     {font.fontWeight && font.fontWeight.length > 0 && (
-                        <div className="flex justify-between">
-                            <span>Weights:</span>
-                            <span className="text-right text-foreground">
+                        <div className="flex justify-between gap-2">
+                            <span className="shrink-0">Weights:</span>
+                            <span className="truncate text-right text-foreground">
                                 {font.fontWeight.join(', ')}
-                            </span>
-                        </div>
-                    )}
-                    {font.fontSubsets && font.fontSubsets.length > 0 && (
-                        <div className="flex justify-between">
-                            <span>Subsets:</span>
-                            <span className="text-right text-foreground">
-                                {font.fontSubsets.join(', ')}
                             </span>
                         </div>
                     )}
                 </div>
 
-                {npmCommand && (
-                    <div className="mt-auto pt-2">
-                        <CodeBlock
-                            language="bash"
-                            code={npmCommand}
-                            variant="minimal"
-                            showCopyButton={true}
-                        />
-                    </div>
-                )}
+                <RegistryInstaller code={`fonts/${font.name}`} />
             </CardContent>
         </Card>
     );

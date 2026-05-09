@@ -43,13 +43,6 @@ class ThemesController extends Controller
         return $query->paginate(50)->withQueryString();
     }
 
-    public function show(string $name)
-    {
-        return response()->json(
-            Theme::where('name', $name)->firstOrFail()->toRegistry()
-        );
-    }
-
     public function css(string $name)
     {
         return response(
