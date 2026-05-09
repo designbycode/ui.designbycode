@@ -27,6 +27,22 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Registry::class);
     }
 
+    public function hasLinkedProvider(string $provider): bool
+    {
+        return $this->socials()->where('provider', $provider)->exists();
+    }
+
+
+    public function socials(): HasMany
+    {
+        return $this->hasMany(Social::class);
+    }
+
+    public function connectedAccounts(): HasMany
+    {
+        return $this->socials();
+    }
+
     /**
      * Get the attributes that should be cast.
      *
