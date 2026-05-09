@@ -6,11 +6,26 @@
       "dependencies": {
         "@base-ui/react": "^1.4.1",
         "@fontsource-variable/caveat": "^5.2.8",
+        "@fontsource-variable/cinzel": "^5.2.0",
+        "@fontsource-variable/cormorant-garamond": "^5.2.6",
+        "@fontsource-variable/fira-code": "^5.2.7",
+        "@fontsource-variable/instrument-sans": "^5.2.0",
         "@fontsource-variable/inter": "^5.2.8",
+        "@fontsource-variable/jetbrains-mono": "^5.2.0",
+        "@fontsource-variable/manrope": "^5.2.0",
+        "@fontsource-variable/merriweather": "^5.2.6",
+        "@fontsource-variable/nunito": "^5.2.7",
+        "@fontsource-variable/oswald": "^5.2.0",
         "@fontsource-variable/pixelify-sans": "^5.2.7",
         "@fontsource-variable/playfair-display": "^5.2.8",
+        "@fontsource-variable/quicksand": "^5.2.0",
         "@fontsource-variable/roboto": "^5.2.10",
+        "@fontsource-variable/roboto-condensed": "^5.2.0",
+        "@fontsource-variable/roboto-mono": "^5.2.0",
+        "@fontsource-variable/source-sans-3": "^5.2.0",
+        "@fontsource-variable/space-grotesk": "^5.2.0",
         "@fontsource-variable/work-sans": "^5.2.8",
+        "@fontsource/barlow-condensed": "^5.2.7",
         "@fontsource/bebas-neue": "^5.2.7",
         "@fontsource/dm-serif-display": "^5.2.8",
         "@fontsource/fira-mono": "^5.2.7",
@@ -19,8 +34,10 @@
         "@fontsource/ibm-plex-sans": "^5.2.8",
         "@fontsource/nerko-one": "^5.2.7",
         "@fontsource/orbitron": "^5.2.8",
+        "@fontsource/patrick-hand": "^5.2.7",
         "@fontsource/poppins": "^5.2.7",
-        "@fontsource/roboto-slab": "^5.2.8",
+        "@fontsource/rajdhani": "^5.2.7",
+        "@fontsource/varela-round": "^5.2.7",
         "@gsap/react": "^2.1.2",
         "@headlessui/react": "^2.2.0",
         "@inertiajs/react": "^3.0.0",
@@ -181,15 +198,45 @@
 
     "@fontsource-variable/caveat": ["@fontsource-variable/caveat@5.2.8", "", {}, "sha512-Iv+G8xn0pKG7RtanBmYGMjIfkO819N13LXZBwmRVcgfJvJwKVom/v3KT9pwANXTSoUbPeRp228twRDK7hcabLw=="],
 
+    "@fontsource-variable/cinzel": ["@fontsource-variable/cinzel@5.2.8", "", {}, "sha512-62ddfR79tYNWxIZJPlyFGBusbnONbPL6d163mT/jZOGV4vV8so6Z3buRM5epqtiA6qcVVeF8OZijJJGeLABGJg=="],
+
+    "@fontsource-variable/cormorant-garamond": ["@fontsource-variable/cormorant-garamond@5.2.6", "", {}, "sha512-5vHPJWMuTbVoB6OnorCflWJ51NJZ7eQWw58tVFUE/hHphTi/z2vrKESbuMSJ3diOC5KgPm/RLv2ULur+N1NLJQ=="],
+
+    "@fontsource-variable/fira-code": ["@fontsource-variable/fira-code@5.2.7", "", {}, "sha512-J2bxN7fz5rd8WpQYyau4o19WqTzxoTqaNj9jhsv4p21GSu1Rf34tbqsxqjyDCR+wDMHM3SajyFqtq+5uvRUQ7w=="],
+
+    "@fontsource-variable/instrument-sans": ["@fontsource-variable/instrument-sans@5.2.8", "", {}, "sha512-mTCaukbdIjjoipj2E3Q5XoZM3ZxJWdzyHevf/LG/0PHlfF9Q85pxOM7B7A9MerFyxmRzz5kVlumgIvgDSG4CPg=="],
+
     "@fontsource-variable/inter": ["@fontsource-variable/inter@5.2.8", "", {}, "sha512-kOfP2D+ykbcX/P3IFnokOhVRNoTozo5/JxhAIVYLpea/UBmCQ/YWPBfWIDuBImXX/15KH+eKh4xpEUyS2sQQGQ=="],
+
+    "@fontsource-variable/jetbrains-mono": ["@fontsource-variable/jetbrains-mono@5.2.8", "", {}, "sha512-WBA9elru6Jdp5df2mES55wuOO0WIrn3kpXnI4+W2ek5u3ZgLS9XS4gmIlcQhiZOWEKl95meYdvK7xI+ETLCq/Q=="],
+
+    "@fontsource-variable/manrope": ["@fontsource-variable/manrope@5.2.8", "", {}, "sha512-nc9lOuCRz73UHnovDE2bwXUdghE2SEOc7Aii0qGe3CLyE03W1a7VnY5Z6euRiapiKbCkGS+eXbY3s/kvWeGeSw=="],
+
+    "@fontsource-variable/merriweather": ["@fontsource-variable/merriweather@5.2.6", "", {}, "sha512-bHCDt99f/M48eUcFA86uh/oSPyn8r/ZxXR9l578wqLvjTwDzXx8A/XOAI05WfJ3LnH1rDufQX5RJwiZtbXUCkw=="],
+
+    "@fontsource-variable/nunito": ["@fontsource-variable/nunito@5.2.7", "", {}, "sha512-2N8QhatkyKgSUbAGZO2FYLioxA32+RyI1EplVLawbpkGjUeui9Qg9VMrpkCaik1ydjFjfLV+kzQ0cGEsMrMenQ=="],
+
+    "@fontsource-variable/oswald": ["@fontsource-variable/oswald@5.2.8", "", {}, "sha512-sIXwfKbyHOATgBWOlpR73VMQ8pA8XCToiyy6sL02ZfYEZPpW18TLtpxPBpYXId7xKbWCousOTzlJsa/9rTd8WQ=="],
 
     "@fontsource-variable/pixelify-sans": ["@fontsource-variable/pixelify-sans@5.2.7", "", {}, "sha512-IbQ7po3a7bQuguwyGQ7x7kMUCYvHjzxTdc7lYAcqzgR87MQb+vf8fuu4hjGyFLlWaDhS6QEe0jrS9dmCJ9ZlYw=="],
 
     "@fontsource-variable/playfair-display": ["@fontsource-variable/playfair-display@5.2.8", "", {}, "sha512-ZzVIXPOrL85yyOvZYoBzUszIJM+xKkHqni4IYn2CVLaGQQdJR8sBeC8yFNgjxSJ7ludTwta8qpULeOFuk5X75A=="],
 
+    "@fontsource-variable/quicksand": ["@fontsource-variable/quicksand@5.2.10", "", {}, "sha512-1uzkzGDwWgtFnxquAXuD7fZV9wHkALb49UPzRXxGTVeeLsNrGnIU0O/pcz6m1U7RDtpHz2qx77JhCpKaq7FrUg=="],
+
     "@fontsource-variable/roboto": ["@fontsource-variable/roboto@5.2.10", "", {}, "sha512-LJ0iLg6aHbLzN515gyHzmdTqJzd9NlI95cCg1DW0F5G7KkFqRLBBKBbqEJx4nSu4aby3IKmw3ZH6Fe928IfaSQ=="],
 
+    "@fontsource-variable/roboto-condensed": ["@fontsource-variable/roboto-condensed@5.2.8", "", {}, "sha512-aIZ2kYSoJHkTI4z8x/PRgKX6Zb9TTtSE/u+fUYeiwL+5trP9rhYYEEeNjRttaMqRgoDHcSueArdRZ43wf/i2Kw=="],
+
+    "@fontsource-variable/roboto-mono": ["@fontsource-variable/roboto-mono@5.2.8", "", {}, "sha512-6M2U3wGIUxYNKRrUoKls8BRRIPDA57T8J0agqwyDkiEHrLEEAqptsxcUl3eTm6tnRNEn6yEm4pCefvtnujebDA=="],
+
+    "@fontsource-variable/source-sans-3": ["@fontsource-variable/source-sans-3@5.2.9", "", {}, "sha512-K9fkQbb0BNnRmmaU+Gpr6U4IaYKpNzA8t07J6aam2i+6v84RT72MVpar8OBr3yYAEznj4riKivPQ2nAF2fPKsw=="],
+
+    "@fontsource-variable/space-grotesk": ["@fontsource-variable/space-grotesk@5.2.10", "", {}, "sha512-yJQO/o35/hAP3CFnpdFTwQku2yzJOae2HIpBmqkOVoxhhXJaQP3g+b6Jrz7u+eI7A5ZdCIf88uMWpBJdFiGr5w=="],
+
     "@fontsource-variable/work-sans": ["@fontsource-variable/work-sans@5.2.8", "", {}, "sha512-8uWtTt0/B5NxGie9xUVD5y5Ch4Q+Hy7kFYKtUpwYbzSAgJEoaMxT8rMnfnK7zfAYSLC8GnGO1/tXrFtKIYYQVQ=="],
+
+    "@fontsource/barlow-condensed": ["@fontsource/barlow-condensed@5.2.8", "", {}, "sha512-cmCWNfh7oCmfarGDlhiJRkl4HOgt9aOqki7IYtDOaI3qLCeEO/8VjiZeAx/2PEPf4K36YxXDjAlOWwW/anQUZA=="],
 
     "@fontsource/bebas-neue": ["@fontsource/bebas-neue@5.2.7", "", {}, "sha512-DsmBrmq55d9BCU0mt4DT4RZDdH8vhWRKEUOfbuNB1EEjMuwbtFvM8N+3gIlkYSFbsb10P8Q19BV5OdpMu2h0fA=="],
 
@@ -207,9 +254,13 @@
 
     "@fontsource/orbitron": ["@fontsource/orbitron@5.2.8", "", {}, "sha512-ruzrDl5vnqNykk5DZWY0Ezj4aeFZSbCnwJTc/98ojNJHSsHhlhT2r7rwQrA5sptmF8JtB8TQTAvlfRvcV28RPw=="],
 
+    "@fontsource/patrick-hand": ["@fontsource/patrick-hand@5.2.8", "", {}, "sha512-FZx34VLuiF+Pjv/A/m1bTxjR6hAvmL6vdCp62uypVdgFvSrPrBOxX+vCXVy8lfNVFqvKfm/ghun+aaYVYqfBEg=="],
+
     "@fontsource/poppins": ["@fontsource/poppins@5.2.7", "", {}, "sha512-6uQyPmseo4FgI97WIhA4yWRlNaoLk4vSDK/PyRwdqqZb5zAEuc+Kunt8JTMcsHYUEGYBtN15SNkMajMdqUSUmg=="],
 
-    "@fontsource/roboto-slab": ["@fontsource/roboto-slab@5.2.8", "", {}, "sha512-8+iMCsoUZsDwQUe5omwCp7JPNTVdyAgay5AdhmnFZPEVIVabujrmYaFkSuZ1+GUemPEWlzEQ6aQkg2mPL84SAA=="],
+    "@fontsource/rajdhani": ["@fontsource/rajdhani@5.2.7", "", {}, "sha512-7Gy10U688fCdeFfYKebUF2TZotdgH/ghKyMsseXPmB60lpaUHC8aoCSJl5/OpZ+KHKSU2TqBfKfteVkcIXxTAQ=="],
+
+    "@fontsource/varela-round": ["@fontsource/varela-round@5.2.8", "", {}, "sha512-9jati7lFSnJlz95e8nxTDFqvKNs3XY9fqYb6f8bUXCLa0iDGp0cvdkwRaTNYjYtrpB+ymrHMeNoVo5oEd/ubcg=="],
 
     "@gsap/react": ["@gsap/react@2.1.2", "", { "peerDependencies": { "gsap": "^3.12.5", "react": ">=17" } }, "sha512-JqliybO1837UcgH2hVOM4VO+38APk3ECNrsuSM4MuXp+rbf+/2IG2K1YJiqfTcXQHH7XlA0m3ykniFYstfq0Iw=="],
 
