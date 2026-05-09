@@ -17,7 +17,7 @@ import {
     DialogDescription,
     DialogHeader,
     DialogTitle,
-    DialogTrigger,
+    DialogTrigger
 } from '@/components/ui/dialog';
 import { useCopyToClipboard } from '@/hooks/use-prism';
 import MainWrapper from '@/layouts/main/main-wrapper';
@@ -82,7 +82,7 @@ export default function AnimateCss({
                 <PackageManagerCodeWithSelector
                     className="my-4"
                     options={animationOptions}
-                    baseUrl={url}
+                    baseUrl={url as string}
                     onValueChange={setSelectedAnimation}
                 />
 

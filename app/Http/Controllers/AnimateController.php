@@ -10,7 +10,7 @@ class AnimateController extends Controller
 {
     public function index()
     {
-        $animates = Animate::all()->map(fn(Animate $a) => [
+        $animates = Animate::all()->map(fn (Animate $a) => [
             'name' => $a->name,
             'title' => $a->title,
             'text' => Str::title(Str::replace('-', ' ', Str::after($a->name, 'animate-'))),

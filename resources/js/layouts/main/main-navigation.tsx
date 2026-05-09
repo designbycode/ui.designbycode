@@ -17,6 +17,7 @@ import type { UseHeadroomOptions } from '@/registry/new-york/hooks/use-headroom'
 import useHeadroom from '@/registry/new-york/hooks/use-headroom';
 import { home } from '@/routes';
 import { index as animateCssIndex } from '@/routes/animate-css';
+import { index as fontsIndex } from '@/routes/fonts';
 import { index as themesIndex } from '@/routes/themes';
 
 function MainNavigation() {
@@ -75,6 +76,13 @@ function MainNavigation() {
                     <Link
                         prefetch={'hover'}
                         className={`rounded-md px-4 py-2 hover:bg-muted`}
+                        href={fontsIndex()}
+                    >
+                        Fonts
+                    </Link>
+                    <Link
+                        prefetch={'hover'}
+                        className={`rounded-md px-4 py-2 hover:bg-muted`}
                         href={home()}
                     >
                         Components
@@ -127,6 +135,13 @@ function MainNavigation() {
                                         href={animateCssIndex()}
                                     >
                                         Animate CSS
+                                    </Link>
+                                    <Link
+                                        prefetch={'hover'}
+                                        className="rounded-md px-4 py-2 hover:bg-muted"
+                                        href={fontsIndex()}
+                                    >
+                                        Fonts
                                     </Link>
                                     <Link
                                         prefetch={'hover'}

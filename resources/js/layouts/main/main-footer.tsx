@@ -30,7 +30,7 @@ const socialLinks = [
 
 export default function MainFooter() {
     return (
-        <footer className="">
+        <footer className="mt-6">
             <div className={`relative`}>
                 <div className={`relative mx-5 h-5`}>
                     <PlaceholderPattern className="absolute inset-0 h-full w-full border-y border-border/75 stroke-border/75" />

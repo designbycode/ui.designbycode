@@ -2,16 +2,22 @@
 
 namespace App\Models;
 
-use App\Concerns\HasAnimate;
+use App\Concerns\HasFont;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-#[Fillable(['name', 'title', 'description', 'author', 'user_id', 'type', 'meta', 'css_vars', 'css', 'registryDependencies'])]
-class Animate extends Model
+#[Fillable([
+    'name', 'title', 'type', 'author', 'user_id',
+    'meta', 'categories',
+    'registryDependencies', 'dependencies', 'devDependencies', 'files',
+    'font_family', 'font_provider', 'font_import', 'font_variable',
+    'font_weight', 'font_subsets', 'font_selector', 'font_dependency',
+])]
+class Font extends Model
 {
-    use HasAnimate, SoftDeletes;
+    use HasFont, SoftDeletes;
 
     public function user(): BelongsTo
     {
@@ -27,9 +33,13 @@ class Animate extends Model
     {
         return [
             'meta' => 'array',
-            'css_vars' => 'array',
-            'css' => 'array',
+            'categories' => 'array',
             'registryDependencies' => 'array',
+            'dependencies' => 'array',
+            'devDependencies' => 'array',
+            'files' => 'array',
+            'font_weight' => 'array',
+            'font_subsets' => 'array',
             'created_at' => 'datetime',
             'updated_at' => 'datetime',
             'deleted_at' => 'datetime',
