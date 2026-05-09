@@ -1,10 +1,11 @@
 'use client';
 
-import { Copy, Terminal } from 'lucide-react';
+import { Check, Copy, Terminal } from 'lucide-react';
+import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 import { useCopyToClipboard, usePrismHighlight } from '@/hooks/use-prism';
 import { cn } from '@/lib/utils';
-import { ButtonParticles } from '@/registry/new-york/components/ui/buttons/button-particles';
+import { Button } from '@/components/ui/button';
 import { AnimatedTabs } from '@/registry/new-york/components/ui/tabs/animated-tabs';
 import { usePackageManagerStore } from '@/store/use-package-manager';
 
@@ -36,22 +37,34 @@ export function PackageManagerCode({
     const code = codes[selectedManager] ?? '';
     const { highlightedCode } = usePrismHighlight(code, 'bash');
     const { copy } = useCopyToClipboard();
+    const [showCopied, setShowCopied] = useState(false);
+
+    useEffect(() => {
+        if (showCopied) {
+            const timer = setTimeout(() => {
+                setShowCopied(false);
+            }, 2000);
+
+            return () => clearTimeout(timer);
+        }
+    }, [showCopied]);
 
     const handleCopy = async () => {
         await copy(code);
         toast.success(`${selectedManager} command copied to clipboard!`);
+        setShowCopied(true);
     };
 
     return (
         <div
             className={cn(
-                'group/package-manager relative min-w-0 rounded-lg border',
+                'group/package-manager relative min-w-0 rounded-md border',
                 className,
             )}
         >
             <div className="flex items-center justify-between border-b bg-muted/50 px-3 py-2">
                 <div className="flex items-center gap-2">
-                    <Terminal className="h-4 w-4 text-muted-foreground" />
+                    <Terminal className="size-5 text-muted-foreground" />
 
                     <AnimatedTabs
                         value={selectedManager}
@@ -68,17 +81,32 @@ export function PackageManagerCode({
                         tabClassName="px-2 py-1 text-xs font-medium "
                     />
                 </div>
+                <div className="flex items-center gap-1">
+                    <span
+                        className={cn(
+                            'text-xs text-green-500 transition-opacity duration-200',
+                            showCopied
+                                ? 'opacity-100'
+                                : 'pointer-events-none opacity-0',
+                        )}
+                    >
+                        Copied
+                    </span>
 
-                <ButtonParticles
-                    colors={['var(--primary)', 'var(--secondary)']}
-                    variant="ghost"
-                    size="icon"
-                    onClick={handleCopy}
-                    className="transition-opacity hover:opacity-100"
-                >
-                    <Copy className="size-3" />
-                    <span className="sr-only">Copy</span>
-                </ButtonParticles>
+                    <Button
+                        variant="ghost"
+                        size="icon"
+                        onClick={handleCopy}
+                        className="transition-opacity hover:opacity-100"
+                    >
+                        {showCopied ? (
+                            <Check className="size-4" />
+                        ) : (
+                            <Copy className="size-4" />
+                        )}
+                        <span className="sr-only">Copy</span>
+                    </Button>
+                </div>
             </div>
             <div className="max-w-full min-w-0 overflow-x-auto p-3">
                 <pre className="m-0! w-full min-w-0 rounded-none! bg-transparent! font-mono! text-sm leading-relaxed">

@@ -45,7 +45,7 @@ function CodeBlock({
     return (
         <div
             className={cn(
-                'group/code-block relative overflow-hidden rounded-lg border border-border bg-muted/30 text-sm',
+                'group/code-block relative rounded-md border border-border bg-muted/30 text-sm',
                 className,
             )}
         >
@@ -55,36 +55,59 @@ function CodeBlock({
                         {normalizedLanguage}
                     </span>
                     {showCopyButton && (
-                        <Button
-                            variant="ghost"
-                            size="icon"
-                            onClick={handleCopy}
-                            className="transition-opacity hover:opacity-100"
-                        >
-                            {copied ? (
-                                <Check className="size-3 text-green-500" />
-                            ) : (
-                                <Copy className="size-3" />
-                            )}
-                            <span className="sr-only">Copy</span>
-                        </Button>
+                        <div className="flex items-center gap-1">
+                            <span
+                                className={cn(
+                                    'text-xs text-green-500 transition-opacity duration-200',
+                                    copied
+                                        ? 'opacity-100'
+                                        : 'pointer-events-none opacity-0',
+                                )}
+                            >
+                                Copied
+                            </span>
+                            <Button
+                                variant="ghost"
+                                size="icon"
+                                onClick={handleCopy}
+                                className="transition-opacity hover:opacity-100"
+                            >
+                                {copied ? (
+                                    <Check className="size-4 text-green-500" />
+                                ) : (
+                                    <Copy className="size-4" />
+                                )}
+                                <span className="sr-only">Copy</span>
+                            </Button>
+                        </div>
                     )}
                 </div>
             )}
             {variant === 'minimal' && showCopyButton && (
-                <Button
-                    variant="ghost"
-                    size="icon"
-                    onClick={handleCopy}
-                    className="absolute top-2 right-2 z-10 opacity-0 transition-opacity group-hover/code-block:opacity-100"
-                >
-                    {copied ? (
-                        <Check className="size-3 text-green-500" />
-                    ) : (
-                        <Copy className="size-3" />
-                    )}
-                    <span className="sr-only">Copy</span>
-                </Button>
+                <div className="absolute top-2 right-2 z-10 flex items-center gap-1 opacity-0 transition-opacity group-hover/code-block:opacity-100">
+                    <span
+                        className={cn(
+                            'text-xs text-green-500 transition-opacity duration-200',
+                            copied
+                                ? 'opacity-100'
+                                : 'pointer-events-none opacity-0',
+                        )}
+                    >
+                        Copied
+                    </span>
+                    <Button
+                        variant="ghost"
+                        size="icon"
+                        onClick={handleCopy}
+                    >
+                        {copied ? (
+                            <Check className="size-4 text-green-500" />
+                        ) : (
+                            <Copy className="size-4" />
+                        )}
+                        <span className="sr-only">Copy</span>
+                    </Button>
+                </div>
             )}
             <div className="overflow-x-auto">
                 <pre
@@ -92,7 +115,7 @@ function CodeBlock({
                         'm-0! font-mono! text-sm leading-relaxed',
                         variant === 'default'
                             ? 'rounded-none! p-3!'
-                            : 'rounded-lg! p-4!',
+                            : 'rounded-md! p-4!',
                     )}
                 >
                     <code data-language={language} suppressHydrationWarning>

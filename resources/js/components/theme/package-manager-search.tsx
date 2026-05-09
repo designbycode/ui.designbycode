@@ -1,6 +1,6 @@
 'use client';
 
-import { Copy, Search, Terminal } from 'lucide-react';
+import { Check, Copy, Search, Terminal } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { toast } from 'sonner';
 
@@ -10,7 +10,7 @@ import { useCopyToClipboard, usePrismHighlight } from '@/hooks/use-prism';
 import { cn } from '@/lib/utils';
 import { AnimatedTabs } from '@/registry/new-york/components/ui/tabs/animated-tabs';
 import { usePackageManagerStore } from '@/store/use-package-manager';
-import type { RegistryProps } from '@/types/registries';
+import type { Registry } from '@/types/registry';
 
 export type PackageManager = 'npm' | 'pnpm' | 'yarn' | 'bun';
 
@@ -67,18 +67,18 @@ export function PackageManagerSearch({
     } = usePackageManagerStore();
     const [searchOpen, setSearchOpen] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
-    const [results, setResults] = useState<RegistryProps[]>([]);
+    const [results, setResults] = useState<Registry[]>([]);
     const [loading, setLoading] = useState(false);
     const inputRef = useRef<HTMLInputElement>(null);
+    const [copied, setCopied] = useState(false);
+    const copyTimeoutRef = useRef<ReturnType<typeof setTimeout>>(undefined);
 
     const initialName = defaultRegistry ?? extractRegistryName(initialCodes);
     const registryName = selectedRegistry || initialName;
 
     useEffect(() => {
         if (!searchQuery || searchQuery.length < 2) {
-            if (results.length > 0) {
-                setResults([]);
-            }
+            setResults((prev) => (prev.length > 0 ? [] : prev));
 
             return;
         }
@@ -94,7 +94,7 @@ export function PackageManagerSearch({
                 setResults([]);
             })
             .finally(() => setLoading(false));
-    }, [results.length, searchQuery]);
+    }, [searchQuery]);
 
     useEffect(() => {
         if (searchOpen && inputRef.current) {
@@ -113,10 +113,12 @@ export function PackageManagerSearch({
 
     const handleCopy = async () => {
         await copy(code);
-        toast.success(`${selectedManager} command copied to clipboard!`);
+        setCopied(true);
+        clearTimeout(copyTimeoutRef.current);
+        copyTimeoutRef.current = setTimeout(() => setCopied(false), 2000);
     };
 
-    const handleSelectRegistry = (item: RegistryProps) => {
+    const handleSelectRegistry = (item: Registry) => {
         setSelectedRegistry(item.name);
         setSearchOpen(false);
         toast.success(`Selected: ${item.name}`);
@@ -164,9 +166,24 @@ export function PackageManagerSearch({
                         onClick={handleCopy}
                         className="transition-opacity hover:opacity-100"
                     >
-                        <Copy className="size-3" />
+                        {copied ? (
+                            <Check className="size-4 text-green-500" />
+                        ) : (
+                            <Copy className="size-4" />
+                        )}
                         <span className="sr-only">Copy</span>
                     </Button>
+
+                    <span
+                        className={cn(
+                            'text-xs text-emerald-500 transition-opacity duration-200',
+                            copied
+                                ? 'opacity-100'
+                                : 'pointer-events-none opacity-0',
+                        )}
+                    >
+                        Copied
+                    </span>
                 </div>
             </div>
             <div className="max-w-full min-w-0 overflow-x-auto p-3">
@@ -215,7 +232,7 @@ export function PackageManagerSearch({
                                 Type to search registries...
                             </div>
                         ) : (
-                            results.map((item: RegistryProps) => (
+                            results.map((item: Registry) => (
                                 <button
                                     key={item.name}
                                     type="button"

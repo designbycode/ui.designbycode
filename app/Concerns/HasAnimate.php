@@ -6,7 +6,7 @@ use InvalidArgumentException;
 
 trait HasAnimate
 {
-    public const ASSET_TYPES = [
+    public const array ASSET_TYPES = [
         'attention',
         'bounce',
         'fade-in',
