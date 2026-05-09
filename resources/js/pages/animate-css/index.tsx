@@ -3,6 +3,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useCallback, useRef, useState } from 'react';
 import { toast } from 'sonner';
+import Heading from '@/components/heading';
 import { CodeBlock } from '@/components/theme/code-block';
 import RegistryInstaller from '@/components/theme/registry-installer';
 import { Button } from '@/components/ui/button';
@@ -19,7 +20,6 @@ import {
 import { useCopyToClipboard } from '@/hooks/use-prism';
 import MainWrapper from '@/layouts/main/main-wrapper';
 import MainLayout from '@/layouts/main-layout';
-import Heading from '@/components/heading';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -50,22 +50,20 @@ export default function AnimateCss({
     return (
         <MainWrapper className={`pt-4`}>
             <Heading
+                as="h1"
                 title={`Animate.css Animations`}
                 description={`Click any animation card to view and copy the code. 100+
                         CSS-based animations available.`}
             />
             <div className="mb-12">
-                <h2 className="mt-8 mb-2 text-2xl font-semibold text-foreground">
-                    About
-                </h2>
-                <p className="mb-4 max-w-4xl text-balance text-muted-foreground">
-                    <span className="inline-block animate-bounce font-bold text-primary repeat-infinite">
-                        Animate.css
-                    </span>{' '}
-                    is a library of CSS animations that you can use directly in
+                <Heading
+                    as="h2"
+                    title={`About`}
+                    description={`is a library of CSS animations that you can use directly in
                     your components. Simply add the animation class name to any
-                    element to animate it.
-                </p>
+                    element to animate it.`}
+                />
+               
                 <ul className="mb-6 list-disc pl-6 text-muted-foreground">
                     <li>100+ built-in animation types</li>
                     <li>Simple CSS class-based animations</li>
@@ -112,7 +110,7 @@ export default function AnimateCss({
                 </div>
                 <RegistryInstaller
                     className="my-4"
-                    code={'animate/' + selectedAnimation}
+                    code={'animate-css/' + selectedAnimation}
                 />
 
                 <h2 className="mt-8 mb-4 text-2xl font-semibold text-foreground">
@@ -139,7 +137,7 @@ export default function AnimateCss({
 
                 <RegistryInstaller
                     className="my-4"
-                    code="animate/animate-all"
+                    code="animate-css/animate-all"
                 />
 
                 <h2 className="mt-8 mb-4 text-2xl font-semibold text-foreground">
@@ -239,7 +237,7 @@ function AnimationCard({ anim }: { anim: AnimationItem }) {
                         {anim.text}
                     </span>
                 </div>
-                <RegistryInstaller code={'animate/' + anim.name} />
+                <RegistryInstaller code={'animate-css/' + anim.name} />
                 <CodeBlock
                     // variant="minimal"
                     language="html"

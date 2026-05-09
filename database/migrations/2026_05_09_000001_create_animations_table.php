@@ -16,8 +16,9 @@ return new class extends Migration
 
             $table->string('name')->unique();
             $table->string('title')->nullable();
+            $table->string('type')->default('registry:style');
             $table->text('description')->nullable();
-            $table->string('author')->nullable();
+            $table->string('author')->default('designbycode')->nullable();
 
             $table->json('meta')->nullable();
             $table->json('css_vars')->nullable();
@@ -30,17 +31,6 @@ return new class extends Migration
             $table->index('created_at');
         });
 
-        DB::statement("
-            INSERT INTO animates (user_id, name, title, description, author, meta, css_vars, css, registryDependencies, created_at, updated_at)
-            SELECT user_id, name, title, description, author, meta, vars_theme, css, registryDependencies, created_at, updated_at
-            FROM registries
-            WHERE type = 'registry:style' AND JSON_UNQUOTE(JSON_EXTRACT(meta, '$.category')) = 'animations'
-        ");
-
-        DB::table('registries')
-            ->where('type', 'registry:style')
-            ->whereRaw("JSON_UNQUOTE(JSON_EXTRACT(meta, '$.category')) = 'animations'")
-            ->delete();
     }
 
     public function down(): void
