@@ -1980,6 +1980,10 @@ class AnimateSeeder extends Seeder
                     'https://ui.designbycode.co.za/r/animate/animate-sway.json',
                     'https://ui.designbycode.co.za/r/animate/animate-ken-burns.json',
                     'https://ui.designbycode.co.za/r/animate/animate-tilt.json',
+                    'https://ui.designbycode.co.za/r/animate/animate-bell.json',
+                    'https://ui.designbycode.co.za/r/animate/animate-ring.json',
+                    'https://ui.designbycode.co.za/r/animate/animate-alarm.json',
+                    
                 ],
             ],
         ];
