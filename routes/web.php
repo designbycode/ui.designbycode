@@ -24,6 +24,7 @@ Route::delete('/r/{name}', [RegistryController::class, 'destroy']);
 Route::post('/r/upload', [RegistryController::class, 'upload']);
 Route::post('/r/upload-raw', [RegistryController::class, 'uploadRaw']);
 
+Route::get('/r/fonts/{name}.json', [FontsController::class, 'show']);
 Route::get('/r/animate-css/{name}.json', [AnimateController::class, 'show']);
 
 Route::middleware(['auth', 'verified'])->group(function () {
