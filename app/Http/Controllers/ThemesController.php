@@ -10,7 +10,7 @@ class ThemesController extends Controller
 {
     public function index()
     {
-        $availableCategories = Cache::remember('themes:available_categories', 3600, fn () => Theme::query()
+        $availableCategories = Cache::remember('themes:available_categories', 3600, fn() => Theme::query()
             ->select('categories')
             ->get()
             ->pluck('categories')
@@ -21,10 +21,10 @@ class ThemesController extends Controller
             ->all());
 
         return Inertia::render('themes/index', [
-            'themes' => Inertia::scroll(Theme::paginate(50)->withQueryString()),
+            'themes' => Inertia::scroll(Theme::paginate(12)->withQueryString()),
             'filters' => request()->only(['search', 'category']),
             'availableCategories' => $availableCategories,
-            'totalThemesCount' => Cache::remember('themes:total_count', 3600, fn () => Theme::count()),
+            'totalThemesCount' => Cache::remember('themes:total_count', 3600, fn() => Theme::count()),
         ]);
     }
 
@@ -33,7 +33,7 @@ class ThemesController extends Controller
         $query = Theme::query();
 
         if ($search = request('search')) {
-            $query->where(fn ($q) => $q
+            $query->where(fn($q) => $q
                 ->where('name', 'like', "%{$search}%")
                 ->orWhere('title', 'like', "%{$search}%")
                 ->orWhere('description', 'like', "%{$search}%")

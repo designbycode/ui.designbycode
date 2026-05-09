@@ -36,9 +36,11 @@ class ThemeSeeder extends Seeder
                 'title' => 'Polar Drift',
                 'description' => 'Minimal frozen tundra theme with cool blue tones, frosted surfaces, and crisp arctic typography.',
                 'font_family' => 'Inter, sans-serif',
+                'registryDependencies' => [
+                    'https://ui.designbycode.co.za/r/fonts/font-inter.json',
+                    'https://ui.designbycode.co.za/r/fonts/font-jetbrains-mono.json',
+                ],
                 'css' => [
-                    '@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap")' => [
-                    ],
                     '@layer base' => [
                         '*' => [
                             'border-color' => 'var(--border)',
@@ -143,9 +145,11 @@ class ThemeSeeder extends Seeder
                 'title' => 'Yeti',
                 'description' => 'Snowstorm-inspired dark alpine theme with rugged mountain contrast and frozen cyan highlights.',
                 'font_family' => 'Space Grotesk, sans-serif',
+                'registryDependencies' => [
+                    'https://ui.designbycode.co.za/r/fonts/font-space-grotesk.json',
+                    'https://ui.designbycode.co.za/r/fonts/font-jetbrains-mono.json',
+                ],
                 'css' => [
-                    '@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap")' => [
-                    ],
                     '@layer base' => [
                         '*' => [
                             'border-color' => 'var(--border)',
@@ -250,9 +254,12 @@ class ThemeSeeder extends Seeder
                 'title' => 'Boho',
                 'description' => 'Warm earthy artisan theme with soft paper tones, handcrafted shadows, and artistic serif typography.',
                 'font_family' => 'Cormorant Garamond, Inter, serif',
+                'registryDependencies' => [
+                    'https://ui.designbycode.co.za/r/fonts/font-playfair-display.json',
+                    'https://ui.designbycode.co.za/r/fonts/font-inter.json',
+                    'https://ui.designbycode.co.za/r/fonts/font-fira-mono.json',
+                ],
                 'css' => [
-                    '@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap")' => [
-                    ],
                     '@layer base' => [
                         '*' => [
                             'border-color' => 'var(--border)',
@@ -393,9 +400,11 @@ class ThemeSeeder extends Seeder
                 'title' => 'Tide',
                 'description' => 'Bright tropical coastal theme with ocean blues, citrus warmth, and sunny coral surfaces.',
                 'font_family' => 'Poppins, sans-serif',
+                'registryDependencies' => [
+                    'https://ui.designbycode.co.za/r/fonts/font-poppins.json',
+                ],
                 'css' => [
-                    '@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap")' => [
-                    ],
+
                 ],
                 'vars_theme' => [
                     'font-sans' => 'Poppins, sans-serif',
@@ -487,9 +496,11 @@ class ThemeSeeder extends Seeder
                 'title' => 'Ember',
                 'description' => 'Earthy harvest-inspired theme with amber leaves, rustic warmth, and crackling fire tones.',
                 'font_family' => 'Merriweather, serif',
+                'registryDependencies' => [
+                    'https://ui.designbycode.co.za/r/fonts/font-playfair-display.json',
+                ],
                 'css' => [
-                    '@import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap")' => [
-                    ],
+
                 ],
                 'vars_theme' => [
                     'font-sans' => 'Merriweather, serif',
@@ -581,9 +592,11 @@ class ThemeSeeder extends Seeder
                 'title' => 'Noir Ice',
                 'description' => 'Elegant frozen theme with snowy neutrals, deep navy noir contrast, and icy silver highlights.',
                 'font_family' => 'Inter, sans-serif',
+                'registryDependencies' => [
+                    'https://ui.designbycode.co.za/r/fonts/font-inter.json',
+                ],
                 'css' => [
-                    '@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap")' => [
-                    ],
+
                 ],
                 'vars_theme' => [
                     'font-sans' => 'Inter, sans-serif',
@@ -675,9 +688,12 @@ class ThemeSeeder extends Seeder
                 'title' => 'Verdant Future',
                 'description' => 'Bright ecological future theme with lush greens, solar golds, soft natural gradients, and optimistic clean design.',
                 'font_family' => 'Nunito, sans-serif',
+                'registryDependencies' => [
+                    'https://ui.designbycode.co.za/r/fonts/font-inter.json',
+                    'https://ui.designbycode.co.za/r/fonts/font-playfair-display.json',
+                    'https://ui.designbycode.co.za/r/fonts/font-jetbrains-mono.json',
+                ],
                 'css' => [
-                    '@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&display=swap")' => [
-                    ],
                     '@layer base' => [
                         '*' => [
                             'border-color' => 'var(--border)',
@@ -796,9 +812,13 @@ class ThemeSeeder extends Seeder
                 'title' => 'Brutal Industry',
                 'description' => 'Retro-futuristic interwar industrial theme with steel blues, oil blacks, riveted metal, and smoky amber lighting.',
                 'font_family' => 'Oswald, sans-serif',
+                'registryDependencies' => [
+                    'https://ui.designbycode.co.za/r/fonts/font-roboto.json',
+                    'https://ui.designbycode.co.za/r/fonts/font-bebas-neue.json',
+                    'https://ui.designbycode.co.za/r/fonts/font-jetbrains-mono.json',
+                ],
+
                 'css' => [
-                    '@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Roboto+Condensed:wght@400;700&display=swap")' => [
-                    ],
                     '@layer base' => [
                         '*' => [
                             'border-color' => 'var(--border)',
@@ -914,9 +934,14 @@ class ThemeSeeder extends Seeder
                 'title' => 'Retrowave',
                 'description' => 'Retro analog-future aesthetic with neon magentas, teal glows, VHS warmth, and cassette-inspired UI surfaces.',
                 'font_family' => 'Orbitron, sans-serif',
+                'registryDependencies' => [
+                    'https://ui.designbycode.co.za/r/fonts/font-inter.json',
+                    'https://ui.designbycode.co.za/r/fonts/font-orbitron.json',
+                    'https://ui.designbycode.co.za/r/fonts/font-jetbrains-mono.json',
+                ],
+
                 'css' => [
-                    '@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap")' => [
-                    ],
+
                     '@layer base' => [
                         '*' => [
                             'border-color' => 'var(--border)',
@@ -1036,9 +1061,12 @@ class ThemeSeeder extends Seeder
                 'title' => 'Synth Organica',
                 'description' => 'Bio-engineered aesthetic with organic neon greens, wet bio-surface blacks, and glowing cellular UI elements.',
                 'font_family' => 'IBM Plex Sans, sans-serif',
+                'registryDependencies' => [
+                    'https://ui.designbycode.co.za/r/fonts/font-ibm-plex-sans.json',
+                    'https://ui.designbycode.co.za/r/fonts/font-ibm-plex-mono.json',
+                ],
+
                 'css' => [
-                    '@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap")' => [
-                    ],
                     '@layer base' => [
                         '*' => [
                             'border-color' => 'var(--border)',
@@ -1156,9 +1184,13 @@ class ThemeSeeder extends Seeder
                 'title' => 'Dreamscape',
                 'description' => 'Dreamy retro internet aesthetic with pastel pinks, soft purples, cyan glow, and nostalgic sunset gradients.',
                 'font_family' => 'Varela Round, sans-serif',
+                'registryDependencies' => [
+                    'https://ui.designbycode.co.za/r/fonts/font-work-sans.json',
+                    'https://ui.designbycode.co.za/r/fonts/font-ibm-plex-mono.json',
+                ],
+
                 'css' => [
-                    '@import url("https://fonts.googleapis.com/css2?family=Varela+Round&family=IBM+Plex+Mono:wght@400;500;600&display=swap")' => [
-                    ],
+
                     '@layer base' => [
                         '*' => [
                             'border-color' => 'var(--border)',
@@ -1276,9 +1308,11 @@ class ThemeSeeder extends Seeder
                 'title' => 'Minimalism',
                 'description' => 'Ultra-clean whitespace-heavy design focused on typography, subtle grey contrast, and quiet UI structure with almost no ornamentation.',
                 'font_family' => 'Inter, sans-serif',
+                'registryDependencies' => [
+                    'https://ui.designbycode.co.za/r/fonts/font-inter.json',
+                ],
+
                 'css' => [
-                    '@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap")' => [
-                    ],
                     '@layer base' => [
                         '*' => [
                             'border-color' => 'var(--border)',
@@ -1398,9 +1432,12 @@ class ThemeSeeder extends Seeder
                 'title' => 'Soft Extrude',
                 'description' => 'Soft extruded UI style with subtle inner/outer shadows, minimal contrast, and tactile depth surfaces with a neumorphic feel.',
                 'font_family' => 'Inter, sans-serif',
+                'registryDependencies' => [
+                    'https://ui.designbycode.co.za/r/fonts/font-inter.json',
+                ],
+
                 'css' => [
-                    '@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap")' => [
-                    ],
+
                     '@layer base' => [
                         '*' => [
                             'border-color' => 'var(--border)',
@@ -1515,9 +1552,11 @@ class ThemeSeeder extends Seeder
                 'title' => 'Frost',
                 'description' => 'Frosted glass UI with layered transparency, soft blur effects, subtle borders, and luminous gradient depth with a glassmorphism feel.',
                 'font_family' => 'Inter, sans-serif',
+                'registryDependencies' => [
+                    'https://ui.designbycode.co.za/r/fonts/font-inter.json',
+                ],
+
                 'css' => [
-                    '@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap")' => [
-                    ],
                     '@layer base' => [
                         '*' => [
                             'border-color' => 'var(--border)',
@@ -1639,9 +1678,13 @@ class ThemeSeeder extends Seeder
                 'title' => 'Structured',
                 'description' => 'Google-inspired structured UI system with elevation layers, bold primary colors, predictable surface hierarchy, and clean material aesthetics.',
                 'font_family' => 'Roboto, Inter, sans-serif',
+                'registryDependencies' => [
+                    'https://ui.designbycode.co.za/r/fonts/font-roboto.json',
+                    'https://ui.designbycode.co.za/r/fonts/font-inter.json',
+                ],
+
                 'css' => [
-                    '@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap")' => [
-                    ],
+
                     '@layer base' => [
                         '*' => [
                             'border-color' => 'var(--border)',
@@ -1760,9 +1803,12 @@ class ThemeSeeder extends Seeder
                 'title' => 'Corporate',
                 'description' => 'Neutral, scalable enterprise design system for data-heavy dashboards with a focus on clarity, hierarchy, and dense information layouts.',
                 'font_family' => 'Inter, system-ui, sans-serif',
+                'registryDependencies' => [
+                    'https://ui.designbycode.co.za/r/fonts/font-inter.json',
+                ],
+
                 'css' => [
-                    '@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap")' => [
-                    ],
+
                     '@layer base' => [
                         '*' => [
                             'border-color' => 'var(--border)',
@@ -1885,9 +1931,12 @@ class ThemeSeeder extends Seeder
                 'title' => 'Treasury',
                 'description' => 'Trust-focused financial UI with clean blue/green palettes, strong hierarchy, data-first chart clarity, and professional polish.',
                 'font_family' => 'Inter, system-ui, sans-serif',
+                'registryDependencies' => [
+                    'https://ui.designbycode.co.za/r/fonts/font-inter.json',
+                ],
+
                 'css' => [
-                    '@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap")' => [
-                    ],
+
                     '@layer base' => [
                         '*' => [
                             'border-color' => 'var(--border)',
@@ -2007,9 +2056,11 @@ class ThemeSeeder extends Seeder
                 'title' => 'Canopy',
                 'description' => 'Deep nature-integrated UI inspired by forest canopies, organic plant forms, soft textures, and natural light harmony through layered greens.',
                 'font_family' => 'Inter, system-ui, sans-serif',
+                'registryDependencies' => [
+                    'https://ui.designbycode.co.za/r/fonts/font-inter.json',
+                ],
+
                 'css' => [
-                    '@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap")' => [
-                    ],
                     '@layer base' => [
                         '*' => [
                             'border-color' => 'var(--border)',
@@ -2134,9 +2185,11 @@ class ThemeSeeder extends Seeder
                 'title' => 'Wabi-Sabi',
                 'description' => 'Rustic wabi-sabi minimalism inspired by natural aging, asymmetry, imperfect textures, and quiet calmness.',
                 'font_family' => 'Inter, system-ui, sans-serif',
+                'registryDependencies' => [
+                    'https://ui.designbycode.co.za/r/fonts/font-inter.json',
+                ],
+
                 'css' => [
-                    '@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap")' => [
-                    ],
                     '@layer base' => [
                         '*' => [
                             'border-color' => 'var(--border)',
@@ -2254,9 +2307,12 @@ class ThemeSeeder extends Seeder
                 'title' => 'Gatsby',
                 'description' => 'Geometric Art Deco luxury UI inspired by symmetry, bold gold-accented structure, elegant refinement, and jazz-age opulence.',
                 'font_family' => 'Inter, system-ui, sans-serif',
+                'registryDependencies' => [
+                    'https://ui.designbycode.co.za/r/fonts/font-inter.json',
+                ],
+
                 'css' => [
-                    '@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap")' => [
-                    ],
+
                     '@layer base' => [
                         '*' => [
                             'border-color' => 'var(--border)',
@@ -2387,9 +2443,12 @@ class ThemeSeeder extends Seeder
                 'title' => 'Comic Pop',
                 'description' => 'Bold pop-art comic-inspired UI with high contrast colors, playful graphic energy, and punchy illustrative punch.',
                 'font_family' => 'Inter, system-ui, sans-serif',
+                'registryDependencies' => [
+                    'https://ui.designbycode.co.za/r/fonts/font-inter.json',
+                ],
+
                 'css' => [
-                    '@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap")' => [
-                    ],
+
                     '@layer base' => [
                         '*' => [
                             'border-color' => 'var(--border)',
@@ -2512,9 +2571,12 @@ class ThemeSeeder extends Seeder
                 'title' => 'Storybook',
                 'description' => 'Hand-drawn playful UI with sketch-like aesthetics, warm illustrated tones, and whimsical character-inspired visual charm.',
                 'font_family' => 'Inter, system-ui, sans-serif',
+                'registryDependencies' => [
+                    'https://ui.designbycode.co.za/r/fonts/font-inter.json',
+                ],
+
                 'css' => [
-                    '@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Patrick+Hand&display=swap")' => [
-                    ],
+
                     '@layer base' => [
                         '*' => [
                             'border-color' => 'var(--border)',
@@ -2640,9 +2702,12 @@ class ThemeSeeder extends Seeder
                 'title' => 'Millennium',
                 'description' => 'Chrome gradients, glossy surfaces, bubbly Y2K futuristic nostalgia inspired by early 2000s digital aesthetics.',
                 'font_family' => 'Inter, system-ui, sans-serif',
+                'registryDependencies' => [
+                    'https://ui.designbycode.co.za/r/fonts/font-inter.json',
+                ],
+
                 'css' => [
-                    '@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap")' => [
-                    ],
+
                     '@layer base' => [
                         '*' => [
                             'border-color' => 'var(--border)',
@@ -2772,9 +2837,12 @@ class ThemeSeeder extends Seeder
                 'title' => 'Neon Horizon',
                 'description' => 'Neon sunsets, retro-futuristic glow, grid horizons, and vapor-lit 80s synthwave digital nostalgia on infinite霓虹 horizons.',
                 'font_family' => 'Inter, system-ui, sans-serif',
+                'registryDependencies' => [
+                    'https://ui.designbycode.co.za/r/fonts/font-inter.json',
+                ],
+
                 'css' => [
-                    '@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap")' => [
-                    ],
+
                     '@layer base' => [
                         '*' => [
                             'border-color' => 'var(--border)',
@@ -2898,6 +2966,8 @@ class ThemeSeeder extends Seeder
                 'title' => 'Web 1.0',
                 'description' => 'Early internet aesthetic with pixelated elements, default system fonts, blue links, and raw browser-era styling straight from the 90s.',
                 'font_family' => 'Courier New, ui-monospace, monospace',
+                'registryDependencies' => [],
+
                 'css' => [
                     '@layer base' => [
                         '*' => [
@@ -3038,9 +3108,12 @@ class ThemeSeeder extends Seeder
                 'title' => 'Letterpress',
                 'description' => 'Paper-textured vintage print-inspired UI with serif-heavy typography, ink tones, and classic print aesthetic charm.',
                 'font_family' => 'Merriweather, ui-serif, Georgia, serif',
+                'registryDependencies' => [
+                    'https://ui.designbycode.co.za/r/fonts/font-playfair-display.json',
+                ],
+
                 'css' => [
-                    '@import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap")' => [
-                    ],
+
                     '@layer base' => [
                         '*' => [
                             'border-color' => 'var(--border)',
@@ -3173,9 +3246,12 @@ class ThemeSeeder extends Seeder
                 'title' => 'Green Screen',
                 'description' => 'Classic CRT terminal aesthetics with green-on-black and amber phosphor variants, glowing monospace text, and retro scanline-inspired depth.',
                 'font_family' => 'JetBrains Mono, ui-monospace, monospace',
+                'registryDependencies' => [
+                    'https://ui.designbycode.co.za/r/fonts/font-jetbrains-mono.json',
+                ],
+
                 'css' => [
-                    '@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600&display=swap")' => [
-                    ],
+
                     '@layer base' => [
                         '*' => [
                             'border-color' => 'var(--border)',
@@ -3313,9 +3389,12 @@ class ThemeSeeder extends Seeder
                 'title' => 'Cosmos',
                 'description' => 'Deep-space inspired UI with cosmic nebula gradients, celestial glows, and clean futuristic star-trekking interfaces.',
                 'font_family' => 'Inter, system-ui, sans-serif',
+                'registryDependencies' => [
+                    'https://ui.designbycode.co.za/r/fonts/font-inter.json',
+                ],
+
                 'css' => [
-                    '@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap")' => [
-                    ],
+
                     '@layer base' => [
                         '*' => [
                             'border-color' => 'var(--border)',
@@ -3438,9 +3517,13 @@ class ThemeSeeder extends Seeder
                 'title' => 'Tactical',
                 'description' => 'Tactical heads-up display inspired UI with grid overlays, radar greens, warning reds, and utilitarian data-heavy military design.',
                 'font_family' => 'Roboto Mono, ui-monospace, monospace',
+                'registryDependencies' => [
+                    'https://ui.designbycode.co.za/r/fonts/font-roboto.json',
+                    'https://ui.designbycode.co.za/r/fonts/font-jetbrains-mono.json',
+                ],
+
                 'css' => [
-                    '@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;600&display=swap")' => [
-                    ],
+
                     '@layer base' => [
                         '*' => [
                             'border-color' => 'var(--border)',
@@ -3577,9 +3660,13 @@ class ThemeSeeder extends Seeder
                 'title' => 'Inferno',
                 'description' => 'Blazing firebrick-and-lava theme with deep crimson warmth, molten orange glows, and ashen charcoal foundations.',
                 'font_family' => 'Barlow Condensed, sans-serif',
+                'registryDependencies' => [
+                    'https://ui.designbycode.co.za/r/fonts/font-inter.json',
+                    'https://ui.designbycode.co.za/r/fonts/font-jetbrains-mono.json',
+                ],
+
                 'css' => [
-                    '@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&display=swap")' => [
-                    ],
+
                     '@layer base' => [
                         '*' => [
                             'border-color' => 'var(--border)',
@@ -3689,9 +3776,13 @@ class ThemeSeeder extends Seeder
                 'title' => 'Mauve',
                 'description' => 'Elegant plum-toned theme with mauve primary colors, taupe neutrals, and sophisticated muted purple ambiance.',
                 'font_family' => 'Inter, sans-serif',
+                'registryDependencies' => [
+                    'https://ui.designbycode.co.za/r/fonts/font-inter.json',
+                    'https://ui.designbycode.co.za/r/fonts/font-jetbrains-mono.json',
+                ],
+
                 'css' => [
-                    '@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap")' => [
-                    ],
+
                 ],
                 'vars_theme' => [
                     'font-sans' => 'Inter, sans-serif',
@@ -3785,9 +3876,13 @@ class ThemeSeeder extends Seeder
                 'title' => 'Haze',
                 'description' => 'Cool atmospheric theme with misty blue-gray primary, olive earthy accents, and fog-kissed neutral surfaces.',
                 'font_family' => 'Inter, sans-serif',
+                'registryDependencies' => [
+                    'https://ui.designbycode.co.za/r/fonts/font-inter.json',
+                    'https://ui.designbycode.co.za/r/fonts/font-jetbrains-mono.json',
+                ],
+
                 'css' => [
-                    '@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap")' => [
-                    ],
+
                 ],
                 'vars_theme' => [
                     'font-sans' => 'Inter, sans-serif',
@@ -3881,9 +3976,14 @@ class ThemeSeeder extends Seeder
                 'title' => 'Gothic',
                 'description' => 'Dark cathedral-inspired theme with stone masonry grays, stained-glass jewel tones, and dramatic rose-window accents.',
                 'font_family' => 'Cinzel, serif',
+                'registryDependencies' => [
+                    'https://ui.designbycode.co.za/r/fonts/font-inter.json',
+                    'https://ui.designbycode.co.za/r/fonts/font-playfair-display.json',
+                    'https://ui.designbycode.co.za/r/fonts/font-jetbrains-mono.json',
+                ],
+
                 'css' => [
-                    '@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Source+Sans+3:wght@400;500;600&display=swap")' => [
-                    ],
+
                 ],
                 'vars_theme' => [
                     'font-sans' => 'Source Sans 3, sans-serif',
@@ -3977,9 +4077,14 @@ class ThemeSeeder extends Seeder
                 'title' => 'Fantasy',
                 'description' => 'Enchanted realm theme with amethyst purples, emerald greens, magical gold highlights, and ethereal glowing accents.',
                 'font_family' => 'Cormorant Garamond, serif',
+                'registryDependencies' => [
+                    'https://ui.designbycode.co.za/r/fonts/font-inter.json',
+                    'https://ui.designbycode.co.za/r/fonts/font-playfair-display.json',
+                    'https://ui.designbycode.co.za/r/fonts/font-jetbrains-mono.json',
+                ],
+
                 'css' => [
-                    '@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap")' => [
-                    ],
+
                 ],
                 'vars_theme' => [
                     'font-sans' => 'Inter, sans-serif',
@@ -4073,9 +4178,14 @@ class ThemeSeeder extends Seeder
                 'title' => 'Mythological',
                 'description' => 'Ancient Greco-Roman inspired theme with marble-white surfaces, Aegean deep blues, terracotta accents, and gilded highlights.',
                 'font_family' => 'Cinzel, serif',
+                'registryDependencies' => [
+                    'https://ui.designbycode.co.za/r/fonts/font-inter.json',
+                    'https://ui.designbycode.co.za/r/fonts/font-playfair-display.json',
+                    'https://ui.designbycode.co.za/r/fonts/font-jetbrains-mono.json',
+                ],
+
                 'css' => [
-                    '@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Source+Sans+3:wght@400;500;600&display=swap")' => [
-                    ],
+
                 ],
                 'vars_theme' => [
                     'font-sans' => 'Source Sans 3, sans-serif',
@@ -4169,9 +4279,13 @@ class ThemeSeeder extends Seeder
                 'title' => 'Urban',
                 'description' => 'City-concrete inspired theme with pavement grays, steel-blue accents, grafitti-bright highlights, and industrial edge.',
                 'font_family' => 'Barlow Condensed, sans-serif',
+                'registryDependencies' => [
+                    'https://ui.designbycode.co.za/r/fonts/font-inter.json',
+                    'https://ui.designbycode.co.za/r/fonts/font-jetbrains-mono.json',
+                ],
+
                 'css' => [
-                    '@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&display=swap")' => [
-                    ],
+
                 ],
                 'vars_theme' => [
                     'font-sans' => 'Barlow Condensed, sans-serif',
@@ -4265,9 +4379,13 @@ class ThemeSeeder extends Seeder
                 'title' => 'Mid-Century',
                 'description' => 'Retro 1950s-60s inspired theme with teal hues, mustard yellows, burnt orange accents, and warm walnut browns.',
                 'font_family' => 'Space Grotesk, sans-serif',
+                'registryDependencies' => [
+                    'https://ui.designbycode.co.za/r/fonts/font-space-grotesk.json',
+                    'https://ui.designbycode.co.za/r/fonts/font-jetbrains-mono.json',
+                ],
+
                 'css' => [
-                    '@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap")' => [
-                    ],
+
                 ],
                 'vars_theme' => [
                     'font-sans' => 'Space Grotesk, sans-serif',
@@ -4361,9 +4479,13 @@ class ThemeSeeder extends Seeder
                 'title' => 'Japanese Zen',
                 'description' => 'Serene Zen-inspired theme with rice-paper whites, bamboo greens, ink-black calligraphy, and vermillion accents.',
                 'font_family' => 'Inter, sans-serif',
+                'registryDependencies' => [
+                    'https://ui.designbycode.co.za/r/fonts/font-inter.json',
+                    'https://ui.designbycode.co.za/r/fonts/font-jetbrains-mono.json',
+                ],
+
                 'css' => [
-                    '@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap")' => [
-                    ],
+
                 ],
                 'vars_theme' => [
                     'font-sans' => 'Inter, sans-serif',
@@ -4457,9 +4579,14 @@ class ThemeSeeder extends Seeder
                 'title' => 'Art Nouveau',
                 'description' => 'Flowery Belle Époque theme with peacock teals, gilded gold, deep purples, and organic flowing ornament.',
                 'font_family' => 'Cormorant Garamond, serif',
+                'registryDependencies' => [
+                    'https://ui.designbycode.co.za/r/fonts/font-inter.json',
+                    'https://ui.designbycode.co.za/r/fonts/font-playfair-display.json',
+                    'https://ui.designbycode.co.za/r/fonts/font-jetbrains-mono.json',
+                ],
+
                 'css' => [
-                    '@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap")' => [
-                    ],
+
                 ],
                 'vars_theme' => [
                     'font-sans' => 'Inter, sans-serif',
@@ -4553,9 +4680,13 @@ class ThemeSeeder extends Seeder
                 'title' => 'Coastal',
                 'description' => 'Seaside retreat theme with sandy beige shores, ocean-blue waves, sea-foam greens, and driftwood warmth.',
                 'font_family' => 'Quicksand, sans-serif',
+                'registryDependencies' => [
+                    'https://ui.designbycode.co.za/r/fonts/font-work-sans.json',
+                    'https://ui.designbycode.co.za/r/fonts/font-jetbrains-mono.json',
+                ],
+
                 'css' => [
-                    '@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap")' => [
-                    ],
+
                 ],
                 'vars_theme' => [
                     'font-sans' => 'Quicksand, sans-serif',
@@ -4649,9 +4780,13 @@ class ThemeSeeder extends Seeder
                 'title' => 'Scandinavian',
                 'description' => 'Hygge-inspired Nordic theme with crisp white expanses, light birch woods, soft blush accents, and serene minimalism.',
                 'font_family' => 'Inter, sans-serif',
+                'registryDependencies' => [
+                    'https://ui.designbycode.co.za/r/fonts/font-inter.json',
+                    'https://ui.designbycode.co.za/r/fonts/font-jetbrains-mono.json',
+                ],
+
                 'css' => [
-                    '@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap")' => [
-                    ],
+
                 ],
                 'vars_theme' => [
                     'font-sans' => 'Inter, sans-serif',
@@ -4745,9 +4880,13 @@ class ThemeSeeder extends Seeder
                 'title' => 'Techno',
                 'description' => 'Rave-inspired digital theme with electric cyan, neon purple strobes, deep black voids, and high-voltage accent flashes.',
                 'font_family' => 'Rajdhani, sans-serif',
+                'registryDependencies' => [
+                    'https://ui.designbycode.co.za/r/fonts/font-inter.json',
+                    'https://ui.designbycode.co.za/r/fonts/font-jetbrains-mono.json',
+                ],
+
                 'css' => [
-                    '@import url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap")' => [
-                    ],
+
                 ],
                 'vars_theme' => [
                     'font-sans' => 'Rajdhani, sans-serif',
@@ -4841,9 +4980,14 @@ class ThemeSeeder extends Seeder
                 'title' => 'Rustic',
                 'description' => 'Weathered countryside theme with barn-red timbers, sage meadow greens, creamery whites, and worn leather browns.',
                 'font_family' => 'Merriweather, serif',
+                'registryDependencies' => [
+                    'https://ui.designbycode.co.za/r/fonts/font-inter.json',
+                    'https://ui.designbycode.co.za/r/fonts/font-playfair-display.json',
+                    'https://ui.designbycode.co.za/r/fonts/font-jetbrains-mono.json',
+                ],
+
                 'css' => [
-                    '@import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Source+Sans+3:wght@400;500;600&display=swap")' => [
-                    ],
+
                 ],
                 'vars_theme' => [
                     'font-sans' => 'Source Sans 3, sans-serif',
@@ -4937,9 +5081,13 @@ class ThemeSeeder extends Seeder
                 'title' => 'Surreal',
                 'description' => 'Dreamscape-defying theme with unexpected color collisions, liminal lavender-greens, floating coral pinks, and impossible indigos.',
                 'font_family' => 'Space Grotesk, sans-serif',
+                'registryDependencies' => [
+                    'https://ui.designbycode.co.za/r/fonts/font-space-grotesk.json',
+                    'https://ui.designbycode.co.za/r/fonts/font-jetbrains-mono.json',
+                ],
+
                 'css' => [
-                    '@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap")' => [
-                    ],
+
                 ],
                 'vars_theme' => [
                     'font-sans' => 'Space Grotesk, sans-serif',
@@ -5039,9 +5187,13 @@ class ThemeSeeder extends Seeder
                 'title' => 'Spring',
                 'description' => 'Fresh floral palette with soft greens, blossom pinks, and airy surfaces.',
                 'font_family' => 'Nunito, sans-serif',
+                'registryDependencies' => [
+                    'https://ui.designbycode.co.za/r/fonts/font-inter.json',
+                    'https://ui.designbycode.co.za/r/fonts/font-jetbrains-mono.json',
+                ],
 
                 'css' => [
-                    '@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&display=swap")' => [],
+
                     '@layer base' => [
                         '*' => [
                             'border-color' => 'var(--border)',
@@ -5139,9 +5291,12 @@ class ThemeSeeder extends Seeder
                 'title' => 'Summer',
                 'description' => 'Bright tropical theme with ocean blues, citrus warmth, and sunny surfaces.',
                 'font_family' => 'Poppins, sans-serif',
+                'registryDependencies' => [
+                    'https://ui.designbycode.co.za/r/fonts/font-poppins.json',
+                ],
 
                 'css' => [
-                    '@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap")' => [],
+
                 ],
 
                 'vars_theme' => [
@@ -5215,9 +5370,12 @@ class ThemeSeeder extends Seeder
                 'title' => 'Autumn',
                 'description' => 'Earthy harvest-inspired theme with amber leaves and rustic warmth.',
                 'font_family' => 'Merriweather, serif',
+                'registryDependencies' => [
+                    'https://ui.designbycode.co.za/r/fonts/font-playfair-display.json',
+                ],
 
                 'css' => [
-                    '@import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap")' => [],
+
                 ],
 
                 'vars_theme' => [
@@ -5291,9 +5449,12 @@ class ThemeSeeder extends Seeder
                 'title' => 'Winter',
                 'description' => 'Elegant frozen theme with snowy neutrals, deep navy contrast, and icy highlights.',
                 'font_family' => 'Inter, sans-serif',
+                'registryDependencies' => [
+                    'https://ui.designbycode.co.za/r/fonts/font-inter.json',
+                ],
 
                 'css' => [
-                    '@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap")' => [],
+
                 ],
 
                 'vars_theme' => [
@@ -5360,9 +5521,14 @@ class ThemeSeeder extends Seeder
                 'title' => 'Solarpunk',
                 'description' => 'Bright ecological future theme with lush greens, solar golds, soft natural gradients, and optimistic clean design.',
                 'font_family' => 'Nunito, sans-serif',
+                'registryDependencies' => [
+                    'https://ui.designbycode.co.za/r/fonts/font-inter.json',
+                    'https://ui.designbycode.co.za/r/fonts/font-playfair-display.json',
+                    'https://ui.designbycode.co.za/r/fonts/font-jetbrains-mono.json',
+                ],
 
                 'css' => [
-                    '@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&display=swap")' => [],
+                 
 
                     '@layer base' => [
                         '*' => [
@@ -5552,9 +5718,14 @@ class ThemeSeeder extends Seeder
                 'title' => 'Steampunk',
                 'description' => 'Victorian industrial theme with brass, copper, leather tones, and mechanical elegance.',
                 'font_family' => 'Cinzel, serif',
+                'registryDependencies' => [
+                    'https://ui.designbycode.co.za/r/fonts/font-inter.json',
+                    'https://ui.designbycode.co.za/r/fonts/font-playfair-display.json',
+                    'https://ui.designbycode.co.za/r/fonts/font-jetbrains-mono.json',
+                ],
 
                 'css' => [
-                    '@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Source+Sans+3:wght@400;500;600&display=swap")' => [],
+
 
                     '@layer base' => [
                         '*' => [
@@ -5727,4049 +5898,6 @@ class ThemeSeeder extends Seeder
                     'sidebar-ring' => 'oklch(0.72 0.13 60)',
                 ],
             ],
-            [
-                'name' => 'dieselpunk',
-                'title' => 'Dieselpunk',
-                'description' => 'Retro-futuristic interwar industrial theme with steel blues, oil blacks, riveted metal, and smoky amber lighting.',
-                'font_family' => 'Oswald, sans-serif',
-
-                'css' => [
-                    '@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Roboto+Condensed:wght@400;700&display=swap")' => [],
-
-                    '@layer base' => [
-                        '*' => [
-                            'border-color' => 'var(--border)',
-                        ],
-                        'body' => [
-                            'background' => 'var(--background)',
-                            'color' => 'var(--foreground)',
-                            'letter-spacing' => 'var(--tracking-normal)',
-                            'background-image' => 'radial-gradient(circle at top left, oklch(0.40 0.06 240 / 0.25), transparent 45%),
-                     radial-gradient(circle at bottom right, oklch(0.35 0.05 40 / 0.20), transparent 55%)',
-                        ],
-                    ],
-                ],
-
-                'vars_theme' => [
-                    'font-sans' => 'Roboto Condensed, sans-serif',
-                    'font-display' => 'Oswald, sans-serif',
-                    'font-serif' => 'Georgia, serif',
-                    'font-mono' => 'JetBrains Mono, monospace',
-
-                    'radius' => '0.6rem',
-
-                    'tracking-tighter' => '-0.06em',
-                    'tracking-tight' => '-0.03em',
-                    'tracking-normal' => '0rem',
-                    'tracking-wide' => '0.03em',
-                    'tracking-wider' => '0.06em',
-                    'tracking-widest' => '0.12em',
-                ],
-
-                'vars_light' => [
-                    'background' => 'oklch(0.92 0.02 240)',
-                    'foreground' => 'oklch(0.22 0.02 240)',
-
-                    'card' => 'oklch(0.96 0.015 240)',
-                    'card-foreground' => 'oklch(0.22 0.02 240)',
-
-                    'popover' => 'oklch(0.96 0.015 240)',
-                    'popover-foreground' => 'oklch(0.22 0.02 240)',
-
-                    'primary' => 'oklch(0.55 0.10 240)',   // steel blue
-                    'primary-foreground' => 'oklch(0.98 0.005 240)',
-
-                    'secondary' => 'oklch(0.48 0.06 210)',  // navy steel
-                    'secondary-foreground' => 'oklch(0.98 0.005 240)',
-
-                    'muted' => 'oklch(0.88 0.015 240)',
-                    'muted-foreground' => 'oklch(0.45 0.02 240)',
-
-                    'accent' => 'oklch(0.70 0.10 60)',      // oil amber
-                    'accent-foreground' => 'oklch(0.18 0.02 240)',
-
-                    'destructive' => 'oklch(0.55 0.18 25)',
-                    'destructive-foreground' => 'oklch(0.98 0.005 240)',
-
-                    'border' => 'oklch(0.80 0.02 240)',
-                    'input' => 'oklch(0.80 0.02 240)',
-                    'ring' => 'oklch(0.55 0.10 240)',
-
-                    /*
-                    |--------------------------------------------------------------------------
-                    | Charts (Industrial Machines)
-                    |--------------------------------------------------------------------------
-                    */
-
-                    'chart-1' => 'oklch(0.55 0.10 240)', // steel blue
-                    'chart-2' => 'oklch(0.48 0.06 210)', // navy steel
-                    'chart-3' => 'oklch(0.70 0.10 60)',  // oil amber
-                    'chart-4' => 'oklch(0.50 0.05 30)',  // rust
-                    'chart-5' => 'oklch(0.62 0.06 180)', // oxidized teal
-
-                    /*
-                    |--------------------------------------------------------------------------
-                    | Sidebar
-                    |--------------------------------------------------------------------------
-                    */
-
-                    'sidebar' => 'oklch(0.90 0.02 240)',
-                    'sidebar-foreground' => 'oklch(0.22 0.02 240)',
-
-                    'sidebar-primary' => 'oklch(0.55 0.10 240)',
-                    'sidebar-primary-foreground' => 'oklch(0.98 0.005 240)',
-
-                    'sidebar-accent' => 'oklch(0.95 0.01 240)',
-                    'sidebar-accent-foreground' => 'oklch(0.22 0.02 240)',
-
-                    'sidebar-border' => 'oklch(0.80 0.02 240)',
-                    'sidebar-ring' => 'oklch(0.55 0.10 240)',
-
-                    /*
-                    |--------------------------------------------------------------------------
-                    | Shadows (Heavy Machinery Depth)
-                    |--------------------------------------------------------------------------
-                    */
-
-                    'shadow-color' => '#0b1a24',
-                    'shadow-opacity' => '0.25',
-                    'shadow-blur' => '28px',
-                    'shadow-spread' => '-8px',
-                    'shadow-offset-x' => '0px',
-                    'shadow-offset-y' => '10px',
-
-                    'shadow-2xs' => '0px 1px 2px 0px hsl(220 30% 10% / 0.08)',
-                    'shadow-xs' => '0px 2px 4px 0px hsl(220 30% 10% / 0.10)',
-                    'shadow-sm' => '0px 4px 8px -1px hsl(220 30% 10% / 0.14)',
-                    'shadow' => '0px 8px 16px -4px hsl(220 30% 10% / 0.18)',
-                    'shadow-md' => '0px 12px 24px -6px hsl(220 30% 10% / 0.22)',
-                    'shadow-lg' => '0px 18px 36px -8px hsl(220 30% 10% / 0.26)',
-                    'shadow-xl' => '0px 24px 48px -10px hsl(220 30% 10% / 0.30)',
-                    'shadow-2xl' => '0px 32px 64px -12px hsl(220 30% 5% / 0.36)',
-                ],
-
-                'vars_dark' => [
-                    'background' => 'oklch(0.16 0.02 240)',
-                    'foreground' => 'oklch(0.90 0.015 240)',
-
-                    'card' => 'oklch(0.20 0.02 240)',
-                    'card-foreground' => 'oklch(0.90 0.015 240)',
-
-                    'popover' => 'oklch(0.20 0.02 240)',
-                    'popover-foreground' => 'oklch(0.90 0.015 240)',
-
-                    'primary' => 'oklch(0.65 0.12 240)',
-                    'primary-foreground' => 'oklch(0.12 0.01 240)',
-
-                    'secondary' => 'oklch(0.40 0.05 210)',
-                    'secondary-foreground' => 'oklch(0.92 0.01 240)',
-
-                    'muted' => 'oklch(0.25 0.02 240)',
-                    'muted-foreground' => 'oklch(0.70 0.02 240)',
-
-                    'accent' => 'oklch(0.72 0.10 60)',
-                    'accent-foreground' => 'oklch(0.10 0.01 240)',
-
-                    'destructive' => 'oklch(0.65 0.18 25)',
-                    'destructive-foreground' => 'oklch(1 0 0)',
-
-                    'border' => 'oklch(0.30 0.02 240)',
-                    'input' => 'oklch(0.30 0.02 240)',
-                    'ring' => 'oklch(0.65 0.12 240)',
-
-                    /*
-                    |--------------------------------------------------------------------------
-                    | Charts (Night Factory Glow)
-                    |--------------------------------------------------------------------------
-                    */
-
-                    'chart-1' => 'oklch(0.65 0.12 240)',
-                    'chart-2' => 'oklch(0.50 0.06 210)',
-                    'chart-3' => 'oklch(0.72 0.10 60)',
-                    'chart-4' => 'oklch(0.52 0.05 30)',
-                    'chart-5' => 'oklch(0.60 0.06 180)',
-
-                    /*
-                    |--------------------------------------------------------------------------
-                    | Sidebar
-                    |--------------------------------------------------------------------------
-                    */
-
-                    'sidebar' => 'oklch(0.18 0.02 240)',
-                    'sidebar-foreground' => 'oklch(0.90 0.015 240)',
-
-                    'sidebar-primary' => 'oklch(0.65 0.12 240)',
-                    'sidebar-primary-foreground' => 'oklch(0.12 0.01 240)',
-
-                    'sidebar-accent' => 'oklch(0.28 0.02 240)',
-                    'sidebar-accent-foreground' => 'oklch(0.92 0.01 240)',
-
-                    'sidebar-border' => 'oklch(0.30 0.02 240)',
-                    'sidebar-ring' => 'oklch(0.65 0.12 240)',
-                ],
-            ],
-            [
-                'name' => 'lunarpunk',
-                'title' => 'Lunarpunk',
-                'description' => 'Mystical nocturnal eco-future theme with moonlit violets, bioluminescent greens, deep cosmic blues, and soft ethereal glow.',
-                'font_family' => 'Space Grotesk, sans-serif',
-
-                'css' => [
-                    '@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap")' => [],
-
-                    '@layer base' => [
-                        '*' => [
-                            'border-color' => 'var(--border)',
-                        ],
-
-                        'body' => [
-                            'background' => 'var(--background)',
-                            'color' => 'var(--foreground)',
-                            'letter-spacing' => 'var(--tracking-normal)',
-                            'background-image' => 'radial-gradient(circle at top left, oklch(0.45 0.10 280 / 0.25), transparent 45%),
-                     radial-gradient(circle at bottom right, oklch(0.50 0.12 160 / 0.20), transparent 55%),
-                     radial-gradient(circle at center, oklch(0.60 0.08 220 / 0.12), transparent 60%)',
-                        ],
-                    ],
-                ],
-
-                'vars_theme' => [
-                    'font-sans' => 'Space Grotesk, sans-serif',
-                    'font-serif' => 'ui-serif, Georgia, serif',
-                    'font-mono' => 'JetBrains Mono, monospace',
-
-                    'radius' => '1.15rem',
-
-                    'tracking-tighter' => '-0.05em',
-                    'tracking-tight' => '-0.025em',
-                    'tracking-normal' => '0rem',
-                    'tracking-wide' => '0.03em',
-                    'tracking-wider' => '0.06em',
-                    'tracking-widest' => '0.12em',
-                ],
-
-                'vars_light' => [
-                    'background' => 'oklch(0.985 0.02 250)',
-                    'foreground' => 'oklch(0.22 0.03 260)',
-
-                    'card' => 'oklch(1 0 0)',
-                    'card-foreground' => 'oklch(0.22 0.03 260)',
-
-                    'popover' => 'oklch(1 0 0)',
-                    'popover-foreground' => 'oklch(0.22 0.03 260)',
-
-                    'primary' => 'oklch(0.62 0.14 285)',   // lunar violet
-                    'primary-foreground' => 'oklch(0.99 0 0)',
-
-                    'secondary' => 'oklch(0.70 0.10 200)',  // night sky cyan
-                    'secondary-foreground' => 'oklch(0.15 0.02 260)',
-
-                    'muted' => 'oklch(0.94 0.02 260)',
-                    'muted-foreground' => 'oklch(0.48 0.03 260)',
-
-                    'accent' => 'oklch(0.78 0.14 150)',     // bioluminescent green
-                    'accent-foreground' => 'oklch(0.12 0.02 260)',
-
-                    'destructive' => 'oklch(0.62 0.18 20)',
-                    'destructive-foreground' => 'oklch(0.99 0 0)',
-
-                    'border' => 'oklch(0.88 0.02 250)',
-                    'input' => 'oklch(0.88 0.02 250)',
-                    'ring' => 'oklch(0.62 0.14 285)',
-
-                    /*
-                    |--------------------------------------------------------------------------
-                    | Charts (Celestial Ecosystem)
-                    |--------------------------------------------------------------------------
-                    */
-
-                    'chart-1' => 'oklch(0.62 0.14 285)', // lunar violet
-                    'chart-2' => 'oklch(0.70 0.10 200)', // cosmic blue
-                    'chart-3' => 'oklch(0.78 0.14 150)', // bioluminescent green
-                    'chart-4' => 'oklch(0.60 0.08 320)', // deep nebula purple
-                    'chart-5' => 'oklch(0.74 0.06 80)',  // moonlight gold
-
-                    /*
-                    |--------------------------------------------------------------------------
-                    | Sidebar
-                    |--------------------------------------------------------------------------
-                    */
-
-                    'sidebar' => 'oklch(0.96 0.02 255)',
-                    'sidebar-foreground' => 'oklch(0.22 0.03 260)',
-
-                    'sidebar-primary' => 'oklch(0.62 0.14 285)',
-                    'sidebar-primary-foreground' => 'oklch(0.99 0 0)',
-
-                    'sidebar-accent' => 'oklch(0.94 0.02 260)',
-                    'sidebar-accent-foreground' => 'oklch(0.22 0.03 260)',
-
-                    'sidebar-border' => 'oklch(0.88 0.02 250)',
-                    'sidebar-ring' => 'oklch(0.62 0.14 285)',
-
-                    /*
-                    |--------------------------------------------------------------------------
-                    | Shadows (Ethereal Glow)
-                    |--------------------------------------------------------------------------
-                    */
-
-                    'shadow-color' => '#2a1b3d',
-                    'shadow-opacity' => '0.18',
-                    'shadow-blur' => '40px',
-                    'shadow-spread' => '-10px',
-                    'shadow-offset-x' => '0px',
-                    'shadow-offset-y' => '12px',
-
-                    'shadow-2xs' => '0px 1px 2px 0px hsl(260 40% 20% / 0.05)',
-                    'shadow-xs' => '0px 2px 4px 0px hsl(260 40% 20% / 0.07)',
-                    'shadow-sm' => '0px 4px 10px -2px hsl(260 40% 20% / 0.10)',
-                    'shadow' => '0px 8px 18px -4px hsl(260 40% 20% / 0.14)',
-                    'shadow-md' => '0px 12px 26px -6px hsl(260 40% 20% / 0.18)',
-                    'shadow-lg' => '0px 18px 36px -8px hsl(260 40% 20% / 0.22)',
-                    'shadow-xl' => '0px 24px 48px -10px hsl(260 40% 20% / 0.26)',
-                    'shadow-2xl' => '0px 32px 64px -12px hsl(260 40% 10% / 0.30)',
-                ],
-
-                'vars_dark' => [
-                    'background' => 'oklch(0.14 0.03 260)',
-                    'foreground' => 'oklch(0.92 0.02 255)',
-
-                    'card' => 'oklch(0.18 0.03 260)',
-                    'card-foreground' => 'oklch(0.92 0.02 255)',
-
-                    'popover' => 'oklch(0.18 0.03 260)',
-                    'popover-foreground' => 'oklch(0.92 0.02 255)',
-
-                    'primary' => 'oklch(0.72 0.16 285)',
-                    'primary-foreground' => 'oklch(0.12 0.02 260)',
-
-                    'secondary' => 'oklch(0.50 0.08 200)',
-                    'secondary-foreground' => 'oklch(0.94 0.02 255)',
-
-                    'muted' => 'oklch(0.24 0.03 260)',
-                    'muted-foreground' => 'oklch(0.70 0.02 255)',
-
-                    'accent' => 'oklch(0.78 0.16 150)',
-                    'accent-foreground' => 'oklch(0.10 0.02 260)',
-
-                    'destructive' => 'oklch(0.70 0.18 20)',
-                    'destructive-foreground' => 'oklch(1 0 0)',
-
-                    'border' => 'oklch(0.30 0.03 260)',
-                    'input' => 'oklch(0.30 0.03 260)',
-                    'ring' => 'oklch(0.72 0.16 285)',
-
-                    /*
-                    |--------------------------------------------------------------------------
-                    | Charts (Night Bioluminescence)
-                    |--------------------------------------------------------------------------
-                    */
-
-                    'chart-1' => 'oklch(0.72 0.16 285)',
-                    'chart-2' => 'oklch(0.50 0.08 200)',
-                    'chart-3' => 'oklch(0.78 0.16 150)',
-                    'chart-4' => 'oklch(0.60 0.10 320)',
-                    'chart-5' => 'oklch(0.74 0.06 80)',
-
-                    /*
-                    |--------------------------------------------------------------------------
-                    | Sidebar
-                    |--------------------------------------------------------------------------
-                    */
-
-                    'sidebar' => 'oklch(0.16 0.03 260)',
-                    'sidebar-foreground' => 'oklch(0.92 0.02 255)',
-
-                    'sidebar-primary' => 'oklch(0.72 0.16 285)',
-                    'sidebar-primary-foreground' => 'oklch(0.12 0.02 260)',
-
-                    'sidebar-accent' => 'oklch(0.22 0.03 260)',
-                    'sidebar-accent-foreground' => 'oklch(0.94 0.02 255)',
-
-                    'sidebar-border' => 'oklch(0.30 0.03 260)',
-                    'sidebar-ring' => 'oklch(0.72 0.16 285)',
-                ],
-            ],
-            [
-                'name' => 'decopunk',
-                'title' => 'Decopunk',
-                'description' => 'Art Deco-inspired futuristic elegance with geometric gold accents, marble whites, deep blacks, and luxurious symmetry.',
-                'font_family' => 'Playfair Display, serif',
-
-                'css' => [
-                    '@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap")' => [],
-
-                    '@layer base' => [
-                        '*' => [
-                            'border-color' => 'var(--border)',
-                        ],
-
-                        'body' => [
-                            'background' => 'var(--background)',
-                            'color' => 'var(--foreground)',
-                            'letter-spacing' => 'var(--tracking-normal)',
-                            'background-image' => 'linear-gradient(135deg, oklch(0.98 0.01 90), oklch(0.94 0.02 240))',
-                        ],
-
-                        'h1, h2, h3, h4, h5, h6' => [
-                            'font-family' => 'var(--font-serif)',
-                            'letter-spacing' => '0.04em',
-                            'text-transform' => 'uppercase',
-                        ],
-                    ],
-                ],
-
-                'vars_theme' => [
-                    'font-sans' => 'Inter, sans-serif',
-                    'font-serif' => 'Playfair Display, serif',
-                    'font-mono' => 'JetBrains Mono, monospace',
-
-                    'radius' => '0.5rem',
-
-                    'tracking-tighter' => '-0.05em',
-                    'tracking-tight' => '-0.02em',
-                    'tracking-normal' => '0.02em',
-                    'tracking-wide' => '0.05em',
-                    'tracking-wider' => '0.08em',
-                    'tracking-widest' => '0.12em',
-                ],
-
-                'vars_light' => [
-                    'background' => 'oklch(0.985 0.01 90)',   // marble white
-                    'foreground' => 'oklch(0.20 0.02 240)',
-
-                    'card' => 'oklch(1 0 0)',
-                    'card-foreground' => 'oklch(0.20 0.02 240)',
-
-                    'popover' => 'oklch(1 0 0)',
-                    'popover-foreground' => 'oklch(0.20 0.02 240)',
-
-                    'primary' => 'oklch(0.75 0.14 85)',      // gold
-                    'primary-foreground' => 'oklch(0.15 0.01 240)',
-
-                    'secondary' => 'oklch(0.65 0.06 240)',   // steel blue
-                    'secondary-foreground' => 'oklch(0.98 0 0)',
-
-                    'muted' => 'oklch(0.94 0.01 90)',
-                    'muted-foreground' => 'oklch(0.50 0.02 240)',
-
-                    'accent' => 'oklch(0.82 0.10 70)',       // champagne gold
-                    'accent-foreground' => 'oklch(0.18 0.02 240)',
-
-                    'destructive' => 'oklch(0.60 0.18 25)',
-                    'destructive-foreground' => 'oklch(0.98 0 0)',
-
-                    'border' => 'oklch(0.88 0.02 90)',
-                    'input' => 'oklch(0.88 0.02 90)',
-                    'ring' => 'oklch(0.75 0.14 85)',
-
-                    /*
-                    |--------------------------------------------------------------------------
-                    | Charts (Art Deco Geometry)
-                    |--------------------------------------------------------------------------
-                    */
-
-                    'chart-1' => 'oklch(0.75 0.14 85)',  // gold
-                    'chart-2' => 'oklch(0.65 0.06 240)', // steel blue
-                    'chart-3' => 'oklch(0.82 0.10 70)',  // champagne
-                    'chart-4' => 'oklch(0.55 0.08 30)',  // bronze
-                    'chart-5' => 'oklch(0.60 0.05 200)', // muted teal
-
-                    /*
-                    |--------------------------------------------------------------------------
-                    | Sidebar
-                    |--------------------------------------------------------------------------
-                    */
-
-                    'sidebar' => 'oklch(0.96 0.01 90)',
-                    'sidebar-foreground' => 'oklch(0.20 0.02 240)',
-
-                    'sidebar-primary' => 'oklch(0.75 0.14 85)',
-                    'sidebar-primary-foreground' => 'oklch(0.15 0.01 240)',
-
-                    'sidebar-accent' => 'oklch(0.94 0.01 90)',
-                    'sidebar-accent-foreground' => 'oklch(0.20 0.02 240)',
-
-                    'sidebar-border' => 'oklch(0.88 0.02 90)',
-                    'sidebar-ring' => 'oklch(0.75 0.14 85)',
-
-                    /*
-                    |--------------------------------------------------------------------------
-                    | Shadows (Luxury Depth)
-                    |--------------------------------------------------------------------------
-                    */
-
-                    'shadow-color' => '#000000',
-                    'shadow-opacity' => '0.12',
-                    'shadow-blur' => '30px',
-                    'shadow-spread' => '-8px',
-                    'shadow-offset-x' => '0px',
-                    'shadow-offset-y' => '10px',
-
-                    'shadow-2xs' => '0px 1px 2px 0px hsl(0 0% 0% / 0.04)',
-                    'shadow-xs' => '0px 2px 4px 0px hsl(0 0% 0% / 0.06)',
-                    'shadow-sm' => '0px 4px 8px -2px hsl(0 0% 0% / 0.08)',
-                    'shadow' => '0px 8px 16px -4px hsl(0 0% 0% / 0.10)',
-                    'shadow-md' => '0px 12px 24px -6px hsl(0 0% 0% / 0.12)',
-                    'shadow-lg' => '0px 18px 36px -8px hsl(0 0% 0% / 0.14)',
-                    'shadow-xl' => '0px 24px 48px -10px hsl(0 0% 0% / 0.16)',
-                    'shadow-2xl' => '0px 32px 64px -12px hsl(0 0% 0% / 0.20)',
-                ],
-
-                'vars_dark' => [
-                    'background' => 'oklch(0.14 0.02 240)',
-                    'foreground' => 'oklch(0.95 0.01 90)',
-
-                    'card' => 'oklch(0.18 0.02 240)',
-                    'card-foreground' => 'oklch(0.95 0.01 90)',
-
-                    'popover' => 'oklch(0.18 0.02 240)',
-                    'popover-foreground' => 'oklch(0.95 0.01 90)',
-
-                    'primary' => 'oklch(0.80 0.16 85)',
-                    'primary-foreground' => 'oklch(0.12 0.01 240)',
-
-                    'secondary' => 'oklch(0.50 0.06 240)',
-                    'secondary-foreground' => 'oklch(0.95 0.01 90)',
-
-                    'muted' => 'oklch(0.24 0.02 240)',
-                    'muted-foreground' => 'oklch(0.70 0.02 240)',
-
-                    'accent' => 'oklch(0.85 0.12 70)',
-                    'accent-foreground' => 'oklch(0.10 0.01 240)',
-
-                    'destructive' => 'oklch(0.65 0.18 25)',
-                    'destructive-foreground' => 'oklch(1 0 0)',
-
-                    'border' => 'oklch(0.30 0.02 240)',
-                    'input' => 'oklch(0.30 0.02 240)',
-                    'ring' => 'oklch(0.80 0.16 85)',
-
-                    /*
-                    |--------------------------------------------------------------------------
-                    | Charts (Night Deco Neon)
-                    |--------------------------------------------------------------------------
-                    */
-
-                    'chart-1' => 'oklch(0.80 0.16 85)',
-                    'chart-2' => 'oklch(0.60 0.06 240)',
-                    'chart-3' => 'oklch(0.85 0.12 70)',
-                    'chart-4' => 'oklch(0.55 0.08 30)',
-                    'chart-5' => 'oklch(0.65 0.05 200)',
-
-                    /*
-                    |--------------------------------------------------------------------------
-                    | Sidebar
-                    |--------------------------------------------------------------------------
-                    */
-
-                    'sidebar' => 'oklch(0.16 0.02 240)',
-                    'sidebar-foreground' => 'oklch(0.95 0.01 90)',
-
-                    'sidebar-primary' => 'oklch(0.80 0.16 85)',
-                    'sidebar-primary-foreground' => 'oklch(0.12 0.01 240)',
-
-                    'sidebar-accent' => 'oklch(0.22 0.02 240)',
-                    'sidebar-accent-foreground' => 'oklch(0.95 0.01 90)',
-
-                    'sidebar-border' => 'oklch(0.30 0.02 240)',
-                    'sidebar-ring' => 'oklch(0.80 0.16 85)',
-                ],
-            ],
-            [
-                'name' => 'atompunk',
-                'title' => 'Atompunk',
-                'description' => 'Retro-futuristic atomic age optimism with uranium greens, chrome whites, radiation yellows, and mid-century sci-fi UI glow.',
-                'font_family' => 'Rajdhani, sans-serif',
-
-                'css' => [
-                    '@import url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap")' => [],
-
-                    '@layer base' => [
-                        '*' => [
-                            'border-color' => 'var(--border)',
-                        ],
-
-                        'body' => [
-                            'background' => 'var(--background)',
-                            'color' => 'var(--foreground)',
-                            'letter-spacing' => 'var(--tracking-normal)',
-                            'background-image' => 'radial-gradient(circle at top left, oklch(0.75 0.18 130 / 0.25), transparent 45%),
-                     radial-gradient(circle at bottom right, oklch(0.80 0.20 90 / 0.22), transparent 55%),
-                     linear-gradient(to bottom, oklch(0.98 0.01 120), oklch(0.94 0.02 140))',
-                        ],
-
-                        'h1, h2, h3, h4' => [
-                            'text-transform' => 'uppercase',
-                            'letter-spacing' => '0.06em',
-                        ],
-                    ],
-                ],
-
-                'vars_theme' => [
-                    'font-sans' => 'Rajdhani, sans-serif',
-                    'font-mono' => 'IBM Plex Mono, monospace',
-                    'font-serif' => 'ui-serif, Georgia, serif',
-
-                    'radius' => '0.65rem',
-
-                    'tracking-tighter' => '-0.05em',
-                    'tracking-tight' => '-0.02em',
-                    'tracking-normal' => '0.02em',
-                    'tracking-wide' => '0.05em',
-                    'tracking-wider' => '0.08em',
-                    'tracking-widest' => '0.12em',
-                ],
-
-                'vars_light' => [
-                    'background' => 'oklch(0.97 0.02 120)',   // clean atomic white
-                    'foreground' => 'oklch(0.22 0.03 140)',
-
-                    'card' => 'oklch(1 0 0)',
-                    'card-foreground' => 'oklch(0.22 0.03 140)',
-
-                    'popover' => 'oklch(1 0 0)',
-                    'popover-foreground' => 'oklch(0.22 0.03 140)',
-
-                    'primary' => 'oklch(0.70 0.22 135)',   // uranium green
-                    'primary-foreground' => 'oklch(0.98 0.01 120)',
-
-                    'secondary' => 'oklch(0.80 0.20 85)',   // radiation yellow
-                    'secondary-foreground' => 'oklch(0.18 0.02 140)',
-
-                    'muted' => 'oklch(0.93 0.02 120)',
-                    'muted-foreground' => 'oklch(0.45 0.03 140)',
-
-                    'accent' => 'oklch(0.75 0.10 200)',     // atomic cyan
-                    'accent-foreground' => 'oklch(0.18 0.02 140)',
-
-                    'destructive' => 'oklch(0.65 0.20 25)',
-                    'destructive-foreground' => 'oklch(0.98 0.01 120)',
-
-                    'border' => 'oklch(0.86 0.02 120)',
-                    'input' => 'oklch(0.86 0.02 120)',
-                    'ring' => 'oklch(0.70 0.22 135)',
-
-                    /*
-                    |--------------------------------------------------------------------------
-                    | Charts (Atomic Spectrum)
-                    |--------------------------------------------------------------------------
-                    */
-
-                    'chart-1' => 'oklch(0.70 0.22 135)', // uranium green
-                    'chart-2' => 'oklch(0.80 0.20 85)',  // radiation yellow
-                    'chart-3' => 'oklch(0.75 0.10 200)', // atomic cyan
-                    'chart-4' => 'oklch(0.60 0.10 260)', // reactor blue
-                    'chart-5' => 'oklch(0.55 0.05 30)',  // rust steel
-
-                    /*
-                    |--------------------------------------------------------------------------
-                    | Sidebar
-                    |--------------------------------------------------------------------------
-                    */
-
-                    'sidebar' => 'oklch(0.95 0.02 120)',
-                    'sidebar-foreground' => 'oklch(0.22 0.03 140)',
-
-                    'sidebar-primary' => 'oklch(0.70 0.22 135)',
-                    'sidebar-primary-foreground' => 'oklch(0.98 0.01 120)',
-
-                    'sidebar-accent' => 'oklch(0.93 0.02 120)',
-                    'sidebar-accent-foreground' => 'oklch(0.22 0.03 140)',
-
-                    'sidebar-border' => 'oklch(0.86 0.02 120)',
-                    'sidebar-ring' => 'oklch(0.70 0.22 135)',
-
-                    /*
-                    |--------------------------------------------------------------------------
-                    | Shadows (Radiation Glow Depth)
-                    |--------------------------------------------------------------------------
-                    */
-
-                    'shadow-color' => '#7CFF6B',
-                    'shadow-opacity' => '0.20',
-                    'shadow-blur' => '34px',
-                    'shadow-spread' => '-10px',
-                    'shadow-offset-x' => '0px',
-                    'shadow-offset-y' => '10px',
-
-                    'shadow-2xs' => '0px 1px 2px 0px hsl(120 70% 40% / 0.05)',
-                    'shadow-xs' => '0px 2px 4px 0px hsl(120 70% 40% / 0.07)',
-                    'shadow-sm' => '0px 4px 10px -2px hsl(120 70% 40% / 0.10)',
-                    'shadow' => '0px 8px 18px -4px hsl(120 70% 40% / 0.14)',
-                    'shadow-md' => '0px 12px 26px -6px hsl(120 70% 40% / 0.18)',
-                    'shadow-lg' => '0px 18px 36px -8px hsl(120 70% 40% / 0.22)',
-                    'shadow-xl' => '0px 24px 48px -10px hsl(120 70% 40% / 0.26)',
-                    'shadow-2xl' => '0px 32px 64px -12px hsl(120 70% 30% / 0.32)',
-                ],
-
-                'vars_dark' => [
-                    'background' => 'oklch(0.14 0.03 140)',
-                    'foreground' => 'oklch(0.95 0.02 120)',
-
-                    'card' => 'oklch(0.18 0.03 140)',
-                    'card-foreground' => 'oklch(0.95 0.02 120)',
-
-                    'popover' => 'oklch(0.18 0.03 140)',
-                    'popover-foreground' => 'oklch(0.95 0.02 120)',
-
-                    'primary' => 'oklch(0.78 0.24 135)',
-                    'primary-foreground' => 'oklch(0.10 0.01 120)',
-
-                    'secondary' => 'oklch(0.85 0.22 85)',
-                    'secondary-foreground' => 'oklch(0.10 0.01 120)',
-
-                    'muted' => 'oklch(0.22 0.03 140)',
-                    'muted-foreground' => 'oklch(0.70 0.02 120)',
-
-                    'accent' => 'oklch(0.75 0.14 200)',
-                    'accent-foreground' => 'oklch(0.10 0.01 120)',
-
-                    'destructive' => 'oklch(0.70 0.20 25)',
-                    'destructive-foreground' => 'oklch(1 0 0)',
-
-                    'border' => 'oklch(0.30 0.03 140)',
-                    'input' => 'oklch(0.30 0.03 140)',
-                    'ring' => 'oklch(0.78 0.24 135)',
-
-                    /*
-                    |--------------------------------------------------------------------------
-                    | Charts (Reactor Glow)
-                    |--------------------------------------------------------------------------
-                    */
-
-                    'chart-1' => 'oklch(0.78 0.24 135)',
-                    'chart-2' => 'oklch(0.85 0.22 85)',
-                    'chart-3' => 'oklch(0.75 0.14 200)',
-                    'chart-4' => 'oklch(0.60 0.10 260)',
-                    'chart-5' => 'oklch(0.55 0.05 30)',
-
-                    /*
-                    |--------------------------------------------------------------------------
-                    | Sidebar
-                    |--------------------------------------------------------------------------
-                    */
-
-                    'sidebar' => 'oklch(0.16 0.03 140)',
-                    'sidebar-foreground' => 'oklch(0.95 0.02 120)',
-
-                    'sidebar-primary' => 'oklch(0.78 0.24 135)',
-                    'sidebar-primary-foreground' => 'oklch(0.10 0.01 120)',
-
-                    'sidebar-accent' => 'oklch(0.22 0.03 140)',
-                    'sidebar-accent-foreground' => 'oklch(0.95 0.02 120)',
-
-                    'sidebar-border' => 'oklch(0.30 0.03 140)',
-                    'sidebar-ring' => 'oklch(0.78 0.24 135)',
-                ],
-            ],
-            [
-                'name' => 'biopunk',
-                'title' => 'Biopunk',
-                'description' => 'Bio-engineered cyberpunk aesthetic with organic neon greens, wet bio-surface blacks, and glowing cellular UI elements.',
-                'font_family' => 'IBM Plex Sans, sans-serif',
-
-                'css' => [
-                    '@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap")' => [],
-
-                    '@layer base' => [
-                        '*' => [
-                            'border-color' => 'var(--border)',
-                        ],
-
-                        'body' => [
-                            'background' => 'var(--background)',
-                            'color' => 'var(--foreground)',
-                            'letter-spacing' => 'var(--tracking-normal)',
-                            'background-image' => 'radial-gradient(circle at 20% 20%, oklch(0.55 0.22 145 / 0.25), transparent 45%),
-                     radial-gradient(circle at 80% 30%, oklch(0.60 0.20 165 / 0.20), transparent 50%),
-                     radial-gradient(circle at 50% 80%, oklch(0.50 0.18 120 / 0.18), transparent 55%)',
-                        ],
-
-                        'h1, h2, h3, h4' => [
-                            'letter-spacing' => '0.02em',
-                        ],
-                    ],
-                ],
-
-                'vars_theme' => [
-                    'font-sans' => 'IBM Plex Sans, sans-serif',
-                    'font-mono' => 'IBM Plex Mono, monospace',
-                    'font-serif' => 'ui-serif, Georgia, serif',
-
-                    'radius' => '1rem',
-
-                    'tracking-tighter' => '-0.05em',
-                    'tracking-tight' => '-0.02em',
-                    'tracking-normal' => '0rem',
-                    'tracking-wide' => '0.04em',
-                    'tracking-wider' => '0.08em',
-                    'tracking-widest' => '0.12em',
-                ],
-
-                'vars_light' => [
-                    'background' => 'oklch(0.98 0.02 140)',  // sterile lab white-green
-                    'foreground' => 'oklch(0.18 0.03 160)',
-
-                    'card' => 'oklch(1 0 0)',
-                    'card-foreground' => 'oklch(0.18 0.03 160)',
-
-                    'popover' => 'oklch(1 0 0)',
-                    'popover-foreground' => 'oklch(0.18 0.03 160)',
-
-                    'primary' => 'oklch(0.65 0.25 145)',  // bio neon green
-                    'primary-foreground' => 'oklch(0.98 0.01 140)',
-
-                    'secondary' => 'oklch(0.55 0.18 170)', // algae cyan
-                    'secondary-foreground' => 'oklch(0.10 0.02 160)',
-
-                    'muted' => 'oklch(0.94 0.02 140)',
-                    'muted-foreground' => 'oklch(0.45 0.03 160)',
-
-                    'accent' => 'oklch(0.70 0.22 120)', // toxic lime glow
-                    'accent-foreground' => 'oklch(0.10 0.02 160)',
-
-                    'destructive' => 'oklch(0.60 0.22 25)',
-                    'destructive-foreground' => 'oklch(0.98 0.01 140)',
-
-                    'border' => 'oklch(0.88 0.02 150)',
-                    'input' => 'oklch(0.88 0.02 150)',
-                    'ring' => 'oklch(0.65 0.25 145)',
-
-                    /*
-                    |--------------------------------------------------------------------------
-                    | Charts (Cellular Growth Map)
-                    |--------------------------------------------------------------------------
-                    */
-
-                    'chart-1' => 'oklch(0.65 0.25 145)', // bio green
-                    'chart-2' => 'oklch(0.55 0.18 170)', // algae cyan
-                    'chart-3' => 'oklch(0.70 0.22 120)', // toxic lime
-                    'chart-4' => 'oklch(0.60 0.14 200)', // plasma teal
-                    'chart-5' => 'oklch(0.50 0.10 260)', // deep cell blue
-
-                    /*
-                    |--------------------------------------------------------------------------
-                    | Sidebar
-                    |--------------------------------------------------------------------------
-                    */
-
-                    'sidebar' => 'oklch(0.96 0.02 140)',
-                    'sidebar-foreground' => 'oklch(0.18 0.03 160)',
-
-                    'sidebar-primary' => 'oklch(0.65 0.25 145)',
-                    'sidebar-primary-foreground' => 'oklch(0.98 0.01 140)',
-
-                    'sidebar-accent' => 'oklch(0.94 0.02 140)',
-                    'sidebar-accent-foreground' => 'oklch(0.18 0.03 160)',
-
-                    'sidebar-border' => 'oklch(0.88 0.02 150)',
-                    'sidebar-ring' => 'oklch(0.65 0.25 145)',
-
-                    /*
-                    |--------------------------------------------------------------------------
-                    | Shadows (Organic Glow Depth)
-                    |--------------------------------------------------------------------------
-                    */
-
-                    'shadow-color' => '#39ff88',
-                    'shadow-opacity' => '0.20',
-                    'shadow-blur' => '42px',
-                    'shadow-spread' => '-12px',
-                    'shadow-offset-x' => '0px',
-                    'shadow-offset-y' => '12px',
-
-                    'shadow-2xs' => '0px 1px 2px 0px hsl(145 80% 50% / 0.05)',
-                    'shadow-xs' => '0px 2px 4px 0px hsl(145 80% 50% / 0.07)',
-                    'shadow-sm' => '0px 4px 10px -2px hsl(145 80% 50% / 0.10)',
-                    'shadow' => '0px 8px 18px -4px hsl(145 80% 50% / 0.14)',
-                    'shadow-md' => '0px 12px 26px -6px hsl(145 80% 50% / 0.18)',
-                    'shadow-lg' => '0px 18px 36px -8px hsl(145 80% 50% / 0.22)',
-                    'shadow-xl' => '0px 24px 48px -10px hsl(145 80% 50% / 0.26)',
-                    'shadow-2xl' => '0px 32px 64px -12px hsl(145 80% 30% / 0.32)',
-                ],
-
-                'vars_dark' => [
-                    'background' => 'oklch(0.12 0.03 160)', // bio sludge black
-                    'foreground' => 'oklch(0.92 0.02 140)',
-
-                    'card' => 'oklch(0.16 0.03 160)',
-                    'card-foreground' => 'oklch(0.92 0.02 140)',
-
-                    'popover' => 'oklch(0.16 0.03 160)',
-                    'popover-foreground' => 'oklch(0.92 0.02 140)',
-
-                    'primary' => 'oklch(0.75 0.28 145)',
-                    'primary-foreground' => 'oklch(0.10 0.02 160)',
-
-                    'secondary' => 'oklch(0.60 0.20 170)',
-                    'secondary-foreground' => 'oklch(0.10 0.02 160)',
-
-                    'muted' => 'oklch(0.22 0.03 160)',
-                    'muted-foreground' => 'oklch(0.70 0.02 140)',
-
-                    'accent' => 'oklch(0.78 0.24 120)',
-                    'accent-foreground' => 'oklch(0.10 0.02 160)',
-
-                    'destructive' => 'oklch(0.70 0.22 25)',
-                    'destructive-foreground' => 'oklch(1 0 0)',
-
-                    'border' => 'oklch(0.30 0.03 160)',
-                    'input' => 'oklch(0.30 0.03 160)',
-                    'ring' => 'oklch(0.75 0.28 145)',
-
-                    /*
-                    |--------------------------------------------------------------------------
-                    | Charts (Living Tissue Network)
-                    |--------------------------------------------------------------------------
-                    */
-
-                    'chart-1' => 'oklch(0.75 0.28 145)',
-                    'chart-2' => 'oklch(0.60 0.20 170)',
-                    'chart-3' => 'oklch(0.78 0.24 120)',
-                    'chart-4' => 'oklch(0.60 0.14 200)',
-                    'chart-5' => 'oklch(0.50 0.10 260)',
-
-                    /*
-                    |--------------------------------------------------------------------------
-                    | Sidebar
-                    |--------------------------------------------------------------------------
-                    */
-
-                    'sidebar' => 'oklch(0.14 0.03 160)',
-                    'sidebar-foreground' => 'oklch(0.92 0.02 140)',
-
-                    'sidebar-primary' => 'oklch(0.75 0.28 145)',
-                    'sidebar-primary-foreground' => 'oklch(0.10 0.02 160)',
-
-                    'sidebar-accent' => 'oklch(0.22 0.03 160)',
-                    'sidebar-accent-foreground' => 'oklch(0.92 0.02 140)',
-
-                    'sidebar-border' => 'oklch(0.30 0.03 160)',
-                    'sidebar-ring' => 'oklch(0.75 0.28 145)',
-                ],
-            ],
-            [
-                'name' => 'ashwood-minimal',
-                'title' => 'Ashwood Minimal',
-                'description' => 'Soft Scandinavian ash wood aesthetic with pale grain textures, muted neutrals, and calm minimalist surfaces.',
-                'font_family' => 'Manrope, sans-serif',
-
-                'css' => [
-                    '@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap")' => [],
-
-                    '@layer base' => [
-                        '*' => [
-                            'border-color' => 'var(--border)',
-                        ],
-
-                        'body' => [
-                            'background' => 'var(--background)',
-                            'color' => 'var(--foreground)',
-                            'background-image' => 'linear-gradient(to bottom right, oklch(0.98 0.01 80), oklch(0.94 0.01 85))',
-                        ],
-                    ],
-                ],
-
-                'vars_theme' => [
-                    'font-sans' => 'Manrope, sans-serif',
-                    'font-mono' => 'IBM Plex Mono, monospace',
-                    'radius' => '0.9rem',
-                ],
-
-                'vars_light' => [
-                    'background' => 'oklch(0.97 0.01 85)',
-                    'foreground' => 'oklch(0.28 0.01 60)',
-
-                    'card' => 'oklch(0.99 0.01 90)',
-                    'card-foreground' => 'oklch(0.28 0.01 60)',
-
-                    'primary' => 'oklch(0.65 0.03 80)',
-                    'primary-foreground' => 'oklch(0.98 0 0)',
-
-                    'secondary' => 'oklch(0.90 0.01 85)',
-                    'secondary-foreground' => 'oklch(0.30 0.01 60)',
-
-                    'muted' => 'oklch(0.93 0.01 85)',
-                    'muted-foreground' => 'oklch(0.50 0.01 65)',
-
-                    'accent' => 'oklch(0.72 0.03 140)',
-                    'accent-foreground' => 'oklch(0.20 0.01 60)',
-
-                    'border' => 'oklch(0.88 0.01 85)',
-                    'input' => 'oklch(0.88 0.01 85)',
-                    'ring' => 'oklch(0.65 0.03 80)',
-                ],
-
-                'vars_dark' => [
-                    'background' => 'oklch(0.18 0.01 70)',
-                    'foreground' => 'oklch(0.92 0.01 90)',
-
-                    'card' => 'oklch(0.22 0.01 70)',
-                    'card-foreground' => 'oklch(0.92 0.01 90)',
-
-                    'primary' => 'oklch(0.75 0.03 80)',
-                    'primary-foreground' => 'oklch(0.15 0.01 60)',
-
-                    'secondary' => 'oklch(0.28 0.01 70)',
-                    'secondary-foreground' => 'oklch(0.92 0.01 90)',
-
-                    'muted' => 'oklch(0.24 0.01 70)',
-                    'muted-foreground' => 'oklch(0.72 0.01 85)',
-
-                    'accent' => 'oklch(0.60 0.03 140)',
-                    'accent-foreground' => 'oklch(0.95 0 0)',
-
-                    'border' => 'oklch(0.30 0.01 70)',
-                    'input' => 'oklch(0.30 0.01 70)',
-                    'ring' => 'oklch(0.75 0.03 80)',
-                ],
-            ],
-
-            [
-                'name' => 'walnut-luxe',
-                'title' => 'Walnut Luxe',
-                'description' => 'Luxury dark walnut wood theme with polished brass highlights, rich espresso surfaces, and premium warm contrast.',
-                'font_family' => 'Cormorant Garamond, serif',
-
-                'css' => [
-                    '@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap")' => [],
-
-                    '@layer base' => [
-                        'body' => [
-                            'background' => 'var(--background)',
-                            'color' => 'var(--foreground)',
-                            'background-image' => 'radial-gradient(circle at top, oklch(0.40 0.04 45 / 0.15), transparent 45%),
-                         linear-gradient(to bottom, oklch(0.18 0.02 40), oklch(0.12 0.01 30))',
-                        ],
-
-                        'h1, h2, h3, h4' => [
-                            'letter-spacing' => '0.04em',
-                        ],
-                    ],
-                ],
-
-                'vars_theme' => [
-                    'font-sans' => 'Cormorant Garamond, serif',
-                    'font-mono' => 'IBM Plex Mono, monospace',
-                    'radius' => '0.6rem',
-                ],
-
-                'vars_light' => [
-                    'background' => 'oklch(0.94 0.02 65)',
-                    'foreground' => 'oklch(0.22 0.02 35)',
-
-                    'card' => 'oklch(0.98 0.01 70)',
-                    'card-foreground' => 'oklch(0.22 0.02 35)',
-
-                    'primary' => 'oklch(0.52 0.06 40)',
-                    'primary-foreground' => 'oklch(0.98 0 0)',
-
-                    'secondary' => 'oklch(0.72 0.08 75)',
-                    'secondary-foreground' => 'oklch(0.18 0.01 35)',
-
-                    'muted' => 'oklch(0.90 0.01 65)',
-                    'muted-foreground' => 'oklch(0.45 0.02 40)',
-
-                    'accent' => 'oklch(0.68 0.05 140)',
-                    'accent-foreground' => 'oklch(0.15 0.01 40)',
-
-                    'border' => 'oklch(0.82 0.02 60)',
-                    'input' => 'oklch(0.82 0.02 60)',
-                    'ring' => 'oklch(0.72 0.08 75)',
-                ],
-
-                'vars_dark' => [
-                    'background' => 'oklch(0.12 0.01 30)',
-                    'foreground' => 'oklch(0.92 0.01 75)',
-
-                    'card' => 'oklch(0.16 0.01 30)',
-                    'card-foreground' => 'oklch(0.92 0.01 75)',
-
-                    'primary' => 'oklch(0.74 0.10 75)',
-                    'primary-foreground' => 'oklch(0.12 0.01 30)',
-
-                    'secondary' => 'oklch(0.30 0.03 40)',
-                    'secondary-foreground' => 'oklch(0.92 0.01 75)',
-
-                    'muted' => 'oklch(0.22 0.01 35)',
-                    'muted-foreground' => 'oklch(0.70 0.01 70)',
-
-                    'accent' => 'oklch(0.50 0.04 140)',
-                    'accent-foreground' => 'oklch(0.95 0 0)',
-
-                    'border' => 'oklch(0.26 0.01 35)',
-                    'input' => 'oklch(0.26 0.01 35)',
-                    'ring' => 'oklch(0.74 0.10 75)',
-                ],
-            ],
-
-            [
-                'name' => 'cedar-harmony',
-                'title' => 'Cedar Harmony',
-                'description' => 'Warm cedar cabin inspired theme with handcrafted earthy tones, soft cream surfaces, and cozy rustic balance.',
-                'font_family' => 'Nunito, sans-serif',
-
-                'css' => [
-                    '@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap")' => [],
-
-                    '@layer base' => [
-                        'body' => [
-                            'background' => 'var(--background)',
-                            'color' => 'var(--foreground)',
-                            'background-image' => 'linear-gradient(to bottom, oklch(0.97 0.02 70), oklch(0.93 0.03 60))',
-                        ],
-                    ],
-                ],
-
-                'vars_theme' => [
-                    'font-sans' => 'Nunito, sans-serif',
-                    'font-mono' => 'Fira Code, monospace',
-                    'radius' => '0.8rem',
-                ],
-
-                'vars_light' => [
-                    'background' => 'oklch(0.96 0.02 70)',
-                    'foreground' => 'oklch(0.30 0.04 45)',
-
-                    'card' => 'oklch(0.99 0.01 80)',
-                    'card-foreground' => 'oklch(0.30 0.04 45)',
-
-                    'primary' => 'oklch(0.62 0.12 45)',
-                    'primary-foreground' => 'oklch(0.98 0 0)',
-
-                    'secondary' => 'oklch(0.85 0.04 75)',
-                    'secondary-foreground' => 'oklch(0.28 0.03 45)',
-
-                    'muted' => 'oklch(0.92 0.02 75)',
-                    'muted-foreground' => 'oklch(0.48 0.03 45)',
-
-                    'accent' => 'oklch(0.60 0.05 140)',
-                    'accent-foreground' => 'oklch(0.98 0 0)',
-
-                    'border' => 'oklch(0.84 0.03 70)',
-                    'input' => 'oklch(0.84 0.03 70)',
-                    'ring' => 'oklch(0.62 0.12 45)',
-                ],
-
-                'vars_dark' => [
-                    'background' => 'oklch(0.18 0.03 40)',
-                    'foreground' => 'oklch(0.93 0.02 80)',
-
-                    'card' => 'oklch(0.22 0.03 40)',
-                    'card-foreground' => 'oklch(0.93 0.02 80)',
-
-                    'primary' => 'oklch(0.70 0.14 45)',
-                    'primary-foreground' => 'oklch(0.12 0.01 30)',
-
-                    'secondary' => 'oklch(0.32 0.03 45)',
-                    'secondary-foreground' => 'oklch(0.93 0.02 80)',
-
-                    'muted' => 'oklch(0.26 0.03 45)',
-                    'muted-foreground' => 'oklch(0.72 0.02 70)',
-
-                    'accent' => 'oklch(0.52 0.05 140)',
-                    'accent-foreground' => 'oklch(0.95 0 0)',
-
-                    'border' => 'oklch(0.30 0.03 45)',
-                    'input' => 'oklch(0.30 0.03 45)',
-                    'ring' => 'oklch(0.70 0.14 45)',
-                ],
-            ],
-
-            [
-                'name' => 'ebony-woodcraft',
-                'title' => 'Ebony Woodcraft',
-                'description' => 'Dark ebony timber theme with blackened wood textures, gold accents, and bold handcrafted workshop aesthetics.',
-                'font_family' => 'Space Grotesk, sans-serif',
-
-                'css' => [
-                    '@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap")' => [],
-
-                    '@layer base' => [
-                        'body' => [
-                            'background' => 'var(--background)',
-                            'color' => 'var(--foreground)',
-                            'background-image' => 'radial-gradient(circle at center, oklch(0.35 0.03 40 / 0.18), transparent 50%),
-                         linear-gradient(to bottom, oklch(0.12 0.01 40), oklch(0.08 0.01 30))',
-                        ],
-                    ],
-                ],
-
-                'vars_theme' => [
-                    'font-sans' => 'Space Grotesk, sans-serif',
-                    'font-mono' => 'JetBrains Mono, monospace',
-                    'radius' => '0.7rem',
-                ],
-
-                'vars_light' => [
-                    'background' => 'oklch(0.92 0.01 70)',
-                    'foreground' => 'oklch(0.18 0.01 40)',
-
-                    'card' => 'oklch(0.98 0.01 75)',
-                    'card-foreground' => 'oklch(0.18 0.01 40)',
-
-                    'primary' => 'oklch(0.72 0.14 80)',
-                    'primary-foreground' => 'oklch(0.12 0.01 30)',
-
-                    'secondary' => 'oklch(0.30 0.02 40)',
-                    'secondary-foreground' => 'oklch(0.98 0 0)',
-
-                    'muted' => 'oklch(0.88 0.01 70)',
-                    'muted-foreground' => 'oklch(0.42 0.01 45)',
-
-                    'accent' => 'oklch(0.60 0.03 260)',
-                    'accent-foreground' => 'oklch(0.98 0 0)',
-
-                    'border' => 'oklch(0.80 0.01 65)',
-                    'input' => 'oklch(0.80 0.01 65)',
-                    'ring' => 'oklch(0.72 0.14 80)',
-                ],
-
-                'vars_dark' => [
-                    'background' => 'oklch(0.08 0.01 30)',
-                    'foreground' => 'oklch(0.95 0.01 80)',
-
-                    'card' => 'oklch(0.12 0.01 35)',
-                    'card-foreground' => 'oklch(0.95 0.01 80)',
-
-                    'primary' => 'oklch(0.78 0.16 80)',
-                    'primary-foreground' => 'oklch(0.10 0.01 30)',
-
-                    'secondary' => 'oklch(0.24 0.02 40)',
-                    'secondary-foreground' => 'oklch(0.95 0.01 80)',
-
-                    'muted' => 'oklch(0.18 0.01 40)',
-                    'muted-foreground' => 'oklch(0.68 0.01 70)',
-
-                    'accent' => 'oklch(0.58 0.03 260)',
-                    'accent-foreground' => 'oklch(0.95 0 0)',
-
-                    'border' => 'oklch(0.24 0.01 40)',
-                    'input' => 'oklch(0.24 0.01 40)',
-                    'ring' => 'oklch(0.78 0.16 80)',
-                ],
-            ],
-            [
-                'name' => 'theme-default',
-                'title' => 'Default Theme',
-                'description' => 'Clean and minimal default theme with balanced neutral tones and optimal readability for any interface.',
-                'font_family' => '\'Instrument Sans\', ui-sans-serif, system-ui, sans-serif, \'Apple Color Emoji\', \'Segoe UI Emoji\', \'Segoe UI Symbol\', \'Noto Color Emoji\'',
-                'css' => [
-                    '@theme inline' => [
-                        '--font-sans' => 'var(--font-sans)',
-                        '--radius-lg' => 'var(--radius)',
-                        '--radius-md' => 'calc(var(--radius) - 2px)',
-                        '--radius-sm' => 'calc(var(--radius) - 4px)',
-                        '--color-background' => 'var(--background)',
-                        '--color-foreground' => 'var(--foreground)',
-                        '--color-card' => 'var(--card)',
-                        '--color-card-foreground' => 'var(--card-foreground)',
-                        '--color-popover' => 'var(--popover)',
-                        '--color-popover-foreground' => 'var(--popover-foreground)',
-                        '--color-primary' => 'var(--primary)',
-                        '--color-primary-foreground' => 'var(--primary-foreground)',
-                        '--color-secondary' => 'var(--secondary)',
-                        '--color-secondary-foreground' => 'var(--secondary-foreground)',
-                        '--color-muted' => 'var(--muted)',
-                        '--color-muted-foreground' => 'var(--muted-foreground)',
-                        '--color-accent' => 'var(--accent)',
-                        '--color-accent-foreground' => 'var(--accent-foreground)',
-                        '--color-destructive' => 'var(--destructive)',
-                        '--color-destructive-foreground' => 'var(--destructive-foreground)',
-                        '--color-border' => 'var(--border)',
-                        '--color-input' => 'var(--input)',
-                        '--color-ring' => 'var(--ring)',
-                        '--color-chart-1' => 'var(--chart-1)',
-                        '--color-chart-2' => 'var(--chart-2)',
-                        '--color-chart-3' => 'var(--chart-3)',
-                        '--color-chart-4' => 'var(--chart-4)',
-                        '--color-chart-5' => 'var(--chart-5)',
-                        '--color-sidebar' => 'var(--sidebar)',
-                        '--color-sidebar-foreground' => 'var(--sidebar-foreground)',
-                        '--color-sidebar-primary' => 'var(--sidebar-primary)',
-                        '--color-sidebar-primary-foreground' => 'var(--sidebar-primary-foreground)',
-                        '--color-sidebar-accent' => 'var(--sidebar-accent)',
-                        '--color-sidebar-accent-foreground' => 'var(--sidebar-accent-foreground)',
-                        '--color-sidebar-border' => 'var(--sidebar-border)',
-                        '--color-sidebar-ring' => 'var(--sidebar-ring)',
-                    ],
-                    '@layer base' => [
-                        '*' => [
-                            '@apply' => 'border-border',
-                        ],
-                        'body' => [
-                            '@apply' => 'bg-background text-foreground',
-                        ],
-                    ],
-                ],
-                'vars_theme' => [
-                    'font-sans' => '\'Instrument Sans\', ui-sans-serif, system-ui, sans-serif, \'Apple Color Emoji\', \'Segoe UI Emoji\', \'Segoe UI Symbol\', \'Noto Color Emoji\'',
-                    'radius' => '0.625rem',
-                ],
-                'vars_light' => [
-                    'background' => 'oklch(1 0 0)',
-                    'foreground' => 'oklch(0.145 0 0)',
-                    'card' => 'oklch(1 0 0)',
-                    'card-foreground' => 'oklch(0.145 0 0)',
-                    'popover' => 'oklch(1 0 0)',
-                    'popover-foreground' => 'oklch(0.145 0 0)',
-                    'primary' => 'oklch(0.205 0 0)',
-                    'primary-foreground' => 'oklch(0.985 0 0)',
-                    'secondary' => 'oklch(0.97 0 0)',
-                    'secondary-foreground' => 'oklch(0.205 0 0)',
-                    'muted' => 'oklch(0.97 0 0)',
-                    'muted-foreground' => 'oklch(0.556 0 0)',
-                    'accent' => 'oklch(0.97 0 0)',
-                    'accent-foreground' => 'oklch(0.205 0 0)',
-                    'destructive' => 'oklch(0.577 0.245 27.325)',
-                    'destructive-foreground' => 'oklch(0.577 0.245 27.325)',
-                    'border' => 'oklch(0.922 0 0)',
-                    'input' => 'oklch(0.922 0 0)',
-                    'ring' => 'oklch(0.87 0 0)',
-                    'chart-1' => 'oklch(0.646 0.222 41.116)',
-                    'chart-2' => 'oklch(0.6 0.118 184.704)',
-                    'chart-3' => 'oklch(0.398 0.07 227.392)',
-                    'chart-4' => 'oklch(0.828 0.189 84.429)',
-                    'chart-5' => 'oklch(0.769 0.188 70.08)',
-                    'radius' => '0.625rem',
-                    'sidebar' => 'oklch(0.985 0 0)',
-                    'sidebar-foreground' => 'oklch(0.145 0 0)',
-                    'sidebar-primary' => 'oklch(0.205 0 0)',
-                    'sidebar-primary-foreground' => 'oklch(0.985 0 0)',
-                    'sidebar-accent' => 'oklch(0.97 0 0)',
-                    'sidebar-accent-foreground' => 'oklch(0.205 0 0)',
-                    'sidebar-border' => 'oklch(0.922 0 0)',
-                    'sidebar-ring' => 'oklch(0.87 0 0)',
-                ],
-                'vars_dark' => [
-                    'background' => 'oklch(0.145 0 0)',
-                    'foreground' => 'oklch(0.985 0 0)',
-                    'card' => 'oklch(0.145 0 0)',
-                    'card-foreground' => 'oklch(0.985 0 0)',
-                    'popover' => 'oklch(0.145 0 0)',
-                    'popover-foreground' => 'oklch(0.985 0 0)',
-                    'primary' => 'oklch(0.985 0 0)',
-                    'primary-foreground' => 'oklch(0.205 0 0)',
-                    'secondary' => 'oklch(0.269 0 0)',
-                    'secondary-foreground' => 'oklch(0.985 0 0)',
-                    'muted' => 'oklch(0.269 0 0)',
-                    'muted-foreground' => 'oklch(0.708 0 0)',
-                    'accent' => 'oklch(0.269 0 0)',
-                    'accent-foreground' => 'oklch(0.985 0 0)',
-                    'destructive' => 'oklch(0.396 0.141 25.723)',
-                    'destructive-foreground' => 'oklch(0.637 0.237 25.331)',
-                    'border' => 'oklch(0.269 0 0)',
-                    'input' => 'oklch(0.269 0 0)',
-                    'ring' => 'oklch(0.439 0 0)',
-                    'chart-1' => 'oklch(0.488 0.243 264.376)',
-                    'chart-2' => 'oklch(0.696 0.17 162.48)',
-                    'chart-3' => 'oklch(0.769 0.188 70.08)',
-                    'chart-4' => 'oklch(0.627 0.265 303.9)',
-                    'chart-5' => 'oklch(0.645 0.246 16.439)',
-                    'sidebar' => 'oklch(0.205 0 0)',
-                    'sidebar-foreground' => 'oklch(0.985 0 0)',
-                    'sidebar-primary' => 'oklch(0.985 0 0)',
-                    'sidebar-primary-foreground' => 'oklch(0.985 0 0)',
-                    'sidebar-accent' => 'oklch(0.269 0 0)',
-                    'sidebar-accent-foreground' => 'oklch(0.985 0 0)',
-                    'sidebar-border' => 'oklch(0.269 0 0)',
-                    'sidebar-ring' => 'oklch(0.439 0 0)',
-                ],
-            ],
-
-            [
-                'name' => 'boho-theme',
-                'title' => 'Boho',
-                'description' => 'Free-spirited bohemian theme with warm earthy tones, organic textures, and artistic eclectic vibes.',
-                'font_family' => '\'Inter\', sans-serif',
-                'css' => [
-                    '@layer base' => [
-                        'body' => [
-                            'letter-spacing' => 'var(--tracking-normal)',
-                        ],
-                    ],
-                ],
-                'vars_theme' => [
-                    'font-sans' => '\'Inter\', sans-serif',
-                    'font-serif' => '\'Playfair Display\', serif',
-                    'font-mono' => '\'Fira Code\', monospace',
-                    'radius' => '1rem',
-                    'tracking-tighter' => 'calc(var(--tracking-normal) - 0.05em)',
-                    'tracking-tight' => 'calc(var(--tracking-normal) - 0.025em)',
-                    'tracking-normal' => '0em',
-                    'tracking-wide' => 'calc(var(--tracking-normal) + 0.025em)',
-                    'tracking-wider' => 'calc(var(--tracking-normal) + 0.05em)',
-                    'tracking-widest' => 'calc(var(--tracking-normal) + 0.1em)',
-                    'shadow-color' => 'oklch(0.3 0.05 70)',
-                    'shadow-opacity' => '0.18',
-                    'shadow-blur' => '12px',
-                    'shadow-spread' => '2px',
-                    'shadow-offset-x' => '0',
-                    'shadow-offset-y' => '4px',
-                    'spacing' => '0.25rem',
-                ],
-                'vars_light' => [
-                    'background' => 'oklch(0.98 0.02 85)',
-                    'foreground' => 'oklch(0.25 0.03 70)',
-                    'card' => 'oklch(0.96 0.02 85)',
-                    'card-foreground' => 'oklch(0.25 0.03 70)',
-                    'popover' => 'oklch(0.99 0.01 85)',
-                    'popover-foreground' => 'oklch(0.25 0.03 70)',
-                    'primary' => 'oklch(0.62 0.14 40)',
-                    'primary-foreground' => 'oklch(0.98 0.01 85)',
-                    'secondary' => 'oklch(0.92 0.04 80)',
-                    'secondary-foreground' => 'oklch(0.30 0.03 70)',
-                    'muted' => 'oklch(0.94 0.02 80)',
-                    'muted-foreground' => 'oklch(0.50 0.03 70)',
-                    'accent' => 'oklch(0.72 0.08 140)',
-                    'accent-foreground' => 'oklch(0.25 0.03 140)',
-                    'destructive' => 'oklch(0.60 0.20 30)',
-                    'destructive-foreground' => 'oklch(0.98 0.01 85)',
-                    'border' => 'oklch(0.88 0.02 80)',
-                    'input' => 'oklch(0.88 0.02 80)',
-                    'ring' => 'oklch(0.62 0.14 40)',
-                    'chart-1' => 'oklch(0.62 0.14 40)',
-                    'chart-2' => 'oklch(0.72 0.08 140)',
-                    'chart-3' => 'oklch(0.70 0.10 60)',
-                    'chart-4' => 'oklch(0.55 0.07 30)',
-                    'chart-5' => 'oklch(0.50 0.05 90)',
-                    'sidebar' => 'oklch(0.92 0.03 85)',
-                    'sidebar-foreground' => 'oklch(0.25 0.03 70)',
-                    'sidebar-primary' => 'oklch(0.62 0.14 40)',
-                    'sidebar-primary-foreground' => 'oklch(0.98 0.01 85)',
-                    'sidebar-accent' => 'oklch(0.72 0.08 140)',
-                    'sidebar-accent-foreground' => 'oklch(0.25 0.03 140)',
-                    'sidebar-border' => 'oklch(0.85 0.02 80)',
-                    'sidebar-ring' => 'oklch(0.62 0.14 40)',
-                    'font-sans' => 'var(--font-sans)',
-                    'font-serif' => 'var(--font-serif)',
-                    'font-mono' => 'var(--font-mono)',
-                    'shadow-2xs' => '0 1px 3px 0px hsl(30 40% 40% / 0.10)',
-                    'shadow-xs' => '0 1px 3px 0px hsl(30 40% 40% / 0.10)',
-                    'shadow-sm' => '0 2px 6px hsl(30 40% 40% / 0.12)',
-                    'shadow' => '0 4px 12px hsl(30 40% 40% / 0.16)',
-                    'shadow-md' => '0 6px 18px hsl(30 40% 40% / 0.18)',
-                    'shadow-lg' => '0 10px 24px hsl(30 40% 40% / 0.22)',
-                    'shadow-xl' => '0 14px 36px hsl(30 40% 40% / 0.26)',
-                    'shadow-2xl' => '0 20px 50px hsl(30 40% 40% / 0.30)',
-                ],
-                'vars_dark' => [
-                    'background' => 'oklch(0.20 0.02 80)',
-                    'foreground' => 'oklch(0.92 0.02 85)',
-                    'card' => 'oklch(0.24 0.03 80)',
-                    'card-foreground' => 'oklch(0.92 0.02 85)',
-                    'popover' => 'oklch(0.24 0.03 80)',
-                    'popover-foreground' => 'oklch(0.92 0.02 85)',
-                    'primary' => 'oklch(0.70 0.14 40)',
-                    'primary-foreground' => 'oklch(0.15 0.02 80)',
-                    'secondary' => 'oklch(0.30 0.03 80)',
-                    'secondary-foreground' => 'oklch(0.90 0.02 85)',
-                    'muted' => 'oklch(0.26 0.02 80)',
-                    'muted-foreground' => 'oklch(0.75 0.02 85)',
-                    'accent' => 'oklch(0.65 0.08 140)',
-                    'accent-foreground' => 'oklch(0.20 0.02 140)',
-                    'destructive' => 'oklch(0.65 0.18 30)',
-                    'destructive-foreground' => 'oklch(0.95 0.01 85)',
-                    'border' => 'oklch(0.35 0.02 80)',
-                    'input' => 'oklch(0.35 0.02 80)',
-                    'ring' => 'oklch(0.70 0.14 40)',
-                    'chart-1' => 'oklch(0.70 0.14 40)',
-                    'chart-2' => 'oklch(0.65 0.08 140)',
-                    'chart-3' => 'oklch(0.70 0.10 60)',
-                    'chart-4' => 'oklch(0.55 0.07 30)',
-                    'chart-5' => 'oklch(0.50 0.05 90)',
-                    'sidebar' => 'oklch(0.26 0.03 80)',
-                    'sidebar-foreground' => 'oklch(0.92 0.02 85)',
-                    'sidebar-primary' => 'oklch(0.70 0.14 40)',
-                    'sidebar-primary-foreground' => 'oklch(0.15 0.02 80)',
-                    'sidebar-accent' => 'oklch(0.65 0.08 140)',
-                    'sidebar-accent-foreground' => 'oklch(0.20 0.02 140)',
-                    'sidebar-border' => 'oklch(0.35 0.02 80)',
-                    'sidebar-ring' => 'oklch(0.70 0.14 40)',
-                    'font-sans' => 'var(--font-sans)',
-                    'font-serif' => 'var(--font-serif)',
-                    'font-mono' => 'var(--font-mono)',
-                ],
-            ],
-
-            [
-                'name' => 'bauhaus-theme',
-                'title' => 'Bauhaus',
-                'description' => 'Bold geometric Bauhaus-inspired theme with primary colors, clean lines, and functional design principles.',
-                'font_family' => '\'Poppins\', sans-serif',
-                'css' => [
-                    '@layer base' => [
-                        'body' => [
-                            'letter-spacing' => 'var(--tracking-normal)',
-                        ],
-                    ],
-                ],
-                'vars_theme' => [
-                    'font-sans' => '\'Poppins\', sans-serif',
-                    'font-serif' => '\'Poppins\', sans-serif',
-                    'font-mono' => 'IBMPlexMonoVariable, monospace',
-                    'radius' => '0.25rem',
-                    'tracking-tighter' => 'calc(var(--tracking-normal) - 0.05em)',
-                    'tracking-tight' => 'calc(var(--tracking-normal) - 0.025em)',
-                    'tracking-normal' => '0em',
-                    'tracking-wide' => 'calc(var(--tracking-normal) + 0.025em)',
-                    'tracking-wider' => 'calc(var(--tracking-normal) + 0.05em)',
-                    'tracking-widest' => 'calc(var(--tracking-normal) + 0.1em)',
-                    'shadow-color' => 'oklch(0 0 0)',
-                    'shadow-opacity' => '0.1',
-                    'shadow-blur' => '3px',
-                    'shadow-spread' => '0px',
-                    'shadow-offset-x' => '0',
-                    'shadow-offset-y' => '1px',
-                    'spacing' => '0.25rem',
-                ],
-                'vars_light' => [
-                    'background' => 'oklch(0.98 0 0)',
-                    'foreground' => 'oklch(0.2 0 0)',
-                    'card' => 'oklch(0.96 0 0)',
-                    'card-foreground' => 'oklch(0.2 0 0)',
-                    'popover' => 'oklch(0.99 0 0)',
-                    'popover-foreground' => 'oklch(0.2 0 0)',
-                    'primary' => 'oklch(0.65 0.22 25)',
-                    'primary-foreground' => 'oklch(0.98 0 0)',
-                    'secondary' => 'oklch(0.85 0.18 95)',
-                    'secondary-foreground' => 'oklch(0.2 0 0)',
-                    'muted' => 'oklch(0.92 0 0)',
-                    'muted-foreground' => 'oklch(0.42 0 0)',
-                    'accent' => 'oklch(0.65 0.18 240)',
-                    'accent-foreground' => 'oklch(0.98 0 0)',
-                    'destructive' => 'oklch(0.6 0.25 25)',
-                    'destructive-foreground' => 'oklch(0.98 0 0)',
-                    'border' => 'oklch(0.85 0 0)',
-                    'input' => 'oklch(0.85 0 0)',
-                    'ring' => 'oklch(0.65 0.22 25)',
-                    'chart-1' => 'oklch(0.65 0.22 25)',
-                    'chart-2' => 'oklch(0.85 0.18 95)',
-                    'chart-3' => 'oklch(0.65 0.18 240)',
-                    'chart-4' => 'oklch(0.4 0 0)',
-                    'chart-5' => 'oklch(0.2 0 0)',
-                    'sidebar' => 'oklch(0.9 0 0)',
-                    'sidebar-foreground' => 'oklch(0.2 0 0)',
-                    'sidebar-primary' => 'oklch(0.65 0.22 25)',
-                    'sidebar-primary-foreground' => 'oklch(0.98 0 0)',
-                    'sidebar-accent' => 'oklch(0.85 0.18 95)',
-                    'sidebar-accent-foreground' => 'oklch(0.2 0 0)',
-                    'sidebar-border' => 'oklch(0.82 0 0)',
-                    'sidebar-ring' => 'oklch(0.65 0.22 25)',
-                    'font-sans' => 'var(--font-sans)',
-                    'font-serif' => 'var(--font-serif)',
-                    'font-mono' => 'var(--font-mono)',
-                    'shadow-2xs' => '0 1px 3px 0px hsl(0 0% 0% / 0.05)',
-                    'shadow-xs' => '0 1px 3px 0px hsl(0 0% 0% / 0.05)',
-                    'shadow-sm' => '0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 1px 2px -1px hsl(0 0% 0% / 0.10)',
-                    'shadow' => '0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 1px 2px -1px hsl(0 0% 0% / 0.10)',
-                    'shadow-md' => '0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 2px 4px -1px hsl(0 0% 0% / 0.10)',
-                    'shadow-lg' => '0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 4px 6px -1px hsl(0 0% 0% / 0.10)',
-                    'shadow-xl' => '0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 8px 10px -1px hsl(0 0% 0% / 0.10)',
-                    'shadow-2xl' => '0 1px 3px 0px hsl(0 0% 0% / 0.25)',
-                ],
-                'vars_dark' => [
-                    'background' => 'oklch(0.18 0 0)',
-                    'foreground' => 'oklch(0.95 0 0)',
-                    'card' => 'oklch(0.22 0 0)',
-                    'card-foreground' => 'oklch(0.95 0 0)',
-                    'popover' => 'oklch(0.22 0 0)',
-                    'popover-foreground' => 'oklch(0.95 0 0)',
-                    'primary' => 'oklch(0.7 0.22 25)',
-                    'primary-foreground' => 'oklch(0.1 0 0)',
-                    'secondary' => 'oklch(0.8 0.18 95)',
-                    'secondary-foreground' => 'oklch(0.1 0 0)',
-                    'muted' => 'oklch(0.25 0 0)',
-                    'muted-foreground' => 'oklch(0.75 0 0)',
-                    'accent' => 'oklch(0.7 0.18 240)',
-                    'accent-foreground' => 'oklch(0.1 0 0)',
-                    'destructive' => 'oklch(0.7 0.25 25)',
-                    'destructive-foreground' => 'oklch(0.1 0 0)',
-                    'border' => 'oklch(0.3 0 0)',
-                    'input' => 'oklch(0.3 0 0)',
-                    'ring' => 'oklch(0.7 0.22 25)',
-                    'chart-1' => 'oklch(0.7 0.22 25)',
-                    'chart-2' => 'oklch(0.8 0.18 95)',
-                    'chart-3' => 'oklch(0.7 0.18 240)',
-                    'chart-4' => 'oklch(0.6 0 0)',
-                    'chart-5' => 'oklch(0.4 0 0)',
-                    'sidebar' => 'oklch(0.26 0 0)',
-                    'sidebar-foreground' => 'oklch(0.95 0 0)',
-                    'sidebar-primary' => 'oklch(0.7 0.22 25)',
-                    'sidebar-primary-foreground' => 'oklch(0.1 0 0)',
-                    'sidebar-accent' => 'oklch(0.8 0.18 95)',
-                    'sidebar-accent-foreground' => 'oklch(0.1 0 0)',
-                    'sidebar-border' => 'oklch(0.34 0 0)',
-                    'sidebar-ring' => 'oklch(0.7 0.22 25)',
-                ],
-            ],
-
-            [
-                'name' => 'artistic-gradient-theme',
-                'title' => 'Artistic Gradient',
-                'description' => 'Expressive artistic theme with smooth gradient transitions, vibrant color blends, and creative flair.',
-                'font_family' => 'Inter, sans-serif',
-                'css' => [
-                    '@layer base' => [
-                        'body' => [
-                            'background' => 'var(--background)',
-                            'color' => 'var(--foreground)',
-                            'letter-spacing' => 'var(--tracking-normal)',
-                        ],
-                        '*' => [
-                            'border-color' => 'var(--border)',
-                        ],
-                    ],
-                ],
-                'vars_theme' => [
-                    'font-sans' => 'Inter, sans-serif',
-                    'font-serif' => '\'Playfair Display\', serif',
-                    'font-mono' => '\'Fira Code\', monospace',
-                    'radius' => '1rem',
-                    'tracking-tighter' => 'calc(var(--tracking-normal) - 0.05em)',
-                    'tracking-tight' => 'calc(var(--tracking-normal) - 0.025em)',
-                    'tracking-normal' => '0em',
-                    'tracking-wide' => 'calc(var(--tracking-normal) + 0.025em)',
-                    'tracking-wider' => 'calc(var(--tracking-normal) + 0.05em)',
-                    'tracking-widest' => 'calc(var(--tracking-normal) + 0.1em)',
-                    'shadow-color' => 'hsl(280 80% 50%)',
-                    'shadow-opacity' => '0.1',
-                    'shadow-blur' => '3px',
-                    'shadow-spread' => '0px',
-                    'shadow-offset-x' => '0',
-                    'shadow-offset-y' => '1px',
-                    'spacing' => '0.25rem',
-                ],
-                'vars_light' => [
-                    'background' => 'oklch(0.98 0.01 260)',
-                    'foreground' => 'oklch(0.18 0.02 260)',
-                    'card' => 'oklch(0.99 0 0)',
-                    'card-foreground' => 'oklch(0.18 0.02 260)',
-                    'popover' => 'oklch(0.99 0 0)',
-                    'popover-foreground' => 'oklch(0.18 0.02 260)',
-                    'primary' => 'oklch(0.65 0.20 280)',
-                    'primary-foreground' => 'oklch(1 0 0)',
-                    'secondary' => 'oklch(0.80 0.10 200)',
-                    'secondary-foreground' => 'oklch(0.15 0.02 260)',
-                    'muted' => 'oklch(0.94 0.01 260)',
-                    'muted-foreground' => 'oklch(0.45 0.02 260)',
-                    'accent' => 'oklch(0.75 0.18 40)',
-                    'accent-foreground' => 'oklch(0.15 0.02 260)',
-                    'destructive' => 'oklch(0.60 0.22 25)',
-                    'destructive-foreground' => 'oklch(1 0 0)',
-                    'border' => 'oklch(0.88 0.01 260)',
-                    'input' => 'oklch(0.88 0.01 260)',
-                    'ring' => 'oklch(0.65 0.20 280)',
-                    'chart-1' => 'oklch(0.65 0.20 280)',
-                    'chart-2' => 'oklch(0.75 0.18 40)',
-                    'chart-3' => 'oklch(0.80 0.10 200)',
-                    'chart-4' => 'oklch(0.70 0.15 320)',
-                    'chart-5' => 'oklch(0.60 0.12 160)',
-                    'sidebar' => 'oklch(0.94 0.01 260)',
-                    'sidebar-foreground' => 'oklch(0.18 0.02 260)',
-                    'sidebar-primary' => 'oklch(0.65 0.20 280)',
-                    'sidebar-primary-foreground' => 'oklch(1 0 0)',
-                    'sidebar-accent' => 'oklch(0.75 0.18 40)',
-                    'sidebar-accent-foreground' => 'oklch(0.15 0.02 260)',
-                    'sidebar-border' => 'oklch(0.88 0.01 260)',
-                    'sidebar-ring' => 'oklch(0.65 0.20 280)',
-                    'font-sans' => 'var(--font-sans)',
-                    'font-serif' => 'var(--font-serif)',
-                    'font-mono' => 'var(--font-mono)',
-                    'shadow-sm' => '0 2px 10px hsl(280 80% 50% / 0.06)',
-                    'shadow' => '0 8px 24px hsl(280 80% 50% / 0.10)',
-                    'shadow-md' => '0 14px 40px hsl(280 80% 50% / 0.14)',
-                    'shadow-lg' => '0 20px 60px hsl(280 80% 50% / 0.18)',
-                    'shadow-xl' => '0 30px 90px hsl(280 80% 50% / 0.22)',
-                    'shadow-2xl' => '0 30px 90px hsl(280 80% 50% / 0.26)',
-                ],
-                'vars_dark' => [
-                    'background' => 'oklch(0.10 0.02 260)',
-                    'foreground' => 'oklch(0.95 0.02 260)',
-                    'card' => 'oklch(0.16 0.02 260)',
-                    'card-foreground' => 'oklch(0.95 0.02 260)',
-                    'popover' => 'oklch(0.18 0.02 260)',
-                    'popover-foreground' => 'oklch(0.95 0.02 260)',
-                    'primary' => 'oklch(0.75 0.28 280)',
-                    'primary-foreground' => 'oklch(0.08 0.02 260)',
-                    'secondary' => 'oklch(0.75 0.22 200)',
-                    'secondary-foreground' => 'oklch(0.08 0.02 260)',
-                    'muted' => 'oklch(0.20 0.02 260)',
-                    'muted-foreground' => 'oklch(0.72 0.02 260)',
-                    'accent' => 'oklch(0.78 0.25 40)',
-                    'accent-foreground' => 'oklch(0.08 0.02 260)',
-                    'destructive' => 'oklch(0.65 0.22 25)',
-                    'destructive-foreground' => 'oklch(0.98 0.02 260)',
-                    'border' => 'oklch(0.28 0.02 260)',
-                    'input' => 'oklch(0.28 0.02 260)',
-                    'ring' => 'oklch(0.75 0.28 280)',
-                    'chart-1' => 'oklch(0.75 0.28 280)',
-                    'chart-2' => 'oklch(0.75 0.22 200)',
-                    'chart-3' => 'oklch(0.78 0.25 40)',
-                    'chart-4' => 'oklch(0.70 0.15 320)',
-                    'chart-5' => 'oklch(0.60 0.12 160)',
-                    'sidebar' => 'oklch(0.14 0.02 260)',
-                    'sidebar-foreground' => 'oklch(0.95 0.02 260)',
-                    'sidebar-primary' => 'oklch(0.75 0.28 280)',
-                    'sidebar-primary-foreground' => 'oklch(0.08 0.02 260)',
-                    'sidebar-accent' => 'oklch(0.78 0.25 40)',
-                    'sidebar-accent-foreground' => 'oklch(0.08 0.02 260)',
-                    'sidebar-border' => 'oklch(0.28 0.02 260)',
-                    'sidebar-ring' => 'oklch(0.75 0.28 280)',
-                    'font-sans' => 'var(--font-sans)',
-                    'font-serif' => 'var(--font-serif)',
-                    'font-mono' => 'var(--font-mono)',
-                ],
-            ],
-
-            [
-                'name' => 'clay-theme',
-                'title' => 'Clay',
-                'description' => 'Warm clay-inspired theme with terracotta undertones, soft rounded edges, and natural ceramic aesthetics.',
-                'font_family' => 'Inter, sans-serif',
-                'css' => [
-                    '@layer base' => [
-                        'body' => [
-                            'background' => 'var(--background)',
-                            'color' => 'var(--foreground)',
-                            'letter-spacing' => 'var(--tracking-normal)',
-                        ],
-                        '*' => [
-                            'border-color' => 'var(--border)',
-                        ],
-                    ],
-                ],
-                'vars_theme' => [
-                    'font-sans' => 'Inter, sans-serif',
-                    'font-serif' => 'Playfair Display, serif',
-                    'font-mono' => 'Fira Code, monospace',
-                    'radius' => '1.5rem',
-                    'tracking-tighter' => 'calc(var(--tracking-normal) - 0.05em)',
-                    'tracking-tight' => 'calc(var(--tracking-normal) - 0.025em)',
-                    'tracking-normal' => '0em',
-                    'tracking-wide' => 'calc(var(--tracking-normal) + 0.025em)',
-                    'tracking-wider' => 'calc(var(--tracking-normal) + 0.05em)',
-                    'tracking-widest' => 'calc(var(--tracking-normal) + 0.1em)',
-                    'shadow-color' => 'hsl(0 0% 0%)',
-                    'shadow-opacity' => '0.12',
-                    'shadow-blur' => '12px',
-                    'shadow-spread' => '0px',
-                    'shadow-offset-x' => '0',
-                    'shadow-offset-y' => '4px',
-                    'spacing' => '0.25rem',
-                ],
-                'vars_light' => [
-                    'background' => 'oklch(0.96 0.02 45)',
-                    'foreground' => 'oklch(0.22 0.02 260)',
-                    'card' => 'oklch(0.98 0.02 45)',
-                    'card-foreground' => 'oklch(0.22 0.02 260)',
-                    'popover' => 'oklch(0.98 0.02 45)',
-                    'popover-foreground' => 'oklch(0.22 0.02 260)',
-                    'primary' => 'oklch(0.72 0.08 30)',
-                    'primary-foreground' => 'oklch(0.98 0.01 45)',
-                    'secondary' => 'oklch(0.90 0.04 50)',
-                    'secondary-foreground' => 'oklch(0.28 0.03 40)',
-                    'muted' => 'oklch(0.92 0.03 45)',
-                    'muted-foreground' => 'oklch(0.50 0.03 40)',
-                    'accent' => 'oklch(0.85 0.06 60)',
-                    'accent-foreground' => 'oklch(0.25 0.03 40)',
-                    'destructive' => 'oklch(0.62 0.20 25)',
-                    'destructive-foreground' => 'oklch(0.98 0.01 45)',
-                    'border' => 'oklch(0.86 0.02 45)',
-                    'input' => 'oklch(0.86 0.02 45)',
-                    'ring' => 'oklch(0.72 0.08 30)',
-                    'chart-1' => 'oklch(0.72 0.08 30)',
-                    'chart-2' => 'oklch(0.85 0.06 60)',
-                    'chart-3' => 'oklch(0.70 0.07 20)',
-                    'chart-4' => 'oklch(0.65 0.06 10)',
-                    'chart-5' => 'oklch(0.60 0.05 80)',
-                    'sidebar' => 'oklch(0.94 0.02 45)',
-                    'sidebar-foreground' => 'oklch(0.22 0.02 260)',
-                    'sidebar-primary' => 'oklch(0.72 0.08 30)',
-                    'sidebar-primary-foreground' => 'oklch(0.98 0.01 45)',
-                    'sidebar-accent' => 'oklch(0.85 0.06 60)',
-                    'sidebar-accent-foreground' => 'oklch(0.25 0.03 40)',
-                    'sidebar-border' => 'oklch(0.86 0.02 45)',
-                    'sidebar-ring' => 'oklch(0.72 0.08 30)',
-                    'font-sans' => 'var(--font-sans)',
-                    'font-serif' => 'var(--font-serif)',
-                    'font-mono' => 'var(--font-mono)',
-                    'shadow-sm' => 'inset 2px 2px 6px hsl(0 0% 0% / 0.08), inset -2px -2px 6px hsl(0 0% 100% / 0.6)',
-                    'shadow' => 'inset 4px 4px 10px hsl(0 0% 0% / 0.10), inset -4px -4px 10px hsl(0 0% 100% / 0.7)',
-                    'shadow-md' => 'inset 6px 6px 16px hsl(0 0% 0% / 0.12), inset -6px -6px 16px hsl(0 0% 100% / 0.75)',
-                    'shadow-lg' => 'inset 10px 10px 24px hsl(0 0% 0% / 0.14), inset -10px -10px 24px hsl(0 0% 100% / 0.8)',
-                    'shadow-xl' => 'inset 16px 16px 40px hsl(0 0% 0% / 0.18), inset -16px -16px 40px hsl(0 0% 100% / 0.85)',
-                ],
-                'vars_dark' => [
-                    'background' => 'oklch(0.20 0.02 45)',
-                    'foreground' => 'oklch(0.92 0.02 45)',
-                    'card' => 'oklch(0.24 0.02 45)',
-                    'card-foreground' => 'oklch(0.92 0.02 45)',
-                    'popover' => 'oklch(0.26 0.02 45)',
-                    'popover-foreground' => 'oklch(0.92 0.02 45)',
-                    'primary' => 'oklch(0.70 0.08 30)',
-                    'primary-foreground' => 'oklch(0.15 0.02 45)',
-                    'secondary' => 'oklch(0.28 0.02 45)',
-                    'secondary-foreground' => 'oklch(0.85 0.02 45)',
-                    'muted' => 'oklch(0.26 0.02 45)',
-                    'muted-foreground' => 'oklch(0.72 0.02 45)',
-                    'accent' => 'oklch(0.65 0.06 60)',
-                    'accent-foreground' => 'oklch(0.92 0.02 45)',
-                    'destructive' => 'oklch(0.65 0.18 25)',
-                    'destructive-foreground' => 'oklch(0.95 0.02 45)',
-                    'border' => 'oklch(0.30 0.02 45)',
-                    'input' => 'oklch(0.30 0.02 45)',
-                    'ring' => 'oklch(0.70 0.08 30)',
-                    'chart-1' => 'oklch(0.70 0.08 30)',
-                    'chart-2' => 'oklch(0.65 0.06 60)',
-                    'chart-3' => 'oklch(0.70 0.07 20)',
-                    'chart-4' => 'oklch(0.60 0.06 10)',
-                    'chart-5' => 'oklch(0.55 0.05 80)',
-                    'sidebar' => 'oklch(0.22 0.02 45)',
-                    'sidebar-foreground' => 'oklch(0.92 0.02 45)',
-                    'sidebar-primary' => 'oklch(0.70 0.08 30)',
-                    'sidebar-primary-foreground' => 'oklch(0.15 0.02 45)',
-                    'sidebar-accent' => 'oklch(0.65 0.06 60)',
-                    'sidebar-accent-foreground' => 'oklch(0.92 0.02 45)',
-                    'sidebar-border' => 'oklch(0.30 0.02 45)',
-                    'sidebar-ring' => 'oklch(0.70 0.08 30)',
-                ],
-            ],
-
-            [
-                'name' => 'cyberpunk-theme',
-                'title' => 'Cyberpunk',
-                'description' => 'High-contrast cyberpunk theme with neon accents, dark backgrounds, and futuristic digital edge.',
-                'font_family' => 'Orbitron, sans-serif',
-                'css' => [
-                    '@layer base' => [
-                        'body' => [
-                            'background' => 'var(--background)',
-                            'color' => 'var(--foreground)',
-                        ],
-                        '*' => [
-                            'border-color' => 'var(--border)',
-                        ],
-                    ],
-                ],
-                'vars_theme' => [
-                    'font-sans' => 'Orbitron, sans-serif',
-                    'font-serif' => 'Orbitron, sans-serif',
-                    'font-mono' => 'Fira Code, monospace',
-                    'radius' => '0.5rem',
-                    'tracking-tighter' => 'calc(var(--tracking-normal) - 0.05em)',
-                    'tracking-tight' => 'calc(var(--tracking-normal) - 0.025em)',
-                    'tracking-normal' => '0em',
-                    'tracking-wide' => 'calc(var(--tracking-normal) + 0.025em)',
-                    'tracking-wider' => 'calc(var(--tracking-normal) + 0.05em)',
-                    'tracking-widest' => 'calc(var(--tracking-normal) + 0.1em)',
-                    'shadow-color' => 'hsl(300 100% 60%)',
-                    'shadow-opacity' => '0.18',
-                    'shadow-blur' => '18px',
-                    'shadow-spread' => '0px',
-                    'shadow-offset-x' => '0',
-                    'shadow-offset-y' => '6px',
-                    'spacing' => '0.25rem',
-                ],
-                'vars_light' => [
-                    'background' => 'oklch(0.97 0.01 260)',
-                    'foreground' => 'oklch(0.18 0.02 260)',
-                    'card' => 'oklch(0.99 0.01 260)',
-                    'card-foreground' => 'oklch(0.18 0.02 260)',
-                    'popover' => 'oklch(0.99 0.01 260)',
-                    'popover-foreground' => 'oklch(0.18 0.02 260)',
-                    'primary' => 'oklch(0.62 0.26 300)',
-                    'primary-foreground' => 'oklch(0.99 0.01 260)',
-                    'secondary' => 'oklch(0.90 0.04 200)',
-                    'secondary-foreground' => 'oklch(0.18 0.02 260)',
-                    'muted' => 'oklch(0.93 0.01 260)',
-                    'muted-foreground' => 'oklch(0.45 0.02 260)',
-                    'accent' => 'oklch(0.70 0.20 340)',
-                    'accent-foreground' => 'oklch(0.18 0.02 260)',
-                    'destructive' => 'oklch(0.60 0.25 25)',
-                    'destructive-foreground' => 'oklch(0.99 0.01 260)',
-                    'border' => 'oklch(0.88 0.01 260)',
-                    'input' => 'oklch(0.88 0.01 260)',
-                    'ring' => 'oklch(0.62 0.26 300)',
-                    'chart-1' => 'oklch(0.62 0.26 300)',
-                    'chart-2' => 'oklch(0.70 0.20 200)',
-                    'chart-3' => 'oklch(0.70 0.20 340)',
-                    'chart-4' => 'oklch(0.75 0.18 260)',
-                    'chart-5' => 'oklch(0.60 0.18 180)',
-                    'sidebar' => 'oklch(0.95 0.01 260)',
-                    'sidebar-foreground' => 'oklch(0.18 0.02 260)',
-                    'sidebar-primary' => 'oklch(0.62 0.26 300)',
-                    'sidebar-primary-foreground' => 'oklch(0.99 0.01 260)',
-                    'sidebar-accent' => 'oklch(0.70 0.20 340)',
-                    'sidebar-accent-foreground' => 'oklch(0.18 0.02 260)',
-                    'sidebar-border' => 'oklch(0.88 0.01 260)',
-                    'sidebar-ring' => 'oklch(0.62 0.26 300)',
-                    'font-sans' => 'var(--font-sans)',
-                    'font-serif' => 'var(--font-serif)',
-                    'font-mono' => 'var(--font-mono)',
-                    'shadow-sm' => '0 2px 10px hsl(300 100% 60% / 0.10)',
-                    'shadow' => '0 10px 24px hsl(300 100% 60% / 0.14)',
-                    'shadow-md' => '0 16px 40px hsl(200 100% 60% / 0.18)',
-                    'shadow-lg' => '0 24px 60px hsl(340 100% 60% / 0.22)',
-                    'shadow-xl' => '0 40px 100px hsl(300 100% 60% / 0.28)',
-                ],
-                'vars_dark' => [
-                    'background' => 'oklch(0.08 0.02 260)',
-                    'foreground' => 'oklch(0.92 0.02 260)',
-                    'card' => 'oklch(0.12 0.02 260)',
-                    'card-foreground' => 'oklch(0.92 0.02 260)',
-                    'popover' => 'oklch(0.14 0.02 260)',
-                    'popover-foreground' => 'oklch(0.92 0.02 260)',
-                    'primary' => 'oklch(0.75 0.32 300)',
-                    'primary-foreground' => 'oklch(0.05 0.02 260)',
-                    'secondary' => 'oklch(0.78 0.26 200)',
-                    'secondary-foreground' => 'oklch(0.05 0.02 260)',
-                    'muted' => 'oklch(0.18 0.02 260)',
-                    'muted-foreground' => 'oklch(0.70 0.02 260)',
-                    'accent' => 'oklch(0.80 0.30 340)',
-                    'accent-foreground' => 'oklch(0.05 0.02 260)',
-                    'destructive' => 'oklch(0.65 0.25 25)',
-                    'destructive-foreground' => 'oklch(0.95 0.02 260)',
-                    'border' => 'oklch(0.24 0.02 260)',
-                    'input' => 'oklch(0.24 0.02 260)',
-                    'ring' => 'oklch(0.75 0.32 300)',
-                    'chart-1' => 'oklch(0.75 0.32 300)',
-                    'chart-2' => 'oklch(0.78 0.26 200)',
-                    'chart-3' => 'oklch(0.80 0.30 340)',
-                    'chart-4' => 'oklch(0.75 0.22 260)',
-                    'chart-5' => 'oklch(0.70 0.18 180)',
-                    'sidebar' => 'oklch(0.10 0.02 260)',
-                    'sidebar-foreground' => 'oklch(0.92 0.02 260)',
-                    'sidebar-primary' => 'oklch(0.75 0.32 300)',
-                    'sidebar-primary-foreground' => 'oklch(0.05 0.02 260)',
-                    'sidebar-accent' => 'oklch(0.80 0.30 340)',
-                    'sidebar-accent-foreground' => 'oklch(0.05 0.02 260)',
-                    'sidebar-border' => 'oklch(0.24 0.02 260)',
-                    'sidebar-ring' => 'oklch(0.75 0.32 300)',
-                ],
-            ],
-
-            [
-                'name' => 'editorial-theme',
-                'title' => 'Editorial',
-                'description' => 'Refined editorial theme with elegant typography, generous whitespace, and print-inspired sophistication.',
-                'font_family' => 'Inter, sans-serif',
-                'css' => [
-                    '@layer base' => [
-                        'body' => [
-                            'background' => 'var(--background)',
-                            'color' => 'var(--foreground)',
-                        ],
-                        '*' => [
-                            'border-color' => 'var(--border)',
-                        ],
-                    ],
-                ],
-                'vars_theme' => [
-                    'font-sans' => 'Inter, sans-serif',
-                    'font-serif' => 'Playfair Display, Georgia, serif',
-                    'font-mono' => 'IBM Plex Mono, monospace',
-                    'radius' => '0.25rem',
-                    'tracking-tighter' => 'calc(var(--tracking-normal) - 0.05em)',
-                    'tracking-tight' => 'calc(var(--tracking-normal) - 0.025em)',
-                    'tracking-normal' => '0em',
-                    'tracking-wide' => 'calc(var(--tracking-normal) + 0.025em)',
-                    'tracking-wider' => 'calc(var(--tracking-normal) + 0.05em)',
-                    'tracking-widest' => 'calc(var(--tracking-normal) + 0.1em)',
-                    'shadow-color' => 'hsl(0 0% 0%)',
-                    'shadow-opacity' => '0.10',
-                    'shadow-blur' => '12px',
-                    'shadow-spread' => '0px',
-                    'shadow-offset-x' => '0',
-                    'shadow-offset-y' => '4px',
-                    'spacing' => '0.25rem',
-                ],
-                'vars_light' => [
-                    'background' => 'oklch(0.99 0 0)',
-                    'foreground' => 'oklch(0.18 0 0)',
-                    'card' => 'oklch(1 0 0)',
-                    'card-foreground' => 'oklch(0.18 0 0)',
-                    'popover' => 'oklch(1 0 0)',
-                    'popover-foreground' => 'oklch(0.18 0 0)',
-                    'primary' => 'oklch(0.20 0 0)',
-                    'primary-foreground' => 'oklch(0.99 0 0)',
-                    'secondary' => 'oklch(0.96 0 0)',
-                    'secondary-foreground' => 'oklch(0.25 0 0)',
-                    'muted' => 'oklch(0.94 0 0)',
-                    'muted-foreground' => 'oklch(0.50 0 0)',
-                    'accent' => 'oklch(0.60 0.18 25)',
-                    'accent-foreground' => 'oklch(0.99 0 0)',
-                    'destructive' => 'oklch(0.58 0.20 25)',
-                    'destructive-foreground' => 'oklch(0.99 0 0)',
-                    'border' => 'oklch(0.90 0 0)',
-                    'input' => 'oklch(0.90 0 0)',
-                    'ring' => 'oklch(0.20 0 0)',
-                    'chart-1' => 'oklch(0.20 0 0)',
-                    'chart-2' => 'oklch(0.60 0.18 25)',
-                    'chart-3' => 'oklch(0.40 0 0)',
-                    'chart-4' => 'oklch(0.65 0 0)',
-                    'chart-5' => 'oklch(0.80 0 0)',
-                    'sidebar' => 'oklch(0.98 0 0)',
-                    'sidebar-foreground' => 'oklch(0.18 0 0)',
-                    'sidebar-primary' => 'oklch(0.20 0 0)',
-                    'sidebar-primary-foreground' => 'oklch(0.99 0 0)',
-                    'sidebar-accent' => 'oklch(0.60 0.18 25)',
-                    'sidebar-accent-foreground' => 'oklch(0.99 0 0)',
-                    'sidebar-border' => 'oklch(0.90 0 0)',
-                    'sidebar-ring' => 'oklch(0.20 0 0)',
-                    'font-sans' => 'var(--font-sans)',
-                    'font-serif' => 'var(--font-serif)',
-                    'font-mono' => 'var(--font-mono)',
-                    'shadow-sm' => '0 1px 2px hsl(0 0% 0% / 0.05)',
-                    'shadow' => '0 2px 8px hsl(0 0% 0% / 0.08)',
-                    'shadow-md' => '0 4px 16px hsl(0 0% 0% / 0.10)',
-                    'shadow-lg' => '0 8px 24px hsl(0 0% 0% / 0.12)',
-                    'shadow-xl' => '0 16px 40px hsl(0 0% 0% / 0.14)',
-                ],
-                'vars_dark' => [
-                    'background' => 'oklch(0.08 0 0)',
-                    'foreground' => 'oklch(0.92 0 0)',
-                    'card' => 'oklch(0.12 0 0)',
-                    'card-foreground' => 'oklch(0.92 0 0)',
-                    'popover' => 'oklch(0.14 0 0)',
-                    'popover-foreground' => 'oklch(0.92 0 0)',
-                    'primary' => 'oklch(0.92 0 0)',
-                    'primary-foreground' => 'oklch(0.08 0 0)',
-                    'secondary' => 'oklch(0.18 0 0)',
-                    'secondary-foreground' => 'oklch(0.90 0 0)',
-                    'muted' => 'oklch(0.16 0 0)',
-                    'muted-foreground' => 'oklch(0.65 0 0)',
-                    'accent' => 'oklch(0.65 0.18 25)',
-                    'accent-foreground' => 'oklch(0.08 0 0)',
-                    'destructive' => 'oklch(0.65 0.20 25)',
-                    'destructive-foreground' => 'oklch(0.95 0 0)',
-                    'border' => 'oklch(0.22 0 0)',
-                    'input' => 'oklch(0.22 0 0)',
-                    'ring' => 'oklch(0.92 0 0)',
-                    'chart-1' => 'oklch(0.92 0 0)',
-                    'chart-2' => 'oklch(0.65 0.18 25)',
-                    'chart-3' => 'oklch(0.40 0 0)',
-                    'chart-4' => 'oklch(0.65 0 0)',
-                    'chart-5' => 'oklch(0.80 0 0)',
-                    'sidebar' => 'oklch(0.10 0 0)',
-                    'sidebar-foreground' => 'oklch(0.92 0 0)',
-                    'sidebar-primary' => 'oklch(0.92 0 0)',
-                    'sidebar-primary-foreground' => 'oklch(0.08 0 0)',
-                    'sidebar-accent' => 'oklch(0.65 0.18 25)',
-                    'sidebar-accent-foreground' => 'oklch(0.08 0 0)',
-                    'sidebar-border' => 'oklch(0.22 0 0)',
-                    'sidebar-ring' => 'oklch(0.92 0 0)',
-                    'shadow-sm' => '0 1px 2px hsl(0 0% 0% / 0.25)',
-                    'shadow' => '0 2px 10px hsl(0 0% 0% / 0.35)',
-                    'shadow-md' => '0 4px 18px hsl(0 0% 0% / 0.45)',
-                    'shadow-lg' => '0 8px 30px hsl(0 0% 0% / 0.55)',
-                    'shadow-xl' => '0 16px 60px hsl(0 0% 0% / 0.65)',
-                ],
-            ],
-
-            [
-                'name' => 'acid-core-theme',
-                'title' => 'Acid Core',
-                'description' => 'Bold acid-core theme with striking neon hues, high saturation, and rebellious visual attitude.',
-                'font_family' => 'Inter, sans-serif',
-                'css' => [
-                    '@layer base' => [
-                        'body' => [
-                            'background' => 'var(--background)',
-                            'color' => 'var(--foreground)',
-                        ],
-                        '*' => [
-                            'border-color' => 'var(--border)',
-                        ],
-                    ],
-                ],
-                'vars_theme' => [
-                    'font-sans' => 'Inter, sans-serif',
-                    'font-serif' => 'Inter, sans-serif',
-                    'font-mono' => '\'Fira Code\', monospace',
-                    'radius' => '0.5rem',
-                    'shadow-color' => 'oklch(0.8947 0.2555 134.02)',
-                    'shadow-opacity' => '0.25',
-                    'shadow-blur' => '20px',
-                    'shadow-spread' => '0px',
-                    'shadow-offset-x' => '0px',
-                    'shadow-offset-y' => '0px',
-                ],
-                'vars_light' => [
-                    'background' => 'oklch(0.96 0.01 260)',
-                    'foreground' => 'oklch(0.12 0.02 260)',
-                    'card' => 'oklch(0.98 0.01 260)',
-                    'card-foreground' => 'oklch(0.12 0.02 260)',
-                    'popover' => 'oklch(1 0 0)',
-                    'popover-foreground' => 'oklch(0.12 0.02 260)',
-                    'primary' => 'oklch(0.72 0.22 134)',
-                    'primary-foreground' => 'oklch(0.10 0.02 260)',
-                    'secondary' => 'oklch(0.90 0.02 260)',
-                    'secondary-foreground' => 'oklch(0.25 0.02 260)',
-                    'muted' => 'oklch(0.92 0.01 260)',
-                    'muted-foreground' => 'oklch(0.50 0.02 260)',
-                    'accent' => 'oklch(0.75 0.20 134)',
-                    'accent-foreground' => 'oklch(0.10 0.02 260)',
-                    'destructive' => 'oklch(0.60 0.22 25)',
-                    'destructive-foreground' => 'oklch(0.98 0.01 260)',
-                    'border' => 'oklch(0.85 0.01 260)',
-                    'input' => 'oklch(0.85 0.01 260)',
-                    'ring' => 'oklch(0.72 0.22 134)',
-                    'chart-1' => 'oklch(0.72 0.22 134)',
-                    'chart-2' => 'oklch(0.65 0.20 134)',
-                    'chart-3' => 'oklch(0.58 0.18 134)',
-                    'chart-4' => 'oklch(0.50 0.16 134)',
-                    'chart-5' => 'oklch(0.80 0.24 134)',
-                    'radius' => '0.5rem',
-                    'sidebar' => 'oklch(0.88 0.01 260)',
-                    'sidebar-foreground' => 'oklch(0.12 0.02 260)',
-                    'sidebar-primary' => 'oklch(0.72 0.22 134)',
-                    'sidebar-primary-foreground' => 'oklch(0.10 0.02 260)',
-                    'sidebar-accent' => 'oklch(0.75 0.20 134)',
-                    'sidebar-accent-foreground' => 'oklch(0.10 0.02 260)',
-                    'sidebar-border' => 'oklch(0.85 0.01 260)',
-                    'sidebar-ring' => 'oklch(0.72 0.22 134)',
-                    'font-sans' => 'var(--font-sans)',
-                    'font-serif' => 'var(--font-serif)',
-                    'font-mono' => 'var(--font-mono)',
-                    'shadow-sm' => '0 2px 8px oklch(0.72 0.22 134 / 0.10)',
-                    'shadow' => '0 8px 24px oklch(0.72 0.22 134 / 0.15)',
-                    'shadow-md' => '0 14px 40px oklch(0.72 0.22 134 / 0.20)',
-                    'shadow-lg' => '0 20px 60px oklch(0.72 0.22 134 / 0.25)',
-                    'shadow-xl' => '0 30px 90px oklch(0.72 0.22 134 / 0.30)',
-                ],
-                'vars_dark' => [
-                    'background' => 'oklch(0.08 0.02 260)',
-                    'foreground' => 'oklch(0.92 0.02 260)',
-                    'card' => 'oklch(0.12 0.02 260)',
-                    'card-foreground' => 'oklch(0.92 0.02 260)',
-                    'popover' => 'oklch(0.14 0.02 260)',
-                    'popover-foreground' => 'oklch(0.92 0.02 260)',
-                    'primary' => 'oklch(0.78 0.25 134)',
-                    'primary-foreground' => 'oklch(0.08 0.02 260)',
-                    'secondary' => 'oklch(0.18 0.02 260)',
-                    'secondary-foreground' => 'oklch(0.85 0.02 260)',
-                    'muted' => 'oklch(0.20 0.02 260)',
-                    'muted-foreground' => 'oklch(0.65 0.02 260)',
-                    'accent' => 'oklch(0.80 0.24 134)',
-                    'accent-foreground' => 'oklch(0.08 0.02 260)',
-                    'destructive' => 'oklch(0.65 0.22 25)',
-                    'destructive-foreground' => 'oklch(0.95 0.02 260)',
-                    'border' => 'oklch(0.24 0.02 260)',
-                    'input' => 'oklch(0.24 0.02 260)',
-                    'ring' => 'oklch(0.78 0.25 134)',
-                    'chart-1' => 'oklch(0.78 0.25 134)',
-                    'chart-2' => 'oklch(0.70 0.22 134)',
-                    'chart-3' => 'oklch(0.62 0.20 134)',
-                    'chart-4' => 'oklch(0.55 0.18 134)',
-                    'chart-5' => 'oklch(0.85 0.28 134)',
-                    'radius' => '0.5rem',
-                    'sidebar' => 'oklch(0.14 0.02 260)',
-                    'sidebar-foreground' => 'oklch(0.92 0.02 260)',
-                    'sidebar-primary' => 'oklch(0.78 0.25 134)',
-                    'sidebar-primary-foreground' => 'oklch(0.08 0.02 260)',
-                    'sidebar-accent' => 'oklch(0.80 0.24 134)',
-                    'sidebar-accent-foreground' => 'oklch(0.08 0.02 260)',
-                    'sidebar-border' => 'oklch(0.24 0.02 260)',
-                    'sidebar-ring' => 'oklch(0.78 0.25 134)',
-                    'font-sans' => 'var(--font-sans)',
-                    'font-serif' => 'var(--font-serif)',
-                    'font-mono' => 'var(--font-mono)',
-                    'shadow-sm' => '0 2px 10px oklch(0.78 0.25 134 / 0.20)',
-                    'shadow' => '0 10px 30px oklch(0.78 0.25 134 / 0.30)',
-                    'shadow-md' => '0 18px 50px oklch(0.78 0.25 134 / 0.35)',
-                    'shadow-lg' => '0 30px 80px oklch(0.78 0.25 134 / 0.45)',
-                    'shadow-xl' => '0 50px 120px oklch(0.78 0.25 134 / 0.55)',
-                ],
-            ],
-
-            [
-                'name' => 'autumn-grain-theme',
-                'title' => 'Autumn Grain',
-                'description' => 'Warm autumn-inspired theme with harvest tones, textured grains, and cozy seasonal atmosphere.',
-                'font_family' => 'Inter, sans-serif',
-                'css' => [
-                    '@layer base' => [
-                        'body' => [
-                            'background' => 'var(--background)',
-                            'color' => 'var(--foreground)',
-                            'letter-spacing' => 'var(--tracking-normal)',
-                        ],
-                        '*' => [
-                            'border-color' => 'var(--border)',
-                        ],
-                    ],
-                ],
-                'vars_theme' => [
-                    'font-sans' => 'Inter, sans-serif',
-                    'font-serif' => '\'Playfair Display\', serif',
-                    'font-mono' => '\'Fira Code\', monospace',
-                    'radius' => '0.5rem',
-                    'shadow-color' => 'oklch(0.6 0.18 45)',
-                    'shadow-opacity' => '0.2',
-                    'shadow-blur' => '12px',
-                    'shadow-spread' => '0px',
-                    'shadow-offset-x' => '0',
-                    'shadow-offset-y' => '2px',
-                    'tracking-normal' => '0em',
-                    'tracking-tight' => '-0.01em',
-                    'tracking-wide' => '0.03em',
-                ],
-                'vars_light' => [
-                    'background' => 'oklch(0.97 0.02 50)',
-                    'foreground' => 'oklch(0.28 0.05 50)',
-                    'card' => 'oklch(0.99 0.015 50)',
-                    'card-foreground' => 'oklch(0.28 0.05 50)',
-                    'popover' => 'oklch(0.99 0.015 50)',
-                    'popover-foreground' => 'oklch(0.28 0.05 50)',
-                    'primary' => 'oklch(0.6 0.18 45)',
-                    'primary-foreground' => 'oklch(0.98 0.02 50)',
-                    'secondary' => 'oklch(0.7 0.08 30)',
-                    'secondary-foreground' => 'oklch(0.30 0.05 50)',
-                    'muted' => 'oklch(0.92 0.03 50)',
-                    'muted-foreground' => 'oklch(0.50 0.04 50)',
-                    'accent' => 'oklch(0.55 0.12 25)',
-                    'accent-foreground' => 'oklch(0.98 0.02 50)',
-                    'destructive' => 'oklch(0.55 0.18 25)',
-                    'destructive-foreground' => 'oklch(0.98 0.02 50)',
-                    'border' => 'oklch(0.86 0.03 50)',
-                    'input' => 'oklch(0.86 0.03 50)',
-                    'ring' => 'oklch(0.6 0.18 45)',
-                    'chart-1' => 'oklch(0.6 0.18 45)',
-                    'chart-2' => 'oklch(0.7 0.08 30)',
-                    'chart-3' => 'oklch(0.55 0.12 25)',
-                    'chart-4' => 'oklch(0.7 0.08 100)',
-                    'chart-5' => 'oklch(0.5 0.1 60)',
-                    'radius' => '0.5rem',
-                    'sidebar' => 'oklch(0.93 0.025 50)',
-                    'sidebar-foreground' => 'oklch(0.28 0.05 50)',
-                    'sidebar-primary' => 'oklch(0.6 0.18 45)',
-                    'sidebar-primary-foreground' => 'oklch(0.98 0.02 50)',
-                    'sidebar-accent' => 'oklch(0.55 0.12 25)',
-                    'sidebar-accent-foreground' => 'oklch(0.98 0.02 50)',
-                    'sidebar-border' => 'oklch(0.86 0.03 50)',
-                    'sidebar-ring' => 'oklch(0.6 0.18 45)',
-                    'font-sans' => 'var(--font-sans)',
-                    'font-serif' => 'var(--font-serif)',
-                    'font-mono' => 'var(--font-mono)',
-                    'shadow-color' => 'oklch(0.6 0.18 45)',
-                    'shadow-opacity' => '0.2',
-                    'shadow-blur' => '12px',
-                    'shadow-spread' => '0px',
-                    'shadow-offset-x' => '0',
-                    'shadow-offset-y' => '2px',
-                    'letter-spacing' => 'var(--tracking-normal)',
-                    'spacing' => '0.25rem',
-                    'shadow-2xs' => '0 1px 3px hsl(25 30% 70% / 0.1)',
-                    'shadow-xs' => '0 1px 3px hsl(25 30% 70% / 0.1)',
-                    'shadow-sm' => '0 2px 6px hsl(25 30% 70% / 0.15)',
-                    'shadow' => '0 4px 10px hsl(25 30% 70% / 0.2)',
-                    'shadow-md' => '0 6px 16px hsl(25 30% 70% / 0.25)',
-                    'shadow-lg' => '0 10px 24px hsl(25 30% 70% / 0.3)',
-                    'shadow-xl' => '0 16px 40px hsl(25 30% 70% / 0.35)',
-                    'shadow-2xl' => '0 20px 60px hsl(25 30% 70% / 0.4)',
-                ],
-                'vars_dark' => [
-                    'background' => 'oklch(0.20 0.05 50)',
-                    'foreground' => 'oklch(0.78 0.03 50)',
-                    'card' => 'oklch(0.25 0.05 50)',
-                    'card-foreground' => 'oklch(0.78 0.03 50)',
-                    'popover' => 'oklch(0.28 0.05 50)',
-                    'popover-foreground' => 'oklch(0.78 0.03 50)',
-                    'primary' => 'oklch(0.7 0.2 45)',
-                    'primary-foreground' => 'oklch(0.20 0.05 50)',
-                    'secondary' => 'oklch(0.45 0.1 30)',
-                    'secondary-foreground' => 'oklch(0.75 0.04 50)',
-                    'muted' => 'oklch(0.30 0.05 50)',
-                    'muted-foreground' => 'oklch(0.65 0.04 50)',
-                    'accent' => 'oklch(0.6 0.15 25)',
-                    'accent-foreground' => 'oklch(0.20 0.05 50)',
-                    'destructive' => 'oklch(0.55 0.18 25)',
-                    'destructive-foreground' => 'oklch(0.80 0.03 50)',
-                    'border' => 'oklch(0.45 0.05 50)',
-                    'input' => 'oklch(0.45 0.05 50)',
-                    'ring' => 'oklch(0.7 0.2 45)',
-                    'chart-1' => 'oklch(0.7 0.2 45)',
-                    'chart-2' => 'oklch(0.45 0.1 30)',
-                    'chart-3' => 'oklch(0.6 0.15 25)',
-                    'chart-4' => 'oklch(0.7 0.08 100)',
-                    'chart-5' => 'oklch(0.5 0.1 60)',
-                    'radius' => '0.5rem',
-                    'sidebar' => 'oklch(0.14 0.04 50)',
-                    'sidebar-foreground' => 'oklch(0.78 0.03 50)',
-                    'sidebar-primary' => 'oklch(0.7 0.2 45)',
-                    'sidebar-primary-foreground' => 'oklch(0.20 0.05 50)',
-                    'sidebar-accent' => 'oklch(0.6 0.15 25)',
-                    'sidebar-accent-foreground' => 'oklch(0.20 0.05 50)',
-                    'sidebar-border' => 'oklch(0.45 0.05 50)',
-                    'sidebar-ring' => 'oklch(0.7 0.2 45)',
-                    'font-sans' => 'var(--font-sans)',
-                    'font-serif' => 'var(--font-serif)',
-                    'font-mono' => 'var(--font-mono)',
-                    'shadow-color' => 'oklch(0.7 0.2 45)',
-                    'shadow-opacity' => '0.3',
-                    'shadow-blur' => '16px',
-                    'shadow-spread' => '0px',
-                    'shadow-offset-x' => '0',
-                    'shadow-offset-y' => '4px',
-                    'letter-spacing' => 'var(--tracking-normal)',
-                    'spacing' => '0.25rem',
-                    'shadow-2xs' => '0 2px 6px hsl(25 30% 70% / 0.25)',
-                    'shadow-xs' => '0 2px 6px hsl(25 30% 70% / 0.25)',
-                    'shadow-sm' => '0 4px 10px hsl(25 30% 70% / 0.3)',
-                    'shadow' => '0 6px 16px hsl(25 30% 70% / 0.35)',
-                    'shadow-md' => '0 10px 24px hsl(25 30% 70% / 0.4)',
-                    'shadow-lg' => '0 16px 40px hsl(25 30% 70% / 0.45)',
-                    'shadow-xl' => '0 20px 60px hsl(25 30% 70% / 0.5)',
-                    'shadow-2xl' => '0 30px 80px hsl(25 30% 70% / 0.55)',
-                ],
-            ],
-
-            [
-                'name' => 'brutalist-theme',
-                'title' => 'Brutalist',
-                'description' => 'Raw brutalist theme with stark contrasts, bold typography, and unapologetically rough aesthetics.',
-                'font_family' => '\'Roboto Slab\', serif',
-                'css' => [
-                    '@layer base' => [
-                        'body' => [
-                            'background' => 'var(--background)',
-                            'color' => 'var(--foreground)',
-                        ],
-                        '*' => [
-                            'border-color' => 'var(--border)',
-                        ],
-                    ],
-                ],
-                'vars_theme' => [
-                    'font-sans' => '\'Roboto Slab\', serif',
-                    'font-serif' => '\'Roboto Slab\', serif',
-                    'font-mono' => '\'IBM Plex Mono\', monospace',
-                    'radius' => '0rem',
-                    'shadow-color' => 'oklch(0 0 0)',
-                    'shadow-opacity' => '0.2',
-                    'shadow-blur' => '0px',
-                    'shadow-spread' => '0px',
-                    'shadow-offset-x' => '0px',
-                    'shadow-offset-y' => '2px',
-                ],
-                'vars_light' => [
-                    'background' => 'oklch(0.94 0.01 260)',
-                    'foreground' => 'oklch(0.12 0.04 260)',
-                    'card' => 'oklch(0.96 0.01 260)',
-                    'card-foreground' => 'oklch(0.12 0.04 260)',
-                    'popover' => 'oklch(0.97 0.01 260)',
-                    'popover-foreground' => 'oklch(0.12 0.04 260)',
-                    'primary' => 'oklch(0.12 0.04 260)',
-                    'primary-foreground' => 'oklch(0.94 0.01 260)',
-                    'secondary' => 'oklch(0.85 0.02 260)',
-                    'secondary-foreground' => 'oklch(0.25 0.04 260)',
-                    'muted' => 'oklch(0.88 0.02 260)',
-                    'muted-foreground' => 'oklch(0.55 0.03 260)',
-                    'accent' => 'oklch(0.8 0.08 45)',
-                    'accent-foreground' => 'oklch(0.12 0.04 260)',
-                    'destructive' => 'oklch(0.55 0.15 25)',
-                    'destructive-foreground' => 'oklch(0.94 0.01 260)',
-                    'border' => 'oklch(0.78 0.03 260)',
-                    'input' => 'oklch(0.78 0.03 260)',
-                    'ring' => 'oklch(0.12 0.04 260)',
-                    'chart-1' => 'oklch(0.12 0.04 260)',
-                    'chart-2' => 'oklch(0.8 0.08 45)',
-                    'chart-3' => 'oklch(0.6 0.03 260)',
-                    'chart-4' => 'oklch(0.35 0.04 260)',
-                    'chart-5' => 'oklch(0.7 0.05 45)',
-                    'radius' => '0rem',
-                    'sidebar' => 'oklch(0.85 0.02 260)',
-                    'sidebar-foreground' => 'oklch(0.12 0.04 260)',
-                    'sidebar-primary' => 'oklch(0.12 0.04 260)',
-                    'sidebar-primary-foreground' => 'oklch(0.94 0.01 260)',
-                    'sidebar-accent' => 'oklch(0.8 0.08 45)',
-                    'sidebar-accent-foreground' => 'oklch(0.12 0.04 260)',
-                    'sidebar-border' => 'oklch(0.78 0.03 260)',
-                    'sidebar-ring' => 'oklch(0.12 0.04 260)',
-                    'font-sans' => 'var(--font-sans)',
-                    'font-serif' => 'var(--font-serif)',
-                    'font-mono' => 'var(--font-mono)',
-                    'shadow-sm' => '0 1px 2px hsl(0 0% 0% / 0.1)',
-                    'shadow' => '0 2px 4px hsl(0 0% 0% / 0.15)',
-                    'shadow-md' => '0 4px 6px hsl(0 0% 0% / 0.2)',
-                    'shadow-lg' => '0 6px 8px hsl(0 0% 0% / 0.25)',
-                    'shadow-xl' => '0 10px 12px hsl(0 0% 0% / 0.3)',
-                ],
-                'vars_dark' => [
-                    'background' => 'oklch(0.18 0.03 260)',
-                    'foreground' => 'oklch(0.88 0.02 260)',
-                    'card' => 'oklch(0.22 0.03 260)',
-                    'card-foreground' => 'oklch(0.88 0.02 260)',
-                    'popover' => 'oklch(0.24 0.03 260)',
-                    'popover-foreground' => 'oklch(0.88 0.02 260)',
-                    'primary' => 'oklch(0.88 0.02 260)',
-                    'primary-foreground' => 'oklch(0.18 0.03 260)',
-                    'secondary' => 'oklch(0.32 0.03 260)',
-                    'secondary-foreground' => 'oklch(0.75 0.02 260)',
-                    'muted' => 'oklch(0.28 0.03 260)',
-                    'muted-foreground' => 'oklch(0.7 0.03 260)',
-                    'accent' => 'oklch(0.85 0.1 45)',
-                    'accent-foreground' => 'oklch(0.18 0.03 260)',
-                    'destructive' => 'oklch(0.55 0.15 25)',
-                    'destructive-foreground' => 'oklch(0.88 0.02 260)',
-                    'border' => 'oklch(0.4 0.04 260)',
-                    'input' => 'oklch(0.4 0.04 260)',
-                    'ring' => 'oklch(0.88 0.02 260)',
-                    'chart-1' => 'oklch(0.88 0.02 260)',
-                    'chart-2' => 'oklch(0.85 0.1 45)',
-                    'chart-3' => 'oklch(0.6 0.03 260)',
-                    'chart-4' => 'oklch(0.4 0.04 260)',
-                    'chart-5' => 'oklch(0.7 0.05 45)',
-                    'radius' => '0rem',
-                    'sidebar' => 'oklch(0.12 0.03 260)',
-                    'sidebar-foreground' => 'oklch(0.88 0.02 260)',
-                    'sidebar-primary' => 'oklch(0.88 0.02 260)',
-                    'sidebar-primary-foreground' => 'oklch(0.18 0.03 260)',
-                    'sidebar-accent' => 'oklch(0.85 0.1 45)',
-                    'sidebar-accent-foreground' => 'oklch(0.18 0.03 260)',
-                    'sidebar-border' => 'oklch(0.4 0.04 260)',
-                    'sidebar-ring' => 'oklch(0.88 0.02 260)',
-                    'font-sans' => 'var(--font-sans)',
-                    'font-serif' => 'var(--font-serif)',
-                    'font-mono' => 'var(--font-mono)',
-                    'shadow-sm' => '0 2px 0 hsl(0 0% 0% / 0.2)',
-                    'shadow' => '0 4px 0 hsl(0 0% 0% / 0.25)',
-                    'shadow-md' => '0 6px 0 hsl(0 0% 0% / 0.3)',
-                    'shadow-lg' => '0 8px 0 hsl(0 0% 0% / 0.35)',
-                    'shadow-xl' => '0 12px 0 hsl(0 0% 0% / 0.4)',
-                ],
-            ],
-
-            [
-                'name' => 'esports-arena-theme',
-                'title' => 'Esports Arena',
-                'description' => 'High-energy esports theme with dynamic neon highlights, dark immersive backgrounds, and competitive edge.',
-                'font_family' => '\'Orbitron\', sans-serif',
-                'css' => [
-                    '@layer base' => [
-                        '*' => [
-                            'border-color' => 'var(--border)',
-                        ],
-                        'body' => [
-                            'background' => 'var(--background)',
-                            'color' => 'var(--foreground)',
-                        ],
-                    ],
-                ],
-                'vars_theme' => [
-                    'font-sans' => '\'Orbitron\', sans-serif',
-                    'font-serif' => '\'Bebas Neue\', sans-serif',
-                    'font-mono' => '\'IBM Plex Mono\', monospace',
-                    'radius' => '0.125rem',
-                    'shadow-color' => 'oklch(0.7 0.28 25)',
-                ],
-                'vars_light' => [
-                    'background' => 'oklch(0.08 0.02 285)',
-                    'foreground' => 'oklch(0.95 0.01 285)',
-                    'card' => 'oklch(0.12 0.02 285)',
-                    'card-foreground' => 'oklch(0.95 0.01 285)',
-                    'popover' => 'oklch(0.15 0.02 285)',
-                    'popover-foreground' => 'oklch(0.95 0.01 285)',
-                    'primary' => 'oklch(0.7 0.28 25)',
-                    'primary-foreground' => 'oklch(0.95 0.01 285)',
-                    'secondary' => 'oklch(0.22 0.03 285)',
-                    'secondary-foreground' => 'oklch(0.9 0.02 285)',
-                    'muted' => 'oklch(0.15 0.02 285)',
-                    'muted-foreground' => 'oklch(0.6 0.02 285)',
-                    'accent' => 'oklch(0.75 0.25 320)',
-                    'accent-foreground' => 'oklch(0.08 0.02 285)',
-                    'destructive' => 'oklch(0.65 0.28 25)',
-                    'destructive-foreground' => 'oklch(0.95 0.01 285)',
-                    'border' => 'oklch(0.28 0.03 285)',
-                    'input' => 'oklch(0.28 0.03 285)',
-                    'ring' => 'oklch(0.7 0.28 25)',
-                    'chart-1' => 'oklch(0.7 0.28 25)',
-                    'chart-2' => 'oklch(0.75 0.25 320)',
-                    'chart-3' => 'oklch(0.65 0.2 180)',
-                    'chart-4' => 'oklch(0.8 0.22 60)',
-                    'chart-5' => 'oklch(0.55 0.18 260)',
-                    'radius' => '0.125rem',
-                    'sidebar' => 'oklch(0.05 0.02 285)',
-                    'sidebar-foreground' => 'oklch(0.95 0.01 285)',
-                    'sidebar-primary' => 'oklch(0.7 0.28 25)',
-                    'sidebar-primary-foreground' => 'oklch(0.95 0.01 285)',
-                    'sidebar-accent' => 'oklch(0.75 0.25 320)',
-                    'sidebar-accent-foreground' => 'oklch(0.08 0.02 285)',
-                    'sidebar-border' => 'oklch(0.28 0.03 285)',
-                    'sidebar-ring' => 'oklch(0.7 0.28 25)',
-                    'font-sans' => 'var(--font-sans)',
-                    'font-serif' => 'var(--font-serif)',
-                    'font-mono' => 'var(--font-mono)',
-                    'shadow-sm' => '0 0 8px oklch(0.7 0.28 25 / 0.4)',
-                    'shadow' => '0 0 16px oklch(0.7 0.28 25 / 0.5), 0 0 16px oklch(0.75 0.25 320 / 0.3)',
-                    'shadow-md' => '0 0 24px oklch(0.7 0.28 25 / 0.6), 0 0 24px oklch(0.75 0.25 320 / 0.4)',
-                    'shadow-lg' => '0 0 40px oklch(0.7 0.28 25 / 0.7), 0 0 40px oklch(0.75 0.25 320 / 0.5)',
-                    'shadow-xl' => '0 0 60px oklch(0.7 0.28 25 / 0.8), 0 0 60px oklch(0.75 0.25 320 / 0.6)',
-                ],
-                'vars_dark' => [
-                    'background' => 'oklch(0.04 0.01 285)',
-                    'foreground' => 'oklch(0.97 0.01 285)',
-                    'card' => 'oklch(0.08 0.01 285)',
-                    'card-foreground' => 'oklch(0.97 0.01 285)',
-                    'popover' => 'oklch(0.1 0.01 285)',
-                    'popover-foreground' => 'oklch(0.97 0.01 285)',
-                    'primary' => 'oklch(0.75 0.32 25)',
-                    'primary-foreground' => 'oklch(0.04 0.01 285)',
-                    'secondary' => 'oklch(0.15 0.02 285)',
-                    'secondary-foreground' => 'oklch(0.92 0.02 285)',
-                    'muted' => 'oklch(0.1 0.01 285)',
-                    'muted-foreground' => 'oklch(0.62 0.02 285)',
-                    'accent' => 'oklch(0.8 0.28 320)',
-                    'accent-foreground' => 'oklch(0.04 0.01 285)',
-                    'destructive' => 'oklch(0.68 0.3 25)',
-                    'destructive-foreground' => 'oklch(0.97 0.01 285)',
-                    'border' => 'oklch(0.22 0.02 285)',
-                    'input' => 'oklch(0.22 0.02 285)',
-                    'ring' => 'oklch(0.75 0.32 25)',
-                    'chart-1' => 'oklch(0.75 0.32 25)',
-                    'chart-2' => 'oklch(0.8 0.28 320)',
-                    'chart-3' => 'oklch(0.6 0.22 180)',
-                    'chart-4' => 'oklch(0.78 0.25 60)',
-                    'chart-5' => 'oklch(0.5 0.2 260)',
-                    'radius' => '0.125rem',
-                    'sidebar' => 'oklch(0.03 0.01 285)',
-                    'sidebar-foreground' => 'oklch(0.97 0.01 285)',
-                    'sidebar-primary' => 'oklch(0.75 0.32 25)',
-                    'sidebar-primary-foreground' => 'oklch(0.04 0.01 285)',
-                    'sidebar-accent' => 'oklch(0.8 0.28 320)',
-                    'sidebar-accent-foreground' => 'oklch(0.04 0.01 285)',
-                    'sidebar-border' => 'oklch(0.22 0.02 285)',
-                    'sidebar-ring' => 'oklch(0.75 0.32 25)',
-                    'font-sans' => 'var(--font-sans)',
-                    'font-serif' => 'var(--font-serif)',
-                    'font-mono' => 'var(--font-mono)',
-                    'shadow-sm' => '0 0 12px oklch(0.75 0.32 25 / 0.5)',
-                    'shadow' => '0 0 20px oklch(0.75 0.32 25 / 0.6), 0 0 20px oklch(0.8 0.28 320 / 0.4)',
-                    'shadow-md' => '0 0 32px oklch(0.75 0.32 25 / 0.7), 0 0 32px oklch(0.8 0.28 320 / 0.5)',
-                    'shadow-lg' => '0 0 50px oklch(0.75 0.32 25 / 0.8), 0 0 50px oklch(0.8 0.28 320 / 0.6)',
-                    'shadow-xl' => '0 0 75px oklch(0.75 0.32 25 / 0.9), 0 0 75px oklch(0.8 0.28 320 / 0.7)',
-                ],
-            ],
-
-            [
-                'name' => 'audio-wave-theme',
-                'title' => 'Audio Wave',
-                'description' => 'Rhythmic audio-inspired theme with sound-wave motifs, vibrant acoustics, and immersive visual tempo.',
-                'font_family' => 'Inter, sans-serif',
-                'css' => [
-                    '@layer base' => [
-                        'body' => [
-                            'background' => 'var(--background)',
-                            'color' => 'var(--foreground)',
-                        ],
-                        '*' => [
-                            'border-color' => 'var(--border)',
-                        ],
-                    ],
-                ],
-                'vars_theme' => [
-                    'font-sans' => 'Inter, sans-serif',
-                    'font-serif' => 'Bebas Neue, sans-serif',
-                    'font-mono' => 'Fira Code, monospace',
-                    'radius' => '0.5rem',
-                    'shadow-color' => 'oklch(0.72 0.25 145)',
-                ],
-                'vars_light' => [
-                    'background' => 'oklch(0.985 0.005 285)',
-                    'foreground' => 'oklch(0.22 0.03 285)',
-                    'card' => 'oklch(0.995 0.002 285)',
-                    'card-foreground' => 'oklch(0.22 0.03 285)',
-                    'popover' => 'oklch(1 0 0)',
-                    'popover-foreground' => 'oklch(0.22 0.03 285)',
-                    'primary' => 'oklch(0.72 0.25 145)',
-                    'primary-foreground' => 'oklch(1 0 0)',
-                    'secondary' => 'oklch(0.95 0.02 285)',
-                    'secondary-foreground' => 'oklch(0.38 0.04 285)',
-                    'muted' => 'oklch(0.965 0.015 285)',
-                    'muted-foreground' => 'oklch(0.55 0.03 285)',
-                    'accent' => 'oklch(0.65 0.2 330)',
-                    'accent-foreground' => 'oklch(1 0 0)',
-                    'destructive' => 'oklch(0.6 0.22 25)',
-                    'destructive-foreground' => 'oklch(1 0 0)',
-                    'border' => 'oklch(0.92 0.015 285)',
-                    'input' => 'oklch(0.92 0.015 285)',
-                    'ring' => 'oklch(0.72 0.25 145)',
-                    'chart-1' => 'oklch(0.72 0.25 145)',
-                    'chart-2' => 'oklch(0.65 0.2 330)',
-                    'chart-3' => 'oklch(0.78 0.14 200)',
-                    'chart-4' => 'oklch(0.74 0.16 40)',
-                    'chart-5' => 'oklch(0.60 0.14 260)',
-                    'radius' => '0.5rem',
-                    'sidebar' => 'oklch(0.97 0.01 285)',
-                    'sidebar-foreground' => 'oklch(0.22 0.03 285)',
-                    'sidebar-primary' => 'oklch(0.72 0.25 145)',
-                    'sidebar-primary-foreground' => 'oklch(1 0 0)',
-                    'sidebar-accent' => 'oklch(0.65 0.2 330)',
-                    'sidebar-accent-foreground' => 'oklch(1 0 0)',
-                    'sidebar-border' => 'oklch(0.90 0.015 285)',
-                    'sidebar-ring' => 'oklch(0.72 0.25 145)',
-                    'font-sans' => 'var(--font-sans)',
-                    'font-serif' => 'var(--font-serif)',
-                    'font-mono' => 'var(--font-mono)',
-                    'shadow-sm' => '0 1px 3px hsl(0 0% 0% / 0.05)',
-                    'shadow' => '0 4px 12px hsl(145 60% 40% / 0.08)',
-                    'shadow-md' => '0 8px 24px hsl(145 60% 40% / 0.12)',
-                    'shadow-lg' => '0 16px 40px hsl(145 60% 40% / 0.16)',
-                    'shadow-xl' => '0 24px 60px hsl(145 60% 40% / 0.20)',
-                ],
-                'vars_dark' => [
-                    'background' => 'oklch(0.08 0.02 285)',
-                    'foreground' => 'oklch(0.98 0.01 285)',
-                    'card' => 'oklch(0.12 0.02 285)',
-                    'card-foreground' => 'oklch(0.98 0.01 285)',
-                    'popover' => 'oklch(0.15 0.02 285)',
-                    'popover-foreground' => 'oklch(0.98 0.01 285)',
-                    'primary' => 'oklch(0.75 0.28 145)',
-                    'primary-foreground' => 'oklch(0.08 0.02 285)',
-                    'secondary' => 'oklch(0.25 0.03 285)',
-                    'secondary-foreground' => 'oklch(0.92 0.02 285)',
-                    'muted' => 'oklch(0.18 0.02 285)',
-                    'muted-foreground' => 'oklch(0.7 0.02 285)',
-                    'accent' => 'oklch(0.72 0.22 330)',
-                    'accent-foreground' => 'oklch(0.08 0.02 285)',
-                    'destructive' => 'oklch(0.65 0.22 25)',
-                    'destructive-foreground' => 'oklch(0.95 0.02 285)',
-                    'border' => 'oklch(0.28 0.02 285)',
-                    'input' => 'oklch(0.28 0.02 285)',
-                    'ring' => 'oklch(0.75 0.28 145)',
-                    'chart-1' => 'oklch(0.75 0.28 145)',
-                    'chart-2' => 'oklch(0.72 0.22 330)',
-                    'chart-3' => 'oklch(0.6 0.22 200)',
-                    'chart-4' => 'oklch(0.78 0.25 40)',
-                    'chart-5' => 'oklch(0.5 0.2 260)',
-                    'radius' => '0.5rem',
-                    'sidebar' => 'oklch(0.1 0.02 285)',
-                    'sidebar-foreground' => 'oklch(0.98 0.01 285)',
-                    'sidebar-primary' => 'oklch(0.75 0.28 145)',
-                    'sidebar-primary-foreground' => 'oklch(0.08 0.02 285)',
-                    'sidebar-accent' => 'oklch(0.72 0.22 330)',
-                    'sidebar-accent-foreground' => 'oklch(0.08 0.02 285)',
-                    'sidebar-border' => 'oklch(0.28 0.02 285)',
-                    'sidebar-ring' => 'oklch(0.75 0.28 145)',
-                    'font-sans' => 'var(--font-sans)',
-                    'font-serif' => 'var(--font-serif)',
-                    'font-mono' => 'var(--font-mono)',
-                    'shadow-sm' => '0 2px 12px hsl(145 100% 70% / 0.2)',
-                    'shadow' => '0 10px 30px hsl(145 100% 60% / 0.25)',
-                    'shadow-md' => '0 18px 50px hsl(145 100% 65% / 0.3)',
-                    'shadow-lg' => '0 30px 80px hsl(145 100% 70% / 0.35)',
-                    'shadow-xl' => '0 50px 120px hsl(145 100% 60% / 0.45)',
-                ],
-            ],
-
-            [
-                'name' => 'fashion-avant-theme',
-                'title' => 'Fashion Avant',
-                'description' => 'Avant-garde fashion theme with chic contrasts, runway-ready palettes, and trend-forward sophistication.',
-                'font_family' => 'Inter, sans-serif',
-                'css' => [
-                    '@layer base' => [
-                        'body' => [
-                            'background' => 'var(--background)',
-                            'color' => 'var(--foreground)',
-                        ],
-                        '*' => [
-                            'border-color' => 'var(--border)',
-                        ],
-                    ],
-                ],
-                'vars_theme' => [
-                    'font-sans' => 'Inter, sans-serif',
-                    'font-serif' => '\'Playfair Display\', serif',
-                    'font-mono' => '\'IBM Plex Mono\', monospace',
-                    'radius' => '0rem',
-                    'shadow-color' => 'hsl(0 0% 0%)',
-                ],
-                'vars_light' => [
-                    'background' => 'oklch(0.98 0.01 285)',
-                    'foreground' => 'oklch(0.15 0.03 285)',
-                    'card' => 'oklch(1 0 0)',
-                    'card-foreground' => 'oklch(0.15 0.03 285)',
-                    'popover' => 'oklch(1 0 0)',
-                    'popover-foreground' => 'oklch(0.15 0.03 285)',
-                    'primary' => 'oklch(0.2 0.03 285)',
-                    'primary-foreground' => 'oklch(0.98 0.01 285)',
-                    'secondary' => 'oklch(0.94 0.02 285)',
-                    'secondary-foreground' => 'oklch(0.35 0.04 285)',
-                    'muted' => 'oklch(0.96 0.01 285)',
-                    'muted-foreground' => 'oklch(0.55 0.03 285)',
-                    'accent' => 'oklch(0.75 0.2 340)',
-                    'accent-foreground' => 'oklch(0.98 0.01 285)',
-                    'destructive' => 'oklch(0.55 0.18 25)',
-                    'destructive-foreground' => 'oklch(0.98 0.01 285)',
-                    'border' => 'oklch(0.88 0.02 285)',
-                    'input' => 'oklch(0.88 0.02 285)',
-                    'ring' => 'oklch(0.2 0.03 285)',
-                    'chart-1' => 'oklch(0.2 0.03 285)',
-                    'chart-2' => 'oklch(0.75 0.2 340)',
-                    'chart-3' => 'oklch(0.65 0.15 200)',
-                    'chart-4' => 'oklch(0.8 0.12 60)',
-                    'chart-5' => 'oklch(0.5 0.12 280)',
-                    'radius' => '0rem',
-                    'sidebar' => 'oklch(0.97 0.01 285)',
-                    'sidebar-foreground' => 'oklch(0.15 0.03 285)',
-                    'sidebar-primary' => 'oklch(0.2 0.03 285)',
-                    'sidebar-primary-foreground' => 'oklch(0.98 0.01 285)',
-                    'sidebar-accent' => 'oklch(0.75 0.2 340)',
-                    'sidebar-accent-foreground' => 'oklch(0.98 0.01 285)',
-                    'sidebar-border' => 'oklch(0.88 0.02 285)',
-                    'sidebar-ring' => 'oklch(0.2 0.03 285)',
-                    'font-sans' => 'var(--font-sans)',
-                    'font-serif' => 'var(--font-serif)',
-                    'font-mono' => 'var(--font-mono)',
-                    'shadow-sm' => '0 1px 2px hsl(0 0% 0% / 0.05)',
-                    'shadow' => '0 2px 4px hsl(0 0% 0% / 0.08)',
-                    'shadow-md' => '0 4px 8px hsl(0 0% 0% / 0.1)',
-                    'shadow-lg' => '0 6px 12px hsl(0 0% 0% / 0.12)',
-                    'shadow-xl' => '0 10px 20px hsl(0 0% 0% / 0.15)',
-                ],
-                'vars_dark' => [
-                    'background' => 'oklch(0.08 0.02 285)',
-                    'foreground' => 'oklch(0.92 0.02 285)',
-                    'card' => 'oklch(0.12 0.02 285)',
-                    'card-foreground' => 'oklch(0.92 0.02 285)',
-                    'popover' => 'oklch(0.14 0.02 285)',
-                    'popover-foreground' => 'oklch(0.92 0.02 285)',
-                    'primary' => 'oklch(0.85 0.05 285)',
-                    'primary-foreground' => 'oklch(0.08 0.02 285)',
-                    'secondary' => 'oklch(0.22 0.04 285)',
-                    'secondary-foreground' => 'oklch(0.88 0.02 285)',
-                    'muted' => 'oklch(0.2 0.02 285)',
-                    'muted-foreground' => 'oklch(0.6 0.02 285)',
-                    'accent' => 'oklch(0.8 0.28 340)',
-                    'accent-foreground' => 'oklch(0.08 0.02 285)',
-                    'destructive' => 'oklch(0.58 0.22 25)',
-                    'destructive-foreground' => 'oklch(0.95 0.02 285)',
-                    'border' => 'oklch(0.3 0.02 285)',
-                    'input' => 'oklch(0.3 0.02 285)',
-                    'ring' => 'oklch(0.85 0.05 285)',
-                    'chart-1' => 'oklch(0.85 0.05 285)',
-                    'chart-2' => 'oklch(0.8 0.28 340)',
-                    'chart-3' => 'oklch(0.6 0.18 200)',
-                    'chart-4' => 'oklch(0.75 0.15 60)',
-                    'chart-5' => 'oklch(0.45 0.15 280)',
-                    'radius' => '0rem',
-                    'sidebar' => 'oklch(0.1 0.02 285)',
-                    'sidebar-foreground' => 'oklch(0.92 0.02 285)',
-                    'sidebar-primary' => 'oklch(0.85 0.05 285)',
-                    'sidebar-primary-foreground' => 'oklch(0.08 0.02 285)',
-                    'sidebar-accent' => 'oklch(0.8 0.28 340)',
-                    'sidebar-accent-foreground' => 'oklch(0.08 0.02 285)',
-                    'sidebar-border' => 'oklch(0.3 0.02 285)',
-                    'sidebar-ring' => 'oklch(0.85 0.05 285)',
-                    'font-sans' => 'var(--font-sans)',
-                    'font-serif' => 'var(--font-serif)',
-                    'font-mono' => 'var(--font-mono)',
-                    'shadow-sm' => '0 1px 4px hsl(0 0% 0% / 0.15)',
-                    'shadow' => '0 2px 8px hsl(0 0% 0% / 0.2)',
-                    'shadow-md' => '0 4px 14px hsl(0 0% 0% / 0.25)',
-                    'shadow-lg' => '0 8px 24px hsl(0 0% 0% / 0.3)',
-                    'shadow-xl' => '0 14px 40px hsl(0 0% 0% / 0.35)',
-                ],
-            ],
-
-            [
-                'name' => 'edugeek-theme',
-                'title' => 'EduGeek',
-                'description' => 'Academic-focused theme with clean readability, focused layouts, and knowledge-friendly design.',
-                'font_family' => 'Inter, sans-serif',
-                'css' => [
-                    '@layer base' => [
-                        '*' => [
-                            'border-color' => 'var(--border)',
-                        ],
-                        'body' => [
-                            'background' => 'var(--background)',
-                            'color' => 'var(--foreground)',
-                        ],
-                    ],
-                ],
-                'vars_theme' => [
-                    'font-sans' => 'Inter, sans-serif',
-                    'font-serif' => '\'Roboto Slab\', serif',
-                    'font-mono' => 'Fira Code, monospace',
-                    'radius' => '0.5rem',
-                    'shadow-color' => 'hsl(0 0% 0%)',
-                ],
-                'vars_light' => [
-                    'background' => 'oklch(0.98 0.01 260)',
-                    'foreground' => 'oklch(0.22 0.04 260)',
-                    'card' => 'oklch(1 0 0)',
-                    'card-foreground' => 'oklch(0.22 0.04 260)',
-                    'popover' => 'oklch(1 0 0)',
-                    'popover-foreground' => 'oklch(0.22 0.04 260)',
-                    'primary' => 'oklch(0.65 0.2 30)',
-                    'primary-foreground' => 'oklch(1 0 0)',
-                    'secondary' => 'oklch(0.94 0.02 260)',
-                    'secondary-foreground' => 'oklch(0.38 0.04 260)',
-                    'muted' => 'oklch(0.96 0.02 260)',
-                    'muted-foreground' => 'oklch(0.55 0.03 260)',
-                    'accent' => 'oklch(0.6 0.15 240)',
-                    'accent-foreground' => 'oklch(1 0 0)',
-                    'destructive' => 'oklch(0.58 0.2 25)',
-                    'destructive-foreground' => 'oklch(1 0 0)',
-                    'border' => 'oklch(0.9 0.02 260)',
-                    'input' => 'oklch(0.9 0.02 260)',
-                    'ring' => 'oklch(0.65 0.2 30)',
-                    'chart-1' => 'oklch(0.65 0.2 30)',
-                    'chart-2' => 'oklch(0.6 0.15 240)',
-                    'chart-3' => 'oklch(0.7 0.12 140)',
-                    'chart-4' => 'oklch(0.55 0.12 280)',
-                    'chart-5' => 'oklch(0.5 0.1 200)',
-                    'radius' => '0.5rem',
-                    'sidebar' => 'oklch(0.96 0.02 260)',
-                    'sidebar-foreground' => 'oklch(0.22 0.04 260)',
-                    'sidebar-primary' => 'oklch(0.65 0.2 30)',
-                    'sidebar-primary-foreground' => 'oklch(1 0 0)',
-                    'sidebar-accent' => 'oklch(0.6 0.15 240)',
-                    'sidebar-accent-foreground' => 'oklch(1 0 0)',
-                    'sidebar-border' => 'oklch(0.9 0.02 260)',
-                    'sidebar-ring' => 'oklch(0.65 0.2 30)',
-                    'font-sans' => 'var(--font-sans)',
-                    'font-serif' => 'var(--font-serif)',
-                    'font-mono' => 'var(--font-mono)',
-                    'shadow-sm' => '0 1px 3px hsl(0 0% 0% / 0.08)',
-                    'shadow' => '0 2px 6px hsl(0 0% 0% / 0.1)',
-                    'shadow-md' => '0 4px 10px hsl(0 0% 0% / 0.12)',
-                    'shadow-lg' => '0 6px 16px hsl(0 0% 0% / 0.15)',
-                    'shadow-xl' => '0 10px 30px hsl(0 0% 0% / 0.18)',
-                ],
-                'vars_dark' => [
-                    'background' => 'oklch(0.12 0.04 260)',
-                    'foreground' => 'oklch(0.88 0.02 260)',
-                    'card' => 'oklch(0.18 0.04 260)',
-                    'card-foreground' => 'oklch(0.88 0.02 260)',
-                    'popover' => 'oklch(0.2 0.04 260)',
-                    'popover-foreground' => 'oklch(0.88 0.02 260)',
-                    'primary' => 'oklch(0.75 0.2 30)',
-                    'primary-foreground' => 'oklch(0.12 0.04 260)',
-                    'secondary' => 'oklch(0.3 0.05 260)',
-                    'secondary-foreground' => 'oklch(0.85 0.03 260)',
-                    'muted' => 'oklch(0.22 0.04 260)',
-                    'muted-foreground' => 'oklch(0.7 0.03 260)',
-                    'accent' => 'oklch(0.7 0.18 240)',
-                    'accent-foreground' => 'oklch(0.12 0.04 260)',
-                    'destructive' => 'oklch(0.58 0.2 25)',
-                    'destructive-foreground' => 'oklch(0.88 0.02 260)',
-                    'border' => 'oklch(0.4 0.04 260)',
-                    'input' => 'oklch(0.4 0.04 260)',
-                    'ring' => 'oklch(0.75 0.2 30)',
-                    'chart-1' => 'oklch(0.75 0.2 30)',
-                    'chart-2' => 'oklch(0.7 0.18 240)',
-                    'chart-3' => 'oklch(0.7 0.12 140)',
-                    'chart-4' => 'oklch(0.55 0.12 280)',
-                    'chart-5' => 'oklch(0.5 0.1 200)',
-                    'radius' => '0.5rem',
-                    'sidebar' => 'oklch(0.08 0.03 260)',
-                    'sidebar-foreground' => 'oklch(0.88 0.02 260)',
-                    'sidebar-primary' => 'oklch(0.75 0.2 30)',
-                    'sidebar-primary-foreground' => 'oklch(0.12 0.04 260)',
-                    'sidebar-accent' => 'oklch(0.7 0.18 240)',
-                    'sidebar-accent-foreground' => 'oklch(0.12 0.04 260)',
-                    'sidebar-border' => 'oklch(0.4 0.04 260)',
-                    'sidebar-ring' => 'oklch(0.75 0.2 30)',
-                    'font-sans' => 'var(--font-sans)',
-                    'font-serif' => 'var(--font-serif)',
-                    'font-mono' => 'var(--font-mono)',
-                    'shadow-sm' => '0 1px 3px hsl(0 0% 0% / 0.2)',
-                    'shadow' => '0 2px 6px hsl(0 0% 0% / 0.25)',
-                    'shadow-md' => '0 4px 10px hsl(0 0% 0% / 0.3)',
-                    'shadow-lg' => '0 6px 16px hsl(0 0% 0% / 0.35)',
-                    'shadow-xl' => '0 10px 30px hsl(0 0% 0% / 0.4)',
-                ],
-            ],
-
-            [
-                'name' => 'concrete-jungle-theme',
-                'title' => 'Concrete Jungle',
-                'description' => 'Urban concrete theme with raw city textures, structural grays, and metropolitan edge.',
-                'font_family' => '\'Inter\', sans-serif',
-                'css' => [
-                    '@layer base' => [
-                        'body' => [
-                            'letter-spacing' => 'var(--tracking-normal)',
-                        ],
-                    ],
-                ],
-                'vars_theme' => [
-                    'font-sans' => '\'Inter\', sans-serif',
-                    'font-serif' => '\'Playfair Display\', serif',
-                    'font-mono' => '\'IBM Plex Mono\', monospace',
-                    'radius' => '0.125rem',
-                    'tracking-tighter' => 'calc(var(--tracking-normal) - 0.05em)',
-                    'tracking-tight' => 'calc(var(--tracking-normal) - 0.025em)',
-                    'tracking-normal' => '0em',
-                    'tracking-wide' => 'calc(var(--tracking-normal) + 0.025em)',
-                    'tracking-wider' => 'calc(var(--tracking-normal) + 0.05em)',
-                    'tracking-widest' => 'calc(var(--tracking-normal) + 0.1em)',
-                    'shadow-color' => 'oklch(0.4 0.02 265)',
-                    'shadow-opacity' => '0.12',
-                    'shadow-blur' => '4px',
-                    'shadow-spread' => '0px',
-                    'shadow-offset-x' => '0',
-                    'shadow-offset-y' => '2px',
-                    'spacing' => '0.25rem',
-                ],
-                'vars_light' => [
-                    'background' => 'oklch(0.96 0.02 265)',
-                    'foreground' => 'oklch(0.22 0.04 265)',
-                    'card' => 'oklch(0.98 0.02 265)',
-                    'card-foreground' => 'oklch(0.22 0.04 265)',
-                    'popover' => 'oklch(0.98 0.02 265)',
-                    'popover-foreground' => 'oklch(0.22 0.04 265)',
-                    'primary' => 'oklch(0.25 0.04 265)',
-                    'primary-foreground' => 'oklch(0.96 0.01 265)',
-                    'secondary' => 'oklch(0.84 0.03 265)',
-                    'secondary-foreground' => 'oklch(0.4 0.04 265)',
-                    'muted' => 'oklch(0.9 0.02 265)',
-                    'muted-foreground' => 'oklch(0.55 0.03 265)',
-                    'accent' => 'oklch(0.75 0.15 45)',
-                    'accent-foreground' => 'oklch(0.22 0.03 265)',
-                    'destructive' => 'oklch(0.58 0.18 25)',
-                    'destructive-foreground' => 'oklch(0.96 0.01 265)',
-                    'border' => 'oklch(0.85 0.03 265)',
-                    'input' => 'oklch(0.85 0.03 265)',
-                    'ring' => 'oklch(0.25 0.04 265)',
-                    'chart-1' => 'oklch(0.25 0.04 265)',
-                    'chart-2' => 'oklch(0.75 0.15 45)',
-                    'chart-3' => 'oklch(0.55 0.04 180)',
-                    'chart-4' => 'oklch(0.65 0.04 240)',
-                    'chart-5' => 'oklch(0.45 0.04 60)',
-                    'sidebar' => 'oklch(0.92 0.02 265)',
-                    'sidebar-foreground' => 'oklch(0.22 0.04 265)',
-                    'sidebar-primary' => 'oklch(0.25 0.04 265)',
-                    'sidebar-primary-foreground' => 'oklch(0.96 0.01 265)',
-                    'sidebar-accent' => 'oklch(0.75 0.15 45)',
-                    'sidebar-accent-foreground' => 'oklch(0.22 0.03 265)',
-                    'sidebar-border' => 'oklch(0.85 0.03 265)',
-                    'sidebar-ring' => 'oklch(0.25 0.04 265)',
-                    'font-sans' => 'var(--font-sans)',
-                    'font-serif' => 'var(--font-serif)',
-                    'font-mono' => 'var(--font-mono)',
-                    'shadow-2xs' => '0 1px 2px hsl(240 10% 80% / 0.05)',
-                    'shadow-xs' => '0 1px 2px hsl(240 10% 80% / 0.08)',
-                    'shadow-sm' => '0 1px 2px hsl(240 10% 80% / 0.08)',
-                    'shadow' => '0 2px 4px hsl(240 10% 80% / 0.12)',
-                    'shadow-md' => '0 4px 8px hsl(240 10% 80% / 0.16)',
-                    'shadow-lg' => '0 6px 12px hsl(240 10% 80% / 0.2)',
-                    'shadow-xl' => '0 10px 20px hsl(240 10% 80% / 0.24)',
-                    'shadow-2xl' => '0 15px 30px hsl(240 10% 80% / 0.28)',
-                ],
-                'vars_dark' => [
-                    'background' => 'oklch(0.2 0.04 265)',
-                    'foreground' => 'oklch(0.82 0.02 265)',
-                    'card' => 'oklch(0.25 0.04 265)',
-                    'card-foreground' => 'oklch(0.82 0.02 265)',
-                    'popover' => 'oklch(0.28 0.04 265)',
-                    'popover-foreground' => 'oklch(0.82 0.02 265)',
-                    'primary' => 'oklch(0.75 0.04 265)',
-                    'primary-foreground' => 'oklch(0.2 0.04 265)',
-                    'secondary' => 'oklch(0.4 0.05 265)',
-                    'secondary-foreground' => 'oklch(0.72 0.03 265)',
-                    'muted' => 'oklch(0.32 0.04 265)',
-                    'muted-foreground' => 'oklch(0.65 0.03 265)',
-                    'accent' => 'oklch(0.8 0.18 45)',
-                    'accent-foreground' => 'oklch(0.2 0.04 265)',
-                    'destructive' => 'oklch(0.58 0.18 25)',
-                    'destructive-foreground' => 'oklch(0.82 0.02 265)',
-                    'border' => 'oklch(0.45 0.04 265)',
-                    'input' => 'oklch(0.45 0.04 265)',
-                    'ring' => 'oklch(0.75 0.04 265)',
-                    'chart-1' => 'oklch(0.75 0.04 265)',
-                    'chart-2' => 'oklch(0.8 0.18 45)',
-                    'chart-3' => 'oklch(0.55 0.04 180)',
-                    'chart-4' => 'oklch(0.65 0.04 240)',
-                    'chart-5' => 'oklch(0.45 0.04 60)',
-                    'sidebar' => 'oklch(0.15 0.03 265)',
-                    'sidebar-foreground' => 'oklch(0.82 0.02 265)',
-                    'sidebar-primary' => 'oklch(0.75 0.04 265)',
-                    'sidebar-primary-foreground' => 'oklch(0.2 0.04 265)',
-                    'sidebar-accent' => 'oklch(0.8 0.18 45)',
-                    'sidebar-accent-foreground' => 'oklch(0.2 0.04 265)',
-                    'sidebar-border' => 'oklch(0.45 0.04 265)',
-                    'sidebar-ring' => 'oklch(0.75 0.04 265)',
-                    'font-sans' => 'var(--font-sans)',
-                    'font-serif' => 'var(--font-serif)',
-                    'font-mono' => 'var(--font-mono)',
-                    'shadow-2xs' => '0 1px 2px hsl(240 10% 40% / 0.15)',
-                    'shadow-xs' => '0 2px 4px hsl(240 10% 40% / 0.18)',
-                    'shadow-sm' => '0 2px 6px hsl(240 10% 40% / 0.2)',
-                    'shadow' => '0 4px 12px hsl(240 10% 40% / 0.25)',
-                    'shadow-md' => '0 6px 20px hsl(240 10% 40% / 0.3)',
-                    'shadow-lg' => '0 10px 30px hsl(240 10% 40% / 0.35)',
-                    'shadow-xl' => '0 15px 50px hsl(240 10% 40% / 0.4)',
-                    'shadow-2xl' => '0 20px 60px hsl(240 10% 40% / 0.45)',
-                ],
-            ],
-
-            [
-                'name' => 'crypto-labs-theme',
-                'title' => 'Crypto Labs',
-                'description' => 'Tech-forward crypto theme with blockchain-inspired aesthetics, digital accents, and modern edge.',
-                'font_family' => '\'Inter\', sans-serif',
-                'css' => [
-                    '@layer base' => [
-                        'body' => [
-                            'letter-spacing' => 'var(--tracking-normal)',
-                        ],
-                    ],
-                ],
-                'vars_theme' => [
-                    'font-sans' => '\'Inter\', sans-serif',
-                    'font-serif' => '\'Space Grotesk\', sans-serif',
-                    'font-mono' => '\'JetBrains Mono\', monospace',
-                    'radius' => '0.25rem',
-                    'tracking-tighter' => 'calc(var(--tracking-normal) - 0.05em)',
-                    'tracking-tight' => 'calc(var(--tracking-normal) - 0.025em)',
-                    'tracking-normal' => '0em',
-                    'tracking-wide' => 'calc(var(--tracking-normal) + 0.025em)',
-                    'tracking-wider' => 'calc(var(--tracking-normal) + 0.05em)',
-                    'tracking-widest' => 'calc(var(--tracking-normal) + 0.1em)',
-                    'shadow-color' => 'oklch(0.7 0.25 280)',
-                    'shadow-opacity' => '0.3',
-                    'shadow-blur' => '20px',
-                    'shadow-spread' => '0px',
-                    'shadow-offset-x' => '0',
-                    'shadow-offset-y' => '0',
-                    'spacing' => '0.25rem',
-                ],
-                'vars_light' => [
-                    'background' => 'oklch(0.98 0.01 285)',
-                    'foreground' => 'oklch(0.15 0.04 285)',
-                    'card' => 'oklch(0.98 0.01 285)',
-                    'card-foreground' => 'oklch(0.15 0.04 285)',
-                    'popover' => 'oklch(0.98 0.01 285)',
-                    'popover-foreground' => 'oklch(0.15 0.04 285)',
-                    'primary' => 'oklch(0.55 0.25 280)',
-                    'primary-foreground' => 'oklch(0.98 0.01 285)',
-                    'secondary' => 'oklch(0.92 0.02 285)',
-                    'secondary-foreground' => 'oklch(0.3 0.04 285)',
-                    'muted' => 'oklch(0.94 0.02 285)',
-                    'muted-foreground' => 'oklch(0.5 0.03 285)',
-                    'accent' => 'oklch(0.55 0.22 150)',
-                    'accent-foreground' => 'oklch(0.98 0.01 285)',
-                    'destructive' => 'oklch(0.65 0.25 25)',
-                    'destructive-foreground' => 'oklch(0.98 0.01 285)',
-                    'border' => 'oklch(0.88 0.02 285)',
-                    'input' => 'oklch(0.88 0.02 285)',
-                    'ring' => 'oklch(0.55 0.25 280)',
-                    'chart-1' => 'oklch(0.55 0.25 280)',
-                    'chart-2' => 'oklch(0.55 0.22 150)',
-                    'chart-3' => 'oklch(0.8 0.2 40)',
-                    'chart-4' => 'oklch(0.65 0.22 320)',
-                    'chart-5' => 'oklch(0.6 0.18 200)',
-                    'sidebar' => 'oklch(0.96 0.01 285)',
-                    'sidebar-foreground' => 'oklch(0.15 0.04 285)',
-                    'sidebar-primary' => 'oklch(0.55 0.25 280)',
-                    'sidebar-primary-foreground' => 'oklch(0.98 0.01 285)',
-                    'sidebar-accent' => 'oklch(0.55 0.22 150)',
-                    'sidebar-accent-foreground' => 'oklch(0.98 0.01 285)',
-                    'sidebar-border' => 'oklch(0.88 0.02 285)',
-                    'sidebar-ring' => 'oklch(0.55 0.25 280)',
-                    'font-sans' => 'var(--font-sans)',
-                    'font-serif' => 'var(--font-serif)',
-                    'font-mono' => 'var(--font-mono)',
-                    'shadow-sm' => '0 1px 2px hsl(280 30% 10% / 0.05)',
-                    'shadow' => '0 2px 4px hsl(280 30% 10% / 0.1)',
-                    'shadow-md' => '0 4px 8px hsl(280 30% 10% / 0.15)',
-                    'shadow-lg' => '0 6px 16px hsl(280 30% 10% / 0.2)',
-                    'shadow-xl' => '0 10px 30px hsl(280 30% 10% / 0.25)',
-                ],
-                'vars_dark' => [
-                    'background' => 'oklch(0.08 0.03 285)',
-                    'foreground' => 'oklch(0.92 0.02 285)',
-                    'card' => 'oklch(0.12 0.03 285)',
-                    'card-foreground' => 'oklch(0.92 0.02 285)',
-                    'popover' => 'oklch(0.15 0.03 285)',
-                    'popover-foreground' => 'oklch(0.92 0.02 285)',
-                    'primary' => 'oklch(0.7 0.25 280)',
-                    'primary-foreground' => 'oklch(0.08 0.03 285)',
-                    'secondary' => 'oklch(0.2 0.04 285)',
-                    'secondary-foreground' => 'oklch(0.85 0.02 285)',
-                    'muted' => 'oklch(0.15 0.03 285)',
-                    'muted-foreground' => 'oklch(0.6 0.03 285)',
-                    'accent' => 'oklch(0.72 0.22 150)',
-                    'accent-foreground' => 'oklch(0.08 0.03 285)',
-                    'destructive' => 'oklch(0.65 0.25 25)',
-                    'destructive-foreground' => 'oklch(0.92 0.02 285)',
-                    'border' => 'oklch(0.25 0.04 285)',
-                    'input' => 'oklch(0.25 0.04 285)',
-                    'ring' => 'oklch(0.7 0.25 280)',
-                    'chart-1' => 'oklch(0.7 0.25 280)',
-                    'chart-2' => 'oklch(0.72 0.22 150)',
-                    'chart-3' => 'oklch(0.8 0.2 40)',
-                    'chart-4' => 'oklch(0.65 0.22 320)',
-                    'chart-5' => 'oklch(0.6 0.18 200)',
-                    'sidebar' => 'oklch(0.05 0.03 285)',
-                    'sidebar-foreground' => 'oklch(0.92 0.02 285)',
-                    'sidebar-primary' => 'oklch(0.7 0.25 280)',
-                    'sidebar-primary-foreground' => 'oklch(0.08 0.03 285)',
-                    'sidebar-accent' => 'oklch(0.72 0.22 150)',
-                    'sidebar-accent-foreground' => 'oklch(0.08 0.03 285)',
-                    'sidebar-border' => 'oklch(0.25 0.04 285)',
-                    'sidebar-ring' => 'oklch(0.7 0.25 280)',
-                    'font-sans' => 'var(--font-sans)',
-                    'font-serif' => 'var(--font-serif)',
-                    'font-mono' => 'var(--font-mono)',
-                    'shadow-sm' => '0 0 10px oklch(0.7 0.25 280 / 0.3)',
-                    'shadow' => '0 0 20px oklch(0.7 0.25 280 / 0.4)',
-                    'shadow-md' => '0 0 30px oklch(0.7 0.25 280 / 0.5)',
-                    'shadow-lg' => '0 0 50px oklch(0.7 0.25 280 / 0.6)',
-                    'shadow-xl' => '0 0 80px oklch(0.7 0.25 280 / 0.7)',
-                ],
-            ],
-
-            [
-                'name' => 'zinc-stone-theme',
-                'title' => 'Zinc Stone',
-                'description' => 'Zinc-toned stone theme with cool metallic undertones, mineral textures, and industrial refinement.',
-                'font_family' => 'Inter, sans-serif',
-                'css' => [
-                    '@layer base' => [
-                        'body' => [
-                            'background' => 'var(--background)',
-                            'color' => 'var(--foreground)',
-                        ],
-                        '*' => [
-                            'border-color' => 'var(--border)',
-                        ],
-                    ],
-                ],
-                'vars_theme' => [
-                    'font-sans' => 'Inter, sans-serif',
-                    'font-serif' => '\'Roboto Slab\', serif',
-                    'font-mono' => '\'IBM Plex Mono\', monospace',
-                    'radius' => '0.125rem',
-                    'shadow-color' => 'hsl(250 5% 60%)',
-                ],
-                'vars_light' => [
-                    'background' => 'oklch(0.94 0.015 265)',
-                    'foreground' => 'oklch(0.25 0.04 265)',
-                    'card' => 'oklch(0.98 0.01 265)',
-                    'card-foreground' => 'oklch(0.25 0.04 265)',
-                    'popover' => 'oklch(0.99 0.01 265)',
-                    'popover-foreground' => 'oklch(0.25 0.04 265)',
-                    'primary' => 'oklch(0.35 0.04 265)',
-                    'primary-foreground' => 'oklch(0.96 0.01 265)',
-                    'secondary' => 'oklch(0.9 0.02 265)',
-                    'secondary-foreground' => 'oklch(0.4 0.04 265)',
-                    'muted' => 'oklch(0.92 0.015 265)',
-                    'muted-foreground' => 'oklch(0.55 0.03 265)',
-                    'accent' => 'oklch(0.7 0.08 45)',
-                    'accent-foreground' => 'oklch(0.22 0.04 265)',
-                    'destructive' => 'oklch(0.55 0.15 25)',
-                    'destructive-foreground' => 'oklch(0.96 0.01 265)',
-                    'border' => 'oklch(0.85 0.02 265)',
-                    'input' => 'oklch(0.85 0.02 265)',
-                    'ring' => 'oklch(0.35 0.04 265)',
-                    'chart-1' => 'oklch(0.35 0.04 265)',
-                    'chart-2' => 'oklch(0.7 0.08 45)',
-                    'chart-3' => 'oklch(0.55 0.03 265)',
-                    'chart-4' => 'oklch(0.65 0.04 180)',
-                    'chart-5' => 'oklch(0.45 0.03 280)',
-                    'radius' => '0.125rem',
-                    'sidebar' => 'oklch(0.92 0.015 265)',
-                    'sidebar-foreground' => 'oklch(0.25 0.04 265)',
-                    'sidebar-primary' => 'oklch(0.35 0.04 265)',
-                    'sidebar-primary-foreground' => 'oklch(0.96 0.01 265)',
-                    'sidebar-accent' => 'oklch(0.7 0.08 45)',
-                    'sidebar-accent-foreground' => 'oklch(0.22 0.04 265)',
-                    'sidebar-border' => 'oklch(0.85 0.02 265)',
-                    'sidebar-ring' => 'oklch(0.35 0.04 265)',
-                    'font-sans' => 'var(--font-sans)',
-                    'font-serif' => 'var(--font-serif)',
-                    'font-mono' => 'var(--font-mono)',
-                    'shadow-sm' => '0 1px 2px hsl(250 5% 60% / 0.1)',
-                    'shadow' => '0 2px 4px hsl(250 5% 60% / 0.15)',
-                    'shadow-md' => '0 4px 8px hsl(250 5% 60% / 0.2)',
-                    'shadow-lg' => '0 6px 12px hsl(250 5% 60% / 0.25)',
-                    'shadow-xl' => '0 10px 20px hsl(250 5% 60% / 0.3)',
-                ],
-                'vars_dark' => [
-                    'background' => 'oklch(0.25 0.03 265)',
-                    'foreground' => 'oklch(0.85 0.02 265)',
-                    'card' => 'oklch(0.3 0.03 265)',
-                    'card-foreground' => 'oklch(0.85 0.02 265)',
-                    'popover' => 'oklch(0.32 0.03 265)',
-                    'popover-foreground' => 'oklch(0.85 0.02 265)',
-                    'primary' => 'oklch(0.75 0.04 265)',
-                    'primary-foreground' => 'oklch(0.25 0.03 265)',
-                    'secondary' => 'oklch(0.4 0.04 265)',
-                    'secondary-foreground' => 'oklch(0.75 0.02 265)',
-                    'muted' => 'oklch(0.35 0.03 265)',
-                    'muted-foreground' => 'oklch(0.7 0.03 265)',
-                    'accent' => 'oklch(0.75 0.1 45)',
-                    'accent-foreground' => 'oklch(0.22 0.03 265)',
-                    'destructive' => 'oklch(0.55 0.15 25)',
-                    'destructive-foreground' => 'oklch(0.85 0.02 265)',
-                    'border' => 'oklch(0.42 0.04 265)',
-                    'input' => 'oklch(0.42 0.04 265)',
-                    'ring' => 'oklch(0.75 0.04 265)',
-                    'chart-1' => 'oklch(0.75 0.04 265)',
-                    'chart-2' => 'oklch(0.75 0.1 45)',
-                    'chart-3' => 'oklch(0.55 0.03 265)',
-                    'chart-4' => 'oklch(0.65 0.04 180)',
-                    'chart-5' => 'oklch(0.45 0.03 280)',
-                    'radius' => '0.125rem',
-                    'sidebar' => 'oklch(0.18 0.02 265)',
-                    'sidebar-foreground' => 'oklch(0.85 0.02 265)',
-                    'sidebar-primary' => 'oklch(0.75 0.04 265)',
-                    'sidebar-primary-foreground' => 'oklch(0.25 0.03 265)',
-                    'sidebar-accent' => 'oklch(0.75 0.1 45)',
-                    'sidebar-accent-foreground' => 'oklch(0.22 0.03 265)',
-                    'sidebar-border' => 'oklch(0.42 0.04 265)',
-                    'sidebar-ring' => 'oklch(0.75 0.04 265)',
-                    'font-sans' => 'var(--font-sans)',
-                    'font-serif' => 'var(--font-serif)',
-                    'font-mono' => 'var(--font-mono)',
-                    'shadow-sm' => '0 1px 2px hsl(250 5% 60% / 0.2)',
-                    'shadow' => '0 2px 4px hsl(250 5% 60% / 0.25)',
-                    'shadow-md' => '0 4px 8px hsl(250 5% 60% / 0.3)',
-                    'shadow-lg' => '0 6px 12px hsl(250 5% 60% / 0.35)',
-                    'shadow-xl' => '0 10px 20px hsl(250 5% 60% / 0.4)',
-                ],
-            ],
-
-            [
-                'name' => 'paper-stack-theme',
-                'title' => 'Paper Stack',
-                'description' => 'Tactile paper-themed design with layered card effects, subtle shadows, and document-inspired layouts.',
-                'font_family' => 'Inter, sans-serif',
-                'css' => [
-                    '@layer base' => [
-                        '*' => [
-                            'border-color' => 'var(--border)',
-                        ],
-                        'body' => [
-                            'background' => 'var(--background)',
-                            'color' => 'var(--foreground)',
-                        ],
-                    ],
-                ],
-                'vars_theme' => [
-                    'font-sans' => 'Inter, sans-serif',
-                    'font-serif' => 'Playfair Display, serif',
-                    'font-mono' => 'Fira Code, monospace',
-                    'radius' => '0.25rem',
-                ],
-                'vars_light' => [
-                    'background' => 'oklch(0.98 0.01 60)',
-                    'foreground' => 'oklch(0.25 0.04 60)',
-                    'card' => 'oklch(0.99 0.01 60)',
-                    'card-foreground' => 'oklch(0.25 0.04 60)',
-                    'popover' => 'oklch(0.99 0.01 60)',
-                    'popover-foreground' => 'oklch(0.25 0.04 60)',
-                    'primary' => 'oklch(0.45 0.08 260)',
-                    'primary-foreground' => 'oklch(0.98 0.01 60)',
-                    'secondary' => 'oklch(0.9 0.02 60)',
-                    'secondary-foreground' => 'oklch(0.35 0.04 60)',
-                    'muted' => 'oklch(0.94 0.02 60)',
-                    'muted-foreground' => 'oklch(0.55 0.03 60)',
-                    'accent' => 'oklch(0.7 0.12 25)',
-                    'accent-foreground' => 'oklch(0.98 0.01 60)',
-                    'destructive' => 'oklch(0.55 0.15 25)',
-                    'destructive-foreground' => 'oklch(0.98 0.01 60)',
-                    'border' => 'oklch(0.88 0.02 60)',
-                    'input' => 'oklch(0.88 0.02 60)',
-                    'ring' => 'oklch(0.45 0.08 260)',
-                    'chart-1' => 'oklch(0.45 0.08 260)',
-                    'chart-2' => 'oklch(0.7 0.12 25)',
-                    'chart-3' => 'oklch(0.6 0.1 140)',
-                    'chart-4' => 'oklch(0.8 0.08 50)',
-                    'chart-5' => 'oklch(0.5 0.08 280)',
-                    'sidebar' => 'oklch(0.98 0.01 60)',
-                    'sidebar-foreground' => 'oklch(0.25 0.04 60)',
-                    'sidebar-primary' => 'oklch(0.45 0.08 260)',
-                    'sidebar-primary-foreground' => 'oklch(0.98 0.01 60)',
-                    'sidebar-accent' => 'oklch(0.7 0.12 25)',
-                    'sidebar-accent-foreground' => 'oklch(0.98 0.01 60)',
-                    'sidebar-border' => 'oklch(0.88 0.02 60)',
-                    'sidebar-ring' => 'oklch(0.45 0.08 260)',
-                    'shadow-sm' => '0 1px 3px hsl(40 20% 85% / 0.3)',
-                    'shadow' => '0 2px 6px hsl(40 20% 85% / 0.4)',
-                    'shadow-md' => '0 4px 10px hsl(40 20% 85% / 0.5)',
-                    'shadow-lg' => '0 6px 16px hsl(40 20% 85% / 0.6)',
-                    'shadow-xl' => '0 10px 30px hsl(40 20% 85% / 0.7)',
-                ],
-                'vars_dark' => [
-                    'background' => 'oklch(0.15 0.03 60)',
-                    'foreground' => 'oklch(0.92 0.02 60)',
-                    'card' => 'oklch(0.2 0.03 60)',
-                    'card-foreground' => 'oklch(0.92 0.02 60)',
-                    'popover' => 'oklch(0.22 0.03 60)',
-                    'popover-foreground' => 'oklch(0.92 0.02 60)',
-                    'primary' => 'oklch(0.65 0.1 260)',
-                    'primary-foreground' => 'oklch(0.98 0.01 60)',
-                    'secondary' => 'oklch(0.28 0.04 60)',
-                    'secondary-foreground' => 'oklch(0.85 0.02 60)',
-                    'muted' => 'oklch(0.22 0.03 60)',
-                    'muted-foreground' => 'oklch(0.7 0.03 60)',
-                    'accent' => 'oklch(0.75 0.15 25)',
-                    'accent-foreground' => 'oklch(0.15 0.03 60)',
-                    'destructive' => 'oklch(0.55 0.15 25)',
-                    'destructive-foreground' => 'oklch(0.92 0.02 60)',
-                    'border' => 'oklch(0.3 0.03 60)',
-                    'input' => 'oklch(0.3 0.03 60)',
-                    'ring' => 'oklch(0.65 0.1 260)',
-                    'chart-1' => 'oklch(0.65 0.1 260)',
-                    'chart-2' => 'oklch(0.75 0.15 25)',
-                    'chart-3' => 'oklch(0.7 0.1 140)',
-                    'chart-4' => 'oklch(0.8 0.08 50)',
-                    'chart-5' => 'oklch(0.5 0.08 280)',
-                    'sidebar' => 'oklch(0.12 0.02 60)',
-                    'sidebar-foreground' => 'oklch(0.92 0.02 60)',
-                    'sidebar-primary' => 'oklch(0.65 0.1 260)',
-                    'sidebar-primary-foreground' => 'oklch(0.98 0.01 60)',
-                    'sidebar-accent' => 'oklch(0.75 0.15 25)',
-                    'sidebar-accent-foreground' => 'oklch(0.15 0.03 60)',
-                    'sidebar-border' => 'oklch(0.3 0.03 60)',
-                    'sidebar-ring' => 'oklch(0.65 0.1 260)',
-                    'shadow-sm' => '0 1px 3px hsl(40 20% 85% / 0.5)',
-                    'shadow' => '0 2px 6px hsl(40 20% 85% / 0.6)',
-                    'shadow-md' => '0 4px 10px hsl(40 20% 85% / 0.7)',
-                    'shadow-lg' => '0 6px 16px hsl(40 20% 85% / 0.8)',
-                    'shadow-xl' => '0 10px 30px hsl(40 20% 85% / 0.9)',
-                ],
-            ],
-
-            [
-                'name' => 'nordic-light-theme',
-                'title' => 'Nordic Light',
-                'description' => 'Scandinavian-inspired light theme with airy brightness, soft pastels, and minimalist hygge comfort.',
-                'font_family' => '\'Inter\', sans-serif',
-                'css' => [
-                    '@layer base' => [
-                        '*' => [
-                            'border-color' => 'var(--border)',
-                        ],
-                        'body' => [
-                            'background' => 'var(--background)',
-                            'color' => 'var(--foreground)',
-                            'letter-spacing' => 'var(--tracking-normal)',
-                        ],
-                    ],
-                ],
-                'vars_theme' => [
-                    'font-sans' => '\'Inter\', sans-serif',
-                    'font-serif' => '\'Playfair Display\', serif',
-                    'font-mono' => '\'Fira Code\', monospace',
-                    'radius' => '0.25rem',
-                    'tracking-tighter' => 'calc(var(--tracking-normal) - 0.05em)',
-                    'tracking-tight' => 'calc(var(--tracking-normal) - 0.025em)',
-                    'tracking-normal' => '0em',
-                    'tracking-wide' => 'calc(var(--tracking-normal) + 0.025em)',
-                    'tracking-wider' => 'calc(var(--tracking-normal) + 0.05em)',
-                    'tracking-widest' => 'calc(var(--tracking-normal) + 0.1em)',
-                    'shadow-color' => 'oklch(0.85 0.02 230)',
-                    'shadow-opacity' => '0.2',
-                    'shadow-blur' => '12px',
-                    'shadow-spread' => '0px',
-                    'shadow-offset-x' => '0',
-                    'shadow-offset-y' => '4px',
-                    'spacing' => '0.25rem',
-                ],
-                'vars_light' => [
-                    'background' => 'oklch(0.98 0.02 250)',
-                    'foreground' => 'oklch(0.25 0.04 250)',
-                    'card' => 'oklch(1 0 0)',
-                    'card-foreground' => 'oklch(0.25 0.04 250)',
-                    'popover' => 'oklch(1 0 0)',
-                    'popover-foreground' => 'oklch(0.25 0.04 250)',
-                    'primary' => 'oklch(0.55 0.08 250)',
-                    'primary-foreground' => 'oklch(1 0 0)',
-                    'secondary' => 'oklch(0.9 0.03 250)',
-                    'secondary-foreground' => 'oklch(0.38 0.04 250)',
-                    'muted' => 'oklch(0.94 0.02 250)',
-                    'muted-foreground' => 'oklch(0.55 0.03 250)',
-                    'accent' => 'oklch(0.72 0.1 160)',
-                    'accent-foreground' => 'oklch(0.2 0.03 250)',
-                    'destructive' => 'oklch(0.58 0.18 25)',
-                    'destructive-foreground' => 'oklch(1 0 0)',
-                    'border' => 'oklch(0.88 0.02 250)',
-                    'input' => 'oklch(0.88 0.02 250)',
-                    'ring' => 'oklch(0.55 0.08 250)',
-                    'chart-1' => 'oklch(0.55 0.08 250)',
-                    'chart-2' => 'oklch(0.72 0.1 160)',
-                    'chart-3' => 'oklch(0.65 0.06 200)',
-                    'chart-4' => 'oklch(0.8 0.05 120)',
-                    'chart-5' => 'oklch(0.5 0.05 280)',
-                    'sidebar' => 'oklch(0.96 0.02 250)',
-                    'sidebar-foreground' => 'oklch(0.25 0.04 250)',
-                    'sidebar-primary' => 'oklch(0.55 0.08 250)',
-                    'sidebar-primary-foreground' => 'oklch(1 0 0)',
-                    'sidebar-accent' => 'oklch(0.72 0.1 160)',
-                    'sidebar-accent-foreground' => 'oklch(0.2 0.03 250)',
-                    'sidebar-border' => 'oklch(0.88 0.02 250)',
-                    'sidebar-ring' => 'oklch(0.55 0.08 250)',
-                    'font-sans' => 'var(--font-sans)',
-                    'font-serif' => 'var(--font-serif)',
-                    'font-mono' => 'var(--font-mono)',
-                    'shadow-sm' => '0 2px 6px hsl(230 10% 90% / 0.15)',
-                    'shadow' => '0 4px 12px hsl(230 10% 90% / 0.2)',
-                    'shadow-md' => '0 6px 20px hsl(230 10% 90% / 0.25)',
-                    'shadow-lg' => '0 10px 30px hsl(230 10% 90% / 0.3)',
-                    'shadow-xl' => '0 15px 50px hsl(230 10% 90% / 0.35)',
-                ],
-                'vars_dark' => [
-                    'background' => 'oklch(0.18 0.04 250)',
-                    'foreground' => 'oklch(0.85 0.02 250)',
-                    'card' => 'oklch(0.22 0.04 250)',
-                    'card-foreground' => 'oklch(0.85 0.02 250)',
-                    'popover' => 'oklch(0.25 0.04 250)',
-                    'popover-foreground' => 'oklch(0.85 0.02 250)',
-                    'primary' => 'oklch(0.72 0.1 250)',
-                    'primary-foreground' => 'oklch(0.18 0.04 250)',
-                    'secondary' => 'oklch(0.35 0.05 250)',
-                    'secondary-foreground' => 'oklch(0.8 0.02 250)',
-                    'muted' => 'oklch(0.28 0.04 250)',
-                    'muted-foreground' => 'oklch(0.7 0.03 250)',
-                    'accent' => 'oklch(0.78 0.12 160)',
-                    'accent-foreground' => 'oklch(0.18 0.04 250)',
-                    'destructive' => 'oklch(0.58 0.18 25)',
-                    'destructive-foreground' => 'oklch(0.85 0.02 250)',
-                    'border' => 'oklch(0.4 0.04 250)',
-                    'input' => 'oklch(0.4 0.04 250)',
-                    'ring' => 'oklch(0.72 0.1 250)',
-                    'chart-1' => 'oklch(0.72 0.1 250)',
-                    'chart-2' => 'oklch(0.78 0.12 160)',
-                    'chart-3' => 'oklch(0.65 0.06 200)',
-                    'chart-4' => 'oklch(0.8 0.05 120)',
-                    'chart-5' => 'oklch(0.5 0.05 280)',
-                    'sidebar' => 'oklch(0.12 0.03 250)',
-                    'sidebar-foreground' => 'oklch(0.85 0.02 250)',
-                    'sidebar-primary' => 'oklch(0.72 0.1 250)',
-                    'sidebar-primary-foreground' => 'oklch(0.18 0.04 250)',
-                    'sidebar-accent' => 'oklch(0.78 0.12 160)',
-                    'sidebar-accent-foreground' => 'oklch(0.18 0.04 250)',
-                    'sidebar-border' => 'oklch(0.4 0.04 250)',
-                    'sidebar-ring' => 'oklch(0.72 0.1 250)',
-                    'font-sans' => 'var(--font-sans)',
-                    'font-serif' => 'var(--font-serif)',
-                    'font-mono' => 'var(--font-mono)',
-                    'shadow-sm' => '0 2px 6px hsl(230 10% 90% / 0.25)',
-                    'shadow' => '0 4px 12px hsl(230 10% 90% / 0.3)',
-                    'shadow-md' => '0 6px 20px hsl(230 10% 90% / 0.35)',
-                    'shadow-lg' => '0 10px 30px hsl(230 10% 90% / 0.4)',
-                    'shadow-xl' => '0 15px 50px hsl(230 10% 90% / 0.45)',
-                ],
-            ],
-
-            [
-                'name' => 'warehouse-theme',
-                'title' => 'Warehouse',
-                'description' => 'Industrial warehouse theme with exposed structural elements, utilitarian tones, and raw loft aesthetics.',
-                'font_family' => '\'Inter\', sans-serif',
-                'css' => [
-                    '@layer base' => [
-                        '*' => [
-                            'border-color' => 'var(--border)',
-                        ],
-                        'body' => [
-                            'letter-spacing' => 'var(--tracking-normal)',
-                            'background' => 'var(--background)',
-                            'color' => 'var(--foreground)',
-                        ],
-                    ],
-                ],
-                'vars_theme' => [
-                    'font-sans' => '\'Inter\', sans-serif',
-                    'font-serif' => '\'Roboto Slab\', serif',
-                    'font-mono' => '\'IBM Plex Mono\', monospace',
-                    'radius' => '0.125rem',
-                    'tracking-tighter' => 'calc(var(--tracking-normal) - 0.05em)',
-                    'tracking-tight' => 'calc(var(--tracking-normal) - 0.025em)',
-                    'tracking-normal' => '0em',
-                    'tracking-wide' => 'calc(var(--tracking-normal) + 0.025em)',
-                    'tracking-wider' => 'calc(var(--tracking-normal) + 0.05em)',
-                    'tracking-widest' => 'calc(var(--tracking-normal) + 0.1em)',
-                    'shadow-color' => 'oklch(0 0 0)',
-                    'shadow-opacity' => '0.12',
-                    'shadow-blur' => '4px',
-                    'shadow-spread' => '0px',
-                    'shadow-offset-x' => '0',
-                    'shadow-offset-y' => '2px',
-                    'spacing' => '0.25rem',
-                ],
-                'vars_light' => [
-                    'background' => 'oklch(0.95 0.02 260)',
-                    'foreground' => 'oklch(0.28 0.05 260)',
-                    'card' => 'oklch(0.97 0.02 260)',
-                    'card-foreground' => 'oklch(0.28 0.05 260)',
-                    'popover' => 'oklch(0.97 0.02 260)',
-                    'popover-foreground' => 'oklch(0.28 0.05 260)',
-                    'primary' => 'oklch(0.65 0.1 30)',
-                    'primary-foreground' => 'oklch(0.95 0.02 260)',
-                    'secondary' => 'oklch(0.88 0.02 260)',
-                    'secondary-foreground' => 'oklch(0.45 0.04 260)',
-                    'muted' => 'oklch(0.9 0.02 260)',
-                    'muted-foreground' => 'oklch(0.55 0.03 260)',
-                    'accent' => 'oklch(0.55 0.12 200)',
-                    'accent-foreground' => 'oklch(0.28 0.05 260)',
-                    'destructive' => 'oklch(0.6 0.15 25)',
-                    'destructive-foreground' => 'oklch(0.95 0.02 260)',
-                    'border' => 'oklch(0.82 0.03 260)',
-                    'input' => 'oklch(0.82 0.03 260)',
-                    'ring' => 'oklch(0.65 0.1 30)',
-                    'chart-1' => 'oklch(0.65 0.1 30)',
-                    'chart-2' => 'oklch(0.55 0.12 200)',
-                    'chart-3' => 'oklch(0.6 0.06 240)',
-                    'chart-4' => 'oklch(0.5 0.05 60)',
-                    'chart-5' => 'oklch(0.45 0.04 280)',
-                    'sidebar' => 'oklch(0.92 0.02 260)',
-                    'sidebar-foreground' => 'oklch(0.28 0.05 260)',
-                    'sidebar-primary' => 'oklch(0.65 0.1 30)',
-                    'sidebar-primary-foreground' => 'oklch(0.95 0.02 260)',
-                    'sidebar-accent' => 'oklch(0.55 0.12 200)',
-                    'sidebar-accent-foreground' => 'oklch(0.28 0.05 260)',
-                    'sidebar-border' => 'oklch(0.82 0.03 260)',
-                    'sidebar-ring' => 'oklch(0.65 0.1 30)',
-                    'font-sans' => 'var(--font-sans)',
-                    'font-serif' => 'var(--font-serif)',
-                    'font-mono' => 'var(--font-mono)',
-                    'shadow-sm' => '0 1px 2px hsl(0 0% 0% / 0.08)',
-                    'shadow' => '0 2px 4px hsl(0 0% 0% / 0.12)',
-                    'shadow-md' => '0 4px 6px hsl(0 0% 0% / 0.16)',
-                    'shadow-lg' => '0 6px 10px hsl(0 0% 0% / 0.2)',
-                    'shadow-xl' => '0 10px 16px hsl(0 0% 0% / 0.24)',
-                ],
-                'vars_dark' => [
-                    'background' => 'oklch(0.22 0.04 260)',
-                    'foreground' => 'oklch(0.78 0.02 260)',
-                    'card' => 'oklch(0.28 0.04 260)',
-                    'card-foreground' => 'oklch(0.78 0.02 260)',
-                    'popover' => 'oklch(0.3 0.04 260)',
-                    'popover-foreground' => 'oklch(0.78 0.02 260)',
-                    'primary' => 'oklch(0.75 0.1 30)',
-                    'primary-foreground' => 'oklch(0.22 0.04 260)',
-                    'secondary' => 'oklch(0.4 0.05 260)',
-                    'secondary-foreground' => 'oklch(0.72 0.03 260)',
-                    'muted' => 'oklch(0.32 0.04 260)',
-                    'muted-foreground' => 'oklch(0.65 0.03 260)',
-                    'accent' => 'oklch(0.7 0.12 200)',
-                    'accent-foreground' => 'oklch(0.22 0.04 260)',
-                    'destructive' => 'oklch(0.6 0.15 25)',
-                    'destructive-foreground' => 'oklch(0.78 0.02 260)',
-                    'border' => 'oklch(0.45 0.04 260)',
-                    'input' => 'oklch(0.45 0.04 260)',
-                    'ring' => 'oklch(0.75 0.1 30)',
-                    'chart-1' => 'oklch(0.75 0.1 30)',
-                    'chart-2' => 'oklch(0.7 0.12 200)',
-                    'chart-3' => 'oklch(0.6 0.06 240)',
-                    'chart-4' => 'oklch(0.5 0.05 60)',
-                    'chart-5' => 'oklch(0.45 0.04 280)',
-                    'sidebar' => 'oklch(0.15 0.03 260)',
-                    'sidebar-foreground' => 'oklch(0.78 0.02 260)',
-                    'sidebar-primary' => 'oklch(0.75 0.1 30)',
-                    'sidebar-primary-foreground' => 'oklch(0.22 0.04 260)',
-                    'sidebar-accent' => 'oklch(0.7 0.12 200)',
-                    'sidebar-accent-foreground' => 'oklch(0.22 0.04 260)',
-                    'sidebar-border' => 'oklch(0.45 0.04 260)',
-                    'sidebar-ring' => 'oklch(0.75 0.1 30)',
-                    'font-sans' => 'var(--font-sans)',
-                    'font-serif' => 'var(--font-serif)',
-                    'font-mono' => 'var(--font-mono)',
-                    'shadow-sm' => '0 2px 4px hsl(0 0% 0% / 0.2)',
-                    'shadow' => '0 4px 8px hsl(0 0% 0% / 0.25)',
-                    'shadow-md' => '0 6px 12px hsl(0 0% 0% / 0.3)',
-                    'shadow-lg' => '0 10px 20px hsl(0 0% 0% / 0.35)',
-                    'shadow-xl' => '0 15px 40px hsl(0 0% 0% / 0.4)',
-                ],
-            ],
-
-            [
-                'name' => 'void-dark-theme',
-                'title' => 'Void Dark',
-                'description' => 'Deep void-inspired dark theme with infinite blacks, subtle purple undertones, and cosmic depth.',
-                'font_family' => '\'Inter\', sans-serif',
-                'css' => [
-                    '@layer base' => [
-                        'body' => [
-                            'letter-spacing' => 'var(--tracking-normal)',
-                        ],
-                    ],
-                ],
-                'vars_theme' => [
-                    'font-sans' => '\'Inter\', sans-serif',
-                    'font-serif' => '\'Orbitron\', sans-serif',
-                    'font-mono' => '\'Fira Code\', monospace',
-                    'radius' => '0.5rem',
-                    'tracking-tighter' => 'calc(var(--tracking-normal) - 0.05em)',
-                    'tracking-tight' => 'calc(var(--tracking-normal) - 0.025em)',
-                    'tracking-normal' => '0em',
-                    'tracking-wide' => 'calc(var(--tracking-normal) + 0.025em)',
-                    'tracking-wider' => 'calc(var(--tracking-normal) + 0.05em)',
-                    'tracking-widest' => 'calc(var(--tracking-normal) + 0.1em)',
-                    'shadow-color' => 'oklch(0.75 0.25 320)',
-                    'shadow-opacity' => '0.4',
-                    'shadow-blur' => '16px',
-                    'shadow-spread' => '0px',
-                    'shadow-offset-x' => '0',
-                    'shadow-offset-y' => '0px',
-                    'spacing' => '0.25rem',
-                ],
-                'vars_light' => [
-                    'background' => 'oklch(0.98 0.01 285)',
-                    'foreground' => 'oklch(0.08 0.01 285)',
-                    'card' => 'oklch(0.95 0.01 285)',
-                    'card-foreground' => 'oklch(0.08 0.01 285)',
-                    'popover' => 'oklch(0.95 0.01 285)',
-                    'popover-foreground' => 'oklch(0.08 0.01 285)',
-                    'primary' => 'oklch(0.15 0.25 320)',
-                    'primary-foreground' => 'oklch(0.98 0.01 285)',
-                    'secondary' => 'oklch(0.9 0.02 285)',
-                    'secondary-foreground' => 'oklch(0.25 0.02 285)',
-                    'muted' => 'oklch(0.92 0.02 285)',
-                    'muted-foreground' => 'oklch(0.5 0.02 285)',
-                    'accent' => 'oklch(0.2 0.25 180)',
-                    'accent-foreground' => 'oklch(0.98 0.01 285)',
-                    'destructive' => 'oklch(0.6 0.25 25)',
-                    'destructive-foreground' => 'oklch(0.98 0.01 285)',
-                    'border' => 'oklch(0.85 0.02 285)',
-                    'input' => 'oklch(0.85 0.02 285)',
-                    'ring' => 'oklch(0.15 0.25 320)',
-                    'chart-1' => 'oklch(0.15 0.25 320)',
-                    'chart-2' => 'oklch(0.2 0.25 180)',
-                    'chart-3' => 'oklch(0.8 0.22 60)',
-                    'chart-4' => 'oklch(0.65 0.25 280)',
-                    'chart-5' => 'oklch(0.85 0.18 140)',
-                    'sidebar' => 'oklch(0.95 0.01 285)',
-                    'sidebar-foreground' => 'oklch(0.08 0.01 285)',
-                    'sidebar-primary' => 'oklch(0.15 0.25 320)',
-                    'sidebar-primary-foreground' => 'oklch(0.98 0.01 285)',
-                    'sidebar-accent' => 'oklch(0.2 0.25 180)',
-                    'sidebar-accent-foreground' => 'oklch(0.98 0.01 285)',
-                    'sidebar-border' => 'oklch(0.85 0.02 285)',
-                    'sidebar-ring' => 'oklch(0.15 0.25 320)',
-                    'font-sans' => 'var(--font-sans)',
-                    'font-serif' => 'var(--font-serif)',
-                    'font-mono' => 'var(--font-mono)',
-                    'shadow-sm' => '0 1px 2px hsl(0 0% 0% / 0.05)',
-                    'shadow' => '0 2px 4px hsl(0 0% 0% / 0.1)',
-                    'shadow-md' => '0 4px 8px hsl(0 0% 0% / 0.15)',
-                    'shadow-lg' => '0 6px 16px hsl(0 0% 0% / 0.2)',
-                    'shadow-xl' => '0 10px 30px hsl(0 0% 0% / 0.25)',
-                ],
-                'vars_dark' => [
-                    'background' => 'oklch(0 0 0)',
-                    'foreground' => 'oklch(0.98 0.01 285)',
-                    'card' => 'oklch(0.03 0.01 285)',
-                    'card-foreground' => 'oklch(0.98 0.01 285)',
-                    'popover' => 'oklch(0.05 0.01 285)',
-                    'popover-foreground' => 'oklch(0.98 0.01 285)',
-                    'primary' => 'oklch(0.75 0.25 320)',
-                    'primary-foreground' => 'oklch(0 0 0)',
-                    'secondary' => 'oklch(0.15 0.02 285)',
-                    'secondary-foreground' => 'oklch(0.9 0.02 285)',
-                    'muted' => 'oklch(0.1 0.02 285)',
-                    'muted-foreground' => 'oklch(0.55 0.02 285)',
-                    'accent' => 'oklch(0.7 0.25 180)',
-                    'accent-foreground' => 'oklch(0 0 0)',
-                    'destructive' => 'oklch(0.6 0.25 25)',
-                    'destructive-foreground' => 'oklch(0.98 0.01 285)',
-                    'border' => 'oklch(0.18 0.02 285)',
-                    'input' => 'oklch(0.18 0.02 285)',
-                    'ring' => 'oklch(0.75 0.25 320)',
-                    'chart-1' => 'oklch(0.75 0.25 320)',
-                    'chart-2' => 'oklch(0.7 0.25 180)',
-                    'chart-3' => 'oklch(0.8 0.22 60)',
-                    'chart-4' => 'oklch(0.65 0.25 280)',
-                    'chart-5' => 'oklch(0.85 0.18 140)',
-                    'sidebar' => 'oklch(0.02 0.01 285)',
-                    'sidebar-foreground' => 'oklch(0.98 0.01 285)',
-                    'sidebar-primary' => 'oklch(0.75 0.25 320)',
-                    'sidebar-primary-foreground' => 'oklch(0 0 0)',
-                    'sidebar-accent' => 'oklch(0.7 0.25 180)',
-                    'sidebar-accent-foreground' => 'oklch(0 0 0)',
-                    'sidebar-border' => 'oklch(0.18 0.02 285)',
-                    'sidebar-ring' => 'oklch(0.75 0.25 320)',
-                    'font-sans' => 'var(--font-sans)',
-                    'font-serif' => 'var(--font-serif)',
-                    'font-mono' => 'var(--font-mono)',
-                    'shadow-sm' => '0 0 8px oklch(0.75 0.25 320 / 0.4)',
-                    'shadow' => '0 0 16px oklch(0.75 0.25 320 / 0.5)',
-                    'shadow-md' => '0 0 24px oklch(0.75 0.25 320 / 0.6)',
-                    'shadow-lg' => '0 0 40px oklch(0.75 0.25 320 / 0.7)',
-                    'shadow-xl' => '0 0 60px oklch(0.75 0.25 320 / 0.8)',
-                ],
-            ],
-
-            [
-                'name' => 'ember-theme',
-                'title' => 'Ember',
-                'description' => 'Warm ember theme with glowing orange hues, fire-kissed tones, and cozy incandescent atmosphere.',
-                'font_family' => '\'Inter\', sans-serif',
-                'css' => [
-                    '@layer base' => [
-                        '*' => [
-                            'border-color' => 'var(--border)',
-                        ],
-                        'body' => [
-                            'letter-spacing' => 'var(--tracking-normal)',
-                            'background' => 'var(--background)',
-                            'color' => 'var(--foreground)',
-                        ],
-                    ],
-                ],
-                'vars_theme' => [
-                    'font-sans' => '\'Inter\', sans-serif',
-                    'font-serif' => '\'Playfair Display\', serif',
-                    'font-mono' => '\'Fira Code\', monospace',
-                    'radius' => '1rem',
-                    'tracking-tighter' => 'calc(var(--tracking-normal) - 0.05em)',
-                    'tracking-tight' => 'calc(var(--tracking-normal) - 0.025em)',
-                    'tracking-normal' => '0em',
-                    'tracking-wide' => 'calc(var(--tracking-normal) + 0.025em)',
-                    'tracking-wider' => 'calc(var(--tracking-normal) + 0.05em)',
-                    'tracking-widest' => 'calc(var(--tracking-normal) + 0.1em)',
-                    'shadow-color' => 'oklch(0 0 0)',
-                    'shadow-opacity' => '0.1',
-                    'shadow-blur' => '3px',
-                    'shadow-spread' => '0px',
-                    'shadow-offset-x' => '0',
-                    'shadow-offset-y' => '1px',
-                    'spacing' => '0.25rem',
-                ],
-                'vars_light' => [
-                    'background' => 'oklch(0.9498 0.0259 38.4642)',
-                    'foreground' => 'oklch(0.2496 0.0394 30.2331)',
-                    'card' => 'oklch(0.9700 0.0156 42.3852)',
-                    'card-foreground' => 'oklch(0.2496 0.0394 30.2331)',
-                    'popover' => 'oklch(0.9700 0.0156 42.3852)',
-                    'popover-foreground' => 'oklch(0.2496 0.0394 30.2331)',
-                    'primary' => 'oklch(0.6805 0.2086 30.5480)',
-                    'primary-foreground' => 'oklch(0.9749 0.0125 35.7319)',
-                    'secondary' => 'oklch(0.8490 0.0804 329.6626)',
-                    'secondary-foreground' => 'oklch(0.3004 0.0405 29.1936)',
-                    'muted' => 'oklch(0.9190 0.0400 29.3569)',
-                    'muted-foreground' => 'oklch(0.5488 0.0301 29.5987)',
-                    'accent' => 'oklch(0.6868 0.1688 281.0006)',
-                    'accent-foreground' => 'oklch(0.9749 0.0125 35.7319)',
-                    'destructive' => 'oklch(0.5996 0.2197 25.0854)',
-                    'destructive-foreground' => 'oklch(0.9749 0.0125 35.7319)',
-                    'border' => 'oklch(0.8508 0.0397 29.7036)',
-                    'input' => 'oklch(0.8508 0.0397 29.7036)',
-                    'ring' => 'oklch(0.6805 0.2086 30.5480)',
-                    'chart-1' => 'oklch(0.6805 0.2086 30.5480)',
-                    'chart-2' => 'oklch(0.8490 0.0804 329.6626)',
-                    'chart-3' => 'oklch(0.6868 0.1688 281.0006)',
-                    'chart-4' => 'oklch(0.7880 0.1395 52.9993)',
-                    'chart-5' => 'oklch(0.6496 0.1805 260.0708)',
-                    'sidebar' => 'oklch(0.9481 0.0262 32.2354)',
-                    'sidebar-foreground' => 'oklch(0.2496 0.0394 30.2331)',
-                    'sidebar-primary' => 'oklch(0.6805 0.2086 30.5480)',
-                    'sidebar-primary-foreground' => 'oklch(0.9749 0.0125 35.7319)',
-                    'sidebar-accent' => 'oklch(0.6868 0.1688 281.0006)',
-                    'sidebar-accent-foreground' => 'oklch(0.9749 0.0125 35.7319)',
-                    'sidebar-border' => 'oklch(0.8508 0.0397 29.7036)',
-                    'sidebar-ring' => 'oklch(0.6805 0.2086 30.5480)',
-                    'font-sans' => 'var(--font-sans)',
-                    'font-serif' => 'var(--font-serif)',
-                    'font-mono' => 'var(--font-mono)',
-                    'radius' => 'var(--radius)',
-                    'shadow-2xs' => '0 1px 3px 0px hsl(0 0% 0% / 0.05)',
-                    'shadow-xs' => '0 1px 3px 0px hsl(0 0% 0% / 0.05)',
-                    'shadow-sm' => '0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 1px 2px -1px hsl(0 0% 0% / 0.10)',
-                    'shadow' => '0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 1px 2px -1px hsl(0 0% 0% / 0.10)',
-                    'shadow-md' => '0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 2px 4px -1px hsl(0 0% 0% / 0.10)',
-                    'shadow-lg' => '0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 4px 6px -1px hsl(0 0% 0% / 0.10)',
-                    'shadow-xl' => '0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 8px 10px -1px hsl(0 0% 0% / 0.10)',
-                    'shadow-2xl' => '0 1px 3px 0px hsl(0 0% 0% / 0.25)',
-                ],
-                'vars_dark' => [
-                    'background' => 'oklch(0.1201 0.0414 26.0813)',
-                    'foreground' => 'oklch(0.9203 0.0203 28.9092)',
-                    'card' => 'oklch(0.1594 0.0393 30.0662)',
-                    'card-foreground' => 'oklch(0.9203 0.0203 28.9092)',
-                    'popover' => 'oklch(0.1798 0.0391 30.1878)',
-                    'popover-foreground' => 'oklch(0.9203 0.0203 28.9092)',
-                    'primary' => 'oklch(0.6288 0.2569 29.3860)',
-                    'primary-foreground' => 'oklch(0.1218 0.0190 31.6766)',
-                    'secondary' => 'oklch(0.2795 0.1197 329.6571)',
-                    'secondary-foreground' => 'oklch(0.8990 0.0204 28.9130)',
-                    'muted' => 'oklch(0.2209 0.0407 30.5722)',
-                    'muted-foreground' => 'oklch(0.6505 0.0302 31.7312)',
-                    'accent' => 'oklch(0.6916 0.1703 286.0331)',
-                    'accent-foreground' => 'oklch(0.1218 0.0190 31.6766)',
-                    'destructive' => 'oklch(0.6192 0.2398 24.8761)',
-                    'destructive-foreground' => 'oklch(0.9505 0.0201 28.9043)',
-                    'border' => 'oklch(0.3004 0.0405 29.1936)',
-                    'input' => 'oklch(0.3004 0.0405 29.1936)',
-                    'ring' => 'oklch(0.6288 0.2569 29.3860)',
-                    'chart-1' => 'oklch(0.6288 0.2569 29.3860)',
-                    'chart-2' => 'oklch(0.8202 0.1494 329.9891)',
-                    'chart-3' => 'oklch(0.6818 0.1738 283.3860)',
-                    'chart-4' => 'oklch(0.7304 0.1864 52.5678)',
-                    'chart-5' => 'oklch(0.5982 0.2191 260.0456)',
-                    'sidebar' => 'oklch(0.1385 0.0397 29.1239)',
-                    'sidebar-foreground' => 'oklch(0.9203 0.0203 28.9092)',
-                    'sidebar-primary' => 'oklch(0.6288 0.2569 29.3860)',
-                    'sidebar-primary-foreground' => 'oklch(0.1218 0.0190 31.6766)',
-                    'sidebar-accent' => 'oklch(0.6916 0.1703 286.0331)',
-                    'sidebar-accent-foreground' => 'oklch(0.1218 0.0190 31.6766)',
-                    'sidebar-border' => 'oklch(0.3004 0.0405 29.1936)',
-                    'sidebar-ring' => 'oklch(0.6288 0.2569 29.3860)',
-                    'font-sans' => 'var(--font-sans)',
-                    'font-serif' => 'var(--font-serif)',
-                    'font-mono' => 'var(--font-mono)',
-                    'radius' => '0.5rem',
-                    'shadow-2xs' => '0 1px 3px 0px hsl(0 0% 0% / 0.05)',
-                    'shadow-xs' => '0 1px 3px 0px hsl(0 0% 0% / 0.05)',
-                    'shadow-sm' => '0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 1px 2px -1px hsl(0 0% 0% / 0.10)',
-                    'shadow' => '0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 1px 2px -1px hsl(0 0% 0% / 0.10)',
-                    'shadow-md' => '0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 2px 4px -1px hsl(0 0% 0% / 0.10)',
-                    'shadow-lg' => '0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 4px 6px -1px hsl(0 0% 0% / 0.10)',
-                    'shadow-xl' => '0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 8px 10px -1px hsl(0 0% 0% / 0.10)',
-                    'shadow-2xl' => '0 1px 3px 0px hsl(0 0% 0% / 0.25)',
-                ],
-            ],
-
-            [
-                'name' => 'retro-web-theme',
-                'title' => '90s Web Retro',
-                'description' => 'Nostalgic 90s web theme with retro gradients, bold bright colors, and classic early-internet charm.',
-                'font_family' => 'Arial, sans-serif',
-                'css' => [
-                    '@layer base' => [
-                        '*' => [
-                            '@apply' => 'border-border outline-ring/40',
-                        ],
-                        'body' => [
-                            '@apply' => 'bg-background text-foreground',
-                        ],
-                    ],
-                ],
-                'vars_theme' => [
-                    'font-sans' => 'Arial, sans-serif',
-                    'font-serif' => 'Times New Roman, serif',
-                    'font-mono' => 'Courier New, monospace',
-                    'radius' => '0.25rem',
-                    'tracking-tighter' => 'calc(var(--tracking-normal) - 0.05em)',
-                    'tracking-tight' => 'calc(var(--tracking-normal) - 0.025em)',
-                    'tracking-normal' => '0em',
-                    'tracking-wide' => 'calc(var(--tracking-normal) + 0.025em)',
-                    'tracking-wider' => 'calc(var(--tracking-normal) + 0.05em)',
-                    'tracking-widest' => 'calc(var(--tracking-normal) + 0.1em)',
-                    'spacing' => '0.25rem',
-                    'shadow-color' => 'hsl(0 0% 0%)',
-                    'shadow-opacity' => '0.15',
-                    'shadow-blur' => '0px',
-                    'shadow-spread' => '0px',
-                    'shadow-offset-x' => '2px',
-                    'shadow-offset-y' => '2px',
-                ],
-                'vars_light' => [
-                    'background' => 'oklch(0.98 0.01 95)',
-                    'foreground' => 'oklch(0.20 0.03 260)',
-                    'card' => 'oklch(1 0 0)',
-                    'card-foreground' => 'oklch(0.20 0.03 260)',
-                    'popover' => 'oklch(1 0 0)',
-                    'popover-foreground' => 'oklch(0.20 0.03 260)',
-                    'primary' => 'oklch(0.60 0.25 255)',
-                    'primary-foreground' => 'oklch(1 0 0)',
-                    'secondary' => 'oklch(0.85 0.18 130)',
-                    'secondary-foreground' => 'oklch(0.15 0.02 260)',
-                    'muted' => 'oklch(0.92 0.03 95)',
-                    'muted-foreground' => 'oklch(0.45 0.03 260)',
-                    'accent' => 'oklch(0.70 0.28 330)',
-                    'accent-foreground' => 'oklch(1 0 0)',
-                    'destructive' => 'oklch(0.60 0.25 25)',
-                    'destructive-foreground' => 'oklch(1 0 0)',
-                    'border' => 'oklch(0.85 0.03 95)',
-                    'input' => 'oklch(0.85 0.03 95)',
-                    'ring' => 'oklch(0.60 0.25 255)',
-                    'chart-1' => 'oklch(0.60 0.25 255)',
-                    'chart-2' => 'oklch(0.85 0.18 130)',
-                    'chart-3' => 'oklch(0.70 0.28 330)',
-                    'chart-4' => 'oklch(0.75 0.20 60)',
-                    'chart-5' => 'oklch(0.55 0.22 200)',
-                    'sidebar' => 'oklch(0.97 0.01 95)',
-                    'sidebar-foreground' => 'oklch(0.20 0.03 260)',
-                    'sidebar-primary' => 'oklch(0.60 0.25 255)',
-                    'sidebar-primary-foreground' => 'oklch(1 0 0)',
-                    'sidebar-accent' => 'oklch(0.70 0.28 330)',
-                    'sidebar-accent-foreground' => 'oklch(1 0 0)',
-                    'sidebar-border' => 'oklch(0.85 0.03 95)',
-                    'sidebar-ring' => 'oklch(0.60 0.25 255)',
-                    'font-sans' => 'var(--font-sans)',
-                    'font-serif' => 'var(--font-serif)',
-                    'font-mono' => 'var(--font-mono)',
-                    'shadow-sm' => '2px 2px 0px hsl(0 0% 0% / 0.10)',
-                    'shadow' => '3px 3px 0px hsl(0 0% 0% / 0.15)',
-                    'shadow-md' => '4px 4px 0px hsl(0 0% 0% / 0.20)',
-                    'shadow-lg' => '6px 6px 0px hsl(0 0% 0% / 0.25)',
-                    'shadow-xl' => '8px 8px 0px hsl(0 0% 0% / 0.30)',
-                ],
-                'vars_dark' => [
-                    'background' => 'oklch(0.10 0.02 260)',
-                    'foreground' => 'oklch(0.92 0.02 95)',
-                    'card' => 'oklch(0.14 0.02 260)',
-                    'card-foreground' => 'oklch(0.92 0.02 95)',
-                    'popover' => 'oklch(0.16 0.02 260)',
-                    'popover-foreground' => 'oklch(0.92 0.02 95)',
-                    'primary' => 'oklch(0.70 0.30 255)',
-                    'primary-foreground' => 'oklch(0.05 0.02 260)',
-                    'secondary' => 'oklch(0.75 0.25 140)',
-                    'secondary-foreground' => 'oklch(0.05 0.02 260)',
-                    'muted' => 'oklch(0.18 0.02 260)',
-                    'muted-foreground' => 'oklch(0.65 0.02 95)',
-                    'accent' => 'oklch(0.75 0.30 330)',
-                    'accent-foreground' => 'oklch(0.05 0.02 260)',
-                    'destructive' => 'oklch(0.65 0.25 25)',
-                    'destructive-foreground' => 'oklch(0.95 0.02 95)',
-                    'border' => 'oklch(0.22 0.02 260)',
-                    'input' => 'oklch(0.22 0.02 260)',
-                    'ring' => 'oklch(0.70 0.30 255)',
-                    'chart-1' => 'oklch(0.60 0.25 255)',
-                    'chart-2' => 'oklch(0.85 0.18 130)',
-                    'chart-3' => 'oklch(0.70 0.28 330)',
-                    'chart-4' => 'oklch(0.75 0.20 60)',
-                    'chart-5' => 'oklch(0.55 0.22 200)',
-                    'sidebar' => 'oklch(0.12 0.02 260)',
-                    'sidebar-foreground' => 'oklch(0.92 0.02 95)',
-                    'sidebar-primary' => 'oklch(0.70 0.30 255)',
-                    'sidebar-primary-foreground' => 'oklch(0.05 0.02 260)',
-                    'sidebar-accent' => 'oklch(0.75 0.30 330)',
-                    'sidebar-accent-foreground' => 'oklch(0.05 0.02 260)',
-                    'sidebar-border' => 'oklch(0.22 0.02 260)',
-                    'sidebar-ring' => 'oklch(0.70 0.30 255)',
-                    'font-sans' => 'var(--font-sans)',
-                    'font-serif' => 'var(--font-serif)',
-                    'font-mono' => 'var(--font-mono)',
-                    'shadow-sm' => '2px 2px 0px hsl(255 100% 60% / 0.25)',
-                    'shadow' => '3px 3px 0px hsl(140 100% 60% / 0.25)',
-                    'shadow-md' => '4px 4px 0px hsl(330 100% 60% / 0.30)',
-                    'shadow-lg' => '6px 6px 0px hsl(255 100% 60% / 0.35)',
-                    'shadow-xl' => '8px 8px 0px hsl(140 100% 60% / 0.40)',
-                ],
-            ],
-
-            [
-                'name' => 'eco-minimal-theme',
-                'title' => 'Eco Minimal',
-                'description' => 'Eco-conscious minimal theme with natural greens, sustainable vibes, and clean organic simplicity.',
-                'font_family' => '\'Inter\', sans-serif',
-                'css' => [
-                    '@layer base' => [
-                        '*' => [
-                            '@apply' => 'border-border outline-ring/40',
-                        ],
-                        'body' => [
-                            '@apply' => 'bg-background text-foreground',
-                        ],
-                    ],
-                ],
-                'vars_theme' => [
-                    'font-sans' => '\'Inter\', sans-serif',
-                    'font-serif' => '\'Playfair Display\', serif',
-                    'font-mono' => '\'Fira Code\', monospace',
-                    'radius' => '0.75rem',
-                    'tracking-tighter' => 'calc(var(--tracking-normal) - 0.05em)',
-                    'tracking-tight' => 'calc(var(--tracking-normal) - 0.025em)',
-                    'tracking-normal' => '0em',
-                    'tracking-wide' => 'calc(var(--tracking-normal) + 0.025em)',
-                    'tracking-wider' => 'calc(var(--tracking-normal) + 0.05em)',
-                    'tracking-widest' => 'calc(var(--tracking-normal) + 0.1em)',
-                    'shadow-color' => 'oklch(0.20 0.02 120)',
-                    'shadow-opacity' => '0.1',
-                    'shadow-blur' => '12px',
-                    'shadow-spread' => '0px',
-                    'shadow-offset-x' => '0',
-                    'shadow-offset-y' => '4px',
-                    'spacing' => '0.25rem',
-                ],
-                'vars_light' => [
-                    'background' => 'oklch(0.97 0.02 120)',
-                    'foreground' => 'oklch(0.32 0.03 120)',
-                    'card' => 'oklch(0.99 0.01 120)',
-                    'card-foreground' => 'oklch(0.32 0.03 120)',
-                    'popover' => 'oklch(0.99 0.01 120)',
-                    'popover-foreground' => 'oklch(0.32 0.03 120)',
-                    'primary' => 'oklch(0.58 0.10 140)',
-                    'primary-foreground' => 'oklch(0.98 0.01 120)',
-                    'secondary' => 'oklch(0.92 0.02 110)',
-                    'secondary-foreground' => 'oklch(0.38 0.03 120)',
-                    'muted' => 'oklch(0.94 0.02 110)',
-                    'muted-foreground' => 'oklch(0.55 0.02 120)',
-                    'accent' => 'oklch(0.70 0.08 150)',
-                    'accent-foreground' => 'oklch(0.25 0.03 140)',
-                    'destructive' => 'oklch(0.60 0.18 30)',
-                    'destructive-foreground' => 'oklch(0.98 0.01 120)',
-                    'border' => 'oklch(0.88 0.02 110)',
-                    'input' => 'oklch(0.88 0.02 110)',
-                    'ring' => 'oklch(0.58 0.10 140)',
-                    'chart-1' => 'oklch(0.58 0.10 140)',
-                    'chart-2' => 'oklch(0.65 0.08 120)',
-                    'chart-3' => 'oklch(0.72 0.07 160)',
-                    'chart-4' => 'oklch(0.50 0.06 100)',
-                    'chart-5' => 'oklch(0.45 0.05 80)',
-                    'sidebar' => 'oklch(0.96 0.02 120)',
-                    'sidebar-foreground' => 'oklch(0.32 0.03 120)',
-                    'sidebar-primary' => 'oklch(0.58 0.10 140)',
-                    'sidebar-primary-foreground' => 'oklch(0.98 0.01 120)',
-                    'sidebar-accent' => 'oklch(0.70 0.08 150)',
-                    'sidebar-accent-foreground' => 'oklch(0.25 0.03 140)',
-                    'sidebar-border' => 'oklch(0.88 0.02 110)',
-                    'sidebar-ring' => 'oklch(0.58 0.10 140)',
-                    'font-sans' => 'var(--font-sans)',
-                    'font-serif' => 'var(--font-serif)',
-                    'font-mono' => 'var(--font-mono)',
-                    'shadow-sm' => '0 1px 3px hsl(120 20% 20% / 0.05)',
-                    'shadow' => '0 4px 12px hsl(120 20% 20% / 0.08)',
-                    'shadow-md' => '0 8px 20px hsl(120 20% 20% / 0.10)',
-                    'shadow-lg' => '0 12px 30px hsl(120 20% 20% / 0.12)',
-                    'shadow-xl' => '0 20px 50px hsl(120 20% 20% / 0.15)',
-                ],
-                'vars_dark' => [
-                    'background' => 'oklch(0.18 0.02 120)',
-                    'foreground' => 'oklch(0.90 0.02 120)',
-                    'card' => 'oklch(0.22 0.02 120)',
-                    'card-foreground' => 'oklch(0.90 0.02 120)',
-                    'popover' => 'oklch(0.24 0.02 120)',
-                    'popover-foreground' => 'oklch(0.90 0.02 120)',
-                    'primary' => 'oklch(0.65 0.10 140)',
-                    'primary-foreground' => 'oklch(0.15 0.02 120)',
-                    'secondary' => 'oklch(0.26 0.02 120)',
-                    'secondary-foreground' => 'oklch(0.85 0.02 120)',
-                    'muted' => 'oklch(0.24 0.02 120)',
-                    'muted-foreground' => 'oklch(0.70 0.02 120)',
-                    'accent' => 'oklch(0.60 0.08 150)',
-                    'accent-foreground' => 'oklch(0.92 0.02 120)',
-                    'destructive' => 'oklch(0.65 0.18 30)',
-                    'destructive-foreground' => 'oklch(0.95 0.02 120)',
-                    'border' => 'oklch(0.30 0.02 120)',
-                    'input' => 'oklch(0.30 0.02 120)',
-                    'ring' => 'oklch(0.65 0.10 140)',
-                    'chart-1' => 'oklch(0.65 0.10 140)',
-                    'chart-2' => 'oklch(0.60 0.08 150)',
-                    'chart-3' => 'oklch(0.72 0.07 160)',
-                    'chart-4' => 'oklch(0.50 0.06 100)',
-                    'chart-5' => 'oklch(0.45 0.05 80)',
-                    'sidebar' => 'oklch(0.20 0.02 120)',
-                    'sidebar-foreground' => 'oklch(0.90 0.02 120)',
-                    'sidebar-primary' => 'oklch(0.65 0.10 140)',
-                    'sidebar-primary-foreground' => 'oklch(0.15 0.02 120)',
-                    'sidebar-accent' => 'oklch(0.60 0.08 150)',
-                    'sidebar-accent-foreground' => 'oklch(0.92 0.02 120)',
-                    'sidebar-border' => 'oklch(0.30 0.02 120)',
-                    'sidebar-ring' => 'oklch(0.65 0.10 140)',
-                    'font-sans' => 'var(--font-sans)',
-                    'font-serif' => 'var(--font-serif)',
-                    'font-mono' => 'var(--font-mono)',
-                    'shadow-sm' => '0 1px 3px hsl(120 30% 5% / 0.4)',
-                    'shadow' => '0 4px 12px hsl(120 30% 5% / 0.5)',
-                    'shadow-md' => '0 8px 20px hsl(120 30% 5% / 0.6)',
-                    'shadow-lg' => '0 12px 30px hsl(120 30% 5% / 0.7)',
-                    'shadow-xl' => '0 20px 50px hsl(120 30% 5% / 0.8)',
-                ],
-            ],
-
         ];
     }
 }
