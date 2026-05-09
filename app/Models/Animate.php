@@ -18,8 +18,6 @@ class Animate extends Model
 {
     use HasAnimate, SoftDeletes;
 
-    protected $table = 'animations';
-
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
