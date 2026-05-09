@@ -63,7 +63,7 @@ export default function AnimateCss({
                     your components. Simply add the animation class name to any
                     element to animate it.`}
                 />
-               
+
                 <ul className="mb-6 list-disc pl-6 text-muted-foreground">
                     <li>100+ built-in animation types</li>
                     <li>Simple CSS class-based animations</li>

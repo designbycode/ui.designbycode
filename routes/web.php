@@ -13,7 +13,6 @@ Route::get('/animate-css', [AnimateController::class, 'index'])->name('animate-c
 Route::get('/r/theme/{name}.json', [ThemesController::class, 'show']);
 Route::get('/r/theme/{name}.css', [ThemesController::class, 'css']);
 
-
 Route::get('/r/registry.json', [RegistryController::class, 'index']);
 Route::get('/r/{name}.json', [RegistryController::class, 'show']);
 Route::get('/r/{name}.css', [RegistryController::class, 'css']);
@@ -23,12 +22,10 @@ Route::delete('/r/{name}', [RegistryController::class, 'destroy']);
 Route::post('/r/upload', [RegistryController::class, 'upload']);
 Route::post('/r/upload-raw', [RegistryController::class, 'uploadRaw']);
 
-
 Route::get('/r/animate-css/{name}.json', [AnimateController::class, 'show']);
-
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::inertia('dashboard', 'dashboard')->name('dashboard');
 });
 
-require __DIR__ . '/settings.php';
+require __DIR__.'/settings.php';

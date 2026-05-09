@@ -31,6 +31,7 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-bounce',
                 'title' => 'Animate Bounce',
+                'description' => 'Bounces the element up and down vertically with a smooth deceleration, simulating a bouncing ball hitting the ground and rebounding at decreasing intervals.',
                 'type' => 'registry:style',
                 'user_id' => 1,
                 'author' => 'designbycode',
@@ -61,6 +62,7 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-pulse',
                 'title' => 'Animate Pulse',
+                'description' => 'Creates a subtle pulsing effect by gently fading the element between full opacity and partial transparency, giving the appearance of a heartbeat or breathing motion.',
                 'type' => 'registry:style',
                 'user_id' => 1,
                 'author' => 'designbycode',
@@ -88,6 +90,7 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-flash',
                 'title' => 'Animate Flash',
+                'description' => 'Creates a rapid flashing effect by toggling the element between fully visible and completely invisible at quarter intervals, mimicking a camera flash or warning indicator.',
                 'type' => 'registry:style',
                 'user_id' => 1,
                 'author' => 'designbycode',
@@ -115,6 +118,7 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-wobble',
                 'title' => 'Animate Wobble',
+                'description' => 'Wobbles the element back and forth by combining horizontal translation with rotation at progressively decreasing amplitudes, creating an off-balance wobbling motion.',
                 'type' => 'registry:style',
                 'user_id' => 1,
                 'author' => 'designbycode',
@@ -154,6 +158,7 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-rubber-band',
                 'title' => 'Animate Rubber Band',
+                'description' => 'Stretches and compresses the element horizontally using 3D scaling at various intervals, creating the illusion that the element is made of elastic rubber being pulled and released.',
                 'type' => 'registry:style',
                 'user_id' => 1,
                 'author' => 'designbycode',
@@ -196,6 +201,7 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-shake',
                 'title' => 'Animate Shake',
+                'description' => 'Shakes the element vigorously left and right by applying alternating horizontal translations at high frequency, creating a vibration or rattling effect.',
                 'type' => 'registry:style',
                 'user_id' => 1,
                 'author' => 'designbycode',
@@ -226,6 +232,7 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-head-shake',
                 'title' => 'Animate Head Shake',
+                'description' => 'Moves the element side to side with rotation at specific percentage intervals, mimicking the motion of a human head shaking in disagreement, with decreasing intensity toward the end.',
                 'type' => 'registry:style',
                 'user_id' => 1,
                 'author' => 'designbycode',
@@ -265,12 +272,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-swing',
                 'title' => 'Animate Swing',
+                'description' => 'Swings the element back and forth like a pendulum using 3D rotation at increasing intervals, creating a motion similar to a swinging door or hanging sign.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-swing' => 'swing 1s',
                 ],
                 'css_vars' => [
                     '--animate-swing' => 'swing 1s',
@@ -301,12 +311,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-tada',
                 'title' => 'Animate Tada',
+                'description' => 'Creates a celebratory tada effect by scaling the element up and down while applying alternating small rotations, producing an excited announcement animation.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-tada' => 'tada 1s',
                 ],
                 'css_vars' => [
                     '--animate-tada' => 'tada 1s',
@@ -334,12 +347,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-jello',
                 'title' => 'Animate Jello',
+                'description' => 'Distorts the element by stretching and compressing it horizontally at key intervals, creating a wobbly jello-like effect as if the element is gelatinous and vibrating.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-jello' => 'jello 1s',
                 ],
                 'css_vars' => [
                     '--animate-jello' => 'jello 1s',
@@ -376,12 +392,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-heart-beat',
                 'title' => 'Animate Heart Beat',
+                'description' => 'Simulates a heartbeat by scaling the element up at 14% and 42% intervals, then returning to normal size, mimicking the rhythmic contraction of a beating heart.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-heart-beat' => 'heartBeat 1s',
                 ],
                 'css_vars' => [
                     '--animate-heart-beat' => 'heartBeat 1s',
@@ -412,12 +431,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-flip',
                 'title' => 'Animate Flip',
+                'description' => 'Flips the element in 3D space from back to front using perspective and rotation around the Y-axis, creating a card-flipping effect with depth perception.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-flip' => 'flip 1s ease-in-out',
                 ],
                 'css_vars' => [
                     '--animate-flip' => 'flip 1s ease-in-out',
@@ -453,12 +475,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-flip-in-x',
                 'title' => 'Animate Flip In X',
+                'description' => 'Flips the element into view around the X-axis with perspective, starting from a 90-degree rotated position and settling into place with a smooth overshoot, while fading in.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-flip-in-x' => 'flipInX 1s',
                 ],
                 'css_vars' => [
                     '--animate-flip-in-x' => 'flipInX 1s',
@@ -492,12 +517,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-flip-in-y',
                 'title' => 'Animate Flip In Y',
+                'description' => 'Flips the element into view around the Y-axis with perspective, rotating from a 90-degree side position to fully facing forward with a subtle overshoot and fade-in transition.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-flip-in-y' => 'flipInY 1s',
                 ],
                 'css_vars' => [
                     '--animate-flip-in-y' => 'flipInY 1s',
@@ -531,12 +559,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-flip-out-x',
                 'title' => 'Animate Flip Out X',
+                'description' => 'Flips the element out of view around the X-axis with perspective, tilting forward briefly before rotating completely face-down and fading out completely.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-flip-out-x' => 'flipOutX 1s',
                 ],
                 'css_vars' => [
                     '--animate-flip-out-x' => 'flipOutX 1s',
@@ -563,12 +594,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-flip-out-y',
                 'title' => 'Animate Flip Out Y',
+                'description' => 'Flips the element out of view around the Y-axis with perspective, rotating sideways with a brief pause at an angle before spinning completely edge-on and fading away.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-flip-out-y' => 'flipOutY 1s',
                 ],
                 'css_vars' => [
                     '--animate-flip-out-y' => 'flipOutY 1s',
@@ -595,12 +629,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-fade-in',
                 'title' => 'Animate Fade In',
+                'description' => 'Smoothly fades the element in from completely transparent to fully visible over the course of the animation, creating a simple and elegant reveal effect.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-fade-in' => 'fadeIn 1s',
                 ],
                 'css_vars' => [
                     '--animate-fade-in' => 'fadeIn 1s',
@@ -622,12 +659,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-fade-in-down',
                 'title' => 'Animate Fade In Down',
+                'description' => 'Fades the element in while simultaneously sliding it downward from above, combining a transparency transition with vertical movement for a smooth entrance from the top.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-fade-in-down' => 'fadeInDown 1s',
                 ],
                 'css_vars' => [
                     '--animate-fade-in-down' => 'fadeInDown 1s',
@@ -651,12 +691,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-fade-in-down-big',
                 'title' => 'Animate Fade In Down Big',
+                'description' => 'Fades the element in while sliding it downward from a much greater distance above, creating a dramatic entrance effect as if the element is falling from far up into position.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-fade-in-down-big' => 'fadeInDownBig 1s',
                 ],
                 'css_vars' => [
                     '--animate-fade-in-down-big' => 'fadeInDownBig 1s',
@@ -680,12 +723,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-fade-in-left',
                 'title' => 'Animate Fade In Left',
+                'description' => 'Fades the element in while sliding it in from the left side, providing a smooth horizontal entrance that transitions from invisible and offset to fully visible and positioned.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-fade-in-left' => 'fadeInLeft 1s',
                 ],
                 'css_vars' => [
                     '--animate-fade-in-left' => 'fadeInLeft 1s',
@@ -709,12 +755,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-fade-in-left-big',
                 'title' => 'Animate Fade In Left Big',
+                'description' => 'Fades the element in while sliding it from far off the left side of the screen, covering a much greater distance for a more dramatic horizontal reveal effect.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-fade-in-left-big' => 'fadeInLeftBig 1s',
                 ],
                 'css_vars' => [
                     '--animate-fade-in-left-big' => 'fadeInLeftBig 1s',
@@ -738,12 +787,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-fade-in-right',
                 'title' => 'Animate Fade In Right',
+                'description' => 'Fades the element in while sliding it in from the right side, creating a smooth horizontal entrance that feels natural for content entering from the edge of the viewport.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-fade-in-right' => 'fadeInRight 1s',
                 ],
                 'css_vars' => [
                     '--animate-fade-in-right' => 'fadeInRight 1s',
@@ -767,12 +819,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-fade-in-right-big',
                 'title' => 'Animate Fade In Right Big',
+                'description' => 'Fades the element in while sliding it from far off the right side of the screen, covering an extended distance for a more pronounced and impactful horizontal reveal.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-fade-in-right-big' => 'fadeInRightBig 1s',
                 ],
                 'css_vars' => [
                     '--animate-fade-in-right-big' => 'fadeInRightBig 1s',
@@ -796,12 +851,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-fade-in-up',
                 'title' => 'Animate Fade In Up',
+                'description' => 'Fades the element in while sliding it upward from below, creating a natural rise effect as if the element is lifting up into view from beneath the content.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-fade-in-up' => 'fadeInUp 1s',
                 ],
                 'css_vars' => [
                     '--animate-fade-in-up' => 'fadeInUp 1s',
@@ -825,12 +883,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-fade-in-up-big',
                 'title' => 'Animate Fade In Up Big',
+                'description' => 'Fades the element in while sliding it upward from far below the viewport, covering a much larger vertical distance for a grand entrance from underneath.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-fade-in-up-big' => 'fadeInUpBig 1s',
                 ],
                 'css_vars' => [
                     '--animate-fade-in-up-big' => 'fadeInUpBig 1s',
@@ -854,12 +915,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-fade-out',
                 'title' => 'Animate Fade Out',
+                'description' => 'Smoothly fades the element out from fully visible to completely transparent, creating a simple and clean disappearance effect.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-fade-out' => 'fadeOut 1s',
                 ],
                 'css_vars' => [
                     '--animate-fade-out' => 'fadeOut 1s',
@@ -881,12 +945,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-fade-out-down',
                 'title' => 'Animate Fade Out Down',
+                'description' => 'Fades the element out while simultaneously sliding it downward, combining a transparency transition with vertical movement for a smooth exit toward the bottom.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-fade-out-down' => 'fadeOutDown 1s',
                 ],
                 'css_vars' => [
                     '--animate-fade-out-down' => 'fadeOutDown 1s',
@@ -909,12 +976,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-fade-out-down-big',
                 'title' => 'Animate Fade Out Down Big',
+                'description' => 'Fades the element out while sliding it far downward, covering a much larger vertical distance for a dramatic exit that drops the element out of sight.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-fade-out-down-big' => 'fadeOutDownBig 1s',
                 ],
                 'css_vars' => [
                     '--animate-fade-out-down-big' => 'fadeOutDownBig 1s',
@@ -937,12 +1007,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-fade-out-left',
                 'title' => 'Animate Fade Out Left',
+                'description' => 'Fades the element out while sliding it to the left, creating a smooth horizontal exit as if the element is being swept away to the side.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-fade-out-left' => 'fadeOutLeft 1s',
                 ],
                 'css_vars' => [
                     '--animate-fade-out-left' => 'fadeOutLeft 1s',
@@ -965,12 +1038,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-fade-out-left-big',
                 'title' => 'Animate Fade Out Left Big',
+                'description' => 'Fades the element out while sliding it far to the left, covering an extended horizontal distance for a more dramatic exit off the side of the screen.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-fade-out-left-big' => 'fadeOutLeftBig 1s',
                 ],
                 'css_vars' => [
                     '--animate-fade-out-left-big' => 'fadeOutLeftBig 1s',
@@ -993,12 +1069,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-fade-out-right',
                 'title' => 'Animate Fade Out Right',
+                'description' => 'Fades the element out while sliding it to the right, creating a smooth horizontal exit as if the element is being carried away to the side.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-fade-out-right' => 'fadeOutRight 1s',
                 ],
                 'css_vars' => [
                     '--animate-fade-out-right' => 'fadeOutRight 1s',
@@ -1021,12 +1100,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-fade-out-right-big',
                 'title' => 'Animate Fade Out Right Big',
+                'description' => 'Fades the element out while sliding it far to the right, covering an extended horizontal distance for a dramatic exit that sends the element off the screen edge.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-fade-out-right-big' => 'fadeOutRightBig 1s',
                 ],
                 'css_vars' => [
                     '--animate-fade-out-right-big' => 'fadeOutRightBig 1s',
@@ -1049,12 +1131,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-fade-out-up',
                 'title' => 'Animate Fade Out Up',
+                'description' => 'Fades the element out while sliding it upward, combining a transparency transition with upward vertical movement for a smooth exit toward the top.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-fade-out-up' => 'fadeOutUp 1s',
                 ],
                 'css_vars' => [
                     '--animate-fade-out-up' => 'fadeOutUp 1s',
@@ -1077,12 +1162,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-fade-out-up-big',
                 'title' => 'Animate Fade Out Up Big',
+                'description' => 'Fades the element out while sliding it far upward, covering a much larger vertical distance for a dramatic exit that launches the element out of view toward the top.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-fade-out-up-big' => 'fadeOutUpBig 1s',
                 ],
                 'css_vars' => [
                     '--animate-fade-out-up-big' => 'fadeOutUpBig 1s',
@@ -1105,12 +1193,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-slide-in-down',
                 'title' => 'Animate Slide In Down',
+                'description' => 'Slides the element into view from above the viewport, smoothly transitioning it downward into its final position without any fade effect for a crisp entrance.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-slide-in-down' => 'slideInDown 1s',
                 ],
                 'css_vars' => [
                     '--animate-slide-in-down' => 'slideInDown 1s',
@@ -1133,12 +1224,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-slide-in-left',
                 'title' => 'Animate Slide In Left',
+                'description' => 'Slides the element into view from the left side of the viewport, smoothly transitioning it horizontally to its final resting position with visibility maintained throughout.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-slide-in-left' => 'slideInLeft 1s',
                 ],
                 'css_vars' => [
                     '--animate-slide-in-left' => 'slideInLeft 1s',
@@ -1161,12 +1255,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-slide-in-right',
                 'title' => 'Animate Slide In Right',
+                'description' => 'Slides the element into view from the right side of the viewport, smoothly moving it horizontally to its final position for a clean side-entrance animation.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-slide-in-right' => 'slideInRight 1s',
                 ],
                 'css_vars' => [
                     '--animate-slide-in-right' => 'slideInRight 1s',
@@ -1189,12 +1286,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-slide-in-up',
                 'title' => 'Animate Slide In Up',
+                'description' => 'Slides the element into view from below the viewport, smoothly moving it upward into its final position for a clean bottom-entrance animation.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-slide-in-up' => 'slideInUp 1s',
                 ],
                 'css_vars' => [
                     '--animate-slide-in-up' => 'slideInUp 1s',
@@ -1217,12 +1317,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-slide-out-down',
                 'title' => 'Animate Slide Out Down',
+                'description' => 'Slides the element out of view downward, moving it from its current position to below the viewport and becoming hidden at the end of the animation.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-slide-out-down' => 'slideOutDown 1s',
                 ],
                 'css_vars' => [
                     '--animate-slide-out-down' => 'slideOutDown 1s',
@@ -1245,12 +1348,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-slide-out-left',
                 'title' => 'Animate Slide Out Left',
+                'description' => 'Slides the element out of view to the left, moving it horizontally from its current position off the left side of the viewport and becoming hidden.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-slide-out-left' => 'slideOutLeft 1s',
                 ],
                 'css_vars' => [
                     '--animate-slide-out-left' => 'slideOutLeft 1s',
@@ -1273,12 +1379,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-slide-out-right',
                 'title' => 'Animate Slide Out Right',
+                'description' => 'Slides the element out of view to the right, moving it horizontally from its current position off the right side of the viewport and becoming hidden.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-slide-out-right' => 'slideOutRight 1s',
                 ],
                 'css_vars' => [
                     '--animate-slide-out-right' => 'slideOutRight 1s',
@@ -1301,12 +1410,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-slide-out-up',
                 'title' => 'Animate Slide Out Up',
+                'description' => 'Slides the element out of view upward, moving it from its current position above the viewport and becoming hidden at the end of the animation.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-slide-out-up' => 'slideOutUp 1s',
                 ],
                 'css_vars' => [
                     '--animate-slide-out-up' => 'slideOutUp 1s',
@@ -1329,12 +1441,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-zoom-in',
                 'title' => 'Animate Zoom In',
+                'description' => 'Zooms the element in from a smaller scale of 0.3 to full size while simultaneously fading in, creating a focused reveal effect as if the element is growing into view.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-zoom-in' => 'zoomIn 1s',
                 ],
                 'css_vars' => [
                     '--animate-zoom-in' => 'zoomIn 1s',
@@ -1357,12 +1472,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-zoom-in-down',
                 'title' => 'Animate Zoom In Down',
+                'description' => 'Zooms the element in from a tiny scale far above the viewport, transitioning through a mid-point near its final position with a custom cubic-bezier easing for a smooth landing.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-zoom-in-down' => 'zoomInDown 1s',
                 ],
                 'css_vars' => [
                     '--animate-zoom-in-down' => 'zoomInDown 1s',
@@ -1388,12 +1506,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-zoom-in-left',
                 'title' => 'Animate Zoom In Left',
+                'description' => 'Zooms the element in from a tiny scale far to the left of the viewport, transitioning through a mid-point near its final horizontal position with custom easing for a smooth arrival.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-zoom-in-left' => 'zoomInLeft 1s',
                 ],
                 'css_vars' => [
                     '--animate-zoom-in-left' => 'zoomInLeft 1s',
@@ -1419,12 +1540,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-zoom-in-right',
                 'title' => 'Animate Zoom In Right',
+                'description' => 'Zooms the element in from a tiny scale far to the right of the viewport, transitioning through a mid-point near its final horizontal position with custom easing for a smooth arrival.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-zoom-in-right' => 'zoomInRight 1s',
                 ],
                 'css_vars' => [
                     '--animate-zoom-in-right' => 'zoomInRight 1s',
@@ -1450,12 +1574,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-zoom-in-up',
                 'title' => 'Animate Zoom In Up',
+                'description' => 'Zooms the element in from a tiny scale far below the viewport, transitioning through a mid-point below its final position with custom cubic-bezier easing for a smooth rise.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-zoom-in-up' => 'zoomInUp 1s',
                 ],
                 'css_vars' => [
                     '--animate-zoom-in-up' => 'zoomInUp 1s',
@@ -1481,12 +1608,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-zoom-out',
                 'title' => 'Animate Zoom Out',
+                'description' => 'Zooms the element out by scaling it down to 0.3 while fading it out at the midpoint, creating a shrinking disappearance effect as if the element is receding into the distance.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-zoom-out' => 'zoomOut 1s',
                 ],
                 'css_vars' => [
                     '--animate-zoom-out' => 'zoomOut 1s',
@@ -1512,12 +1642,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-zoom-out-down',
                 'title' => 'Animate Zoom Out Down',
+                'description' => 'Zooms the element out while moving it downward, shrinking to a tiny scale far below the viewport with its transform origin at the bottom center for a grounded exit.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-zoom-out-down' => 'zoomOutDown 1s',
                 ],
                 'css_vars' => [
                     '--animate-zoom-out-down' => 'zoomOutDown 1s',
@@ -1543,12 +1676,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-zoom-out-left',
                 'title' => 'Animate Zoom Out Left',
+                'description' => 'Zooms the element out while moving it to the left, shrinking down to a tiny scale far off the left side with its transform origin at the left center for a directional exit.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-zoom-out-left' => 'zoomOutLeft 1s',
                 ],
                 'css_vars' => [
                     '--animate-zoom-out-left' => 'zoomOutLeft 1s',
@@ -1573,12 +1709,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-zoom-out-right',
                 'title' => 'Animate Zoom Out Right',
+                'description' => 'Zooms the element out while moving it to the right, shrinking down to a tiny scale far off the right side with its transform origin at the right center for a directional exit.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-zoom-out-right' => 'zoomOutRight 1s',
                 ],
                 'css_vars' => [
                     '--animate-zoom-out-right' => 'zoomOutRight 1s',
@@ -1603,12 +1742,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-zoom-out-up',
                 'title' => 'Animate Zoom Out Up',
+                'description' => 'Zooms the element out while moving it upward, shrinking to a tiny scale far above the viewport with its transform origin at the bottom center for a grounded directional exit.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-zoom-out-up' => 'zoomOutUp 1s',
                 ],
                 'css_vars' => [
                     '--animate-zoom-out-up' => 'zoomOutUp 1s',
@@ -1634,12 +1776,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-rotate-in',
                 'title' => 'Animate Rotate In',
+                'description' => 'Rotates the element into view from a -200 degree angle while fading in, creating a spinning entrance effect as if the element is unscrewing into its upright position.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-rotate-in' => 'rotateIn 1s',
                 ],
                 'css_vars' => [
                     '--animate-rotate-in' => 'rotateIn 1s',
@@ -1663,12 +1808,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-rotate-out',
                 'title' => 'Animate Rotate Out',
+                'description' => 'Rotates the element out of view to 200 degrees while fading out, creating a spinning exit effect as if the element is screwing away into disappearance.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-rotate-out' => 'rotateOut 1s',
                 ],
                 'css_vars' => [
                     '--animate-rotate-out' => 'rotateOut 1s',
@@ -1692,12 +1840,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-roll-in',
                 'title' => 'Animate Roll In',
+                'description' => 'Rolls the element in from the left by combining horizontal translation with a -120 degree rotation, creating the effect of a rolling object entering the viewport.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-roll-in' => 'rollIn 1s',
                 ],
                 'css_vars' => [
                     '--animate-roll-in' => 'rollIn 1s',
@@ -1721,12 +1872,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-roll-out',
                 'title' => 'Animate Roll Out',
+                'description' => 'Rolls the element out to the right by combining horizontal translation with a 120 degree rotation, creating the effect of a rolling object exiting the viewport to the side.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-roll-out' => 'rollOut 1s',
                 ],
                 'css_vars' => [
                     '--animate-roll-out' => 'rollOut 1s',
@@ -1750,12 +1904,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-light-speed-in',
                 'title' => 'Animate Light Speed In',
+                'description' => 'Slides the element in from the right with a skew transformation and fade-in at 60%, creating a fast, sleek entrance effect reminiscent of objects moving at light speed with a trailing skew.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-light-speed-in' => 'lightSpeedInRight 1s ease-out',
                 ],
                 'css_vars' => [
                     '--animate-light-speed-in' => 'lightSpeedInRight 1s ease-out',
@@ -1787,12 +1944,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-light-speed-out',
                 'title' => 'Animate Light Speed Out',
+                'description' => 'Slides the element out to the left with a skew transformation and fade-out, creating a fast exit effect as if the element is zooming away at light speed with a trailing distortion.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-light-speed-out' => 'lightSpeedOutLeft 1s ease-in',
                 ],
                 'css_vars' => [
                     '--animate-light-speed-out' => 'lightSpeedOutLeft 1s ease-in',
@@ -1815,12 +1975,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-jack-in-box',
                 'title' => 'Animate Jack In Box',
+                'description' => 'Pops the element in with a spring-like effect that combines scaling from 0.1 to 1.05 with a 10 degree rotation at 50%, then settles into place, mimicking a jack-in-the-box toy springing open.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-jack-in-box' => 'jackInTheBox 1s',
                 ],
                 'css_vars' => [
                     '--animate-jack-in-box' => 'jackInTheBox 1s',
@@ -1850,12 +2013,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-hinge',
                 'title' => 'Animate Hinge',
+                'description' => 'Swings the element from its top-left origin like a door on a hinge, with increasing rotation angles at 20%, 40%, 60%, and 80% before finally dropping to 90 degrees and fading out at the end.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-hinge' => 'hinge 2s',
                 ],
                 'css_vars' => [
                     '--animate-hinge' => 'hinge 2s',
@@ -1891,12 +2057,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-bounce-in',
                 'title' => 'Animate Bounce In',
+                'description' => 'Bounces the element in by scaling it from 0.3 up through an overshoot of 1.1, then settling back to 1.0 with a brief undershoot at 0.97, creating a lively elastic entrance.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-bounce-in' => 'bounceIn 0.75s',
                 ],
                 'css_vars' => [
                     '--animate-bounce-in' => 'bounceIn 0.75s',
@@ -1933,12 +2102,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-bounce-in-down',
                 'title' => 'Animate Bounce In Down',
+                'description' => 'Bounces the element in from far above by dropping it down from -3000px with a scaleY stretch, then bouncing it back up and settling with diminishing bounces at 75% and 90%.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-bounce-in-down' => 'bounceInDown 1s',
                 ],
                 'css_vars' => [
                     '--animate-bounce-in-down' => 'bounceInDown 1s',
@@ -1971,12 +2143,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-bounce-in-left',
                 'title' => 'Animate Bounce In Left',
+                'description' => 'Bounces the element in from the left by sliding it from -3000px with a scaleX stretch, then bouncing it back and forth with diminishing overshoots until it settles in place.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-bounce-in-left' => 'bounceInLeft 1s',
                 ],
                 'css_vars' => [
                     '--animate-bounce-in-left' => 'bounceInLeft 1s',
@@ -2009,12 +2184,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-bounce-in-right',
                 'title' => 'Animate Bounce In Right',
+                'description' => 'Bounces the element in from the right by sliding it from 3000px with a scaleX stretch, then bouncing it back and forth with diminishing overshoots until it settles in place.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-bounce-in-right' => 'bounceInRight 1s',
                 ],
                 'css_vars' => [
                     '--animate-bounce-in-right' => 'bounceInRight 1s',
@@ -2047,12 +2225,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-bounce-in-up',
                 'title' => 'Animate Bounce In Up',
+                'description' => 'Bounces the element in from below by launching it up from 3000px with a scaleY stretch, then bouncing it downward and settling with diminishing overshoots at 75% and 90%.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-bounce-in-up' => 'bounceInUp 1s',
                 ],
                 'css_vars' => [
                     '--animate-bounce-in-up' => 'bounceInUp 1s',
@@ -2085,12 +2266,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-bounce-out',
                 'title' => 'Animate Bounce Out',
+                'description' => 'Bounces the element out by scaling it up to 1.1 at midpoint while maintaining opacity, then shrinking it down to 0.3 and fading out completely for a bouncing disappearance.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-bounce-out' => 'bounceOut 0.75s',
                 ],
                 'css_vars' => [
                     '--animate-bounce-out' => 'bounceOut 0.75s',
@@ -2117,12 +2301,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-bounce-out-down',
                 'title' => 'Animate Bounce Out Down',
+                'description' => 'Bounces the element out downward by first moving it up with a scaleY stretch at 40%, then dropping it far down to 2000px with an exaggerated scaleY stretch before fading out.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-bounce-out-down' => 'bounceOutDown 1s',
                 ],
                 'css_vars' => [
                     '--animate-bounce-out-down' => 'bounceOutDown 1s',
@@ -2149,12 +2336,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-bounce-out-left',
                 'title' => 'Animate Bounce Out Left',
+                'description' => 'Bounces the element out to the left by briefly moving it right with a scaleX stretch at 20%, then launching it far left to -2000px with an exaggerated scale before fading out.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-bounce-out-left' => 'bounceOutLeft 1s',
                 ],
                 'css_vars' => [
                     '--animate-bounce-out-left' => 'bounceOutLeft 1s',
@@ -2178,12 +2368,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-bounce-out-right',
                 'title' => 'Animate Bounce Out Right',
+                'description' => 'Bounces the element out to the right by briefly moving it left with a scaleX stretch at 20%, then launching it far right to 2000px with an exaggerated scale before fading out.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-bounce-out-right' => 'bounceOutRight 1s',
                 ],
                 'css_vars' => [
                     '--animate-bounce-out-right' => 'bounceOutRight 1s',
@@ -2207,12 +2400,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-bounce-out-up',
                 'title' => 'Animate Bounce Out Up',
+                'description' => 'Bounces the element out upward by briefly moving it down with a scaleY stretch at 20%, then launching it far up to -2000px with an exaggerated scale before fading out.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-bounce-out-up' => 'bounceOutUp 1s',
                 ],
                 'css_vars' => [
                     '--animate-bounce-out-up' => 'bounceOutUp 1s',
@@ -2239,12 +2435,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-back-in-down',
                 'title' => 'Animate Back In Down',
+                'description' => 'Slides the element in from far above at -1200px with a reduced scale of 0.7 and partial opacity, then at 80% it reaches its vertical position still scaled down before snapping to full size at the end.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-back-in-down' => 'backInDown 1s',
                 ],
                 'css_vars' => [
                     '--animate-back-in-down' => 'backInDown 1s',
@@ -2272,12 +2471,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-back-in-left',
                 'title' => 'Animate Back In Left',
+                'description' => 'Slides the element in from far left at -2000px with a reduced scale of 0.7 and partial opacity, then at 80% it reaches its horizontal position still scaled down before snapping to full size at the end.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-back-in-left' => 'backInLeft 1s',
                 ],
                 'css_vars' => [
                     '--animate-back-in-left' => 'backInLeft 1s',
@@ -2305,12 +2507,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-back-in-right',
                 'title' => 'Animate Back In Right',
+                'description' => 'Slides the element in from far right at 2000px with a reduced scale of 0.7 and partial opacity, then at 80% it reaches its horizontal position still scaled down before snapping to full size at the end.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-back-in-right' => 'backInRight 1s',
                 ],
                 'css_vars' => [
                     '--animate-back-in-right' => 'backInRight 1s',
@@ -2338,12 +2543,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-back-in-up',
                 'title' => 'Animate Back In Up',
+                'description' => 'Slides the element in from far below at 1200px with a reduced scale of 0.7 and partial opacity, then at 80% it reaches its vertical position still scaled down before snapping to full size at the end.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-back-in-up' => 'backInUp 1s',
                 ],
                 'css_vars' => [
                     '--animate-back-in-up' => 'backInUp 1s',
@@ -2371,12 +2579,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-back-out-down',
                 'title' => 'Animate Back Out Down',
+                'description' => 'Exits the element by scaling it down to 0.7 at 20% with partial opacity while remaining in position, then sliding it far downward to 700px and fading it out for a receding drop exit.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-back-out-down' => 'backOutDown 1s',
                 ],
                 'css_vars' => [
                     '--animate-back-out-down' => 'backOutDown 1s',
@@ -2404,12 +2615,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-back-out-left',
                 'title' => 'Animate Back Out Left',
+                'description' => 'Exits the element by scaling it down to 0.7 at 20% with partial opacity while remaining in position, then sliding it far left to -2000px and fading it out for a receding side exit.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-back-out-left' => 'backOutLeft 1s',
                 ],
                 'css_vars' => [
                     '--animate-back-out-left' => 'backOutLeft 1s',
@@ -2437,12 +2651,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-back-out-right',
                 'title' => 'Animate Back Out Right',
+                'description' => 'Exits the element by scaling it down to 0.7 at 20% with partial opacity while remaining in position, then sliding it far right to 2000px and fading it out for a receding side exit.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-back-out-right' => 'backOutRight 1s',
                 ],
                 'css_vars' => [
                     '--animate-back-out-right' => 'backOutRight 1s',
@@ -2470,12 +2687,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-back-out-up',
                 'title' => 'Animate Back Out Up',
+                'description' => 'Exits the element by scaling it down to 0.7 at 20% with partial opacity while remaining in position, then sliding it far upward to -700px and fading it out for a receding upward exit.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-back-out-up' => 'backOutUp 1s',
                 ],
                 'css_vars' => [
                     '--animate-back-out-up' => 'backOutUp 1s',
@@ -2503,12 +2723,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-rotate-in-down-left',
                 'title' => 'Animate Rotate In Down Left',
+                'description' => 'Rotates the element into view from the bottom-left corner, starting at a -45 degree angle anchored at the left bottom origin and fading in as it swings upright to its final position.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-rotate-in-down-left' => 'rotateInDownLeft 1s',
                 ],
                 'css_vars' => [
                     '--animate-rotate-in-down-left' => 'rotateInDownLeft 1s',
@@ -2534,12 +2757,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-rotate-in-down-right',
                 'title' => 'Animate Rotate In Down Right',
+                'description' => 'Rotates the element into view from the bottom-right corner, starting at a 45 degree angle anchored at the right bottom origin and fading in as it swings upright to its final position.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-rotate-in-down-right' => 'rotateInDownRight 1s',
                 ],
                 'css_vars' => [
                     '--animate-rotate-in-down-right' => 'rotateInDownRight 1s',
@@ -2565,12 +2791,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-rotate-in-up-left',
                 'title' => 'Animate Rotate In Up Left',
+                'description' => 'Rotates the element into view from the top-left corner, starting at a 45 degree angle anchored at the left bottom origin and fading in as it swings upright to its final position.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-rotate-in-up-left' => 'rotateInUpLeft 1s',
                 ],
                 'css_vars' => [
                     '--animate-rotate-in-up-left' => 'rotateInUpLeft 1s',
@@ -2596,12 +2825,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-rotate-in-up-right',
                 'title' => 'Animate Rotate In Up Right',
+                'description' => 'Rotates the element into view from the top-right corner, starting at a -90 degree angle anchored at the right bottom origin and fading in as it swings upright to its final position.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-rotate-in-up-right' => 'rotateInUpRight 1s',
                 ],
                 'css_vars' => [
                     '--animate-rotate-in-up-right' => 'rotateInUpRight 1s',
@@ -2627,12 +2859,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-rotate-out-down-left',
                 'title' => 'Animate Rotate Out Down Left',
+                'description' => 'Rotates the element out of view toward the bottom-left corner, swinging from its upright position down to a 45 degree angle at the left bottom origin while fading out.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-rotate-out-down-left' => 'rotateOutDownLeft 1s',
                 ],
                 'css_vars' => [
                     '--animate-rotate-out-down-left' => 'rotateOutDownLeft 1s',
@@ -2657,12 +2892,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-rotate-out-down-right',
                 'title' => 'Animate Rotate Out Down Right',
+                'description' => 'Rotates the element out of view toward the bottom-right corner, swinging from its upright position down to a -45 degree angle at the right bottom origin while fading out.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-rotate-out-down-right' => 'rotateOutDownRight 1s',
                 ],
                 'css_vars' => [
                     '--animate-rotate-out-down-right' => 'rotateOutDownRight 1s',
@@ -2687,12 +2925,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-rotate-out-up-left',
                 'title' => 'Animate Rotate Out Up Left',
+                'description' => 'Rotates the element out of view toward the top-left corner, swinging from its upright position up to a -45 degree angle at the left bottom origin while fading out.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-rotate-out-up-left' => 'rotateOutUpLeft 1s',
                 ],
                 'css_vars' => [
                     '--animate-rotate-out-up-left' => 'rotateOutUpLeft 1s',
@@ -2717,12 +2958,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-rotate-out-up-right',
                 'title' => 'Animate Rotate Out Up Right',
+                'description' => 'Rotates the element out of view toward the top-right corner, swinging from its upright position up to a 90 degree angle at the right bottom origin while fading out.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-rotate-out-up-right' => 'rotateOutUpRight 1s',
                 ],
                 'css_vars' => [
                     '--animate-rotate-out-up-right' => 'rotateOutUpRight 1s',
@@ -2747,12 +2991,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-float',
                 'title' => 'Animate Float',
+                'description' => 'Makes the element gently float up and down in a continuous loop, rising 20 pixels at the midpoint and returning to its original position, simulating the effect of a balloon or object suspended in water.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-float' => 'float 3s ease-in-out infinite',
                 ],
                 'css_vars' => [
                     '--animate-float' => 'float 3s ease-in-out infinite',
@@ -2774,12 +3021,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-spin',
                 'title' => 'Animate Spin',
+                'description' => 'Continuously rotates the element 360 degrees in a smooth linear loop, creating a classic spinning effect commonly used for loading indicators or rotating decorative elements.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-spin' => 'spin 1s linear infinite',
                 ],
                 'css_vars' => [
                     '--animate-spin' => 'spin 1s linear infinite',
@@ -2801,12 +3051,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-wiggle',
                 'title' => 'Animate Wiggle',
+                'description' => 'Wiggles the element back and forth by alternating between -3 and 3 degrees of rotation in a continuous loop, creating a playful side-to-side motion like a wiggling tail or dancing object.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-wiggle' => 'wiggle 0.8s ease-in-out infinite',
                 ],
                 'css_vars' => [
                     '--animate-wiggle' => 'wiggle 0.8s ease-in-out infinite',
@@ -2828,12 +3081,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-ping',
                 'title' => 'Animate Ping',
+                'description' => 'Creates a radar ping or ripple effect by scaling the element up to double its size at the 75% mark while simultaneously fading it out to invisible, perfect for notification badges or sonar effects.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-ping' => 'ping 1s cubic-bezier(0, 0, 0.2, 1) infinite',
                 ],
                 'css_vars' => [
                     '--animate-ping' => 'ping 1s cubic-bezier(0, 0, 0.2, 1) infinite',
@@ -2853,12 +3109,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-blur-in',
                 'title' => 'Animate Blur In',
+                'description' => 'Reveals the element by transitioning from a heavily blurred state at 12px blur with zero opacity to perfectly sharp and fully visible, creating a lens-focusing effect for a stylish entrance.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-blur-in' => 'blurIn 0.6s ease-out',
                 ],
                 'css_vars' => [
                     '--animate-blur-in' => 'blurIn 0.6s ease-out',
@@ -2882,12 +3141,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-blur-out',
                 'title' => 'Animate Blur Out',
+                'description' => 'Conceals the element by transitioning from perfectly sharp to a heavily blurred state at 12px blur while fading out, creating a lens-defocusing effect for a stylish disappearance.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-blur-out' => 'blurOut 0.6s ease-in',
                 ],
                 'css_vars' => [
                     '--animate-blur-out' => 'blurOut 0.6s ease-in',
@@ -2911,12 +3173,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-glitch',
                 'title' => 'Animate Glitch',
+                'description' => 'Creates a digital glitch effect by randomly displacing the element in various directions at stepped intervals, simulating a corrupted video signal or cyberpunk-style distortion with sharp unpredictable movements.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-glitch' => 'glitch 0.6s steps(1) infinite',
                 ],
                 'css_vars' => [
                     '--animate-glitch' => 'glitch 0.6s steps(1) infinite',
@@ -2947,12 +3212,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-pop',
                 'title' => 'Animate Pop',
+                'description' => 'Pops the element into view with a spring-like overshoot effect, starting at 0.8 scale invisible, overshooting to 1.1 at 70%, and settling back to full size with a satisfying cubic-bezier easing.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-pop' => 'pop 0.4s cubic-bezier(0.26, 0.53, 0.74, 1.48)',
                 ],
                 'css_vars' => [
                     '--animate-pop' => 'pop 0.4s cubic-bezier(0.26, 0.53, 0.74, 1.48)',
@@ -2979,12 +3247,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-compress',
                 'title' => 'Animate Compress',
+                'description' => 'Compresses the element vertically by squashing it down to half its height at the midpoint before returning to its full size, simulating a spring being squeezed and released.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-compress' => 'compress 0.5s ease-in-out',
                 ],
                 'css_vars' => [
                     '--animate-compress' => 'compress 0.5s ease-in-out',
@@ -3006,12 +3277,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-expand',
                 'title' => 'Animate Expand',
+                'description' => 'Expands the element from zero size to full scale with a spring-like cubic-bezier easing, simultaneously fading in from invisible for a dramatic growing reveal effect.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-expand' => 'expand 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
                 ],
                 'css_vars' => [
                     '--animate-expand' => 'expand 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
@@ -3035,12 +3309,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-drop',
                 'title' => 'Animate Drop',
+                'description' => 'Drops the element in from above by starting at -200px with zero opacity, then bouncing up 15px at 60% and settling back down with a subtle overshoot at 80%, mimicking an object falling and bouncing.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-drop' => 'drop 0.6s ease-out',
                 ],
                 'css_vars' => [
                     '--animate-drop' => 'drop 0.6s ease-out',
@@ -3070,12 +3347,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-sway',
                 'title' => 'Animate Sway',
+                'description' => 'Sways the element gently back and forth like a pendulum or hanging mobile, alternating between -5 and 5 degrees from its top center origin in a continuous infinite loop.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-sway' => 'sway 2s ease-in-out infinite',
                 ],
                 'css_vars' => [
                     '--animate-sway' => 'sway 2s ease-in-out infinite',
@@ -3099,12 +3379,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-ken-burns',
                 'title' => 'Animate Ken Burns',
+                'description' => 'Applies a cinematic Ken Burns effect by slowly zooming the element to 1.15x scale while panning it slightly up and to the left over 8 seconds, creating a gentle camera movement commonly used in documentary footage.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-ken-burns' => 'kenBurns 8s ease-in-out infinite alternate',
                 ],
                 'css_vars' => [
                     '--animate-ken-burns' => 'kenBurns 8s ease-in-out infinite alternate',
@@ -3126,12 +3409,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-tilt',
                 'title' => 'Animate Tilt',
+                'description' => 'Tilts the element in 3D perspective space by rotating it up to 15 degrees around the Y-axis and back, creating a subtle 3D depth effect as if the element is leaning toward the viewer.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-tilt' => 'tilt 1.5s ease-in-out infinite alternate',
                 ],
                 'css_vars' => [
                     '--animate-tilt' => 'tilt 1.5s ease-in-out infinite alternate',
@@ -3153,12 +3439,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-ring',
                 'title' => 'Animate Ring',
+                'description' => 'Rings the element like a notification bell by applying alternating rotations of 15 and -15 degrees at increasing intervals, creating a classic ringing motion that gradually diminishes in intensity.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-ring' => 'ring 0.5s ease-in-out',
                 ],
                 'css_vars' => [
                     '--animate-ring' => 'ring 0.5s ease-in-out',
@@ -3189,12 +3478,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-alarm',
                 'title' => 'Animate Alarm',
+                'description' => 'Creates an urgent alarm effect by aggressively shaking the element with alternating rotations of up to 25 degrees combined with subtle scaling, simulating a ringing alarm bell demanding attention.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-alarm' => 'alarm 0.8s ease-in-out',
                 ],
                 'css_vars' => [
                     '--animate-alarm' => 'alarm 0.8s ease-in-out',
@@ -3225,12 +3517,15 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-bell',
                 'title' => 'Animate Bell',
+                'description' => 'Rings the element like a bell with a single strike, starting with a 15 degree swing that progressively diminishes through smaller oscillations at 20%, 30%, and 40%, before settling back to rest.',
                 'type' => 'registry:style',
-                'user_id' => 1,
-                'author' => 'designbycode',
+
                 'meta' => [
                     'category' => 'animations',
                     'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-bell' => 'bell 1s ease-in-out',
                 ],
                 'css_vars' => [
                     '--animate-bell' => 'bell 1s ease-in-out',
@@ -3267,6 +3562,7 @@ class AnimateSeeder extends Seeder
             [
                 'name' => 'animate-all',
                 'title' => 'Animate All',
+                'description' => 'Meta-animation that bundles all available animation effects as registry dependencies without adding any CSS itself, allowing consumers to load the complete animation library through a single dependency reference.',
                 'type' => 'registry:style',
                 'user_id' => 1,
                 'author' => 'designbycode',
@@ -3377,10 +3673,11 @@ class AnimateSeeder extends Seeder
                     'https://ui.designbycode.co.za/r/animate-css/animate-sway.json',
                     'https://ui.designbycode.co.za/r/animate-css/animate-ken-burns.json',
                     'https://ui.designbycode.co.za/r/animate-css/animate-tilt.json',
+                    'https://ui.designbycode.co.za/r/animate-css/animate-ring.json',
+                    'https://ui.designbycode.co.za/r/animate-css/animate-alarm.json',
+                    'https://ui.designbycode.co.za/r/animate-css/animate-bell.json',
                 ],
             ],
         ];
     }
-
-
 }
