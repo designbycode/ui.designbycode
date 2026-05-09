@@ -2,10 +2,9 @@
 
 import { Copy, Terminal } from 'lucide-react';
 import { toast } from 'sonner';
-
-import { Button } from '@/components/ui/button';
 import { useCopyToClipboard, usePrismHighlight } from '@/hooks/use-prism';
 import { cn } from '@/lib/utils';
+import { ButtonParticles } from '@/registry/new-york/components/ui/buttons/button-particles';
 import { AnimatedTabs } from '@/registry/new-york/components/ui/tabs/animated-tabs';
 import { usePackageManagerStore } from '@/store/use-package-manager';
 
@@ -70,7 +69,8 @@ export function PackageManagerCode({
                     />
                 </div>
 
-                <Button
+                <ButtonParticles
+                    colors={['var(--primary)', 'var(--secondary)']}
                     variant="ghost"
                     size="icon"
                     onClick={handleCopy}
@@ -78,7 +78,7 @@ export function PackageManagerCode({
                 >
                     <Copy className="size-3" />
                     <span className="sr-only">Copy</span>
-                </Button>
+                </ButtonParticles>
             </div>
             <div className="max-w-full min-w-0 overflow-x-auto p-3">
                 <pre className="m-0! w-full min-w-0 rounded-none! bg-transparent! font-mono! text-sm leading-relaxed">

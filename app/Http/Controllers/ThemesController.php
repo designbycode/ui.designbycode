@@ -21,6 +21,7 @@ class ThemesController extends Controller
             ->all());
 
         return Inertia::render('themes/index', [
+            'themes' => Inertia::scroll(Theme::paginate(50)->withQueryString()),
             'filters' => request()->only(['search', 'category']),
             'availableCategories' => $availableCategories,
             'totalThemesCount' => Cache::remember('themes:total_count', 3600, fn () => Theme::count()),

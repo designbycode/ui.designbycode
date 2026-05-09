@@ -37,7 +37,7 @@ export default function MainFooter() {
                 </div>
             </div>
             <MainWrapper>
-                <div className="flex flex-col gap-6 py-2">
+                <div className="flex flex-col gap-6 py-6">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
                             <Link prefetch href={home()}>
@@ -88,7 +88,7 @@ export default function MainFooter() {
             </div>
 
             <MainWrapper>
-                <div className="flex items-center justify-between gap-4 py-2 text-sm text-muted-foreground">
+                <div className="flex items-center justify-between gap-4 py-6 text-sm text-muted-foreground">
                     <p>&copy; {new Date().getFullYear()} ui.designbycode</p>
 
                     <p className="inline-flex items-center gap-1">
