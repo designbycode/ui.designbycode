@@ -3,6 +3,21 @@
 @import 'tw-animate-css';
 @import './prism.css';
 @import "@fontsource/bebas-neue";
+@import "@fontsource-variable/pixelify-sans";
+@import "@fontsource-variable/caveat";
+@import "@fontsource/dm-serif-display";
+@import "@fontsource/fira-mono";
+@import "@fontsource/great-vibes";
+@import "@fontsource/ibm-plex-mono";
+@import "@fontsource/ibm-plex-sans";
+@import "@fontsource-variable/inter/wght.css";
+@import "@fontsource/nerko-one";
+@import "@fontsource/orbitron";
+@import "@fontsource-variable/playfair-display";
+@import "@fontsource/poppins";
+@import "@fontsource-variable/roboto";
+@import "@fontsource/roboto-slab";
+@import "@fontsource-variable/work-sans";
 
 @source '../views';
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
@@ -248,10 +263,25 @@
     --animate-alarm: alarm 0.8s ease-in-out;
     --animate-ring: ring 0.5s ease-in-out;
     --animate-bell: bell 1s ease-in-out;
+    --font-bebas-neue: 'Bebas Neue', sans-serif;
+    --font-pixelify-sans: 'Pixelify Sans Variable', system-ui;
+    --font-caveat: 'Caveat Variable', cursive;
+    --font-dm-serif-display: 'DM Serif Display', serif;
+    --font-fira-mono: 'Fira Mono', monospace;
+    --font-great-vibes: 'Great Vibes', cursive;
+    --font-ibm-plex-mono: 'IBM Plex Mono', monospace;
+    --font-ibm-plex-sans: 'IBM Plex Sans', sans-serif;
+    --font-inter: 'Inter Variable', sans-serif;
+    --font-nerko-one: 'Nerko One', cursive;
+    --font-orbitron-serif: 'Orbitron', sans-serif;
+    --font-playfair-display-serif: 'Playfair Display Variable', sans-serif;
+    --font-poppins: 'Poppins', sans-serif;
+    --font-roboto: 'Roboto Variable', sans-serif;
+    --font-roboto-slab: 'Roboto Slab', serif;
+    --font-work-sans: 'Work Sans Variable', sans-serif;
 }
 
 @layer utilities {
-
 
     @keyframes bounce {
         0%, 20%, 50%, 80%, 100% {

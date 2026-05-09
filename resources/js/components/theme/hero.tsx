@@ -36,13 +36,17 @@ const Hero = () => {
                 <h1
                     className={`flex gap-2 text-center text-[clamp(1rem,6vw,5rem)] font-black`}
                 >
-                    <span>Component</span>
+                    <span className={`inline-block tracking-tighter`}>
+                        Component
+                    </span>
                     <span
-                        className={`inline-block scale-150 px-1 text-center font-serif`}
+                        className={`inline-block scale-150 px-2 text-center font-serif`}
                     >
                         &amp;
                     </span>
-                    <span>Animations</span>
+                    <span className={`inline-block tracking-tighter`}>
+                        Animations
+                    </span>
                 </h1>
                 <p
                     className={`mx-auto max-w-3xl text-center text-sm tracking-wide text-balance md:text-lg`}

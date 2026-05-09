@@ -125,7 +125,7 @@ export default function AnimateCss({
                     </h2>
                     <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
                         {animations
-                            .filter((a) => a.category === category)
+                            .filter((a) => a.category === category && a.name !== 'animate-all')
                             .map((anim) => (
                                 <AnimationCard key={anim.name} anim={anim} />
                             ))}
@@ -146,7 +146,7 @@ function AnimationCard({ anim }: { anim: AnimationItem }) {
     ].join('\n');
 
     const cardRef = useRef<HTMLDivElement>(null);
-    const textRef = useRef<HTMLSpanElement>(null);
+    const textRef = useRef<HTMLDivElement>(null);
     const { copy } = useCopyToClipboard();
     useCallback(async () => {
         await copy(codeExample);
@@ -180,13 +180,10 @@ function AnimationCard({ anim }: { anim: AnimationItem }) {
                             <span>{anim.title}</span>
                         </CardTitle>
                     </CardHeader>
-                    <CardContent className="grid aspect-video place-items-center overflow-hidden">
-                        <span
-                            ref={textRef}
-                            className="font-bebas-neue text-center text-sm text-[clamp(0.75rem,10vw+1rem,2rem)] font-medium text-foreground/40 transition-all delay-300 group-hover:repeat-infinite!"
-                        >
-                            {anim.text}
-                        </span>
+                    <CardContent className="aspect-video overflow-hidden">
+                        <div className="grid aspect-video max-w-full place-items-center overflow-clip rounded-md bg-radial from-muted to-muted/50 text-center font-bebas-neue! text-sm text-[clamp(1.5rem,10vw+2rem,3rem)] font-medium text-foreground/40 transition-all delay-300 group-hover:repeat-infinite!">
+                            <div ref={textRef}>{anim.text}</div>
+                        </div>
                     </CardContent>
                 </Card>
             </DialogTrigger>
@@ -205,25 +202,29 @@ function AnimationCard({ anim }: { anim: AnimationItem }) {
                     <div
                         className={`flex items-start rounded-md border border-border bg-card/30`}
                     >
-                        <div className="grid aspect-video flex-1 place-items-center overflow-hidden py-8">
-                            <span
-                                className={`font-bebas-neue text-center text-[clamp(0.75rem,9vw+1rem,3rem)] font-medium delay-1000 ${anim.name} repeat-infinite`}
+                        <div className="relative flex-1 overflow-hidden rounded-md bg-radial from-muted to-muted/50 py-8">
+                            <div
+                                className={`grid aspect-video w-full place-items-center text-center font-bebas-neue text-[clamp(0.75rem,9vw+2rem,5rem)] font-medium delay-1000 ${anim.name} repeat-infinite`}
                             >
                                 {anim.text}
-                            </span>
-                        </div>
-                        <div
-                            className={`sticky top-0 flex shrink-0 flex-col items-center justify-start space-y-4 p-4`}
-                        >
-                            <Button variant="ghost" size="icon">
-                                <ThumbsUp className="size-4" />
-                            </Button>
-                            <Button variant="ghost" size="icon">
-                                <Heart className="size-4" />
-                            </Button>
-                            <Button variant="ghost" size="icon">
-                                <Share className="size-4" />
-                            </Button>
+                            </div>
+                            <div
+                                className={`absolute inset-y-0 right-0 border-l border-border/25 bg-background/10 backdrop-blur-sm`}
+                            >
+                                <div
+                                    className={`sticky top-0 flex shrink-0 flex-col items-center justify-start space-y-4 p-4`}
+                                >
+                                    <Button variant="ghost" size="icon">
+                                        <ThumbsUp className="size-4" />
+                                    </Button>
+                                    <Button variant="ghost" size="icon">
+                                        <Heart className="size-4" />
+                                    </Button>
+                                    <Button variant="ghost" size="icon">
+                                        <Share className="size-4" />
+                                    </Button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <RegistryInstaller code={`animate-css/${anim.name}`} />
@@ -236,7 +237,7 @@ function AnimationCard({ anim }: { anim: AnimationItem }) {
                     />
                     <div
                         aria-hidden={true}
-                        className="sticky inset-x-0 -bottom-8 h-20 bg-linear-0 from-background to-transparent"
+                        className="pointer-events-none sticky inset-x-0 -bottom-8 h-20 bg-linear-0 from-background to-transparent"
                     ></div>
                 </div>
             </DialogContent>

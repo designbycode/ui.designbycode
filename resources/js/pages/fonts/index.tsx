@@ -34,7 +34,7 @@ export default function FontsIndex({ fonts }: { fonts: FontItem[] }) {
                 <RegistryInstaller code="fonts/fonts-all" />
             </div>
 
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                 {fonts.map((font) => (
                     <FontCard key={font.name} font={font} />
                 ))}
@@ -62,10 +62,12 @@ function FontCard({ font }: { font: FontItem }) {
             </CardHeader>
             <CardContent className="space-y-3 pt-3">
                 <div
-                    className="flex min-h-[88px] items-center justify-center rounded-lg bg-card/50 px-4 text-2xl tracking-wider"
+                    className="flex min-h-22 items-center justify-center rounded-lg bg-card/50 px-4 text-[clamp(0.75rem,9vw+2rem,3rem)] tracking-wider"
                     style={{ fontFamily: font.fontFamily ?? 'inherit' }}
                 >
-                    <span className="text-muted-foreground/60">{sampleText}</span>
+                    <span className="text-muted-foreground/60">
+                        {sampleText}
+                    </span>
                 </div>
 
                 <div className="space-y-1 text-sm text-muted-foreground">
