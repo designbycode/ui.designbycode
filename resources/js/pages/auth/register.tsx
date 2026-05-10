@@ -3,25 +3,56 @@ import InputError from '@/components/input-error';
 import PasswordInput from '@/components/password-input';
 import TextLink from '@/components/text-link';
 import { Button } from '@/components/ui/button';
+import { Icon } from '@/components/ui/icon';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { Separator } from '@/components/ui/separator';
 import { Spinner } from '@/components/ui/spinner';
+import { Github, Chrome } from 'lucide-react';
 import { login } from '@/routes';
+import { redirect } from '@/routes/socialite';
 import { store } from '@/routes/register';
 
 export default function Register() {
     return (
         <>
             <Head title="Register" />
-            <Form
-                {...store.form()}
-                resetOnSuccess={['password', 'password_confirmation']}
-                disableWhileProcessing
-                className="flex flex-col gap-6"
-            >
-                {({ processing, errors }) => (
-                    <>
-                        <div className="grid gap-6">
+            <div className="flex flex-col gap-6">
+                <div className="grid grid-cols-2 gap-4">
+                    <Button variant="outline" className="w-full" asChild>
+                        <a href={redirect.url('github')}>
+                            <Icon iconNode={Github} className="mr-2 h-4 w-4" />
+                            Github
+                        </a>
+                    </Button>
+                    <Button variant="outline" className="w-full" asChild>
+                        <a href={redirect.url('google')}>
+                            <Icon iconNode={Chrome} className="mr-2 h-4 w-4" />
+                            Google
+                        </a>
+                    </Button>
+                </div>
+
+                <div className="relative">
+                    <div className="absolute inset-0 flex items-center">
+                        <Separator />
+                    </div>
+                    <div className="relative flex justify-center text-xs uppercase">
+                        <span className="bg-background px-2 text-muted-foreground">
+                            Or continue with
+                        </span>
+                    </div>
+                </div>
+
+                <Form
+                    {...store.form()}
+                    resetOnSuccess={['password', 'password_confirmation']}
+                    disableWhileProcessing
+                    className="flex flex-col gap-6"
+                >
+                    {({ processing, errors }) => (
+                        <>
+                            <div className="grid gap-6">
                             <div className="grid gap-2">
                                 <Label htmlFor="name">Name</Label>
                                 <Input
@@ -95,15 +126,16 @@ export default function Register() {
                             </Button>
                         </div>
 
-                        <div className="text-center text-sm text-muted-foreground">
-                            Already have an account?{' '}
-                            <TextLink href={login()} tabIndex={6}>
-                                Log in
-                            </TextLink>
-                        </div>
-                    </>
-                )}
-            </Form>
+                            <div className="text-center text-sm text-muted-foreground">
+                                Already have an account?{' '}
+                                <TextLink href={login()} tabIndex={6}>
+                                    Log in
+                                </TextLink>
+                            </div>
+                        </>
+                    )}
+                </Form>
+            </div>
         </>
     );
 }
