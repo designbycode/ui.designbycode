@@ -29,7 +29,7 @@ Route::delete('/r/{name}', [RegistryController::class, 'destroy']);
 Route::post('/r/upload', [RegistryController::class, 'upload']);
 Route::post('/r/upload-raw', [RegistryController::class, 'uploadRaw']);
 
-Route::middleware(['auth', 'verified'])->group(function () {
+Route::middleware(['auth', 'verified', 'role:super-admin|admin'])->group(function () {
     Route::inertia('dashboard', 'dashboard')->name('dashboard');
 });
 
