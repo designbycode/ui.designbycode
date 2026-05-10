@@ -2,7 +2,8 @@
  * EditorBlock Component
  *
  * A Monaco-based code editor component that mirrors the visual style of CodeBlock.
- * It supports syntax highlighting, theme integration (light/dark), full-screen mode,
+ * Supports syntax highlighting, dynamic theme integration (light/dark) with
+ * automatic OKLCH → hex conversion for Tailwind CSS variables, full-screen mode,
  * and copy-to-clipboard functionality.
  *
  * Usage Example:
@@ -25,16 +26,16 @@
  *
  * Required Packages:
  * - @monaco-editor/react
+ * - culori
  * - lucide-react
  * - clsx
  * - tailwind-merge
- *
- * Note: This component is client-only and will render a placeholder during SSR.
  */
 
 'use client';
 
-import Editor, { type EditorProps } from '@monaco-editor/react';
+import type { EditorProps, Monaco } from '@monaco-editor/react';
+import Editor from '@monaco-editor/react';
 import { Check, Copy, Maximize2, Minimize2 } from 'lucide-react';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { toast } from 'sonner';
@@ -42,48 +43,129 @@ import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 import { useAppearance } from '@/hooks/use-appearance';
 import { useClipboard } from '@/hooks/use-clipboard';
+import { getCssVarAsColor } from '@/lib/color-utils';
 import { cn } from '@/lib/utils';
 
+// ─── Monaco theme name constants ──────────────────────────────────────────────
+
+const MONACO_LIGHT_THEME = 'editor-light';
+const MONACO_DARK_THEME = 'editor-dark';
+
+// ─── Theme builder ────────────────────────────────────────────────────────────
+
+/**
+ * Reads Tailwind CSS variables from the document root, converts any OKLCH
+ * (or other non-hex) values to hex, and returns a Monaco theme definition.
+ *
+ * Falls back to safe defaults if a variable cannot be parsed.
+ */
+function buildMonacoTheme(
+    appearance: 'light' | 'dark',
+): Parameters<Monaco['editor']['defineTheme']>[1] {
+    const get = (varName: string, fallback: string) =>
+        getCssVarAsColor(varName, 'hex') ?? fallback;
+
+    const isDark = appearance === 'dark';
+
+    return {
+        base: isDark ? 'vs-dark' : 'vs',
+        inherit: true,
+        rules: [
+            {
+                token: 'comment',
+                foreground: isDark ? '6A9955' : '008000',
+                fontStyle: 'italic',
+            },
+            { token: 'keyword', foreground: isDark ? 'C586C0' : 'AF00DB' },
+            { token: 'string', foreground: isDark ? 'CE9178' : 'A31515' },
+            { token: 'number', foreground: isDark ? 'B5CEA8' : '098658' },
+            { token: 'type', foreground: isDark ? '4EC9B0' : '267F99' },
+        ],
+        colors: {
+            'editor.background': get(
+                '--background',
+                isDark ? '#1e1e1e' : '#ffffff',
+            ),
+            'editor.foreground': get(
+                '--foreground',
+                isDark ? '#d4d4d4' : '#000000',
+            ),
+            'editor.selectionBackground': get(
+                '--accent',
+                isDark ? '#264f78' : '#add6ff',
+            ),
+            'editor.inactiveSelectionBackground': get(
+                '--muted',
+                isDark ? '#3a3d41' : '#e5ebf1',
+            ),
+            'editorLineNumber.foreground': get(
+                '--muted-foreground',
+                isDark ? '#858585' : '#237893',
+            ),
+            'editorCursor.foreground': get(
+                '--primary',
+                isDark ? '#aeafad' : '#000000',
+            ),
+            'editorWhitespace.foreground': get(
+                '--border',
+                isDark ? '#3b3b3b' : '#d4d4d4',
+            ),
+            'editor.lineHighlightBackground': get(
+                '--muted',
+                isDark ? '#2a2d2e' : '#f5f5f5',
+            ),
+            'editorWidget.background': get(
+                '--card',
+                isDark ? '#252526' : '#f3f3f3',
+            ),
+            'editorWidget.border': get(
+                '--border',
+                isDark ? '#454545' : '#c8c8c8',
+            ),
+            'input.background': get('--input', isDark ? '#3c3c3c' : '#ffffff'),
+            'scrollbarSlider.background': get(
+                '--muted',
+                isDark ? '#4e4e4e80' : '#64646480',
+            ),
+            'scrollbarSlider.hoverBackground': get(
+                '--muted-foreground',
+                isDark ? '#646464b3' : '#646464b3',
+            ),
+        },
+    };
+}
+
+// ─── Props ────────────────────────────────────────────────────────────────────
+
 interface EditorBlockProps {
-    /** Current code value */
     value: string;
-    /** Callback when value changes */
     onChange?: (value: string) => void;
-    /** Language for syntax highlighting (default: "javascript") */
     language?: string;
-    /** Whether the editor is read-only (default: false) */
     readOnly?: boolean;
-    /** Whether to hide line numbers (default: false) */
-    hideLineNumbers?: boolean;
-    /** Additional CSS classes for the container */
+    lineNumbers?: boolean;
     className?: string;
-    /** Visual variant: 'default' has a header, 'minimal' has floating controls */
     variant?: 'default' | 'minimal';
-    /** Whether to show the copy button (default: true) */
     showCopyButton?: boolean;
-    /** Whether to show the full-screen toggle (default: true) */
     showFullScreenToggle?: boolean;
-    /** Height of the editor (e.g., "300px", "50vh") (default: "300px") */
     height?: string | number;
-    /** Override the automatically detected theme ('light' or 'dark') */
     themeOverride?: 'light' | 'dark';
-    /** Additional Monaco editor options */
     options?: EditorProps['options'];
-    /** Whether to automatically resize the editor when the container changes */
     autoResize?: boolean;
 }
+
+// ─── Component ────────────────────────────────────────────────────────────────
 
 export default function EditorBlock({
     value,
     onChange,
     language = 'javascript',
-    readOnly = false,
-    hideLineNumbers = false,
+    readOnly = true,
+    lineNumbers = true,
     className,
     variant = 'default',
     showCopyButton = true,
-    showFullScreenToggle = true,
-    height = '300px',
+    showFullScreenToggle = false,
+    height = '200px',
     themeOverride,
     options,
     autoResize = true,
@@ -92,11 +174,13 @@ export default function EditorBlock({
     const [copied, setCopied] = useState(false);
     const [isFullScreen, setIsFullScreen] = useState(false);
     const containerRef = useRef<HTMLDivElement>(null);
+    const monacoRef = useRef<Monaco | null>(null);
     const [, copy] = useClipboard();
     const { resolvedAppearance } = useAppearance();
 
-    const currentTheme = themeOverride || resolvedAppearance;
-    const monacoTheme = currentTheme === 'dark' ? 'vs-dark' : 'light';
+    const currentTheme = themeOverride ?? resolvedAppearance;
+    const monacoThemeName =
+        currentTheme === 'dark' ? MONACO_DARK_THEME : MONACO_LIGHT_THEME;
 
     const languageMap: Record<string, string> = {
         js: 'javascript',
@@ -112,9 +196,32 @@ export default function EditorBlock({
     const normalizedLanguage =
         languageMap[language.toLowerCase()] || language.toLowerCase();
 
+    // ── Mount ────────────────────────────────────────────────────────────────
+
     useEffect(() => {
         setMounted(true);
     }, []);
+
+    // ── Dynamic theme switching ───────────────────────────────────────────────
+    // Re-define and re-apply the Monaco theme whenever the app appearance changes.
+    // This ensures OKLCH Tailwind variables are re-read and re-converted each time.
+
+    useEffect(() => {
+        const monaco = monacoRef.current;
+
+        if (!monaco) {
+            return;
+        }
+
+        monaco.editor.defineTheme(
+            MONACO_LIGHT_THEME,
+            buildMonacoTheme('light'),
+        );
+        monaco.editor.defineTheme(MONACO_DARK_THEME, buildMonacoTheme('dark'));
+        monaco.editor.setTheme(monacoThemeName);
+    }, [currentTheme, monacoThemeName]);
+
+    // ── Handlers ─────────────────────────────────────────────────────────────
 
     const handleCopy = useCallback(async () => {
         const success = await copy(value);
@@ -129,11 +236,13 @@ export default function EditorBlock({
     }, [value, copy]);
 
     const toggleFullScreen = useCallback(() => {
-        if (!containerRef.current) return;
+        if (!containerRef.current) {
+            return;
+        }
 
         if (!document.fullscreenElement) {
             containerRef.current.requestFullscreen().catch((err) => {
-                toast.error(`Error attempting to enable full-screen mode: ${err.message}`);
+                toast.error(`Error enabling full-screen: ${err.message}`);
             });
         } else {
             document.exitFullscreen();
@@ -141,19 +250,24 @@ export default function EditorBlock({
     }, []);
 
     useEffect(() => {
-        const handleFullScreenChange = () => {
+        const handleFullScreenChange = () =>
             setIsFullScreen(!!document.fullscreenElement);
-        };
-
         document.addEventListener('fullscreenchange', handleFullScreenChange);
-        return () => document.removeEventListener('fullscreenchange', handleFullScreenChange);
+
+        return () =>
+            document.removeEventListener(
+                'fullscreenchange',
+                handleFullScreenChange,
+            );
     }, []);
+
+    // ── Editor options ────────────────────────────────────────────────────────
 
     const editorOptions: EditorProps['options'] = {
         minimap: { enabled: false },
         wordWrap: 'on',
         fontSize: 14,
-        lineNumbers: hideLineNumbers ? 'off' : 'on',
+        lineNumbers: lineNumbers ? 'on' : 'off',
         readOnly,
         automaticLayout: autoResize,
         scrollBeyondLastLine: false,
@@ -161,17 +275,21 @@ export default function EditorBlock({
         ...options,
     };
 
+    // ── SSR placeholder ───────────────────────────────────────────────────────
+
     if (!mounted) {
         return (
             <div
                 style={{ height }}
                 className={cn(
-                    'w-full rounded-md border border-border bg-muted/30 animate-pulse',
-                    className
+                    'w-full animate-pulse rounded-md border border-border bg-muted/30',
+                    className,
                 )}
             />
         );
     }
+
+    // ── Controls ──────────────────────────────────────────────────────────────
 
     const Controls = () => (
         <div className="flex items-center gap-1">
@@ -180,7 +298,9 @@ export default function EditorBlock({
                     <span
                         className={cn(
                             'text-xs text-green-500 transition-opacity duration-200',
-                            copied ? 'opacity-100' : 'pointer-events-none opacity-0'
+                            copied
+                                ? 'opacity-100'
+                                : 'pointer-events-none opacity-0',
                         )}
                     >
                         Copied
@@ -206,7 +326,9 @@ export default function EditorBlock({
                     variant="ghost"
                     size="icon"
                     onClick={toggleFullScreen}
-                    title={isFullScreen ? "Exit full-screen" : "Enter full-screen"}
+                    title={
+                        isFullScreen ? 'Exit full-screen' : 'Enter full-screen'
+                    }
                     className="h-8 w-8 transition-opacity hover:opacity-100"
                 >
                     {isFullScreen ? (
@@ -220,18 +342,21 @@ export default function EditorBlock({
         </div>
     );
 
+    // ── Render ────────────────────────────────────────────────────────────────
+
     return (
         <div
             ref={containerRef}
             className={cn(
-                'group/editor-block relative flex flex-col overflow-hidden rounded-md border border-border bg-muted/30 text-sm',
-                isFullScreen && 'fixed inset-0 z-50 rounded-none border-none bg-background',
-                className
+                'group/editor-block relative flex flex-col overflow-hidden rounded-md border border-border text-sm',
+                isFullScreen &&
+                    'fixed inset-0 z-50 rounded-none border-none bg-background',
+                className,
             )}
             style={!isFullScreen ? { height } : undefined}
         >
             {variant === 'default' && (
-                <div className="flex shrink-0 items-center justify-between border-b border-border bg-muted/50 px-3 py-2">
+                <div className="flex h-14 shrink-0 items-center justify-between rounded-t-[inherit] border-b border-border bg-card px-3 py-2">
                     <span className="font-mono text-xs font-semibold text-muted-foreground">
                         {normalizedLanguage}
                     </span>
@@ -245,16 +370,34 @@ export default function EditorBlock({
                 </div>
             )}
 
-            <div className="relative flex-1 min-h-0">
+            <div className="relative min-h-0 flex-1">
                 <Editor
                     height="100%"
                     language={normalizedLanguage}
-                    theme={monacoTheme}
+                    beforeMount={(monaco) => {
+                        // Store monaco instance for later dynamic theme updates
+                        monacoRef.current = monaco;
+
+                        // Define both themes upfront so Monaco never renders with wrong colors
+                        monaco.editor.defineTheme(
+                            MONACO_LIGHT_THEME,
+                            buildMonacoTheme('light'),
+                        );
+                        monaco.editor.defineTheme(
+                            MONACO_DARK_THEME,
+                            buildMonacoTheme('dark'),
+                        );
+                    }}
+                    onMount={(_, monaco) => {
+                        // Apply the correct theme for the current appearance on mount
+                        monaco.editor.setTheme(monacoThemeName);
+                    }}
+                    theme={monacoThemeName}
                     value={value}
                     onChange={(val) => onChange?.(val || '')}
                     options={editorOptions}
                     loading={
-                        <div className="flex h-full w-full items-center justify-center bg-muted/10 text-muted-foreground animate-pulse">
+                        <div className="flex h-full w-full animate-pulse items-center justify-center bg-muted/10 text-muted-foreground">
                             Loading editor...
                         </div>
                     }

@@ -3,9 +3,9 @@
 import { Check, Copy, Terminal } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
+import { Button } from '@/components/ui/button';
 import { useCopyToClipboard, usePrismHighlight } from '@/hooks/use-prism';
 import { cn } from '@/lib/utils';
-import { Button } from '@/components/ui/button';
 import { AnimatedTabs } from '@/registry/new-york/components/ui/tabs/animated-tabs';
 import { usePackageManagerStore } from '@/store/use-package-manager';
 
@@ -62,7 +62,7 @@ export function PackageManagerCode({
                 className,
             )}
         >
-            <div className="flex items-center justify-between border-b bg-muted/50 px-3 py-2">
+            <div className="flex h-14 shrink-0 items-center justify-between rounded-t-[inherit] border-b border-border bg-card px-3 py-2">
                 <div className="flex items-center gap-2">
                     <Terminal className="size-5 text-muted-foreground" />
 

@@ -13,7 +13,7 @@ function RegistryInstaller({
 
     return (
         <PackageManagerCode
-            className={cn(`my-4`, className)}
+            className={cn(``, className)}
             codes={{
                 bun: `bunx --bun shadcn@latest add ${url}/r/${code}.json`,
                 npm: `npx shadcn@latest add ${url}/r/${code}.json`,
