@@ -7,10 +7,36 @@ test('guests are redirected to the login page', function () {
     $response->assertRedirect(route('login'));
 });
 
-test('authenticated users can visit the dashboard', function () {
+test('authenticated super-admins can visit the dashboard', function () {
+    $this->seed(\Database\Seeders\RolesAndPermissionsSeeder::class);
     $user = User::factory()->create();
+    $user->assignRole('super-admin');
     $this->actingAs($user);
 
     $response = $this->get(route('dashboard'));
     $response->assertOk();
+});
+
+test('authenticated admins can visit the dashboard', function () {
+    $this->seed(\Database\Seeders\RolesAndPermissionsSeeder::class);
+    $user = User::factory()->create();
+    $user->assignRole('admin');
+    $this->actingAs($user);
+
+    $response = $this->get(route('dashboard'));
+    $response->assertOk();
+});
+
+test('authenticated guests cannot visit the dashboard', function () {
+    $this->seed(\Database\Seeders\RolesAndPermissionsSeeder::class);
+
+    // Create a dummy first user so the next one isn't ID 1
+    User::factory()->create();
+
+    $user = User::factory()->create();
+    $user->assignRole('guest');
+    $this->actingAs($user);
+
+    $response = $this->get(route('dashboard'));
+    $response->assertForbidden();
 });
