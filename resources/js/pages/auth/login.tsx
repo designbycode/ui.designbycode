@@ -4,10 +4,14 @@ import PasswordInput from '@/components/password-input';
 import TextLink from '@/components/text-link';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
+import { Icon } from '@/components/ui/icon';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { Separator } from '@/components/ui/separator';
 import { Spinner } from '@/components/ui/spinner';
+import { Github, Chrome } from 'lucide-react';
 import { register } from '@/routes';
+import { redirect } from '@/routes/socialite';
 import { store } from '@/routes/login';
 import { request } from '@/routes/password';
 
@@ -26,14 +30,41 @@ export default function Login({
         <>
             <Head title="Log in" />
 
-            <Form
-                {...store.form()}
-                resetOnSuccess={['password']}
-                className="flex flex-col gap-6"
-            >
-                {({ processing, errors }) => (
-                    <>
-                        <div className="grid gap-6">
+            <div className="flex flex-col gap-6">
+                <div className="grid grid-cols-2 gap-4">
+                    <Button variant="outline" className="w-full" asChild>
+                        <a href={redirect.url('github')}>
+                            <Icon iconNode={Github} className="mr-2 h-4 w-4" />
+                            Github
+                        </a>
+                    </Button>
+                    <Button variant="outline" className="w-full" asChild>
+                        <a href={redirect.url('google')}>
+                            <Icon iconNode={Chrome} className="mr-2 h-4 w-4" />
+                            Google
+                        </a>
+                    </Button>
+                </div>
+
+                <div className="relative">
+                    <div className="absolute inset-0 flex items-center">
+                        <Separator />
+                    </div>
+                    <div className="relative flex justify-center text-xs uppercase">
+                        <span className="bg-background px-2 text-muted-foreground">
+                            Or continue with
+                        </span>
+                    </div>
+                </div>
+
+                <Form
+                    {...store.form()}
+                    resetOnSuccess={['password']}
+                    className="flex flex-col gap-6"
+                >
+                    {({ processing, errors }) => (
+                        <>
+                            <div className="grid gap-6">
                             <div className="grid gap-2">
                                 <Label htmlFor="email">Email address</Label>
                                 <Input
@@ -94,17 +125,18 @@ export default function Login({
                             </Button>
                         </div>
 
-                        {canRegister && (
-                            <div className="text-center text-sm text-muted-foreground">
-                                Don't have an account?{' '}
-                                <TextLink href={register()} tabIndex={5}>
-                                    Sign up
-                                </TextLink>
-                            </div>
-                        )}
-                    </>
-                )}
-            </Form>
+                            {canRegister && (
+                                <div className="text-center text-sm text-muted-foreground">
+                                    Don't have an account?{' '}
+                                    <TextLink href={register()} tabIndex={5}>
+                                        Sign up
+                                    </TextLink>
+                                </div>
+                            )}
+                        </>
+                    )}
+                </Form>
+            </div>
 
             {status && (
                 <div className="mb-4 text-center text-sm font-medium text-green-600">

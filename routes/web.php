@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AnimateController;
+use App\Http\Controllers\Auth\SocialiteController;
 use App\Http\Controllers\FontsController;
 use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\RegistriesController;
@@ -18,6 +19,10 @@ Route::get('/r/theme/{name}.css', [ThemesController::class, 'css']);
 Route::get('/r/registry.json', [RegistryController::class, 'index']);
 Route::get('/r/{name}.json', [RegistryController::class, 'show']);
 Route::get('/r/{name}.css', [RegistryController::class, 'css']);
+
+Route::get('/auth/{provider}/redirect', [SocialiteController::class, 'redirect'])->name('socialite.redirect');
+Route::get('/auth/{provider}/callback', [SocialiteController::class, 'callback'])->name('socialite.callback');
+
 Route::post('/r', [RegistryController::class, 'store']);
 Route::put('/r/{name}', [RegistryController::class, 'update']);
 Route::delete('/r/{name}', [RegistryController::class, 'destroy']);
