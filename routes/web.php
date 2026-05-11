@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomePageController::class)->name('home');
 Route::get('/themes', [ThemesController::class, 'index'])->name('themes.index');
+Route::get('/themes/{theme}', [ThemesController::class, 'show'])->name('themes.show');
 Route::get('/fonts', [FontsController::class, 'index'])->name('fonts.index');
 Route::get('/animate-css', [AnimateController::class, 'index'])->name('animate-css.index');
 
