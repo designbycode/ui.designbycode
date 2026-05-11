@@ -1,0 +1,31 @@
+
+   INFO  Server running on [http://127.0.0.1:8000].
+
+  Press Ctrl+C to stop the server
+
+  PHP Fatal error:  Uncaught ErrorException: Cannot modify header information - headers already sent by (output started at /app/vendor/symfony/http-foundation/Response.php:387) in /app/vendor/symfony/http-foundation/Response.php:322
+  Stack trace:
+  #0 /app/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(258): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError()
+  #1 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->Illuminate\Foundation\Bootstrap\{closure}()
+  #2 /app/vendor/symfony/http-foundation/Response.php(322): header()
+  #3 /app/vendor/symfony/http-foundation/Response.php(401): Symfony\Component\HttpFoundation\Response->sendHeaders()
+  #4 /app/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(221): Symfony\Component\HttpFoundation\Response->send()
+  #5 /app/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(198): Illuminate\Foundation\Bootstrap\HandleExceptions->renderHttpResponse()
+  #6 /app/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(258): Illuminate\Foundation\Bootstrap\HandleExceptions->handleException()
+  #7 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->Illuminate\Foundation\Bootstrap\{closure}()
+  #8 {main}
+  thrown in /app/vendor/symfony/http-foundation/Response.php on line 322
+  PHP Fatal error:  Uncaught ErrorException: Cannot modify header information - headers already sent by (output started at /app/vendor/symfony/http-foundation/Response.php:387) in /app/vendor/symfony/http-foundation/Response.php:322
+  Stack trace:
+  #0 /app/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(258): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError()
+  #1 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->Illuminate\Foundation\Bootstrap\{closure}()
+  #2 /app/vendor/symfony/http-foundation/Response.php(322): header()
+  #3 /app/vendor/symfony/http-foundation/Response.php(401): Symfony\Component\HttpFoundation\Response->sendHeaders()
+  #4 /app/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(221): Symfony\Component\HttpFoundation\Response->send()
+  #5 /app/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(198): Illuminate\Foundation\Bootstrap\HandleExceptions->renderHttpResponse()
+  #6 /app/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(234): Illuminate\Foundation\Bootstrap\HandleExceptions->handleException()
+  #7 /app/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(258): Illuminate\Foundation\Bootstrap\HandleExceptions->handleShutdown()
+  #8 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->Illuminate\Foundation\Bootstrap\{closure}()
+  #9 {main}
+  thrown in /app/vendor/symfony/http-foundation/Response.php on line 322
+  2026-05-11 09:01:07 /login ..................................... ~ 501.34ms
