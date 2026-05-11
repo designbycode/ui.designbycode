@@ -79,7 +79,7 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     index.form = indexForm
 /**
 * @see \App\Http\Controllers\ThemesController::show
- * @see app/Http/Controllers/ThemesController.php:46
+ * @see app/Http/Controllers/ThemesController.php:35
  * @route '/themes/{theme}'
  */
 export const show = (args: { theme: string | { name: string } } | [theme: string | { name: string } ] | string | { name: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -94,7 +94,7 @@ show.definition = {
 
 /**
 * @see \App\Http\Controllers\ThemesController::show
- * @see app/Http/Controllers/ThemesController.php:46
+ * @see app/Http/Controllers/ThemesController.php:35
  * @route '/themes/{theme}'
  */
 show.url = (args: { theme: string | { name: string } } | [theme: string | { name: string } ] | string | { name: string }, options?: RouteQueryOptions) => {
@@ -127,7 +127,7 @@ show.url = (args: { theme: string | { name: string } } | [theme: string | { name
 
 /**
 * @see \App\Http\Controllers\ThemesController::show
- * @see app/Http/Controllers/ThemesController.php:46
+ * @see app/Http/Controllers/ThemesController.php:35
  * @route '/themes/{theme}'
  */
 show.get = (args: { theme: string | { name: string } } | [theme: string | { name: string } ] | string | { name: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -136,7 +136,7 @@ show.get = (args: { theme: string | { name: string } } | [theme: string | { name
 })
 /**
 * @see \App\Http\Controllers\ThemesController::show
- * @see app/Http/Controllers/ThemesController.php:46
+ * @see app/Http/Controllers/ThemesController.php:35
  * @route '/themes/{theme}'
  */
 show.head = (args: { theme: string | { name: string } } | [theme: string | { name: string } ] | string | { name: string }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -146,7 +146,7 @@ show.head = (args: { theme: string | { name: string } } | [theme: string | { nam
 
     /**
 * @see \App\Http\Controllers\ThemesController::show
- * @see app/Http/Controllers/ThemesController.php:46
+ * @see app/Http/Controllers/ThemesController.php:35
  * @route '/themes/{theme}'
  */
     const showForm = (args: { theme: string | { name: string } } | [theme: string | { name: string } ] | string | { name: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -156,7 +156,7 @@ show.head = (args: { theme: string | { name: string } } | [theme: string | { nam
 
             /**
 * @see \App\Http\Controllers\ThemesController::show
- * @see app/Http/Controllers/ThemesController.php:46
+ * @see app/Http/Controllers/ThemesController.php:35
  * @route '/themes/{theme}'
  */
         showForm.get = (args: { theme: string | { name: string } } | [theme: string | { name: string } ] | string | { name: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -165,7 +165,7 @@ show.head = (args: { theme: string | { name: string } } | [theme: string | { nam
         })
             /**
 * @see \App\Http\Controllers\ThemesController::show
- * @see app/Http/Controllers/ThemesController.php:46
+ * @see app/Http/Controllers/ThemesController.php:35
  * @route '/themes/{theme}'
  */
         showForm.head = (args: { theme: string | { name: string } } | [theme: string | { name: string } ] | string | { name: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({

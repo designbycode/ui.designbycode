@@ -50,8 +50,8 @@ function CodeBlock({
             )}
         >
             {variant === 'default' && (
-                <div className="flex items-center justify-between border-b border-border bg-muted/50 px-3 py-2">
-                    <span className="font-mono text-xs font-semibold text-muted-foreground">
+                <div className="flex h-14 items-center justify-between border-b border-border bg-muted/50 px-3 py-2">
+                    <span className="font-mono text-sm font-bold text-muted-foreground">
                         {normalizedLanguage}
                     </span>
                     {showCopyButton && (
@@ -95,11 +95,7 @@ function CodeBlock({
                     >
                         Copied
                     </span>
-                    <Button
-                        variant="ghost"
-                        size="icon"
-                        onClick={handleCopy}
-                    >
+                    <Button variant="ghost" size="icon" onClick={handleCopy}>
                         {copied ? (
                             <Check className="size-4 text-green-500" />
                         ) : (

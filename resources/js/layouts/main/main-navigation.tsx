@@ -1,16 +1,9 @@
 import { Link } from '@inertiajs/react';
-import { Menu } from 'lucide-react';
-import ThemeSwitcher from '@/components/theme/theme-switcher';
 import AppearanceToggle from '@/components/ui/appearance-toggle';
-import { Button } from '@/components/ui/button';
-import { PlaceholderPattern } from '@/components/ui/placeholder-pattern';
-import {
-    Sheet,
-    SheetContent,
-    SheetTitle,
-    SheetTrigger,
-} from '@/components/ui/sheet';
 import { useIsMobile } from '@/hooks/use-mobile';
+import type { NavLinkProps } from '@/layouts/main/main-mobile-navigation';
+import MainMobileNavigation from '@/layouts/main/main-mobile-navigation';
+import MainThemeSwitcher from '@/layouts/main/main-theme-switcher';
 import MainWrapper from '@/layouts/main/main-wrapper';
 import { cn } from '@/lib/utils';
 import type { UseHeadroomOptions } from '@/registry/new-york/hooks/use-headroom';
@@ -30,6 +23,15 @@ function MainNavigation() {
             up: 5,
         },
     } as UseHeadroomOptions);
+
+    const navLinks = [
+        { label: 'Home', href: home() },
+        { label: 'Themes', href: themesIndex() },
+        { label: 'Animate CSS', href: animateCssIndex() },
+        { label: 'Fonts', href: fontsIndex() },
+        { label: 'Components', href: home() },
+        { label: 'Blocks', href: home() },
+    ] as NavLinkProps[];
 
     return (
         <div
@@ -52,117 +54,24 @@ function MainNavigation() {
                     <span>designbycode</span>
                 </Link>
                 <div className="hidden space-x-4 text-sm md:flex">
-                    <Link
-                        prefetch={'hover'}
-                        className={`rounded-md px-4 py-2 hover:bg-muted`}
-                        href={home()}
-                    >
-                        Home
-                    </Link>
-                    <Link
-                        prefetch={'hover'}
-                        className={`rounded-md px-4 py-2 hover:bg-muted`}
-                        href={themesIndex()}
-                    >
-                        Themes
-                    </Link>
-                    <Link
-                        prefetch={'hover'}
-                        className={`rounded-md px-4 py-2 hover:bg-muted`}
-                        href={animateCssIndex()}
-                    >
-                        Animate CSS
-                    </Link>
-                    <Link
-                        prefetch={'hover'}
-                        className={`rounded-md px-4 py-2 hover:bg-muted`}
-                        href={fontsIndex()}
-                    >
-                        Fonts
-                    </Link>
-                    <Link
-                        prefetch={'hover'}
-                        className={`rounded-md px-4 py-2 hover:bg-muted`}
-                        href={home()}
-                    >
-                        Components
-                    </Link>
-                    <Link
-                        prefetch={'hover'}
-                        className={`rounded-md px-4 py-2 hover:bg-muted`}
-                        href={home()}
-                    >
-                        Blocks
-                    </Link>
+                    {navLinks.map((link) => (
+                        <Link
+                            key={link.label}
+                            prefetch={'hover'}
+                            className={`rounded-md px-4 py-2 hover:bg-muted`}
+                            href={link.href}
+                        >
+                            {link.label}
+                        </Link>
+                    ))}
                 </div>
 
                 <div className="flex items-center space-x-2">
-                    <div className="md:hidden">
-                        <Sheet>
-                            <SheetTrigger asChild>
-                                <Button
-                                    variant="ghost"
-                                    size="icon"
-                                    aria-label="Open navigation menu"
-                                >
-                                    <Menu className="size-5" />
-                                </Button>
-                            </SheetTrigger>
-                            <SheetContent side="right">
-                                <PlaceholderPattern className="absolute inset-y-0 left-0 h-full w-2 border-r border-border/75 stroke-border/75 md:w-5" />
-
-                                <SheetTitle className="sr-only">
-                                    Navigation menu
-                                </SheetTitle>
-                                <div className="mt-8 flex flex-col space-y-1 px-4">
-                                    <Link
-                                        prefetch={'hover'}
-                                        className="rounded-md px-4 py-2 hover:bg-muted"
-                                        href={home()}
-                                    >
-                                        Home
-                                    </Link>
-                                    <Link
-                                        prefetch={'hover'}
-                                        className="rounded-md px-4 py-2 hover:bg-muted"
-                                        href={themesIndex()}
-                                    >
-                                        Themes
-                                    </Link>
-                                    <Link
-                                        prefetch={'hover'}
-                                        className="rounded-md px-4 py-2 hover:bg-muted"
-                                        href={animateCssIndex()}
-                                    >
-                                        Animate CSS
-                                    </Link>
-                                    <Link
-                                        prefetch={'hover'}
-                                        className="rounded-md px-4 py-2 hover:bg-muted"
-                                        href={fontsIndex()}
-                                    >
-                                        Fonts
-                                    </Link>
-                                    <Link
-                                        prefetch={'hover'}
-                                        className="rounded-md px-4 py-2 hover:bg-muted"
-                                        href={home()}
-                                    >
-                                        Components
-                                    </Link>
-                                    <Link
-                                        prefetch={'hover'}
-                                        className="rounded-md px-4 py-2 hover:bg-muted"
-                                        href={home()}
-                                    >
-                                        Blocks
-                                    </Link>
-                                </div>
-                            </SheetContent>
-                        </Sheet>
-                    </div>
                     <AppearanceToggle />
-                    <ThemeSwitcher />
+                    <MainThemeSwitcher />
+                    <MainMobileNavigation
+                        navLinks={navLinks as NavLinkProps[]}
+                    />
                 </div>
             </MainWrapper>
         </div>

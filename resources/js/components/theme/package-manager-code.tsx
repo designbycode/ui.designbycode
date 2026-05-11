@@ -62,7 +62,7 @@ export function PackageManagerCode({
                 className,
             )}
         >
-            <div className="flex h-14 shrink-0 items-center justify-between rounded-t-[inherit] border-b border-border bg-card px-3 py-2">
+            <div className="flex h-14 shrink-0 items-center justify-between rounded-t-[inherit] border-b border-border bg-muted/50 px-3 py-2">
                 <div className="flex items-center gap-2">
                     <Terminal className="size-5 text-muted-foreground" />
 

@@ -47,17 +47,17 @@ function ThemeSearch({
     return (
         <div className="mb-4 flex items-center gap-4">
             <div className="relative flex-1">
-                <Search className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+                <Search className="absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted-foreground" />
                 <Input
                     value={searchInput}
                     onChange={(e) => setSearchInput(e.target.value)}
                     placeholder="Search themes..."
-                    className="pl-9 pr-8"
+                    className="pr-8 pl-9"
                 />
                 {searchInput && (
                     <button
                         onClick={() => setSearchInput('')}
-                        className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                        className="absolute top-1/2 right-3 -translate-y-1/2 text-muted-foreground hover:text-foreground"
                     >
                         <X className="size-4" />
                     </button>
@@ -70,7 +70,7 @@ function ThemeSearch({
                     setSelectedCategory(val === ALL_CATEGORIES ? '' : val)
                 }
             >
-                <SelectTrigger className="w-[180px]">
+                <SelectTrigger className="w-45">
                     <SelectValue placeholder="All categories" />
                 </SelectTrigger>
                 <SelectContent>

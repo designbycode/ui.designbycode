@@ -1,6 +1,6 @@
 import { Head } from '@inertiajs/react';
 import { wcagContrast } from 'culori';
-import { Clipboard, Download, Moon, Sun } from 'lucide-react';
+import { Clipboard, Moon, Sun } from 'lucide-react';
 import { useMemo, useState } from 'react';
 import { toast } from 'sonner';
 
@@ -9,13 +9,7 @@ import EditorBlock from '@/components/theme/editor-block';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardHeader,
-    CardTitle,
-} from '@/components/ui/card';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
@@ -39,8 +33,8 @@ function ColorSwatch({ name, value }: { name: string; value: string }) {
         return convertColor(value, format) || value;
     }, [value, format]);
 
-    const handleCopy = () => {
-        copy(displayValue);
+    const handleCopy = async () => {
+        await copy(displayValue);
         toast.success(`Copied ${name} to clipboard`);
     };
 
@@ -100,6 +94,8 @@ function ContrastBadge({
         try {
             return wcagContrast(foreground, background);
         } catch (e) {
+            console.log(e);
+
             return 0;
         }
     }, [foreground, background]);
@@ -143,8 +139,8 @@ function FontDisplay({
         return null;
     }
 
-    const handleCopy = () => {
-        copy(value);
+    const handleCopy = async () => {
+        await copy(value);
         toast.success(`Copied ${label} font family to clipboard`);
     };
 
@@ -197,31 +193,9 @@ function FontDisplay({
     );
 }
 
-function ThemesShow({ theme }: ThemesShowProps) {
+function ThemesShow({ theme, css }: ThemesShowProps) {
     const { cssVars } = useCSSVars(theme);
     const [previewMode, setPreviewMode] = useState<'light' | 'dark'>('light');
-
-    const coreColors = [
-        'foreground',
-        'background',
-        'card',
-        'card-foreground',
-        'popover',
-        'popover-foreground',
-        'primary',
-        'primary-foreground',
-        'secondary',
-        'secondary-foreground',
-        'muted',
-        'muted-foreground',
-        'accent',
-        'accent-foreground',
-        'destructive',
-        'destructive-foreground',
-        'border',
-        'input',
-        'ring',
-    ];
 
     const displayVars = useMemo(() => {
         return previewMode === 'dark'
@@ -229,10 +203,94 @@ function ThemesShow({ theme }: ThemesShowProps) {
             : theme.vars_light || {};
     }, [previewMode, theme]);
 
+    const groupedColors = useMemo(() => {
+        const groups = [
+            {
+                title: 'Primary Colors',
+                keys: [
+                    'primary',
+                    'primary-foreground',
+                    'foreground',
+                    'background',
+                ],
+            },
+            {
+                title: 'Secondary & Accent Colors',
+                keys: [
+                    'secondary',
+                    'secondary-foreground',
+                    'accent',
+                    'accent-foreground',
+                ],
+            },
+            {
+                title: 'UI Component Colors',
+                keys: [
+                    'card',
+                    'card-foreground',
+                    'popover',
+                    'popover-foreground',
+                    'muted',
+                    'muted-foreground',
+                ],
+            },
+            {
+                title: 'Utility & Form Colors',
+                keys: ['border', 'input', 'ring'],
+            },
+            {
+                title: 'Status & Feedback Colors',
+                keys: ['destructive', 'destructive-foreground'],
+            },
+            {
+                title: 'Chart & Visualization Colors',
+                match: (name: string) => name.startsWith('chart-'),
+            },
+            {
+                title: 'Sidebar & Navigation Colors',
+                match: (name: string) => name.startsWith('sidebar'),
+            },
+        ];
+
+        const allKeys = Object.keys(displayVars).filter(
+            (key) =>
+                !key.startsWith('font-') &&
+                key !== 'radius' &&
+                !key.includes('shadow'),
+        );
+        const usedKeys = new Set<string>();
+
+        const result = groups.map((group) => {
+            const groupKeys = group.keys
+                ? group.keys.filter((k) => allKeys.includes(k))
+                : allKeys.filter((k) => group.match?.(k));
+
+            groupKeys.forEach((k) => usedKeys.add(k));
+
+            return { title: group.title, keys: groupKeys };
+        });
+
+        const customKeys = allKeys.filter((k) => !usedKeys.has(k));
+
+        if (customKeys.length > 0) {
+            result.push({ title: 'Custom Colors', keys: customKeys });
+        }
+
+        return result.filter((g) => g.keys.length > 0);
+    }, [displayVars]);
+
     return (
         <div style={cssVars} className={`bg-background`}>
             <MainWrapper className="py-8">
-                <Head title={`Theme: ${theme.title}`} />
+                <Head title={`Theme: ${theme.title}`}>
+                    <meta
+                        name="description"
+                        content={
+                            theme.description ||
+                            `Style guide and documentation for the ${theme.title} theme.`
+                        }
+                    />
+                </Head>
 
                 <div className="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-center">
                     <Heading
@@ -245,11 +303,10 @@ function ThemesShow({ theme }: ThemesShowProps) {
                     <div className="flex items-center gap-2">
                         <Button
                             variant="outline"
-                            size="sm"
-                            onClick={() => window.print()}
+
+                            // onClick={() => window.print()}
                         >
-                            <Download className="mr-2 h-4 w-4" />
-                            Print Guide
+                            Linker
                         </Button>
                     </div>
                 </div>
@@ -300,8 +357,8 @@ function ThemesShow({ theme }: ThemesShowProps) {
                         className="space-y-12 outline-none"
                     >
                         <div className={previewMode === 'dark' ? 'dark' : ''}>
-                            <div className="rounded-xl  transition-colors duration-300">
-                                <section className="space-y-6">
+                            <div className="rounded-xl transition-colors duration-300">
+                                <section className="space-y-12">
                                     <div>
                                         <h2 className="text-2xl font-bold tracking-tight">
                                             Colors
@@ -312,10 +369,16 @@ function ThemesShow({ theme }: ThemesShowProps) {
                                         </p>
                                     </div>
 
-                                    <div className="grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-6">
-                                        {coreColors.map(
-                                            (name) =>
-                                                displayVars[name] && (
+                                    {groupedColors.map((group) => (
+                                        <div
+                                            key={group.title}
+                                            className="space-y-4"
+                                        >
+                                            <h3 className="text-sm font-semibold tracking-wider text-muted-foreground uppercase">
+                                                {group.title}
+                                            </h3>
+                                            <div className="grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-6">
+                                                {group.keys.map((name) => (
                                                     <ColorSwatch
                                                         key={name}
                                                         name={name}
@@ -323,9 +386,10 @@ function ThemesShow({ theme }: ThemesShowProps) {
                                                             displayVars[name]
                                                         }
                                                     />
-                                                ),
-                                        )}
-                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    ))}
 
                                     <div className="mt-8 rounded-lg border border-border/40 bg-muted/30 p-4">
                                         <h3 className="mb-4 text-sm font-semibold tracking-wider text-muted-foreground uppercase">

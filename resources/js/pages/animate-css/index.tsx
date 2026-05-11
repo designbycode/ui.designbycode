@@ -17,7 +17,7 @@ import {
     DialogDescription,
     DialogHeader,
     DialogTitle,
-    DialogTrigger
+    DialogTrigger,
 } from '@/components/ui/dialog';
 import { useCopyToClipboard } from '@/hooks/use-prism';
 import MainWrapper from '@/layouts/main/main-wrapper';
@@ -125,7 +125,11 @@ export default function AnimateCss({
                     </h2>
                     <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
                         {animations
-                            .filter((a) => a.category === category && a.name !== 'animate-all')
+                            .filter(
+                                (a) =>
+                                    a.category === category &&
+                                    a.name !== 'animate-all',
+                            )
                             .map((anim) => (
                                 <AnimationCard key={anim.name} anim={anim} />
                             ))}
@@ -197,7 +201,7 @@ function AnimationCard({ anim }: { anim: AnimationItem }) {
                     </DialogDescription>
                 </DialogHeader>
                 <div
-                    className={`no-scrollbar relative -mx-4 max-h-[60vh] overflow-y-auto px-4 pt-1 pb-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden`}
+                    className={`no-scrollbar relative -mx-4 max-h-[60vh] [scrollbar-width:none] space-y-4 overflow-y-auto px-4 pt-1 pb-4 [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden`}
                 >
                     <div
                         className={`flex items-start rounded-md border border-border bg-card/30`}

@@ -350,14 +350,14 @@ export default function EditorBlock({
             className={cn(
                 'group/editor-block relative flex flex-col overflow-hidden rounded-md border border-border text-sm',
                 isFullScreen &&
-                    'fixed inset-0 z-50 rounded-none border-none bg-background',
+                    'fixed inset-0 z-50 rounded-none border-none bg-muted/50',
                 className,
             )}
             style={!isFullScreen ? { height } : undefined}
         >
             {variant === 'default' && (
-                <div className="flex h-14 shrink-0 items-center justify-between rounded-t-[inherit] border-b border-border bg-card px-3 py-2">
-                    <span className="font-mono text-xs font-semibold text-muted-foreground">
+                <div className="flex h-14 shrink-0 items-center justify-between rounded-t-[inherit] border-b border-border bg-muted/50 px-3 py-2">
+                    <span className="font-mono text-sm font-bold text-muted-foreground">
                         {normalizedLanguage}
                     </span>
                     <Controls />

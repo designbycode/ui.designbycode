@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\ThemesController;
+use App\Http\Controllers\Api\ThemesSearchController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -8,4 +8,5 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::get('/themes', [ThemesController::class, 'apiIndex']);
+
+Route::get('/themes', ThemesSearchController::class);

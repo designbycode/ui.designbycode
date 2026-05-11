@@ -16,8 +16,9 @@ interface Page {
     last_page: number;
 }
 
-function ThemeSwitcher() {
+function MainThemeSwitcher() {
     const { themeName } = useColorTheme();
+    const [open, setOpen] = useState(false);
     const [themes, setThemes] = useState<Theme[]>([]);
     const [page, setPage] = useState(1);
     const [hasMore, setHasMore] = useState(true);
@@ -26,9 +27,10 @@ function ThemeSwitcher() {
     const debouncedSearch = useDebounce(searchInput, 300);
     const [activeSearch, setActiveSearch] = useState('');
     const loaderRef = useRef<HTMLDivElement>(null);
+    const scrollRef = useRef<HTMLDivElement>(null);
 
     const fetchPage = useCallback(
-        async (pageNum: number, search: string, append: boolean) => {
+        (pageNum: number, search: string, append: boolean) => {
             setLoading(true);
 
             const params = new URLSearchParams();
@@ -38,29 +40,43 @@ function ThemeSwitcher() {
                 params.set('search', search);
             }
 
-            try {
-                const res = await fetch(`/api/themes?${params}`);
-                const json: Page = await res.json();
-                setThemes((prev) =>
-                    append ? [...prev, ...json.data] : json.data,
-                );
-                setHasMore(json.current_page < json.last_page);
-                setPage(pageNum);
-            } finally {
-                setLoading(false);
-            }
+            fetch(`/api/themes?${params}`)
+                .then((res) => res.json())
+                .then((json: Page) => {
+                    setThemes((prev) =>
+                        append ? [...prev, ...json.data] : json.data,
+                    );
+                    setHasMore(search ? false : json.current_page < json.last_page);
+                    setPage(pageNum);
+                })
+                .catch((error) => {
+                    console.error('Failed to fetch themes:', error);
+                })
+                .finally(() => {
+                    setLoading(false);
+                });
         },
         [],
     );
 
     useEffect(() => {
-        requestAnimationFrame(() => {
-            fetchPage(1, '', false);
-        });
-    }, [fetchPage]);
+        if (!open) {
+            setSearchInput('');
+            setActiveSearch('');
+            setThemes([]);
+            setPage(1);
+            setHasMore(true);
+        }
+    }, [open]);
 
     useEffect(() => {
-        if (debouncedSearch !== activeSearch) {
+        if (open) {
+            fetchPage(1, '', false);
+        }
+    }, [open, fetchPage]);
+
+    useEffect(() => {
+        if (open && debouncedSearch !== activeSearch) {
             flushSync(() => {
                 setActiveSearch(debouncedSearch);
                 setThemes([]);
@@ -69,31 +85,42 @@ function ThemeSwitcher() {
                 fetchPage(1, debouncedSearch, false);
             });
         }
-    }, [debouncedSearch, activeSearch, fetchPage]);
+    }, [open, debouncedSearch, activeSearch, fetchPage]);
 
     useEffect(() => {
-        const el = loaderRef.current;
+        if (!open) return;
 
-        if (!el) {
+        const el = loaderRef.current;
+        const root = scrollRef.current;
+
+        if (!el || !root) {
             return;
         }
 
         const observer = new IntersectionObserver(
             (entries) => {
-                if (entries[0].isIntersecting && hasMore && !loading) {
+                if (
+                    entries[0].isIntersecting &&
+                    hasMore &&
+                    !loading &&
+                    !activeSearch
+                ) {
                     fetchPage(page + 1, activeSearch, true);
                 }
             },
-            { rootMargin: '400px' },
+            {
+                root,
+                rootMargin: '400px',
+            },
         );
 
         observer.observe(el);
 
         return () => observer.disconnect();
-    }, [hasMore, loading, page, activeSearch, fetchPage]);
+    }, [open, hasMore, loading, page, activeSearch, fetchPage]);
 
     return (
-        <Sheet>
+        <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger asChild>
                 <Button variant="ghost" size="icon">
                     <Palette className="size-4" />
@@ -126,7 +153,10 @@ function ThemeSwitcher() {
                     )}
                 </div>
 
-                <div className="flex-1 overflow-y-auto px-4 py-3">
+                <div
+                    ref={scrollRef}
+                    className="flex-1 overflow-y-auto px-4 py-3"
+                >
                     <div className="space-y-2">
                         <button
                             type="button"
@@ -181,7 +211,9 @@ function ThemeSwitcher() {
 
                         {!hasMore && themes.length > 0 && (
                             <p className="py-4 text-center text-xs text-muted-foreground">
-                                All themes loaded
+                                {activeSearch
+                                    ? 'Search results'
+                                    : 'All themes loaded'}
                             </p>
                         )}
 
@@ -197,6 +229,6 @@ function ThemeSwitcher() {
     );
 }
 
-ThemeSwitcher.displayName = 'ThemeSwitcher';
+MainThemeSwitcher.displayName = 'ThemeSwitcher';
 
-export default ThemeSwitcher;
+export default MainThemeSwitcher;
