@@ -1,22 +1,29 @@
 import { Head } from '@inertiajs/react';
-import { Clipboard, Download, Moon, Sun } from 'lucide-react';
-import { useState, useMemo } from 'react';
-import { toast } from 'sonner';
 import { wcagContrast } from 'culori';
+import { Clipboard, Download, Moon, Sun } from 'lucide-react';
+import { useMemo, useState } from 'react';
+import { toast } from 'sonner';
 
 import Heading from '@/components/heading';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import EditorBlock from '@/components/theme/editor-block';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardHeader,
+    CardTitle,
+} from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import MainLayout from '@/layouts/main-layout';
-import MainWrapper from '@/layouts/main/main-wrapper';
-import { useCSSVars } from '@/hooks/use-css-vars';
 import { useClipboard } from '@/hooks/use-clipboard';
+import { useCSSVars } from '@/hooks/use-css-vars';
+import MainWrapper from '@/layouts/main/main-wrapper';
+import MainLayout from '@/layouts/main-layout';
 import { convertColor } from '@/lib/color-utils';
 import type { Registry } from '@/types/registry';
 
@@ -43,22 +50,33 @@ function ColorSwatch({ name, value }: { name: string; value: string }) {
                 className="h-24 w-full border-b border-border/40"
                 style={{ backgroundColor: value }}
             />
-            <CardContent className="p-3 space-y-2">
+            <CardContent className="space-y-2 p-3">
                 <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">{name}</span>
-                    <Button variant="ghost" size="icon" className="h-6 w-6" onClick={handleCopy}>
+                    <span className="text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
+                        {name}
+                    </span>
+                    <Button
+                        variant="ghost"
+                        size="icon"
+                        className="h-6 w-6"
+                        onClick={handleCopy}
+                    >
                         <Clipboard className="h-3 w-3" />
                     </Button>
                 </div>
                 <div className="flex flex-col gap-1">
-                    <span className="text-xs font-mono truncate">{displayValue}</span>
+                    <span className="truncate font-mono text-xs">
+                        {displayValue}
+                    </span>
                     <div className="flex gap-1">
                         {(['hex', 'rgb', 'hsl'] as const).map((f) => (
                             <button
                                 key={f}
                                 onClick={() => setFormat(f)}
-                                className={`text-[10px] px-1.5 py-0.5 rounded border transition-colors ${
-                                    format === f ? 'bg-primary text-primary-foreground border-primary' : 'bg-muted text-muted-foreground border-transparent hover:border-border'
+                                className={`rounded border px-1.5 py-0.5 text-[10px] transition-colors ${
+                                    format === f
+                                        ? 'border-primary bg-primary text-primary-foreground'
+                                        : 'border-transparent bg-muted text-muted-foreground hover:border-border'
                                 }`}
                             >
                                 {f.toUpperCase()}
@@ -71,7 +89,13 @@ function ColorSwatch({ name, value }: { name: string; value: string }) {
     );
 }
 
-function ContrastBadge({ foreground, background }: { foreground: string; background: string }) {
+function ContrastBadge({
+    foreground,
+    background,
+}: {
+    foreground: string;
+    background: string;
+}) {
     const ratio = useMemo(() => {
         try {
             return wcagContrast(foreground, background);
@@ -80,23 +104,44 @@ function ContrastBadge({ foreground, background }: { foreground: string; backgro
         }
     }, [foreground, background]);
 
-    const level = ratio >= 7 ? 'AAA' : ratio >= 4.5 ? 'AA' : ratio >= 3 ? 'Large' : 'Fail';
-    const variant = ratio >= 4.5 ? 'default' : ratio >= 3 ? 'secondary' : 'destructive';
+    const level =
+        ratio >= 7
+            ? 'AAA'
+            : ratio >= 4.5
+              ? 'AA'
+              : ratio >= 3
+                ? 'Large'
+                : 'Fail';
+    const variant =
+        ratio >= 4.5 ? 'default' : ratio >= 3 ? 'secondary' : 'destructive';
 
     return (
         <div className="flex items-center gap-2">
-            <Badge variant={variant as any} className="text-[10px] px-1 py-0 h-4">
+            <Badge
+                variant={variant as any}
+                className="h-4 px-1 py-0 text-[10px]"
+            >
                 {level}
             </Badge>
-            <span className="text-xs font-mono">{ratio.toFixed(2)}:1</span>
+            <span className="font-mono text-xs">{ratio.toFixed(2)}:1</span>
         </div>
     );
 }
 
-function FontDisplay({ label, variable, value }: { label: string; variable: string; value: string | null }) {
+function FontDisplay({
+    label,
+    variable,
+    value,
+}: {
+    label: string;
+    variable: string;
+    value: string | null;
+}) {
     const [, copy] = useClipboard();
 
-    if (!value) return null;
+    if (!value) {
+        return null;
+    }
 
     const handleCopy = () => {
         copy(value);
@@ -107,29 +152,44 @@ function FontDisplay({ label, variable, value }: { label: string; variable: stri
         <div className="space-y-4">
             <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                    <h3 className="font-semibold text-lg">{label}</h3>
-                    <span className="text-xs text-muted-foreground font-mono truncate max-w-[200px] md:max-w-none">({value})</span>
+                    <h3 className="text-lg font-semibold">{label}</h3>
+                    <span className="max-w-50 truncate font-mono text-xs text-muted-foreground md:max-w-none">
+                        ({value})
+                    </span>
                 </div>
                 <div className="flex items-center gap-2">
-                    <Badge variant="outline" className="font-mono">{variable}</Badge>
-                    <Button variant="ghost" size="icon" className="h-6 w-6" onClick={handleCopy}>
+                    <Badge variant="outline" className="font-mono">
+                        {variable}
+                    </Badge>
+                    <Button
+                        variant="ghost"
+                        size="icon"
+                        className="h-6 w-6"
+                        onClick={handleCopy}
+                    >
                         <Clipboard className="h-3 w-3" />
                     </Button>
                 </div>
             </div>
-            <div className={`${variable} space-y-4 p-6 border border-border/40 rounded-lg bg-card`}>
-                <p className="text-4xl font-normal leading-tight">The quick brown fox jumps over the lazy dog.</p>
-                <p className="text-2xl font-semibold leading-tight">The quick brown fox jumps over the lazy dog.</p>
-                <p className="text-base font-light leading-relaxed">
+            <div
+                className={`${variable} space-y-4 rounded-lg border border-border/40 bg-card p-6`}
+            >
+                <p className="text-4xl leading-tight font-normal">
+                    The quick brown fox jumps over the lazy dog.
+                </p>
+                <p className="text-2xl leading-tight font-semibold">
+                    The quick brown fox jumps over the lazy dog.
+                </p>
+                <p className="text-base leading-relaxed font-light">
                     {label === 'Monospace' ? (
-                        <code className="text-sm block overflow-x-auto whitespace-pre">
-{`function resolveTheme(name: string) {
+                        <code className="block overflow-x-auto text-sm whitespace-pre">
+                            {`function resolveTheme(name: string) {
   const theme = themes.find(t => t.name === name);
   return theme ?? defaultTheme;
 }`}
                         </code>
                     ) : (
-                        "Design is not just what it looks like and feels like. Design is how it works. Typography is the craft of endowing human language with a durable visual form."
+                        'Design is not just what it looks like and feels like. Design is how it works. Typography is the craft of endowing human language with a durable visual form.'
                     )}
                 </p>
             </div>
@@ -142,30 +202,51 @@ function ThemesShow({ theme }: ThemesShowProps) {
     const [previewMode, setPreviewMode] = useState<'light' | 'dark'>('light');
 
     const coreColors = [
-        'background', 'foreground', 'card', 'card-foreground',
-        'popover', 'popover-foreground', 'primary', 'primary-foreground',
-        'secondary', 'secondary-foreground', 'muted', 'muted-foreground',
-        'accent', 'accent-foreground', 'destructive', 'destructive-foreground',
-        'border', 'input', 'ring'
+        'background',
+        'foreground',
+        'card',
+        'card-foreground',
+        'popover',
+        'popover-foreground',
+        'primary',
+        'primary-foreground',
+        'secondary',
+        'secondary-foreground',
+        'muted',
+        'muted-foreground',
+        'accent',
+        'accent-foreground',
+        'destructive',
+        'destructive-foreground',
+        'border',
+        'input',
+        'ring',
     ];
 
     const displayVars = useMemo(() => {
         return previewMode === 'dark'
-            ? (theme.vars_dark || theme.vars_light || {})
-            : (theme.vars_light || {});
+            ? theme.vars_dark || theme.vars_light || {}
+            : theme.vars_light || {};
     }, [previewMode, theme]);
 
     return (
         <MainWrapper className="py-8">
             <Head title={`Theme: ${theme.title}`} />
 
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+            <div className="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-center">
                 <Heading
                     title={theme.title}
-                    description={theme.description || `Style guide and documentation for the ${theme.title} theme.`}
+                    description={
+                        theme.description ||
+                        `Style guide and documentation for the ${theme.title} theme.`
+                    }
                 />
                 <div className="flex items-center gap-2">
-                    <Button variant="outline" size="sm" onClick={() => window.print()}>
+                    <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => window.print()}
+                    >
                         <Download className="mr-2 h-4 w-4" />
                         Print Guide
                     </Button>
@@ -179,9 +260,11 @@ function ThemesShow({ theme }: ThemesShowProps) {
                         <TabsTrigger value="export">Code & Export</TabsTrigger>
                     </TabsList>
 
-                    <div className="flex items-center bg-muted rounded-lg p-1 gap-1">
+                    <div className="flex items-center gap-1 rounded-lg bg-muted p-1">
                         <Button
-                            variant={previewMode === 'light' ? 'secondary' : 'ghost'}
+                            variant={
+                                previewMode === 'light' ? 'secondary' : 'ghost'
+                            }
                             size="sm"
                             className="h-8 px-3"
                             onClick={() => setPreviewMode('light')}
@@ -190,7 +273,9 @@ function ThemesShow({ theme }: ThemesShowProps) {
                             Light
                         </Button>
                         <Button
-                            variant={previewMode === 'dark' ? 'secondary' : 'ghost'}
+                            variant={
+                                previewMode === 'dark' ? 'secondary' : 'ghost'
+                            }
                             size="sm"
                             className="h-8 px-3"
                             onClick={() => setPreviewMode('dark')}
@@ -201,40 +286,84 @@ function ThemesShow({ theme }: ThemesShowProps) {
                     </div>
                 </div>
 
-                <TabsContent value="preview" className="space-y-12 outline-none">
+                <TabsContent
+                    value="preview"
+                    className="space-y-12 outline-none"
+                >
                     <div className={previewMode === 'dark' ? 'dark' : ''}>
                         <div
                             style={cssVars}
-                            className="bg-background text-foreground border border-border/40 rounded-xl p-8 transition-colors duration-300"
+                            className="rounded-xl border border-border/40 bg-background p-8 text-foreground transition-colors duration-300"
                         >
                             <section className="space-y-6">
                                 <div>
-                                    <h2 className="text-2xl font-bold tracking-tight">Colors</h2>
-                                    <p className="text-muted-foreground">The foundational color palette of the theme.</p>
+                                    <h2 className="text-2xl font-bold tracking-tight">
+                                        Colors
+                                    </h2>
+                                    <p className="text-muted-foreground">
+                                        The foundational color palette of the
+                                        theme.
+                                    </p>
                                 </div>
 
-                                <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-                                    {coreColors.map((name) => (
-                                        displayVars[name] && (
-                                            <ColorSwatch key={name} name={name} value={displayVars[name]} />
-                                        )
-                                    ))}
+                                <div className="grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-6">
+                                    {coreColors.map(
+                                        (name) =>
+                                            displayVars[name] && (
+                                                <ColorSwatch
+                                                    key={name}
+                                                    name={name}
+                                                    value={displayVars[name]}
+                                                />
+                                            ),
+                                    )}
                                 </div>
 
-                                <div className="mt-8 p-4 bg-muted/30 rounded-lg border border-border/40">
-                                    <h3 className="text-sm font-semibold mb-4 uppercase tracking-wider text-muted-foreground">Accessibility: Contrast Ratios</h3>
-                                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                                <div className="mt-8 rounded-lg border border-border/40 bg-muted/30 p-4">
+                                    <h3 className="mb-4 text-sm font-semibold tracking-wider text-muted-foreground uppercase">
+                                        Accessibility: Contrast Ratios
+                                    </h3>
+                                    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
                                         <div className="flex flex-col gap-2">
-                                            <span className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">Text on Background</span>
-                                            <ContrastBadge foreground={displayVars['foreground']} background={displayVars['background']} />
+                                            <span className="text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
+                                                Text on Background
+                                            </span>
+                                            <ContrastBadge
+                                                foreground={
+                                                    displayVars['foreground']
+                                                }
+                                                background={
+                                                    displayVars['background']
+                                                }
+                                            />
                                         </div>
                                         <div className="flex flex-col gap-2">
-                                            <span className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">Primary on Background</span>
-                                            <ContrastBadge foreground={displayVars['primary']} background={displayVars['background']} />
+                                            <span className="text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
+                                                Primary on Background
+                                            </span>
+                                            <ContrastBadge
+                                                foreground={
+                                                    displayVars['primary']
+                                                }
+                                                background={
+                                                    displayVars['background']
+                                                }
+                                            />
                                         </div>
                                         <div className="flex flex-col gap-2">
-                                            <span className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">Primary Foreground on Primary</span>
-                                            <ContrastBadge foreground={displayVars['primary-foreground']} background={displayVars['primary']} />
+                                            <span className="text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
+                                                Primary Foreground on Primary
+                                            </span>
+                                            <ContrastBadge
+                                                foreground={
+                                                    displayVars[
+                                                        'primary-foreground'
+                                                    ]
+                                                }
+                                                background={
+                                                    displayVars['primary']
+                                                }
+                                            />
                                         </div>
                                     </div>
                                 </div>
@@ -244,25 +373,40 @@ function ThemesShow({ theme }: ThemesShowProps) {
 
                             <section className="space-y-6">
                                 <div>
-                                    <h2 className="text-2xl font-bold tracking-tight">Typography</h2>
-                                    <p className="text-muted-foreground">Font families and scale used in this theme.</p>
+                                    <h2 className="text-2xl font-bold tracking-tight">
+                                        Typography
+                                    </h2>
+                                    <p className="text-muted-foreground">
+                                        Font families and scale used in this
+                                        theme.
+                                    </p>
                                 </div>
 
                                 <div className="space-y-8">
                                     <FontDisplay
                                         label="Sans Serif"
                                         variable="font-sans"
-                                        value={theme.font_family || displayVars['font-sans'] || 'Geist Sans'}
+                                        value={
+                                            theme.font_family ||
+                                            displayVars['font-sans'] ||
+                                            'Geist Sans'
+                                        }
                                     />
                                     <FontDisplay
                                         label="Serif"
                                         variable="font-serif"
-                                        value={theme.font_serif || displayVars['font-serif']}
+                                        value={
+                                            theme.font_serif ||
+                                            displayVars['font-serif']
+                                        }
                                     />
                                     <FontDisplay
                                         label="Monospace"
                                         variable="font-mono"
-                                        value={theme.font_mono || displayVars['font-mono']}
+                                        value={
+                                            theme.font_mono ||
+                                            displayVars['font-mono']
+                                        }
                                     />
                                 </div>
                             </section>
@@ -271,51 +415,97 @@ function ThemesShow({ theme }: ThemesShowProps) {
 
                             <section className="space-y-8">
                                 <div>
-                                    <h2 className="text-2xl font-bold tracking-tight">Component Previews</h2>
-                                    <p className="text-muted-foreground">How the theme looks applied to standard interface elements.</p>
+                                    <h2 className="text-2xl font-bold tracking-tight">
+                                        Component Previews
+                                    </h2>
+                                    <p className="text-muted-foreground">
+                                        How the theme looks applied to standard
+                                        interface elements.
+                                    </p>
                                 </div>
 
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
                                     <div className="space-y-6">
-                                        <h3 className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">Interactive</h3>
-                                        <div className="flex flex-wrap gap-3 p-6 border border-border/40 rounded-lg bg-card items-center">
+                                        <h3 className="text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
+                                            Interactive
+                                        </h3>
+                                        <div className="flex flex-wrap items-center gap-3 rounded-lg border border-border/40 bg-card p-6">
                                             <Button size="sm">Primary</Button>
-                                            <Button size="sm" variant="secondary">Secondary</Button>
-                                            <Button size="sm" variant="outline">Outline</Button>
-                                            <Button size="sm" variant="ghost">Ghost</Button>
-                                            <Button size="sm" variant="destructive">Destructive</Button>
+                                            <Button
+                                                size="sm"
+                                                variant="secondary"
+                                            >
+                                                Secondary
+                                            </Button>
+                                            <Button size="sm" variant="outline">
+                                                Outline
+                                            </Button>
+                                            <Button size="sm" variant="ghost">
+                                                Ghost
+                                            </Button>
+                                            <Button
+                                                size="sm"
+                                                variant="destructive"
+                                            >
+                                                Destructive
+                                            </Button>
                                         </div>
 
-                                        <div className="space-y-4 p-6 border border-border/40 rounded-lg bg-card">
+                                        <div className="space-y-4 rounded-lg border border-border/40 bg-card p-6">
                                             <div className="space-y-2">
-                                                <Label htmlFor="email" className="text-xs">Email address</Label>
-                                                <Input id="email" placeholder="hello@example.com" className="h-9" />
+                                                <Label
+                                                    htmlFor="email"
+                                                    className="text-xs"
+                                                >
+                                                    Email address
+                                                </Label>
+                                                <Input
+                                                    id="email"
+                                                    placeholder="hello@example.com"
+                                                    className="h-9"
+                                                />
                                             </div>
                                             <div className="flex items-center gap-2">
                                                 <Badge>New</Badge>
-                                                <Badge variant="secondary">In Progress</Badge>
-                                                <Badge variant="outline">Draft</Badge>
+                                                <Badge variant="secondary">
+                                                    In Progress
+                                                </Badge>
+                                                <Badge variant="outline">
+                                                    Draft
+                                                </Badge>
                                             </div>
                                         </div>
                                     </div>
 
                                     <div className="space-y-6">
-                                        <h3 className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">Feedback & Containers</h3>
+                                        <h3 className="text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
+                                            Feedback & Containers
+                                        </h3>
                                         <Alert className="bg-card">
-                                            <AlertTitle className="text-sm font-semibold">Heads up!</AlertTitle>
+                                            <AlertTitle className="text-sm font-semibold">
+                                                Heads up!
+                                            </AlertTitle>
                                             <AlertDescription className="text-xs text-muted-foreground">
-                                                This is a preview of the theme applied to an alert component.
+                                                This is a preview of the theme
+                                                applied to an alert component.
                                             </AlertDescription>
                                         </Alert>
 
                                         <Card className="border-border/40">
                                             <CardHeader className="p-4">
-                                                <CardTitle className="text-sm font-bold">Card Component</CardTitle>
-                                                <CardDescription className="text-xs">Visualizing elevation and spacing.</CardDescription>
+                                                <CardTitle className="text-sm font-bold">
+                                                    Card Component
+                                                </CardTitle>
+                                                <CardDescription className="text-xs">
+                                                    Visualizing elevation and
+                                                    spacing.
+                                                </CardDescription>
                                             </CardHeader>
                                             <CardContent className="p-4 pt-0">
-                                                <p className="text-xs text-muted-foreground leading-relaxed">
-                                                    Cards are used to group related information and provide a clear hierarchy.
+                                                <p className="text-xs leading-relaxed text-muted-foreground">
+                                                    Cards are used to group
+                                                    related information and
+                                                    provide a clear hierarchy.
                                                 </p>
                                             </CardContent>
                                         </Card>
@@ -329,46 +519,57 @@ function ThemesShow({ theme }: ThemesShowProps) {
                 <TabsContent value="export" className="space-y-8 outline-none">
                     <section className="space-y-4">
                         <div>
-                            <h2 className="text-xl font-bold">Theme CSS Variables</h2>
-                            <p className="text-sm text-muted-foreground">Copy these into your main CSS file.</p>
+                            <h2 className="text-xl font-bold">
+                                Theme CSS Variables
+                            </h2>
+                            <p className="text-sm text-muted-foreground">
+                                Copy these into your main CSS file.
+                            </p>
                         </div>
                         <div className="relative">
-                            <pre className="p-6 bg-muted rounded-lg font-mono text-sm overflow-x-auto max-h-[400px] border border-border/40">
-{`:root {
-${Object.entries(theme.vars_light || {}).map(([k, v]) => `  --${k}: ${v};`).join('\n')}
+                            <EditorBlock
+                                language={`css`}
+                                options={{
+                                    minimap: {
+                                        enabled: true,
+                                    },
+                                }}
+                                showFullScreenToggle={true}
+                                height="780px"
+                                value={`:root {
+${Object.entries(theme.vars_light || {})
+    .map(([k, v]) => `  --${k}: ${v};`)
+    .join('\n')}
 }
 
 .dark {
-${Object.entries(theme.vars_dark || {}).map(([k, v]) => `  --${k}: ${v};`).join('\n')}
+${Object.entries(theme.vars_dark || {})
+    .map(([k, v]) => `  --${k}: ${v};`)
+    .join('\n')}
 }`}
-                            </pre>
-                            <Button variant="secondary" size="sm" className="absolute top-4 right-4" onClick={() => {
-                                const css = `:root {\n${Object.entries(theme.vars_light || {}).map(([k, v]) => `  --${k}: ${v};`).join('\n')}\n}\n\n.dark {\n${Object.entries(theme.vars_dark || {}).map(([k, v]) => `  --${k}: ${v};`).join('\n')}\n}`;
-                                navigator.clipboard.writeText(css);
-                                toast.success("CSS copied to clipboard");
-                            }}>
-                                <Clipboard className="h-4 w-4 mr-2" />
-                                Copy CSS
-                            </Button>
+                            />
                         </div>
                     </section>
 
                     <section className="space-y-4">
                         <div>
                             <h2 className="text-xl font-bold">Theme JSON</h2>
-                            <p className="text-sm text-muted-foreground">The registry representation of the theme.</p>
+                            <p className="text-sm text-muted-foreground">
+                                The registry representation of the theme.
+                            </p>
                         </div>
                         <div className="relative">
-                            <pre className="p-6 bg-muted rounded-lg font-mono text-sm overflow-x-auto max-h-[400px] border border-border/40">
-                                {JSON.stringify(theme, null, 2)}
-                            </pre>
-                            <Button variant="secondary" size="sm" className="absolute top-4 right-4" onClick={() => {
-                                navigator.clipboard.writeText(JSON.stringify(theme, null, 2));
-                                toast.success("JSON copied to clipboard");
-                            }}>
-                                <Clipboard className="h-4 w-4 mr-2" />
-                                Copy JSON
-                            </Button>
+                            <EditorBlock
+                                language={`json`}
+                                options={{
+                                    minimap: {
+                                        enabled: true,
+                                    },
+                                }}
+                                showFullScreenToggle={true}
+                                height="780px"
+                                value={JSON.stringify(theme, null, 2)}
+                            />
                         </div>
                     </section>
                 </TabsContent>

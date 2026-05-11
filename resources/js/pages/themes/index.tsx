@@ -1,10 +1,11 @@
-import { InfiniteScroll } from '@inertiajs/react';
+import { InfiniteScroll, Link } from '@inertiajs/react';
 import { Plus, SearchX } from 'lucide-react';
 import Heading from '@/components/heading';
 import ThemeCard2 from '@/components/theme/theme-card-2';
 import { ThemeSearch } from '@/components/theme/theme-search';
 import { Button } from '@/components/ui/button';
 import MainLayout from '@/layouts/main-layout';
+import { show } from '@/routes/themes';
 import type { PaginatedData, Registry } from '@/types';
 import MainWrapper from '../../layouts/main/main-wrapper';
 
@@ -47,7 +48,9 @@ function ThemesIndex({
             <InfiniteScroll data="themes">
                 <div className="mb-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
                     {themes.data.map((theme: Registry, _index) => (
-                        <ThemeCard2 key={_index} theme={theme} />
+                        <Link key={_index} href={show(theme.name)}>
+                            <ThemeCard2 theme={theme} />
+                        </Link>
                     ))}
                 </div>
             </InfiniteScroll>
