@@ -1,25 +1,33 @@
 import { Head } from '@inertiajs/react';
 import { wcagContrast } from 'culori';
-import { Clipboard, Moon, Sun } from 'lucide-react';
+import { Clipboard, Heart } from 'lucide-react';
 import { useMemo, useState } from 'react';
 import { toast } from 'sonner';
 
 import Heading from '@/components/heading';
-import EditorBlock from '@/components/theme/editor-block';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardHeader,
+    CardTitle,
+} from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { useAppearance } from '@/hooks/use-appearance';
 import { useClipboard } from '@/hooks/use-clipboard';
 import { useCSSVars } from '@/hooks/use-css-vars';
 import MainWrapper from '@/layouts/main/main-wrapper';
-import MainLayout from '@/layouts/main-layout';
+import MainEditorBlock from '@/layouts/main/theme/main-editor-block';
+import ThemeLayout from '@/layouts/theme-layout';
 import { convertColor } from '@/lib/color-utils';
 import type { Registry } from '@/types/registry';
+import MainLayout from '@/layouts/main-layout';
 
 interface ThemesShowProps {
     theme: Registry;
@@ -145,7 +153,7 @@ function FontDisplay({
     };
 
     return (
-        <div className="space-y-4">
+        <div className="my-16 space-y-4">
             <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                     <h3 className="text-lg font-semibold">{label}</h3>
@@ -193,15 +201,16 @@ function FontDisplay({
     );
 }
 
-function ThemesShow({ theme, css }: ThemesShowProps) {
+function ThemesShow({ theme }: ThemesShowProps) {
     const { cssVars } = useCSSVars(theme);
-    const [previewMode, setPreviewMode] = useState<'light' | 'dark'>('light');
+
+    const { appearance } = useAppearance();
 
     const displayVars = useMemo(() => {
-        return previewMode === 'dark'
+        return appearance === 'dark'
             ? theme.vars_dark || theme.vars_light || {}
             : theme.vars_light || {};
-    }, [previewMode, theme]);
+    }, [appearance, theme]);
 
     const groupedColors = useMemo(() => {
         const groups = [
@@ -281,7 +290,7 @@ function ThemesShow({ theme, css }: ThemesShowProps) {
 
     return (
         <div style={cssVars} className={`bg-background`}>
-            <MainWrapper className="py-8">
+            <MainWrapper className="py-0">
                 <Head title={`Theme: ${theme.title}`}>
                     <meta
                         name="description"
@@ -293,20 +302,52 @@ function ThemesShow({ theme, css }: ThemesShowProps) {
                 </Head>
 
                 <div className="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-center">
-                    <Heading
-                        title={theme.title}
-                        description={
-                            theme.description ||
-                            `Style guide and documentation for the ${theme.title} theme.`
-                        }
-                    />
+                    <div className="space-y-2">
+                        <div className="flex items-center gap-2">
+                            <Heading
+                                title={theme.title}
+                                description={
+                                    theme.description ||
+                                    `Style guide and documentation for the ${theme.title} theme.`
+                                }
+                            />
+                        </div>
+                        <div className="flex flex-wrap items-center gap-2">
+                            {theme.author && (
+                                <Badge
+                                    variant="outline"
+                                    className="text-[10px]"
+                                >
+                                    by {theme.author}
+                                </Badge>
+                            )}
+                            {theme.categories?.map((cat) => (
+                                <Badge
+                                    key={cat}
+                                    variant="secondary"
+                                    className="text-[10px] capitalize"
+                                >
+                                    {cat}
+                                </Badge>
+                            ))}
+                            {theme.style && (
+                                <Badge
+                                    variant="secondary"
+                                    className="text-[10px]"
+                                >
+                                    Style: {theme.style}
+                                </Badge>
+                            )}
+                        </div>
+                    </div>
                     <div className="flex items-center gap-2">
                         <Button
                             variant="outline"
+                            size="icon"
 
                             // onClick={() => window.print()}
                         >
-                            Linker
+                            <Heart className={`size-4`} />
                         </Button>
                     </div>
                 </div>
@@ -321,42 +362,12 @@ function ThemesShow({ theme, css }: ThemesShowProps) {
                                 Code & Export
                             </TabsTrigger>
                         </TabsList>
-
-                        <div className="flex items-center gap-1 rounded-lg bg-muted p-1">
-                            <Button
-                                variant={
-                                    previewMode === 'light'
-                                        ? 'secondary'
-                                        : 'ghost'
-                                }
-                                size="sm"
-                                className="h-8 px-3"
-                                onClick={() => setPreviewMode('light')}
-                            >
-                                <Sun className="mr-2 h-4 w-4" />
-                                Light
-                            </Button>
-                            <Button
-                                variant={
-                                    previewMode === 'dark'
-                                        ? 'secondary'
-                                        : 'ghost'
-                                }
-                                size="sm"
-                                className="h-8 px-3"
-                                onClick={() => setPreviewMode('dark')}
-                            >
-                                <Moon className="mr-2 h-4 w-4" />
-                                Dark
-                            </Button>
-                        </div>
                     </div>
-
                     <TabsContent
                         value="preview"
                         className="space-y-12 outline-none"
                     >
-                        <div className={previewMode === 'dark' ? 'dark' : ''}>
+                        <div className={appearance === 'dark' ? 'dark' : ''}>
                             <div className="rounded-xl transition-colors duration-300">
                                 <section className="space-y-12">
                                     <div>
@@ -619,7 +630,7 @@ function ThemesShow({ theme, css }: ThemesShowProps) {
                                 </p>
                             </div>
                             <div className="relative">
-                                <EditorBlock
+                                <MainEditorBlock
                                     language={`css`}
                                     options={{
                                         minimap: {
@@ -653,7 +664,7 @@ ${Object.entries(theme.vars_dark || {})
                                 </p>
                             </div>
                             <div className="relative">
-                                <EditorBlock
+                                <MainEditorBlock
                                     language={`json`}
                                     options={{
                                         minimap: {

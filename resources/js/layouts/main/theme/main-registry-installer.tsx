@@ -1,8 +1,8 @@
 import { usePage } from '@inertiajs/react';
-import { PackageManagerCode } from '@/components/theme/package-manager-code';
+import { PackageManagerCode } from '@/layouts/main/theme/main-package-manager-code';
 import { cn } from '@/lib/utils';
 
-function RegistryInstaller({
+function MainRegistryInstaller({
     code,
     className,
 }: {
@@ -24,6 +24,6 @@ function RegistryInstaller({
     );
 }
 
-RegistryInstaller.displayName = 'RegistryInstaller';
+MainRegistryInstaller.displayName = 'MainRegistryInstaller';
 
-export default RegistryInstaller;
+export default MainRegistryInstaller;

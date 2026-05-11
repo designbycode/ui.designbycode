@@ -27,7 +27,7 @@ createInertiaApp({
     withApp(app) {
         return (
             <TooltipProvider delayDuration={0}>
-                <div className={`pt-16`}>{app}</div>
+                <div>{app}</div>
                 <Toaster />
             </TooltipProvider>
         );
@@ -37,6 +37,6 @@ createInertiaApp({
     },
 });
 
-// This will set light / dark mode and color theme on load...
+// This will set light / dark mode and color app on load...
 initializeTheme();
 initializeColorTheme();

@@ -11,7 +11,7 @@ import { usePackageManagerStore } from '@/store/use-package-manager';
 
 export type PackageManager = 'npm' | 'pnpm' | 'yarn' | 'bun';
 
-export interface PackageManagerCode {
+export interface MainPackageManagerCode {
     npm?: string;
     pnpm?: string;
     yarn?: string;
@@ -19,7 +19,7 @@ export interface PackageManagerCode {
 }
 
 interface PackageManagerCodeProps {
-    codes: PackageManagerCode;
+    codes: MainPackageManagerCode;
     defaultManager?: PackageManager;
     className?: string;
 }

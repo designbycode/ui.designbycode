@@ -1,10 +1,10 @@
 import { Head } from '@inertiajs/react';
+import Hero from '@/components/app/hero';
 import CardsPreview from '@/components/preview/cards-preview';
-import { CodeBlock } from '@/components/theme/code-block';
-import EditorBlock from '@/components/theme/editor-block';
-import Hero from '@/components/theme/hero';
-import RegistryInstaller from '@/components/theme/registry-installer';
 import MainWrapper from '@/layouts/main/main-wrapper';
+import { MainCodeBlock } from '@/layouts/main/theme/main-code-block';
+import MainEditorBlock from '@/layouts/main/theme/main-editor-block';
+import MainRegistryInstaller from '@/layouts/main/theme/main-registry-installer';
 import MainLayout from '@/layouts/main-layout';
 
 function Home() {
@@ -17,11 +17,11 @@ function Home() {
                 <Hero />
                 <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-4">
-                        <EditorBlock
+                        <MainEditorBlock
                             lineNumbers={false}
                             value="console.log('Hello World');  ///"
                         />
-                        <EditorBlock
+                        <MainEditorBlock
                             options={{
                                 minimap: {
                                     enabled: true,
@@ -42,8 +42,8 @@ console.log(message); // Output: Hello, Alice!`}
                         />
                     </div>
                     <div className="space-y-4">
-                        <RegistryInstaller code={`themes/yeti`} />
-                        <CodeBlock
+                        <MainRegistryInstaller code={`themes/yeti`} />
+                        <MainCodeBlock
                             language="html"
                             code={`<div className="animate-bounce">Bouncing Content</div>`}
                         />

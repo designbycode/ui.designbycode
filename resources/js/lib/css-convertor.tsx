@@ -49,6 +49,7 @@ const convertLayerBase = (css?: any) => {
                     .split('\n')
                     .map((line: string) => `    ${line}`)
                     .join('\n');
+
                 return `  ${selector} {\n${indentedStyles}\n  }`;
             }
 

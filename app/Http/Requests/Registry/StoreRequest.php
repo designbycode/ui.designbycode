@@ -54,7 +54,7 @@ class StoreRequest extends FormRequest
             'style' => 'nullable|string',
             'icon_library' => 'nullable|string',
             'base_color' => 'nullable|string',
-            'theme' => 'nullable|string',
+            'app' => 'nullable|string',
         ];
     }
 }

@@ -16,7 +16,7 @@ interface CodeBlockProps {
     showCopyButton?: boolean;
 }
 
-function CodeBlock({
+function MainCodeBlock({
     code,
     language = 'bash',
     className,
@@ -127,4 +127,4 @@ function CodeBlock({
     );
 }
 
-export { CodeBlock, type CodeBlockProps };
+export { MainCodeBlock, type CodeBlockProps };

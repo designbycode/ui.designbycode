@@ -3,6 +3,7 @@
 import { Check, Copy, Terminal } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
+import { Button } from '@/components/ui/button';
 import {
     Combobox,
     ComboboxContent,
@@ -12,7 +13,6 @@ import {
 } from '@/components/ui/combobox';
 import { useCopyToClipboard, usePrismHighlight } from '@/hooks/use-prism';
 import { cn } from '@/lib/utils';
-import { Button } from '@/components/ui/button';
 import { AnimatedTabs } from '@/registry/new-york/components/ui/tabs/animated-tabs';
 import { usePackageManagerStore } from '@/store/use-package-manager';
 
@@ -40,7 +40,7 @@ interface PackageManagerCodeWithSelectorProps {
 
 const managers: PackageManager[] = ['npm', 'pnpm', 'yarn', 'bun'];
 
-export function PackageManagerCodeWithSelector({
+export function MainPackageManagerCodeWithSelector({
     options,
     baseUrl = '',
     className,

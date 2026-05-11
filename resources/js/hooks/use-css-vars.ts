@@ -1,7 +1,7 @@
 import { useAppearance } from '@/hooks/use-appearance';
+import { buildCSSVars } from '@/lib/build-css-vars';
 import type { Registry } from '@/types/registry';
 import type { Theme } from '@/types/theme';
-import { buildCSSVars } from '@/lib/build-css-vars';
 
 type CSSVarsSource = Theme | Registry;
 

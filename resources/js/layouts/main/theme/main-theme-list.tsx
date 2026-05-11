@@ -5,7 +5,7 @@ import { useCSSVars } from '@/hooks/use-css-vars';
 import { cn } from '@/lib/utils';
 import type { Theme } from '@/types/theme';
 
-function ThemeList({
+function MainThemeList({
     theme,
     onSelect,
     selected = false,
@@ -59,6 +59,6 @@ function ThemeList({
     );
 }
 
-ThemeList.displayName = 'ThemeList';
+MainThemeList.displayName = 'MainThemeList';
 
-export default ThemeList;
+export default MainThemeList;

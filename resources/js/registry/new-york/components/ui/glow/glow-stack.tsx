@@ -20,12 +20,14 @@ interface GlowStackProps {
     children: ReactNode;
     radius?: number;
     className?: string;
+    style?: React.CSSProperties;
 }
 
 export function GlowStack({
     children,
     radius = 100,
     className,
+    style,
 }: GlowStackProps) {
     const [pos, setPos] = useState({ x: -9999, y: -9999 });
     const rafRef = useRef<number>(0);
@@ -48,7 +50,7 @@ export function GlowStack({
 
     return (
         <GlowContext.Provider value={{ position: pos, radius }}>
-            <div className={className}>{children}</div>
+            <div className={className} style={style}>{children}</div>
         </GlowContext.Provider>
     );
 }

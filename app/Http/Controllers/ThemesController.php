@@ -28,9 +28,6 @@ class ThemesController extends Controller
         ]);
     }
 
-    public function apiIndex()
-    {
-    }
 
     public function show(Theme $theme)
     {

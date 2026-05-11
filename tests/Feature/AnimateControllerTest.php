@@ -76,12 +76,12 @@ test('show returns the correct animation data', function () {
     ]);
 });
 
-test('show includes cssVars with theme wrapper', function () {
+test('show includes cssVars with app wrapper', function () {
     $response = $this->get('/r/animate-css/animate-bounce.json');
 
     $response->assertJson([
         'cssVars' => [
-            'theme' => [
+            'app' => [
                 '--animate-bounce' => 'bounce 1s',
             ],
         ],

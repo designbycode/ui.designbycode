@@ -5,8 +5,15 @@ import { useEffect, useRef, useState } from 'react';
 import { toast } from 'sonner';
 
 import { Button } from '@/components/ui/button';
-import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
-import { useCopyToClipboard, usePrismHighlight } from '@/hooks/use-prism';
+import {
+    Dialog,
+    DialogContent,
+    DialogTitle,
+} from '@/components/ui/dialog';
+import {
+    useCopyToClipboard,
+    usePrismHighlight,
+} from '@/hooks/use-prism';
 import { cn } from '@/lib/utils';
 import { AnimatedTabs } from '@/registry/new-york/components/ui/tabs/animated-tabs';
 import { usePackageManagerStore } from '@/store/use-package-manager';
@@ -54,7 +61,7 @@ function buildCodes(registryName: string): PackageManagerCode {
     };
 }
 
-export function PackageManagerSearch({
+export function MainPackageManagerSearch({
     codes: initialCodes,
     className,
     defaultRegistry,

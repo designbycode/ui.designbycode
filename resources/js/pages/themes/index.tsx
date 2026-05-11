@@ -1,13 +1,13 @@
 import { InfiniteScroll, Link } from '@inertiajs/react';
 import { Plus, SearchX } from 'lucide-react';
 import Heading from '@/components/heading';
-import ThemeCard2 from '@/components/theme/theme-card-2';
-import { ThemeSearch } from '@/components/theme/theme-search';
 import { Button } from '@/components/ui/button';
+import MainWrapper from '@/layouts/main/main-wrapper';
+import MainThemeCard from '@/layouts/main/theme/main-theme-card';
+import { MainThemeSearch } from '@/layouts/main/theme/main-theme-search';
 import MainLayout from '@/layouts/main-layout';
 import { show } from '@/routes/themes';
 import type { PaginatedData, Registry } from '@/types';
-import MainWrapper from '../../layouts/main/main-wrapper';
 
 function ThemesIndex({
     themes,
@@ -40,7 +40,7 @@ function ThemesIndex({
                 </div>
             </div>
 
-            <ThemeSearch
+            <MainThemeSearch
                 filters={filters}
                 availableCategories={availableCategories}
             />
@@ -49,7 +49,7 @@ function ThemesIndex({
                 <div className="mb-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
                     {themes.data.map((theme: Registry, _index) => (
                         <Link key={_index} href={show(theme.name)}>
-                            <ThemeCard2 theme={theme} />
+                            <MainThemeCard theme={theme} />
                         </Link>
                     ))}
                 </div>
@@ -69,7 +69,7 @@ function ThemesIndex({
                     </div>
                 )}
 
-            {/*<CardsPreview theme={themes.data[themeNumber]} />*/}
+            {/*<CardsPreview app={themes.data[themeNumber]} />*/}
         </MainWrapper>
     );
 }

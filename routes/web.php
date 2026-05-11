@@ -16,7 +16,7 @@ Route::get('/fonts', [FontsController::class, 'index'])->name('fonts.index');
 Route::get('/animate-css', [AnimateController::class, 'index'])->name('animate-css.index');
 
 Route::get('/r/{type}/{name}.json', [RegistriesController::class, 'show']);
-Route::get('/r/theme/{name}.css', [ThemesController::class, 'css']);
+Route::get('/r/app/{name}.css', [ThemesController::class, 'css']);
 Route::get('/r/registry.json', [RegistryController::class, 'index']);
 Route::get('/r/{name}.json', [RegistryController::class, 'show']);
 Route::get('/r/{name}.css', [RegistryController::class, 'css']);

@@ -39,7 +39,7 @@ trait HasAnimate
         }
 
         if ($this->css_vars !== null) {
-            $item['cssVars'] = ['theme' => $this->css_vars];
+            $item['cssVars'] = ['app' => $this->css_vars];
         }
 
         if ($this->css !== null) {

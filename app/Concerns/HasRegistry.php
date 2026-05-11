@@ -65,7 +65,7 @@ trait HasRegistry
      * Handles:
      *  - :root { } → vars_light
      *  - .dark { } → vars_dark
-     *  - @theme inline { } → vars_theme + colour/font/radius/shadow mapping
+     *  - @app inline { } → vars_theme + colour/font/radius/shadow mapping
      *  - @layer base { } → css_base
      *  - Flat font columns extracted from vars_light
      *
@@ -92,8 +92,8 @@ trait HasRegistry
             $instance->vars_dark = static::parseCssVars($m[1]);
         }
 
-        // ── @theme inline ─────────────────────────────────────────────────
-        if (preg_match('/@theme\s+inline\s*\{([^}]+)\}/s', $css, $m)) {
+        // ── @app inline ─────────────────────────────────────────────────
+        if (preg_match('/@app\s+inline\s*\{([^}]+)\}/s', $css, $m)) {
             $instance->vars_theme = static::parseThemeInline($m[1], $instance->vars_light ?? []);
         }
 
@@ -149,7 +149,7 @@ trait HasRegistry
 
         // cssVars split into three columns
         $cssVars = $data['cssVars'] ?? [];
-        $instance->vars_theme = $cssVars['theme'] ?? null;
+        $instance->vars_theme = $cssVars['app'] ?? null;
         $instance->vars_light = $cssVars['light'] ?? null;
         $instance->vars_dark = $cssVars['dark'] ?? null;
 
@@ -184,7 +184,7 @@ trait HasRegistry
         $instance->style = $data['style'] ?? null;
         $instance->icon_library = $data['iconLibrary'] ?? null;
         $instance->base_color = $data['baseColor'] ?? null;
-        $instance->theme = $data['theme'] ?? null;
+        $instance->theme = $data['app'] ?? null;
 
         return $instance;
     }
@@ -229,7 +229,7 @@ trait HasRegistry
             $registry['style'] = $this->style;
             $registry['iconLibrary'] = $this->icon_library;
             $registry['baseColor'] = $this->base_color;
-            $registry['theme'] = $this->theme;
+            $registry['app'] = $this->theme;
         }
 
         // registry:font exclusive
@@ -255,7 +255,7 @@ trait HasRegistry
 
     /**
      * Reconstruct the raw shadcn CSS from stored columns.
-     * Produces: @import, :root, .dark, @theme inline, @layer base.
+     * Produces: @import, :root, .dark, @app inline, @layer base.
      */
     public function toCss(): string
     {
@@ -282,8 +282,8 @@ trait HasRegistry
         $lines[] = '}';
         $lines[] = '';
 
-        // ── @theme inline ─────────────────────────────────────────────────
-        $lines[] = '@theme inline {';
+        // ── @app inline ─────────────────────────────────────────────────
+        $lines[] = '@app inline {';
 
         // colour tokens → --color-* aliases
         $colorVars = array_filter(
@@ -498,7 +498,7 @@ trait HasRegistry
         ]);
 
         return array_filter([
-            'theme' => $this->vars_theme ?? [],
+            'app' => $this->vars_theme ?? [],
             'light' => array_merge($this->vars_light ?? [], $fonts),
             'dark' => array_merge($this->vars_dark ?? [], $fonts),
         ], fn ($v) => ! empty($v));
@@ -559,7 +559,7 @@ trait HasRegistry
     }
 
     /**
-     * Parse an `@theme inline { }` block into a key → value map.
+     * Parse an `@app inline { }` block into a key → value map.
      * Resolves `var(--x)` references against the already-parsed light vars.
      *
      * @param  array<string, string>  $lightVars

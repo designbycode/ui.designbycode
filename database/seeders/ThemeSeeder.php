@@ -34,7 +34,7 @@ class ThemeSeeder extends Seeder
             [
                 'name' => 'polar-drift',
                 'title' => 'Polar Drift',
-                'description' => 'Minimal frozen tundra theme with cool blue tones, frosted surfaces, and crisp arctic typography.',
+                'description' => 'Minimal frozen tundra app with cool blue tones, frosted surfaces, and crisp arctic typography.',
                 'font_family' => 'Inter, sans-serif',
                 'registryDependencies' => [
                     'https://ui.designbycode.co.za/r/fonts/font-inter.json',
@@ -143,7 +143,7 @@ class ThemeSeeder extends Seeder
             [
                 'name' => 'yeti',
                 'title' => 'Yeti',
-                'description' => 'Snowstorm-inspired dark alpine theme with rugged mountain contrast and frozen cyan highlights.',
+                'description' => 'Snowstorm-inspired dark alpine app with rugged mountain contrast and frozen cyan highlights.',
                 'font_family' => 'Space Grotesk, sans-serif',
                 'registryDependencies' => [
                     'https://ui.designbycode.co.za/r/fonts/font-space-grotesk.json',
@@ -252,7 +252,7 @@ class ThemeSeeder extends Seeder
             [
                 'name' => 'boho',
                 'title' => 'Boho',
-                'description' => 'Warm earthy artisan theme with soft paper tones, handcrafted shadows, and artistic serif typography.',
+                'description' => 'Warm earthy artisan app with soft paper tones, handcrafted shadows, and artistic serif typography.',
                 'font_family' => 'Cormorant Garamond, Inter, serif',
                 'registryDependencies' => [
                     'https://ui.designbycode.co.za/r/fonts/font-playfair-display.json',
@@ -398,7 +398,7 @@ class ThemeSeeder extends Seeder
             [
                 'name' => 'tide',
                 'title' => 'Tide',
-                'description' => 'Bright tropical coastal theme with ocean blues, citrus warmth, and sunny coral surfaces.',
+                'description' => 'Bright tropical coastal app with ocean blues, citrus warmth, and sunny coral surfaces.',
                 'font_family' => 'Poppins, sans-serif',
                 'registryDependencies' => [
                     'https://ui.designbycode.co.za/r/fonts/font-poppins.json',
@@ -494,7 +494,7 @@ class ThemeSeeder extends Seeder
             [
                 'name' => 'ember',
                 'title' => 'Ember',
-                'description' => 'Earthy harvest-inspired theme with amber leaves, rustic warmth, and crackling fire tones.',
+                'description' => 'Earthy harvest-inspired app with amber leaves, rustic warmth, and crackling fire tones.',
                 'font_family' => 'Merriweather, serif',
                 'registryDependencies' => [
                     'https://ui.designbycode.co.za/r/fonts/font-playfair-display.json',
@@ -590,7 +590,7 @@ class ThemeSeeder extends Seeder
             [
                 'name' => 'noir-ice',
                 'title' => 'Noir Ice',
-                'description' => 'Elegant frozen theme with snowy neutrals, deep navy noir contrast, and icy silver highlights.',
+                'description' => 'Elegant frozen app with snowy neutrals, deep navy noir contrast, and icy silver highlights.',
                 'font_family' => 'Inter, sans-serif',
                 'registryDependencies' => [
                     'https://ui.designbycode.co.za/r/fonts/font-inter.json',
@@ -686,7 +686,7 @@ class ThemeSeeder extends Seeder
             [
                 'name' => 'verdant-future',
                 'title' => 'Verdant Future',
-                'description' => 'Bright ecological future theme with lush greens, solar golds, soft natural gradients, and optimistic clean design.',
+                'description' => 'Bright ecological future app with lush greens, solar golds, soft natural gradients, and optimistic clean design.',
                 'font_family' => 'Nunito, sans-serif',
                 'registryDependencies' => [
                     'https://ui.designbycode.co.za/r/fonts/font-inter.json',
@@ -810,7 +810,7 @@ class ThemeSeeder extends Seeder
             [
                 'name' => 'brutal-industry',
                 'title' => 'Brutal Industry',
-                'description' => 'Retro-futuristic interwar industrial theme with steel blues, oil blacks, riveted metal, and smoky amber lighting.',
+                'description' => 'Retro-futuristic interwar industrial app with steel blues, oil blacks, riveted metal, and smoky amber lighting.',
                 'font_family' => 'Oswald, sans-serif',
                 'registryDependencies' => [
                     'https://ui.designbycode.co.za/r/fonts/font-roboto.json',
@@ -3658,7 +3658,7 @@ class ThemeSeeder extends Seeder
             [
                 'name' => 'inferno',
                 'title' => 'Inferno',
-                'description' => 'Blazing firebrick-and-lava theme with deep crimson warmth, molten orange glows, and ashen charcoal foundations.',
+                'description' => 'Blazing firebrick-and-lava app with deep crimson warmth, molten orange glows, and ashen charcoal foundations.',
                 'font_family' => 'Barlow Condensed, sans-serif',
                 'registryDependencies' => [
                     'https://ui.designbycode.co.za/r/fonts/font-inter.json',
@@ -3774,7 +3774,7 @@ class ThemeSeeder extends Seeder
             [
                 'name' => 'mauve',
                 'title' => 'Mauve',
-                'description' => 'Elegant plum-toned theme with mauve primary colors, taupe neutrals, and sophisticated muted purple ambiance.',
+                'description' => 'Elegant plum-toned app with mauve primary colors, taupe neutrals, and sophisticated muted purple ambiance.',
                 'font_family' => 'Inter, sans-serif',
                 'registryDependencies' => [
                     'https://ui.designbycode.co.za/r/fonts/font-inter.json',
@@ -3874,7 +3874,7 @@ class ThemeSeeder extends Seeder
             [
                 'name' => 'haze',
                 'title' => 'Haze',
-                'description' => 'Cool atmospheric theme with misty blue-gray primary, olive earthy accents, and fog-kissed neutral surfaces.',
+                'description' => 'Cool atmospheric app with misty blue-gray primary, olive earthy accents, and fog-kissed neutral surfaces.',
                 'font_family' => 'Inter, sans-serif',
                 'registryDependencies' => [
                     'https://ui.designbycode.co.za/r/fonts/font-inter.json',
@@ -3974,7 +3974,7 @@ class ThemeSeeder extends Seeder
             [
                 'name' => 'gothic',
                 'title' => 'Gothic',
-                'description' => 'Dark cathedral-inspired theme with stone masonry grays, stained-glass jewel tones, and dramatic rose-window accents.',
+                'description' => 'Dark cathedral-inspired app with stone masonry grays, stained-glass jewel tones, and dramatic rose-window accents.',
                 'font_family' => 'Cinzel, serif',
                 'registryDependencies' => [
                     'https://ui.designbycode.co.za/r/fonts/font-inter.json',
@@ -4075,7 +4075,7 @@ class ThemeSeeder extends Seeder
             [
                 'name' => 'fantasy',
                 'title' => 'Fantasy',
-                'description' => 'Enchanted realm theme with amethyst purples, emerald greens, magical gold highlights, and ethereal glowing accents.',
+                'description' => 'Enchanted realm app with amethyst purples, emerald greens, magical gold highlights, and ethereal glowing accents.',
                 'font_family' => 'Cormorant Garamond, serif',
                 'registryDependencies' => [
                     'https://ui.designbycode.co.za/r/fonts/font-inter.json',
@@ -4176,7 +4176,7 @@ class ThemeSeeder extends Seeder
             [
                 'name' => 'mythological',
                 'title' => 'Mythological',
-                'description' => 'Ancient Greco-Roman inspired theme with marble-white surfaces, Aegean deep blues, terracotta accents, and gilded highlights.',
+                'description' => 'Ancient Greco-Roman inspired app with marble-white surfaces, Aegean deep blues, terracotta accents, and gilded highlights.',
                 'font_family' => 'Cinzel, serif',
                 'registryDependencies' => [
                     'https://ui.designbycode.co.za/r/fonts/font-inter.json',
@@ -4277,7 +4277,7 @@ class ThemeSeeder extends Seeder
             [
                 'name' => 'urban',
                 'title' => 'Urban',
-                'description' => 'City-concrete inspired theme with pavement grays, steel-blue accents, grafitti-bright highlights, and industrial edge.',
+                'description' => 'City-concrete inspired app with pavement grays, steel-blue accents, grafitti-bright highlights, and industrial edge.',
                 'font_family' => 'Barlow Condensed, sans-serif',
                 'registryDependencies' => [
                     'https://ui.designbycode.co.za/r/fonts/font-inter.json',
@@ -4377,7 +4377,7 @@ class ThemeSeeder extends Seeder
             [
                 'name' => 'mid-century',
                 'title' => 'Mid-Century',
-                'description' => 'Retro 1950s-60s inspired theme with teal hues, mustard yellows, burnt orange accents, and warm walnut browns.',
+                'description' => 'Retro 1950s-60s inspired app with teal hues, mustard yellows, burnt orange accents, and warm walnut browns.',
                 'font_family' => 'Space Grotesk, sans-serif',
                 'registryDependencies' => [
                     'https://ui.designbycode.co.za/r/fonts/font-space-grotesk.json',
@@ -4477,7 +4477,7 @@ class ThemeSeeder extends Seeder
             [
                 'name' => 'japanese-zen',
                 'title' => 'Japanese Zen',
-                'description' => 'Serene Zen-inspired theme with rice-paper whites, bamboo greens, ink-black calligraphy, and vermillion accents.',
+                'description' => 'Serene Zen-inspired app with rice-paper whites, bamboo greens, ink-black calligraphy, and vermillion accents.',
                 'font_family' => 'Inter, sans-serif',
                 'registryDependencies' => [
                     'https://ui.designbycode.co.za/r/fonts/font-inter.json',
@@ -4577,7 +4577,7 @@ class ThemeSeeder extends Seeder
             [
                 'name' => 'art-nouveau',
                 'title' => 'Art Nouveau',
-                'description' => 'Flowery Belle Époque theme with peacock teals, gilded gold, deep purples, and organic flowing ornament.',
+                'description' => 'Flowery Belle Époque app with peacock teals, gilded gold, deep purples, and organic flowing ornament.',
                 'font_family' => 'Cormorant Garamond, serif',
                 'registryDependencies' => [
                     'https://ui.designbycode.co.za/r/fonts/font-inter.json',
@@ -4678,7 +4678,7 @@ class ThemeSeeder extends Seeder
             [
                 'name' => 'coastal',
                 'title' => 'Coastal',
-                'description' => 'Seaside retreat theme with sandy beige shores, ocean-blue waves, sea-foam greens, and driftwood warmth.',
+                'description' => 'Seaside retreat app with sandy beige shores, ocean-blue waves, sea-foam greens, and driftwood warmth.',
                 'font_family' => 'Quicksand, sans-serif',
                 'registryDependencies' => [
                     'https://ui.designbycode.co.za/r/fonts/font-work-sans.json',
@@ -4778,7 +4778,7 @@ class ThemeSeeder extends Seeder
             [
                 'name' => 'scandinavian',
                 'title' => 'Scandinavian',
-                'description' => 'Hygge-inspired Nordic theme with crisp white expanses, light birch woods, soft blush accents, and serene minimalism.',
+                'description' => 'Hygge-inspired Nordic app with crisp white expanses, light birch woods, soft blush accents, and serene minimalism.',
                 'font_family' => 'Inter, sans-serif',
                 'registryDependencies' => [
                     'https://ui.designbycode.co.za/r/fonts/font-inter.json',
@@ -4878,7 +4878,7 @@ class ThemeSeeder extends Seeder
             [
                 'name' => 'techno',
                 'title' => 'Techno',
-                'description' => 'Rave-inspired digital theme with electric cyan, neon purple strobes, deep black voids, and high-voltage accent flashes.',
+                'description' => 'Rave-inspired digital app with electric cyan, neon purple strobes, deep black voids, and high-voltage accent flashes.',
                 'font_family' => 'Rajdhani, sans-serif',
                 'registryDependencies' => [
                     'https://ui.designbycode.co.za/r/fonts/font-inter.json',
@@ -4978,7 +4978,7 @@ class ThemeSeeder extends Seeder
             [
                 'name' => 'rustic',
                 'title' => 'Rustic',
-                'description' => 'Weathered countryside theme with barn-red timbers, sage meadow greens, creamery whites, and worn leather browns.',
+                'description' => 'Weathered countryside app with barn-red timbers, sage meadow greens, creamery whites, and worn leather browns.',
                 'font_family' => 'Merriweather, serif',
                 'registryDependencies' => [
                     'https://ui.designbycode.co.za/r/fonts/font-inter.json',
@@ -5079,7 +5079,7 @@ class ThemeSeeder extends Seeder
             [
                 'name' => 'surreal',
                 'title' => 'Surreal',
-                'description' => 'Dreamscape-defying theme with unexpected color collisions, liminal lavender-greens, floating coral pinks, and impossible indigos.',
+                'description' => 'Dreamscape-defying app with unexpected color collisions, liminal lavender-greens, floating coral pinks, and impossible indigos.',
                 'font_family' => 'Space Grotesk, sans-serif',
                 'registryDependencies' => [
                     'https://ui.designbycode.co.za/r/fonts/font-space-grotesk.json',
@@ -5289,7 +5289,7 @@ class ThemeSeeder extends Seeder
             [
                 'name' => 'summer',
                 'title' => 'Summer',
-                'description' => 'Bright tropical theme with ocean blues, citrus warmth, and sunny surfaces.',
+                'description' => 'Bright tropical app with ocean blues, citrus warmth, and sunny surfaces.',
                 'font_family' => 'Poppins, sans-serif',
                 'registryDependencies' => [
                     'https://ui.designbycode.co.za/r/fonts/font-poppins.json',
@@ -5368,7 +5368,7 @@ class ThemeSeeder extends Seeder
             [
                 'name' => 'autumn',
                 'title' => 'Autumn',
-                'description' => 'Earthy harvest-inspired theme with amber leaves and rustic warmth.',
+                'description' => 'Earthy harvest-inspired app with amber leaves and rustic warmth.',
                 'font_family' => 'Merriweather, serif',
                 'registryDependencies' => [
                     'https://ui.designbycode.co.za/r/fonts/font-playfair-display.json',
@@ -5447,7 +5447,7 @@ class ThemeSeeder extends Seeder
             [
                 'name' => 'winter',
                 'title' => 'Winter',
-                'description' => 'Elegant frozen theme with snowy neutrals, deep navy contrast, and icy highlights.',
+                'description' => 'Elegant frozen app with snowy neutrals, deep navy contrast, and icy highlights.',
                 'font_family' => 'Inter, sans-serif',
                 'registryDependencies' => [
                     'https://ui.designbycode.co.za/r/fonts/font-inter.json',
@@ -5519,7 +5519,7 @@ class ThemeSeeder extends Seeder
             [
                 'name' => 'solarpunk',
                 'title' => 'Solarpunk',
-                'description' => 'Bright ecological future theme with lush greens, solar golds, soft natural gradients, and optimistic clean design.',
+                'description' => 'Bright ecological future app with lush greens, solar golds, soft natural gradients, and optimistic clean design.',
                 'font_family' => 'Nunito, sans-serif',
                 'registryDependencies' => [
                     'https://ui.designbycode.co.za/r/fonts/font-inter.json',
@@ -5528,7 +5528,7 @@ class ThemeSeeder extends Seeder
                 ],
 
                 'css' => [
-                 
+
 
                     '@layer base' => [
                         '*' => [
@@ -5716,7 +5716,7 @@ class ThemeSeeder extends Seeder
             [
                 'name' => 'steampunk',
                 'title' => 'Steampunk',
-                'description' => 'Victorian industrial theme with brass, copper, leather tones, and mechanical elegance.',
+                'description' => 'Victorian industrial app with brass, copper, leather tones, and mechanical elegance.',
                 'font_family' => 'Cinzel, serif',
                 'registryDependencies' => [
                     'https://ui.designbycode.co.za/r/fonts/font-inter.json',

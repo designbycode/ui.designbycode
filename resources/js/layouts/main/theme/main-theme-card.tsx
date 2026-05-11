@@ -9,7 +9,9 @@ import { useCSSVars } from '@/hooks/use-css-vars';
 import { GlowRadial } from '@/registry/new-york/components/ui/glow/glow-radial';
 import type { Registry } from '@/types/registry';
 
-interface ThemeCard2Props extends React.ComponentPropsWithoutRef<typeof Card> {
+interface MainThemeCardProps extends React.ComponentPropsWithoutRef<
+    typeof Card
+> {
     theme: Registry;
 }
 
@@ -27,7 +29,7 @@ const SURFACE_STRIPS = [
     { label: 'Ring', bgClass: 'bg-ring' },
 ] as const;
 
-function ThemeCard2({ theme, ...props }: ThemeCard2Props) {
+function MainThemeCard({ theme, ...props }: MainThemeCardProps) {
     const { cssVars } = useCSSVars(theme);
 
     return (
@@ -111,5 +113,5 @@ function ThemeCard2({ theme, ...props }: ThemeCard2Props) {
     );
 }
 
-ThemeCard2.displayName = 'ThemeCard2';
-export default ThemeCard2;
+MainThemeCard.displayName = 'MainThemeCard';
+export default MainThemeCard;

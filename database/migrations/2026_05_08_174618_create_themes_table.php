@@ -50,7 +50,7 @@ return new class extends Migration
             $table->string('style')->nullable();
             $table->string('icon_library')->nullable();
             $table->string('base_color')->nullable();
-            $table->json('theme')->nullable();
+            $table->json('app')->nullable();
 
             $table->timestamps();
             $table->softDeletes();
@@ -68,7 +68,7 @@ return new class extends Migration
                 font_provider, font_import, font_variable,
                 font_weight, font_subsets, font_selector, font_dependency,
                 tailwind, meta, docs, categories,
-                extends, style, icon_library, base_color, theme,
+                extends, style, icon_library, base_color, app,
                 created_at, updated_at
             )
             SELECT
@@ -80,13 +80,13 @@ return new class extends Migration
                 font_provider, font_import, font_variable,
                 font_weight, font_subsets, font_selector, font_dependency,
                 tailwind, meta, docs, categories,
-                extends, style, icon_library, base_color, theme,
+                extends, style, icon_library, base_color, app,
                 created_at, updated_at
             FROM registries
-            WHERE type = \'registry:theme\'
+            WHERE type = \'registry:app\'
         ');
 
-        DB::table('registries')->where('type', 'registry:theme')->delete();
+        DB::table('registries')->where('type', 'registry:app')->delete();
     }
 
     public function down(): void
@@ -95,7 +95,7 @@ return new class extends Migration
 
         foreach ($themes as $theme) {
             $data = (array) $theme;
-            $data['type'] = 'registry:theme';
+            $data['type'] = 'registry:app';
             unset($data['id'], $data['user_id']);
             DB::table('registries')->insert($data);
         }

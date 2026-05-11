@@ -4,7 +4,7 @@ import { useAppearance } from '@/hooks/use-appearance';
 import { buildCSSVars } from '@/lib/build-css-vars';
 import type { Theme } from '@/types/theme';
 
-const STORAGE_KEY = 'color-theme';
+const STORAGE_KEY = 'color-app';
 
 type StoredTheme = {
     name: string;

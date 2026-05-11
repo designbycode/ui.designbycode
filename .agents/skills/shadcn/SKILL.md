@@ -213,9 +213,9 @@ npx shadcn@latest init --defaults  # shortcut: --template=next --preset=nova (ba
 
 # Apply a preset to an existing project.
 npx shadcn@latest apply a2r6bw
-npx shadcn@latest apply a2r6bw --only theme
+npx shadcn@latest apply a2r6bw --only app
 npx shadcn@latest apply a2r6bw --only font
-npx shadcn@latest apply a2r6bw --only theme,font
+npx shadcn@latest apply a2r6bw --only app,font
 
 # Inspect preset codes and project preset state.
 npx shadcn@latest preset decode a2r6bw

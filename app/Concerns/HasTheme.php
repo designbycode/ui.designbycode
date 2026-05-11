@@ -12,7 +12,7 @@ trait HasTheme
         'registry:component',
         'registry:ui',
         'registry:hook',
-        'registry:theme',
+        'registry:app',
         'registry:page',
         'registry:file',
         'registry:style',
@@ -41,7 +41,7 @@ trait HasTheme
     public static function fromCss(
         string $css,
         string $name,
-        string $type = 'registry:theme'
+        string $type = 'registry:app'
     ): static {
         static::assertValidType($type);
 
@@ -57,7 +57,7 @@ trait HasTheme
             $instance->vars_dark = static::parseCssVars($m[1]);
         }
 
-        if (preg_match('/@theme\s+inline\s*\{([^}]+)\}/s', $css, $m)) {
+        if (preg_match('/@app\s+inline\s*\{([^}]+)\}/s', $css, $m)) {
             $instance->vars_theme = static::parseThemeInline($m[1], $instance->vars_light ?? []);
         }
 
@@ -82,7 +82,7 @@ trait HasTheme
         $instance = new static;
 
         $instance->name = $data['name'];
-        $instance->type = 'registry:theme';
+        $instance->type = 'registry:app';
         $instance->title = $data['title'] ?? null;
         $instance->description = $data['description'] ?? null;
         $instance->author = $data['author'] ?? null;
@@ -97,7 +97,7 @@ trait HasTheme
         $instance->tailwind = $data['tailwind'] ?? null;
 
         $cssVars = $data['cssVars'] ?? [];
-        $instance->vars_theme = $cssVars['theme'] ?? null;
+        $instance->vars_theme = $cssVars['app'] ?? null;
         $instance->vars_light = $cssVars['light'] ?? null;
         $instance->vars_dark = $cssVars['dark'] ?? null;
 
@@ -127,7 +127,7 @@ trait HasTheme
         $instance->style = $data['style'] ?? null;
         $instance->icon_library = $data['iconLibrary'] ?? null;
         $instance->base_color = $data['baseColor'] ?? null;
-        $instance->theme = $data['theme'] ?? null;
+        $instance->theme = $data['app'] ?? null;
 
         return $instance;
     }
@@ -141,7 +141,7 @@ trait HasTheme
         $registry = [
             '$schema' => 'https://ui.shadcn.com/schema/registry-item.json',
             'name' => $this->name,
-            'type' => 'registry:theme',
+            'type' => 'registry:app',
             'title' => $this->title,
             'description' => $this->description,
             'author' => $this->author,
@@ -165,7 +165,7 @@ trait HasTheme
             $registry['style'] = $this->style;
             $registry['iconLibrary'] = $this->icon_library;
             $registry['baseColor'] = $this->base_color;
-            $registry['theme'] = $this->theme;
+            $registry['app'] = $this->theme;
         }
 
         if ($this->type === 'registry:font') {
@@ -211,7 +211,7 @@ trait HasTheme
         $lines[] = '}';
         $lines[] = '';
 
-        $lines[] = '@theme inline {';
+        $lines[] = '@app inline {';
 
         $colorVars = array_filter(
             $this->vars_light ?? [],
@@ -273,9 +273,9 @@ trait HasTheme
 
     public static function assertValidType(string $type): void
     {
-        if (! in_array($type, ['registry:theme'], true)) {
+        if (! in_array($type, ['registry:app'], true)) {
             throw new InvalidArgumentException(
-                "Invalid registry type \"{$type}\". Allowed: registry:theme"
+                "Invalid registry type \"{$type}\". Allowed: registry:app"
             );
         }
     }
@@ -342,7 +342,7 @@ trait HasTheme
 
     public function isTheme(): bool
     {
-        return $this->type === 'registry:theme';
+        return $this->type === 'registry:app';
     }
 
     public function isComponent(): bool
@@ -398,7 +398,7 @@ trait HasTheme
         ]);
 
         return array_filter([
-            'theme' => $this->vars_theme ?? [],
+            'app' => $this->vars_theme ?? [],
             'light' => array_merge($this->vars_light ?? [], $fonts),
             'dark' => array_merge($this->vars_dark ?? [], $fonts),
         ], fn ($v) => ! empty($v));

@@ -1,13 +1,24 @@
 import { Check, Palette, RotateCcw, Search, X } from 'lucide-react';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { flushSync } from 'react-dom';
-import ThemeList from '@/components/theme/theme-list';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { PlaceholderPattern } from '@/components/ui/placeholder-pattern';
-import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
-import { clearColorTheme, setColorTheme, useColorTheme } from '@/hooks/use-color-theme';
+import {
+    Sheet,
+    SheetContent,
+    SheetDescription,
+    SheetHeader,
+    SheetTitle,
+    SheetTrigger,
+} from '@/components/ui/sheet';
+import {
+    clearColorTheme,
+    setColorTheme,
+    useColorTheme,
+} from '@/hooks/use-color-theme';
 import { useDebounce } from '@/hooks/use-debounce';
+import MainThemeList from '@/layouts/main/theme/main-theme-list';
 import type { Theme } from '@/types/theme';
 
 interface Page {
@@ -46,7 +57,9 @@ function MainThemeSwitcher() {
                     setThemes((prev) =>
                         append ? [...prev, ...json.data] : json.data,
                     );
-                    setHasMore(search ? false : json.current_page < json.last_page);
+                    setHasMore(
+                        search ? false : json.current_page < json.last_page,
+                    );
                     setPage(pageNum);
                 })
                 .catch((error) => {
@@ -88,7 +101,9 @@ function MainThemeSwitcher() {
     }, [open, debouncedSearch, activeSearch, fetchPage]);
 
     useEffect(() => {
-        if (!open) return;
+        if (!open) {
+            return;
+        }
 
         const el = loaderRef.current;
         const root = scrollRef.current;
@@ -184,7 +199,7 @@ function MainThemeSwitcher() {
                         </button>
 
                         {themes.map((theme) => (
-                            <ThemeList
+                            <MainThemeList
                                 key={theme.name}
                                 theme={theme}
                                 className="mb-2"

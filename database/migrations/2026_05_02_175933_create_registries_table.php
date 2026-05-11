@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('name')->unique()->comment('Unique registry item identifier');
             $table->string('type')->comment(
                 'registry:lib | registry:block | registry:component | registry:ui | '.
-                'registry:hook | registry:theme | registry:page | registry:file | '.
+                'registry:hook | registry:app | registry:page | registry:file | '.
                 'registry:style | registry:base | registry:font | registry:item'
             );
             $table->string('title')->nullable()->comment('Human-readable title');
@@ -40,8 +40,8 @@ return new class extends Migration
             $table->json('css_base')->nullable()->comment('@layer base rules {selector: {property: value}}');
 
             // ── CSS Variables (cssVars in schema) ─────────────────────────────
-            // Shadcn splits into theme / light / dark
-            $table->json('vars_theme')->nullable()->comment('cssVars.theme – @theme inline tokens');
+            // Shadcn splits into app / light / dark
+            $table->json('vars_theme')->nullable()->comment('cssVars.app – @app inline tokens');
             $table->json('vars_light')->nullable()->comment('cssVars.light – :root token map');
             $table->json('vars_dark')->nullable()->comment('cssVars.dark – .dark token map');
 
@@ -59,7 +59,7 @@ return new class extends Migration
             $table->string('font_dependency')->nullable()->comment('font.dependency npm pkg e.g. "@fontsource-variable/inter"');
 
             // ── Tailwind config (legacy v3 support) ──────────────────────────
-            $table->json('tailwind')->nullable()->comment('tailwind.config {content,theme,plugins} for Tailwind v3');
+            $table->json('tailwind')->nullable()->comment('tailwind.config {content,app,plugins} for Tailwind v3');
 
             // ── Metadata ──────────────────────────────────────────────────────
             $table->json('meta')->nullable()->comment('Arbitrary key-value metadata');
@@ -73,7 +73,7 @@ return new class extends Migration
             $table->string('style')->nullable()->comment('Style config (registry:base only)');
             $table->string('icon_library')->nullable()->comment('Icon library (registry:base only)');
             $table->string('base_color')->nullable()->comment('Base color (registry:base only)');
-            $table->json('theme')->nullable()->comment('Theme config object (registry:base only)');
+            $table->json('app')->nullable()->comment('Theme config object (registry:base only)');
 
             $table->timestamps();
             $table->softDeletes();

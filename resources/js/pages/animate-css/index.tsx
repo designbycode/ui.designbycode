@@ -6,9 +6,6 @@ import { Heart, Share, ThumbsUp } from 'lucide-react';
 import { useCallback, useRef, useState } from 'react';
 import { toast } from 'sonner';
 import Heading from '@/components/heading';
-import { CodeBlock } from '@/components/theme/code-block';
-import { PackageManagerCodeWithSelector } from '@/components/theme/package-manager-code-with-selector';
-import RegistryInstaller from '@/components/theme/registry-installer';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import {
@@ -21,6 +18,9 @@ import {
 } from '@/components/ui/dialog';
 import { useCopyToClipboard } from '@/hooks/use-prism';
 import MainWrapper from '@/layouts/main/main-wrapper';
+import { MainCodeBlock } from '@/layouts/main/theme/main-code-block';
+import { MainPackageManagerCodeWithSelector } from '@/layouts/main/theme/main-package-manager-code-with-selector';
+import MainRegistryInstaller from '@/layouts/main/theme/main-registry-installer';
 import MainLayout from '@/layouts/main-layout';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -79,7 +79,7 @@ export default function AnimateCss({
                 <h2 className="mt-8 mb-2 text-2xl font-semibold text-foreground">
                     Installation
                 </h2>
-                <PackageManagerCodeWithSelector
+                <MainPackageManagerCodeWithSelector
                     className="my-4"
                     options={animationOptions}
                     baseUrl={url as string}
@@ -94,7 +94,7 @@ export default function AnimateCss({
                         <h3 className="mb-2 text-lg font-medium text-foreground">
                             Basic Usage
                         </h3>
-                        <CodeBlock
+                        <MainCodeBlock
                             // variant="minimal"
                             language="html"
                             code={`<div className="${selectedAnimation} repeat-infinite">
@@ -108,7 +108,7 @@ export default function AnimateCss({
                     Installation all animations
                 </h2>
 
-                <RegistryInstaller code={`animate-css/animate-all`} />
+                <MainRegistryInstaller code={`animate-css/animate-all`} />
 
                 <h2 className="mt-8 mb-4 text-2xl font-semibold text-foreground">
                     Code Examples
@@ -231,9 +231,9 @@ function AnimationCard({ anim }: { anim: AnimationItem }) {
                             </div>
                         </div>
                     </div>
-                    <RegistryInstaller code={`animate-css/${anim.name}`} />
+                    <MainRegistryInstaller code={`animate-css/${anim.name}`} />
 
-                    <CodeBlock
+                    <MainCodeBlock
                         variant="default"
                         language="html"
                         code={codeExample}

@@ -19,7 +19,7 @@
         })();
     </script>
 
-    {{-- Inline style to set the HTML background color based on our theme in app.css --}}
+    {{-- Inline style to set the HTML background color based on our app in app.css --}}
     <style>
         html {
             background-color: oklch(1 0 0);

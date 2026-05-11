@@ -1,37 +1,3 @@
-/**
- * EditorBlock Component
- *
- * A Monaco-based code editor component that mirrors the visual style of CodeBlock.
- * Supports syntax highlighting, dynamic theme integration (light/dark) with
- * automatic OKLCH → hex conversion for Tailwind CSS variables, full-screen mode,
- * and copy-to-clipboard functionality.
- *
- * Usage Example:
- * ```tsx
- * import EditorBlock from '@/components/theme/editor-block';
- *
- * function MyComponent() {
- *   const [code, setCode] = useState('console.log("Hello World");');
- *
- *   return (
- *     <EditorBlock
- *       value={code}
- *       onChange={setCode}
- *       language="javascript"
- *       height="400px"
- *     />
- *   );
- * }
- * ```
- *
- * Required Packages:
- * - @monaco-editor/react
- * - culori
- * - lucide-react
- * - clsx
- * - tailwind-merge
- */
-
 'use client';
 
 import type { EditorProps, Monaco } from '@monaco-editor/react';
@@ -46,7 +12,7 @@ import { useClipboard } from '@/hooks/use-clipboard';
 import { getCssVarAsColor } from '@/lib/color-utils';
 import { cn } from '@/lib/utils';
 
-// ─── Monaco theme name constants ──────────────────────────────────────────────
+// ─── Monaco app name constants ──────────────────────────────────────────────
 
 const MONACO_LIGHT_THEME = 'editor-light';
 const MONACO_DARK_THEME = 'editor-dark';
@@ -55,7 +21,7 @@ const MONACO_DARK_THEME = 'editor-dark';
 
 /**
  * Reads Tailwind CSS variables from the document root, converts any OKLCH
- * (or other non-hex) values to hex, and returns a Monaco theme definition.
+ * (or other non-hex) values to hex, and returns a Monaco app definition.
  *
  * Falls back to safe defaults if a variable cannot be parsed.
  */
@@ -155,7 +121,7 @@ interface EditorBlockProps {
 
 // ─── Component ────────────────────────────────────────────────────────────────
 
-export default function EditorBlock({
+export default function MainEditorBlock({
     value,
     onChange,
     language = 'javascript',
@@ -202,8 +168,8 @@ export default function EditorBlock({
         setMounted(true);
     }, []);
 
-    // ── Dynamic theme switching ───────────────────────────────────────────────
-    // Re-define and re-apply the Monaco theme whenever the app appearance changes.
+    // ── Dynamic app switching ───────────────────────────────────────────────
+    // Re-define and re-apply the Monaco app whenever the app appearance changes.
     // This ensures OKLCH Tailwind variables are re-read and re-converted each time.
 
     useEffect(() => {
@@ -375,7 +341,7 @@ export default function EditorBlock({
                     height="100%"
                     language={normalizedLanguage}
                     beforeMount={(monaco) => {
-                        // Store monaco instance for later dynamic theme updates
+                        // Store monaco instance for later dynamic app updates
                         monacoRef.current = monaco;
 
                         // Define both themes upfront so Monaco never renders with wrong colors
@@ -389,7 +355,7 @@ export default function EditorBlock({
                         );
                     }}
                     onMount={(_, monaco) => {
-                        // Apply the correct theme for the current appearance on mount
+                        // Apply the correct app for the current appearance on mount
                         monaco.editor.setTheme(monacoThemeName);
                     }}
                     theme={monacoThemeName}

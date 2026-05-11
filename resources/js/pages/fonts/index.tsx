@@ -1,9 +1,9 @@
 import Heading from '@/components/heading';
-import RegistryInstaller from '@/components/theme/registry-installer';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import MainWrapper from '@/layouts/main/main-wrapper';
 import MainLayout from '@/layouts/main-layout';
+import MainRegistryInstaller from '@/layouts/main/theme/main-registry-installer';
 
 type FontItem = {
     name: string;
@@ -31,7 +31,7 @@ export default function FontsIndex({ fonts }: { fonts: FontItem[] }) {
                     title="Installation all fonts"
                     description="Install every font at once with a single command."
                 />
-                <RegistryInstaller code="fonts/fonts-all" />
+                <MainRegistryInstaller code="fonts/fonts-all" />
             </div>
 
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
@@ -97,7 +97,7 @@ function FontCard({ font }: { font: FontItem }) {
                     )}
                 </div>
 
-                <RegistryInstaller code={`fonts/${font.name}`} />
+                <MainRegistryInstaller code={`fonts/${font.name}`} />
             </CardContent>
         </Card>
     );

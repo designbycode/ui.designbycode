@@ -13,7 +13,7 @@ import { useDebounce } from '@/hooks/use-debounce';
 
 const ALL_CATEGORIES = '__all__';
 
-function ThemeSearch({
+function MainThemeSearch({
     filters,
     availableCategories,
 }: {
@@ -35,8 +35,14 @@ function ThemeSearch({
         }
 
         const params: Record<string, string> = {};
-        if (debouncedSearch) params.search = debouncedSearch;
-        if (selectedCategory) params.category = selectedCategory;
+
+        if (debouncedSearch) {
+            params.search = debouncedSearch;
+        }
+
+        if (selectedCategory) {
+            params.category = selectedCategory;
+        }
 
         router.get('/themes', params, {
             preserveState: true,
@@ -88,4 +94,4 @@ function ThemeSearch({
     );
 }
 
-export { ThemeSearch };
+export { MainThemeSearch };

@@ -18,7 +18,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
     'files',
     // CSS
     'css', 'css_base', 'tailwind',
-    // CSS variable columns (maps to cssVars.theme / light / dark)
+    // CSS variable columns (maps to cssVars.app / light / dark)
     'vars_theme', 'vars_light', 'vars_dark',
     // Font columns (flattened from font{} object)
     'font_family', 'font_mono', 'font_serif',
@@ -197,7 +197,7 @@ class Registry extends Model
             'font_weight' => 'array',
             'font_subsets' => 'array',
 
-            // registry:base theme config
+            // registry:base app config
             'theme' => 'array',
 
             // Metadata

@@ -76,7 +76,7 @@ npx shadcn@latest apply --preset nova
 # Preserve existing components instead.
 npx shadcn@latest init --preset nova --force --no-reinstall
 
-# Use a custom theme URL.
+# Use a custom app URL.
 npx shadcn@latest apply --preset "https://ui.shadcn.com/init?base=radix&style=nova&theme=blue&..."
 ```
 
@@ -101,7 +101,7 @@ Add variables to the file at `tailwindCssFile` from `npx shadcn@latest info` (ty
 ```
 
 ```css
-/* 2a. Register with Tailwind v4 (@theme inline). */
+/* 2a. Register with Tailwind v4 (@app inline). */
 @theme inline {
   --color-warning: var(--warning);
   --color-warning-foreground: var(--warning-foreground);
