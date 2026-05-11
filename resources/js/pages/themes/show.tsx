@@ -45,14 +45,14 @@ function ColorSwatch({ name, value }: { name: string; value: string }) {
     };
 
     return (
-        <Card className="overflow-hidden border-border/40">
+        <Card className="overflow-hidden border-border/40 pt-0">
             <div
-                className="h-24 w-full border-b border-border/40"
+                className="h-34 w-full border-b border-border/40"
                 style={{ backgroundColor: value }}
             />
-            <CardContent className="space-y-2 p-3">
+            <CardContent className="space-y-2 px-3 pt-0">
                 <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
+                    <span className="text-xs font-bold tracking-wider text-muted-foreground uppercase">
                         {name}
                     </span>
                     <Button
@@ -202,8 +202,8 @@ function ThemesShow({ theme }: ThemesShowProps) {
     const [previewMode, setPreviewMode] = useState<'light' | 'dark'>('light');
 
     const coreColors = [
-        'background',
         'foreground',
+        'background',
         'card',
         'card-foreground',
         'popover',
@@ -230,313 +230,341 @@ function ThemesShow({ theme }: ThemesShowProps) {
     }, [previewMode, theme]);
 
     return (
-        <MainWrapper className="py-8">
-            <Head title={`Theme: ${theme.title}`} />
+        <div style={cssVars} className={`bg-background`}>
+            <MainWrapper className="py-8">
+                <Head title={`Theme: ${theme.title}`} />
 
-            <div className="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-center">
-                <Heading
-                    title={theme.title}
-                    description={
-                        theme.description ||
-                        `Style guide and documentation for the ${theme.title} theme.`
-                    }
-                />
-                <div className="flex items-center gap-2">
-                    <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={() => window.print()}
+                <div className="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-center">
+                    <Heading
+                        title={theme.title}
+                        description={
+                            theme.description ||
+                            `Style guide and documentation for the ${theme.title} theme.`
+                        }
+                    />
+                    <div className="flex items-center gap-2">
+                        <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() => window.print()}
+                        >
+                            <Download className="mr-2 h-4 w-4" />
+                            Print Guide
+                        </Button>
+                    </div>
+                </div>
+
+                <Tabs defaultValue="preview" className="space-y-8">
+                    <div className="flex items-center justify-between">
+                        <TabsList>
+                            <TabsTrigger value="preview">
+                                Visual Guide
+                            </TabsTrigger>
+                            <TabsTrigger value="export">
+                                Code & Export
+                            </TabsTrigger>
+                        </TabsList>
+
+                        <div className="flex items-center gap-1 rounded-lg bg-muted p-1">
+                            <Button
+                                variant={
+                                    previewMode === 'light'
+                                        ? 'secondary'
+                                        : 'ghost'
+                                }
+                                size="sm"
+                                className="h-8 px-3"
+                                onClick={() => setPreviewMode('light')}
+                            >
+                                <Sun className="mr-2 h-4 w-4" />
+                                Light
+                            </Button>
+                            <Button
+                                variant={
+                                    previewMode === 'dark'
+                                        ? 'secondary'
+                                        : 'ghost'
+                                }
+                                size="sm"
+                                className="h-8 px-3"
+                                onClick={() => setPreviewMode('dark')}
+                            >
+                                <Moon className="mr-2 h-4 w-4" />
+                                Dark
+                            </Button>
+                        </div>
+                    </div>
+
+                    <TabsContent
+                        value="preview"
+                        className="space-y-12 outline-none"
                     >
-                        <Download className="mr-2 h-4 w-4" />
-                        Print Guide
-                    </Button>
-                </div>
-            </div>
+                        <div className={previewMode === 'dark' ? 'dark' : ''}>
+                            <div className="rounded-xl  transition-colors duration-300">
+                                <section className="space-y-6">
+                                    <div>
+                                        <h2 className="text-2xl font-bold tracking-tight">
+                                            Colors
+                                        </h2>
+                                        <p className="text-muted-foreground">
+                                            The foundational color palette of
+                                            the theme.
+                                        </p>
+                                    </div>
 
-            <Tabs defaultValue="preview" className="space-y-8">
-                <div className="flex items-center justify-between border-b border-border/40 pb-4">
-                    <TabsList>
-                        <TabsTrigger value="preview">Visual Guide</TabsTrigger>
-                        <TabsTrigger value="export">Code & Export</TabsTrigger>
-                    </TabsList>
+                                    <div className="grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-6">
+                                        {coreColors.map(
+                                            (name) =>
+                                                displayVars[name] && (
+                                                    <ColorSwatch
+                                                        key={name}
+                                                        name={name}
+                                                        value={
+                                                            displayVars[name]
+                                                        }
+                                                    />
+                                                ),
+                                        )}
+                                    </div>
 
-                    <div className="flex items-center gap-1 rounded-lg bg-muted p-1">
-                        <Button
-                            variant={
-                                previewMode === 'light' ? 'secondary' : 'ghost'
-                            }
-                            size="sm"
-                            className="h-8 px-3"
-                            onClick={() => setPreviewMode('light')}
-                        >
-                            <Sun className="mr-2 h-4 w-4" />
-                            Light
-                        </Button>
-                        <Button
-                            variant={
-                                previewMode === 'dark' ? 'secondary' : 'ghost'
-                            }
-                            size="sm"
-                            className="h-8 px-3"
-                            onClick={() => setPreviewMode('dark')}
-                        >
-                            <Moon className="mr-2 h-4 w-4" />
-                            Dark
-                        </Button>
-                    </div>
-                </div>
-
-                <TabsContent
-                    value="preview"
-                    className="space-y-12 outline-none"
-                >
-                    <div className={previewMode === 'dark' ? 'dark' : ''}>
-                        <div
-                            style={cssVars}
-                            className="rounded-xl border border-border/40 bg-background p-8 text-foreground transition-colors duration-300"
-                        >
-                            <section className="space-y-6">
-                                <div>
-                                    <h2 className="text-2xl font-bold tracking-tight">
-                                        Colors
-                                    </h2>
-                                    <p className="text-muted-foreground">
-                                        The foundational color palette of the
-                                        theme.
-                                    </p>
-                                </div>
-
-                                <div className="grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-6">
-                                    {coreColors.map(
-                                        (name) =>
-                                            displayVars[name] && (
-                                                <ColorSwatch
-                                                    key={name}
-                                                    name={name}
-                                                    value={displayVars[name]}
+                                    <div className="mt-8 rounded-lg border border-border/40 bg-muted/30 p-4">
+                                        <h3 className="mb-4 text-sm font-semibold tracking-wider text-muted-foreground uppercase">
+                                            Accessibility: Contrast Ratios
+                                        </h3>
+                                        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
+                                            <div className="flex flex-col gap-2">
+                                                <span className="text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
+                                                    Text on Background
+                                                </span>
+                                                <ContrastBadge
+                                                    foreground={
+                                                        displayVars[
+                                                            'foreground'
+                                                        ]
+                                                    }
+                                                    background={
+                                                        displayVars[
+                                                            'background'
+                                                        ]
+                                                    }
                                                 />
-                                            ),
-                                    )}
-                                </div>
-
-                                <div className="mt-8 rounded-lg border border-border/40 bg-muted/30 p-4">
-                                    <h3 className="mb-4 text-sm font-semibold tracking-wider text-muted-foreground uppercase">
-                                        Accessibility: Contrast Ratios
-                                    </h3>
-                                    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
-                                        <div className="flex flex-col gap-2">
-                                            <span className="text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
-                                                Text on Background
-                                            </span>
-                                            <ContrastBadge
-                                                foreground={
-                                                    displayVars['foreground']
-                                                }
-                                                background={
-                                                    displayVars['background']
-                                                }
-                                            />
-                                        </div>
-                                        <div className="flex flex-col gap-2">
-                                            <span className="text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
-                                                Primary on Background
-                                            </span>
-                                            <ContrastBadge
-                                                foreground={
-                                                    displayVars['primary']
-                                                }
-                                                background={
-                                                    displayVars['background']
-                                                }
-                                            />
-                                        </div>
-                                        <div className="flex flex-col gap-2">
-                                            <span className="text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
-                                                Primary Foreground on Primary
-                                            </span>
-                                            <ContrastBadge
-                                                foreground={
-                                                    displayVars[
-                                                        'primary-foreground'
-                                                    ]
-                                                }
-                                                background={
-                                                    displayVars['primary']
-                                                }
-                                            />
+                                            </div>
+                                            <div className="flex flex-col gap-2">
+                                                <span className="text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
+                                                    Primary on Background
+                                                </span>
+                                                <ContrastBadge
+                                                    foreground={
+                                                        displayVars['primary']
+                                                    }
+                                                    background={
+                                                        displayVars[
+                                                            'background'
+                                                        ]
+                                                    }
+                                                />
+                                            </div>
+                                            <div className="flex flex-col gap-2">
+                                                <span className="text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
+                                                    Primary Foreground on
+                                                    Primary
+                                                </span>
+                                                <ContrastBadge
+                                                    foreground={
+                                                        displayVars[
+                                                            'primary-foreground'
+                                                        ]
+                                                    }
+                                                    background={
+                                                        displayVars['primary']
+                                                    }
+                                                />
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </section>
+                                </section>
 
-                            <Separator className="my-12 bg-border/40" />
+                                <Separator className="my-12 bg-border/40" />
 
-                            <section className="space-y-6">
-                                <div>
-                                    <h2 className="text-2xl font-bold tracking-tight">
-                                        Typography
-                                    </h2>
-                                    <p className="text-muted-foreground">
-                                        Font families and scale used in this
-                                        theme.
-                                    </p>
-                                </div>
+                                <section className="space-y-6">
+                                    <div>
+                                        <h2 className="text-2xl font-bold tracking-tight">
+                                            Typography
+                                        </h2>
+                                        <p className="text-muted-foreground">
+                                            Font families and scale used in this
+                                            theme.
+                                        </p>
+                                    </div>
 
-                                <div className="space-y-8">
-                                    <FontDisplay
-                                        label="Sans Serif"
-                                        variable="font-sans"
-                                        value={
-                                            theme.font_family ||
-                                            displayVars['font-sans'] ||
-                                            'Geist Sans'
-                                        }
-                                    />
-                                    <FontDisplay
-                                        label="Serif"
-                                        variable="font-serif"
-                                        value={
-                                            theme.font_serif ||
-                                            displayVars['font-serif']
-                                        }
-                                    />
-                                    <FontDisplay
-                                        label="Monospace"
-                                        variable="font-mono"
-                                        value={
-                                            theme.font_mono ||
-                                            displayVars['font-mono']
-                                        }
-                                    />
-                                </div>
-                            </section>
+                                    <div className="space-y-8">
+                                        <FontDisplay
+                                            label="Sans Serif"
+                                            variable="font-sans"
+                                            value={
+                                                theme.font_family ||
+                                                displayVars['font-sans'] ||
+                                                'Geist Sans'
+                                            }
+                                        />
+                                        <FontDisplay
+                                            label="Serif"
+                                            variable="font-serif"
+                                            value={
+                                                theme.font_serif ||
+                                                displayVars['font-serif']
+                                            }
+                                        />
+                                        <FontDisplay
+                                            label="Monospace"
+                                            variable="font-mono"
+                                            value={
+                                                theme.font_mono ||
+                                                displayVars['font-mono']
+                                            }
+                                        />
+                                    </div>
+                                </section>
 
-                            <Separator className="my-12 bg-border/40" />
+                                <Separator className="my-12 bg-border/40" />
 
-                            <section className="space-y-8">
-                                <div>
-                                    <h2 className="text-2xl font-bold tracking-tight">
-                                        Component Previews
-                                    </h2>
-                                    <p className="text-muted-foreground">
-                                        How the theme looks applied to standard
-                                        interface elements.
-                                    </p>
-                                </div>
+                                <section className="space-y-8">
+                                    <div>
+                                        <h2 className="text-2xl font-bold tracking-tight">
+                                            Component Previews
+                                        </h2>
+                                        <p className="text-muted-foreground">
+                                            How the theme looks applied to
+                                            standard interface elements.
+                                        </p>
+                                    </div>
 
-                                <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-                                    <div className="space-y-6">
-                                        <h3 className="text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
-                                            Interactive
-                                        </h3>
-                                        <div className="flex flex-wrap items-center gap-3 rounded-lg border border-border/40 bg-card p-6">
-                                            <Button size="sm">Primary</Button>
-                                            <Button
-                                                size="sm"
-                                                variant="secondary"
-                                            >
-                                                Secondary
-                                            </Button>
-                                            <Button size="sm" variant="outline">
-                                                Outline
-                                            </Button>
-                                            <Button size="sm" variant="ghost">
-                                                Ghost
-                                            </Button>
-                                            <Button
-                                                size="sm"
-                                                variant="destructive"
-                                            >
-                                                Destructive
-                                            </Button>
-                                        </div>
-
-                                        <div className="space-y-4 rounded-lg border border-border/40 bg-card p-6">
-                                            <div className="space-y-2">
-                                                <Label
-                                                    htmlFor="email"
-                                                    className="text-xs"
+                                    <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+                                        <div className="space-y-6">
+                                            <h3 className="text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
+                                                Interactive
+                                            </h3>
+                                            <div className="flex flex-wrap items-center gap-3 rounded-lg border border-border/40 bg-card p-6">
+                                                <Button size="sm">
+                                                    Primary
+                                                </Button>
+                                                <Button
+                                                    size="sm"
+                                                    variant="secondary"
                                                 >
-                                                    Email address
-                                                </Label>
-                                                <Input
-                                                    id="email"
-                                                    placeholder="hello@example.com"
-                                                    className="h-9"
-                                                />
+                                                    Secondary
+                                                </Button>
+                                                <Button
+                                                    size="sm"
+                                                    variant="outline"
+                                                >
+                                                    Outline
+                                                </Button>
+                                                <Button
+                                                    size="sm"
+                                                    variant="ghost"
+                                                >
+                                                    Ghost
+                                                </Button>
+                                                <Button
+                                                    size="sm"
+                                                    variant="destructive"
+                                                >
+                                                    Destructive
+                                                </Button>
                                             </div>
-                                            <div className="flex items-center gap-2">
-                                                <Badge>New</Badge>
-                                                <Badge variant="secondary">
-                                                    In Progress
-                                                </Badge>
-                                                <Badge variant="outline">
-                                                    Draft
-                                                </Badge>
+
+                                            <div className="space-y-4 rounded-lg border border-border/40 bg-card p-6">
+                                                <div className="space-y-2">
+                                                    <Label
+                                                        htmlFor="email"
+                                                        className="text-xs"
+                                                    >
+                                                        Email address
+                                                    </Label>
+                                                    <Input
+                                                        id="email"
+                                                        placeholder="hello@example.com"
+                                                        className="h-9"
+                                                    />
+                                                </div>
+                                                <div className="flex items-center gap-2">
+                                                    <Badge>New</Badge>
+                                                    <Badge variant="secondary">
+                                                        In Progress
+                                                    </Badge>
+                                                    <Badge variant="outline">
+                                                        Draft
+                                                    </Badge>
+                                                </div>
                                             </div>
                                         </div>
+
+                                        <div className="space-y-6">
+                                            <h3 className="text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
+                                                Feedback & Containers
+                                            </h3>
+                                            <Alert className="bg-card">
+                                                <AlertTitle className="text-sm font-semibold">
+                                                    Heads up!
+                                                </AlertTitle>
+                                                <AlertDescription className="text-xs text-muted-foreground">
+                                                    This is a preview of the
+                                                    theme applied to an alert
+                                                    component.
+                                                </AlertDescription>
+                                            </Alert>
+
+                                            <Card className="border-border/40">
+                                                <CardHeader className="p-4">
+                                                    <CardTitle className="text-sm font-bold">
+                                                        Card Component
+                                                    </CardTitle>
+                                                    <CardDescription className="text-xs">
+                                                        Visualizing elevation
+                                                        and spacing.
+                                                    </CardDescription>
+                                                </CardHeader>
+                                                <CardContent className="p-4 pt-0">
+                                                    <p className="text-xs leading-relaxed text-muted-foreground">
+                                                        Cards are used to group
+                                                        related information and
+                                                        provide a clear
+                                                        hierarchy.
+                                                    </p>
+                                                </CardContent>
+                                            </Card>
+                                        </div>
                                     </div>
-
-                                    <div className="space-y-6">
-                                        <h3 className="text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
-                                            Feedback & Containers
-                                        </h3>
-                                        <Alert className="bg-card">
-                                            <AlertTitle className="text-sm font-semibold">
-                                                Heads up!
-                                            </AlertTitle>
-                                            <AlertDescription className="text-xs text-muted-foreground">
-                                                This is a preview of the theme
-                                                applied to an alert component.
-                                            </AlertDescription>
-                                        </Alert>
-
-                                        <Card className="border-border/40">
-                                            <CardHeader className="p-4">
-                                                <CardTitle className="text-sm font-bold">
-                                                    Card Component
-                                                </CardTitle>
-                                                <CardDescription className="text-xs">
-                                                    Visualizing elevation and
-                                                    spacing.
-                                                </CardDescription>
-                                            </CardHeader>
-                                            <CardContent className="p-4 pt-0">
-                                                <p className="text-xs leading-relaxed text-muted-foreground">
-                                                    Cards are used to group
-                                                    related information and
-                                                    provide a clear hierarchy.
-                                                </p>
-                                            </CardContent>
-                                        </Card>
-                                    </div>
-                                </div>
-                            </section>
+                                </section>
+                            </div>
                         </div>
-                    </div>
-                </TabsContent>
+                    </TabsContent>
 
-                <TabsContent value="export" className="space-y-8 outline-none">
-                    <section className="space-y-4">
-                        <div>
-                            <h2 className="text-xl font-bold">
-                                Theme CSS Variables
-                            </h2>
-                            <p className="text-sm text-muted-foreground">
-                                Copy these into your main CSS file.
-                            </p>
-                        </div>
-                        <div className="relative">
-                            <EditorBlock
-                                language={`css`}
-                                options={{
-                                    minimap: {
-                                        enabled: true,
-                                    },
-                                }}
-                                showFullScreenToggle={true}
-                                height="780px"
-                                value={`:root {
+                    <TabsContent
+                        value="export"
+                        className="space-y-8 outline-none"
+                    >
+                        <section className="space-y-4">
+                            <div>
+                                <h2 className="text-xl font-bold">
+                                    Theme CSS Variables
+                                </h2>
+                                <p className="text-sm text-muted-foreground">
+                                    Copy these into your main CSS file.
+                                </p>
+                            </div>
+                            <div className="relative">
+                                <EditorBlock
+                                    language={`css`}
+                                    options={{
+                                        minimap: {
+                                            enabled: true,
+                                        },
+                                    }}
+                                    showFullScreenToggle={true}
+                                    height="780px"
+                                    value={`:root {
 ${Object.entries(theme.vars_light || {})
     .map(([k, v]) => `  --${k}: ${v};`)
     .join('\n')}
@@ -547,34 +575,37 @@ ${Object.entries(theme.vars_dark || {})
     .map(([k, v]) => `  --${k}: ${v};`)
     .join('\n')}
 }`}
-                            />
-                        </div>
-                    </section>
+                                />
+                            </div>
+                        </section>
 
-                    <section className="space-y-4">
-                        <div>
-                            <h2 className="text-xl font-bold">Theme JSON</h2>
-                            <p className="text-sm text-muted-foreground">
-                                The registry representation of the theme.
-                            </p>
-                        </div>
-                        <div className="relative">
-                            <EditorBlock
-                                language={`json`}
-                                options={{
-                                    minimap: {
-                                        enabled: true,
-                                    },
-                                }}
-                                showFullScreenToggle={true}
-                                height="780px"
-                                value={JSON.stringify(theme, null, 2)}
-                            />
-                        </div>
-                    </section>
-                </TabsContent>
-            </Tabs>
-        </MainWrapper>
+                        <section className="space-y-4">
+                            <div>
+                                <h2 className="text-xl font-bold">
+                                    Theme JSON
+                                </h2>
+                                <p className="text-sm text-muted-foreground">
+                                    The registry representation of the theme.
+                                </p>
+                            </div>
+                            <div className="relative">
+                                <EditorBlock
+                                    language={`json`}
+                                    options={{
+                                        minimap: {
+                                            enabled: true,
+                                        },
+                                    }}
+                                    showFullScreenToggle={true}
+                                    height="780px"
+                                    value={JSON.stringify(theme, null, 2)}
+                                />
+                            </div>
+                        </section>
+                    </TabsContent>
+                </Tabs>
+            </MainWrapper>
+        </div>
     );
 }
 
