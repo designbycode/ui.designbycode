@@ -32,4 +32,31 @@ class SubscriptionTest extends TestCase
 
         $response->assertStatus(200);
     }
+
+    public function test_checkout_requires_valid_price_id()
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->post('/settings/subscription/checkout', [
+            'price_id' => 'invalid_id',
+        ]);
+
+        $response->assertSessionHas('error', 'Please select a valid plan.');
+    }
+
+    public function test_checkout_returns_paddle_options()
+    {
+        $this->markTestSkipped('Paddle API interaction requires valid API keys or more extensive mocking.');
+
+        config(['cashier.api_key' => 'test_api_key']);
+        config(['cashier.seller_id' => 'test_seller_id']);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->post('/settings/subscription/checkout', [
+            'price_id' => 'pri_123',
+        ]);
+
+        $response->assertSessionHas('checkout');
+    }
 }

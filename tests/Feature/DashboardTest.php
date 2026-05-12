@@ -41,3 +41,24 @@ test('authenticated guests cannot visit the dashboard', function () {
     $response = $this->get(route('dashboard'));
     $response->assertForbidden();
 });
+
+test('authenticated subscribed users can visit the dashboard', function () {
+    $this->seed(RolesAndPermissionsSeeder::class);
+    $user = User::factory()->create();
+    $user->assignRole('guest');
+
+    // Mock the subscribed method
+    $user->subscriptions()->create([
+        'type' => 'default',
+        'paddle_id' => 'sub_123',
+        'status' => 'active',
+        'trial_ends_at' => null,
+        'paused_at' => null,
+        'ends_at' => null,
+    ]);
+
+    $this->actingAs($user);
+
+    $response = $this->get(route('dashboard'));
+    $response->assertOk();
+});

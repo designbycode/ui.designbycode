@@ -26,7 +26,20 @@ export default function Pricing() {
     const { auth, checkout: checkoutData } = usePage<{ auth: Auth; checkout?: Record<string, unknown> }>().props;
 
     useEffect(() => {
-        if (checkoutData) {
+        if (window.Paddle) {
+            window.Paddle.Initialize({
+                token: import.meta.env.VITE_PADDLE_CLIENT_SIDE_TOKEN,
+                eventCallback: (event: any) => {
+                    if (event.name === 'checkout.closed') {
+                        router.reload({ only: ['auth', 'checkout'] });
+                    }
+                },
+            });
+        }
+    }, []);
+
+    useEffect(() => {
+        if (checkoutData && window.Paddle) {
             window.Paddle.Checkout.open(checkoutData);
         }
     }, [checkoutData]);
