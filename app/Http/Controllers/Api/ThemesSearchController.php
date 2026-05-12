@@ -15,7 +15,7 @@ class ThemesSearchController extends Controller
         $query = Theme::query();
 
         if ($search = request('search')) {
-            $query->where(fn($q) => $q
+            $query->where(fn ($q) => $q
                 ->where('name', 'like', "%{$search}%")
                 ->orWhere('title', 'like', "%{$search}%")
                 ->orWhere('description', 'like', "%{$search}%")

@@ -13,7 +13,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
+use Laravel\Paddle\Billable;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Models\Role;
 use Spatie\Permission\Traits\HasRoles;
 
 #[Fillable(['name', 'email', 'password'])]
@@ -21,12 +23,12 @@ use Spatie\Permission\Traits\HasRoles;
 class User extends Authenticatable implements MustVerifyEmail
 {
     /** @use HasFactory<UserFactory> */
-    use HasApiTokens, HasFactory, HasRoles, Notifiable, SoftDeletes, TwoFactorAuthenticatable;
+    use Billable, HasApiTokens, HasFactory, HasRoles, Notifiable, SoftDeletes, TwoFactorAuthenticatable;
 
     protected static function booted()
     {
         static::created(function ($user) {
-            if ($user->id === 1 && \Spatie\Permission\Models\Role::where('name', 'super-admin')->exists()) {
+            if ($user->id === 1 && Role::where('name', 'super-admin')->exists()) {
                 $user->assignRole('super-admin');
             }
         });
@@ -41,7 +43,6 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->socials()->where('provider', $provider)->exists();
     }
-
 
     public function socials(): HasMany
     {

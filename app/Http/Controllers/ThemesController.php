@@ -10,7 +10,7 @@ class ThemesController extends Controller
 {
     public function index()
     {
-        $availableCategories = Cache::remember('themes:available_categories', 3600, fn() => Theme::query()
+        $availableCategories = Cache::remember('themes:available_categories', 3600, fn () => Theme::query()
             ->select('categories')
             ->get()
             ->pluck('categories')
@@ -24,10 +24,9 @@ class ThemesController extends Controller
             'themes' => Inertia::scroll(Theme::paginate(12)->withQueryString()),
             'filters' => request()->only(['search', 'category']),
             'availableCategories' => $availableCategories,
-            'totalThemesCount' => Cache::remember('themes:total_count', 3600, fn() => Theme::count()),
+            'totalThemesCount' => Cache::remember('themes:total_count', 3600, fn () => Theme::count()),
         ]);
     }
-
 
     public function show(Theme $theme)
     {

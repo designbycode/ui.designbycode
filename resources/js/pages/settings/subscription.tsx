@@ -1,7 +1,9 @@
-import { Head, router, usePage } from '@inertiajs/react';
+import { Head, Link, router, usePage } from '@inertiajs/react';
 import Heading from '@/components/heading';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { pricing } from '@/routes';
+import { cancel, edit, resume } from '@/routes/subscription';
 import { Auth } from '@/types';
 
 export default function Subscription() {
@@ -10,12 +12,12 @@ export default function Subscription() {
 
     const handleCancel = () => {
         if (confirm('Are you sure you want to cancel your subscription?')) {
-            router.post(route('subscription.cancel'));
+            router.post(cancel.url());
         }
     };
 
     const handleResume = () => {
-        router.post(route('subscription.resume'));
+        router.post(resume.url());
     };
 
     return (
@@ -52,7 +54,7 @@ export default function Subscription() {
                     <CardFooter className="flex gap-4">
                         {!user.is_subscribed && (
                             <Button asChild>
-                                <a href="/pricing">Upgrade Plan</a>
+                                <Link href={pricing()}>Upgrade Plan</Link>
                             </Button>
                         )}
 
@@ -78,7 +80,7 @@ Subscription.layout = {
     breadcrumbs: [
         {
             title: 'Subscription',
-            href: '/settings/subscription',
+            href: edit.url(),
         },
     ],
 };
