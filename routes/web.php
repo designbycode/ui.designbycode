@@ -6,10 +6,12 @@ use App\Http\Controllers\FontsController;
 use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\RegistriesController;
 use App\Http\Controllers\RegistryController;
+use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\ThemesController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomePageController::class)->name('home');
+Route::get('/pricing', [SubscriptionController::class, 'index'])->name('pricing');
 Route::get('/themes', [ThemesController::class, 'index'])->name('themes.index');
 Route::get('/themes/{theme}', [ThemesController::class, 'show'])->name('themes.show');
 Route::get('/fonts', [FontsController::class, 'index'])->name('fonts.index');

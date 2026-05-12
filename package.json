@@ -66,6 +66,7 @@
         "@fontsource/patrick-hand": "^5.2.8",
         "@fontsource/poppins": "^5.2.7",
         "@fontsource/rajdhani": "^5.2.7",
+        "@fontsource/roboto-slab": "^5.2.8",
         "@fontsource/varela-round": "^5.2.8",
         "@gsap/react": "^2.1.2",
         "@headlessui/react": "^2.2.10",
