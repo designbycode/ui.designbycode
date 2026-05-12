@@ -8,6 +8,7 @@ use App\Http\Controllers\RegistriesController;
 use App\Http\Controllers\RegistryController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\ThemesController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomePageController::class)->name('home');
@@ -32,8 +33,14 @@ Route::delete('/r/{name}', [RegistryController::class, 'destroy']);
 Route::post('/r/upload', [RegistryController::class, 'upload']);
 Route::post('/r/upload-raw', [RegistryController::class, 'uploadRaw']);
 
-Route::middleware(['auth', 'verified', 'role:super-admin|admin'])->group(function () {
-    Route::inertia('dashboard', 'dashboard')->name('dashboard');
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('dashboard', function (Request $request) {
+        if ($request->user()->hasAnyRole(['super-admin', 'admin']) || $request->user()->subscribed()) {
+            return Inertia\Inertia::render('dashboard');
+        }
+
+        abort(403);
+    })->name('dashboard');
 });
 
 require __DIR__.'/settings.php';

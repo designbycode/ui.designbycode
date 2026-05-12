@@ -21,8 +21,8 @@ class SubscriptionController extends Controller
     {
         $priceId = $request->input('price_id');
 
-        if (! $priceId) {
-            return back()->with('error', 'Please select a plan.');
+        if (! $priceId || ! str_starts_with($priceId, 'pri_')) {
+            return back()->with('error', 'Please select a valid plan.');
         }
 
         $checkout = $request->user()->checkout($priceId)
