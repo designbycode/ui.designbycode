@@ -25,8 +25,12 @@ class SubscriptionController extends Controller
             return back()->with('error', 'Please select a plan.');
         }
 
-        return $request->user()->checkout($priceId)
+        $checkout = $request->user()->checkout($priceId)
             ->returnTo(route('dashboard'));
+
+        return back()->with([
+            'checkout' => $checkout->options(),
+        ]);
     }
 
     public function cancel(Request $request)

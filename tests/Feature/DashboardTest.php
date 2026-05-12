@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\User;
+use Database\Seeders\RolesAndPermissionsSeeder;
 
 test('guests are redirected to the login page', function () {
     $response = $this->get(route('dashboard'));
@@ -8,7 +9,7 @@ test('guests are redirected to the login page', function () {
 });
 
 test('authenticated super-admins can visit the dashboard', function () {
-    $this->seed(\Database\Seeders\RolesAndPermissionsSeeder::class);
+    $this->seed(RolesAndPermissionsSeeder::class);
     $user = User::factory()->create();
     $user->assignRole('super-admin');
     $this->actingAs($user);
@@ -18,7 +19,7 @@ test('authenticated super-admins can visit the dashboard', function () {
 });
 
 test('authenticated admins can visit the dashboard', function () {
-    $this->seed(\Database\Seeders\RolesAndPermissionsSeeder::class);
+    $this->seed(RolesAndPermissionsSeeder::class);
     $user = User::factory()->create();
     $user->assignRole('admin');
     $this->actingAs($user);
@@ -28,7 +29,7 @@ test('authenticated admins can visit the dashboard', function () {
 });
 
 test('authenticated guests cannot visit the dashboard', function () {
-    $this->seed(\Database\Seeders\RolesAndPermissionsSeeder::class);
+    $this->seed(RolesAndPermissionsSeeder::class);
 
     // Create a dummy first user so the next one isn't ID 1
     User::factory()->create();

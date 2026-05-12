@@ -5529,7 +5529,6 @@ class ThemeSeeder extends Seeder
 
                 'css' => [
 
-
                     '@layer base' => [
                         '*' => [
                             'border-color' => 'var(--border)',
@@ -5725,7 +5724,6 @@ class ThemeSeeder extends Seeder
                 ],
 
                 'css' => [
-
 
                     '@layer base' => [
                         '*' => [

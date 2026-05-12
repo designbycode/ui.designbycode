@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Head, router, usePage } from '@inertiajs/react';
 import { Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -15,8 +16,20 @@ import { dashboard, register } from '@/routes';
 import { checkout } from '@/routes/subscription';
 import type { Auth } from '@/types';
 
+declare global {
+    interface Window {
+        Paddle: any;
+    }
+}
+
 export default function Pricing() {
-    const { auth } = usePage<{ auth: Auth }>().props;
+    const { auth, checkout: checkoutData } = usePage<{ auth: Auth; checkout?: Record<string, unknown> }>().props;
+
+    useEffect(() => {
+        if (checkoutData) {
+            window.Paddle.Checkout.open(checkoutData);
+        }
+    }, [checkoutData]);
 
     const plans = [
         {

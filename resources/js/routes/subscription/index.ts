@@ -134,7 +134,7 @@ checkout.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     checkout.form = checkoutForm
 /**
 * @see \App\Http\Controllers\SubscriptionController::cancel
- * @see app/Http/Controllers/SubscriptionController.php:32
+ * @see app/Http/Controllers/SubscriptionController.php:36
  * @route '/settings/subscription/cancel'
  */
 export const cancel = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -149,7 +149,7 @@ cancel.definition = {
 
 /**
 * @see \App\Http\Controllers\SubscriptionController::cancel
- * @see app/Http/Controllers/SubscriptionController.php:32
+ * @see app/Http/Controllers/SubscriptionController.php:36
  * @route '/settings/subscription/cancel'
  */
 cancel.url = (options?: RouteQueryOptions) => {
@@ -158,7 +158,7 @@ cancel.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\SubscriptionController::cancel
- * @see app/Http/Controllers/SubscriptionController.php:32
+ * @see app/Http/Controllers/SubscriptionController.php:36
  * @route '/settings/subscription/cancel'
  */
 cancel.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -168,7 +168,7 @@ cancel.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
     /**
 * @see \App\Http\Controllers\SubscriptionController::cancel
- * @see app/Http/Controllers/SubscriptionController.php:32
+ * @see app/Http/Controllers/SubscriptionController.php:36
  * @route '/settings/subscription/cancel'
  */
     const cancelForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -178,7 +178,7 @@ cancel.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
             /**
 * @see \App\Http\Controllers\SubscriptionController::cancel
- * @see app/Http/Controllers/SubscriptionController.php:32
+ * @see app/Http/Controllers/SubscriptionController.php:36
  * @route '/settings/subscription/cancel'
  */
         cancelForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -189,7 +189,7 @@ cancel.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     cancel.form = cancelForm
 /**
 * @see \App\Http\Controllers\SubscriptionController::resume
- * @see app/Http/Controllers/SubscriptionController.php:45
+ * @see app/Http/Controllers/SubscriptionController.php:49
  * @route '/settings/subscription/resume'
  */
 export const resume = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -204,7 +204,7 @@ resume.definition = {
 
 /**
 * @see \App\Http\Controllers\SubscriptionController::resume
- * @see app/Http/Controllers/SubscriptionController.php:45
+ * @see app/Http/Controllers/SubscriptionController.php:49
  * @route '/settings/subscription/resume'
  */
 resume.url = (options?: RouteQueryOptions) => {
@@ -213,7 +213,7 @@ resume.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\SubscriptionController::resume
- * @see app/Http/Controllers/SubscriptionController.php:45
+ * @see app/Http/Controllers/SubscriptionController.php:49
  * @route '/settings/subscription/resume'
  */
 resume.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -223,7 +223,7 @@ resume.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
     /**
 * @see \App\Http\Controllers\SubscriptionController::resume
- * @see app/Http/Controllers/SubscriptionController.php:45
+ * @see app/Http/Controllers/SubscriptionController.php:49
  * @route '/settings/subscription/resume'
  */
     const resumeForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -233,7 +233,7 @@ resume.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
             /**
 * @see \App\Http\Controllers\SubscriptionController::resume
- * @see app/Http/Controllers/SubscriptionController.php:45
+ * @see app/Http/Controllers/SubscriptionController.php:49
  * @route '/settings/subscription/resume'
  */
         resumeForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
