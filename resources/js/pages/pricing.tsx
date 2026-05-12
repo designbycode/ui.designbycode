@@ -1,6 +1,6 @@
-import { useEffect } from 'react';
 import { Head, router, usePage } from '@inertiajs/react';
 import { Check } from 'lucide-react';
+import { useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import {
     Card,
@@ -23,12 +23,20 @@ declare global {
 }
 
 export default function Pricing() {
-    const { auth, checkout: checkoutData } = usePage<{ auth: Auth; checkout?: Record<string, unknown> }>().props;
+    const { auth, checkout: checkoutData } = usePage<{
+        auth: Auth;
+        checkout?: Record<string, unknown>;
+    }>().props;
 
     useEffect(() => {
         if (window.Paddle) {
             window.Paddle.Initialize({
                 token: import.meta.env.VITE_PADDLE_CLIENT_SIDE_TOKEN,
+                checkout: {
+                    settings: {
+                        displayMode: 'overlay',
+                    },
+                },
                 eventCallback: (event: any) => {
                     if (event.name === 'checkout.closed') {
                         router.reload({ only: ['auth', 'checkout'] });
@@ -40,7 +48,13 @@ export default function Pricing() {
 
     useEffect(() => {
         if (checkoutData && window.Paddle) {
-            window.Paddle.Checkout.open(checkoutData);
+            window.Paddle.Checkout.open({
+                ...checkoutData,
+                settings: {
+                    ...checkoutData.settings,
+                    displayMode: 'overlay',
+                },
+            });
         }
     }, [checkoutData]);
 
