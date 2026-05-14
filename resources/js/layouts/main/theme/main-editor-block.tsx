@@ -165,6 +165,7 @@ export default function MainEditorBlock({
     // ── Mount ────────────────────────────────────────────────────────────────
 
     useEffect(() => {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setMounted(true);
     }, []);
 

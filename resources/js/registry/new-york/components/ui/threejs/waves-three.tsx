@@ -595,10 +595,6 @@ function buildDashes(
     const col = new Float32Array(total * 3);
 
     let p = 0;
-    /* eslint-disable @typescript-eslint/no-unused-vars */
-    const allVtx = makeVertexGrid(cols, rows, w, h);
-    const colorGrid = makeColorBuffer(cx * ry, stops);
-    /* eslint-enable @typescript-eslint/no-unused-vars */
 
     const push = (
         x1: number,
@@ -662,8 +658,8 @@ function buildContourPlaceholder(
     rows: number,
     w: number,
     h: number,
-    stops: THREE.Color[],
-    levels: number,
+    _stops: THREE.Color[],
+    _levels: number,
 ): { geo: THREE.BufferGeometry; vtxGrid: Float32Array } {
     // Max line segments = rows * cols * 4 (at most 4 crossing per cell edge), generous upper bound
     const maxSegs = cols * rows * 4 * 2;
@@ -1130,10 +1126,10 @@ const WavesThree = ({
                             zB: number,
                             xA: number,
                             yA: number,
-                            zA2: number,
+                            _zA2: number,
                             xB: number,
                             yB: number,
-                            zB2: number,
+                            _zB2: number,
                         ) => {
                             if (zA < thresh !== zB < thresh) {
                                 const t2 = (thresh - zA) / (zB - zA);

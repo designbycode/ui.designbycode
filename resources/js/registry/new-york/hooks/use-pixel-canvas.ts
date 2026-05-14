@@ -353,6 +353,7 @@ export function usePixelCanvas(
     // Handle active prop - continuous animation
     useEffect(() => {
         if (shouldAutoStart) {
+            // eslint-disable-next-line react-hooks/set-state-in-effect
             startAnimation('appear');
         } else if (!shouldReactToMouse) {
             // If neither active nor mouseActive, clear canvas

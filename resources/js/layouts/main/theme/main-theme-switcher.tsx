@@ -86,6 +86,7 @@ function MainThemeSwitcher() {
 
     useEffect(() => {
         if (open) {
+            // eslint-disable-next-line react-hooks/set-state-in-effect
             fetchPage(1, '', false);
         }
     }, [open, fetchPage]);
