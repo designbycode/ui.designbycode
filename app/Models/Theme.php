@@ -3,13 +3,15 @@
 namespace App\Models;
 
 use App\Concerns\HasTheme;
+use App\Observers\ThemeObserver;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 #[Fillable([
-    'name', 'title', 'description', 'author',
+    'name', 'type', 'title', 'description', 'author',
     'dependencies', 'devDependencies', 'registryDependencies',
     'files',
     'css', 'css_base', 'tailwind',
@@ -21,6 +23,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
     'extends',
     'style', 'icon_library', 'base_color', 'theme',
 ])]
+#[ObservedBy(ThemeObserver::class)]
 class Theme extends Model
 {
     use HasTheme, SoftDeletes;

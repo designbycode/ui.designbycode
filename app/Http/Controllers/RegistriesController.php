@@ -15,7 +15,7 @@ class RegistriesController extends Controller
         $model = match ($type) {
             'fonts' => Font::class,
             'animate-css' => Animate::class,
-            'themes', 'app' => Theme::class,
+            'themes', 'theme' => Theme::class,
             default => Registry::class,
         };
 

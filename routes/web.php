@@ -15,15 +15,15 @@ Route::get('/', HomePageController::class)->name('home');
 Route::get('/pricing', [SubscriptionController::class, 'index'])->name('pricing');
 
 Route::get('/themes', [ThemesController::class, 'index'])->name('themes.index');
-Route::get('/themes/create', [ThemesController::class, 'create'])->name('themes.create');
-Route::post('/themes', [ThemesController::class, 'store'])->name('themes.store');
+Route::get('/themes/create', [ThemesController::class, 'create'])->name('themes.create')->middleware('auth');
+Route::post('/themes', [ThemesController::class, 'store'])->name('themes.store')->middleware('auth');
 Route::get('/themes/{theme}', [ThemesController::class, 'show'])->name('themes.show');
 
 Route::get('/fonts', [FontsController::class, 'index'])->name('fonts.index');
 Route::get('/animate-css', [AnimateController::class, 'index'])->name('animate-css.index');
 
 Route::get('/r/{type}/{name}.json', [RegistriesController::class, 'show']);
-Route::get('/r/app/{name}.css', [ThemesController::class, 'css']);
+Route::get('/r/themes/{name}.css', [ThemesController::class, 'css']);
 Route::get('/r/registry.json', [RegistryController::class, 'index']);
 Route::get('/r/{name}.json', [RegistryController::class, 'show']);
 Route::get('/r/{name}.css', [RegistryController::class, 'css']);

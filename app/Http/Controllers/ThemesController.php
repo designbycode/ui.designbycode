@@ -6,6 +6,7 @@ use App\Models\Theme;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Str;
 use Inertia\Inertia;
 
 class ThemesController extends Controller
@@ -29,11 +30,88 @@ class ThemesController extends Controller
 
         $data = $response->json();
 
-        if (empty($data) || ! isset($data['name'])) {
+        if (empty($data) || ! is_array($data)) {
             return back()->withErrors(['url' => 'Invalid registry JSON format.']);
         }
 
-        // Check if theme already exists
+        $errors = [];
+
+        if (! is_string($data['name'] ?? null) || $data['name'] === '') {
+            $errors[] = 'The registry must contain a non-empty "name" field.';
+        } elseif (! preg_match('/^[a-z0-9\-]+$/i', $data['name'])) {
+            $errors[] = 'The theme name must only contain letters, numbers, and hyphens.';
+        }
+
+        if (isset($data['cssVars'])) {
+            if (! is_array($data['cssVars'])) {
+                $errors[] = '"cssVars" must be an object.';
+            } else {
+                if (isset($data['cssVars']['light']) && ! is_array($data['cssVars']['light'])) {
+                    $errors[] = '"cssVars.light" must be an object.';
+                }
+
+                if (isset($data['cssVars']['dark']) && ! is_array($data['cssVars']['dark'])) {
+                    $errors[] = '"cssVars.dark" must be an object.';
+                }
+            }
+        }
+
+        if (isset($data['files'])) {
+            if (! is_array($data['files'])) {
+                $errors[] = '"files" must be an array.';
+            } else {
+                $fileErrors = Theme::validateFiles($data['files']);
+                foreach ($fileErrors as $error) {
+                    $errors[] = $error;
+                }
+            }
+        }
+
+        if (isset($data['font'])) {
+            if (! is_array($data['font'])) {
+                $errors[] = '"font" must be an object.';
+            } else {
+                foreach (['family', 'provider', 'import', 'variable', 'selector', 'dependency'] as $field) {
+                    if (isset($data['font'][$field]) && ! is_string($data['font'][$field])) {
+                        $errors[] = "\"font.{$field}\" must be a string.";
+                    }
+                }
+
+                foreach (['weight', 'subsets'] as $field) {
+                    if (isset($data['font'][$field]) && ! is_array($data['font'][$field])) {
+                        $errors[] = "\"font.{$field}\" must be an array.";
+                    }
+                }
+            }
+        }
+
+        if (isset($data['categories'])) {
+            if (! is_array($data['categories'])) {
+                $errors[] = '"categories" must be an array.';
+            } else {
+                foreach ($data['categories'] as $i => $category) {
+                    if (! is_string($category)) {
+                        $errors[] = "\"categories.{$i}\" must be a string.";
+                    }
+                }
+            }
+        }
+
+        if (! empty($errors)) {
+            return back()->withErrors(['url' => implode(' ', $errors)]);
+        }
+
+        $data['name'] = Str::kebab($data['name']);
+        $data['type'] = 'registry:theme';
+
+        if (! ($data['author'] ?? null)) {
+            $host = Str::of(parse_url($request->url, PHP_URL_HOST))
+                ->replaceFirst('www.', '')
+                ->before('.')
+                ->toString();
+            $data['author'] = $host;
+        }
+
         if (Theme::where('name', $data['name'])->exists()) {
             return back()->withErrors(['url' => "A theme named [{$data['name']}] already exists."]);
         }
