@@ -41,7 +41,7 @@ trait HasTheme
     public static function fromCss(
         string $css,
         string $name,
-        string $type = 'registry:app'
+        string $type = 'registry:theme'
     ): static {
         static::assertValidType($type);
 
@@ -82,7 +82,7 @@ trait HasTheme
         $instance = new static;
 
         $instance->name = $data['name'];
-        $instance->type = 'registry:app';
+        $instance->type = $data['type'] ?? 'registry:theme';
         $instance->title = $data['title'] ?? null;
         $instance->description = $data['description'] ?? null;
         $instance->author = $data['author'] ?? null;
@@ -141,7 +141,7 @@ trait HasTheme
         $registry = [
             '$schema' => 'https://ui.shadcn.com/schema/registry-item.json',
             'name' => $this->name,
-            'type' => 'registry:app',
+            'type' => 'registry:theme',
             'title' => $this->title,
             'description' => $this->description,
             'author' => $this->author,
@@ -273,9 +273,9 @@ trait HasTheme
 
     public static function assertValidType(string $type): void
     {
-        if (! in_array($type, ['registry:app'], true)) {
+        if (! in_array($type, ['registry:theme'], true)) {
             throw new InvalidArgumentException(
-                "Invalid registry type \"{$type}\". Allowed: registry:app"
+                "Invalid registry type \"{$type}\". Allowed: registry:theme"
             );
         }
     }
@@ -342,7 +342,7 @@ trait HasTheme
 
     public function isTheme(): bool
     {
-        return $this->type === 'registry:app';
+        return $this->type === 'registry:theme';
     }
 
     public function isComponent(): bool

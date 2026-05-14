@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('name')->unique();
             $table->string('title')->nullable();
             $table->text('description')->nullable();
-            $table->string('author')->nullable();
-
+            $table->string('author')->default('designbycode')->nullable();
+            $table->string('type')->nullable()->default('registry:theme');
             $table->json('dependencies')->nullable();
             $table->json('devDependencies')->nullable();
             $table->json('registryDependencies')->nullable();
@@ -50,7 +50,7 @@ return new class extends Migration
             $table->string('style')->nullable();
             $table->string('icon_library')->nullable();
             $table->string('base_color')->nullable();
-            $table->json('app')->nullable();
+            $table->json('theme')->nullable();
 
             $table->timestamps();
             $table->softDeletes();
@@ -58,35 +58,6 @@ return new class extends Migration
             $table->index('created_at');
         });
 
-        DB::statement('
-            INSERT INTO themes (
-                name, title, description, author,
-                dependencies, devDependencies, registryDependencies,
-                files, css, css_base,
-                vars_theme, vars_light, vars_dark,
-                font_family, font_mono, font_serif,
-                font_provider, font_import, font_variable,
-                font_weight, font_subsets, font_selector, font_dependency,
-                tailwind, meta, docs, categories,
-                extends, style, icon_library, base_color, app,
-                created_at, updated_at
-            )
-            SELECT
-                name, title, description, author,
-                dependencies, devDependencies, registryDependencies,
-                files, css, css_base,
-                vars_theme, vars_light, vars_dark,
-                font_family, font_mono, font_serif,
-                font_provider, font_import, font_variable,
-                font_weight, font_subsets, font_selector, font_dependency,
-                tailwind, meta, docs, categories,
-                extends, style, icon_library, base_color, app,
-                created_at, updated_at
-            FROM registries
-            WHERE type = \'registry:app\'
-        ');
-
-        DB::table('registries')->where('type', 'registry:app')->delete();
     }
 
     public function down(): void

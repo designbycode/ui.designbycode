@@ -34,7 +34,6 @@ export default function ThemeCreate() {
                 <Heading
                     title="Create New Theme"
                     description="Import a shadcn/ui theme registry JSON to create a new theme in the database."
-                    className="mb-8"
                 />
 
                 <Card>
@@ -48,7 +47,9 @@ export default function ThemeCreate() {
                         </CardHeader>
                         <CardContent className="space-y-4">
                             <div className="space-y-2">
-                                <Label htmlFor="url">Registry URL</Label>
+                                <Label className={`inline-flex`} htmlFor="url">
+                                    Registry URL
+                                </Label>
                                 <Input
                                     id="url"
                                     type="url"
@@ -67,7 +68,7 @@ export default function ThemeCreate() {
                                 )}
                             </div>
                         </CardContent>
-                        <CardFooter>
+                        <CardFooter className={`pt-4`}>
                             <Button type="submit" disabled={processing}>
                                 {processing && (
                                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -79,7 +80,9 @@ export default function ThemeCreate() {
                 </Card>
 
                 <div className="mt-8 rounded-lg bg-muted p-4">
-                    <h3 className="mb-2 text-sm font-semibold">Example URLs:</h3>
+                    <h3 className="mb-2 text-sm font-semibold">
+                        Example URLs:
+                    </h3>
                     <ul className="list-inside list-disc space-y-1 text-sm text-muted-foreground">
                         <li>https://tweakcn.com/r/themes/neo-brutalism.json</li>
                         <li>https://tweakcn.com/r/themes/modern-dark.json</li>

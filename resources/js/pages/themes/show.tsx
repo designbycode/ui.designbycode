@@ -28,6 +28,7 @@ import MainEditorBlock from '@/layouts/main/theme/main-editor-block';
 
 import MainLayout from '@/layouts/main-layout';
 import type { Registry } from '@/types/registry';
+import ThemeLayout from '@/layouts/theme-layout';
 
 interface ThemesShowProps {
     theme: Registry;
@@ -256,10 +257,7 @@ function ThemesShow({ theme }: ThemesShowProps) {
                         </div>
                         <div className="flex flex-wrap items-center gap-2">
                             {theme.author && (
-                                <Badge
-                                    variant="outline"
-                                    className="text-[10px]"
-                                >
+                                <Badge variant="outline" className="text-sm">
                                     by {theme.author}
                                 </Badge>
                             )}
@@ -310,7 +308,7 @@ function ThemesShow({ theme }: ThemesShowProps) {
                         className="space-y-12 outline-none"
                     >
                         <div className={appearance === 'dark' ? 'dark' : ''}>
-                            <div className="rounded-xl transition-colors duration-300">
+                            <div className="-mx-6 rounded-xl bg-black/5 p-6 transition-colors duration-300 dark:bg-white/5">
                                 <section className="space-y-12">
                                     <div>
                                         <h2 className="text-2xl font-bold tracking-tight">
@@ -626,6 +624,6 @@ ${Object.entries(theme.vars_dark || {})
     );
 }
 
-ThemesShow.layout = MainLayout;
+ThemesShow.layout = ThemeLayout;
 
 export default ThemesShow;
