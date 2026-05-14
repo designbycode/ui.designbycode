@@ -6,7 +6,7 @@ import MainWrapper from '@/layouts/main/main-wrapper';
 import MainThemeCard from '@/layouts/main/theme/main-theme-card';
 import { MainThemeSearch } from '@/layouts/main/theme/main-theme-search';
 import MainLayout from '@/layouts/main-layout';
-import { show } from '@/routes/themes';
+import { create, show } from '@/routes/themes';
 import type { PaginatedData, Registry } from '@/types';
 
 function ThemesIndex({
@@ -28,15 +28,17 @@ function ThemesIndex({
                     description={`Choose from ${totalThemesCount} themes to customize your site's look and feel. Preview, install, and manage them all in one place.`}
                 />
                 <div className={`shrink-0`}>
-                    <Button
-                        variant="outline"
-                        className={`transition-colors duration-300`}
-                    >
-                        <Plus className={`h-4`} />
-                        <span className={`sr-only md:not-sr-only`}>
-                            Create new theme
-                        </span>
-                    </Button>
+                    <Link href={create().url}>
+                        <Button
+                            variant="outline"
+                            className={`transition-colors duration-300`}
+                        >
+                            <Plus className={`h-4`} />
+                            <span className={`sr-only md:not-sr-only`}>
+                                Create new theme
+                            </span>
+                        </Button>
+                    </Link>
                 </div>
             </div>
 

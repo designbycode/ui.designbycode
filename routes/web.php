@@ -13,8 +13,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomePageController::class)->name('home');
 Route::get('/pricing', [SubscriptionController::class, 'index'])->name('pricing');
+
 Route::get('/themes', [ThemesController::class, 'index'])->name('themes.index');
+Route::get('/themes/create', [ThemesController::class, 'create'])->name('themes.create');
+Route::post('/themes', [ThemesController::class, 'store'])->name('themes.store');
 Route::get('/themes/{theme}', [ThemesController::class, 'show'])->name('themes.show');
+
 Route::get('/fonts', [FontsController::class, 'index'])->name('fonts.index');
 Route::get('/animate-css', [AnimateController::class, 'index'])->name('animate-css.index');
 
