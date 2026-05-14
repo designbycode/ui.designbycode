@@ -56,9 +56,12 @@ export default function FontsIndex({ fonts }: { fonts: FontItem[] }) {
         return filteredFonts.slice(0, visibleCount);
     }, [filteredFonts, visibleCount]);
 
-    useEffect(() => {
+    const [lastQuery, setLastQuery] = useState({ search: '', category: 'all' });
+
+    if (search !== lastQuery.search || category !== lastQuery.category) {
+        setLastQuery({ search, category });
         setVisibleCount(ITEMS_PER_PAGE);
-    }, [search, category]);
+    }
 
     const handleLoadMore = () => {
         setVisibleCount((prev) => prev + ITEMS_PER_PAGE);

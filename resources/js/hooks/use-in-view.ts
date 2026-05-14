@@ -9,6 +9,7 @@ export function useInView(options?: UseInViewOptions) {
     const ref = useRef<any>(null);
 
     useEffect(() => {
+        const currentRef = ref.current;
         const observer = new IntersectionObserver(([entry]) => {
             if (entry.isIntersecting) {
                 setInView(true);
@@ -20,13 +21,13 @@ export function useInView(options?: UseInViewOptions) {
             }
         }, options);
 
-        if (ref.current) {
-            observer.observe(ref.current);
+        if (currentRef) {
+            observer.observe(currentRef);
         }
 
         return () => {
-            if (ref.current) {
-                observer.unobserve(ref.current);
+            if (currentRef) {
+                observer.unobserve(currentRef);
             }
         };
     }, [options]);

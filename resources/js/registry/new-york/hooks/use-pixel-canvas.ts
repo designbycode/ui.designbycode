@@ -147,6 +147,8 @@ export function usePixelCanvas(
         speedMultiplier,
     ]);
 
+    const animateRef = useRef<() => void>(() => {});
+
     const animate = useCallback(() => {
         const canvas = canvasRef.current;
 
@@ -215,8 +217,12 @@ export function usePixelCanvas(
             return;
         }
 
-        animationRef.current = requestAnimationFrame(animate);
+        animationRef.current = requestAnimationFrame(animateRef.current);
     }, [config.shimmerIntensity, config.maxSize, config.shape, initPixels]);
+
+    useEffect(() => {
+        animateRef.current = animate;
+    }, [animate]);
 
     const startAnimation = useCallback(
         (direction: AnimationDirection) => {
@@ -347,12 +353,12 @@ export function usePixelCanvas(
     // Handle active prop - continuous animation
     useEffect(() => {
         if (shouldAutoStart) {
-            triggerAppear();
+            startAnimation('appear');
         } else if (!shouldReactToMouse) {
             // If neither active nor mouseActive, clear canvas
             reset();
         }
-    }, [shouldAutoStart, shouldReactToMouse, triggerAppear, reset]);
+    }, [shouldAutoStart, shouldReactToMouse, startAnimation, reset]);
 
     return {
         canvasRef,

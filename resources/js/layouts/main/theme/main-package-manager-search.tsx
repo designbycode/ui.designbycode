@@ -83,10 +83,16 @@ export function MainPackageManagerSearch({
     const initialName = defaultRegistry ?? extractRegistryName(initialCodes);
     const registryName = selectedRegistry || initialName;
 
+    const [lastQuery, setLastQuery] = useState('');
+    if (searchQuery !== lastQuery) {
+        setLastQuery(searchQuery);
+        if (!searchQuery || searchQuery.length < 2) {
+            setResults([]);
+        }
+    }
+
     useEffect(() => {
         if (!searchQuery || searchQuery.length < 2) {
-            setResults((prev) => (prev.length > 0 ? [] : prev));
-
             return;
         }
 

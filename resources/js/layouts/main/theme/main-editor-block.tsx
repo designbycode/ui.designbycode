@@ -255,9 +255,9 @@ export default function MainEditorBlock({
         );
     }
 
-    // ── Controls ──────────────────────────────────────────────────────────────
+    // ── Render ────────────────────────────────────────────────────────────────
 
-    const Controls = () => (
+    const controls = (
         <div className="flex items-center gap-1">
             {showCopyButton && (
                 <div className="flex items-center gap-1">
@@ -308,8 +308,6 @@ export default function MainEditorBlock({
         </div>
     );
 
-    // ── Render ────────────────────────────────────────────────────────────────
-
     return (
         <div
             ref={containerRef}
@@ -326,13 +324,13 @@ export default function MainEditorBlock({
                     <span className="font-mono text-sm font-bold text-muted-foreground">
                         {normalizedLanguage}
                     </span>
-                    <Controls />
+                    {controls}
                 </div>
             )}
 
             {variant === 'minimal' && (
                 <div className="absolute top-2 right-2 z-10 opacity-0 transition-opacity group-hover/editor-block:opacity-100">
-                    <Controls />
+                    {controls}
                 </div>
             )}
 
