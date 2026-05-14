@@ -2,25 +2,30 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Font;
+use App\Services\FontService;
 use Inertia\Inertia;
+use Illuminate\Support\Str;
 
 class FontsController extends Controller
 {
-    public function index()
+    public function index(FontService $fontService)
     {
+        $fonts = collect($fontService->getFonts())->map(fn ($f) => [
+            'id' => $f['id'],
+            'name' => "font-{$f['id']}",
+            'title' => $f['family'],
+            'fontFamily' => "'{$f['family']}', {$f['category']}",
+            'fontProvider' => $f['type'],
+            'fontImport' => Str::studly($f['family']),
+            'fontVariable' => "--font-{$f['id']}",
+            'fontWeight' => $f['weights'],
+            'fontSubsets' => $f['subsets'],
+            'fontDependency' => ($f['variable'] ?? false) ? "@fontsource-variable/{$f['id']}" : "@fontsource/{$f['id']}",
+            'category' => $f['category'],
+        ])->values();
+
         return Inertia::render('fonts/index', [
-            'fonts' => Font::query()->orderBy('title')->get()->map(fn ($f) => [
-                'name' => $f->name,
-                'title' => $f->title,
-                'fontFamily' => $f->font_family,
-                'fontProvider' => $f->font_provider,
-                'fontImport' => $f->font_import,
-                'fontVariable' => $f->font_variable,
-                'fontWeight' => $f->font_weight,
-                'fontSubsets' => $f->font_subsets,
-                'fontDependency' => $f->font_dependency,
-            ]),
+            'fonts' => $fonts,
         ]);
     }
 }
