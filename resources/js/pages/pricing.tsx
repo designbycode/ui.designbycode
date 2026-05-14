@@ -22,7 +22,7 @@ declare global {
     }
 }
 
-export default function Pricing() {
+export function Pricing() {
     const { auth, checkout: checkoutData } = usePage<{
         auth: Auth;
         checkout?: Record<string, unknown>;

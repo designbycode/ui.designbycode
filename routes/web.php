@@ -35,11 +35,7 @@ Route::post('/r/upload-raw', [RegistryController::class, 'uploadRaw']);
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard', function (Request $request) {
-        if ($request->user()->hasAnyRole(['super-admin', 'admin']) || $request->user()->subscribed()) {
-            return Inertia\Inertia::render('dashboard');
-        }
-
-        abort(403);
+        return Inertia\Inertia::render('dashboard');
     })->name('dashboard');
 });
 
