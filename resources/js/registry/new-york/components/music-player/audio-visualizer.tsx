@@ -15,8 +15,8 @@ export function AudioVisualizer({
     analyser,
     isPlaying,
     style,
-    primaryColor = '#e54545',
-    secondaryColor = '#0bdec4',
+    primaryColor,
+    secondaryColor,
 }: AudioVisualizerProps) {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const animationRef = useRef<number | null>(null);
@@ -51,14 +51,14 @@ export function AudioVisualizer({
                     0,
                     height - barHeight,
                 );
-                gradient.addColorStop(0, primaryColor);
-                gradient.addColorStop(1, secondaryColor);
+                gradient.addColorStop(0, primaryColor || '#e54545');
+                gradient.addColorStop(1, secondaryColor || '#ff7b7b');
 
                 ctx.fillStyle = gradient;
                 ctx.fillRect(x, height - barHeight, barWidth - 2, barHeight);
 
                 // Reflection
-                ctx.fillStyle = `${primaryColor}33`;
+                ctx.fillStyle = `${primaryColor || '#e54545'}33`;
                 ctx.fillRect(x, height, barWidth - 2, barHeight * 0.3);
 
                 x += barWidth;
@@ -78,8 +78,8 @@ export function AudioVisualizer({
             const sliceWidth = width / bufferLength;
 
             ctx.lineWidth = 3;
-            ctx.strokeStyle = primaryColor;
-            ctx.shadowColor = primaryColor;
+            ctx.strokeStyle = primaryColor || '#e54545';
+            ctx.shadowColor = primaryColor || '#e54545';
             ctx.shadowBlur = 10;
 
             ctx.beginPath();
@@ -102,7 +102,7 @@ export function AudioVisualizer({
             ctx.stroke();
 
             // Second wave with offset
-            ctx.strokeStyle = secondaryColor;
+            ctx.strokeStyle = secondaryColor || '#ff7b7b';
             ctx.globalAlpha = 0.5;
             ctx.beginPath();
             x = 0;
@@ -151,8 +151,8 @@ export function AudioVisualizer({
                 const y2 = centerY + Math.sin(angle) * (radius + barHeight);
 
                 const gradient = ctx.createLinearGradient(x1, y1, x2, y2);
-                gradient.addColorStop(0, primaryColor);
-                gradient.addColorStop(1, secondaryColor);
+                gradient.addColorStop(0, primaryColor || '#e54545');
+                gradient.addColorStop(1, secondaryColor || '#ff7b7b');
 
                 ctx.beginPath();
                 ctx.strokeStyle = gradient;
@@ -165,7 +165,7 @@ export function AudioVisualizer({
             // Inner glow circle
             ctx.beginPath();
             ctx.arc(centerX, centerY, radius * 0.8, 0, Math.PI * 2);
-            ctx.strokeStyle = `${primaryColor}44`;
+            ctx.strokeStyle = `${primaryColor || '#e54545'}44`;
             ctx.lineWidth = 2;
             ctx.stroke();
         },
@@ -209,7 +209,10 @@ export function AudioVisualizer({
 
                 ctx.beginPath();
                 ctx.arc(p.x, p.y, p.size * p.life, 0, Math.PI * 2);
-                ctx.fillStyle = p.life > 0.5 ? primaryColor : secondaryColor;
+                ctx.fillStyle =
+                    p.life > 0.5
+                        ? primaryColor || '#e54545'
+                        : secondaryColor || '#ff7b7b';
                 ctx.globalAlpha = p.life;
                 ctx.fill();
                 ctx.globalAlpha = 1;
@@ -218,14 +221,14 @@ export function AudioVisualizer({
             });
 
             // Draw frequency bars at bottom
-            const barCount = 32;
+            const barCount = 10;
             const barWidth = width / barCount;
 
             for (let i = 0; i < barCount; i++) {
                 const dataIndex = Math.floor((i / barCount) * dataArray.length);
                 const barHeight = (dataArray[dataIndex] / 255) * height * 0.3;
 
-                ctx.fillStyle = `${primaryColor}88`;
+                ctx.fillStyle = `${primaryColor || '#e54545'}88`;
                 ctx.fillRect(
                     i * barWidth,
                     height - barHeight,
@@ -290,13 +293,13 @@ export function AudioVisualizer({
             } else {
                 // Draw idle animation
                 const time = Date.now() / 1000;
-                const bars = 32;
+                const bars = 22;
                 const barWidth = rect.width / bars;
 
                 for (let i = 0; i < bars; i++) {
                     const barHeight =
                         (Math.sin(time * 2 + i * 0.3) + 1) * 10 + 5;
-                    ctx.fillStyle = `${primaryColor}44`;
+                    ctx.fillStyle = `${primaryColor || '#e54545'}88`;
                     ctx.fillRect(
                         i * barWidth,
                         height - barHeight,

@@ -17,6 +17,7 @@ import { ProgressBar } from '@/registry/new-york/components/music-player/progres
 import { TrackInfo } from '@/registry/new-york/components/music-player/track-info';
 import { VisualizerSettings } from '@/registry/new-york/components/music-player/visualizer-settings';
 import { VolumeControl } from '@/registry/new-york/components/music-player/volume-control';
+import { useThemeColors } from '@/lib/theme-colors';
 
 export function MusicPlayer() {
     // Audio state
@@ -54,6 +55,9 @@ export function MusicPlayer() {
                 ? shuffledIndices[currentTrackIndex] || 0
                 : currentTrackIndex
         ] || null;
+
+    const { primary: primaryColor, secondary: secondaryColor } =
+        useThemeColors();
 
     // Initialize audio context
     const initAudioContext = useCallback(() => {
@@ -267,11 +271,21 @@ export function MusicPlayer() {
                 initAudioContext();
             }
 
-            if (audioContextRef.current?.state === 'suspended') {
-                audioContextRef.current.resume();
-            }
+            (async () => {
+                if (audioContextRef.current?.state === 'suspended') {
+                    try {
+                        await audioContextRef.current.resume();
+                    } catch (e) {
+                        console.log('[v0] Resume failed:', e);
+                    }
+                }
 
-            audioRef.current.play().catch(console.error);
+                try {
+                    await audioRef.current?.play();
+                } catch (e) {
+                    console.error(e);
+                }
+            })();
         }
     }, [currentTrack?.id, initAudioContext]);
 
@@ -353,6 +367,8 @@ export function MusicPlayer() {
                                 analyser={analyserRef.current}
                                 isPlaying={isPlaying}
                                 style={visualizerStyle}
+                                primaryColor={primaryColor}
+                                secondaryColor={secondaryColor}
                             />
                         </div>
                     </div>

@@ -14,6 +14,25 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', HomePageController::class)->name('home');
 Route::get('/pricing', [SubscriptionController::class, 'index'])->name('pricing');
 
+Route::get('/ai-test', function () {
+
+    $response = Http::withHeaders([
+        'Authorization' => 'Bearer '.env('OPENROUTER_API_KEY'),
+        'HTTP-Referer' => config('app.url'),
+        'X-Title' => config('app.name'),
+    ])->post('https://openrouter.ai/api/v1/chat/completions', [
+        'model' => 'nvidia/nemotron-3-super-120b-a12b:free',
+        'messages' => [
+            [
+                'role' => 'user',
+                'content' => 'Say hello from OpenRouter',
+            ],
+        ],
+    ]);
+
+    return $response->json();
+});
+
 Route::get('/themes', [ThemesController::class, 'index'])->name('themes.index');
 Route::get('/themes/create', [ThemesController::class, 'create'])->name('themes.create')->middleware('auth');
 Route::post('/themes', [ThemesController::class, 'store'])->name('themes.store')->middleware('auth');

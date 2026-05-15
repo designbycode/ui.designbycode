@@ -1,9 +1,3 @@
-import coldSteelSheets from '@/music/cold-steel-sheets.mp3';
-import laughterAtTheGale from '@/music/laughter-at-the-gale.mp3';
-import rosesInTheSink from '@/music/roses-in-the-sink.mp3';
-import stormWalkersOath from '@/music/storm-walkers-oath.mp3';
-import theEmptyChair from '@/music/the-empty-chair.mp3';
-
 export interface Track {
     id: string;
     title: string;
@@ -28,7 +22,7 @@ export const sampleTracks: Track[] = [
         artist: 'Iron & Oak',
         album: 'Forged',
         duration: 475,
-        src: coldSteelSheets,
+        src: '/music/cold-steel-sheets.mp3',
         coverUrl:
             'https://images.unsplash.com/photo-1614149162883-504ce4d13909?w=400&h=400&fit=crop',
     },
@@ -38,7 +32,7 @@ export const sampleTracks: Track[] = [
         artist: 'Storm Chaser',
         album: 'Braving the Wind',
         duration: 353,
-        src: laughterAtTheGale,
+        src: '/music/laughter-at-the-gale.mp3',
         coverUrl:
             'https://images.unsplash.com/photo-1557672172-298e090bd0f1?w=400&h=400&fit=crop',
     },
@@ -48,7 +42,7 @@ export const sampleTracks: Track[] = [
         artist: 'Violet Glass',
         album: 'Fading Petals',
         duration: 393,
-        src: rosesInTheSink,
+        src: '/music/roses-in-the-sink.mp3',
         coverUrl:
             'https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=400&h=400&fit=crop',
     },
@@ -58,7 +52,7 @@ export const sampleTracks: Track[] = [
         artist: 'Thunder Pass',
         album: 'The Reckoning',
         duration: 462,
-        src: stormWalkersOath,
+        src: '/music/storm-walkers-oath.mp3',
         coverUrl:
             'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=400&h=400&fit=crop',
     },
@@ -68,7 +62,7 @@ export const sampleTracks: Track[] = [
         artist: 'Silent Hollow',
         album: 'Left Behind',
         duration: 259,
-        src: theEmptyChair,
+        src: '/music/the-empty-chair.mp3',
         coverUrl:
             'https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=400&h=400&fit=crop',
     },
