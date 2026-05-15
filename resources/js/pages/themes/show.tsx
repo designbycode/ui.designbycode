@@ -262,13 +262,13 @@ function ThemesShow({ theme }: ThemesShowProps) {
                                     by {theme.author}
                                 </Badge>
                             )}
-                            {theme.categories?.map((cat) => (
+                            {(theme.tags as any[])?.map((tag) => (
                                 <Badge
-                                    key={cat}
+                                    key={typeof tag === 'string' ? tag : tag.name}
                                     variant="secondary"
                                     className="text-[10px] capitalize"
                                 >
-                                    {cat}
+                                    {typeof tag === 'string' ? tag : tag.name}
                                 </Badge>
                             ))}
                             {theme.style && (

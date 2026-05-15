@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 use Inertia\Inertia;
+use Spatie\Tags\Tag;
 
 class ThemesController extends Controller
 {
@@ -85,13 +86,13 @@ class ThemesController extends Controller
             }
         }
 
-        if (isset($data['categories'])) {
-            if (! is_array($data['categories'])) {
-                $errors[] = '"categories" must be an array.';
+        if (isset($data['tags'])) {
+            if (! is_array($data['tags'])) {
+                $errors[] = '"tags" must be an array.';
             } else {
-                foreach ($data['categories'] as $i => $category) {
-                    if (! is_string($category)) {
-                        $errors[] = "\"categories.{$i}\" must be a string.";
+                foreach ($data['tags'] as $i => $tag) {
+                    if (! is_string($tag)) {
+                        $errors[] = "\"tags.{$i}\" must be a string.";
                     }
                 }
             }
@@ -120,8 +121,12 @@ class ThemesController extends Controller
         $theme->user_id = auth()->id();
         $theme->save();
 
+        if (isset($data['tags'])) {
+            $theme->attachTags($data['tags']);
+        }
+
         Cache::forget('themes:total_count');
-        Cache::forget('themes:available_categories');
+        Cache::forget('themes:available_tags');
 
         return redirect()->route('themes.show', $theme->name)
             ->with('success', 'Theme created successfully.');
@@ -129,28 +134,60 @@ class ThemesController extends Controller
 
     public function index()
     {
-        $availableCategories = Cache::remember('themes:available_categories', 3600, fn () => Theme::query()
-            ->select('categories')
-            ->get()
-            ->pluck('categories')
-            ->flatten()
-            ->unique()
-            ->sort()
-            ->values()
-            ->all());
+        $availableTags = Cache::remember('themes:available_tags', 3600, function () {
+            return Tag::query()
+                ->whereExists(function ($query) {
+                    $query->select(\Illuminate\Support\Facades\DB::raw(1))
+                        ->from('taggables')
+                        ->whereColumn('taggables.tag_id', 'tags.id')
+                        ->where('taggables.taggable_type', Theme::class);
+                })
+                ->get()
+                ->pluck('name')
+                ->sort()
+                ->values()
+                ->all();
+        });
+
+        $query = Theme::query()->with('tags');
+
+        if ($search = request('search')) {
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%")
+                    ->orWhere('title', 'like', "%{$search}%")
+                    ->orWhere('description', 'like', "%{$search}%");
+            });
+        }
+
+        if ($tag = request('tag')) {
+            $query->withAnyTags([$tag]);
+        }
+
+        $themes = $query->paginate(12)->withQueryString();
+
+        $themes->getCollection()->transform(function ($theme) {
+            $data = $theme->toArray();
+            $data['tags'] = $theme->tags->pluck('name')->toArray();
+
+            return $data;
+        });
 
         return Inertia::render('themes/index', [
-            'themes' => Inertia::scroll(Theme::paginate(12)->withQueryString()),
-            'filters' => request()->only(['search', 'category']),
-            'availableCategories' => $availableCategories,
+            'themes' => Inertia::scroll($themes),
+            'filters' => request()->only(['search', 'tag']),
+            'availableTags' => $availableTags,
             'totalThemesCount' => Cache::remember('themes:total_count', 3600, fn () => Theme::count()),
         ]);
     }
 
     public function show(Theme $theme)
     {
+        $theme->load('tags');
+        $data = $theme->toArray();
+        $data['tags'] = $theme->tags->pluck('name')->toArray();
+
         return Inertia::render('themes/show', [
-            'theme' => $theme,
+            'theme' => $data,
             'css' => $theme->toCss(),
         ]);
     }

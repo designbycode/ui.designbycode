@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Tags\HasTags;
 
 #[Fillable([
     'name', 'type', 'title', 'description', 'author',
@@ -19,14 +20,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
     'font_family', 'font_mono', 'font_serif',
     'font_provider', 'font_import', 'font_variable',
     'font_weight', 'font_subsets', 'font_selector', 'font_dependency',
-    'meta', 'docs', 'categories',
+    'meta', 'docs',
     'extends',
     'style', 'icon_library', 'base_color', 'theme',
 ])]
 #[ObservedBy(ThemeObserver::class)]
 class Theme extends Model
 {
-    use HasTheme, SoftDeletes;
+    use HasTags, HasTheme, SoftDeletes;
 
     protected $table = 'themes';
 
@@ -57,7 +58,6 @@ class Theme extends Model
             'font_subsets' => 'array',
             'theme' => 'array',
             'meta' => 'array',
-            'categories' => 'array',
             'created_at' => 'datetime',
             'updated_at' => 'datetime',
             'deleted_at' => 'datetime',

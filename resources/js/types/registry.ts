@@ -25,6 +25,11 @@ export type RegistryFile = {
     content?: string;
 };
 
+export type Tag = {
+    name: string;
+    slug: string;
+};
+
 export type Registry = {
     name: string;
     type: RegistryType;
@@ -54,7 +59,8 @@ export type Registry = {
     font_dependency: string | null;
     meta: Record<string, unknown>;
     docs: string | null;
-    categories: string[];
+    categories?: string[];
+    tags?: Tag[] | string[];
     extends: string | null;
     style: string | null;
     icon_library: string | null;

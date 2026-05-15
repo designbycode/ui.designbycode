@@ -12,12 +12,12 @@ import type { PaginatedData, Registry } from '@/types';
 function ThemesIndex({
     themes,
     filters,
-    availableCategories,
+    availableTags,
     totalThemesCount,
 }: {
     themes: PaginatedData<Registry>;
-    filters?: { search?: string; category?: string };
-    availableCategories: string[];
+    filters?: { search?: string; tag?: string };
+    availableTags: string[];
     totalThemesCount: number;
 }) {
     return (
@@ -44,7 +44,7 @@ function ThemesIndex({
 
             <MainThemeSearch
                 filters={filters}
-                availableCategories={availableCategories}
+                availableTags={availableTags}
             />
 
             <InfiniteScroll data="themes">
@@ -58,7 +58,7 @@ function ThemesIndex({
             </InfiniteScroll>
 
             {themes.data.length === 0 &&
-                (filters?.search || filters?.category) && (
+                (filters?.search || filters?.tag) && (
                     <div className="flex flex-col items-center justify-center py-16 text-center">
                         <SearchX className="mb-4 size-12 text-muted-foreground" />
                         <h3 className="text-lg font-semibold">

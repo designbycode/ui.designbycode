@@ -1,4 +1,4 @@
-import type { RegistryFile, RegistryCssVars } from '@/types/registry';
+import type { RegistryFile, RegistryCssVars, Tag } from '@/types/registry';
 
 export type Theme = {
     name: string;
@@ -28,7 +28,7 @@ export type Theme = {
     font_dependency: string | null;
     meta: Record<string, unknown>;
     docs: string | null;
-    categories: string[];
+    tags?: Tag[] | string[];
     extends: string | null;
     style: string | null;
     icon_library: string | null;
