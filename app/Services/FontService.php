@@ -2,8 +2,8 @@
 
 namespace App\Services;
 
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 
 class FontService
@@ -17,6 +17,7 @@ class FontService
             if ($response->failed()) {
                 return [];
             }
+
             return $response->json();
         });
     }
@@ -28,6 +29,7 @@ class FontService
             if ($response->failed()) {
                 return null;
             }
+
             return $response->json();
         });
     }
@@ -47,17 +49,17 @@ class FontService
             'type' => 'registry:font',
             'meta' => [
                 'version' => '1.0.0',
-                'category' => 'fonts'
+                'category' => 'fonts',
             ],
-            'author' => 'designbycode',
+            'author' => 'google',
             'font' => [
                 'family' => "'{$family}', sans-serif",
                 'provider' => 'google',
                 'import' => $importName,
                 'variable' => $variableName,
                 'subsets' => $fontData['subsets'] ?? ['latin'],
-                'dependency' => $dependency
-            ]
+                'dependency' => $dependency,
+            ],
         ];
     }
 }

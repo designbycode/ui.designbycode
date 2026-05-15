@@ -1,6 +1,7 @@
 import MainFooter from '@/layouts/main/main-footer';
 import MainNavigation from '@/layouts/main/main-navigation';
 import { GlowStack } from '@/registry/new-york/components/ui/glow/glow-stack';
+import { PlaceholderPattern } from '@/components/ui/placeholder-pattern';
 
 interface MainLayoutProps {
     children: React.ReactNode;

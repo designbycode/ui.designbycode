@@ -11,9 +11,7 @@ function MainRegistryInstaller({
 }) {
     const { url } = usePage().props;
 
-    const installerCode = code.startsWith('fonts/font-')
-        ? `@designbycode/${code.replace('fonts/', '')}`
-        : `${url}/r/${code}.json`;
+    const installerCode = `${url}/r/${code}.json`;
 
     return (
         <PackageManagerCode
