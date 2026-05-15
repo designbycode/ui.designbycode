@@ -105,6 +105,35 @@ export function MusicPlayer() {
         }
     }, [currentPlaylist, isShuffled]);
 
+    // Navigation
+    const handleNext = useCallback(() => {
+        if (!currentPlaylist) {
+            return;
+        }
+
+        const maxIndex = currentPlaylist.tracks.length - 1;
+
+        if (currentTrackIndex < maxIndex) {
+            setCurrentTrackIndex(currentTrackIndex + 1);
+        } else if (repeatMode === 'all') {
+            setCurrentTrackIndex(0);
+        } else {
+            setIsPlaying(false);
+        }
+    }, [currentPlaylist, currentTrackIndex, repeatMode]);
+
+    const handlePrevious = () => {
+        if (!audioRef.current) {
+            return;
+        }
+
+        if (audioRef.current.currentTime > 3) {
+            audioRef.current.currentTime = 0;
+        } else if (currentTrackIndex > 0) {
+            setCurrentTrackIndex(currentTrackIndex - 1);
+        }
+    };
+
     // Audio event handlers
     useEffect(() => {
         const audio = audioRef.current;
@@ -136,7 +165,7 @@ export function MusicPlayer() {
             audio.removeEventListener('ended', handleEnded);
             audio.removeEventListener('canplay', handleCanPlay);
         };
-    }, [repeatMode]);
+    }, [repeatMode, handleNext]);
 
     // Volume control
     useEffect(() => {
@@ -170,35 +199,6 @@ export function MusicPlayer() {
         }
 
         setIsPlaying(!isPlaying);
-    };
-
-    // Navigation
-    const handleNext = useCallback(() => {
-        if (!currentPlaylist) {
-            return;
-        }
-
-        const maxIndex = currentPlaylist.tracks.length - 1;
-
-        if (currentTrackIndex < maxIndex) {
-            setCurrentTrackIndex(currentTrackIndex + 1);
-        } else if (repeatMode === 'all') {
-            setCurrentTrackIndex(0);
-        } else {
-            setIsPlaying(false);
-        }
-    }, [currentPlaylist, currentTrackIndex, repeatMode]);
-
-    const handlePrevious = () => {
-        if (!audioRef.current) {
-            return;
-        }
-
-        if (audioRef.current.currentTime > 3) {
-            audioRef.current.currentTime = 0;
-        } else if (currentTrackIndex > 0) {
-            setCurrentTrackIndex(currentTrackIndex - 1);
-        }
     };
 
     // Seek
@@ -247,10 +247,6 @@ export function MusicPlayer() {
         const index = playlist.tracks.findIndex((t) => t.id === track.id);
         setCurrentTrackIndex(index >= 0 ? index : 0);
         setIsPlaying(true);
-
-        if (audioRef.current) {
-            setTimeout(() => audioRef.current?.play(), 100);
-        }
     };
 
     const handleCreatePlaylist = (name: string) => {
@@ -266,9 +262,18 @@ export function MusicPlayer() {
     useEffect(() => {
         if (audioRef.current && isPlaying && currentTrack) {
             audioRef.current.load();
+
+            if (!audioContextRef.current) {
+                initAudioContext();
+            }
+
+            if (audioContextRef.current?.state === 'suspended') {
+                audioContextRef.current.resume();
+            }
+
             audioRef.current.play().catch(console.error);
         }
-    }, [currentTrack?.id]);
+    }, [currentTrack?.id, initAudioContext]);
 
     return (
         <div className="flex h-screen bg-background">
@@ -276,7 +281,6 @@ export function MusicPlayer() {
             <audio
                 ref={audioRef}
                 src={currentTrack?.src}
-                crossOrigin="anonymous"
                 preload="metadata"
             />
 

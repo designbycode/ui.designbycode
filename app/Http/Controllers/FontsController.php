@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Services\FontService;
-use Inertia\Inertia;
 use Illuminate\Support\Str;
+use Inertia\Inertia;
 
 class FontsController extends Controller
 {

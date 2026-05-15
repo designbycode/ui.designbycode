@@ -1,3 +1,9 @@
+import coldSteelSheets from '@/music/cold-steel-sheets.mp3';
+import laughterAtTheGale from '@/music/laughter-at-the-gale.mp3';
+import rosesInTheSink from '@/music/roses-in-the-sink.mp3';
+import stormWalkersOath from '@/music/storm-walkers-oath.mp3';
+import theEmptyChair from '@/music/the-empty-chair.mp3';
+
 export interface Track {
     id: string;
     title: string;
@@ -18,63 +24,53 @@ export interface Playlist {
 export const sampleTracks: Track[] = [
     {
         id: '1',
-        title: 'Midnight Echoes',
-        artist: 'Luna Wave',
-        album: 'Dreamscape',
-        duration: 245,
-        src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
+        title: 'Cold Steel Sheets',
+        artist: 'Iron & Oak',
+        album: 'Forged',
+        duration: 475,
+        src: coldSteelSheets,
         coverUrl:
             'https://images.unsplash.com/photo-1614149162883-504ce4d13909?w=400&h=400&fit=crop',
     },
     {
         id: '2',
-        title: 'Neon Lights',
-        artist: 'Synthwave Collective',
-        album: 'Retro Future',
-        duration: 312,
-        src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3',
+        title: 'Laughter at the Gale',
+        artist: 'Storm Chaser',
+        album: 'Braving the Wind',
+        duration: 353,
+        src: laughterAtTheGale,
         coverUrl:
             'https://images.unsplash.com/photo-1557672172-298e090bd0f1?w=400&h=400&fit=crop',
     },
     {
         id: '3',
-        title: 'Ocean Drift',
-        artist: 'Ambient Shores',
-        album: 'Tidal',
-        duration: 278,
-        src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3',
+        title: 'Roses in the Sink',
+        artist: 'Violet Glass',
+        album: 'Fading Petals',
+        duration: 393,
+        src: rosesInTheSink,
         coverUrl:
             'https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=400&h=400&fit=crop',
     },
     {
         id: '4',
-        title: 'Electric Dreams',
-        artist: 'Pulse',
-        album: 'Voltage',
-        duration: 195,
-        src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3',
+        title: "Storm Walker's Oath",
+        artist: 'Thunder Pass',
+        album: 'The Reckoning',
+        duration: 462,
+        src: stormWalkersOath,
         coverUrl:
             'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=400&h=400&fit=crop',
     },
     {
         id: '5',
-        title: 'Starfall',
-        artist: 'Cosmic Sound',
-        album: 'Galaxies',
-        duration: 267,
-        src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3',
+        title: 'The Empty Chair',
+        artist: 'Silent Hollow',
+        album: 'Left Behind',
+        duration: 259,
+        src: theEmptyChair,
         coverUrl:
             'https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=400&h=400&fit=crop',
-    },
-    {
-        id: '6',
-        title: 'Urban Flow',
-        artist: 'City Beats',
-        album: 'Metropolis',
-        duration: 224,
-        src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3',
-        coverUrl:
-            'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=400&h=400&fit=crop',
     },
 ];
 
@@ -87,13 +83,13 @@ export const samplePlaylists: Playlist[] = [
     },
     {
         id: '2',
-        name: 'Energy Boost',
-        tracks: [sampleTracks[1], sampleTracks[3], sampleTracks[5]],
+        name: 'Dark & Stormy',
+        tracks: [sampleTracks[1], sampleTracks[3]],
         coverUrl: sampleTracks[1].coverUrl,
     },
     {
         id: '3',
-        name: 'Late Night',
+        name: 'All Tracks',
         tracks: sampleTracks,
         coverUrl: sampleTracks[3].coverUrl,
     },

@@ -10,10 +10,10 @@ import {
     SelectTrigger,
     SelectValue,
 } from '@/components/ui/select';
-import MainWrapper from '@/layouts/main/main-wrapper';
-import MainLayout from '@/layouts/main-layout';
-import MainRegistryInstaller from '@/layouts/main/theme/main-registry-installer';
 import { useInView } from '@/hooks/use-in-view';
+import MainWrapper from '@/layouts/main/main-wrapper';
+import MainRegistryInstaller from '@/layouts/main/theme/main-registry-installer';
+import MainLayout from '@/layouts/main-layout';
 
 type FontItem = {
     id: string;
@@ -43,12 +43,14 @@ export default function FontsIndex({ fonts }: { fonts: FontItem[] }) {
                 font.id.toLowerCase().includes(search.toLowerCase());
             const matchesCategory =
                 category === 'all' || font.category === category;
+
             return matchesSearch && matchesCategory;
         });
     }, [fonts, search, category]);
 
     const categories = useMemo(() => {
         const cats = new Set(fonts.map((f) => f.category));
+
         return Array.from(cats).sort();
     }, [fonts]);
 
@@ -101,16 +103,6 @@ export default function FontsIndex({ fonts }: { fonts: FontItem[] }) {
                         </Select>
                     </div>
                 </div>
-
-                <div className="rounded-lg border bg-muted/40 p-4">
-                    <Heading
-                        as="h3"
-                        className="mb-2 text-sm font-semibold"
-                        title="Installation all fonts"
-                        description="Install every font at once with a single command."
-                    />
-                    <MainRegistryInstaller code="fonts/fonts-all" />
-                </div>
             </div>
 
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
@@ -151,7 +143,7 @@ function LoadMoreTrigger({ onInView }: { onInView: () => void }) {
 }
 
 function FontCard({ font }: { font: FontItem }) {
-    const sampleText = 'Aa Bb Cc';
+    const sampleText = font.title;
     const { ref, inView } = useInView({
         triggerOnce: true,
         rootMargin: '200px 0px',
@@ -187,14 +179,14 @@ function FontCard({ font }: { font: FontItem }) {
             </CardHeader>
             <CardContent className="space-y-3 pt-3">
                 <div
-                    className="flex min-h-24 items-center justify-center rounded-lg bg-card/50 px-4 text-[clamp(0.75rem,9vw+2rem,3rem)] tracking-wider"
+                    className="grid aspect-video place-content-center items-center justify-center rounded-lg bg-card/50 px-4 text-[clamp(0.75rem,9vw+2rem,5rem)] tracking-wider"
                     style={{
                         fontFamily: inView
                             ? `"${font.title}", ${font.fontFamily?.split(',').pop()?.trim() ?? 'sans-serif'}`
                             : 'inherit',
                     }}
                 >
-                    <span className="text-muted-foreground/60">
+                    <span className="line-clamp-1 whitespace-nowrap text-muted-foreground/60">
                         {sampleText}
                     </span>
                 </div>

@@ -20,17 +20,17 @@ const visualizerOptions: {
     label: string;
     icon: React.ReactNode;
 }[] = [
-    { style: 'bars', label: 'Bars', icon: <BarChart3 className="h-4 w-4" /> },
-    { style: 'wave', label: 'Wave', icon: <Waves className="h-4 w-4" /> },
+    { style: 'bars', label: 'Bars', icon: <BarChart3 className="size-4" /> },
+    { style: 'wave', label: 'Wave', icon: <Waves className="size-4" /> },
     {
         style: 'circular',
         label: 'Circular',
-        icon: <Circle className="h-4 w-4" />,
+        icon: <Circle className="size-4" />,
     },
     {
         style: 'particles',
         label: 'Particles',
-        icon: <Sparkles className="h-4 w-4" />,
+        icon: <Sparkles className="size-4" />,
     },
 ];
 
@@ -44,13 +44,13 @@ export function VisualizerSettings({
                 <Button
                     variant="ghost"
                     size="icon"
-                    className="h-9 w-9 text-muted-foreground hover:text-foreground"
+                    className="size-9 text-muted-foreground hover:text-foreground"
                     aria-label="Visualizer settings"
                 >
-                    <Settings className="h-5 w-5" />
+                    <Settings className="size-5" />
                 </Button>
             </PopoverTrigger>
-            <PopoverContent className="w-56" align="end">
+            <PopoverContent className="w-64" align="end">
                 <div className="space-y-2">
                     <h4 className="text-sm font-medium text-foreground">
                         Visualizer Style

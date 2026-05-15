@@ -12,7 +12,7 @@ function Home() {
             </Head>
             <MainWrapper as={`section`}>
                 <Hero />
-                <div className="my-6">
+                <div className="my-6 grid grid-cols-1">
                     <MusicPlayer />
                 </div>
             </MainWrapper>

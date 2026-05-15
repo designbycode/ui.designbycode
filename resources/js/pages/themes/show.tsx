@@ -29,6 +29,7 @@ import MainEditorBlock from '@/layouts/main/theme/main-editor-block';
 import MainLayout from '@/layouts/main-layout';
 import type { Registry } from '@/types/registry';
 import ThemeLayout from '@/layouts/theme-layout';
+import MainWrapper from '@/layouts/main/main-wrapper';
 
 interface ThemesShowProps {
     theme: Registry;

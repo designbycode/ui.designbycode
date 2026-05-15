@@ -16,7 +16,7 @@ export function AudioVisualizer({
     isPlaying,
     style,
     primaryColor = '#e54545',
-    secondaryColor = '#ff7b7b',
+    secondaryColor = '#0bdec4',
 }: AudioVisualizerProps) {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const animationRef = useRef<number | null>(null);
@@ -137,7 +137,7 @@ export function AudioVisualizer({
         ) => {
             const centerX = width / 2;
             const centerY = height / 2;
-            const radius = Math.min(width, height) * 0.25;
+            const radius = Math.min(width, height) * 0.35;
             const bufferLength = dataArray.length;
 
             // Draw circular bars
