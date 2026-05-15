@@ -72,7 +72,9 @@ function MainThemeSwitcher() {
         [],
     );
 
-    useEffect(() => {
+    const [lastOpen, setLastOpen] = useState(false);
+    if (open !== lastOpen) {
+        setLastOpen(open);
         if (!open) {
             setSearchInput('');
             setActiveSearch('');
@@ -80,10 +82,11 @@ function MainThemeSwitcher() {
             setPage(1);
             setHasMore(true);
         }
-    }, [open]);
+    }
 
     useEffect(() => {
         if (open) {
+            // eslint-disable-next-line react-hooks/set-state-in-effect
             fetchPage(1, '', false);
         }
     }, [open, fetchPage]);

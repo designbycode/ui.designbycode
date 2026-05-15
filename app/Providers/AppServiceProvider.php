@@ -54,7 +54,11 @@ class AppServiceProvider extends ServiceProvider
 
     protected function shareThemes(): void
     {
-        if (! Schema::hasTable('themes')) {
+        try {
+            if (! Schema::hasTable('themes')) {
+                return;
+            }
+        } catch (\Exception) {
             return;
         }
 

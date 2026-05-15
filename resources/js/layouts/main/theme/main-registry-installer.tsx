@@ -11,14 +11,16 @@ function MainRegistryInstaller({
 }) {
     const { url } = usePage().props;
 
+    const installerCode = `${url}/r/${code}.json`;
+
     return (
         <PackageManagerCode
             className={cn(``, className)}
             codes={{
-                bun: `bunx --bun shadcn@latest add ${url}/r/${code}.json`,
-                npm: `npx shadcn@latest add ${url}/r/${code}.json`,
-                pnpm: `pnpm dlx shadcn@latest add ${url}/r/${code}.json`,
-                yarn: `yarn dlx shadcn@latest add ${url}/r/${code}.json`,
+                bun: `bunx --bun shadcn@latest add ${installerCode}`,
+                npm: `npx shadcn@latest add ${installerCode}`,
+                pnpm: `pnpm dlx shadcn@latest add ${installerCode}`,
+                yarn: `yarn dlx shadcn@latest add ${installerCode}`,
             }}
         />
     );
