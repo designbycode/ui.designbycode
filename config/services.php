@@ -48,7 +48,7 @@ return [
 
     'openrouter' => [
         'key' => env('OPENROUTER_API_KEY'),
-        'model' => env('OPENROUTER_MODEL', 'nvidia/nemotron-3-super-120b-a12b:free'),
+        'model' => env('OPENROUTER_MODEL', 'openrouter/free'),
     ],
 
 ];
