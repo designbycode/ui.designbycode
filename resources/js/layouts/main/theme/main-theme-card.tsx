@@ -1,4 +1,4 @@
-import { motion } from 'motion/react';
+import { motion, type Variants } from 'motion/react';
 import {
     Card,
     CardContent,
@@ -31,7 +31,7 @@ const SURFACE_STRIPS = [
     { label: 'Ring', bgClass: 'bg-ring' },
 ] as const;
 
-export const mainThemeCardVariants = {
+export const mainThemeCardVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
     show: (i: number) => ({
         opacity: 1,

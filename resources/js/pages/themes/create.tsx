@@ -1,6 +1,6 @@
 import { Head, useForm } from '@inertiajs/react';
 import { Loader2, Sparkles, FileJson, Edit3, Save } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Heading from '@/components/heading';
 import AiThemeGenerator from '@/components/themes/ai-theme-generator';
 import ThemeEditorVariables from '@/components/themes/theme-editor-variables';
@@ -20,6 +20,7 @@ import MainWrapper from '@/layouts/main/main-wrapper';
 import MainThemeCard from '@/layouts/main/theme/main-theme-card';
 import MainLayout from '@/layouts/main-layout';
 import { store } from '@/routes/themes';
+import PatternPreview from '@/components/preview/pattern-preview';
 
 interface ThemeCreateProps {
     baseTheme?: any;
@@ -94,8 +95,7 @@ export default function ThemeCreate({ baseTheme }: ThemeCreateProps) {
         post(store().url);
     };
 
-    const handleManualSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
+    const handleManualSubmit = () => {
         setData('theme_data', {
             ...manualTheme,
             cssVars: {
@@ -103,14 +103,8 @@ export default function ThemeCreate({ baseTheme }: ThemeCreateProps) {
                 dark: manualTheme.vars_dark,
             },
         });
+        post(store().url);
     };
-
-    // We need to watch data.theme_data to post it when it changes via handleManualSubmit
-    useEffect(() => {
-        if (data.theme_data) {
-            post(store().url);
-        }
-    }, [data.theme_data, post]);
 
     const handleAiGenerated = (aiData: any) => {
         setManualTheme({
@@ -283,6 +277,7 @@ export default function ThemeCreate({ baseTheme }: ThemeCreateProps) {
                                         Preview
                                     </h3>
                                     <MainThemeCard theme={previewTheme} />
+                                    <PatternPreview />
 
                                     <div className="mt-6 rounded-lg bg-muted p-4 text-sm text-muted-foreground">
                                         <p>

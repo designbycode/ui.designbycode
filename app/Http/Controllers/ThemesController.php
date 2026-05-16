@@ -206,8 +206,9 @@ class ThemesController extends Controller
             });
         }
 
-        if ($tag = request('tag')) {
-            $query->withAnyTags([$tag]);
+        if ($tags = request('tags')) {
+            $tags = is_array($tags) ? $tags : explode(',', $tags);
+            $query->withAnyTags($tags);
         }
 
         $themes = $query->paginate(12)->withQueryString();
@@ -221,7 +222,7 @@ class ThemesController extends Controller
 
         return Inertia::render('themes/index', [
             'themes' => Inertia::scroll($themes),
-            'filters' => request()->only(['search', 'tag']),
+            'filters' => request()->only(['search', 'tags']),
             'availableTags' => $availableTags,
             'totalThemesCount' => Cache::remember('themes:total_count', 3600, fn () => Theme::count()),
         ]);

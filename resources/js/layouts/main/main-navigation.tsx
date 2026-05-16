@@ -1,4 +1,4 @@
-import { Link } from '@inertiajs/react';
+import { Link, usePage } from '@inertiajs/react';
 import AppearanceToggle from '@/components/ui/appearance-toggle';
 import { useIsMobile } from '@/hooks/use-mobile';
 import type { NavLinkProps } from '@/layouts/main/main-mobile-navigation';
@@ -24,6 +24,8 @@ function MainNavigation() {
         },
     } as UseHeadroomOptions);
 
+    const { url } = usePage();
+    const currentPath = new URL(url, window.location.origin).pathname;
     const navLinks = [
         { label: 'Home', href: home() },
         { label: 'Themes', href: themesIndex() },
@@ -58,7 +60,7 @@ function MainNavigation() {
                         <Link
                             key={link.label}
                             prefetch={'hover'}
-                            className={`rounded-md px-4 py-2 hover:bg-muted`}
+                            className={`rounded-md px-4 py-2 hover:bg-muted ${currentPath === link.href ? 'bg-muted' : ''}` }
                             href={link.href}
                         >
                             {link.label}

@@ -17,9 +17,9 @@ class ThemeObserver
 
     public function created(Theme $theme): void
     {
-        if (app()->runningInConsole()) {
-            return;
-        }
+        //        if (app()->runningInConsole() && ! app()->isProduction()) {
+        //            return;
+        //        }
 
         GenerateThemeMetadataJob::dispatch($theme);
     }
