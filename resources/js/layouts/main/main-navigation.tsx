@@ -29,8 +29,8 @@ function MainNavigation() {
         { label: 'Themes', href: themesIndex() },
         { label: 'Animate CSS', href: animateCssIndex() },
         { label: 'Fonts', href: fontsIndex() },
-        { label: 'Components', href: home() },
-        { label: 'Blocks', href: home() },
+        // { label: 'Components', href: home() },
+        // { label: 'Blocks', href: home() },
     ] as NavLinkProps[];
 
     return (
