@@ -101,7 +101,7 @@ export default function ThemeCreate({ baseTheme }: ThemeCreateProps) {
             cssVars: {
                 light: manualTheme.vars_light,
                 dark: manualTheme.vars_dark,
-            }
+            },
         });
     };
 
@@ -125,11 +125,21 @@ export default function ThemeCreate({ baseTheme }: ThemeCreateProps) {
         setActiveTab('manual');
     };
 
-    const handleVariableChange = (mode: 'light' | 'dark', key: string, value: string) => {
-        setManualTheme(prev => ({
+    const handleVariableChange = (
+        mode: 'light' | 'dark',
+        key: string,
+        value: string,
+    ) => {
+        setManualTheme((prev) => ({
             ...prev,
-            vars_light: mode === 'light' ? { ...prev.vars_light, [key]: value } : prev.vars_light,
-            vars_dark: mode === 'dark' ? { ...prev.vars_dark, [key]: value } : prev.vars_dark,
+            vars_light:
+                mode === 'light'
+                    ? { ...prev.vars_light, [key]: value }
+                    : prev.vars_light,
+            vars_dark:
+                mode === 'dark'
+                    ? { ...prev.vars_dark, [key]: value }
+                    : prev.vars_dark,
         }));
     };
 
@@ -139,49 +149,168 @@ export default function ThemeCreate({ baseTheme }: ThemeCreateProps) {
         cssVars: {
             light: manualTheme.vars_light,
             dark: manualTheme.vars_dark,
-            theme: {}
-        }
+            theme: {},
+        },
     } as any;
 
     return (
         <MainWrapper className="py-8">
             <Head title="Create Theme" />
 
-            <div className="mx-auto max-w-5xl">
+            <div>
                 <Heading
                     title="Create New Theme"
                     description="Import, generate with AI, or manually craft your perfect shadcn/ui theme."
                 />
 
-                <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-                    <TabsList className="grid w-full grid-cols-3 lg:w-[400px]">
-                        <TabsTrigger value="import" className="flex items-center gap-2">
-                            <FileJson className="size-4" />
-                            Import URL
-                        </TabsTrigger>
-                        <TabsTrigger value="ai" className="flex items-center gap-2">
-                            <Sparkles className="size-4" />
-                            AI
-                        </TabsTrigger>
-                        <TabsTrigger value="manual" className="flex items-center gap-2">
+                <Tabs
+                    value={activeTab}
+                    onValueChange={setActiveTab}
+                    className="space-y-6"
+                >
+                    <TabsList className="grid w-full grid-cols-3">
+                        <TabsTrigger
+                            value="manual"
+                            className="flex items-center gap-2"
+                        >
                             <Edit3 className="size-4" />
                             Manual
                         </TabsTrigger>
+                        <TabsTrigger
+                            value="import"
+                            className="flex items-center gap-2"
+                        >
+                            <FileJson className="size-4" />
+                            Import URL
+                        </TabsTrigger>
+                        <TabsTrigger
+                            value="ai"
+                            className="flex items-center gap-2"
+                        >
+                            <Sparkles className="size-4" />
+                            AI
+                        </TabsTrigger>
                     </TabsList>
+                    <TabsContent value="manual">
+                        <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
+                            <div className="space-y-6 lg:col-span-2">
+                                <Card>
+                                    <CardHeader>
+                                        <CardTitle>Theme Information</CardTitle>
+                                        <CardDescription>
+                                            Basic details about your theme.
+                                        </CardDescription>
+                                    </CardHeader>
+                                    <CardContent className="space-y-4">
+                                        <div className="grid grid-cols-2 gap-4">
+                                            <div className="space-y-2">
+                                                <Label htmlFor="title">
+                                                    Title
+                                                </Label>
+                                                <Input
+                                                    id="title"
+                                                    value={manualTheme.title}
+                                                    onChange={(e) =>
+                                                        setManualTheme((p) => ({
+                                                            ...p,
+                                                            title: e.target
+                                                                .value,
+                                                        }))
+                                                    }
+                                                />
+                                            </div>
+                                            <div className="space-y-2">
+                                                <Label htmlFor="name">
+                                                    Slug (kebab-case)
+                                                </Label>
+                                                <Input
+                                                    id="name"
+                                                    value={manualTheme.name}
+                                                    onChange={(e) =>
+                                                        setManualTheme((p) => ({
+                                                            ...p,
+                                                            name: e.target
+                                                                .value,
+                                                        }))
+                                                    }
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className="space-y-2">
+                                            <Label htmlFor="description">
+                                                Description
+                                            </Label>
+                                            <Input
+                                                id="description"
+                                                value={manualTheme.description}
+                                                onChange={(e) =>
+                                                    setManualTheme((p) => ({
+                                                        ...p,
+                                                        description:
+                                                            e.target.value,
+                                                    }))
+                                                }
+                                            />
+                                        </div>
+                                    </CardContent>
+                                </Card>
 
+                                <ThemeEditorVariables
+                                    vars_light={manualTheme.vars_light}
+                                    vars_dark={manualTheme.vars_dark}
+                                    onChange={handleVariableChange}
+                                />
+
+                                <div className="flex justify-end">
+                                    <Button
+                                        size="lg"
+                                        onClick={handleManualSubmit}
+                                        disabled={processing}
+                                    >
+                                        {processing ? (
+                                            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                                        ) : (
+                                            <Save className="mr-2 h-4 w-4" />
+                                        )}
+                                        Save Theme
+                                    </Button>
+                                </div>
+                            </div>
+
+                            <div className="space-y-6">
+                                <div className="sticky top-8">
+                                    <h3 className="mb-4 text-sm font-medium tracking-wider text-muted-foreground uppercase">
+                                        Preview
+                                    </h3>
+                                    <MainThemeCard theme={previewTheme} />
+
+                                    <div className="mt-6 rounded-lg bg-muted p-4 text-sm text-muted-foreground">
+                                        <p>
+                                            Your theme will be saved to your
+                                            account. You can further refine it
+                                            or publish it for others to use.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </TabsContent>
                     <TabsContent value="import">
                         <Card className="mx-auto max-w-2xl">
                             <form onSubmit={handleImportSubmit}>
                                 <CardHeader>
                                     <CardTitle>Import from URL</CardTitle>
                                     <CardDescription>
-                                        Enter a valid shadcn registry JSON URL (e.g.
-                                        from tweakcn.com).
+                                        Enter a valid shadcn registry JSON URL
+                                        (e.g. from tweakcn.com).
                                     </CardDescription>
                                 </CardHeader>
                                 <CardContent className="space-y-4">
                                     <div className="space-y-2">
-                                        <Label className={`inline-flex`} htmlFor="url">
+                                        <Label
+                                            className={`inline-flex`}
+                                            htmlFor="url"
+                                        >
                                             Registry URL
                                         </Label>
                                         <Input
@@ -219,85 +348,23 @@ export default function ThemeCreate({ baseTheme }: ThemeCreateProps) {
                             <AiThemeGenerator onGenerated={handleAiGenerated} />
                         </div>
                     </TabsContent>
-
-                    <TabsContent value="manual">
-                        <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
-                            <div className="lg:col-span-2 space-y-6">
-                                <Card>
-                                    <CardHeader>
-                                        <CardTitle>Theme Information</CardTitle>
-                                        <CardDescription>Basic details about your theme.</CardDescription>
-                                    </CardHeader>
-                                    <CardContent className="space-y-4">
-                                        <div className="grid grid-cols-2 gap-4">
-                                            <div className="space-y-2">
-                                                <Label htmlFor="title">Title</Label>
-                                                <Input
-                                                    id="title"
-                                                    value={manualTheme.title}
-                                                    onChange={e => setManualTheme(p => ({ ...p, title: e.target.value }))}
-                                                />
-                                            </div>
-                                            <div className="space-y-2">
-                                                <Label htmlFor="name">Slug (kebab-case)</Label>
-                                                <Input
-                                                    id="name"
-                                                    value={manualTheme.name}
-                                                    onChange={e => setManualTheme(p => ({ ...p, name: e.target.value }))}
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className="space-y-2">
-                                            <Label htmlFor="description">Description</Label>
-                                            <Input
-                                                id="description"
-                                                value={manualTheme.description}
-                                                onChange={e => setManualTheme(p => ({ ...p, description: e.target.value }))}
-                                            />
-                                        </div>
-                                    </CardContent>
-                                </Card>
-
-                                <ThemeEditorVariables
-                                    vars_light={manualTheme.vars_light}
-                                    vars_dark={manualTheme.vars_dark}
-                                    onChange={handleVariableChange}
-                                />
-
-                                <div className="flex justify-end">
-                                    <Button size="lg" onClick={handleManualSubmit} disabled={processing}>
-                                        {processing ? (
-                                            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                                        ) : (
-                                            <Save className="mr-2 h-4 w-4" />
-                                        )}
-                                        Save Theme
-                                    </Button>
-                                </div>
-                            </div>
-
-                            <div className="space-y-6">
-                                <div className="sticky top-8">
-                                    <h3 className="mb-4 text-sm font-medium text-muted-foreground uppercase tracking-wider">Preview</h3>
-                                    <MainThemeCard theme={previewTheme} />
-
-                                    <div className="mt-6 rounded-lg bg-muted p-4 text-sm text-muted-foreground">
-                                        <p>Your theme will be saved to your account. You can further refine it or publish it for others to use.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </TabsContent>
                 </Tabs>
 
                 <div className="mt-12 rounded-lg bg-muted p-4">
-                    <h3 className="mb-2 text-sm font-semibold">
-                        Tips:
-                    </h3>
+                    <h3 className="mb-2 text-sm font-semibold">Tips:</h3>
                     <ul className="list-inside list-disc space-y-1 text-sm text-muted-foreground">
-                        <li>Importing from URL is the fastest way to bring in existing themes.</li>
-                        <li>Use AI to quickly explore different color palettes and moods.</li>
-                        <li>Manual mode gives you full control over every single color variable.</li>
+                        <li>
+                            Manual mode gives you full control over every single
+                            color variable.
+                        </li>
+                        <li>
+                            Importing from URL is the fastest way to bring in
+                            existing themes.
+                        </li>
+                        <li>
+                            Use AI to quickly explore different color palettes
+                            and moods.
+                        </li>
                     </ul>
                 </div>
             </div>

@@ -2,6 +2,7 @@ import { InfiniteScroll, Link } from '@inertiajs/react';
 import { Plus, SearchX } from 'lucide-react';
 import Heading from '@/components/heading';
 import { Button } from '@/components/ui/button';
+import { Spinner } from '@/components/ui/spinner';
 import MainWrapper from '@/layouts/main/main-wrapper';
 import MainThemeCard from '@/layouts/main/theme/main-theme-card';
 import { MainThemeSearch } from '@/layouts/main/theme/main-theme-search';
@@ -42,34 +43,34 @@ function ThemesIndex({
                 </div>
             </div>
 
-            <MainThemeSearch
-                filters={filters}
-                availableTags={availableTags}
-            />
+            <MainThemeSearch filters={filters} availableTags={availableTags} />
 
-            <InfiniteScroll data="themes">
+            <InfiniteScroll
+                data="themes"
+                loading={() => (
+                    <div className="flex justify-center py-8">
+                        <Spinner className="size-6 text-muted-foreground" />
+                    </div>
+                )}
+            >
                 <div className="mb-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                    {themes.data.map((theme: Registry, _index) => (
-                        <Link key={_index} href={show(theme.name)}>
-                            <MainThemeCard theme={theme} />
+                    {themes.data.map((theme: Registry, index) => (
+                        <Link key={theme.name} href={show(theme.name)}>
+                            <MainThemeCard theme={theme} index={index} />
                         </Link>
                     ))}
                 </div>
             </InfiniteScroll>
 
-            {themes.data.length === 0 &&
-                (filters?.search || filters?.tag) && (
-                    <div className="flex flex-col items-center justify-center py-16 text-center">
-                        <SearchX className="mb-4 size-12 text-muted-foreground" />
-                        <h3 className="text-lg font-semibold">
-                            Theme not found
-                        </h3>
-                        <p className="text-muted-foreground">
-                            No themes match your search. Try adjusting your
-                            filters.
-                        </p>
-                    </div>
-                )}
+            {themes.data.length === 0 && (filters?.search || filters?.tag) && (
+                <div className="flex flex-col items-center justify-center py-16 text-center">
+                    <SearchX className="mb-4 size-12 text-muted-foreground" />
+                    <h3 className="text-lg font-semibold">Theme not found</h3>
+                    <p className="text-muted-foreground">
+                        No themes match your search. Try adjusting your filters.
+                    </p>
+                </div>
+            )}
 
             {/*<CardsPreview app={themes.data[themeNumber]} />*/}
         </MainWrapper>
