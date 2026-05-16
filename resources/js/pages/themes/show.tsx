@@ -1,6 +1,6 @@
-import { Head } from '@inertiajs/react';
+import { Head, Link } from '@inertiajs/react';
 import { wcagContrast } from 'culori';
-import { Clipboard, Heart } from 'lucide-react';
+import { Clipboard, Heart, GitFork } from 'lucide-react';
 import { useMemo } from 'react';
 import { toast } from 'sonner';
 
@@ -29,6 +29,7 @@ import MainEditorBlock from '@/layouts/main/theme/main-editor-block';
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import MainLayout from '@/layouts/main-layout';
 import ThemeLayout from '@/layouts/theme-layout';
+import { create } from '@/routes/themes';
 import type { Registry } from '@/types/registry';
 
 interface ThemesShowProps {
@@ -282,6 +283,12 @@ function ThemesShow({ theme }: ThemesShowProps) {
                         </div>
                     </div>
                     <div className="flex items-center gap-2">
+                        <Link href={create({ query: { fork: theme.name } }).url}>
+                            <Button variant="outline" className="gap-2">
+                                <GitFork className="size-4" />
+                                Fork Theme
+                            </Button>
+                        </Link>
                         <Button
                             variant="outline"
                             size="icon"

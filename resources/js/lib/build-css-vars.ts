@@ -47,7 +47,13 @@ function buildCSSVars(vars: Record<string, string>): React.CSSProperties {
 
         // Directly set --color-* variable to bypass var() indirection
         if (colorMap[normalizedKey]) {
-            result[`--color-${colorMap[normalizedKey]}`] = value;
+            // Check if value already has hsl() or oklch() wrapper
+            if (/^(hsl|oklch|rgb|#)/i.test(value)) {
+                result[`--color-${colorMap[normalizedKey]}`] = value;
+            } else {
+                // Assume it's a raw HSL value if it's not a standard color format
+                result[`--color-${colorMap[normalizedKey]}`] = `hsl(${value})`;
+            }
         }
     }
 

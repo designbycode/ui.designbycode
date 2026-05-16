@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Theme;
+use App\Services\AiService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
@@ -13,24 +14,42 @@ use Spatie\Tags\Tag;
 
 class ThemesController extends Controller
 {
-    public function create()
+    public function create(Request $request)
     {
-        return Inertia::render('themes/create');
+        $baseTheme = null;
+        if ($fork = $request->query('fork')) {
+            $baseTheme = Theme::where('name', $fork)->first();
+            if ($baseTheme) {
+                $baseTheme->load('tags');
+                $tags = $baseTheme->tags->pluck('name')->toArray();
+                $baseTheme = $baseTheme->toArray();
+                $baseTheme['tags'] = $tags;
+            }
+        }
+
+        return Inertia::render('themes/create', [
+            'baseTheme' => $baseTheme,
+        ]);
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'url' => ['required', 'url'],
+            'url' => ['required_without:theme_data', 'nullable', 'url'],
+            'theme_data' => ['required_without:url', 'nullable', 'array'],
         ]);
 
-        $response = Http::get($request->url);
+        if ($request->url) {
+            $response = Http::get($request->url);
 
-        if ($response->failed()) {
-            return back()->withErrors(['url' => 'Could not fetch registry from the provided URL.']);
+            if ($response->failed()) {
+                return back()->withErrors(['url' => 'Could not fetch registry from the provided URL.']);
+            }
+
+            $data = $response->json();
+        } else {
+            $data = $request->theme_data;
         }
-
-        $data = $response->json();
 
         if (empty($data) || ! is_array($data)) {
             return back()->withErrors(['url' => 'Invalid registry JSON format.']);
@@ -56,6 +75,12 @@ class ThemesController extends Controller
                     $errors[] = '"cssVars.dark" must be an object.';
                 }
             }
+        } elseif (isset($data['vars_light']) && isset($data['vars_dark'])) {
+            // Support direct vars_light/vars_dark for manual/AI creation
+            $data['cssVars'] = [
+                'light' => $data['vars_light'],
+                'dark' => $data['vars_dark'],
+            ];
         }
 
         if (isset($data['files'])) {
@@ -100,22 +125,28 @@ class ThemesController extends Controller
         }
 
         if (! empty($errors)) {
-            return back()->withErrors(['url' => implode(' ', $errors)]);
+            $errorKey = $request->url ? 'url' : 'theme_data';
+
+            return back()->withErrors([$errorKey => implode(' ', $errors)]);
         }
 
         $data['name'] = Str::kebab($data['name']);
         $data['type'] = 'registry:theme';
 
         if (! ($data['author'] ?? null)) {
-            $host = Str::of(parse_url($request->url, PHP_URL_HOST))
-                ->replaceFirst('www.', '')
-                ->before('.')
-                ->toString();
-            $data['author'] = $host;
+            if ($request->url) {
+                $host = Str::of(parse_url($request->url, PHP_URL_HOST))
+                    ->replaceFirst('www.', '')
+                    ->before('.')
+                    ->toString();
+                $data['author'] = $host;
+            } else {
+                $data['author'] = auth()->user()->name;
+            }
         }
 
         if (Theme::where('name', $data['name'])->exists()) {
-            return back()->withErrors(['url' => "A theme named [{$data['name']}] already exists."]);
+            $data['name'] = $data['name'].'-'.Str::random(4);
         }
 
         $theme = Theme::fromRegistry($data);
@@ -131,6 +162,21 @@ class ThemesController extends Controller
 
         return redirect()->route('themes.show', $theme->name)
             ->with('success', 'Theme created successfully.');
+    }
+
+    public function generate(Request $request, AiService $aiService)
+    {
+        $request->validate([
+            'prompt' => ['required', 'string', 'max:500'],
+        ]);
+
+        $themeData = $aiService->generateFullTheme($request->prompt);
+
+        if (empty($themeData)) {
+            return response()->json(['error' => 'Failed to generate theme.'], 500);
+        }
+
+        return response()->json($themeData);
     }
 
     public function index()

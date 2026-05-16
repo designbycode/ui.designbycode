@@ -36,6 +36,7 @@ Route::get('/ai-test', function () {
 Route::get('/themes', [ThemesController::class, 'index'])->name('themes.index');
 Route::get('/themes/create', [ThemesController::class, 'create'])->name('themes.create')->middleware('auth');
 Route::post('/themes', [ThemesController::class, 'store'])->name('themes.store')->middleware('auth');
+Route::post('/themes/generate', [ThemesController::class, 'generate'])->name('themes.generate')->middleware('auth');
 Route::get('/themes/{theme}', [ThemesController::class, 'show'])->name('themes.show');
 
 Route::get('/fonts', [FontsController::class, 'index'])->name('fonts.index');
