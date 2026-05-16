@@ -49,8 +49,10 @@ export function useCopyToClipboard() {
         try {
             if (navigator.clipboard && window.isSecureContext) {
                 await navigator.clipboard.writeText(text);
+
                 return true;
             }
+
             const textarea = document.createElement('textarea');
             textarea.value = text;
             textarea.style.position = 'fixed';
@@ -62,6 +64,7 @@ export function useCopyToClipboard() {
             textarea.select();
             const success = document.execCommand('copy');
             document.body.removeChild(textarea);
+
             return success;
         } catch {
             return false;

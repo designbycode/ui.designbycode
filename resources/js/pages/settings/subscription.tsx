@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { pricing } from '@/routes';
 import { cancel, edit, resume } from '@/routes/subscription';
-import { Auth } from '@/types';
+import type { Auth } from '@/types';
 
 export default function Subscription() {
     const { auth } = usePage<{ auth: Auth }>().props;

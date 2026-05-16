@@ -2,14 +2,9 @@
 
 import { Menu, ListMusic } from 'lucide-react';
 
-import { useState, useRef, useEffect, useCallback } from 'react';
+import { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 import { Button } from '@/components/ui/button';
-import type {
-    Track,
-    Playlist,
-    VisualizerStyle,
-} from '@/registry/new-york/lib/audio-context';
-import { samplePlaylists } from '@/registry/new-york/lib/audio-context';
+import { useThemeColors } from '@/lib/theme-colors';
 import { AudioVisualizer } from '@/registry/new-york/components/music-player/audio-visualizer';
 import { PlayerControls } from '@/registry/new-york/components/music-player/player-controls';
 import { PlaylistSidebar } from '@/registry/new-york/components/music-player/playlist-sidebar';
@@ -17,7 +12,12 @@ import { ProgressBar } from '@/registry/new-york/components/music-player/progres
 import { TrackInfo } from '@/registry/new-york/components/music-player/track-info';
 import { VisualizerSettings } from '@/registry/new-york/components/music-player/visualizer-settings';
 import { VolumeControl } from '@/registry/new-york/components/music-player/volume-control';
-import { useThemeColors } from '@/lib/theme-colors';
+import { samplePlaylists } from '@/registry/new-york/lib/audio-context';
+import type {
+    Track,
+    Playlist,
+    VisualizerStyle,
+} from '@/registry/new-york/lib/audio-context';
 
 export function MusicPlayer() {
     // Audio state
@@ -41,13 +41,35 @@ export function MusicPlayer() {
     );
     const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
     const [favorites, setFavorites] = useState<Set<string>>(new Set());
-    const [shuffledIndices, setShuffledIndices] = useState<number[]>([]);
 
     // UI state
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [visualizerStyle, setVisualizerStyle] =
         useState<VisualizerStyle>('bars');
-    const [isAudioReady, setIsAudioReady] = useState(false);
+    const [, setIsAudioReady] = useState(false);
+    const [analyser, setAnalyser] = useState<AnalyserNode | null>(null);
+
+    // Shuffle indices
+    const shuffledIndices = useMemo(() => {
+        if (!currentPlaylist) {
+return [];
+}
+
+        const indices = Array.from(
+            { length: currentPlaylist.tracks.length },
+            (_, i) => i,
+        );
+
+        if (isShuffled) {
+            for (let i = indices.length - 1; i > 0; i--) {
+                // eslint-disable-next-line react-hooks/purity
+                const j = Math.floor(Math.random() * (i + 1));
+                [indices[i], indices[j]] = [indices[j], indices[i]];
+            }
+        }
+
+        return indices;
+    }, [currentPlaylist, isShuffled]);
 
     const currentTrack =
         currentPlaylist?.tracks[
@@ -87,27 +109,11 @@ export function MusicPlayer() {
             audioContextRef.current = audioContext;
             analyserRef.current = analyser;
             sourceRef.current = source;
+            setAnalyser(analyser);
         } catch (error) {
             console.log('[v0] Error initializing audio context:', error);
         }
     }, []);
-
-    // Shuffle indices
-    useEffect(() => {
-        if (currentPlaylist) {
-            const indices = Array.from(
-                { length: currentPlaylist.tracks.length },
-                (_, i) => i,
-            );
-
-            for (let i = indices.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [indices[i], indices[j]] = [indices[j], indices[i]];
-            }
-
-            setShuffledIndices(indices);
-        }
-    }, [currentPlaylist, isShuffled]);
 
     // Navigation
     const handleNext = useCallback(() => {
@@ -287,7 +293,9 @@ export function MusicPlayer() {
                 }
             })();
         }
-    }, [currentTrack?.id, initAudioContext]);
+    }, [currentTrack, isPlaying, initAudioContext]);
+
+    const currentAnalyser = isPlaying ? analyser : null;
 
     return (
         <div className="flex h-screen bg-background">
@@ -364,7 +372,7 @@ export function MusicPlayer() {
                     <div className="absolute inset-0 flex items-center justify-center p-8">
                         <div className="h-full max-h-96 w-full max-w-4xl">
                             <AudioVisualizer
-                                analyser={analyserRef.current}
+                                analyser={currentAnalyser}
                                 isPlaying={isPlaying}
                                 style={visualizerStyle}
                                 primaryColor={primaryColor}
