@@ -6,6 +6,7 @@ use App\Concerns\HasTheme;
 use App\Observers\ThemeObserver;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -27,7 +28,7 @@ use Spatie\Tags\HasTags;
 #[ObservedBy(ThemeObserver::class)]
 class Theme extends Model
 {
-    use HasTags, HasTheme, SoftDeletes;
+    use HasFactory, HasTags, HasTheme, SoftDeletes;
 
     protected $table = 'themes';
 

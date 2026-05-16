@@ -1,0 +1,311 @@
+
+   INFO  Server running on [http://127.0.0.1:8000].
+
+  Press Ctrl+C to stop the server
+
+  2026-05-16 13:00:41 /login ..................................... ~ 500.69ms
+  2026-05-16 13:00:42 /build/assets/instrument-sans-400-normal-DRC__1Mx.woff2  ~ 0.24ms
+  2026-05-16 13:00:42 /build/assets/app-DwgJtLjQ.css ............... ~ 0.32ms
+  2026-05-16 13:00:42 /build/assets/instrument-sans-400-normal-Q_nF8v4l.woff2  ~ 0.48ms
+  2026-05-16 13:00:42 /build/assets/instrument-sans-500-normal-Dk9ku72i.woff2  ~ 0.48ms
+  2026-05-16 13:00:42 /build/assets/instrument-sans-500-normal-CTEe1bJa.woff2  ~ 0.53ms
+  2026-05-16 13:00:42 /build/assets/instrument-sans-600-normal-B7fBEWYG.woff2  ~ 0.58ms
+  2026-05-16 13:00:42 /build/assets/instrument-sans-600-normal-BsaQcF38.woff2  ~ 0.04ms
+  2026-05-16 13:00:42 /build/assets/login-B4lH5do8.js .............. ~ 0.07ms
+  2026-05-16 13:00:42 /build/assets/label-D-AkZnW_.js .............. ~ 0.20ms
+  2026-05-16 13:00:42 /build/assets/dist-CyCRNm1V.js ............... ~ 0.41ms
+  2026-05-16 13:00:42 /build/assets/check-CCTwZBIw.js .............. ~ 0.55ms
+  2026-05-16 13:00:42 /build/assets/socialite-DAGU8Gzo.js .......... ~ 0.71ms
+  2026-05-16 13:00:42 /build/assets/app-CVlP31Z1.js ................ ~ 0.89ms
+  2026-05-16 13:00:42 /_debugbar/assets ............................ ~ 0.66ms
+  2026-05-16 13:00:42 /build/assets/github-BytY2MM3.js ............. ~ 0.34ms
+  2026-05-16 13:00:42 /build/assets/password-input-QL8S9D3F.js ..... ~ 0.65ms
+  2026-05-16 13:00:42 /build/assets/input-error-BdHD9-x4.js ........ ~ 0.29ms
+  2026-05-16 13:00:42 /build/assets/text-link-B7waIO2E.js .......... ~ 0.38ms
+  2026-05-16 13:00:42 /build/assets/spinner-CoRrGFqk.js ............ ~ 0.48ms
+  2026-05-16 13:00:42 /_debugbar/assets ............................ ~ 0.03ms
+  2026-05-16 13:00:42 /build/assets/loader-circle-XO7crStb.js ...... ~ 0.87ms
+  2026-05-16 13:00:42 /build/assets/password-CsunKxsK.js ........... ~ 0.74ms
+  2026-05-16 13:00:42 /build/assets/confirm-iDcX_7zW.js ............ ~ 0.87ms
+  2026-05-16 13:00:43 /build/assets/instrument-sans-500-normal-Z6ESRlEs.woff  ~ 0.13ms
+  2026-05-16 13:00:43 /build/assets/instrument-sans-400-normal-D1W7dsQl.woff  ~ 0.21ms
+  2026-05-16 13:01:37 /login ....................................... ~ 0.12ms
+  2026-05-16 13:01:37 /build/assets/instrument-sans-400-normal-DRC__1Mx.woff2  ~ 0.08ms
+  2026-05-16 13:01:37 /build/assets/instrument-sans-400-normal-Q_nF8v4l.woff2  ~ 0.14ms
+  2026-05-16 13:01:37 /build/assets/instrument-sans-500-normal-Dk9ku72i.woff2  ~ 0.19ms
+  2026-05-16 13:01:37 /build/assets/instrument-sans-500-normal-CTEe1bJa.woff2  ~ 0.24ms
+  2026-05-16 13:01:37 /build/assets/instrument-sans-600-normal-B7fBEWYG.woff2  ~ 0.35ms
+  2026-05-16 13:01:37 /build/assets/app-DwgJtLjQ.css ............... ~ 0.46ms
+  2026-05-16 13:01:37 /_debugbar/assets ............................ ~ 0.10ms
+  2026-05-16 13:01:37 /build/assets/instrument-sans-600-normal-BsaQcF38.woff2  ~ 0.09ms
+  2026-05-16 13:01:37 /build/assets/login-B4lH5do8.js .............. ~ 0.14ms
+  2026-05-16 13:01:37 /build/assets/label-D-AkZnW_.js .............. ~ 0.36ms
+  2026-05-16 13:01:37 /build/assets/dist-CyCRNm1V.js ............... ~ 0.50ms
+  2026-05-16 13:01:37 /build/assets/app-CVlP31Z1.js ................ ~ 0.68ms
+  2026-05-16 13:01:37 /build/assets/check-CCTwZBIw.js .............. ~ 0.06ms
+  2026-05-16 13:01:37 /build/assets/socialite-DAGU8Gzo.js .......... ~ 0.25ms
+  2026-05-16 13:01:37 /build/assets/password-input-QL8S9D3F.js ..... ~ 0.36ms
+  2026-05-16 13:01:37 /build/assets/github-BytY2MM3.js ............. ~ 0.44ms
+  2026-05-16 13:01:37 /build/assets/input-error-BdHD9-x4.js ........ ~ 0.60ms
+  2026-05-16 13:01:37 /build/assets/text-link-B7waIO2E.js .......... ~ 0.18ms
+  2026-05-16 13:01:37 /build/assets/spinner-CoRrGFqk.js ............ ~ 0.29ms
+  2026-05-16 13:01:37 /build/assets/password-CsunKxsK.js ........... ~ 0.30ms
+  2026-05-16 13:01:37 /build/assets/loader-circle-XO7crStb.js ...... ~ 0.58ms
+  2026-05-16 13:01:37 /build/assets/confirm-iDcX_7zW.js ............ ~ 0.57ms
+  2026-05-16 13:01:37 /_debugbar/assets ............................ ~ 0.16ms
+  2026-05-16 13:01:37 /build/assets/instrument-sans-500-normal-Z6ESRlEs.woff  ~ 500.55ms
+  2026-05-16 13:01:37 /build/assets/instrument-sans-400-normal-D1W7dsQl.woff  ~ 0.30ms
+  2026-05-16 13:01:38 /login ..................................... ~ 500.42ms
+  2026-05-16 13:01:39 /dashboard ................................... ~ 0.03ms
+  2026-05-16 13:01:39 /_debugbar/open .............................. ~ 0.04ms
+  2026-05-16 13:01:39 /_debugbar/open .............................. ~ 0.31ms
+  2026-05-16 13:01:41 /themes/create ............................... ~ 0.11ms
+  2026-05-16 13:01:41 /build/assets/instrument-sans-400-normal-DRC__1Mx.woff2  ~ 0.13ms
+  2026-05-16 13:01:41 /build/assets/instrument-sans-400-normal-Q_nF8v4l.woff2  ~ 0.19ms
+  2026-05-16 13:01:41 /build/assets/instrument-sans-500-normal-Dk9ku72i.woff2  ~ 0.24ms
+  2026-05-16 13:01:41 /build/assets/create-DWmMMfkI.js ............. ~ 0.28ms
+  2026-05-16 13:01:41 /build/assets/instrument-sans-500-normal-CTEe1bJa.woff2  ~ 0.40ms
+  2026-05-16 13:01:41 /build/assets/main-layout-DiaP0ISn.js ........ ~ 0.45ms
+  2026-05-16 13:01:41 /build/assets/app-DwgJtLjQ.css ............... ~ 0.04ms
+  2026-05-16 13:01:41 /build/assets/placeholder-pattern-CMjSLXXB.js  ~ 0.05ms
+  2026-05-16 13:01:41 /build/assets/sun-CDBr7ehg.js ................ ~ 0.38ms
+  2026-05-16 13:01:41 /build/assets/glow-stack-DaYuOL5d.js ......... ~ 0.30ms
+  2026-05-16 13:01:41 /build/assets/instrument-sans-600-normal-B7fBEWYG.woff2  ~ 0.67ms
+  2026-05-16 13:01:41 /build/assets/card-BMwhGcsv.js ............... ~ 0.47ms
+  2026-05-16 13:01:41 /build/assets/instrument-sans-600-normal-BsaQcF38.woff2  ~ 0.22ms
+  2026-05-16 13:01:41 /build/assets/label-D-AkZnW_.js .............. ~ 0.11ms
+  2026-05-16 13:01:41 /build/assets/check-CCTwZBIw.js .............. ~ 0.23ms
+  2026-05-16 13:01:41 /build/assets/app-CVlP31Z1.js ................ ~ 0.39ms
+  2026-05-16 13:01:41 /build/assets/github-BytY2MM3.js ............. ~ 0.51ms
+  2026-05-16 13:01:41 /build/assets/loader-circle-XO7crStb.js ...... ~ 0.69ms
+  2026-05-16 13:01:41 /build/assets/instrument-sans-400-normal-D1W7dsQl.woff  ~ 0.03ms
+  2026-05-16 13:01:41 /build/assets/instrument-sans-600-normal-B9e8oLYv.woff  ~ 0.04ms
+  2026-05-16 13:01:41 /build/assets/instrument-sans-500-normal-Z6ESRlEs.woff  ~ 0.09ms
+  2026-05-16 13:07:46 /login ....................................... ~ 0.13ms
+  2026-05-16 13:07:46 /build/assets/instrument-sans-400-normal-DRC__1Mx.woff2  ~ 0.09ms
+  2026-05-16 13:07:46 /build/assets/app-Cepr_1pM.css ............... ~ 0.16ms
+  2026-05-16 13:07:46 /build/assets/instrument-sans-400-normal-Q_nF8v4l.woff2  ~ 0.30ms
+  2026-05-16 13:07:46 /build/assets/instrument-sans-500-normal-Dk9ku72i.woff2  ~ 0.35ms
+  2026-05-16 13:07:46 /build/assets/instrument-sans-500-normal-CTEe1bJa.woff2  ~ 0.40ms
+  2026-05-16 13:07:46 /build/assets/instrument-sans-600-normal-B7fBEWYG.woff2  ~ 0.44ms
+  2026-05-16 13:07:46 /_debugbar/assets ............................ ~ 0.02ms
+  2026-05-16 13:07:46 /build/assets/instrument-sans-600-normal-BsaQcF38.woff2  ~ 0.07ms
+  2026-05-16 13:07:46 /build/assets/login-Dl7zqRmw.js .............. ~ 0.12ms
+  2026-05-16 13:07:46 /build/assets/label-BEGn4mDy.js .............. ~ 0.26ms
+  2026-05-16 13:07:46 /build/assets/dist-FMp-wKgF.js ............... ~ 0.38ms
+  2026-05-16 13:07:46 /build/assets/app-t0zkJl3W.js ................ ~ 0.57ms
+  2026-05-16 13:07:46 /build/assets/check-lG57EO4u.js .............. ~ 0.07ms
+  2026-05-16 13:07:46 /build/assets/socialite-B5uUfCjR.js .......... ~ 0.32ms
+  2026-05-16 13:07:46 /build/assets/password-input-0Arh7dRl.js ..... ~ 0.45ms
+  2026-05-16 13:07:46 /build/assets/github-D4O3YWJ6.js ............. ~ 0.53ms
+  2026-05-16 13:07:46 /build/assets/input-error-nM-55OXd.js ........ ~ 0.67ms
+  2026-05-16 13:07:46 /build/assets/text-link-D6AsDMWO.js .......... ~ 0.17ms
+  2026-05-16 13:07:46 /build/assets/spinner-Ca5g_4_r.js ............ ~ 0.20ms
+  2026-05-16 13:07:46 /build/assets/loader-circle-CBDF0HJ_.js ...... ~ 0.43ms
+  2026-05-16 13:07:46 /build/assets/password-oDltnRva.js ........... ~ 0.52ms
+  2026-05-16 13:07:46 /build/assets/confirm-yRWW3fdM.js ............ ~ 0.65ms
+  2026-05-16 13:07:46 /_debugbar/assets ............................ ~ 0.62ms
+  2026-05-16 13:07:47 /build/assets/instrument-sans-500-normal-Z6ESRlEs.woff  ~ 0.04ms
+  2026-05-16 13:07:47 /build/assets/instrument-sans-400-normal-D1W7dsQl.woff  ~ 0.09ms
+  2026-05-16 13:07:48 /login ..................................... ~ 500.43ms
+  2026-05-16 13:07:48 /dashboard ................................... ~ 0.03ms
+  2026-05-16 13:07:48 /_debugbar/open .............................. ~ 0.10ms
+  2026-05-16 13:07:48 /_debugbar/open .............................. ~ 0.39ms
+  2026-05-16 13:07:50 /themes/create ............................... ~ 0.17ms
+  2026-05-16 13:07:50 /build/assets/instrument-sans-400-normal-DRC__1Mx.woff2  ~ 0.09ms
+  2026-05-16 13:07:50 /build/assets/instrument-sans-400-normal-Q_nF8v4l.woff2  ~ 0.14ms
+  2026-05-16 13:07:50 /build/assets/instrument-sans-500-normal-Dk9ku72i.woff2  ~ 0.18ms
+  2026-05-16 13:07:50 /build/assets/instrument-sans-500-normal-CTEe1bJa.woff2  ~ 0.23ms
+  2026-05-16 13:07:50 /build/assets/instrument-sans-600-normal-B7fBEWYG.woff2  ~ 0.30ms
+  2026-05-16 13:07:50 /build/assets/create-b8caykA-.js ............. ~ 0.35ms
+  2026-05-16 13:07:50 /build/assets/popover-Cvj6nQrP.js ............ ~ 0.07ms
+  2026-05-16 13:07:50 /build/assets/tabs-DGRbvRwG.js ............... ~ 0.24ms
+  2026-05-16 13:07:50 /build/assets/app-Cepr_1pM.css ............... ~ 0.40ms
+  2026-05-16 13:07:50 /build/assets/color-utils-EgcE6_BX.js ........ ~ 0.51ms
+  2026-05-16 13:07:50 /build/assets/instrument-sans-600-normal-BsaQcF38.woff2  ~ 0.62ms
+  2026-05-16 13:07:50 /build/assets/main-layout-C-4RrJnG.js ........ ~ 0.67ms
+  2026-05-16 13:07:50 /build/assets/sun-CWyb80F9.js ................ ~ 0.07ms
+  2026-05-16 13:07:50 /build/assets/placeholder-pattern-CbHbctQs.js  ~ 0.21ms
+  2026-05-16 13:07:50 /build/assets/glow-stack-CKER3ASb.js ......... ~ 0.26ms
+  2026-05-16 13:07:50 /build/assets/card-CrkRsm4M.js ............... ~ 0.40ms
+  2026-05-16 13:07:50 /build/assets/main-theme-card-Oa0nREEd.js .... ~ 0.54ms
+  2026-05-16 13:07:50 /build/assets/glow-radial-Evr5btJB.js ........ ~ 0.71ms
+  2026-05-16 13:07:50 /build/assets/label-BEGn4mDy.js .............. ~ 0.06ms
+  2026-05-16 13:07:50 /build/assets/check-lG57EO4u.js .............. ~ 0.27ms
+  2026-05-16 13:07:50 /build/assets/github-D4O3YWJ6.js ............. ~ 0.40ms
+  2026-05-16 13:07:50 /build/assets/app-t0zkJl3W.js ................ ~ 0.59ms
+  2026-05-16 13:07:50 /build/assets/loader-circle-CBDF0HJ_.js ...... ~ 0.71ms
+  2026-05-16 13:07:50 /build/assets/instrument-sans-400-normal-D1W7dsQl.woff  ~ 0.04ms
+  2026-05-16 13:07:50 /build/assets/instrument-sans-600-normal-B9e8oLYv.woff  ~ 0.09ms
+  2026-05-16 13:07:50 /build/assets/instrument-sans-500-normal-Z6ESRlEs.woff  ~ 0.14ms
+  2026-05-16 13:16:30 /login ....................................... ~ 0.18ms
+  2026-05-16 13:16:30 /build/assets/instrument-sans-400-normal-DRC__1Mx.woff2  ~ 0.04ms
+  2026-05-16 13:16:30 /_debugbar/assets ............................ ~ 0.04ms
+  2026-05-16 13:16:30 /build/assets/instrument-sans-400-normal-Q_nF8v4l.woff2  ~ 0.30ms
+  2026-05-16 13:16:30 /build/assets/instrument-sans-500-normal-Dk9ku72i.woff2  ~ 0.36ms
+  2026-05-16 13:16:30 /build/assets/instrument-sans-500-normal-CTEe1bJa.woff2  ~ 0.41ms
+  2026-05-16 13:16:30 /build/assets/instrument-sans-600-normal-B7fBEWYG.woff2  ~ 0.50ms
+  2026-05-16 13:16:30 /build/assets/app-Cepr_1pM.css ............... ~ 0.60ms
+  2026-05-16 13:16:30 /build/assets/instrument-sans-600-normal-BsaQcF38.woff2  ~ 0.07ms
+  2026-05-16 13:16:30 /build/assets/login-ChcC_8AO.js .............. ~ 0.12ms
+  2026-05-16 13:16:30 /build/assets/label-Bm_XQ51m.js .............. ~ 0.25ms
+  2026-05-16 13:16:30 /build/assets/dist-BbyHtHkN.js ............... ~ 0.38ms
+  2026-05-16 13:16:30 /build/assets/check-DyiRX4Xw.js .............. ~ 0.53ms
+  2026-05-16 13:16:30 /build/assets/app-oD_smNiH.js ................ ~ 0.69ms
+  2026-05-16 13:16:30 /build/assets/socialite-nLlijaNu.js .......... ~ 1.67ms
+  2026-05-16 13:16:30 /build/assets/password-input-edyn0ldP.js ..... ~ 1.90ms
+  2026-05-16 13:16:30 /build/assets/github-CKHGr0Eu.js ............. ~ 2.03ms
+  2026-05-16 13:16:30 /build/assets/input-error-BKflSobO.js ........ ~ 2.16ms
+  2026-05-16 13:16:30 /build/assets/text-link-CLgvsck4.js .......... ~ 0.73ms
+  2026-05-16 13:16:30 /build/assets/spinner-G1qHHBFp.js ............ ~ 0.07ms
+  2026-05-16 13:16:30 /build/assets/loader-circle-TxyH1sMW.js ...... ~ 0.22ms
+  2026-05-16 13:16:30 /_debugbar/assets ............................ ~ 0.29ms
+  2026-05-16 13:16:30 /build/assets/password-BYr0oeQb.js ........... ~ 0.62ms
+  2026-05-16 13:16:30 /build/assets/confirm-4rcYKmMR.js ............ ~ 0.88ms
+  2026-05-16 13:16:30 /build/assets/instrument-sans-500-normal-Z6ESRlEs.woff  ~ 0.04ms
+  2026-05-16 13:16:30 /build/assets/instrument-sans-400-normal-D1W7dsQl.woff  ~ 0.09ms
+  2026-05-16 13:16:31 /login ..................................... ~ 500.46ms
+  2026-05-16 13:16:32 /dashboard ................................... ~ 0.03ms
+  2026-05-16 13:16:32 /_debugbar/open .............................. ~ 0.03ms
+  2026-05-16 13:16:32 /_debugbar/open .............................. ~ 0.30ms
+  2026-05-16 13:16:33 /themes/create ............................... ~ 0.11ms
+  2026-05-16 13:16:33 /build/assets/instrument-sans-400-normal-DRC__1Mx.woff2  ~ 0.14ms
+  2026-05-16 13:16:33 /build/assets/instrument-sans-400-normal-Q_nF8v4l.woff2  ~ 0.19ms
+  2026-05-16 13:16:33 /build/assets/instrument-sans-500-normal-Dk9ku72i.woff2  ~ 0.24ms
+  2026-05-16 13:16:33 /build/assets/instrument-sans-500-normal-CTEe1bJa.woff2  ~ 0.29ms
+  2026-05-16 13:16:33 /build/assets/instrument-sans-600-normal-B7fBEWYG.woff2  ~ 0.33ms
+  2026-05-16 13:16:33 /build/assets/instrument-sans-600-normal-BsaQcF38.woff2  ~ 0.33ms
+  2026-05-16 13:16:33 /build/assets/app-Cepr_1pM.css ............... ~ 0.07ms
+  2026-05-16 13:16:33 /build/assets/create-CKJR6MW9.js ............. ~ 0.20ms
+  2026-05-16 13:16:33 /build/assets/popover-CMxhrS4e.js ............ ~ 0.34ms
+  2026-05-16 13:16:33 /build/assets/tabs-CIeNcDCw.js ............... ~ 0.50ms
+  2026-05-16 13:16:33 /build/assets/label-Bm_XQ51m.js .............. ~ 0.68ms
+  2026-05-16 13:16:33 /build/assets/color-utils-EgcE6_BX.js ........ ~ 0.38ms
+  2026-05-16 13:16:33 /build/assets/main-layout-CZKESKz-.js ........ ~ 0.46ms
+  2026-05-16 13:16:33 /build/assets/app-oD_smNiH.js ................ ~ 1.02ms
+  2026-05-16 13:16:33 /build/assets/sun-D0QtTDKA.js ................ ~ 0.69ms
+  2026-05-16 13:16:33 /build/assets/placeholder-pattern-DQ049twe.js  ~ 0.06ms
+  2026-05-16 13:16:33 /build/assets/glow-stack-BsODASz1.js ......... ~ 0.10ms
+  2026-05-16 13:16:33 /build/assets/card-DbftTBhB.js ............... ~ 0.20ms
+  2026-05-16 13:16:33 /build/assets/main-theme-card-C5qy-QOO.js .... ~ 0.39ms
+  2026-05-16 13:16:33 /build/assets/glow-radial-DzS8n93o.js ........ ~ 0.06ms
+  2026-05-16 13:16:33 /build/assets/check-DyiRX4Xw.js .............. ~ 0.15ms
+  2026-05-16 13:16:33 /build/assets/github-CKHGr0Eu.js ............. ~ 0.28ms
+  2026-05-16 13:16:33 /build/assets/loader-circle-TxyH1sMW.js ...... ~ 0.39ms
+  2026-05-16 13:16:33 /build/assets/instrument-sans-400-normal-D1W7dsQl.woff  ~ 0.05ms
+  2026-05-16 13:16:33 /build/assets/instrument-sans-600-normal-B9e8oLYv.woff  ~ 0.10ms
+  2026-05-16 13:16:33 /build/assets/instrument-sans-500-normal-Z6ESRlEs.woff  ~ 0.14ms
+  2026-05-16 13:19:21 /login ....................................... ~ 0.15ms
+  2026-05-16 13:19:21 /build/assets/app-Cepr_1pM.css ............... ~ 0.09ms
+  2026-05-16 13:19:21 /build/assets/instrument-sans-400-normal-DRC__1Mx.woff2  ~ 0.23ms
+  2026-05-16 13:19:21 /build/assets/instrument-sans-400-normal-Q_nF8v4l.woff2  ~ 0.29ms
+  2026-05-16 13:19:21 /build/assets/instrument-sans-500-normal-Dk9ku72i.woff2  ~ 0.33ms
+  2026-05-16 13:19:21 /_debugbar/assets ............................ ~ 0.03ms
+  2026-05-16 13:19:21 /build/assets/instrument-sans-500-normal-CTEe1bJa.woff2  ~ 0.66ms
+  2026-05-16 13:19:21 /build/assets/instrument-sans-600-normal-B7fBEWYG.woff2  ~ 0.71ms
+  2026-05-16 13:19:21 /build/assets/instrument-sans-600-normal-BsaQcF38.woff2  ~ 0.31ms
+  2026-05-16 13:19:21 /build/assets/login-DBeospjT.js .............. ~ 0.11ms
+  2026-05-16 13:19:21 /build/assets/app-CDTTmT5q.js ................ ~ 0.52ms
+  2026-05-16 13:19:21 /build/assets/label-HjChP4NT.js .............. ~ 0.06ms
+  2026-05-16 13:19:21 /build/assets/dist-BSWObGKZ.js ............... ~ 0.19ms
+  2026-05-16 13:19:21 /build/assets/check-DIZpAYhB.js .............. ~ 0.33ms
+  2026-05-16 13:19:21 /build/assets/socialite-j_TSd3nX.js .......... ~ 0.52ms
+  2026-05-16 13:19:21 /build/assets/password-input-Ce0OxZVs.js ..... ~ 0.63ms
+  2026-05-16 13:19:21 /build/assets/github-Dvrv3DFg.js ............. ~ 0.06ms
+  2026-05-16 13:19:21 /build/assets/input-error-DOkH3rlS.js ........ ~ 0.19ms
+  2026-05-16 13:19:21 /build/assets/text-link-CWPOkL8O.js .......... ~ 0.27ms
+  2026-05-16 13:19:21 /build/assets/spinner-CkkNsEZR.js ............ ~ 0.38ms
+  2026-05-16 13:19:21 /build/assets/loader-circle-BneiEJoj.js ...... ~ 0.50ms
+  2026-05-16 13:19:21 /_debugbar/assets ............................ ~ 0.03ms
+  2026-05-16 13:19:21 /build/assets/password-CKTtsbof.js ........... ~ 0.31ms
+  2026-05-16 13:19:21 /build/assets/confirm-EeVTAroS.js ............ ~ 0.46ms
+  2026-05-16 13:19:21 /build/assets/instrument-sans-500-normal-Z6ESRlEs.woff  ~ 0.13ms
+  2026-05-16 13:19:21 /build/assets/instrument-sans-400-normal-D1W7dsQl.woff  ~ 0.21ms
+  2026-05-16 13:19:22 /login ..................................... ~ 504.25ms
+  2026-05-16 13:19:23 /dashboard ................................... ~ 0.03ms
+  2026-05-16 13:19:23 /_debugbar/open ............................ ~ 500.51ms
+  2026-05-16 13:19:23 /_debugbar/open ............................ ~ 500.87ms
+  2026-05-16 13:19:24 /themes/create ............................... ~ 0.10ms
+  2026-05-16 13:19:24 /build/assets/instrument-sans-400-normal-DRC__1Mx.woff2  ~ 0.08ms
+  2026-05-16 13:19:24 /build/assets/instrument-sans-400-normal-Q_nF8v4l.woff2  ~ 0.13ms
+  2026-05-16 13:19:24 /build/assets/instrument-sans-500-normal-Dk9ku72i.woff2  ~ 0.44ms
+  2026-05-16 13:19:24 /build/assets/create-CBrpIMIh.js ............. ~ 0.62ms
+  2026-05-16 13:19:24 /build/assets/popover-CU2Pu7oR.js ............ ~ 0.78ms
+  2026-05-16 13:19:24 /build/assets/tabs-3sMR4DIH.js ............... ~ 0.93ms
+  2026-05-16 13:19:24 /build/assets/app-Cepr_1pM.css ............... ~ 0.08ms
+  2026-05-16 13:19:24 /build/assets/color-utils-EgcE6_BX.js ........ ~ 0.08ms
+  2026-05-16 13:19:24 /build/assets/instrument-sans-500-normal-CTEe1bJa.woff2  ~ 0.45ms
+  2026-05-16 13:19:24 /build/assets/instrument-sans-600-normal-B7fBEWYG.woff2  ~ 0.22ms
+  2026-05-16 13:19:24 /build/assets/sun-CaRqgIa8.js ................ ~ 0.27ms
+  2026-05-16 13:19:24 /build/assets/main-layout-BBVsjXRW.js ........ ~ 0.46ms
+  2026-05-16 13:19:24 /build/assets/placeholder-pattern-BxzTt3oZ.js  ~ 0.54ms
+  2026-05-16 13:19:24 /build/assets/instrument-sans-600-normal-BsaQcF38.woff2  ~ 0.07ms
+  2026-05-16 13:19:24 /build/assets/glow-stack-CD0aM0Yh.js ......... ~ 0.12ms
+  2026-05-16 13:19:24 /build/assets/card-B0uGXLso.js ............... ~ 0.28ms
+  2026-05-16 13:19:24 /build/assets/main-theme-card-CXCXK_av.js .... ~ 0.42ms
+  2026-05-16 13:19:24 /build/assets/glow-radial-TZeI-bSg.js ........ ~ 0.49ms
+  2026-05-16 13:19:24 /build/assets/label-HjChP4NT.js .............. ~ 0.06ms
+  2026-05-16 13:19:24 /build/assets/check-DIZpAYhB.js .............. ~ 0.19ms
+  2026-05-16 13:19:24 /build/assets/github-Dvrv3DFg.js ............. ~ 0.32ms
+  2026-05-16 13:19:24 /build/assets/loader-circle-BneiEJoj.js ...... ~ 0.45ms
+  2026-05-16 13:19:24 /build/assets/app-CDTTmT5q.js ................ ~ 1.13ms
+  2026-05-16 13:19:25 /build/assets/instrument-sans-600-normal-B9e8oLYv.woff  ~ 0.16ms
+  2026-05-16 13:19:25 /build/assets/instrument-sans-400-normal-D1W7dsQl.woff  ~ 0.24ms
+  2026-05-16 13:19:25 /build/assets/instrument-sans-500-normal-Z6ESRlEs.woff  ~ 0.29ms
+  2026-05-16 16:30:13 /login ..................................... ~ 517.06ms
+  2026-05-16 16:30:14 /build/assets/instrument-sans-400-normal-DRC__1Mx.woff2  ~ 1.07ms
+  2026-05-16 16:30:14 /build/assets/app-DN02iwDR.css ............... ~ 1.17ms
+  2026-05-16 16:30:14 /build/assets/instrument-sans-400-normal-Q_nF8v4l.woff2  ~ 1.19ms
+  2026-05-16 16:30:14 /build/assets/instrument-sans-500-normal-Dk9ku72i.woff2  ~ 1.14ms
+  2026-05-16 16:30:14 /build/assets/instrument-sans-500-normal-CTEe1bJa.woff2  ~ 1.17ms
+  2026-05-16 16:30:14 /build/assets/instrument-sans-600-normal-B7fBEWYG.woff2  ~ 1.22ms
+  2026-05-16 16:30:14 /_debugbar/assets ............................ ~ 0.03ms
+  2026-05-16 16:30:14 /build/assets/instrument-sans-600-normal-BsaQcF38.woff2  ~ 1.06ms
+  2026-05-16 16:30:14 /build/assets/login-00JrbYrx.js .............. ~ 0.12ms
+  2026-05-16 16:30:14 /build/assets/label-fRwP89Ez.js .............. ~ 0.60ms
+  2026-05-16 16:30:14 /build/assets/dist-D5bK512v.js ............... ~ 0.77ms
+  2026-05-16 16:30:14 /build/assets/app-D7MKN1zp.js ................ ~ 0.95ms
+  2026-05-16 16:30:14 /build/assets/check-BBvDdM_9.js .............. ~ 0.06ms
+  2026-05-16 16:30:14 /build/assets/socialite-BBNBBxaD.js .......... ~ 0.19ms
+  2026-05-16 16:30:14 /build/assets/password-input-__9RhIwi.js ..... ~ 0.78ms
+  2026-05-16 16:30:14 /build/assets/github-Be9qoVk0.js ............. ~ 0.86ms
+  2026-05-16 16:30:14 /build/assets/input-error-CzZYqI_U.js ........ ~ 0.99ms
+  2026-05-16 16:30:14 /build/assets/text-link-BlYfkXNw.js .......... ~ 0.06ms
+  2026-05-16 16:30:14 /build/assets/spinner-CCI0ZpZ9.js ............ ~ 1.02ms
+  2026-05-16 16:30:14 /build/assets/loader-circle-YfjFJaoY.js ...... ~ 1.17ms
+  2026-05-16 16:30:14 /build/assets/password-BDtte38w.js ........... ~ 1.26ms
+  2026-05-16 16:30:14 /build/assets/confirm-tDhmficG.js ............ ~ 1.38ms
+  2026-05-16 16:30:14 /_debugbar/assets ............................ ~ 0.04ms
+  2026-05-16 16:30:14 /build/assets/instrument-sans-500-normal-Z6ESRlEs.woff  ~ 0.21ms
+  2026-05-16 16:30:14 /build/assets/instrument-sans-400-normal-D1W7dsQl.woff  ~ 0.26ms
+  2026-05-16 16:30:15 /login ........................................... ~ 1s
+  2026-05-16 16:30:16 /dashboard ................................... ~ 0.04ms
+  2026-05-16 16:30:16 /_debugbar/open .............................. ~ 0.04ms
+  2026-05-16 16:30:16 /_debugbar/open .............................. ~ 0.26ms
+  2026-05-16 16:30:17 /themes/create ............................... ~ 0.16ms
+  2026-05-16 16:30:17 /build/assets/instrument-sans-400-normal-DRC__1Mx.woff2  ~ 0.09ms
+  2026-05-16 16:30:17 /build/assets/instrument-sans-400-normal-Q_nF8v4l.woff2  ~ 0.20ms
+  2026-05-16 16:30:17 /build/assets/instrument-sans-500-normal-Dk9ku72i.woff2  ~ 0.27ms
+  2026-05-16 16:30:17 /build/assets/create-BmSt6sO8.js ............. ~ 0.31ms
+  2026-05-16 16:30:17 /build/assets/instrument-sans-500-normal-CTEe1bJa.woff2  ~ 0.44ms
+  2026-05-16 16:30:17 /build/assets/popover-B2UUPq8p.js ............ ~ 0.48ms
+  2026-05-16 16:30:17 /build/assets/app-DN02iwDR.css ............... ~ 0.04ms
+  2026-05-16 16:30:17 /build/assets/tabs-CNNfAj8l.js ............... ~ 0.26ms
+  2026-05-16 16:30:17 /build/assets/color-utils-DTvyGxAC.js ........ ~ 0.22ms
+  2026-05-16 16:30:17 /build/assets/instrument-sans-600-normal-B7fBEWYG.woff2  ~ 0.35ms
+  2026-05-16 16:30:17 /build/assets/sun-r0X8DC4y.js ................ ~ 0.41ms
+  2026-05-16 16:30:17 /build/assets/placeholder-pattern-DUvj6lOE.js  ~ 0.55ms
+  2026-05-16 16:30:17 /build/assets/main-layout-qej9zSi0.js ........ ~ 0.61ms
+  2026-05-16 16:30:17 /build/assets/glow-stack-BaNii-nE.js ......... ~ 0.08ms
+  2026-05-16 16:30:17 /build/assets/instrument-sans-600-normal-BsaQcF38.woff2  ~ 0.17ms
+  2026-05-16 16:30:17 /build/assets/card-C1ekp7Ou.js ............... ~ 0.22ms
+  2026-05-16 16:30:17 /build/assets/main-theme-card-B0GTBBPN.js .... ~ 0.36ms
+  2026-05-16 16:30:17 /build/assets/glow-radial-CIe4ekoG.js ........ ~ 0.42ms
+  2026-05-16 16:30:17 /build/assets/app-D7MKN1zp.js ................ ~ 0.51ms
+  2026-05-16 16:30:17 /build/assets/label-fRwP89Ez.js .............. ~ 0.06ms
+  2026-05-16 16:30:17 /build/assets/check-BBvDdM_9.js .............. ~ 0.19ms
+  2026-05-16 16:30:17 /build/assets/github-Be9qoVk0.js ............. ~ 0.32ms
+  2026-05-16 16:30:17 /build/assets/loader-circle-YfjFJaoY.js ...... ~ 0.89ms
+  2026-05-16 16:30:18 /build/assets/instrument-sans-600-normal-B9e8oLYv.woff  ~ 0.14ms
+  2026-05-16 16:30:18 /build/assets/instrument-sans-400-normal-D1W7dsQl.woff  ~ 0.22ms
+  2026-05-16 16:30:18 /build/assets/instrument-sans-500-normal-Z6ESRlEs.woff  ~ 0.27ms
