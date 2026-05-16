@@ -45,7 +45,6 @@ return new class extends Migration
             $table->json('meta')->nullable();
             $table->text('docs')->nullable();
 
-
             $table->string('extends')->nullable();
             $table->string('style')->nullable();
             $table->string('icon_library')->nullable();

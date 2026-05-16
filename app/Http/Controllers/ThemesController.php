@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Theme;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 use Inertia\Inertia;
@@ -137,7 +138,7 @@ class ThemesController extends Controller
         $availableTags = Cache::remember('themes:available_tags', 3600, function () {
             return Tag::query()
                 ->whereExists(function ($query) {
-                    $query->select(\Illuminate\Support\Facades\DB::raw(1))
+                    $query->select(DB::raw(1))
                         ->from('taggables')
                         ->whereColumn('taggables.tag_id', 'tags.id')
                         ->where('taggables.taggable_type', Theme::class);

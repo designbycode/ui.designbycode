@@ -23,14 +23,14 @@ class AiService
 
         $prompt = "Generate metadata for a UI theme named \"{$name}\" that uses these colors: {$colorList}.
         Return the result in JSON format with two keys:
-        1. \"description\": a short, engaging description (max 2 sentences) highlighting the mood or style.
+        1. \"description\": a short, engaging description (max 2 sentences) highlighting the mood or style. The description must not start with a colon.
         2. \"tags\": an array of 2 to 6 relevant style tags (e.g., \"warm\", \"cold\", \"retro\", \"vintage\", \"punk\", \"nature\", \"tech\", \"bold\", \"minimal\", \"elegant\").";
 
         $response = Http::withHeaders([
             'Authorization' => 'Bearer '.$apiKey,
             'HTTP-Referer' => config('app.url'),
             'X-Title' => config('app.name'),
-        ])->post('https://openrouter.ai/api/v1/chat/completions', [
+        ])->timeout(15)->post('https://openrouter.ai/api/v1/chat/completions', [
             'model' => config('services.openrouter.model'),
             'messages' => [
                 [
@@ -49,8 +49,14 @@ class AiService
         $content = $data['choices'][0]['message']['content'] ?? '{}';
         $decoded = json_decode($content, true);
 
+        $description = $decoded['description'] ?? null;
+
+        if ($description) {
+            $description = ltrim($description, ': ');
+        }
+
         return [
-            'description' => $decoded['description'] ?? null,
+            'description' => $description,
             'tags' => $decoded['tags'] ?? [],
         ];
     }

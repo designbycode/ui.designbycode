@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Theme;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Http;
@@ -20,11 +21,11 @@ class AiDescriptionTest extends TestCase
                         'message' => [
                             'content' => json_encode([
                                 'description' => 'A beautiful dark theme with neon accents.',
-                                'tags' => ['dark', 'neon', 'retro']
-                            ])
-                        ]
-                    ]
-                ]
+                                'tags' => ['dark', 'neon', 'retro'],
+                            ]),
+                        ],
+                    ],
+                ],
             ], 200),
             'https://example.com/theme.json' => Http::response([
                 'name' => 'neon-dark',
@@ -53,7 +54,7 @@ class AiDescriptionTest extends TestCase
             'description' => 'A beautiful dark theme with neon accents.',
         ]);
 
-        $theme = \App\Models\Theme::where('name', 'neon-dark')->first();
+        $theme = Theme::where('name', 'neon-dark')->first();
         $this->assertCount(3, $theme->tags);
         $this->assertEquals(['dark', 'neon', 'retro'], $theme->tags->pluck('name')->toArray());
     }
