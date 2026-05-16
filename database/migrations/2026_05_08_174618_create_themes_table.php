@@ -44,7 +44,7 @@ return new class extends Migration
             $table->json('tailwind')->nullable();
             $table->json('meta')->nullable();
             $table->text('docs')->nullable();
-            $table->json('categories')->nullable();
+
 
             $table->string('extends')->nullable();
             $table->string('style')->nullable();

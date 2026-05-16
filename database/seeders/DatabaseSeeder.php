@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             ThemeSeeder::class,
+            TagsSeeder::class,
             AnimateSeeder::class,
             FontSeeder::class,
         ]);
