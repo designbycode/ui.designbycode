@@ -122,6 +122,7 @@ const wheelBus = (() => {
     function normalise(deltaY: number): number {
         const isTrackpad = Math.abs(deltaY) < 30;
         const scaled = isTrackpad ? deltaY * 3 : deltaY;
+
         return Math.max(-60, Math.min(60, scaled));
     }
 
@@ -131,7 +132,11 @@ const wheelBus = (() => {
             sub.onWheel(norm);
             // Reset this subscriber's idle timer on every wheel event
             const prev = timers.get(sub);
-            if (prev) clearTimeout(prev);
+
+            if (prev) {
+clearTimeout(prev);
+}
+
             timers.set(
                 sub,
                 setTimeout(() => sub.onIdle(), sub.idleMs),
@@ -140,13 +145,19 @@ const wheelBus = (() => {
     }
 
     function boot() {
-        if (listening) return;
+        if (listening) {
+return;
+}
+
         listening = true;
         window.addEventListener('wheel', onWheel, { passive: true });
     }
 
     function teardown() {
-        if (!listening) return;
+        if (!listening) {
+return;
+}
+
         listening = false;
         window.removeEventListener('wheel', onWheel);
     }
@@ -155,12 +166,20 @@ const wheelBus = (() => {
         subscribe(sub: WheelSubscriber): () => void {
             subs.add(sub);
             boot();
+
             return () => {
                 const t = timers.get(sub);
-                if (t) clearTimeout(t);
+
+                if (t) {
+clearTimeout(t);
+}
+
                 timers.delete(sub);
                 subs.delete(sub);
-                if (subs.size === 0) teardown();
+
+                if (subs.size === 0) {
+teardown();
+}
             };
         },
     };
@@ -216,16 +235,24 @@ export function Marquee({
     // ── GSAP: ticker + measure + resize ───────────────────────────────────────
     useGSAP(
         () => {
-            if (!trackRef.current) return;
+            if (!trackRef.current) {
+return;
+}
 
             const measure = () => {
                 const contentEl = trackRef.current!.querySelector(
                     '[data-marquee-content]',
                 ) as HTMLElement | null;
-                if (!contentEl) return;
+
+                if (!contentEl) {
+return;
+}
 
                 const singleW = contentEl.offsetWidth + gap;
-                if (singleW === 0) return;
+
+                if (singleW === 0) {
+return;
+}
 
                 setWRef.current = singleW;
 
@@ -263,16 +290,20 @@ export function Marquee({
                         resizeTimer = setTimeout(measure, 150);
                     };
                     window.addEventListener('resize', onResize);
+
                     return () => {
                         clearTimeout(resizeTimer);
                         window.removeEventListener('resize', onResize);
                     };
                 });
+
                 return () => cancelAnimationFrame(raf2);
             });
 
             const tick = () => {
-                if (isPausedRef.current || setWRef.current === 0) return;
+                if (isPausedRef.current || setWRef.current === 0) {
+return;
+}
 
                 // liveSpeed.value sign encodes direction; baseSign encodes axis.
                 xRef.current += liveSpeed.current.value * baseSign;
@@ -301,13 +332,18 @@ export function Marquee({
     // Separate from the GSAP context so toggling scrollEnabled doesn't
     // teardown and re-run the entire animation.
     useEffect(() => {
-        if (!scrollEnabled) return;
+        if (!scrollEnabled) {
+return;
+}
 
         const unsub = wheelBus.subscribe({
             idleMs: scrollTimeout,
 
             onWheel(norm) {
-                if (!quickToRef.current) return;
+                if (!quickToRef.current) {
+return;
+}
+
                 // norm: positive = scroll down = forward, negative = scroll up = reverse
                 // Map magnitude to a speed boost, preserve direction sign
                 const boost = (Math.abs(norm) / 60) * scrollBoostFactor;
@@ -317,7 +353,10 @@ export function Marquee({
 
             onIdle() {
                 // Ease back to original speed in original (forward) direction
-                if (!quickToRef.current) return;
+                if (!quickToRef.current) {
+return;
+}
+
                 quickToRef.current(baseSpeed);
             },
         });
@@ -333,11 +372,15 @@ export function Marquee({
 
     // ── Hover pause ────────────────────────────────────────────────────────────
     const handleMouseEnter = useCallback(() => {
-        if (pauseOnHover) isPausedRef.current = true;
+        if (pauseOnHover) {
+isPausedRef.current = true;
+}
     }, [pauseOnHover]);
 
     const handleMouseLeave = useCallback(() => {
-        if (pauseOnHover) isPausedRef.current = false;
+        if (pauseOnHover) {
+isPausedRef.current = false;
+}
     }, [pauseOnHover]);
 
     // ── Render ─────────────────────────────────────────────────────────────────

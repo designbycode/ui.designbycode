@@ -120,7 +120,6 @@ trait HasTheme
 
         $instance->meta = $data['meta'] ?? null;
         $instance->docs = $data['docs'] ?? null;
-        $instance->categories = $data['categories'] ?? [];
 
         $instance->extends = $data['extends'] ?? null;
 
@@ -154,7 +153,7 @@ trait HasTheme
             'cssVars' => $this->buildCssVars(),
             'meta' => $this->meta,
             'docs' => $this->docs,
-            'categories' => $this->categories ?? [],
+            'tags' => $this->tags->pluck('name')->toArray(),
         ];
 
         if ($this->type === 'registry:style') {

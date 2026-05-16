@@ -73,8 +73,10 @@ function MainThemeSwitcher() {
     );
 
     const [lastOpen, setLastOpen] = useState(false);
+
     if (open !== lastOpen) {
         setLastOpen(open);
+
         if (!open) {
             setSearchInput('');
             setActiveSearch('');

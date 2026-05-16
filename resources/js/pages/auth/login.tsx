@@ -1,4 +1,5 @@
 import { Form, Head } from '@inertiajs/react';
+import { Github, Chrome } from 'lucide-react';
 import InputError from '@/components/input-error';
 import PasswordInput from '@/components/password-input';
 import TextLink from '@/components/text-link';
@@ -9,11 +10,10 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
 import { Spinner } from '@/components/ui/spinner';
-import { Github, Chrome } from 'lucide-react';
 import { register } from '@/routes';
-import { redirect } from '@/routes/socialite';
 import { store } from '@/routes/login';
 import { request } from '@/routes/password';
+import { redirect } from '@/routes/socialite';
 
 type Props = {
     status?: string;

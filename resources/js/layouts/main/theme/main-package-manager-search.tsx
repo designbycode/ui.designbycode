@@ -84,8 +84,10 @@ export function MainPackageManagerSearch({
     const registryName = selectedRegistry || initialName;
 
     const [lastQuery, setLastQuery] = useState('');
+
     if (searchQuery !== lastQuery) {
         setLastQuery(searchQuery);
+
         if (!searchQuery || searchQuery.length < 2) {
             setResults([]);
         }

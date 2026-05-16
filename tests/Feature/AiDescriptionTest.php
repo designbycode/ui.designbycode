@@ -3,7 +3,6 @@
 namespace Tests\Feature;
 
 use App\Models\User;
-use App\Services\AiService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Http;
 use Tests\TestCase;
@@ -12,14 +11,17 @@ class AiDescriptionTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_it_generates_description_on_theme_creation()
+    public function test_it_generates_description_and_tags_on_theme_creation()
     {
         Http::fake([
             'https://openrouter.ai/*' => Http::response([
                 'choices' => [
                     [
                         'message' => [
-                            'content' => 'A beautiful dark theme with neon accents.'
+                            'content' => json_encode([
+                                'description' => 'A beautiful dark theme with neon accents.',
+                                'tags' => ['dark', 'neon', 'retro']
+                            ])
                         ]
                     ]
                 ]
@@ -36,8 +38,11 @@ class AiDescriptionTest extends TestCase
         ]);
 
         config(['services.openrouter.key' => 'test-key']);
+        config(['services.openrouter.model' => 'test-model']);
 
         $user = User::factory()->create();
+
+        $this->withoutExceptionHandling();
 
         $response = $this->actingAs($user)->post(route('themes.store'), [
             'url' => 'https://example.com/theme.json',
@@ -47,5 +52,9 @@ class AiDescriptionTest extends TestCase
             'name' => 'neon-dark',
             'description' => 'A beautiful dark theme with neon accents.',
         ]);
+
+        $theme = \App\Models\Theme::where('name', 'neon-dark')->first();
+        $this->assertCount(3, $theme->tags);
+        $this->assertEquals(['dark', 'neon', 'retro'], $theme->tags->pluck('name')->toArray());
     }
 }

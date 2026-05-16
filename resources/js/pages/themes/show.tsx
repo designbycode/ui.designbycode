@@ -23,13 +23,13 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useAppearance } from '@/hooks/use-appearance';
 import { useClipboard } from '@/hooks/use-clipboard';
 import { useCSSVars } from '@/hooks/use-css-vars';
+import MainWrapper from '@/layouts/main/main-wrapper';
 import MainEditorBlock from '@/layouts/main/theme/main-editor-block';
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import MainLayout from '@/layouts/main-layout';
-import type { Registry } from '@/types/registry';
 import ThemeLayout from '@/layouts/theme-layout';
-import MainWrapper from '@/layouts/main/main-wrapper';
+import type { Registry } from '@/types/registry';
 
 interface ThemesShowProps {
     theme: Registry;
@@ -262,13 +262,13 @@ function ThemesShow({ theme }: ThemesShowProps) {
                                     by {theme.author}
                                 </Badge>
                             )}
-                            {theme.categories?.map((cat) => (
+                            {(theme.tags as any[])?.map((tag) => (
                                 <Badge
-                                    key={cat}
+                                    key={typeof tag === 'string' ? tag : tag.name}
                                     variant="secondary"
                                     className="text-[10px] capitalize"
                                 >
-                                    {cat}
+                                    {typeof tag === 'string' ? tag : tag.name}
                                 </Badge>
                             ))}
                             {theme.style && (

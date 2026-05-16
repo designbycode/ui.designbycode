@@ -11,18 +11,18 @@ import {
 } from '@/components/ui/select';
 import { useDebounce } from '@/hooks/use-debounce';
 
-const ALL_CATEGORIES = '__all__';
+const ALL_TAGS = '__all__';
 
 function MainThemeSearch({
     filters,
-    availableCategories,
+    availableTags,
 }: {
-    filters?: { search?: string; category?: string };
-    availableCategories: string[];
+    filters?: { search?: string; tag?: string };
+    availableTags: string[];
 }) {
     const [searchInput, setSearchInput] = useState(filters?.search ?? '');
-    const [selectedCategory, setSelectedCategory] = useState(
-        filters?.category ?? '',
+    const [selectedTag, setSelectedTag] = useState(
+        filters?.tag ?? '',
     );
     const debouncedSearch = useDebounce(searchInput, 300);
     const hasMounted = useRef(false);
@@ -40,15 +40,15 @@ function MainThemeSearch({
             params.search = debouncedSearch;
         }
 
-        if (selectedCategory) {
-            params.category = selectedCategory;
+        if (selectedTag) {
+            params.tag = selectedTag;
         }
 
         router.get('/themes', params, {
             preserveState: true,
             preserveScroll: true,
         });
-    }, [debouncedSearch, selectedCategory]);
+    }, [debouncedSearch, selectedTag]);
 
     return (
         <div className="mb-4 flex items-center gap-4">
@@ -71,21 +71,21 @@ function MainThemeSearch({
             </div>
 
             <Select
-                value={selectedCategory || ALL_CATEGORIES}
+                value={selectedTag || ALL_TAGS}
                 onValueChange={(val) =>
-                    setSelectedCategory(val === ALL_CATEGORIES ? '' : val)
+                    setSelectedTag(val === ALL_TAGS ? '' : val)
                 }
             >
                 <SelectTrigger className="w-45">
-                    <SelectValue placeholder="All categories" />
+                    <SelectValue placeholder="All tags" />
                 </SelectTrigger>
                 <SelectContent>
-                    <SelectItem value={ALL_CATEGORIES}>
-                        All categories
+                    <SelectItem value={ALL_TAGS}>
+                        All tags
                     </SelectItem>
-                    {availableCategories.map((cat) => (
-                        <SelectItem key={cat} value={cat}>
-                            {cat}
+                    {availableTags.map((tag) => (
+                        <SelectItem key={tag} value={tag}>
+                            {tag}
                         </SelectItem>
                     ))}
                 </SelectContent>

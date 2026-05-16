@@ -1,5 +1,4 @@
 import { Head } from '@inertiajs/react';
-import nois from '@/../img/noise.png';
 import Hero from '@/components/app/hero';
 import MainWrapper from '@/layouts/main/main-wrapper';
 import MainLayout from '@/layouts/main-layout';

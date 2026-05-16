@@ -12,8 +12,8 @@ import {
 } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import MainLayout from '@/layouts/main-layout';
 import MainWrapper from '@/layouts/main/main-wrapper';
+import MainLayout from '@/layouts/main-layout';
 import { store } from '@/routes/themes';
 
 export default function ThemeCreate() {
