@@ -1,6 +1,26 @@
 import { formatHex, formatHsl, formatRgb, parse, wcagContrast } from 'culori';
 
-export const TAILWIND_COLORS = {
+type ColorShades = {
+    50: string;
+    100: string;
+    200: string;
+    300: string;
+    400: string;
+    500: string;
+    600: string;
+    700: string;
+    800: string;
+    900: string;
+    950: string;
+};
+
+type SingleColor = {
+    DEFAULT: string;
+};
+
+type TailwindColor = ColorShades | SingleColor;
+
+export const TAILWIND_COLORS: Record<string, TailwindColor> = {
     slate: {
         50: 'oklch(98.4% 0.003 247.858)',
         100: 'oklch(96.8% 0.007 247.896)',
@@ -338,6 +358,15 @@ export const TAILWIND_COLORS = {
         800: 'oklch(26.8% 0.011 36.5)',
         900: 'oklch(21.4% 0.009 43.1)',
         950: 'oklch(14.7% 0.004 49.3)',
+    },
+    black: {
+        DEFAULT: 'oklch(0% 0 0)',
+    },
+    white: {
+        DEFAULT: 'oklch(100% 0 0)',
+    },
+    transparent: {
+        DEFAULT: 'transparent',
     },
 };
 
