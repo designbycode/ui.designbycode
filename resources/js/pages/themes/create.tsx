@@ -2,6 +2,7 @@ import { Head, useForm } from '@inertiajs/react';
 import { Loader2, Sparkles, FileJson, Edit3, Save } from 'lucide-react';
 import { useState } from 'react';
 import Heading from '@/components/heading';
+import PatternPreview from '@/components/preview/pattern-preview';
 import AiThemeGenerator from '@/components/themes/ai-theme-generator';
 import ThemeEditorVariables from '@/components/themes/theme-editor-variables';
 import { Button } from '@/components/ui/button';
@@ -20,7 +21,6 @@ import MainWrapper from '@/layouts/main/main-wrapper';
 import MainThemeCard from '@/layouts/main/theme/main-theme-card';
 import MainLayout from '@/layouts/main-layout';
 import { store } from '@/routes/themes';
-import PatternPreview from '@/components/preview/pattern-preview';
 
 interface ThemeCreateProps {
     baseTheme?: any;
@@ -277,7 +277,6 @@ export default function ThemeCreate({ baseTheme }: ThemeCreateProps) {
                                         Preview
                                     </h3>
                                     <MainThemeCard theme={previewTheme} />
-                                    <PatternPreview />
 
                                     <div className="mt-6 rounded-lg bg-muted p-4 text-sm text-muted-foreground">
                                         <p>
