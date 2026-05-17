@@ -43,7 +43,7 @@ test('user can store theme via direct data', function () {
 
 test('user can generate theme via AI', function () {
     Http::fake([
-        'https://openrouter.ai/*' => Http::response([
+        'https://api.puter.com/puterai/openai/v1/chat/completions' => Http::response([
             'choices' => [
                 [
                     'message' => [
@@ -103,8 +103,8 @@ test('user can generate theme via AI', function () {
         ], 200),
     ]);
 
-    config(['services.openrouter.key' => 'test-key']);
-    config(['services.openrouter.model' => 'test-model']);
+    config(['services.puter.key' => 'test-key']);
+    config(['services.puter.model' => 'test-model']);
 
     $user = User::factory()->create();
 
@@ -124,10 +124,10 @@ test('user can generate theme via AI', function () {
 
 test('ai generate returns 500 when openrouter api fails', function () {
     Http::fake([
-        'https://openrouter.ai/*' => Http::response([], 500),
+        'https://api.puter.com/puterai/openai/v1/chat/completions' => Http::response([], 500),
     ]);
 
-    config(['services.openrouter.key' => 'test-key']);
+    config(['services.puter.key' => 'test-key']);
 
     $user = User::factory()->create();
 
@@ -140,7 +140,7 @@ test('ai generate returns 500 when openrouter api fails', function () {
 });
 
 test('ai generate returns 500 when no api key is configured', function () {
-    config(['services.openrouter.key' => null]);
+    config(['services.puter.key' => null]);
 
     $user = User::factory()->create();
 

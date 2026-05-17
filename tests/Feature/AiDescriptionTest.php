@@ -15,7 +15,7 @@ class AiDescriptionTest extends TestCase
     public function test_it_generates_description_and_tags_on_theme_creation()
     {
         Http::fake([
-            'https://openrouter.ai/*' => Http::response([
+            'https://api.puter.com/puterai/openai/v1/chat/completions' => Http::response([
                 'choices' => [
                     [
                         'message' => [
@@ -38,8 +38,8 @@ class AiDescriptionTest extends TestCase
             ], 200),
         ]);
 
-        config(['services.openrouter.key' => 'test-key']);
-        config(['services.openrouter.model' => 'test-model']);
+        config(['services.puter.key' => 'test-key']);
+        config(['services.puter.model' => 'test-model']);
 
         $user = User::factory()->create();
 
