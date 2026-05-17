@@ -27,39 +27,18 @@ export default function ColorPicker({
     const [open, setOpen] = useState(false);
 
     const hexValue = useMemo(() => {
-        return convertColor(`hsl(${value})`, 'hex') || '#000000';
+        return (
+            convertColor(value === 'transparent' ? '#000000' : value, 'hex') ||
+            '#000000'
+        );
     }, [value]);
 
     const handleColorChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const hex = e.target.value;
-        const hsl = convertColor(hex, 'hsl');
-
-        if (hsl) {
-            const match = hsl.match(/hsl\(([^)]+)\)/);
-
-            if (match) {
-                const parts = match[1].split(/[,\s]+/).filter(Boolean);
-                onChange(parts.join(' '));
-            }
-        }
+        onChange(e.target.value);
     };
 
     const handleTailwindColorSelect = (colorValue: string) => {
-        if (colorValue === 'transparent') {
-            onChange('transparent');
-        } else {
-            const hsl = convertColor(colorValue, 'hsl');
-
-            if (hsl) {
-                const match = hsl.match(/hsl\(([^)]+)\)/);
-
-                if (match) {
-                    const parts = match[1].split(/[,\s]+/).filter(Boolean);
-                    onChange(parts.join(' '));
-                }
-            }
-        }
-
+        onChange(colorValue);
         setOpen(false);
     };
 
@@ -126,7 +105,7 @@ export default function ColorPicker({
                 />
                 <Popover open={open} onOpenChange={setOpen}>
                     <PopoverTrigger asChild>
-                        <Button size="icon" className="size-8" variant="ghost">
+                        <Button className="size-8" variant="outline">
                             <TailwindIcon className="size-4" />
                         </Button>
                     </PopoverTrigger>

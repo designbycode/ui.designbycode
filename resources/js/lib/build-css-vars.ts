@@ -47,12 +47,15 @@ function buildCSSVars(vars: Record<string, string>): React.CSSProperties {
 
         // Directly set --color-* variable to bypass var() indirection
         if (colorMap[normalizedKey]) {
-            // Check if value already has hsl() or oklch() wrapper
+            // Check if value already has a color function wrapper
             if (/^(hsl|oklch|rgb|#)/i.test(value)) {
                 result[`--color-${colorMap[normalizedKey]}`] = value;
-            } else {
-                // Assume it's a raw HSL value if it's not a standard color format
+            } else if (/%/.test(value)) {
+                // Has percentage signs → raw HSL value (e.g. "240 10% 3.9%")
                 result[`--color-${colorMap[normalizedKey]}`] = `hsl(${value})`;
+            } else {
+                // Decimal values → raw oklch value (e.g. "0.145 0 0")
+                result[`--color-${colorMap[normalizedKey]}`] = `oklch(${value})`;
             }
         }
     }

@@ -587,16 +587,46 @@ function ThemesShow({ theme }: ThemesShowProps) {
                                     }}
                                     showFullScreenToggle={true}
                                     height="780px"
-                                    value={`:root {
+                                    value={`@custom-variant dark (&:is(.dark *));
+
+@theme {
+    --font-sans: '${
+        theme.font_family || 'Instrument Sans'
+    }', ui-sans-serif, system-ui, sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+    'Noto Color Emoji';
+
+    --radius-lg: var(--radius);
+    --radius-md: calc(var(--radius) - 2px);
+    --radius-sm: calc(var(--radius) - 4px);
+
+${Object.keys(theme.vars_light || {})
+    .filter((k) => k !== 'radius')
+    .sort()
+    .map((k) => '    --color-' + k + ': var(--' + k + ');')
+    .join('\n')}
+}
+
+:root {
 ${Object.entries(theme.vars_light || {})
-    .map(([k, v]) => `  --${k}: ${v};`)
+    .map(([k, v]) => '    --' + k + ': ' + v + ';')
     .join('\n')}
 }
 
 .dark {
 ${Object.entries(theme.vars_dark || {})
-    .map(([k, v]) => `  --${k}: ${v};`)
+    .map(([k, v]) => '    --' + k + ': ' + v + ';')
     .join('\n')}
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+
+    body {
+        @apply bg-background text-foreground selection:bg-primary/75 selection:text-primary-foreground;
+    }
 }`}
                                 />
                             </div>

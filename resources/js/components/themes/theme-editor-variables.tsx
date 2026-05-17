@@ -36,6 +36,19 @@ const COLOR_KEYS = [
     'border',
     'input',
     'ring',
+    'chart-1',
+    'chart-2',
+    'chart-3',
+    'chart-4',
+    'chart-5',
+    'sidebar',
+    'sidebar-foreground',
+    'sidebar-primary',
+    'sidebar-primary-foreground',
+    'sidebar-accent',
+    'sidebar-accent-foreground',
+    'sidebar-border',
+    'sidebar-ring',
 ];
 
 export default function ThemeEditorVariables({
@@ -48,7 +61,7 @@ export default function ThemeEditorVariables({
             <CardHeader className="pb-3">
                 <CardTitle>Theme Colors</CardTitle>
                 <CardDescription>
-                    Adjust the HSL values for light and dark modes.
+                    Adjust the color values for light and dark modes.
                 </CardDescription>
             </CardHeader>
             <CardContent>
@@ -73,7 +86,7 @@ export default function ThemeEditorVariables({
                                 <ColorPicker
                                     key={key}
                                     label={key}
-                                    value={vars_light[key] || '0 0% 0%'}
+                                    value={vars_light[key] || 'oklch(0 0 0)'}
                                     onChange={(val) =>
                                         onChange('light', key, val)
                                     }
@@ -110,7 +123,7 @@ export default function ThemeEditorVariables({
                                 <ColorPicker
                                     key={key}
                                     label={key}
-                                    value={vars_dark[key] || '0 0% 0%'}
+                                    value={vars_dark[key] || 'oklch(0 0 0)'}
                                     onChange={(val) =>
                                         onChange('dark', key, val)
                                     }
