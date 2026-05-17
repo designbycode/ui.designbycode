@@ -10,7 +10,7 @@ class AiService
 {
     public function generateFullTheme(string $prompt): ?array
     {
-        $apiKey = config('services.openrouter.key');
+        $apiKey = config('services.puter.key');
 
         if (! $apiKey) {
             return null;
@@ -42,10 +42,8 @@ Required CSS variables in both vars_light and vars_dark:
 
         $response = Http::withHeaders([
             'Authorization' => 'Bearer '.$apiKey,
-            'HTTP-Referer' => config('app.url'),
-            'X-Title' => config('app.name'),
-        ])->timeout(30)->post('https://openrouter.ai/api/v1/chat/completions', [
-            'model' => config('services.openrouter.model'),
+        ])->timeout(30)->post('https://api.puter.com/puterai/openai/v1/chat/completions', [
+            'model' => config('services.puter.model'),
             'messages' => [
                 ['role' => 'system', 'content' => $systemPrompt],
                 ['role' => 'user', 'content' => $prompt],
@@ -54,7 +52,7 @@ Required CSS variables in both vars_light and vars_dark:
         ]);
 
         if ($response->failed()) {
-            Log::warning('OpenRouter generateFullTheme failed', [
+            Log::warning('Puter generateFullTheme failed', [
                 'status' => $response->status(),
                 'body' => $response->body(),
             ]);
@@ -87,7 +85,7 @@ Required CSS variables in both vars_light and vars_dark:
      */
     public function generateThemeMetadata(string $name, array $colors): array
     {
-        $apiKey = config('services.openrouter.key');
+        $apiKey = config('services.puter.key');
 
         if (! $apiKey) {
             return ['description' => null, 'tags' => []];
@@ -104,10 +102,8 @@ Required CSS variables in both vars_light and vars_dark:
 
         $response = Http::withHeaders([
             'Authorization' => 'Bearer '.$apiKey,
-            'HTTP-Referer' => config('app.url'),
-            'X-Title' => config('app.name'),
-        ])->timeout(15)->post('https://openrouter.ai/api/v1/chat/completions', [
-            'model' => config('services.openrouter.model'),
+        ])->timeout(15)->post('https://api.puter.com/puterai/openai/v1/chat/completions', [
+            'model' => config('services.puter.model'),
             'messages' => [
                 [
                     'role' => 'user',
@@ -118,7 +114,7 @@ Required CSS variables in both vars_light and vars_dark:
         ]);
 
         if ($response->failed()) {
-            Log::warning('OpenRouter generateThemeMetadata failed', [
+            Log::warning('Puter generateThemeMetadata failed', [
                 'status' => $response->status(),
                 'body' => $response->body(),
             ]);

@@ -51,4 +51,9 @@ return [
         'model' => env('OPENROUTER_MODEL', 'openrouter/free'),
     ],
 
+    'puter' => [
+        'key' => env('PUTER_AUTH_TOKEN'),
+        'model' => env('PUTER_MODEL', 'gpt-4o-mini'),
+    ],
+
 ];
