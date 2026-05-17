@@ -27,8 +27,24 @@ class ThemesController extends Controller
             }
         }
 
+        $availableTags = Cache::remember('themes:available_tags', 3600, function () {
+            return Tag::query()
+                ->whereExists(function ($query) {
+                    $query->select(DB::raw(1))
+                        ->from('taggables')
+                        ->whereColumn('taggables.tag_id', 'tags.id')
+                        ->where('taggables.taggable_type', Theme::class);
+                })
+                ->get()
+                ->pluck('name')
+                ->sort()
+                ->values()
+                ->all();
+        });
+
         return Inertia::render('themes/create', [
             'baseTheme' => $baseTheme,
+            'availableTags' => $availableTags,
         ]);
     }
 

@@ -30,8 +30,6 @@ class Theme extends Model
 {
     use HasFactory, HasTags, HasTheme, SoftDeletes;
 
-    protected $table = 'themes';
-
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

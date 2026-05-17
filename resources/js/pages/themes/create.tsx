@@ -5,6 +5,7 @@ import Heading from '@/components/heading';
 import PatternPreview from '@/components/preview/pattern-preview';
 import AiThemeGenerator from '@/components/themes/ai-theme-generator';
 import ThemeEditorVariables from '@/components/themes/theme-editor-variables';
+import ThemeInfo from '@/components/themes/theme-info';
 import { Button } from '@/components/ui/button';
 import {
     Card,
@@ -24,6 +25,7 @@ import { store } from '@/routes/themes';
 
 interface ThemeCreateProps {
     baseTheme?: any;
+    availableTags?: string[];
 }
 
 const DEFAULT_VARS_LIGHT = {
@@ -71,8 +73,11 @@ const DEFAULT_VARS_DARK = {
     ring: '240 4.9% 83.9%',
 };
 
-export default function ThemeCreate({ baseTheme }: ThemeCreateProps) {
-    const [activeTab, setActiveTab] = useState(baseTheme ? 'manual' : 'import');
+export default function ThemeCreate({
+    baseTheme,
+    availableTags,
+}: ThemeCreateProps) {
+    const [activeTab, setActiveTab] = useState('manual');
 
     const { data, setData, post, processing, errors } = useForm({
         url: '',
@@ -84,7 +89,7 @@ export default function ThemeCreate({ baseTheme }: ThemeCreateProps) {
         name: baseTheme?.name ? `${baseTheme.name}-fork` : 'my-new-theme',
         description:
             baseTheme?.description || 'A custom theme created manually.',
-        tags: baseTheme?.tags || ['custom'],
+        tags: baseTheme ? [...(baseTheme.tags || []), 'forked'] : [],
         vars_light: baseTheme?.vars_light || DEFAULT_VARS_LIGHT,
         vars_dark: baseTheme?.vars_dark || DEFAULT_VARS_DARK,
         font_family: baseTheme?.font_family || 'Inter',
@@ -187,67 +192,22 @@ export default function ThemeCreate({ baseTheme }: ThemeCreateProps) {
                     </TabsList>
                     <TabsContent value="manual">
                         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
-                            <div className="space-y-6 lg:col-span-2">
-                                <Card>
-                                    <CardHeader>
-                                        <CardTitle>Theme Information</CardTitle>
-                                        <CardDescription>
-                                            Basic details about your theme.
-                                        </CardDescription>
-                                    </CardHeader>
-                                    <CardContent className="space-y-4">
-                                        <div className="grid grid-cols-2 gap-4">
-                                            <div className="space-y-2">
-                                                <Label htmlFor="title">
-                                                    Title
-                                                </Label>
-                                                <Input
-                                                    id="title"
-                                                    value={manualTheme.title}
-                                                    onChange={(e) =>
-                                                        setManualTheme((p) => ({
-                                                            ...p,
-                                                            title: e.target
-                                                                .value,
-                                                        }))
-                                                    }
-                                                />
-                                            </div>
-                                            <div className="space-y-2">
-                                                <Label htmlFor="name">
-                                                    Slug (kebab-case)
-                                                </Label>
-                                                <Input
-                                                    id="name"
-                                                    value={manualTheme.name}
-                                                    onChange={(e) =>
-                                                        setManualTheme((p) => ({
-                                                            ...p,
-                                                            name: e.target
-                                                                .value,
-                                                        }))
-                                                    }
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className="space-y-2">
-                                            <Label htmlFor="description">
-                                                Description
-                                            </Label>
-                                            <Input
-                                                id="description"
-                                                value={manualTheme.description}
-                                                onChange={(e) =>
-                                                    setManualTheme((p) => ({
-                                                        ...p,
-                                                        description:
-                                                            e.target.value,
-                                                    }))
-                                                }
-                                            />
-                                        </div>
-                                    </CardContent>
-                                </Card>
+                            <div className="space-y-6 lg:col-span-1">
+                                <ThemeInfo
+                                    theme={{
+                                        title: manualTheme.title,
+                                        name: manualTheme.name,
+                                        description: manualTheme.description,
+                                        tags: manualTheme.tags,
+                                    }}
+                                    availableTags={availableTags ?? []}
+                                    onChange={(updates) =>
+                                        setManualTheme((p) => ({
+                                            ...p,
+                                            ...updates,
+                                        }))
+                                    }
+                                />
 
                                 <ThemeEditorVariables
                                     vars_light={manualTheme.vars_light}

@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, type RouteFormDefinition, applyUrlDefaults } from './../../wayfinder'
 /**
 * @see \App\Http\Controllers\ThemesController::index
- * @see app/Http/Controllers/ThemesController.php:182
+ * @see app/Http/Controllers/ThemesController.php:198
  * @route '/themes'
  */
 export const index = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -16,7 +16,7 @@ index.definition = {
 
 /**
 * @see \App\Http\Controllers\ThemesController::index
- * @see app/Http/Controllers/ThemesController.php:182
+ * @see app/Http/Controllers/ThemesController.php:198
  * @route '/themes'
  */
 index.url = (options?: RouteQueryOptions) => {
@@ -25,7 +25,7 @@ index.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\ThemesController::index
- * @see app/Http/Controllers/ThemesController.php:182
+ * @see app/Http/Controllers/ThemesController.php:198
  * @route '/themes'
  */
 index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -34,7 +34,7 @@ index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 /**
 * @see \App\Http\Controllers\ThemesController::index
- * @see app/Http/Controllers/ThemesController.php:182
+ * @see app/Http/Controllers/ThemesController.php:198
  * @route '/themes'
  */
 index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -44,7 +44,7 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
     /**
 * @see \App\Http\Controllers\ThemesController::index
- * @see app/Http/Controllers/ThemesController.php:182
+ * @see app/Http/Controllers/ThemesController.php:198
  * @route '/themes'
  */
     const indexForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -54,7 +54,7 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
             /**
 * @see \App\Http\Controllers\ThemesController::index
- * @see app/Http/Controllers/ThemesController.php:182
+ * @see app/Http/Controllers/ThemesController.php:198
  * @route '/themes'
  */
         indexForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -63,7 +63,7 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
         })
             /**
 * @see \App\Http\Controllers\ThemesController::index
- * @see app/Http/Controllers/ThemesController.php:182
+ * @see app/Http/Controllers/ThemesController.php:198
  * @route '/themes'
  */
         indexForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -157,7 +157,7 @@ create.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     create.form = createForm
 /**
 * @see \App\Http\Controllers\ThemesController::store
- * @see app/Http/Controllers/ThemesController.php:35
+ * @see app/Http/Controllers/ThemesController.php:51
  * @route '/themes'
  */
 export const store = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -172,7 +172,7 @@ store.definition = {
 
 /**
 * @see \App\Http\Controllers\ThemesController::store
- * @see app/Http/Controllers/ThemesController.php:35
+ * @see app/Http/Controllers/ThemesController.php:51
  * @route '/themes'
  */
 store.url = (options?: RouteQueryOptions) => {
@@ -181,7 +181,7 @@ store.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\ThemesController::store
- * @see app/Http/Controllers/ThemesController.php:35
+ * @see app/Http/Controllers/ThemesController.php:51
  * @route '/themes'
  */
 store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -191,7 +191,7 @@ store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
     /**
 * @see \App\Http\Controllers\ThemesController::store
- * @see app/Http/Controllers/ThemesController.php:35
+ * @see app/Http/Controllers/ThemesController.php:51
  * @route '/themes'
  */
     const storeForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -201,7 +201,7 @@ store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
             /**
 * @see \App\Http\Controllers\ThemesController::store
- * @see app/Http/Controllers/ThemesController.php:35
+ * @see app/Http/Controllers/ThemesController.php:51
  * @route '/themes'
  */
         storeForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -212,7 +212,7 @@ store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     store.form = storeForm
 /**
 * @see \App\Http\Controllers\ThemesController::generate
- * @see app/Http/Controllers/ThemesController.php:167
+ * @see app/Http/Controllers/ThemesController.php:183
  * @route '/themes/generate'
  */
 export const generate = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -227,7 +227,7 @@ generate.definition = {
 
 /**
 * @see \App\Http\Controllers\ThemesController::generate
- * @see app/Http/Controllers/ThemesController.php:167
+ * @see app/Http/Controllers/ThemesController.php:183
  * @route '/themes/generate'
  */
 generate.url = (options?: RouteQueryOptions) => {
@@ -236,7 +236,7 @@ generate.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\ThemesController::generate
- * @see app/Http/Controllers/ThemesController.php:167
+ * @see app/Http/Controllers/ThemesController.php:183
  * @route '/themes/generate'
  */
 generate.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -246,7 +246,7 @@ generate.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
     /**
 * @see \App\Http\Controllers\ThemesController::generate
- * @see app/Http/Controllers/ThemesController.php:167
+ * @see app/Http/Controllers/ThemesController.php:183
  * @route '/themes/generate'
  */
     const generateForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -256,7 +256,7 @@ generate.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
             /**
 * @see \App\Http\Controllers\ThemesController::generate
- * @see app/Http/Controllers/ThemesController.php:167
+ * @see app/Http/Controllers/ThemesController.php:183
  * @route '/themes/generate'
  */
         generateForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -267,7 +267,7 @@ generate.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     generate.form = generateForm
 /**
 * @see \App\Http\Controllers\ThemesController::show
- * @see app/Http/Controllers/ThemesController.php:231
+ * @see app/Http/Controllers/ThemesController.php:247
  * @route '/themes/{theme}'
  */
 export const show = (args: { theme: string | { name: string } } | [theme: string | { name: string } ] | string | { name: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -282,7 +282,7 @@ show.definition = {
 
 /**
 * @see \App\Http\Controllers\ThemesController::show
- * @see app/Http/Controllers/ThemesController.php:231
+ * @see app/Http/Controllers/ThemesController.php:247
  * @route '/themes/{theme}'
  */
 show.url = (args: { theme: string | { name: string } } | [theme: string | { name: string } ] | string | { name: string }, options?: RouteQueryOptions) => {
@@ -315,7 +315,7 @@ show.url = (args: { theme: string | { name: string } } | [theme: string | { name
 
 /**
 * @see \App\Http\Controllers\ThemesController::show
- * @see app/Http/Controllers/ThemesController.php:231
+ * @see app/Http/Controllers/ThemesController.php:247
  * @route '/themes/{theme}'
  */
 show.get = (args: { theme: string | { name: string } } | [theme: string | { name: string } ] | string | { name: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -324,7 +324,7 @@ show.get = (args: { theme: string | { name: string } } | [theme: string | { name
 })
 /**
 * @see \App\Http\Controllers\ThemesController::show
- * @see app/Http/Controllers/ThemesController.php:231
+ * @see app/Http/Controllers/ThemesController.php:247
  * @route '/themes/{theme}'
  */
 show.head = (args: { theme: string | { name: string } } | [theme: string | { name: string } ] | string | { name: string }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -334,7 +334,7 @@ show.head = (args: { theme: string | { name: string } } | [theme: string | { nam
 
     /**
 * @see \App\Http\Controllers\ThemesController::show
- * @see app/Http/Controllers/ThemesController.php:231
+ * @see app/Http/Controllers/ThemesController.php:247
  * @route '/themes/{theme}'
  */
     const showForm = (args: { theme: string | { name: string } } | [theme: string | { name: string } ] | string | { name: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -344,7 +344,7 @@ show.head = (args: { theme: string | { name: string } } | [theme: string | { nam
 
             /**
 * @see \App\Http\Controllers\ThemesController::show
- * @see app/Http/Controllers/ThemesController.php:231
+ * @see app/Http/Controllers/ThemesController.php:247
  * @route '/themes/{theme}'
  */
         showForm.get = (args: { theme: string | { name: string } } | [theme: string | { name: string } ] | string | { name: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -353,7 +353,7 @@ show.head = (args: { theme: string | { name: string } } | [theme: string | { nam
         })
             /**
 * @see \App\Http\Controllers\ThemesController::show
- * @see app/Http/Controllers/ThemesController.php:231
+ * @see app/Http/Controllers/ThemesController.php:247
  * @route '/themes/{theme}'
  */
         showForm.head = (args: { theme: string | { name: string } } | [theme: string | { name: string } ] | string | { name: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
