@@ -1,8 +1,8 @@
 import { Head, useForm } from '@inertiajs/react';
-import { Loader2, Sparkles, FileJson, Edit3, Save } from 'lucide-react';
+import { Loader2, Sparkles, FileJson, Edit3, Save, Star } from 'lucide-react';
 import { useState } from 'react';
 import Heading from '@/components/heading';
-import PatternPreview from '@/components/preview/pattern-preview';
+
 import AiThemeGenerator from '@/components/themes/ai-theme-generator';
 import ThemeEditorVariables from '@/components/themes/theme-editor-variables';
 import ThemeInfo from '@/components/themes/theme-info';
@@ -18,10 +18,12 @@ import {
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { useCSSVars } from '@/hooks/use-css-vars';
 import MainWrapper from '@/layouts/main/main-wrapper';
 import MainThemeCard from '@/layouts/main/theme/main-theme-card';
 import MainLayout from '@/layouts/main-layout';
 import { store } from '@/routes/themes';
+import { ButtonParticles } from '@/registry/new-york/components/ui/buttons/button-particles';
 
 interface ThemeCreateProps {
     baseTheme?: any;
@@ -104,6 +106,7 @@ export default function ThemeCreate({
     availableTags,
 }: ThemeCreateProps) {
     const [activeTab, setActiveTab] = useState('manual');
+    const [editorMode, setEditorMode] = useState<'light' | 'dark'>('light');
 
     const { data, setData, post, processing, errors } = useForm({
         url: '',
@@ -168,15 +171,30 @@ export default function ThemeCreate({
         }));
     };
 
+    const handleEditorTabChange = (mode: 'light' | 'dark') => {
+        setEditorMode(mode);
+    };
+
     // Mock Registry object for preview
     const previewTheme = {
         ...manualTheme,
         cssVars: {
-            light: manualTheme.vars_light,
-            dark: manualTheme.vars_dark,
-            theme: {},
+            light:
+                editorMode === 'dark'
+                    ? manualTheme.vars_dark
+                    : manualTheme.vars_light,
+            dark:
+                editorMode === 'light'
+                    ? manualTheme.vars_light
+                    : manualTheme.vars_dark,
+            theme:
+                editorMode === 'light'
+                    ? manualTheme.vars_light
+                    : manualTheme.vars_dark,
         },
     } as any;
+
+    const { cssVars } = useCSSVars(previewTheme);
 
     return (
         <MainWrapper className="py-8">
@@ -239,6 +257,7 @@ export default function ThemeCreate({
                                     vars_light={manualTheme.vars_light}
                                     vars_dark={manualTheme.vars_dark}
                                     onChange={handleVariableChange}
+                                    onTabChange={handleEditorTabChange}
                                 />
 
                                 <div className="flex justify-end">
@@ -258,11 +277,41 @@ export default function ThemeCreate({
                             </div>
 
                             <div className="space-y-6">
-                                <div className="sticky top-8 col-span-2 rounded-lg bg-muted p-4">
+                                <div
+                                    style={cssVars}
+                                    className="sticky top-8 col-span-2 flex flex-col gap-4 rounded-lg bg-muted p-4"
+                                >
                                     <h3 className="mb-4 text-sm font-medium tracking-wider text-muted-foreground uppercase">
                                         Preview
                                     </h3>
                                     <MainThemeCard theme={previewTheme} />
+
+                                    <Card>
+                                        <CardHeader
+                                            className={`flex flex-row items-center justify-between`}
+                                        >
+                                            <CardTitle>Preview</CardTitle>
+                                            <ButtonParticles
+                                                colors={[
+                                                    'var(--primary)',
+                                                    'var(--secondary)',
+                                                ]}
+                                                size="sm"
+                                            >
+                                                <Star className="size-4" />
+                                                <span>Start Us</span>
+                                            </ButtonParticles>
+                                        </CardHeader>
+                                        <CardContent>
+                                            <p
+                                                className={`test-sm text-balance text-card-foreground`}
+                                            >
+                                                Lorem ipsum dolor sit amet,
+                                                consectetur adipisicing elit.
+                                                Rem, reprehenderit!
+                                            </p>
+                                        </CardContent>
+                                    </Card>
 
                                     <div className="mt-6 rounded-lg bg-muted p-4 text-sm text-muted-foreground">
                                         <p>
