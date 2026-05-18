@@ -260,8 +260,11 @@ export function AudioVisualizer({
             ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
         };
 
-        resizeCanvas();
-        window.addEventListener('resize', resizeCanvas);
+        const resizeObserver = new ResizeObserver(() => {
+            resizeCanvas();
+        });
+
+        resizeObserver.observe(canvas);
 
         const draw = () => {
             const rect = canvas.getBoundingClientRect();
@@ -315,7 +318,7 @@ export function AudioVisualizer({
         draw();
 
         return () => {
-            window.removeEventListener('resize', resizeCanvas);
+            resizeObserver.disconnect();
 
             if (animationRef.current) {
                 cancelAnimationFrame(animationRef.current);

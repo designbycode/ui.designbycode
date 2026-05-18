@@ -32,7 +32,9 @@ class GenerateThemeMetadataJob implements ShouldQueue
             return;
         }
 
-        $theme->updateQuietly(['description' => $metadata['description']]);
+        if ($metadata['description'] !== null) {
+            $theme->updateQuietly(['description' => $metadata['description']]);
+        }
 
         if (! empty($metadata['tags'])) {
             $theme->attachTags($metadata['tags']);

@@ -2,8 +2,8 @@
 
 namespace App\Console\Commands;
 
-use App\Jobs\GenerateThemeMetadataJob;
 use App\Models\Theme;
+use App\Services\AiService;
 use Illuminate\Console\Attributes\Description;
 use Illuminate\Console\Attributes\Signature;
 use Illuminate\Console\Command;
@@ -12,8 +12,16 @@ use Illuminate\Console\Command;
 #[Description('Find incomplete themes and generate missing metadata using AI')]
 class GenerateMissingThemeMetadata extends Command
 {
-    public function handle(): void
+    public function handle(AiService $ai): void
     {
+        $apiKey = config('services.puter.key');
+
+        if (! $apiKey) {
+            $this->error('AI service is not configured. Set services.puter.key in your .env or config/services.php.');
+
+            return;
+        }
+
         $themes = Theme::where(function ($query) {
             $query->whereDoesntHave('tags')
                 ->orWhereNull('description')
@@ -43,24 +51,39 @@ class GenerateMissingThemeMetadata extends Command
             $this->line("  Processing: {$theme->name} (ID: {$theme->id})");
             $this->line('    Missing: '.implode(', ', $missing));
 
-            GenerateThemeMetadataJob::dispatchSync($theme);
+            try {
+                $metadata = $ai->generateThemeMetadata(
+                    $theme->name,
+                    $theme->vars_light ?? [],
+                );
 
-            $theme->refresh()->load('tags');
+                if ($metadata['description'] !== null) {
+                    $theme->updateQuietly(['description' => $metadata['description']]);
+                }
 
-            $descriptionStatus = match (true) {
-                ! $hadDescription && (bool) $theme->description => 'added',
-                $hadDescription => 'already present',
-                default => 'failed',
-            };
+                if (! empty($metadata['tags'])) {
+                    $theme->attachTags($metadata['tags']);
+                }
 
-            $tagsStatus = match (true) {
-                ! $hadTags && $theme->tags->isNotEmpty() => 'added: '.$theme->tags->pluck('name')->implode(', '),
-                $hadTags => 'already present',
-                default => 'failed (AI returned no tags)',
-            };
+                $theme->refresh()->load('tags');
 
-            $this->line("    <info>✓</info> Description: {$descriptionStatus}");
-            $this->line("    <info>✓</info> Tags: {$tagsStatus}");
+                $descriptionStatus = match (true) {
+                    ! $hadDescription && (bool) $theme->description => 'added',
+                    $hadDescription => 'already present',
+                    default => 'failed',
+                };
+
+                $tagsStatus = match (true) {
+                    ! $hadTags && $theme->tags->isNotEmpty() => 'added: '.$theme->tags->pluck('name')->implode(', '),
+                    $hadTags => 'already present',
+                    default => 'failed (AI returned no tags)',
+                };
+
+                $this->line("    <info>✓</info> Description: {$descriptionStatus}");
+                $this->line("    <info>✓</info> Tags: {$tagsStatus}");
+            } catch (\Throwable $e) {
+                $this->error("    Failed: {$e->getMessage()}");
+            }
         }
     }
 }

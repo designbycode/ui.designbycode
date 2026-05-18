@@ -73,9 +73,25 @@ Required CSS variables in both vars_light and vars_dark:
         }
 
         $decoded['name'] = Str::kebab($decoded['title'] ?? $decoded['name'] ?? 'ai-theme');
+        $decoded['font_family'] = $decoded['font_family'] ?? 'Inter';
+
+        if (
+            empty($decoded['description']) || empty($decoded['tags'])
+        ) {
+            $colors = array_merge($decoded['vars_light'] ?? [], $decoded['vars_dark'] ?? []);
+            $metadata = $this->generateThemeMetadata($decoded['name'], $colors);
+
+            if (empty($decoded['description'])) {
+                $decoded['description'] = $metadata['description'];
+            }
+
+            if (empty($decoded['tags'])) {
+                $decoded['tags'] = $metadata['tags'];
+            }
+        }
+
         $decoded['description'] = isset($decoded['description']) ? ltrim($decoded['description'], ': ') : null;
         $decoded['tags'] = $decoded['tags'] ?? [];
-        $decoded['font_family'] = $decoded['font_family'] ?? 'Inter';
 
         return $decoded;
     }

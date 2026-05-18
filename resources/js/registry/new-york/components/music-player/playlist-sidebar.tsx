@@ -54,7 +54,7 @@ export function PlaylistSidebar({
             {/* Backdrop */}
             {isOpen && (
                 <div
-                    className="fixed inset-0 z-40 bg-background/80 backdrop-blur-sm lg:hidden"
+                    className="fixed inset-0 z-40 bg-background/80 backdrop-blur-sm @lg:hidden"
                     onClick={onClose}
                 />
             )}
@@ -62,11 +62,11 @@ export function PlaylistSidebar({
             {/* Sidebar */}
             <aside
                 className={cn(
-                    'fixed top-0 left-0 z-50 h-full w-80 border-r border-border bg-card lg:relative',
+                    'fixed top-0 left-0 z-50 h-full w-80 border-r border-border bg-card @lg:relative',
                     'transform transition-transform duration-300 ease-in-out',
                     isOpen
                         ? 'translate-x-0'
-                        : '-translate-x-full lg:translate-x-0',
+                        : '-translate-x-full @lg:translate-x-0',
                 )}
             >
                 <div className="flex h-full flex-col">
@@ -89,7 +89,7 @@ export function PlaylistSidebar({
                                 variant="ghost"
                                 size="icon"
                                 onClick={onClose}
-                                className="text-muted-foreground hover:text-foreground lg:hidden"
+                                className="text-muted-foreground hover:text-foreground @lg:hidden"
                                 aria-label="Close sidebar"
                             >
                                 <X className="h-5 w-5" />

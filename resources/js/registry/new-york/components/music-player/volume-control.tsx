@@ -42,7 +42,7 @@ export function VolumeControl({ volume, onVolumeChange }: VolumeControlProps) {
             </Button>
 
             <div
-                className={`overflow-hidden transition-all duration-200 ${isHovered ? 'w-24 opacity-100' : 'w-0 opacity-0 md:w-24 md:opacity-100'} `}
+                className={`overflow-hidden transition-all duration-200 ${isHovered ? 'w-24 opacity-100' : 'w-0 opacity-0 @md:w-24 @md:opacity-100'} `}
             >
                 <input
                     type="range"

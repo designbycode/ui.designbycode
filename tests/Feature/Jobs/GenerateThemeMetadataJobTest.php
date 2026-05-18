@@ -16,7 +16,7 @@ class GenerateThemeMetadataJobTest extends TestCase
     public function test_it_generates_and_saves_metadata(): void
     {
         Http::fake([
-            'https://openrouter.ai/*' => Http::response([
+            'https://api.puter.com/*' => Http::response([
                 'choices' => [
                     [
                         'message' => [
@@ -30,8 +30,8 @@ class GenerateThemeMetadataJobTest extends TestCase
             ], 200),
         ]);
 
-        config(['services.openrouter.key' => 'test-key']);
-        config(['services.openrouter.model' => 'test-model']);
+        config(['services.puter.key' => 'test-key']);
+        config(['services.puter.model' => 'test-model']);
 
         $theme = Theme::create([
             'name' => 'cyber-neon',
@@ -53,10 +53,10 @@ class GenerateThemeMetadataJobTest extends TestCase
     public function test_it_handles_failed_api_call(): void
     {
         Http::fake([
-            'https://openrouter.ai/*' => Http::response([], 500),
+            'https://api.puter.com/*' => Http::response([], 500),
         ]);
 
-        config(['services.openrouter.key' => 'test-key']);
+        config(['services.puter.key' => 'test-key']);
 
         $theme = Theme::create([
             'name' => 'test-theme',

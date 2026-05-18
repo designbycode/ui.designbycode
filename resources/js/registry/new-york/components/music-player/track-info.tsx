@@ -30,7 +30,7 @@ export function TrackInfo({
 
     return (
         <div className="flex items-center gap-4">
-            <div className="group relative h-16 w-16 overflow-hidden rounded-lg shadow-lg md:h-20 md:w-20">
+            <div className="group relative h-16 w-16 overflow-hidden rounded-lg shadow-lg @md:h-20 @md:w-20">
                 {track.coverUrl ? (
                     <img
                         src={track.coverUrl}
@@ -48,10 +48,10 @@ export function TrackInfo({
             </div>
 
             <div className="min-w-0 flex-1">
-                <h3 className="truncate text-sm font-semibold text-foreground md:text-base">
+                <h3 className="truncate text-sm font-semibold text-foreground @md:text-base">
                     {track.title}
                 </h3>
-                <p className="truncate text-xs text-muted-foreground md:text-sm">
+                <p className="truncate text-xs text-muted-foreground @md:text-sm">
                     {track.artist}
                 </p>
                 <p className="truncate text-xs text-muted-foreground/70">

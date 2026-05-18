@@ -298,7 +298,7 @@ return [];
     const currentAnalyser = isPlaying ? analyser : null;
 
     return (
-        <div className="flex h-screen bg-background">
+        <div className="flex h-screen bg-background @container">
             {/* Hidden audio element */}
             <audio
                 ref={audioRef}
@@ -327,7 +327,7 @@ return [];
                             variant="ghost"
                             size="icon"
                             onClick={() => setSidebarOpen(true)}
-                            className="text-muted-foreground hover:text-foreground lg:hidden"
+                            className="text-muted-foreground hover:text-foreground @lg:hidden"
                             aria-label="Open playlist"
                         >
                             <Menu className="h-5 w-5" />
@@ -346,7 +346,7 @@ return [];
                             variant="ghost"
                             size="icon"
                             onClick={() => setSidebarOpen(!sidebarOpen)}
-                            className="hidden text-muted-foreground hover:text-foreground lg:flex"
+                            className="hidden text-muted-foreground hover:text-foreground @lg:flex"
                             aria-label="Toggle playlist"
                         >
                             <ListMusic className="h-5 w-5" />
@@ -384,7 +384,7 @@ return [];
                     {/* Current album art (centered) */}
                     {currentTrack?.coverUrl && (
                         <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-                            <div className="relative h-32 w-32 overflow-hidden rounded-2xl shadow-2xl shadow-primary/20 md:h-48 md:w-48 lg:h-56 lg:w-56">
+                            <div className="relative h-32 w-32 overflow-hidden rounded-2xl shadow-2xl shadow-primary/20 @md:h-48 @md:w-48 @lg:h-56 @lg:w-56">
                                 <img
                                     src={currentTrack.coverUrl}
                                     alt={`${currentTrack.album} cover`}
@@ -398,7 +398,7 @@ return [];
 
                 {/* Player controls */}
                 <div className="border-t border-border bg-card/80 backdrop-blur-lg">
-                    <div className="mx-auto max-w-4xl space-y-4 p-4 md:p-6">
+                    <div className="mx-auto max-w-4xl space-y-4 p-4 @md:p-6">
                         {/* Track info */}
                         <TrackInfo
                             track={currentTrack}
@@ -418,8 +418,8 @@ return [];
                         />
 
                         {/* Controls row */}
-                        <div className="flex items-center justify-between gap-4">
-                            <div className="hidden flex-1 md:block">
+                        <div className="flex flex-col items-center justify-between gap-4 @md:flex-row">
+                            <div className="flex w-full justify-center @md:block @md:flex-1">
                                 <VolumeControl
                                     volume={volume}
                                     onVolumeChange={setVolume}
@@ -438,13 +438,7 @@ return [];
                                 disabled={!currentTrack}
                             />
 
-                            <div className="flex flex-1 justify-end md:hidden">
-                                <VolumeControl
-                                    volume={volume}
-                                    onVolumeChange={setVolume}
-                                />
-                            </div>
-                            <div className="hidden flex-1 md:block" />
+                            <div className="hidden flex-1 @md:block" />
                         </div>
                     </div>
                 </div>

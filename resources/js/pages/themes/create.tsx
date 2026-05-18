@@ -113,7 +113,7 @@ export default function ThemeCreate({
         theme_data: null as any,
     });
 
-    const [manualTheme, setManualTheme] = useState({
+    const [manualTheme, setManualTheme] = useState<Record<string, any>>({
         title: baseTheme?.title || 'My New Theme',
         name: baseTheme?.name ? `${baseTheme.name}-fork` : 'my-new-theme',
         description:
@@ -142,6 +142,7 @@ export default function ThemeCreate({
 
     const handleAiGenerated = (aiData: any) => {
         setManualTheme({
+            ...aiData,
             title: aiData.title,
             name: aiData.name,
             description: aiData.description,
