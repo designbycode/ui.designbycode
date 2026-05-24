@@ -24,6 +24,7 @@ import MainThemeCard from '@/layouts/main/theme/main-theme-card';
 import MainLayout from '@/layouts/main-layout';
 import { store } from '@/routes/themes';
 import { ButtonParticles } from '@/registry/new-york/components/ui/buttons/button-particles';
+import CardsPreview from '@/components/preview/cards-preview';
 
 interface ThemeCreateProps {
     baseTheme?: any;
@@ -322,6 +323,9 @@ export default function ThemeCreate({
                                         </p>
                                     </div>
                                 </div>
+                            </div>
+                            <div className="col-span-2">
+                                <CardsPreview style={cssVars} />
                             </div>
                         </div>
                     </TabsContent>

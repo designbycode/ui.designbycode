@@ -1,4 +1,5 @@
 import puter from '@heyputer/puter.js';
+import type { AIMessageContent } from '@heyputer/puter.js/types/modules/ai';
 import { converter, formatCss, parse as parseColor } from 'culori';
 import { Loader2, Sparkles } from 'lucide-react';
 import { useState } from 'react';
@@ -13,7 +14,6 @@ import {
 } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { AIMessageContent } from '@heyputer/puter.js/types/modules/ai';
 
 interface AiThemeGeneratorProps {
     onGenerated: (data: any) => void;
