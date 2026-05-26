@@ -3,11 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Theme;
-use App\Services\AiService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 use Inertia\Inertia;
 use Spatie\Tags\Tag;
@@ -178,21 +176,6 @@ class ThemesController extends Controller
 
         return redirect()->route('themes.show', $theme->name)
             ->with('success', 'Theme created successfully.');
-    }
-
-    public function generate(Request $request, AiService $aiService)
-    {
-        $request->validate([
-            'prompt' => ['required', 'string', 'max:500'],
-        ]);
-
-        $themeData = $aiService->generateFullTheme($request->prompt);
-
-        if (empty($themeData)) {
-            return response()->json(['error' => 'Failed to generate theme.'], 500);
-        }
-
-        return response()->json($themeData);
     }
 
     public function index()

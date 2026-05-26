@@ -1,5 +1,17 @@
 import { ChevronDown, Sparkles, Terminal } from 'lucide-react';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
+import {
+    Bar,
+    BarChart,
+    Tooltip,
+    CartesianGrid,
+    Legend,
+    Line,
+    LineChart,
+    ResponsiveContainer,
+    XAxis,
+    YAxis,
+} from 'recharts';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
@@ -62,23 +74,11 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Textarea } from '@/components/ui/textarea';
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 import {
-    Tooltip,
+    Tooltip as TooltipPrimitive,
     TooltipContent,
     TooltipProvider,
     TooltipTrigger,
 } from '@/components/ui/tooltip';
-
-import {
-    Bar,
-    BarChart,
-    CartesianGrid,
-    Legend,
-    Line,
-    LineChart,
-    ResponsiveContainer,
-    XAxis,
-    YAxis,
-} from 'recharts';
 
 const chartData = [
     { name: 'Jan', a: 40, b: 24 },
@@ -91,6 +91,7 @@ const chartData = [
 
 export default function CardsPreview({ ...props }) {
     const [date, setDate] = useState<Date | undefined>(new Date());
+    const onTooltipOpenChange = useCallback(() => {}, []);
 
     return (
         <div
@@ -577,7 +578,7 @@ export default function CardsPreview({ ...props }) {
                                 </BarChart>
                             </ResponsiveContainer>
                         </div>
-                        <div className="h-[200px] w-full">
+                        <div className="h-50 w-full">
                             <ResponsiveContainer width="100%" height="100%">
                                 <LineChart data={chartData}>
                                     <CartesianGrid
@@ -722,7 +723,7 @@ export default function CardsPreview({ ...props }) {
                                     </Popover>
 
                                     <TooltipProvider>
-                                        <Tooltip>
+                                        <TooltipPrimitive>
                                             <TooltipTrigger asChild>
                                                 <Button variant="outline">
                                                     Hover for Tooltip
@@ -731,7 +732,7 @@ export default function CardsPreview({ ...props }) {
                                             <TooltipContent>
                                                 <p>This is a tooltip</p>
                                             </TooltipContent>
-                                        </Tooltip>
+                                        </TooltipPrimitive>
                                     </TooltipProvider>
                                 </div>
                             </CardContent>

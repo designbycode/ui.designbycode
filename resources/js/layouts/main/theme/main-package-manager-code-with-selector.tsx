@@ -134,9 +134,9 @@ export function MainPackageManagerCodeWithSelector({
                         onChange={(e) => setSearchQuery(e.target.value)}
                         showTrigger={true}
                         showClear={false}
-                        className="h-8 max-w-42 min-w-0"
+                        className="h-8 max-w-62 min-w-0"
                     />
-                    <ComboboxContent>
+                    <ComboboxContent className={`p-2`}>
                         <ComboboxList>
                             {filteredOptions.map((option) => (
                                 <ComboboxItem

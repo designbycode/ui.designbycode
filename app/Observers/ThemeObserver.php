@@ -2,7 +2,6 @@
 
 namespace App\Observers;
 
-use App\Jobs\GenerateThemeMetadataJob;
 use App\Models\Theme;
 use Illuminate\Support\Str;
 
@@ -17,10 +16,6 @@ class ThemeObserver
 
     public function created(Theme $theme): void
     {
-        //        if (app()->runningInConsole() && ! app()->isProduction()) {
-        //            return;
-        //        }
-
-        GenerateThemeMetadataJob::dispatch($theme);
+        //
     }
 }

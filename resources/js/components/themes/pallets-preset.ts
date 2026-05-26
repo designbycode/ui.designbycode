@@ -1,0 +1,16 @@
+export const PALETTE_PRESETS: { name: string; primary: string }[] = [
+    { name: 'Slate', primary: '#334155' },
+    { name: 'Zinc', primary: '#3f3f46' },
+    { name: 'Mauve', primary: 'oklch(54.2% 0.034 322.5)' },
+    { name: 'Olive', primary: 'oklch(58% 0.031 107.3)' },
+    { name: 'Mist', primary: 'oklch(56% 0.021 213.5)' },
+    { name: 'Taupe', primary: 'oklch(43.8% 0.017 39.3)' },
+    { name: 'Violet', primary: '#7c3aed' },
+    { name: 'Indigo', primary: '#4f46e5' },
+    { name: 'Blue', primary: '#2563eb' },
+    { name: 'Emerald', primary: '#059669' },
+    { name: 'Rose', primary: '#e11d48' },
+    { name: 'Amber', primary: '#d97706' },
+    { name: 'Ocean', primary: '#0891b2' },
+    { name: 'Noir', primary: '#0a0a0a' },
+];

@@ -22,6 +22,7 @@ function MainThemeSearch({
     const [showFilters, setShowFilters] = useState(false);
     const debouncedSearch = useDebounce(searchInput, 300);
     const hasMounted = useRef(false);
+    const filtersRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         if (!hasMounted.current) {
@@ -46,6 +47,23 @@ function MainThemeSearch({
         });
     }, [debouncedSearch, selectedTags]);
 
+    useEffect(() => {
+        if (!showFilters) return;
+
+        const handler = (e: MouseEvent) => {
+            if (
+                filtersRef.current &&
+                !filtersRef.current.contains(e.target as Node)
+            ) {
+                setShowFilters(false);
+            }
+        };
+
+        document.addEventListener('mousedown', handler);
+
+        return () => document.removeEventListener('mousedown', handler);
+    }, [showFilters]);
+
     const toggleTag = (tag: string) => {
         setSelectedTags((prev) =>
             prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag],
@@ -53,7 +71,7 @@ function MainThemeSearch({
     };
 
     return (
-        <div className="flex flex-col gap-4">
+        <div ref={filtersRef} className="flex flex-col gap-4">
             <div className="flex items-center gap-2">
                 <div className="group relative flex-1">
                     <Search className="absolute top-1/2 left-3.5 size-4.5 -translate-y-1/2 text-muted-foreground transition-colors group-focus-within:text-primary" />
