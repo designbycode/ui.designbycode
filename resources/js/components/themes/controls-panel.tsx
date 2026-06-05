@@ -1,6 +1,6 @@
+import { usePage } from '@inertiajs/react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useThemeStore } from '@/lib/theme/store';
-import { usePage } from '@inertiajs/react';
 import { ColorControls } from './color-controls';
 import { RadiusControls } from './raduis-controles';
 import ThemeInfo from './theme-info';

@@ -4,12 +4,21 @@ const toOklch = converter('oklch');
 
 export function hexToTokenValue(hex: string): string {
     const parsed = parse(hex);
-    if (!parsed) return '0 0 0';
+
+    if (!parsed) {
+return '0 0 0';
+}
+
     const o = toOklch(parsed);
-    if (!o) return '0 0 0';
+
+    if (!o) {
+return '0 0 0';
+}
+
     const L = round(o.l ?? 0, 3);
     const C = round(o.c ?? 0, 3);
     const H = round(o.h ?? 0, 3);
+
     return `${L} ${C} ${H}`;
 }
 
@@ -17,6 +26,7 @@ export function tokenValueToHex(value: string): string {
     const clean = value.split('/')[0].trim();
     const [l, c, h] = clean.split(/\s+/).map(Number);
     const hex = formatHex({ mode: 'oklch', l: l || 0, c: c || 0, h: h || 0 });
+
     return hex ?? '#000000';
 }
 
@@ -24,11 +34,13 @@ export function tokenValueToCss(value: string): string {
     if (value.includes('/')) {
         return `oklch(${value})`;
     }
+
     return `oklch(${value})`;
 }
 
 function round(n: number, d: number) {
     const f = Math.pow(10, d);
+
     return Math.round(n * f) / f;
 }
 
@@ -37,9 +49,17 @@ export function derivePaletteFromPrimary(
     dark: boolean,
 ): Record<string, string> {
     const parsed = parse(hex);
-    if (!parsed) return {};
+
+    if (!parsed) {
+return {};
+}
+
     const o = toOklch(parsed);
-    if (!o) return {};
+
+    if (!o) {
+return {};
+}
+
     const h = o.h ?? 250;
     const c = o.c ?? 0.05;
 
@@ -64,6 +84,7 @@ export function derivePaletteFromPrimary(
             ring: `${o.l} ${c} ${h}`,
         };
     }
+
     return {
         background: `1 0 0`,
         foreground: `0.16 0.02 ${h}`,
@@ -110,7 +131,11 @@ export function generateIndexCss(state: {
         const lines = entries.map(
             ([k, v]) => `    ${toVar(k)}: ${toColor(v)};`,
         );
-        if (extra) lines.push(extra);
+
+        if (extra) {
+lines.push(extra);
+}
+
         return `${selector} {\n${lines.join('\n')}\n}`;
     };
 

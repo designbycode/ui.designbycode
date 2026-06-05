@@ -7,14 +7,14 @@ import {
     SelectTrigger,
     SelectValue,
 } from '@/components/ui/select';
+import { Slider } from '@/components/ui/slider';
+import { useThemeStore } from '@/lib/theme/store';
 import {
     loadGoogleFont,
     MONO_FONTS,
     SANS_FONTS,
     SERIF_FONTS,
 } from './font-list';
-import { Slider } from '@/components/ui/slider';
-import { useThemeStore } from '@/lib/theme/store';
 
 const SCALES = [
     { name: 'Minor Second', value: 1.067 },
@@ -129,13 +129,11 @@ export function TypographyControls() {
 }
 
 function FontSelect({
-    kind,
     label,
     options,
     value,
     onChange,
 }: {
-    kind: string;
     label: string;
     options: string[];
     value: string;

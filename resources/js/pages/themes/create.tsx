@@ -1,17 +1,17 @@
 import { Head, Link, router } from '@inertiajs/react';
-import { ArrowLeft, Check, Pencil, Save } from 'lucide-react';
+import { ArrowLeft, Pencil, Save } from 'lucide-react';
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { toast } from 'sonner';
 import { ControlsPanel } from '@/components/themes/controls-panel';
 import { ExportDialog } from '@/components/themes/export-dialog';
 import { ThemePreview } from '@/components/themes/theme-preview';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import ThemeCreatorLayout from '@/layouts/theme-creator-layout';
+import { useThemeStore } from '@/lib/theme/store';
 import { cn } from '@/lib/utils';
 import { index, store } from '@/routes/themes';
 import { useThemeCreatorStore } from '@/store/theme-creator';
-import { useThemeStore } from '@/lib/theme/store';
-import { toast } from 'sonner';
 
 const MOBILE_TABS = ['Editor', 'Preview'] as const;
 const MIN_SIDEBAR = 330;
@@ -61,7 +61,7 @@ export default function ThemeCreate() {
             document.removeEventListener('mousemove', handleMouseMove);
             document.removeEventListener('mouseup', handleMouseUp);
         };
-    }, []);
+    }, [setSidebarWidth]);
 
     const handleSave = () => {
         const themeData = {

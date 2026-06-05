@@ -1,9 +1,9 @@
-import { useThemeStore } from '@/lib/theme/store';
-import { tokenValueToCss } from '@/lib/theme/color';
-import { Button } from '@/components/ui/button';
 import { Sun, Moon } from 'lucide-react';
 import { useMemo, useState } from 'react';
 import CardsPreview from '@/components/preview/cards-preview';
+import { Button } from '@/components/ui/button';
+import { tokenValueToCss } from '@/lib/theme/color';
+import { useThemeStore } from '@/lib/theme/store';
 
 const COLOR_TOKENS = [
     'background', 'foreground',
@@ -27,6 +27,7 @@ function buildVars(
 
     for (const token of COLOR_TOKENS) {
         const val = colors[token];
+
         if (val) {
             const css = tokenValueToCss(val);
             vars[`--${token}`] = css;

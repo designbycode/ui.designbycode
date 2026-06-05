@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { DEFAULT_LIGHT, DEFAULT_DARK, type TokenMap } from '@/lib/theme/defaults';
+import { DEFAULT_LIGHT, DEFAULT_DARK  } from '@/lib/theme/defaults';
+import type {TokenMap} from '@/lib/theme/defaults';
 
 export type ThemeFonts = { sans: string; serif: string; mono: string };
 

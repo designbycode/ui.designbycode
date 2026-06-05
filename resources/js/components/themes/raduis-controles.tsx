@@ -1,9 +1,10 @@
-import { useThemeStore } from '@/lib/theme/store';
 import { Label } from '@/components/ui/label';
 import { Slider } from '@/components/ui/slider';
+import { useThemeStore } from '@/lib/theme/store';
 
 export function RadiusControls() {
     const { radius, setRadius } = useThemeStore();
+
     return (
         <div className="space-y-3">
             <div className="flex items-center justify-between">
