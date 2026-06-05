@@ -1,14 +1,17 @@
-import { Head, Link } from '@inertiajs/react';
-import { ArrowLeft, Pencil } from 'lucide-react';
+import { Head, Link, router } from '@inertiajs/react';
+import { ArrowLeft, Check, Pencil, Save } from 'lucide-react';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { ControlsPanel } from '@/components/themes/controls-panel';
 import { ExportDialog } from '@/components/themes/export-dialog';
 import { ThemePreview } from '@/components/themes/theme-preview';
+import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import ThemeCreatorLayout from '@/layouts/theme-creator-layout';
 import { cn } from '@/lib/utils';
-import { index } from '@/routes/themes';
+import { index, store } from '@/routes/themes';
 import { useThemeCreatorStore } from '@/store/theme-creator';
+import { useThemeStore } from '@/lib/theme/store';
+import { toast } from 'sonner';
 
 const MOBILE_TABS = ['Editor', 'Preview'] as const;
 const MIN_SIDEBAR = 330;
@@ -16,7 +19,7 @@ const MAX_SIDEBAR_PCT = 0.5;
 
 export default function ThemeCreate() {
     const [mobileTab, setMobileTab] = useState<string>('Editor');
-    const [themeName, setThemeName] = useState('My New Theme');
+    const { title, setTitle, name, description, tags, light, dark, radius, fonts } = useThemeStore();
     const [isEditing, setIsEditing] = useState(false);
     const inputRef = useRef<HTMLInputElement>(null);
 
@@ -60,9 +63,38 @@ export default function ThemeCreate() {
         };
     }, []);
 
+    const handleSave = () => {
+        const themeData = {
+            name,
+            title,
+            description,
+            tags,
+            cssVars: {
+                light,
+                dark,
+            },
+            font: {
+                family: fonts.sans,
+                serif: fonts.serif,
+                mono: fonts.mono,
+            },
+            radius,
+        };
+
+        router.post(store().url, { theme_data: themeData }, {
+            onSuccess: () => {
+                toast.success('Theme saved successfully!');
+            },
+            onError: (errors) => {
+                const message = Object.values(errors).flat().join(' ');
+                toast.error(message || 'Failed to save theme.');
+            }
+        });
+    };
+
     return (
         <>
-            <Head title="Create Theme" />
+            <Head title={`Create Theme - ${title}`} />
             <nav className="flex h-14 shrink-0 items-center gap-3 border-b px-4">
                 <Link
                     href={index().url}
@@ -83,8 +115,8 @@ export default function ThemeCreate() {
                     {isEditing ? (
                         <input
                             ref={inputRef}
-                            value={themeName}
-                            onChange={(e) => setThemeName(e.target.value)}
+                            value={title}
+                            onChange={(e) => setTitle(e.target.value)}
                             onBlur={() => setIsEditing(false)}
                             onKeyDown={(e) => {
                                 if (e.key === 'Enter') {
@@ -97,7 +129,7 @@ export default function ThemeCreate() {
                     ) : (
                         <>
                             <span className="text-sm font-medium">
-                                {themeName}
+                                {title}
                             </span>
                             <button
                                 onClick={() => setIsEditing(true)}
@@ -109,7 +141,10 @@ export default function ThemeCreate() {
                     )}
                 </div>
 
-                <div className="ml-auto">
+                <div className="ml-auto flex items-center gap-2">
+                    <Button variant="outline" size="sm" onClick={handleSave}>
+                        <Save className="mr-2 size-4" /> Save
+                    </Button>
                     <ExportDialog />
                 </div>
             </nav>
