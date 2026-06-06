@@ -1,5 +1,5 @@
 import { ChevronDown, Sparkles, Terminal } from 'lucide-react';
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 import {
     Bar,
     BarChart,
@@ -91,7 +91,6 @@ const chartData = [
 
 export default function CardsPreview({ ...props }) {
     const [date, setDate] = useState<Date | undefined>(new Date());
-    const onTooltipOpenChange = useCallback(() => {}, []);
 
     return (
         <div

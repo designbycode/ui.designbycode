@@ -1,4 +1,5 @@
-import { motion, type Variants } from 'motion/react';
+import { motion  } from 'motion/react';
+import type {Variants} from 'motion/react';
 import {
     Card,
     CardContent,

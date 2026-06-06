@@ -48,7 +48,9 @@ function MainThemeSearch({
     }, [debouncedSearch, selectedTags]);
 
     useEffect(() => {
-        if (!showFilters) return;
+        if (!showFilters) {
+return;
+}
 
         const handler = (e: MouseEvent) => {
             if (

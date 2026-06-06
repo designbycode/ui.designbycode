@@ -1,8 +1,5 @@
-import { useThemeStore } from '@/lib/theme/store';
-import {
-    generateIndexCss,
-    generateTailwindSnippet,
-} from '@/lib/theme/css-export';
+import { Download, FileCode } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 import {
     Dialog,
     DialogContent,
@@ -11,9 +8,12 @@ import {
     DialogTrigger,
 } from '@/components/ui/dialog';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Button } from '@/components/ui/button';
-import { Download, FileCode } from 'lucide-react';
 import { MainCodeBlock } from '@/layouts/main/theme/main-code-block';
+import {
+    generateIndexCss,
+    generateTailwindSnippet,
+} from '@/lib/theme/css-export';
+import { useThemeStore } from '@/lib/theme/store';
 
 export function ExportDialog() {
     const state = useThemeStore();

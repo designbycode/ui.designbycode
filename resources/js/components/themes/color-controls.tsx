@@ -1,9 +1,9 @@
 import { Sparkles } from 'lucide-react';
+import { memo } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { PALETTE_PRESETS } from './pallets-preset';
 import {
     derivePaletteFromPrimary,
     hexToTokenValue,
@@ -11,7 +11,7 @@ import {
 } from '@/lib/theme/color';
 import { TOKEN_GROUPS } from '@/lib/theme/defaults';
 import { useThemeStore } from '@/lib/theme/store';
-import { memo } from 'react';
+import { PALETTE_PRESETS } from './pallets-preset';
 
 export function ColorControls() {
     const { light, dark, setToken, setManyTokens } = useThemeStore();

@@ -1,11 +1,11 @@
 import { Link } from '@inertiajs/react';
 import { GithubIcon } from 'lucide-react';
 
+import XIcon from '@/components/icons/x-icon';
 import { Button } from '@/components/ui/button';
 import { PlaceholderPattern } from '@/components/ui/placeholder-pattern';
 import MainWrapper from '@/layouts/main/main-wrapper';
 import { home } from '@/routes';
-import XIcon from '@/components/icons/x-icon';
 
 const navLinks = [
     { href: '#', label: 'Features' },
