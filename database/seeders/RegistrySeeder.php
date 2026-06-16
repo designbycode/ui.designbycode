@@ -5464,7 +5464,8 @@ export { ANIMATIONS };
                     [
                         'path' => 'resources/js/registry/new-york/components/ui/buttons/button-particles.tsx',
                         'type' => 'registry:ui',
-                        'content' => 'import { Slot } from \'@radix-ui/react-slot\';
+                        'content' => '\'use client\';
+import { Slot } from \'@radix-ui/react-slot\';
 import type { VariantProps } from \'class-variance-authority\';
 import { cva } from \'class-variance-authority\';
 import * as React from \'react\';
