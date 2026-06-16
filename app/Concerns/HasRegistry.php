@@ -211,13 +211,20 @@ trait HasRegistry
             'devDependencies' => $this->devDependencies ?? [],
             'registryDependencies' => $this->registryDependencies ?? [],
             'files' => $this->files ?? [],
-            'css' => $this->css ?? [],
             'tailwind' => $this->tailwind,
-            'cssVars' => $this->buildCssVars(),
             'meta' => $this->meta,
             'docs' => $this->docs,
             'categories' => $this->categories ?? [],
         ];
+
+        if (! empty($this->css)) {
+            $registry['css'] = $this->css;
+        }
+
+        $cssVars = $this->buildCssVars();
+        if (! empty($cssVars)) {
+            $registry['cssVars'] = $cssVars;
+        }
 
         // registry:style exclusive
         if ($this->type === 'registry:style') {
