@@ -5,7 +5,7 @@ import type {
     AnimationDirection,
     PixelConfig,
     PixelState,
-} from '@/registry/new-york/lib/pixel-canvas';
+} from '@/registry/new-york/lib/pixel-canvas-helper';
 import {
     calculateDelay,
     createPixelState,
@@ -13,7 +13,7 @@ import {
     drawPixel,
     updatePixelAppear,
     updatePixelDisappear,
-} from '@/registry/new-york/lib/pixel-canvas';
+} from '@/registry/new-york/lib/pixel-canvas-helper';
 
 interface UsePixelCanvasOptions extends Partial<PixelConfig> {
     /**

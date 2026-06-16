@@ -9,8 +9,8 @@ import type {
     AnimationType,
     PixelConfig,
     PixelShape,
-} from '@/registry/new-york/lib/pixel-canvas';
-import { colorPresets } from '@/registry/new-york/lib/pixel-canvas';
+} from '@/registry/new-york/lib/pixel-canvas-helper';
+import { colorPresets } from '@/registry/new-york/lib/pixel-canvas-helper';
 
 const pixelCanvasVariants = cva('relative overflow-hidden', {
     variants: {
