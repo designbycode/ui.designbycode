@@ -33,7 +33,7 @@
         "typescript-eslint": "^8.61.1"
     },
     "dependencies": {
-        "@base-ui/react": "^1.5.0",
+        "@base-ui/react": "^1.6.0",
         "@fontsource/bebas-neue": "^5.2.7",
         "@gsap/react": "^2.1.2",
         "@headlessui/react": "^2.2.10",
@@ -61,7 +61,7 @@
         "class-variance-authority": "^0.7.1",
         "clsx": "^2.1.1",
         "cmdk": "^1.1.1",
-        "concurrently": "^9.2.1",
+        "concurrently": "^9.2.3",
         "culori": "^4.0.2",
         "date-fns": "^4.4.0",
         "globals": "^15.15.0",
@@ -70,7 +70,7 @@
         "laravel-vite-plugin": "^3.1.0",
         "lucide-react": "^0.475.0",
         "motion": "^12.40.0",
-        "openai": "^6.42.0",
+        "openai": "^6.44.0",
         "prismjs": "^1.30.0",
         "radix-ui": "^1.6.0",
         "react": "^19.2.7",
