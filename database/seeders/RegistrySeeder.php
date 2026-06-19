@@ -6240,8 +6240,7 @@ export function BackLight({
                     [
                         'path' => 'resources/js/registry/new-york/components/ui/glow/glow-conic.tsx',
                         'type' => 'registry:ui',
-                        'content' => 'import { useEffect } from \'react\';
-import { cn } from \'@/lib/utils\';
+                        'content' => 'import { cn } from \'@/lib/utils\';
 
 export interface GlowConicProps {
     className?: string;
@@ -6254,17 +6253,6 @@ export default function GlowConic({
     style,
     ...props
 }: GlowConicProps) {
-    useEffect(() => {
-        if (typeof CSS !== \'undefined\' && CSS.registerProperty) {
-            CSS.registerProperty({
-                name: \'--glow-conic-angle\',
-                syntax: \'<angle>\',
-                initialValue: \'0deg\',
-                inherits: false,
-            });
-        }
-    }, []);
-
     return (
         <div
             {...props}

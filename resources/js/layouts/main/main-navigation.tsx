@@ -9,6 +9,7 @@ import type { UseHeadroomOptions } from '@/registry/new-york/hooks/use-headroom'
 import useHeadroom from '@/registry/new-york/hooks/use-headroom';
 import { home } from '@/routes';
 import { index as animateCssIndex } from '@/routes/animate-css';
+import { index as componentsIndex } from '@/routes/components';
 import { index as fontsIndex } from '@/routes/fonts';
 import { index as themesIndex } from '@/routes/themes';
 import MainThemeSwitcher from './theme/main-theme-switcher';
@@ -31,8 +32,7 @@ function MainNavigation() {
         { label: 'Themes', href: themesIndex() },
         { label: 'Animate CSS', href: animateCssIndex() },
         { label: 'Fonts', href: fontsIndex() },
-        // { label: 'Components', href: home() },
-        // { label: 'Blocks', href: home() },
+        { label: 'Components', href: componentsIndex().url },
     ] as NavLinkProps[];
 
     return (

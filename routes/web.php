@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AnimateController;
 use App\Http\Controllers\Auth\SocialiteController;
+use App\Http\Controllers\ComponentsController;
 use App\Http\Controllers\FontsController;
 use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\NewsletterSubscriptionController;
@@ -23,6 +24,8 @@ Route::get('/themes/{theme}', [ThemesController::class, 'show'])->name('themes.s
 
 Route::get('/fonts', [FontsController::class, 'index'])->name('fonts.index');
 Route::get('/animate-css', [AnimateController::class, 'index'])->name('animate-css.index');
+Route::get('/components', [ComponentsController::class, 'index'])->name('components.index');
+Route::get('/components/{component}', [ComponentsController::class, 'show'])->name('components.show');
 
 Route::get('/r/{type}/{name}.json', [RegistriesController::class, 'show']);
 Route::get('/r/themes/{name}.css', [ThemesController::class, 'css']);
