@@ -52,8 +52,8 @@ export function MusicPlayer() {
     // Shuffle indices
     const shuffledIndices = useMemo(() => {
         if (!currentPlaylist) {
-return [];
-}
+            return [];
+        }
 
         const indices = Array.from(
             { length: currentPlaylist.tracks.length },
@@ -298,13 +298,9 @@ return [];
     const currentAnalyser = isPlaying ? analyser : null;
 
     return (
-        <div className="flex h-screen bg-background @container">
+        <div className="@container flex h-screen bg-background">
             {/* Hidden audio element */}
-            <audio
-                ref={audioRef}
-                src={currentTrack?.src}
-                preload="metadata"
-            />
+            <audio ref={audioRef} src={currentTrack?.src} preload="metadata" />
 
             {/* Playlist Sidebar */}
             <PlaylistSidebar

@@ -40,9 +40,7 @@ function NewsletterDialog({ open, onOpenChange }: NewsletterDialogProps) {
                     {({ errors, processing }) => (
                         <>
                             <div className="grid gap-2">
-                                <Label htmlFor="newsletter-name">
-                                    Name
-                                </Label>
+                                <Label htmlFor="newsletter-name">Name</Label>
                                 <Input
                                     id="newsletter-name"
                                     name="name"
@@ -55,9 +53,7 @@ function NewsletterDialog({ open, onOpenChange }: NewsletterDialogProps) {
                             </div>
 
                             <div className="grid gap-2">
-                                <Label htmlFor="newsletter-email">
-                                    Email
-                                </Label>
+                                <Label htmlFor="newsletter-email">Email</Label>
                                 <Input
                                     id="newsletter-email"
                                     name="email"

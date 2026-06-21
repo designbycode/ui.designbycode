@@ -109,12 +109,17 @@ function MainCodeBlock({
                 <pre
                     className={cn(
                         'm-0! font-mono! text-sm leading-relaxed',
+                        `language-${normalizedLanguage}`,
                         variant === 'default'
                             ? 'rounded-none! p-3!'
                             : 'rounded-md! p-4!',
                     )}
                 >
-                    <code data-language={language} suppressHydrationWarning>
+                    <code
+                        className={`language-${normalizedLanguage}`}
+                        data-language={language}
+                        suppressHydrationWarning
+                    >
                         <span
                             dangerouslySetInnerHTML={{
                                 __html: highlightedCode,

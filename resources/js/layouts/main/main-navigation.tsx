@@ -60,7 +60,7 @@ function MainNavigation() {
                         <Link
                             key={link.label}
                             prefetch={'hover'}
-                            className={`rounded-md px-4 py-2 hover:bg-muted ${currentPath === link.href ? 'bg-muted' : ''}` }
+                            className={`rounded-md px-4 py-2 hover:bg-muted ${currentPath === link.href ? 'bg-muted' : ''}`}
                             href={link.href}
                         >
                             {link.label}

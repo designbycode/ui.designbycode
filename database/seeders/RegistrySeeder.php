@@ -17,6 +17,2206 @@ class RegistrySeeder extends Seeder
 
         $items = [
             [
+                'name' => 'analytics-dashboard',
+                'type' => 'registry:block',
+                'title' => 'Analytics Dashboard',
+                'description' => null,
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'recharts',
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'button',
+                    'card',
+                    'badge',
+                    'utils',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/analytics-dashboard/analytics-dashboard.tsx',
+                        'type' => 'registry:block',
+                        'content' => '\'use client\';
+import React, { useState, useEffect } from \'react\';
+import {
+    ResponsiveContainer,
+    AreaChart,
+    Area,
+    XAxis,
+    YAxis,
+    Tooltip as ChartTooltip,
+    CartesianGrid,
+    BarChart,
+    Bar,
+} from \'recharts\';
+import {
+    Users,
+    MousePointerClick,
+    RefreshCw,
+    Calendar,
+    ArrowUpRight,
+    TrendingUp,
+    TrendingDown,
+    Activity,
+    Globe,
+    Search as SearchIcon,
+} from \'lucide-react\';
+import { Button } from \'@/components/ui/button\';
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardHeader,
+    CardTitle,
+} from \'@/components/ui/card\';
+import { Badge } from \'@/components/ui/badge\';
+import { cn } from \'@/lib/utils\';
+
+// Mock trend history
+const trendData = [
+    { name: \'Jan\', visits: 4000, pageviews: 2400 },
+    { name: \'Feb\', visits: 3000, pageviews: 1398 },
+    { name: \'Mar\', visits: 2000, pageviews: 9800 },
+    { name: \'Apr\', visits: 2780, pageviews: 3908 },
+    { name: \'May\', visits: 1890, pageviews: 4800 },
+    { name: \'Jun\', visits: 2390, pageviews: 3800 },
+    { name: \'Jul\', visits: 3490, pageviews: 4300 },
+    { name: \'Aug\', visits: 4200, pageviews: 5400 },
+    { name: \'Sep\', visits: 3900, pageviews: 4900 },
+    { name: \'Oct\', visits: 4500, pageviews: 5900 },
+    { name: \'Nov\', visits: 4800, pageviews: 6500 },
+    { name: \'Dec\', visits: 5400, pageviews: 7200 },
+];
+
+// Mock traffic sources
+const sourceData = [
+    {
+        name: \'Organic Search\',
+        value: 4300,
+        color: \'var(--color-sky-500, #3b82f6)\',
+    },
+    { name: \'Direct\', value: 2900, color: \'var(--color-emerald-500, #10b981)\' },
+    { name: \'Social\', value: 2100, color: \'var(--color-pink-500, #ec4899)\' },
+    {
+        name: \'Referrals\',
+        value: 1400,
+        color: \'var(--color-amber-500, #f59e0b)\',
+    },
+];
+
+// Mock conversions list
+const initialConversions = [
+    {
+        id: \'1\',
+        user: \'Alex Morgan\',
+        email: \'alex@example.com\',
+        amount: \'$120.00\',
+        status: \'Success\',
+        time: \'2 mins ago\',
+    },
+    {
+        id: \'2\',
+        user: \'Sarah Chen\',
+        email: \'sarah.c@example.com\',
+        amount: \'$350.00\',
+        status: \'Success\',
+        time: \'10 mins ago\',
+    },
+    {
+        id: \'3\',
+        user: \'Michael Scott\',
+        email: \'m.scott@example.com\',
+        amount: \'$49.00\',
+        status: \'Success\',
+        time: \'22 mins ago\',
+    },
+    {
+        id: \'4\',
+        user: \'Emma Watson\',
+        email: \'emma@example.com\',
+        amount: \'$899.00\',
+        status: \'Success\',
+        time: \'45 mins ago\',
+    },
+];
+
+export function AnalyticsDashboard() {
+    const [isMounted, setIsMounted] = useState(false);
+    const [conversions, setConversions] = useState(initialConversions);
+    const [isRefreshing, setIsRefreshing] = useState(false);
+
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
+
+    const handleRefresh = () => {
+        setIsRefreshing(true);
+        setTimeout(() => {
+            // Add a mock random new conversion to top
+            const names = [
+                \'John Doe\',
+                \'Linda Carter\',
+                \'Devon Lane\',
+                \'Bessie Cooper\',
+            ];
+            const emails = [
+                \'john@example.com\',
+                \'linda@example.com\',
+                \'devon@example.com\',
+                \'bessie@example.com\',
+            ];
+            const amounts = [\'$59.00\', \'$199.00\', \'$29.00\', \'$450.00\'];
+
+            const randomIndex = Math.floor(Math.random() * names.length);
+
+            const newConv = {
+                id: Date.now().toString(),
+                user: names[randomIndex],
+                email: emails[randomIndex],
+                amount: amounts[randomIndex],
+                status: \'Success\',
+                time: \'Just now\',
+            };
+
+            setConversions((prev) => [newConv, ...prev.slice(0, 3)]);
+            setIsRefreshing(false);
+        }, 800);
+    };
+
+    return (
+        <div className="mx-auto flex w-full max-w-5xl flex-col gap-6 px-4 py-6">
+            {/* Header Control row */}
+            <div className="flex flex-col justify-between gap-4 border-b border-border/20 pb-6 sm:flex-row sm:items-center">
+                <div>
+                    <h2 className="text-2xl font-bold tracking-tight">
+                        Analytics Overview
+                    </h2>
+                    <p className="mt-0.5 text-xs text-muted-foreground">
+                        Real-time engagement telemetry dashboard
+                    </p>
+                </div>
+
+                <div className="flex items-center gap-2">
+                    <Button
+                        variant="outline"
+                        size="sm"
+                        className="flex h-8.5 items-center gap-1.5 text-xs"
+                    >
+                        <Calendar className="size-3.5" />
+                        Last 12 Months
+                    </Button>
+                    <Button
+                        size="sm"
+                        variant="default"
+                        className="flex h-8.5 items-center gap-1.5 text-xs"
+                        onClick={handleRefresh}
+                        disabled={isRefreshing}
+                    >
+                        <RefreshCw
+                            className={cn(
+                                \'size-3.5\',
+                                isRefreshing && \'animate-spin\',
+                            )}
+                        />
+                        Refresh
+                    </Button>
+                </div>
+            </div>
+
+            {/* Quick Metrics Cards */}
+            <div className="grid w-full gap-4 sm:grid-cols-3">
+                <Card className="flex flex-row items-center gap-4 border border-border/40 bg-card/30 p-4.5 backdrop-blur-xs">
+                    <div className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-sky-500/10 text-sky-500">
+                        <Users className="size-5" />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                        <span className="text-[10px] font-semibold tracking-wider text-muted-foreground uppercase">
+                            Total Visitors
+                        </span>
+                        <div className="mt-0.5 flex items-baseline gap-2">
+                            <span className="font-mono text-xl font-bold">
+                                148,290
+                            </span>
+                            <span className="flex items-center gap-0.5 text-[10px] font-semibold text-emerald-500">
+                                <TrendingUp className="size-3" /> +12.4%
+                            </span>
+                        </div>
+                    </div>
+                </Card>
+
+                <Card className="flex flex-row items-center gap-4 border border-border/40 bg-card/30 p-4.5 backdrop-blur-xs">
+                    <div className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-500">
+                        <MousePointerClick className="size-5" />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                        <span className="text-[10px] font-semibold tracking-wider text-muted-foreground uppercase">
+                            Conversion Rate
+                        </span>
+                        <div className="mt-0.5 flex items-baseline gap-2">
+                            <span className="font-mono text-xl font-bold">
+                                3.48%
+                            </span>
+                            <span className="flex items-center gap-0.5 text-[10px] font-semibold text-emerald-500">
+                                <TrendingUp className="size-3" /> +4.2%
+                            </span>
+                        </div>
+                    </div>
+                </Card>
+
+                <Card className="flex flex-row items-center gap-4 border border-border/40 bg-card/30 p-4.5 backdrop-blur-xs">
+                    <div className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-rose-500/10 text-rose-500">
+                        <Activity className="size-5" />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                        <span className="text-[10px] font-semibold tracking-wider text-muted-foreground uppercase">
+                            Bounce Rate
+                        </span>
+                        <div className="mt-0.5 flex items-baseline gap-2">
+                            <span className="font-mono text-xl font-bold">
+                                42.15%
+                            </span>
+                            <span className="flex items-center gap-0.5 text-[10px] font-semibold text-rose-500">
+                                <TrendingDown className="size-3" /> -1.8%
+                            </span>
+                        </div>
+                    </div>
+                </Card>
+            </div>
+
+            {/* Performance Main Chart Card */}
+            <Card className="border border-border/40 bg-card/30 backdrop-blur-xs">
+                <CardHeader>
+                    <CardTitle className="flex items-center gap-2 text-sm font-bold">
+                        <Globe className="size-4 text-muted-foreground" />
+                        Engagement History
+                    </CardTitle>
+                    <CardDescription className="text-xs">
+                        Comparison trends between raw visitors traffic and
+                        engaged pageviews.
+                    </CardDescription>
+                </CardHeader>
+                <CardContent className="h-64 pt-2">
+                    {isMounted ? (
+                        <ResponsiveContainer width="100%" height="100%">
+                            <AreaChart
+                                data={trendData}
+                                margin={{
+                                    top: 0,
+                                    right: 10,
+                                    left: -20,
+                                    bottom: 0,
+                                }}
+                            >
+                                <defs>
+                                    <linearGradient
+                                        id="colorVisits"
+                                        x1="0"
+                                        y1="0"
+                                        x2="0"
+                                        y2="1"
+                                    >
+                                        <stop
+                                            offset="5%"
+                                            stopColor="var(--color-primary, #6366f1)"
+                                            stopOpacity={0.25}
+                                        />
+                                        <stop
+                                            offset="95%"
+                                            stopColor="var(--color-primary, #6366f1)"
+                                            stopOpacity={0.0}
+                                        />
+                                    </linearGradient>
+                                    <linearGradient
+                                        id="colorViews"
+                                        x1="0"
+                                        y1="0"
+                                        x2="0"
+                                        y2="1"
+                                    >
+                                        <stop
+                                            offset="5%"
+                                            stopColor="var(--color-emerald-500, #10b981)"
+                                            stopOpacity={0.2}
+                                        />
+                                        <stop
+                                            offset="95%"
+                                            stopColor="var(--color-emerald-500, #10b981)"
+                                            stopOpacity={0.0}
+                                        />
+                                    </linearGradient>
+                                </defs>
+                                <CartesianGrid
+                                    strokeDasharray="3 3"
+                                    vertical={false}
+                                    stroke="var(--color-border, #e2e8f0)"
+                                />
+                                <XAxis
+                                    dataKey="name"
+                                    stroke="var(--color-muted-foreground, #64748b)"
+                                    fontSize={10}
+                                    tickLine={false}
+                                    axisLine={false}
+                                />
+                                <YAxis
+                                    stroke="var(--color-muted-foreground, #64748b)"
+                                    fontSize={10}
+                                    tickLine={false}
+                                    axisLine={false}
+                                />
+                                <ChartTooltip
+                                    contentStyle={{
+                                        background:
+                                            \'var(--color-popover, #ffffff)\',
+                                        borderColor:
+                                            \'var(--color-border, #e2e8f0)\',
+                                        borderRadius: \'8px\',
+                                        fontSize: \'11px\',
+                                    }}
+                                />
+                                <Area
+                                    type="monotone"
+                                    dataKey="pageviews"
+                                    stroke="var(--color-emerald-500, #10b981)"
+                                    strokeWidth={2}
+                                    fillOpacity={1}
+                                    fill="url(#colorViews)"
+                                    name="Pageviews"
+                                />
+                                <Area
+                                    type="monotone"
+                                    dataKey="visits"
+                                    stroke="var(--color-primary, #6366f1)"
+                                    strokeWidth={2}
+                                    fillOpacity={1}
+                                    fill="url(#colorVisits)"
+                                    name="Unique Visitors"
+                                />
+                            </AreaChart>
+                        </ResponsiveContainer>
+                    ) : (
+                        <div className="flex h-full w-full animate-pulse items-center justify-center rounded-lg bg-muted/20 font-mono text-xs text-muted-foreground">
+                            Loading chart telemetry...
+                        </div>
+                    )}
+                </CardContent>
+            </Card>
+
+            {/* Split Bottom Section */}
+            <div className="grid w-full items-stretch gap-6 md:grid-cols-2">
+                {/* Real-time Transactions Feed */}
+                <Card className="flex flex-col justify-between border border-border/40 bg-card/30 backdrop-blur-xs">
+                    <div>
+                        <CardHeader>
+                            <CardTitle className="flex items-center gap-2 text-sm font-bold">
+                                <SearchIcon className="size-4 text-muted-foreground" />
+                                Real-time conversions
+                            </CardTitle>
+                            <CardDescription className="text-xs">
+                                Live view of active user acquisitions and signup
+                                events.
+                            </CardDescription>
+                        </CardHeader>
+                        <CardContent className="space-y-4">
+                            {conversions.map((conv) => (
+                                <div
+                                    key={conv.id}
+                                    className="flex items-center justify-between border-b border-border/20 py-1 last:border-b-0"
+                                >
+                                    <div className="flex items-center gap-3">
+                                        <div className="flex size-8 items-center justify-center rounded-full bg-primary/10 text-xs font-bold text-primary">
+                                            {conv.user
+                                                .split(\' \')
+                                                .map((n) => n[0])
+                                                .join(\'\')}
+                                        </div>
+                                        <div className="flex min-w-0 flex-col gap-0.5">
+                                            <span className="truncate text-xs font-semibold">
+                                                {conv.user}
+                                            </span>
+                                            <span className="truncate text-[10px] text-muted-foreground">
+                                                {conv.email}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div className="text-right">
+                                        <span className="font-mono text-xs font-bold text-primary">
+                                            {conv.amount}
+                                        </span>
+                                        <span className="block font-mono text-[9px] text-muted-foreground">
+                                            {conv.time}
+                                        </span>
+                                    </div>
+                                </div>
+                            ))}
+                        </CardContent>
+                    </div>
+                </Card>
+
+                {/* Traffic Channels breakdown */}
+                <Card className="border border-border/40 bg-card/30 backdrop-blur-xs">
+                    <CardHeader>
+                        <CardTitle className="flex items-center gap-2 text-sm font-bold">
+                            <Activity className="size-4 text-muted-foreground" />
+                            Acquisition Channels
+                        </CardTitle>
+                        <CardDescription className="text-xs">
+                            Distribution of incoming visitor sessions grouped by
+                            source.
+                        </CardDescription>
+                    </CardHeader>
+                    <CardContent className="h-56">
+                        {isMounted ? (
+                            <ResponsiveContainer width="100%" height="100%">
+                                <BarChart
+                                    data={sourceData}
+                                    margin={{
+                                        top: 0,
+                                        right: 0,
+                                        left: -20,
+                                        bottom: 0,
+                                    }}
+                                >
+                                    <CartesianGrid
+                                        strokeDasharray="3 3"
+                                        vertical={false}
+                                        stroke="var(--color-border, #e2e8f0)"
+                                    />
+                                    <XAxis
+                                        dataKey="name"
+                                        stroke="var(--color-muted-foreground, #64748b)"
+                                        fontSize={10}
+                                        tickLine={false}
+                                        axisLine={false}
+                                    />
+                                    <YAxis
+                                        stroke="var(--color-muted-foreground, #64748b)"
+                                        fontSize={10}
+                                        tickLine={false}
+                                        axisLine={false}
+                                    />
+                                    <Bar
+                                        dataKey="value"
+                                        radius={[4, 4, 0, 0]}
+                                        fill="var(--color-primary, #6366f1)"
+                                    />
+                                </BarChart>
+                            </ResponsiveContainer>
+                        ) : (
+                            <div className="flex h-full w-full animate-pulse items-center justify-center rounded-lg bg-muted/20 font-mono text-xs text-muted-foreground">
+                                Loading acquisition channels...
+                            </div>
+                        )}
+                    </CardContent>
+                </Card>
+            </div>
+        </div>
+    );
+}
+
+export default AnalyticsDashboard;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'blocks',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'blocks',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'booking-form',
+                'type' => 'registry:block',
+                'title' => 'Booking Form',
+                'description' => null,
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'badge',
+                    'button',
+                    'card',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/booking-form/booking-form.tsx',
+                        'type' => 'registry:block',
+                        'content' => 'import {
+    Calendar as CalendarIcon,
+    Users,
+    ArrowRight,
+    Loader2,
+    Sparkles,
+    CheckCircle2,
+} from \'lucide-react\';
+import React, { useState, useMemo } from \'react\';
+import { Badge } from \'@/components/ui/badge\';
+import { Button } from \'@/components/ui/button\';
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+} from \'@/components/ui/card\';
+
+export function BookingForm({
+    pricePerNight = 120,
+    cleaningFee = 45,
+    serviceFee = 25,
+}: {
+    pricePerNight?: number;
+    cleaningFee?: number;
+    serviceFee?: number;
+}) {
+    const [checkIn, setCheckIn] = useState(\'\');
+    const [checkOut, setCheckOut] = useState(\'\');
+    const [guests, setGuests] = useState(2);
+    const [isLoading, setIsLoading] = useState(false);
+    const [isBooked, setIsBooked] = useState(false);
+
+    const nights = useMemo(() => {
+        if (!checkIn || !checkOut) {
+            return 0;
+        }
+
+        const start = new Date(checkIn);
+        const end = new Date(checkOut);
+        const diffTime = Math.abs(end.getTime() - start.getTime());
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+        return isNaN(diffDays) ? 0 : diffDays;
+    }, [checkIn, checkOut]);
+
+    const totalCost = useMemo(() => {
+        if (nights === 0) {
+            return 0;
+        }
+
+        return pricePerNight * nights + cleaningFee + serviceFee;
+    }, [nights, pricePerNight, cleaningFee, serviceFee]);
+
+    const handleSearch = (e: React.FormEvent) => {
+        e.preventDefault();
+
+        if (!checkIn || !checkOut || nights <= 0) {
+            return;
+        }
+
+        setIsLoading(true);
+        setTimeout(() => {
+            setIsLoading(false);
+            setIsBooked(true);
+        }, 1500);
+    };
+
+    const resetBooking = () => {
+        setIsBooked(false);
+        setCheckIn(\'\');
+        setCheckOut(\'\');
+        setGuests(2);
+    };
+
+    return (
+        <Card className="relative mx-auto w-full max-w-md overflow-hidden border border-border/40 bg-card/40 shadow-2xl backdrop-blur-md transition-all duration-300">
+            {/* Ambient Background Glow */}
+            <div className="pointer-events-none absolute top-0 right-0 h-36 w-36 rounded-full bg-primary/10 blur-2xl" />
+            <div className="pointer-events-none absolute -bottom-8 -left-8 h-36 w-36 rounded-full bg-emerald-500/5 blur-2xl" />
+
+            <CardHeader className="relative z-10">
+                <div className="flex items-center justify-between">
+                    <div>
+                        <CardTitle className="font-sans text-xl font-bold">
+                            Book Your Stay
+                        </CardTitle>
+                        <CardDescription className="mt-0.5 text-xs">
+                            Check availability and secure your dates
+                        </CardDescription>
+                    </div>
+                    <div className="text-right">
+                        <span className="font-sans text-xl font-extrabold text-foreground">
+                            ${pricePerNight}
+                        </span>
+                        <span className="text-xs text-muted-foreground">
+                            {\' \'}
+                            / night
+                        </span>
+                    </div>
+                </div>
+            </CardHeader>
+
+            <CardContent className="relative z-10 space-y-4">
+                {isBooked ? (
+                    <div className="animate-fadeIn space-y-4 py-8 text-center">
+                        <div className="mx-auto flex size-14 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-500 shadow-inner">
+                            <CheckCircle2 className="size-8" />
+                        </div>
+                        <div className="space-y-2">
+                            <h3 className="font-sans text-lg font-bold text-foreground">
+                                Dates are Available!
+                            </h3>
+                            <p className="mx-auto max-w-xs text-xs text-muted-foreground">
+                                We have temporarily reserved your stay from{\' \'}
+                                <span className="font-semibold text-foreground">
+                                    {checkIn}
+                                </span>{\' \'}
+                                to{\' \'}
+                                <span className="font-semibold text-foreground">
+                                    {checkOut}
+                                </span>{\' \'}
+                                ({nights} nights) for{\' \'}
+                                <span className="font-semibold text-foreground">
+                                    {guests} guests
+                                </span>
+                                .
+                            </p>
+                        </div>
+                        <div className="flex justify-center gap-2 pt-2">
+                            <Button
+                                onClick={resetBooking}
+                                variant="outline"
+                                size="sm"
+                            >
+                                Change Dates
+                            </Button>
+                            <Button
+                                className="bg-emerald-600 font-semibold text-white hover:bg-emerald-500"
+                                size="sm"
+                            >
+                                Proceed to Payment
+                            </Button>
+                        </div>
+                    </div>
+                ) : (
+                    <form onSubmit={handleSearch} className="space-y-4">
+                        <div className="grid grid-cols-2 gap-3">
+                            <div className="space-y-1">
+                                <label className="flex items-center gap-1 text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
+                                    <CalendarIcon className="size-3 text-primary" />
+                                    Check In
+                                </label>
+                                <input
+                                    type="date"
+                                    required
+                                    min={new Date().toISOString().split(\'T\')[0]}
+                                    value={checkIn}
+                                    onChange={(e) => setCheckIn(e.target.value)}
+                                    className="w-full rounded-lg border border-border/40 bg-muted/40 px-3 py-2 text-xs text-foreground transition-all hover:bg-muted/60 focus:border-primary/50 focus:outline-none"
+                                />
+                            </div>
+                            <div className="space-y-1">
+                                <label className="flex items-center gap-1 text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
+                                    <CalendarIcon className="size-3 text-primary" />
+                                    Check Out
+                                </label>
+                                <input
+                                    type="date"
+                                    required
+                                    min={
+                                        checkIn ||
+                                        new Date().toISOString().split(\'T\')[0]
+                                    }
+                                    value={checkOut}
+                                    onChange={(e) =>
+                                        setCheckOut(e.target.value)
+                                    }
+                                    className="w-full rounded-lg border border-border/40 bg-muted/40 px-3 py-2 text-xs text-foreground transition-all hover:bg-muted/60 focus:border-primary/50 focus:outline-none"
+                                />
+                            </div>
+                        </div>
+
+                        <div className="space-y-1.5">
+                            <label className="flex items-center gap-1 text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
+                                <Users className="size-3 text-primary" />
+                                Guests
+                            </label>
+                            <div className="flex items-center justify-between rounded-lg border border-border/40 bg-muted/20 px-3 py-1.5">
+                                <span className="text-xs font-semibold">
+                                    {guests} {guests === 1 ? \'Guest\' : \'Guests\'}
+                                </span>
+                                <div className="flex items-center gap-1">
+                                    <button
+                                        type="button"
+                                        onClick={() =>
+                                            setGuests(Math.max(1, guests - 1))
+                                        }
+                                        className="size-7 cursor-pointer rounded border border-border/40 bg-muted/60 text-xs font-bold select-none hover:border-border hover:bg-muted"
+                                    >
+                                        -
+                                    </button>
+                                    <button
+                                        type="button"
+                                        onClick={() =>
+                                            setGuests(Math.min(6, guests + 1))
+                                        }
+                                        className="size-7 cursor-pointer rounded border border-border/40 bg-muted/60 text-xs font-bold select-none hover:border-border hover:bg-muted"
+                                    >
+                                        +
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <Button
+                            type="submit"
+                            disabled={
+                                isLoading ||
+                                !checkIn ||
+                                !checkOut ||
+                                nights <= 0
+                            }
+                            className="group relative mt-2 w-full overflow-hidden bg-primary font-bold tracking-wide text-primary-foreground transition-all duration-300 hover:bg-primary/95"
+                        >
+                            {isLoading ? (
+                                <span className="flex items-center gap-2">
+                                    <Loader2 className="size-4 animate-spin" />
+                                    Checking Rooms...
+                                </span>
+                            ) : (
+                                <span className="flex items-center gap-1">
+                                    Check Availability
+                                    <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+                                </span>
+                            )}
+                        </Button>
+                    </form>
+                )}
+
+                {nights > 0 && !isBooked && (
+                    <div className="animate-fadeIn space-y-2.5 border-t border-border/40 pt-4">
+                        <h4 className="text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
+                            Price Details
+                        </h4>
+                        <div className="space-y-1.5">
+                            <div className="flex justify-between text-xs text-muted-foreground">
+                                <span>
+                                    ${pricePerNight} x {nights} nights
+                                </span>
+                                <span className="font-semibold text-foreground">
+                                    ${pricePerNight * nights}
+                                </span>
+                            </div>
+                            <div className="flex justify-between text-xs text-muted-foreground">
+                                <span>Cleaning fee</span>
+                                <span className="font-semibold text-foreground">
+                                    ${cleaningFee}
+                                </span>
+                            </div>
+                            <div className="flex justify-between text-xs text-muted-foreground">
+                                <span>Service fee</span>
+                                <span className="font-semibold text-foreground">
+                                    ${serviceFee}
+                                </span>
+                            </div>
+                            <div className="flex justify-between border-t border-border/20 pt-2 text-sm font-bold text-foreground">
+                                <span className="flex items-center gap-1">
+                                    Total
+                                    <Badge
+                                        variant="outline"
+                                        className="border-emerald-500/20 bg-emerald-500/5 px-1 py-0 font-mono text-[9px] text-emerald-500"
+                                    >
+                                        Best Price
+                                    </Badge>
+                                </span>
+                                <span>${totalCost}</span>
+                            </div>
+                        </div>
+                    </div>
+                )}
+            </CardContent>
+
+            <CardFooter className="relative z-10 flex items-center justify-center gap-1.5 border-t border-border/20 bg-muted/15 px-6 py-3 text-[10px] text-muted-foreground">
+                <Sparkles className="size-3.5 text-amber-500" />
+                <span>Free cancellation up to 48 hours before check-in</span>
+            </CardFooter>
+        </Card>
+    );
+}
+
+export default BookingForm;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'blocks',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'blocks',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'buttons-gallery',
+                'type' => 'registry:block',
+                'title' => 'Buttons Gallery',
+                'description' => null,
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'https://ui.test/r/button-particles.json',
+                    'https://ui.test/r/button-magnetic.json',
+                    'https://ui.test/r/button-shine.json',
+                    'https://ui.test/r/glow-conic.json',
+                    'card',
+                    'badge',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/buttons-gallery/buttons-gallery.tsx',
+                        'type' => 'registry:block',
+                        'content' => 'import React from \'react\';
+import { Play, Sparkles, Move, Sun, Compass } from \'lucide-react\';
+import { ButtonParticles } from \'@/registry/new-york/components/ui/buttons/button-particles\';
+import { ButtonMagnetic } from \'@/registry/new-york/components/ui/buttons/button-magnetic\';
+import { ButtonShine } from \'@/registry/new-york/components/ui/buttons/button-shine\';
+import GlowConic from \'@/registry/new-york/components/ui/glow/glow-conic\';
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardHeader,
+    CardTitle,
+} from \'@/components/ui/card\';
+import { Badge } from \'@/components/ui/badge\';
+
+export function ButtonsGallery() {
+    return (
+        <div className="mx-auto flex w-full max-w-5xl flex-col gap-8 px-4 py-6">
+            <div className="space-y-2">
+                <Badge
+                    variant="outline"
+                    className="bg-primary/5 px-3 py-1 font-mono text-xs tracking-widest text-primary uppercase"
+                >
+                    Component Showcase
+                </Badge>
+                <h2 className="text-2xl font-bold tracking-tight">
+                    Interactive Buttons Gallery
+                </h2>
+                <p className="text-xs text-muted-foreground">
+                    Explore and compare different interactive button styles,
+                    micro-animations, and glow effects.
+                </p>
+            </div>
+
+            <div className="grid w-full gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {/* 1. Magnetic Button */}
+                <Card className="flex flex-col justify-between border border-border/40 bg-card/25 backdrop-blur-xs">
+                    <CardHeader className="pb-3">
+                        <CardTitle className="flex items-center gap-2 text-sm font-bold">
+                            <Move className="size-4 text-sky-500" />
+                            Magnetic Button
+                        </CardTitle>
+                        <CardDescription className="text-xs">
+                            Pulls towards the cursor within active range.
+                        </CardDescription>
+                    </CardHeader>
+                    <CardContent className="flex h-28 items-center justify-center">
+                        <ButtonMagnetic className="h-9 bg-sky-600 px-4.5 text-xs text-white shadow-sky-500/10 hover:bg-sky-500">
+                            Magnetic Pull
+                        </ButtonMagnetic>
+                    </CardContent>
+                </Card>
+
+                {/* 2. Shine / Shimmer Button */}
+                <Card className="flex flex-col justify-between border border-border/40 bg-card/25 backdrop-blur-xs">
+                    <CardHeader className="pb-3">
+                        <CardTitle className="flex items-center gap-2 text-sm font-bold">
+                            <Sun className="size-4 text-amber-500" />
+                            Shine Button
+                        </CardTitle>
+                        <CardDescription className="text-xs">
+                            Sleek glossy swipe reflecting across surface on
+                            hover.
+                        </CardDescription>
+                    </CardHeader>
+                    <CardContent className="flex h-28 items-center justify-center">
+                        <ButtonShine
+                            className="h-9 bg-amber-600 px-4.5 text-xs text-white shadow-amber-500/10 hover:bg-amber-500"
+                            shineColor="rgba(255,255,255,0.4)"
+                        >
+                            Glossy Shimmer
+                        </ButtonShine>
+                    </CardContent>
+                </Card>
+
+                {/* 3. Particle Exploding Button */}
+                <Card className="flex flex-col justify-between border border-border/40 bg-card/25 backdrop-blur-xs">
+                    <CardHeader className="pb-3">
+                        <CardTitle className="flex items-center gap-2 text-sm font-bold">
+                            <Sparkles className="size-4 text-purple-500" />
+                            Particles Button
+                        </CardTitle>
+                        <CardDescription className="text-xs">
+                            Spawns exploding physics particles on click.
+                        </CardDescription>
+                    </CardHeader>
+                    <CardContent className="flex h-28 items-center justify-center">
+                        <ButtonParticles className="h-9 bg-purple-600 px-4.5 text-xs text-white shadow-purple-500/10 hover:bg-purple-500">
+                            Explode Particles!
+                        </ButtonParticles>
+                    </CardContent>
+                </Card>
+
+                {/* 4. Conic Glowing Border Button */}
+                <Card className="flex flex-col justify-between border border-border/40 bg-card/25 backdrop-blur-xs">
+                    <CardHeader className="pb-3">
+                        <CardTitle className="flex items-center gap-2 text-sm font-bold">
+                            <Compass className="size-4 text-emerald-500" />
+                            Glow Border Button
+                        </CardTitle>
+                        <CardDescription className="text-xs">
+                            Button wrapped in a rotating conic glow mask.
+                        </CardDescription>
+                    </CardHeader>
+                    <CardContent className="flex h-28 items-center justify-center">
+                        <div className="relative h-9 w-36 overflow-hidden rounded-lg bg-zinc-950">
+                            <GlowConic
+                                style={
+                                    {
+                                        \'--conic-color\':
+                                            \'var(--color-emerald-500, #10b981)\',
+                                    } as React.CSSProperties
+                                }
+                            />
+                            <button className="absolute inset-px flex cursor-pointer items-center justify-center gap-1.5 rounded-[7px] bg-zinc-900 text-[11px] font-semibold text-emerald-400 transition-colors select-none hover:text-white">
+                                <Play className="size-3 fill-emerald-400/20" />
+                                Run System
+                            </button>
+                        </div>
+                    </CardContent>
+                </Card>
+
+                {/* 5. Magnetic Icon Button */}
+                <Card className="flex flex-col justify-between border border-border/40 bg-card/25 backdrop-blur-xs">
+                    <CardHeader className="pb-3">
+                        <CardTitle className="flex items-center gap-2 text-sm font-bold">
+                            <Move className="size-4 text-pink-500" />
+                            Magnetic Icon Variant
+                        </CardTitle>
+                        <CardDescription className="text-xs">
+                            Attracts cursor with subtle rotation.
+                        </CardDescription>
+                    </CardHeader>
+                    <CardContent className="flex h-28 items-center justify-center">
+                        <ButtonMagnetic className="flex size-10 items-center justify-center rounded-full bg-pink-600 p-0 text-white shadow-pink-500/10 hover:bg-pink-500">
+                            <Compass className="size-4" />
+                        </ButtonMagnetic>
+                    </CardContent>
+                </Card>
+            </div>
+        </div>
+    );
+}
+
+export default ButtonsGallery;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'blocks',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'blocks',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'canvas-gallery',
+                'type' => 'registry:block',
+                'title' => 'Canvas Gallery',
+                'description' => null,
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'https://ui.test/r/pixel-canvas.json',
+                    'https://ui.test/r/waves-three.json',
+                    'card',
+                    'badge',
+                    'slider',
+                    'switch',
+                    'label',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/canvas-gallery/canvas-gallery.tsx',
+                        'type' => 'registry:block',
+                        'content' => 'import React, { useState } from \'react\';
+import { Play, Pause, Layers, Sliders, Monitor } from \'lucide-react\';
+import { PixelCanvas } from \'@/registry/new-york/components/ui/canvas/pixel-canvas\';
+import WavesThree from \'@/registry/new-york/components/ui/threejs/waves-three\';
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardHeader,
+    CardTitle,
+} from \'@/components/ui/card\';
+import { Badge } from \'@/components/ui/badge\';
+import { Slider } from \'@/components/ui/slider\';
+import { Switch } from \'@/components/ui/switch\';
+import { Label } from \'@/components/ui/label\';
+
+export function CanvasGallery() {
+    const [opacity, setOpacity] = useState([50]);
+    const [playWaves, setPlayWaves] = useState(true);
+    const [interactivePixel, setInteractivePixel] = useState(true);
+
+    return (
+        <div className="mx-auto flex w-full max-w-5xl flex-col gap-8 px-4 py-6">
+            <div className="space-y-2">
+                <Badge
+                    variant="outline"
+                    className="bg-primary/5 px-3 py-1 font-mono text-xs tracking-widest text-primary uppercase"
+                >
+                    Component Showcase
+                </Badge>
+                <h2 className="text-2xl font-bold tracking-tight">
+                    Interactive Canvas Gallery
+                </h2>
+                <p className="text-xs text-muted-foreground">
+                    Compare interactive canvas backgrounds and WebGL visuals
+                    with live configuration toggles.
+                </p>
+            </div>
+
+            {/* Split layout */}
+            <div className="grid w-full items-stretch gap-6 md:grid-cols-2">
+                {/* 1. WebGL Waves (Three.js) */}
+                <Card className="relative flex min-h-[380px] flex-col justify-between overflow-hidden border border-border/40 bg-zinc-950 text-white">
+                    {/* Live Waves background */}
+                    {playWaves && (
+                        <WavesThree
+                            className="absolute inset-0 transition-opacity duration-300"
+                            style={{ opacity: opacity[0] / 100 }}
+                        />
+                    )}
+
+                    {/* Glass Control Box */}
+                    <div className="relative z-10 flex h-full flex-col justify-between bg-zinc-950/60 p-6 backdrop-blur-xs">
+                        <div>
+                            <div className="flex items-center justify-between">
+                                <Badge
+                                    variant="secondary"
+                                    className="rounded-full border border-sky-500/20 bg-sky-500/10 px-2 py-0.5 text-[10px] font-bold text-sky-400"
+                                >
+                                    WebGL / ThreeJS
+                                </Badge>
+                                <div
+                                    className="cursor-pointer text-zinc-500 transition-colors hover:text-white"
+                                    onClick={() => setPlayWaves(!playWaves)}
+                                >
+                                    {playWaves ? (
+                                        <Pause className="size-4" />
+                                    ) : (
+                                        <Play className="size-4" />
+                                    )}
+                                </div>
+                            </div>
+                            <h3 className="mt-4 font-bebas-neue! text-lg font-bold tracking-wide">
+                                WebGL Waves Background
+                            </h3>
+                            <p className="mt-1 text-[11px] leading-relaxed text-zinc-400">
+                                A high-performance mathematical point grid
+                                oscillating in three-dimensional space. Great
+                                for homepage banners and premium section
+                                layouts.
+                            </p>
+                        </div>
+
+                        {/* Control Panel */}
+                        <div className="space-y-4 border-t border-zinc-800/50 pt-6">
+                            <div className="space-y-1.5">
+                                <div className="flex items-center justify-between font-mono text-[10px] text-zinc-400">
+                                    <span>Wave Opacity</span>
+                                    <span>{opacity[0]}%</span>
+                                </div>
+                                <Slider
+                                    value={opacity}
+                                    onValueChange={setOpacity}
+                                    max={100}
+                                    step={5}
+                                    className="w-full"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </Card>
+
+                {/* 2. Interactive Pixel Canvas */}
+                <Card className="relative flex min-h-[380px] flex-col justify-between overflow-hidden border border-border/40 bg-zinc-950 text-white">
+                    {/* Live Pixel canvas */}
+                    <PixelCanvas
+                        className={`absolute inset-0 transition-opacity duration-300 ${interactivePixel ? \'opacity-40\' : \'pointer-events-none opacity-0\'}`}
+                    />
+
+                    {/* Glass Control Box */}
+                    <div className="relative z-10 flex h-full flex-col justify-between bg-zinc-950/60 p-6 backdrop-blur-xs">
+                        <div>
+                            <div className="flex items-center justify-between">
+                                <Badge
+                                    variant="secondary"
+                                    className="rounded-full border border-purple-500/20 bg-purple-500/10 px-2 py-0.5 text-[10px] font-bold text-purple-400"
+                                >
+                                    HTML5 Canvas
+                                </Badge>
+                                <Switch
+                                    id="pixel-state"
+                                    checked={interactivePixel}
+                                    onCheckedChange={setInteractivePixel}
+                                    className="data-[state=checked]:bg-purple-500"
+                                />
+                            </div>
+                            <h3 className="mt-4 font-bebas-neue! text-lg font-bold tracking-wide">
+                                Interactive Pixel Grid
+                            </h3>
+                            <p className="mt-1 text-[11px] leading-relaxed text-zinc-400">
+                                An HTML5 canvas grid where individual pixels
+                                light up, float, and react dynamically to mouse
+                                coordinates. Move your mouse across this card to
+                                interact.
+                            </p>
+                        </div>
+
+                        {/* Status readout */}
+                        <div className="flex items-center justify-between rounded border border-zinc-800 bg-zinc-900/50 p-3 font-mono text-[10px] text-zinc-400">
+                            <span className="flex items-center gap-1.5">
+                                <span
+                                    className={`size-1.5 rounded-full ${interactivePixel ? \'animate-pulse bg-purple-500\' : \'bg-zinc-600\'}`}
+                                />
+                                Status:{\' \'}
+                                {interactivePixel
+                                    ? \'Active (Cursor tracking)\'
+                                    : \'Disabled\'}
+                            </span>
+                            <span>Grid: 16px</span>
+                        </div>
+                    </div>
+                </Card>
+            </div>
+        </div>
+    );
+}
+
+export default CanvasGallery;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'blocks',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'blocks',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'cards-stats',
+                'type' => 'registry:block',
+                'title' => 'Cards Stats',
+                'description' => null,
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                    'recharts',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                    'card',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/cards-stats/cards-stats.tsx',
+                        'type' => 'registry:block',
+                        'content' => 'import React from \'react\';
+import { Activity, CreditCard, DollarSign, Users } from \'lucide-react\';
+import { StatCard } from \'./stat-card\';
+
+// Mock chart data for sparklines
+const revenueData = [
+    { value: 4000 },
+    { value: 4500 },
+    { value: 5100 },
+    { value: 4900 },
+    { value: 5300 },
+    { value: 5800 },
+    { value: 6200 },
+];
+
+const subscriptionsData = [
+    { value: 120 },
+    { value: 140 },
+    { value: 135 },
+    { value: 160 },
+    { value: 180 },
+    { value: 175 },
+    { value: 210 },
+];
+
+const salesData = [
+    { value: 300 },
+    { value: 320 },
+    { value: 290 },
+    { value: 350 },
+    { value: 410 },
+    { value: 380 },
+    { value: 450 },
+];
+
+const activeUsersData = [
+    { value: 450 },
+    { value: 480 },
+    { value: 510 },
+    { value: 490 },
+    { value: 530 },
+    { value: 560 },
+    { value: 573 },
+];
+
+export function CardsStats() {
+    return (
+        <div className="grid w-full gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <StatCard
+                title="Total Revenue"
+                value="$45,231.89"
+                description="+$8,231.89 from last month"
+                trend={{ type: \'up\', value: \'20.1%\' }}
+                icon={<DollarSign className="size-4" />}
+                chartType="area"
+                chartData={revenueData}
+                chartColor="var(--color-emerald-500, #10b981)"
+            />
+            <StatCard
+                title="Subscriptions"
+                value="+2,350"
+                description="+180.1% from last month"
+                trend={{ type: \'up\', value: \'180.1%\' }}
+                icon={<CreditCard className="size-4" />}
+                chartType="bar"
+                chartData={subscriptionsData}
+                chartColor="var(--color-blue-500, #3b82f6)"
+            />
+            <StatCard
+                title="Sales"
+                value="+12,234"
+                description="+19% from last month"
+                trend={{ type: \'up\', value: \'19%\' }}
+                icon={<DollarSign className="size-4" />}
+                chartType="area"
+                chartData={salesData}
+                chartColor="var(--color-pink-500, #ec4899)"
+            />
+            <StatCard
+                title="Active Now"
+                value="+573"
+                description="+201 since last hour"
+                trend={{ type: \'up\', value: \'12%\' }}
+                icon={<Activity className="size-4" />}
+                chartType="bar"
+                chartData={activeUsersData}
+                chartColor="var(--color-amber-500, #f59e0b)"
+            />
+        </div>
+    );
+}
+export default CardsStats;
+',
+                    ],
+                    [
+                        'path' => 'resources/js/registry/new-york/components/cards-stats/stat-card.tsx',
+                        'type' => 'registry:block',
+                        'content' => 'import React from \'react\';
+import { cn } from \'@/lib/utils\';
+import { ResponsiveContainer, AreaChart, Area, BarChart, Bar } from \'recharts\';
+import { ArrowUpRight, ArrowDownRight } from \'lucide-react\';
+import { Card, CardContent, CardHeader, CardTitle } from \'@/components/ui/card\';
+
+export interface StatCardProps extends React.HTMLAttributes<HTMLDivElement> {
+    title: string;
+    value: string;
+    description: string;
+    trend?: {
+        type: \'up\' | \'down\';
+        value: string;
+    };
+    icon?: React.ReactNode;
+    chartType?: \'area\' | \'bar\' | \'none\';
+    chartData?: { value: number }[];
+    chartColor?: string;
+}
+
+export function StatCard({
+    title,
+    value,
+    description,
+    trend,
+    icon,
+    chartType = \'none\',
+    chartData = [],
+    chartColor = \'var(--color-primary, #6366f1)\',
+    className,
+    ...props
+}: StatCardProps) {
+    const isUp = trend?.type === \'up\';
+    const gradientId = React.useId().replace(/:/g, \'\');
+
+    return (
+        <Card
+            className={cn(
+                \'group relative overflow-hidden bg-card/30 backdrop-blur-sm transition-all duration-300 hover:border-primary/20 hover:shadow-md dark:hover:bg-zinc-900/50\',
+                className,
+            )}
+            {...props}
+        >
+            {/* Hover Glow effect */}
+            <div className="pointer-events-none absolute inset-0 bg-radial from-primary/5 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-xs font-semibold tracking-tight text-muted-foreground uppercase">
+                    {title}
+                </CardTitle>
+                <div className="flex size-8 items-center justify-center rounded-lg bg-muted/40 text-muted-foreground transition-colors group-hover:text-primary">
+                    {icon}
+                </div>
+            </CardHeader>
+            <CardContent>
+                <div className="flex flex-col gap-1.5">
+                    <div className="flex items-baseline gap-2">
+                        <span className="text-2xl font-bold tracking-tight">
+                            {value}
+                        </span>
+                        {trend && (
+                            <span
+                                className={cn(
+                                    \'inline-flex items-center gap-0.5 rounded-full px-1.5 py-0.5 text-xs font-semibold\',
+                                    isUp
+                                        ? \'bg-emerald-500/10 text-emerald-500\'
+                                        : \'bg-rose-500/10 text-rose-500\',
+                                )}
+                            >
+                                {isUp ? (
+                                    <ArrowUpRight className="size-3" />
+                                ) : (
+                                    <ArrowDownRight className="size-3" />
+                                )}
+                                {trend.value}
+                            </span>
+                        )}
+                    </div>
+                    <p className="text-xs text-muted-foreground">
+                        {description}
+                    </p>
+                </div>
+
+                {chartType !== \'none\' && chartData.length > 0 && (
+                    <div className="-mx-2 mt-4 h-12 opacity-80 transition-opacity duration-300 group-hover:opacity-100">
+                        <ResponsiveContainer width="100%" height="100%">
+                            {chartType === \'area\' ? (
+                                <AreaChart
+                                    data={chartData}
+                                    margin={{
+                                        top: 0,
+                                        right: 0,
+                                        left: 0,
+                                        bottom: 0,
+                                    }}
+                                >
+                                    <defs>
+                                        <linearGradient
+                                            id={gradientId}
+                                            x1="0"
+                                            y1="0"
+                                            x2="0"
+                                            y2="1"
+                                        >
+                                            <stop
+                                                offset="0%"
+                                                stopColor={chartColor}
+                                                stopOpacity={0.4}
+                                            />
+                                            <stop
+                                                offset="100%"
+                                                stopColor={chartColor}
+                                                stopOpacity={0.0}
+                                            />
+                                        </linearGradient>
+                                    </defs>
+                                    <Area
+                                        type="monotone"
+                                        dataKey="value"
+                                        stroke={chartColor}
+                                        strokeWidth={1.5}
+                                        fill={`url(#${gradientId})`}
+                                        dot={false}
+                                    />
+                                </AreaChart>
+                            ) : (
+                                <BarChart
+                                    data={chartData}
+                                    margin={{
+                                        top: 0,
+                                        right: 0,
+                                        left: 0,
+                                        bottom: 0,
+                                    }}
+                                >
+                                    <Bar
+                                        dataKey="value"
+                                        fill={chartColor}
+                                        radius={[2, 2, 0, 0]}
+                                    />
+                                </BarChart>
+                            )}
+                        </ResponsiveContainer>
+                    </div>
+                )}
+            </CardContent>
+        </Card>
+    );
+}
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'blocks',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'blocks',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'feature-grid',
+                'type' => 'registry:block',
+                'title' => 'Feature Grid',
+                'description' => null,
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                    'badge',
+                    'card',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/feature-grid/feature-grid.tsx',
+                        'type' => 'registry:block',
+                        'content' => 'import React from \'react\';
+import {
+    Zap,
+    Shield,
+    Sparkles,
+    RefreshCw,
+    BarChart2,
+    Layers,
+} from \'lucide-react\';
+import { cn } from \'@/lib/utils\';
+import { Badge } from \'@/components/ui/badge\';
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardHeader,
+    CardTitle,
+} from \'@/components/ui/card\';
+
+export interface FeatureItem {
+    title: string;
+    description: string;
+    icon: React.ReactNode;
+    badge?: string;
+    color: string;
+}
+
+const features: FeatureItem[] = [
+    {
+        title: \'Lightning Performance\',
+        description:
+            \'Sub-millisecond query execution speeds via edge-cached memory nodes scattered globally.\',
+        icon: <Zap className="size-5" />,
+        badge: \'New\',
+        color: \'from-amber-500 to-orange-600\',
+    },
+    {
+        title: \'Bank-Grade Cryptography\',
+        description:
+            \'Complete end-to-end data encryption in transit and at rest with isolated keys managed by KMS.\',
+        icon: <Shield className="size-5" />,
+        color: \'from-blue-500 to-indigo-600\',
+    },
+    {
+        title: \'Predictive Insights\',
+        description:
+            \'Leverage embedded local modeling agents that automatically predict anomalies before they impact you.\',
+        icon: <Sparkles className="size-5" />,
+        badge: \'AI Powered\',
+        color: \'from-purple-500 to-pink-600\',
+    },
+    {
+        title: \'Real-time Synchrony\',
+        description:
+            \'Bidirectional sync mechanism ensuring your state is consistently distributed across devices instantly.\',
+        icon: <RefreshCw className="size-5" />,
+        color: \'from-emerald-500 to-teal-600\',
+    },
+    {
+        title: \'Deep Telemetry\',
+        description:
+            \'Granular log indexing and monitoring charts revealing queries, load distribution, and memory profiles.\',
+        icon: <BarChart2 className="size-5" />,
+        color: \'from-rose-500 to-red-600\',
+    },
+    {
+        title: \'Infinite Scalability\',
+        description:
+            \'Modular microservice layer that expands dynamically when request throughput crosses user thresholds.\',
+        icon: <Layers className="size-5" />,
+        badge: \'Core\',
+        color: \'from-cyan-500 to-blue-600\',
+    },
+];
+
+export function FeatureGrid() {
+    return (
+        <div className="mx-auto flex w-full max-w-5xl flex-col gap-10 px-4 py-8">
+            {/* Header */}
+            <div className="flex flex-col justify-between gap-6 border-b border-border/20 pb-8 md:flex-row md:items-end">
+                <div className="max-w-lg space-y-3">
+                    <Badge
+                        variant="outline"
+                        className="bg-primary/5 px-3 py-1 font-mono text-xs tracking-widest text-primary uppercase"
+                    >
+                        Platform Features
+                    </Badge>
+                    <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl">
+                        Engineered for Infinite Scale
+                    </h2>
+                    <p className="text-sm leading-relaxed text-muted-foreground">
+                        A robust, developer-first suite of tools built on
+                        cutting-edge systems, giving you the building blocks to
+                        scale to millions of users.
+                    </p>
+                </div>
+            </div>
+
+            {/* Grid */}
+            <div className="grid w-full gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {features.map((feature, idx) => (
+                    <Card
+                        key={idx}
+                        className="group relative flex flex-col justify-between overflow-hidden border-border/40 bg-card/25 backdrop-blur-xs transition-all duration-300 hover:border-primary/20 hover:shadow-lg"
+                    >
+                        {/* Dynamic backdrop linear glow matching the category theme */}
+                        <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-primary/3 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+
+                        <CardHeader className="space-y-4">
+                            <div className="flex items-center justify-between">
+                                <div
+                                    className={cn(
+                                        \'flex size-10 items-center justify-center rounded-xl bg-gradient-to-tr text-white shadow-md\',
+                                        feature.color,
+                                    )}
+                                >
+                                    {feature.icon}
+                                </div>
+                                {feature.badge && (
+                                    <Badge
+                                        variant="secondary"
+                                        className="rounded-full border border-primary/10 px-2 py-0.5 text-[10px] font-bold"
+                                    >
+                                        {feature.badge}
+                                    </Badge>
+                                )}
+                            </div>
+                            <CardTitle className="text-base font-bold transition-colors group-hover:text-primary">
+                                {feature.title}
+                            </CardTitle>
+                        </CardHeader>
+
+                        <CardContent className="pb-6">
+                            <CardDescription className="text-xs leading-relaxed text-muted-foreground transition-colors group-hover:text-muted-foreground/90">
+                                {feature.description}
+                            </CardDescription>
+                        </CardContent>
+                    </Card>
+                ))}
+            </div>
+        </div>
+    );
+}
+
+export default FeatureGrid;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'blocks',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'blocks',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'hero-section',
+                'type' => 'registry:block',
+                'title' => 'Hero Section',
+                'description' => null,
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                    'button',
+                    'badge',
+                    'card',
+                    'https://ui.test/r/button-magnetic.json',
+                    'https://ui.test/r/button-shine.json',
+                    'https://ui.test/r/progress-circle.json',
+                    'https://ui.test/r/interactive-rating.json',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/hero-section/hero-section.tsx',
+                        'type' => 'registry:block',
+                        'content' => 'import React, { useState } from \'react\';
+import { ArrowRight, Sparkles, Shield, Trophy, Users } from \'lucide-react\';
+import { cn } from \'@/lib/utils\';
+import { Button } from \'@/components/ui/button\';
+import { Badge } from \'@/components/ui/badge\';
+import { Card, CardContent } from \'@/components/ui/card\';
+import { ButtonMagnetic } from \'@/registry/new-york/components/ui/buttons/button-magnetic\';
+import { ButtonShine } from \'@/registry/new-york/components/ui/buttons/button-shine\';
+import { ProgressCircle } from \'@/registry/new-york/components/ui/progress/progress-circle\';
+import { InteractiveRating } from \'@/registry/new-york/components/ui/rating/interactive-rating\';
+
+export function HeroSection() {
+    const [userRating, setUserRating] = useState(5);
+    const [submitSuccess, setSubmitSuccess] = useState(false);
+
+    const handleRatingChange = (newRating: number) => {
+        setUserRating(newRating);
+        setSubmitSuccess(true);
+        setTimeout(() => setSubmitSuccess(false), 2000);
+    };
+
+    return (
+        <section className="relative flex w-full flex-col items-center gap-12 overflow-hidden rounded-2xl border border-border/30 bg-background/50 p-6 shadow-xl select-none md:p-12 lg:flex-row lg:p-16">
+            {/* Ambient Background Glows */}
+            <div className="pointer-events-none absolute -top-40 -left-40 size-96 rounded-full bg-primary/10 blur-3xl" />
+            <div className="pointer-events-none absolute -right-40 -bottom-40 size-96 rounded-full bg-sky-500/10 blur-3xl" />
+
+            {/* Left Content Column */}
+            <div className="relative z-10 flex-1 space-y-6 text-left">
+                <Badge
+                    variant="outline"
+                    className="flex w-fit animate-pulse items-center gap-1.5 border-primary/20 bg-primary/5 px-3 py-1 font-mono text-xs font-bold tracking-wider text-primary uppercase"
+                >
+                    <Sparkles className="size-3.5" />
+                    Premium Experience
+                </Badge>
+
+                <h1 className="text-4xl leading-tight font-extrabold tracking-tight sm:text-5xl">
+                    Luxury Stays &{\' \'}
+                    <span className="bg-gradient-to-r from-primary to-sky-500 bg-clip-text text-transparent">
+                        Creative Spaces
+                    </span>
+                </h1>
+
+                <p className="text-sm leading-relaxed text-muted-foreground sm:text-base">
+                    Discover and reserve hand-crafted spaces tailored for
+                    inspiration, collaboration, and relaxation. Immerse yourself
+                    in environments designed with state-of-the-art aesthetics
+                    and premium comforts.
+                </p>
+
+                {/* Star rating interaction widget */}
+                <div className="flex max-w-md flex-col gap-4 rounded-xl border border-border/40 bg-muted/20 p-4 sm:flex-row sm:items-center">
+                    <div className="space-y-1">
+                        <span className="text-xs font-bold text-foreground">
+                            Rate your interest:
+                        </span>
+                        <div className="flex items-center gap-2">
+                            <InteractiveRating
+                                defaultRating={5}
+                                onChange={handleRatingChange}
+                            />
+                            <span className="font-mono text-xs font-bold text-muted-foreground">
+                                ({userRating}.0)
+                            </span>
+                        </div>
+                    </div>
+                    <div className="flex flex-col justify-center sm:border-l sm:border-border/40 sm:pl-4">
+                        <span className="text-[10px] leading-normal text-muted-foreground">
+                            {submitSuccess ? (
+                                <span className="animate-bounce font-bold text-emerald-500">
+                                    Review recorded!
+                                </span>
+                            ) : (
+                                \'Interact to send a preview rating to our dashboard.\'
+                            )}
+                        </span>
+                    </div>
+                </div>
+
+                {/* Call-to-action buttons using magnetic and shine effects */}
+                <div className="flex flex-wrap items-center gap-4 pt-2">
+                    <ButtonShine className="flex items-center gap-1.5 rounded-xl px-6 py-5 text-sm font-semibold shadow-md">
+                        Book Your Stay
+                        <ArrowRight className="size-4" />
+                    </ButtonShine>
+
+                    <ButtonMagnetic className="rounded-xl border border-border/40 bg-secondary px-6 py-5 text-sm font-semibold text-secondary-foreground hover:bg-muted/80">
+                        Explore Gallery
+                    </ButtonMagnetic>
+                </div>
+            </div>
+
+            {/* Right Interactive Mockup/Dashboard Column */}
+            <div className="relative z-10 w-full max-w-md flex-1">
+                <Card className="relative overflow-hidden border border-border/40 bg-card/25 p-6 shadow-2xl backdrop-blur-md">
+                    <div className="absolute top-3 right-3 opacity-30">
+                        <Sparkles className="size-6 text-primary" />
+                    </div>
+
+                    <h3 className="mb-4 flex items-center gap-2 border-b border-border/20 pb-3 text-sm font-bold tracking-tight">
+                        <Trophy className="size-4.5 text-primary" />
+                        Guesthouse Status Core
+                    </h3>
+
+                    {/* Score Circle Progress Layout */}
+                    <div className="mb-6 grid grid-cols-2 place-items-center gap-6">
+                        <ProgressCircle
+                            value={98}
+                            size={100}
+                            strokeWidth={10}
+                            label="Cleanliness"
+                        />
+                        <ProgressCircle
+                            value={94}
+                            size={100}
+                            strokeWidth={10}
+                            label="Guest Rating"
+                        />
+                    </div>
+
+                    {/* Stats List Items */}
+                    <div className="space-y-3.5">
+                        <div className="flex items-center justify-between border-t border-border/10 pt-3 text-xs">
+                            <span className="flex items-center gap-2 text-muted-foreground">
+                                <Users className="size-4 text-sky-500" />
+                                Host communication
+                            </span>
+                            <span className="font-mono font-bold">
+                                100% (Flawless)
+                            </span>
+                        </div>
+                        <div className="flex items-center justify-between border-t border-border/10 pt-3 text-xs">
+                            <span className="flex items-center gap-2 text-muted-foreground">
+                                <Shield className="size-4 text-emerald-500" />
+                                Security score
+                            </span>
+                            <span className="font-mono font-bold">
+                                99.8% (Verified)
+                            </span>
+                        </div>
+                    </div>
+                </Card>
+
+                {/* Sub-card floating decorative info badge */}
+                <div className="pointer-events-none absolute -bottom-6 -left-6 flex hidden max-w-[180px] animate-bounce items-center gap-3 rounded-xl border border-primary/20 bg-primary p-3 text-primary-foreground shadow-lg select-none sm:flex">
+                    <div className="flex size-8 items-center justify-center rounded-full bg-primary-foreground/15 font-mono text-xs font-black">
+                        9.9
+                    </div>
+                    <div className="flex flex-col text-left">
+                        <span className="text-[10px] leading-none font-bold tracking-wider uppercase">
+                            Superb Score
+                        </span>
+                        <span className="mt-0.5 text-[8px] opacity-80">
+                            Guest Favorite Choice
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
+}
+
+export default HeroSection;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'blocks',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'blocks',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'inputs-gallery',
+                'type' => 'registry:block',
+                'title' => 'Inputs Gallery',
+                'description' => null,
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'https://ui.test/r/input-slug.json',
+                    'https://ui.test/r/multi-select.json',
+                    'input',
+                    'card',
+                    'badge',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/inputs-gallery/inputs-gallery.tsx',
+                        'type' => 'registry:block',
+                        'content' => 'import React, { useState } from \'react\';
+import { Tag, Search, Hash, Lock, Check } from \'lucide-react\';
+import { InputSlug } from \'@/registry/new-york/components/ui/inputs/input-slug\';
+import {
+    MultiSelect,
+    MultiSelectTrigger,
+    MultiSelectValue,
+    MultiSelectContent,
+    MultiSelectItem,
+} from \'@/registry/new-york/components/ui/inputs/multi-select\';
+import { Input } from \'@/components/ui/input\';
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardHeader,
+    CardTitle,
+} from \'@/components/ui/card\';
+import { Badge } from \'@/components/ui/badge\';
+
+export function InputsGallery() {
+    const [slugValue, setSlugValue] = useState(\'\');
+    const [selectedTags, setSelectedTags] = useState<string[]>([]);
+    const [searchFocused, setSearchFocused] = useState(false);
+    const [searchValue, setSearchValue] = useState(\'\');
+
+    const options = [
+        { label: \'Next.js\', value: \'next\' },
+        { label: \'Laravel\', value: \'laravel\' },
+        { label: \'React\', value: \'react\' },
+        { label: \'Vite\', value: \'vite\' },
+        { label: \'Tailwind CSS\', value: \'tailwind\' },
+    ];
+
+    return (
+        <div className="mx-auto flex w-full max-w-5xl flex-col gap-8 px-4 py-6">
+            <div className="space-y-2">
+                <Badge
+                    variant="outline"
+                    className="bg-primary/5 px-3 py-1 font-mono text-xs tracking-widest text-primary uppercase"
+                >
+                    Component Showcase
+                </Badge>
+                <h2 className="text-2xl font-bold tracking-tight">
+                    Interactive Inputs Gallery
+                </h2>
+                <p className="text-xs text-muted-foreground">
+                    Explore and compare different interactive input fields, tag
+                    drop-downs, and auto-formatters.
+                </p>
+            </div>
+
+            <div className="grid w-full items-stretch gap-6 sm:grid-cols-2">
+                {/* 1. Slug Formatter Input */}
+                <Card className="flex flex-col justify-between border border-border/40 bg-card/25 backdrop-blur-xs">
+                    <CardHeader className="pb-3">
+                        <CardTitle className="flex items-center gap-2 text-sm font-bold">
+                            <Hash className="size-4 text-purple-500" />
+                            Auto-Slug Input
+                        </CardTitle>
+                        <CardDescription className="text-xs">
+                            Format text dynamically into clean, URL-safe slug
+                            strings as you type.
+                        </CardDescription>
+                    </CardHeader>
+                    <CardContent className="flex flex-1 flex-col justify-center space-y-3 pb-6">
+                        <InputSlug
+                            value={slugValue}
+                            onValueChange={setSlugValue}
+                            placeholder="Type a title e.g. New Product Launch..."
+                            className="h-9 w-full text-xs"
+                        />
+                        <div className="truncate rounded border border-border/20 bg-muted/30 p-2.5 font-mono text-[10px] text-muted-foreground">
+                            slug:{\' \'}
+                            <span className="font-bold text-primary">
+                                {slugValue || \'none\'}
+                            </span>
+                        </div>
+                    </CardContent>
+                </Card>
+
+                {/* 2. Multi-Select Dropdown */}
+                <Card className="flex flex-col justify-between border border-border/40 bg-card/25 backdrop-blur-xs">
+                    <CardHeader className="pb-3">
+                        <CardTitle className="flex items-center gap-2 text-sm font-bold">
+                            <Tag className="size-4 text-sky-500" />
+                            Multi-Select Dropdown
+                        </CardTitle>
+                        <CardDescription className="text-xs">
+                            Dropdown component for selecting and compiling
+                            multiple tags.
+                        </CardDescription>
+                    </CardHeader>
+                    <CardContent className="flex min-h-[120px] flex-1 flex-col justify-center space-y-3 pb-6">
+                        <MultiSelect
+                            value={selectedTags}
+                            onValueChange={setSelectedTags}
+                        >
+                            <MultiSelectTrigger className="h-9 w-full text-xs">
+                                <MultiSelectValue placeholder="Select technologies..." />
+                            </MultiSelectTrigger>
+                            <MultiSelectContent>
+                                {options.map((opt) => (
+                                    <MultiSelectItem
+                                        key={opt.value}
+                                        value={opt.value}
+                                    >
+                                        {opt.label}
+                                    </MultiSelectItem>
+                                ))}
+                            </MultiSelectContent>
+                        </MultiSelect>
+                        <div className="truncate rounded border border-border/20 bg-muted/30 p-2.5 font-mono text-[10px] text-muted-foreground">
+                            Selected:{\' \'}
+                            <span className="font-bold text-primary">
+                                {selectedTags.join(\', \') || \'none\'}
+                            </span>
+                        </div>
+                    </CardContent>
+                </Card>
+
+                {/* 3. Focus-Glow Search Input */}
+                <Card className="flex flex-col justify-between border border-border/40 bg-card/25 backdrop-blur-xs">
+                    <CardHeader className="pb-3">
+                        <CardTitle className="flex items-center gap-2 text-sm font-bold">
+                            <Search className="size-4 text-emerald-500" />
+                            Focus-Glow Search
+                        </CardTitle>
+                        <CardDescription className="text-xs">
+                            Expands and updates border glow states upon search
+                            selection.
+                        </CardDescription>
+                    </CardHeader>
+                    <CardContent className="flex flex-1 flex-col justify-center pb-6">
+                        <div className="relative">
+                            <Search
+                                className={`absolute top-1/2 left-3 size-3.5 -translate-y-1/2 transition-colors duration-300 ${
+                                    searchFocused
+                                        ? \'text-primary\'
+                                        : \'text-muted-foreground\'
+                                }`}
+                            />
+                            <Input
+                                value={searchValue}
+                                onChange={(e) => setSearchValue(e.target.value)}
+                                onFocus={() => setSearchFocused(true)}
+                                onBlur={() => setSearchFocused(false)}
+                                placeholder="Search queries..."
+                                className={`h-9 pl-9 text-xs transition-all duration-300 ${
+                                    searchFocused
+                                        ? \'border-primary bg-card/50 ring-1 ring-primary/20\'
+                                        : \'border-border/50 bg-card/15\'
+                                }`}
+                            />
+                        </div>
+                    </CardContent>
+                </Card>
+
+                {/* 4. Secure Password Field */}
+                <Card className="flex flex-col justify-between border border-border/40 bg-card/25 backdrop-blur-xs">
+                    <CardHeader className="pb-3">
+                        <CardTitle className="flex items-center gap-2 text-sm font-bold">
+                            <Lock className="size-4 text-pink-500" />
+                            Glow-Border Passcode Field
+                        </CardTitle>
+                        <CardDescription className="text-xs">
+                            Simple passcode field illustrating focused states.
+                        </CardDescription>
+                    </CardHeader>
+                    <CardContent className="flex flex-1 flex-col justify-center pb-6">
+                        <div className="relative">
+                            <Lock className="absolute top-1/2 left-3 size-3.5 -translate-y-1/2 text-muted-foreground" />
+                            <Input
+                                type="password"
+                                placeholder="••••••••"
+                                className="h-9 border-border/50 bg-card/15 pl-9 text-xs focus-visible:border-pink-500/50 focus-visible:ring-[3px] focus-visible:ring-pink-500/10"
+                            />
+                        </div>
+                    </CardContent>
+                </Card>
+            </div>
+        </div>
+    );
+}
+
+export default InputsGallery;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'blocks',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'blocks',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
                 'name' => 'music-player',
                 'type' => 'registry:block',
                 'title' => 'Music Player',
@@ -443,8 +2643,8 @@ export function MusicPlayer() {
     // Shuffle indices
     const shuffledIndices = useMemo(() => {
         if (!currentPlaylist) {
-return [];
-}
+            return [];
+        }
 
         const indices = Array.from(
             { length: currentPlaylist.tracks.length },
@@ -689,13 +2889,9 @@ return [];
     const currentAnalyser = isPlaying ? analyser : null;
 
     return (
-        <div className="flex h-screen bg-background @container">
+        <div className="@container flex h-screen bg-background">
             {/* Hidden audio element */}
-            <audio
-                ref={audioRef}
-                src={currentTrack?.src}
-                preload="metadata"
-            />
+            <audio ref={audioRef} src={currentTrack?.src} preload="metadata" />
 
             {/* Playlist Sidebar */}
             <PlaylistSidebar
@@ -1587,6 +3783,1321 @@ export function VolumeControl({ volume, onVolumeChange }: VolumeControlProps) {
         </div>
     );
 }
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'blocks',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'blocks',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'pricing-section',
+                'type' => 'registry:block',
+                'title' => 'Pricing Section',
+                'description' => null,
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                    'button',
+                    'badge',
+                    'card',
+                    'switch',
+                    'label',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/pricing-section/pricing-section.tsx',
+                        'type' => 'registry:block',
+                        'content' => 'import React, { useState } from \'react\';
+import { Check, HelpCircle } from \'lucide-react\';
+import { cn } from \'@/lib/utils\';
+import { Button } from \'@/components/ui/button\';
+import { Badge } from \'@/components/ui/badge\';
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+} from \'@/components/ui/card\';
+import { Switch } from \'@/components/ui/switch\';
+import { Label } from \'@/components/ui/label\';
+
+export interface PricingTier {
+    name: string;
+    description: string;
+    monthlyPrice: number;
+    yearlyPrice: number;
+    features: string[];
+    ctaText: string;
+    popular?: boolean;
+    ctaVariant?: \'default\' | \'outline\' | \'secondary\';
+}
+
+const tiers: PricingTier[] = [
+    {
+        name: \'Hobby\',
+        description: \'Perfect for side projects and initial prototypes.\',
+        monthlyPrice: 9,
+        yearlyPrice: 7,
+        features: [
+            \'Up to 3 active projects\',
+            \'Basic telemetry & alerts\',
+            \'10GB monthly bandwidth\',
+            \'Community forum support\',
+            \'API access limit (60 req/min)\',
+        ],
+        ctaText: \'Start for Free\',
+        ctaVariant: \'outline\',
+    },
+    {
+        name: \'Professional\',
+        description: \'For growing apps requiring advanced scaling & support.\',
+        monthlyPrice: 29,
+        yearlyPrice: 24,
+        features: [
+            \'Unlimited active projects\',
+            \'Real-time detailed metrics\',
+            \'100GB monthly bandwidth\',
+            \'Priority 24/7 support\',
+            \'Unlimited API access\',
+            \'Custom domain integration\',
+            \'Team collaboration (up to 5)\',
+        ],
+        ctaText: \'Upgrade to Pro\',
+        popular: true,
+        ctaVariant: \'default\',
+    },
+    {
+        name: \'Enterprise\',
+        description: \'Custom solutions for high scale corporate products.\',
+        monthlyPrice: 99,
+        yearlyPrice: 79,
+        features: [
+            \'Dedicated database nodes\',
+            \'Custom SLA contracts\',
+            \'Multi-region replication\',
+            \'Dedicated account manager\',
+            \'SSO/SAML Authentication\',
+            \'Custom logging integrations\',
+            \'Infinite team seats\',
+        ],
+        ctaText: \'Contact Sales\',
+        ctaVariant: \'outline\',
+    },
+];
+
+export function PricingSection() {
+    const [isYearly, setIsYearly] = useState(false);
+
+    return (
+        <div className="mx-auto flex w-full max-w-5xl flex-col items-center gap-8 px-4 py-8">
+            <div className="max-w-xl space-y-3 text-center">
+                <Badge
+                    variant="outline"
+                    className="bg-primary/5 px-3 py-1 font-mono text-xs tracking-widest text-primary uppercase"
+                >
+                    Flexible Pricing
+                </Badge>
+                <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl">
+                    Fair Pricing for Everyone
+                </h2>
+                <p className="text-sm text-muted-foreground">
+                    Get started with our free tiers and upgrade seamlessly as
+                    your production needs grow. Cancel or change plans anytime.
+                </p>
+            </div>
+
+            {/* Toggle switch for Monthly vs Yearly billing */}
+            <div className="flex items-center gap-3 rounded-full border border-border/40 bg-muted/30 p-2.5 select-none">
+                <Label
+                    htmlFor="billing-period"
+                    className={cn(
+                        \'cursor-pointer text-xs font-semibold transition-colors\',
+                        !isYearly ? \'text-foreground\' : \'text-muted-foreground\',
+                    )}
+                >
+                    Monthly
+                </Label>
+                <Switch
+                    id="billing-period"
+                    checked={isYearly}
+                    onCheckedChange={setIsYearly}
+                    className="data-[state=checked]:bg-primary"
+                />
+                <Label
+                    htmlFor="billing-period"
+                    className={cn(
+                        \'flex cursor-pointer items-center gap-1.5 text-xs font-semibold transition-colors\',
+                        isYearly ? \'text-foreground\' : \'text-muted-foreground\',
+                    )}
+                >
+                    Yearly
+                    <Badge
+                        variant="secondary"
+                        className="border border-emerald-500/20 bg-emerald-500/10 px-1 py-0 text-[9px] font-bold text-emerald-500 hover:bg-emerald-500/10"
+                    >
+                        Save 20%
+                    </Badge>
+                </Label>
+            </div>
+
+            {/* Pricing cards grid */}
+            <div className="grid w-full items-stretch gap-6 md:grid-cols-3">
+                {tiers.map((tier) => {
+                    const price = isYearly
+                        ? tier.yearlyPrice
+                        : tier.monthlyPrice;
+                    return (
+                        <Card
+                            key={tier.name}
+                            className={cn(
+                                \'relative flex flex-col justify-between transition-all duration-300 hover:-translate-y-1\',
+                                tier.popular
+                                    ? \'border-primary bg-card/65 shadow-lg ring-1 ring-primary/30\'
+                                    : \'border-border/50 bg-card/25 backdrop-blur-xs hover:border-border/80\',
+                            )}
+                        >
+                            {tier.popular && (
+                                <div className="absolute top-0 right-1/2 translate-x-1/2 -translate-y-1/2">
+                                    <Badge className="rounded-full bg-primary px-3 py-0.5 text-xs font-semibold tracking-wider text-primary-foreground uppercase shadow-md hover:bg-primary">
+                                        Most Popular
+                                    </Badge>
+                                </div>
+                            )}
+
+                            <div>
+                                <CardHeader className="pb-4">
+                                    <CardTitle className="text-xl font-bold">
+                                        {tier.name}
+                                    </CardTitle>
+                                    <CardDescription className="mt-1 min-h-[32px] text-xs">
+                                        {tier.description}
+                                    </CardDescription>
+                                </CardHeader>
+
+                                <CardContent className="space-y-6">
+                                    {/* Plan Price */}
+                                    <div className="flex items-baseline gap-1.5">
+                                        <span className="text-4xl font-extrabold tracking-tight">
+                                            ${price}
+                                        </span>
+                                        <span className="text-xs font-medium text-muted-foreground">
+                                            / user / month
+                                        </span>
+                                    </div>
+
+                                    {/* Features Checklist */}
+                                    <ul className="space-y-3 text-xs text-foreground/85">
+                                        {tier.features.map((feature) => (
+                                            <li
+                                                key={feature}
+                                                className="flex items-start gap-2"
+                                            >
+                                                <div
+                                                    className={cn(
+                                                        \'mt-0.5 flex size-4 shrink-0 items-center justify-center rounded-full\',
+                                                        tier.popular
+                                                            ? \'bg-primary/10 text-primary\'
+                                                            : \'bg-muted text-muted-foreground\',
+                                                    )}
+                                                >
+                                                    <Check className="size-2.5 stroke-[3]" />
+                                                </div>
+                                                <span className="leading-snug">
+                                                    {feature}
+                                                </span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </CardContent>
+                            </div>
+
+                            <CardFooter className="pt-4">
+                                <Button
+                                    variant={tier.ctaVariant}
+                                    className={cn(
+                                        \'w-full transition-transform active:scale-95\',
+                                        tier.popular &&
+                                            \'shadow-md shadow-primary/20\',
+                                    )}
+                                >
+                                    {tier.ctaText}
+                                </Button>
+                            </CardFooter>
+                        </Card>
+                    );
+                })}
+            </div>
+        </div>
+    );
+}
+
+export default PricingSection;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'blocks',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'blocks',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'property-detail',
+                'type' => 'registry:block',
+                'title' => 'Property Detail',
+                'description' => null,
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'badge',
+                    'card',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/property-detail/property-detail.tsx',
+                        'type' => 'registry:block',
+                        'content' => 'import React from \'react\';
+import {
+    Star,
+    MapPin,
+    Users,
+    Wifi,
+    Coffee,
+    Tv,
+    Shield,
+    Compass,
+    Calendar,
+    Sparkles,
+    Check,
+    ChevronRight,
+} from \'lucide-react\';
+import { Badge } from \'@/components/ui/badge\';
+import { Card, CardContent } from \'@/components/ui/card\';
+import { BookingForm } from \'../booking-form/booking-form\';
+
+export function PropertyDetail() {
+    const amenities = [
+        {
+            name: \'High-speed Wi-Fi\',
+            desc: \'500 Mbps connection\',
+            icon: <Wifi className="size-4 text-primary" />,
+        },
+        {
+            name: \'Chef Kitchen\',
+            desc: \'Professional stove & cookware\',
+            icon: <Coffee className="size-4 text-primary" />,
+        },
+        {
+            name: \'Smart Cable TV\',
+            desc: \'Netflix, Prime & sound system\',
+            icon: <Tv className="size-4 text-primary" />,
+        },
+        {
+            name: \'Protected Safety\',
+            desc: \'Gated entrance & smart lock\',
+            icon: <Shield className="size-4 text-primary" />,
+        },
+        {
+            name: \'Panoramic Balcony\',
+            desc: \'Overlooks ocean & sunset view\',
+            icon: <Compass className="size-4 text-primary" />,
+        },
+        {
+            name: \'Wellness Bath\',
+            desc: \'Rain shower & cedar hot tub\',
+            icon: <Sparkles className="size-4 text-primary" />,
+        },
+    ];
+
+    const highlights = [
+        \'Selected in "Top 100 Stays" Worldwide by Travel Guide\',
+        \'Direct sand access, just 20 meters to the beach\',
+        \'Exceptional host with average response time of 5 minutes\',
+    ];
+
+    return (
+        <div className="mx-auto w-full max-w-5xl space-y-8 px-4 py-6">
+            {/* Top Header section */}
+            <div className="space-y-2 border-b border-border/20 pb-6">
+                <div className="flex flex-wrap items-center gap-2">
+                    <Badge className="bg-emerald-600 font-mono text-[9px] tracking-wider text-white uppercase hover:bg-emerald-500">
+                        ★ Top Rated
+                    </Badge>
+                    <Badge
+                        variant="outline"
+                        className="text-[9px] tracking-wider uppercase"
+                    >
+                        Eleuthera, Bahamas
+                    </Badge>
+                </div>
+                <div className="flex flex-col justify-between gap-4 md:flex-row md:items-center">
+                    <h2 className="font-sans text-2xl font-extrabold tracking-tight text-foreground md:text-3xl">
+                        The Azure Wave Villa
+                    </h2>
+                    <div className="flex shrink-0 items-center gap-1.5 text-sm">
+                        <Star className="size-4 fill-amber-500 text-amber-500" />
+                        <span className="font-extrabold">4.98</span>
+                        <span className="text-muted-foreground">
+                            (86 reviews)
+                        </span>
+                        <span className="text-muted-foreground">•</span>
+                        <span className="cursor-pointer font-semibold text-primary underline">
+                            Superhost
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            {/* Premium Vector Mosaic Gallery */}
+            <div className="grid h-[300px] grid-cols-1 gap-3 overflow-hidden rounded-xl border border-border/20 shadow-lg md:h-[400px] md:grid-cols-4">
+                <div className="relative flex h-full items-center justify-center bg-gradient-to-tr from-sky-600 via-blue-800 to-indigo-900 p-6 text-center text-white md:col-span-2">
+                    <div className="absolute inset-0 bg-black/10 transition-colors hover:bg-black/20" />
+                    <span className="relative z-10 font-bebas-neue! text-3xl tracking-wider">
+                        Ocean Front Terrace
+                    </span>
+                    <div className="absolute bottom-4 left-4 font-mono text-xs opacity-80">
+                        Living Area & Pool
+                    </div>
+                </div>
+                <div className="grid h-full grid-rows-2 gap-3 md:col-span-2">
+                    <div className="grid h-full grid-cols-2 gap-3">
+                        <div className="relative flex items-center justify-center bg-gradient-to-br from-teal-500 via-emerald-600 to-indigo-800 text-center text-white">
+                            <div className="absolute inset-0 bg-black/10" />
+                            <span className="relative z-10 text-xs font-bold">
+                                Infinity Pool
+                            </span>
+                        </div>
+                        <div className="relative flex items-center justify-center bg-gradient-to-br from-amber-600 via-orange-700 to-stone-900 text-center text-white">
+                            <div className="absolute inset-0 bg-black/10" />
+                            <span className="relative z-10 text-xs font-bold">
+                                Master Bed Suite
+                            </span>
+                        </div>
+                    </div>
+                    <div className="grid h-full grid-cols-2 gap-3">
+                        <div className="relative flex items-center justify-center bg-gradient-to-tr from-indigo-700 via-violet-800 to-fuchsia-950 text-center text-white">
+                            <div className="absolute inset-0 bg-black/10" />
+                            <span className="relative z-10 text-xs font-bold">
+                                Wellness Bath
+                            </span>
+                        </div>
+                        <div className="relative flex items-center justify-center bg-gradient-to-tr from-cyan-600 via-teal-700 to-blue-900 text-center text-white">
+                            <div className="absolute inset-0 bg-black/10" />
+                            <span className="relative z-10 text-xs font-bold">
+                                Direct Sand Path
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* Split Details Section */}
+            <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
+                {/* Left Side: Property details */}
+                <div className="space-y-8 lg:col-span-2">
+                    {/* Host Info */}
+                    <div className="flex items-center justify-between border-b border-border/20 pb-6">
+                        <div className="space-y-1">
+                            <h3 className="text-lg font-bold text-foreground">
+                                Entire villa hosted by Sarah
+                            </h3>
+                            <p className="text-xs text-muted-foreground">
+                                6 guests • 3 bedrooms • 5 beds • 3 baths
+                            </p>
+                        </div>
+                        <div className="relative">
+                            <div className="flex size-12 items-center justify-center rounded-full border border-white/20 bg-gradient-to-tr from-sky-400 to-indigo-500 font-extrabold text-white shadow-inner">
+                                S
+                            </div>
+                            <div className="absolute -right-1 -bottom-1 flex size-5 items-center justify-center rounded-full border-2 border-background bg-emerald-500 text-white">
+                                <Check className="size-3 stroke-[3]" />
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Highlights list */}
+                    <div className="space-y-3">
+                        <h4 className="text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
+                            Key Highlights
+                        </h4>
+                        <div className="space-y-2.5">
+                            {highlights.map((h, i) => (
+                                <div
+                                    key={i}
+                                    className="flex items-start gap-2.5 text-xs leading-relaxed text-muted-foreground"
+                                >
+                                    <Sparkles className="mt-0.5 size-4.5 shrink-0 text-amber-500" />
+                                    <span>{h}</span>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Description */}
+                    <div className="space-y-3 border-t border-border/20 pt-6">
+                        <h4 className="text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
+                            About This Guesthouse
+                        </h4>
+                        <p className="text-xs leading-relaxed text-muted-foreground">
+                            Welcome to The Azure Wave Villa, where sea meets
+                            luxury. Elevated above the sparkling waves of
+                            Eleuthera, our guesthouse features structural open
+                            ceilings, natural limestone walls, and
+                            floor-to-ceiling glass panel windows that frame
+                            magnificent panoramic views of Aspire Bay.
+                        </p>
+                        <p className="text-xs leading-relaxed text-muted-foreground">
+                            Perfect for families or groups looking for private
+                            beach access combined with high-end modern comforts.
+                            Step onto the sunset terrace to enjoy our heated
+                            infinity pool, fire up the outdoor chef grill, or
+                            follow our private rope path down to direct pink
+                            sand shores.
+                        </p>
+                    </div>
+
+                    {/* Amenities list */}
+                    <div className="space-y-3 border-t border-border/20 pt-6">
+                        <h4 className="text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
+                            Premium Amenities
+                        </h4>
+                        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                            {amenities.map((amenity, idx) => (
+                                <div
+                                    key={idx}
+                                    className="flex items-start gap-3 rounded-lg border border-border/30 bg-muted/10 p-3 transition-all duration-300 hover:bg-muted/20"
+                                >
+                                    <div className="flex size-8 shrink-0 items-center justify-center rounded bg-primary/10">
+                                        {amenity.icon}
+                                    </div>
+                                    <div className="min-w-0 space-y-0.5">
+                                        <h5 className="truncate text-xs font-bold text-foreground">
+                                            {amenity.name}
+                                        </h5>
+                                        <p className="truncate text-[10px] text-muted-foreground">
+                                            {amenity.desc}
+                                        </p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+
+                {/* Right Side: Booking widget */}
+                <div className="relative">
+                    <div className="sticky top-24">
+                        <BookingForm
+                            pricePerNight={280}
+                            cleaningFee={65}
+                            serviceFee={35}
+                        />
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+export default PropertyDetail;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'blocks',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'blocks',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'rental-listings',
+                'type' => 'registry:block',
+                'title' => 'Rental Listings',
+                'description' => null,
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'badge',
+                    'button',
+                    'card',
+                    'input',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/rental-listings/rental-listings.tsx',
+                        'type' => 'registry:block',
+                        'content' => 'import React, { useState, useMemo } from \'react\';
+import {
+    Search,
+    Star,
+    MapPin,
+    Wifi,
+    Coffee,
+    Compass,
+    Heart,
+    Eye,
+} from \'lucide-react\';
+import { Badge } from \'@/components/ui/badge\';
+import { Button } from \'@/components/ui/button\';
+import {
+    Card,
+    CardContent,
+    CardFooter,
+    CardHeader,
+} from \'@/components/ui/card\';
+import { Input } from \'@/components/ui/input\';
+
+interface RentalItem {
+    id: string;
+    name: string;
+    description: string;
+    location: string;
+    price: number;
+    rating: number;
+    reviews: number;
+    category: \'cabin\' | \'villa\' | \'loft\' | \'beachfront\';
+    guests: number;
+    beds: number;
+    baths: number;
+    featured: boolean;
+    amenities: string[];
+    gradient: string;
+}
+
+const LISTINGS_DATA: RentalItem[] = [
+    {
+        id: \'1\',
+        name: \'Whispering Pines Retreat\',
+        description:
+            \'Cozy rustic cabin nestled deep in a redwood forest with outdoor stone fireplace and cedar hot tub.\',
+        location: \'Redwood Valley, CA\',
+        price: 135,
+        rating: 4.92,
+        reviews: 124,
+        category: \'cabin\',
+        guests: 4,
+        beds: 2,
+        baths: 1,
+        featured: true,
+        amenities: [\'Hot Tub\', \'Fireplace\', \'Wifi\', \'Kitchen\'],
+        gradient: \'from-amber-700 via-amber-800 to-stone-900\',
+    },
+    {
+        id: \'2\',
+        name: \'The Azure Wave Villa\',
+        description:
+            \'Spectacular infinity-pool seaside villa overlooking crystal blue waves with panoramic glass terrace.\',
+        location: \'Amalfi Coast, Italy\',
+        price: 280,
+        rating: 4.98,
+        reviews: 86,
+        category: \'villa\',
+        guests: 6,
+        beds: 3,
+        baths: 3,
+        featured: true,
+        amenities: [\'Pool\', \'Sea View\', \'Wifi\', \'Breakfast\'],
+        gradient: \'from-sky-700 via-blue-800 to-indigo-900\',
+    },
+    {
+        id: \'3\',
+        name: \'Celestial Heights Loft\',
+        description:
+            \'Ultra-modern luxury loft featuring skyscraper skyline view, home theater, and rooftop skydeck.\',
+        location: \'Tokyo, Japan\',
+        price: 340,
+        rating: 4.89,
+        reviews: 42,
+        category: \'loft\',
+        guests: 2,
+        beds: 1,
+        baths: 1.5,
+        featured: false,
+        amenities: [\'Sky View\', \'Gym\', \'Wifi\', \'Smart Home\'],
+        gradient: \'from-zinc-800 via-slate-800 to-black\',
+    },
+    {
+        id: \'4\',
+        name: \'Coral Sands Beachfront\',
+        description:
+            \'Step directly onto pink powder sands. A bright beach chalet with hammocks, kayaks, and breeze deck.\',
+        location: \'Eleuthera, Bahamas\',
+        price: 195,
+        rating: 4.95,
+        reviews: 212,
+        category: \'beachfront\',
+        guests: 5,
+        beds: 3,
+        baths: 2,
+        featured: true,
+        amenities: [\'Beachfront\', \'Kayaks\', \'Wifi\', \'Air Conditioning\'],
+        gradient: \'from-teal-600 via-cyan-700 to-blue-900\',
+    },
+    {
+        id: \'5\',
+        name: \'Mountain Crest Lodge\',
+        description:
+            \'Alpine retreat with ski-in/ski-out deck, heated floors, and majestic snowy peaks right outside.\',
+        location: \'Aspen, CO\',
+        price: 245,
+        rating: 4.87,
+        reviews: 73,
+        category: \'cabin\',
+        guests: 8,
+        beds: 4,
+        baths: 3.5,
+        featured: false,
+        amenities: [\'Ski Access\', \'Fireplace\', \'Wifi\', \'Hot Tub\'],
+        gradient: \'from-orange-800 via-red-900 to-stone-950\',
+    },
+    {
+        id: \'6\',
+        name: \'Emerald Vista Hideaway\',
+        description:
+            \'Architectural forest treehouse elevated above the jungle canopy with rain shower and suspension bridge.\',
+        location: \'Monteverde, Costa Rica\',
+        price: 160,
+        rating: 4.91,
+        reviews: 95,
+        category: \'beachfront\',
+        guests: 3,
+        beds: 2,
+        baths: 1,
+        featured: false,
+        amenities: [\'Jungle View\', \'Wifi\', \'Eco-Friendly\', \'Deck\'],
+        gradient: \'from-emerald-700 via-green-800 to-teal-950\',
+    },
+];
+
+export function RentalListings() {
+    const [search, setSearch] = useState(\'\');
+    const [selectedCategory, setSelectedCategory] = useState<string>(\'all\');
+    const [favorites, setFavorites] = useState<string[]>([]);
+
+    const toggleFavorite = (id: string) => {
+        setFavorites((prev) =>
+            prev.includes(id)
+                ? prev.filter((fId) => fId !== id)
+                : [...prev, id],
+        );
+    };
+
+    const categories = [
+        { label: \'All Rentals\', value: \'all\' },
+        { label: \'Cabins\', value: \'cabin\' },
+        { label: \'Villas\', value: \'villa\' },
+        { label: \'Lofts\', value: \'loft\' },
+        { label: \'Beachfront\', value: \'beachfront\' },
+    ];
+
+    const filteredListings = useMemo(() => {
+        return LISTINGS_DATA.filter((listing) => {
+            const matchesSearch =
+                listing.name.toLowerCase().includes(search.toLowerCase()) ||
+                listing.location.toLowerCase().includes(search.toLowerCase()) ||
+                listing.description
+                    .toLowerCase()
+                    .includes(search.toLowerCase());
+
+            const matchesCategory =
+                selectedCategory === \'all\' ||
+                listing.category === selectedCategory;
+
+            return matchesSearch && matchesCategory;
+        });
+    }, [search, selectedCategory]);
+
+    const getAmenityIcon = (amenity: string) => {
+        switch (amenity.toLowerCase()) {
+            case \'wifi\':
+                return <Wifi className="size-3" />;
+            case \'breakfast\':
+            case \'coffee\':
+                return <Coffee className="size-3" />;
+            default:
+                return <Compass className="size-3" />;
+        }
+    };
+
+    return (
+        <div className="mx-auto flex w-full max-w-5xl flex-col gap-6 px-4 py-4">
+            {/* Header with Search and Category Filter */}
+            <div className="flex flex-col gap-4 border-b border-border/20 pb-6 md:flex-row md:items-center md:justify-between">
+                <div className="space-y-1">
+                    <h2 className="text-xl font-bold tracking-tight">
+                        Rental Getaways
+                    </h2>
+                    <p className="text-xs text-muted-foreground">
+                        Find premium cabins, villas, lofts, and unique spaces
+                        around the world
+                    </p>
+                </div>
+                <div className="flex w-full flex-col gap-3 sm:flex-row md:max-w-md">
+                    <div className="relative flex-1">
+                        <Search className="absolute top-2.5 left-3 size-4 text-muted-foreground" />
+                        <Input
+                            placeholder="Search locations or listings..."
+                            value={search}
+                            onChange={(e) => setSearch(e.target.value)}
+                            className="h-9 pl-9 text-xs"
+                        />
+                    </div>
+                </div>
+            </div>
+
+            {/* Category Tabs */}
+            <div className="no-scrollbar flex flex-wrap gap-1.5 overflow-x-auto pb-1">
+                {categories.map((cat) => (
+                    <Button
+                        key={cat.value}
+                        variant={
+                            selectedCategory === cat.value
+                                ? \'default\'
+                                : \'outline\'
+                        }
+                        size="sm"
+                        onClick={() => setSelectedCategory(cat.value)}
+                        className="h-8 cursor-pointer rounded-full px-4 text-xs select-none"
+                    >
+                        {cat.label}
+                    </Button>
+                ))}
+            </div>
+
+            {/* Listings Grid */}
+            {filteredListings.length === 0 ? (
+                <div className="rounded-xl border border-dashed border-border/50 bg-card/25 py-16 text-center backdrop-blur-xs">
+                    <p className="text-sm text-muted-foreground">
+                        No rentals match your search filters.
+                    </p>
+                    <Button
+                        onClick={() => {
+                            setSearch(\'\');
+                            setSelectedCategory(\'all\');
+                        }}
+                        variant="link"
+                        className="mt-2 text-xs"
+                    >
+                        Clear all filters
+                    </Button>
+                </div>
+            ) : (
+                <div className="grid w-full gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                    {filteredListings.map((listing) => (
+                        <Card
+                            key={listing.id}
+                            className="group relative flex flex-col overflow-hidden border border-border/40 bg-card/15 backdrop-blur-xs transition-all duration-300 hover:border-border/70 hover:shadow-xl"
+                        >
+                            {/* Graphic Vector Representation (Abstract Gradient Image) */}
+                            <div
+                                className={`h-48 w-full bg-gradient-to-br ${listing.gradient} relative flex items-center justify-center overflow-hidden transition-all duration-500 group-hover:scale-[1.02]`}
+                            >
+                                <div className="absolute inset-0 bg-black/10 transition-opacity group-hover:bg-black/20" />
+
+                                {/* Featured Badge */}
+                                {listing.featured && (
+                                    <Badge className="absolute top-3 left-3 bg-amber-500 px-2 py-0.5 text-[9px] font-bold tracking-wide text-black uppercase shadow-md hover:bg-amber-400">
+                                        ★ Featured
+                                    </Badge>
+                                )}
+
+                                {/* Favorite button */}
+                                <button
+                                    onClick={() => toggleFavorite(listing.id)}
+                                    className="absolute top-3 right-3 flex size-8 cursor-pointer items-center justify-center rounded-full bg-black/35 text-white backdrop-blur-md transition-colors select-none hover:bg-black/55"
+                                >
+                                    <Heart
+                                        className={`size-4 ${favorites.includes(listing.id) ? \'fill-red-500 text-red-500\' : \'text-white\'}`}
+                                    />
+                                </button>
+
+                                {/* Location Banner overlay */}
+                                <div className="absolute right-3 bottom-3 left-3 z-10 flex items-center justify-between text-white">
+                                    <span className="flex items-center gap-1 rounded bg-black/45 px-2 py-1 text-[10px] font-semibold backdrop-blur-xs">
+                                        <MapPin className="size-3 text-sky-400" />
+                                        {listing.location}
+                                    </span>
+                                    <span className="rounded-full bg-primary px-2.5 py-1 text-xs font-extrabold text-primary-foreground">
+                                        ${listing.price}{\' \'}
+                                        <span className="text-[9px] font-normal opacity-85">
+                                            / nt
+                                        </span>
+                                    </span>
+                                </div>
+
+                                {/* Abstract geometric pattern representing structures */}
+                                <div className="size-24 scale-75 rotate-45 rounded border border-white/10 opacity-20 transition-all duration-700 group-hover:scale-90 group-hover:rotate-90" />
+                            </div>
+
+                            {/* Card Content Details */}
+                            <CardHeader className="space-y-1 p-4 pb-2">
+                                <div className="flex items-center justify-between">
+                                    <Badge
+                                        variant="secondary"
+                                        className="px-2 py-0.5 font-mono text-[9px] tracking-wider capitalize"
+                                    >
+                                        {listing.category}
+                                    </Badge>
+                                    <div className="flex items-center gap-1 text-xs">
+                                        <Star className="size-3.5 fill-amber-500 text-amber-500" />
+                                        <span className="font-bold text-foreground">
+                                            {listing.rating}
+                                        </span>
+                                        <span className="text-[10px] text-muted-foreground">
+                                            ({listing.reviews})
+                                        </span>
+                                    </div>
+                                </div>
+                                <h3 className="mt-1 line-clamp-1 text-sm font-bold tracking-tight text-foreground transition-colors group-hover:text-primary">
+                                    {listing.name}
+                                </h3>
+                            </CardHeader>
+
+                            <CardContent className="flex flex-1 flex-col gap-3 p-4 pt-0 pb-3">
+                                <p className="line-clamp-2 text-xs leading-relaxed text-muted-foreground">
+                                    {listing.description}
+                                </p>
+
+                                {/* Space characteristics info */}
+                                <div className="mt-auto flex gap-3 border-y border-border/10 py-2 text-[10px] text-muted-foreground">
+                                    <span>
+                                        <strong>{listing.guests}</strong> Guests
+                                    </span>
+                                    <span>•</span>
+                                    <span>
+                                        <strong>{listing.beds}</strong> Beds
+                                    </span>
+                                    <span>•</span>
+                                    <span>
+                                        <strong>{listing.baths}</strong> Baths
+                                    </span>
+                                </div>
+                            </CardContent>
+
+                            <CardFooter className="mt-1 flex items-center justify-between gap-2 border-t border-border/10 p-4 pt-0">
+                                <div className="flex max-w-[65%] gap-1.5 overflow-hidden">
+                                    {listing.amenities
+                                        .slice(0, 2)
+                                        .map((amenity) => (
+                                            <Badge
+                                                key={amenity}
+                                                variant="outline"
+                                                className="flex shrink-0 items-center gap-1 border-border/30 bg-muted/5 px-1.5 py-0 text-[9px] font-normal text-muted-foreground"
+                                            >
+                                                {getAmenityIcon(amenity)}
+                                                {amenity}
+                                            </Badge>
+                                        ))}
+                                </div>
+                                <Button
+                                    size="sm"
+                                    className="h-8 shrink-0 cursor-pointer gap-1 rounded bg-primary text-xs font-bold text-primary-foreground hover:bg-primary/95"
+                                >
+                                    <Eye className="size-3.5" />
+                                    Details
+                                </Button>
+                            </CardFooter>
+                        </Card>
+                    ))}
+                </div>
+            )}
+        </div>
+    );
+}
+
+export default RentalListings;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'blocks',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'blocks',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'reviews-slider',
+                'type' => 'registry:block',
+                'title' => 'Reviews Slider',
+                'description' => null,
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                    'swiper',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'card',
+                    'badge',
+                    'button',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/reviews-slider/reviews-slider.tsx',
+                        'type' => 'registry:block',
+                        'content' => 'import React, { useState } from \'react\';
+import {
+    Star,
+    CheckCircle,
+    ChevronLeft,
+    ChevronRight,
+    Calendar,
+    Sparkles,
+} from \'lucide-react\';
+import { Card, CardContent } from \'@/components/ui/card\';
+import { Badge } from \'@/components/ui/badge\';
+import { Button } from \'@/components/ui/button\';
+import { Swiper, SwiperSlide } from \'swiper/react\';
+import type { Swiper as SwiperClass } from \'swiper\';
+
+// Import Swiper styles
+import \'swiper/css\';
+
+interface Testimonial {
+    id: string;
+    author: string;
+    avatar: string;
+    date: string;
+    rating: number;
+    comment: string;
+    verified: boolean;
+    type: string;
+}
+
+const REVIEWS_DATA: Testimonial[] = [
+    {
+        id: \'1\',
+        author: \'Marcus K.\',
+        avatar: \'M\',
+        date: \'June 2026\',
+        rating: 5,
+        comment:
+            \'This was by far the best rental space we have reserved. The facilities were clean, and the layout made it extremely easy to host group sessions. Sarah was an amazing host, replying to our queries within minutes. Highly recommended!\',
+        verified: true,
+        type: \'Group stay\',
+    },
+    {
+        id: \'2\',
+        author: \'Elena R.\',
+        avatar: \'E\',
+        date: \'May 2026\',
+        rating: 5,
+        comment:
+            \'Absolutely stunning views. We woke up every morning to panoramic ocean vistas. The space is extremely modern and well-equipped with premium appliances. We loved the smart-room automation. Will definitely book again next year.\',
+        verified: true,
+        type: \'Premium booking\',
+    },
+    {
+        id: \'3\',
+        author: \'David P.\',
+        avatar: \'D\',
+        date: \'April 2026\',
+        rating: 4.8,
+        comment:
+            \'Clean, peaceful, and beautifully designed. The cedar hot tub and outdoor fireplace in the pines cabin were perfect for relaxing after a long day of hiking. The check-in process was smooth via smart lock.\',
+        verified: true,
+        type: \'Solo booking\',
+    },
+];
+
+export function ReviewsSlider() {
+    const [swiper, setSwiper] = useState<SwiperClass | null>(null);
+    const [activeIndex, setActiveIndex] = useState(0);
+
+    const nextReview = () => {
+        swiper?.slideNext();
+    };
+
+    const prevReview = () => {
+        swiper?.slidePrev();
+    };
+
+    const goToReview = (index: number) => {
+        swiper?.slideTo(index);
+    };
+
+    const ratings = [
+        { label: \'Cleanliness\', value: 4.9 },
+        { label: \'Accuracy\', value: 4.8 },
+        { label: \'Communication\', value: 5.0 },
+        { label: \'Location\', value: 4.9 },
+        { label: \'Value\', value: 4.7 },
+    ];
+
+    const getPriorityBadge = (rating: number) => {
+        return (
+            <div className="flex items-center gap-0.5 text-amber-500">
+                {[...Array(5)].map((_, i) => (
+                    <Star
+                        key={i}
+                        className={`size-4.5 ${i < Math.floor(rating) ? \'fill-current\' : \'opacity-30\'}`}
+                    />
+                ))}
+                <span className="ml-1.5 text-xs font-bold text-foreground">
+                    {rating} Rating
+                </span>
+            </div>
+        );
+    };
+
+    return (
+        <div className="mx-auto w-full max-w-5xl space-y-8 px-4 py-4">
+            {/* Reviews Header and Stats */}
+            <div className="grid grid-cols-1 items-center gap-6 border-b border-border/20 pb-6 md:grid-cols-3">
+                <div className="space-y-2 text-center select-none md:text-left">
+                    <h3 className="text-xl font-bold tracking-tight">
+                        Client Testimonials
+                    </h3>
+                    <p className="text-xs text-muted-foreground">
+                        What our customers say about their experiences
+                    </p>
+                    <div className="mt-1 flex items-center justify-center gap-2 md:justify-start">
+                        <span className="text-3xl font-extrabold text-foreground">
+                            4.92
+                        </span>
+                        <div className="flex flex-col text-left">
+                            <div className="flex items-center text-amber-500">
+                                {[...Array(5)].map((_, i) => (
+                                    <Star
+                                        key={i}
+                                        className="size-3.5 fill-current"
+                                    />
+                                ))}
+                            </div>
+                            <span className="text-[10px] text-muted-foreground">
+                                Based on 280+ ratings
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="space-y-2 select-none md:col-span-2">
+                    <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+                        {ratings.map((rate) => (
+                            <div
+                                key={rate.label}
+                                className="flex flex-col gap-1 rounded-lg border border-border/40 bg-card/15 p-2.5"
+                            >
+                                <span className="text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
+                                    {rate.label}
+                                </span>
+                                <div className="flex items-center gap-2">
+                                    <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-muted">
+                                        <div
+                                            className="h-full bg-primary"
+                                            style={{
+                                                width: `${(rate.value / 5) * 100}%`,
+                                            }}
+                                        />
+                                    </div>
+                                    <span className="font-mono text-xs font-bold">
+                                        {rate.value}
+                                    </span>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+
+            {/* Interactive Swiper Card Slider */}
+            <div className="relative mx-auto w-full max-w-2xl">
+                <Swiper
+                    onSwiper={setSwiper}
+                    onSlideChange={(s) => setActiveIndex(s.activeIndex)}
+                    className="w-full"
+                    spaceBetween={30}
+                    slidesPerView={1}
+                    loop={false}
+                >
+                    {REVIEWS_DATA.map((review) => (
+                        <SwiperSlide key={review.id} className="px-1 py-2">
+                            <Card className="overflow-hidden border border-border/40 bg-card/25 p-6 shadow-lg backdrop-blur-xs transition-all duration-300 select-none md:p-8">
+                                <div className="absolute top-4 right-4 text-primary/10">
+                                    <Sparkles className="size-16" />
+                                </div>
+
+                                <CardContent className="relative z-10 space-y-6 p-0">
+                                    {/* Rating Stars */}
+                                    {getPriorityBadge(review.rating)}
+
+                                    {/* Comment Text */}
+                                    <blockquote className="text-sm leading-relaxed text-muted-foreground italic">
+                                        "{review.comment}"
+                                    </blockquote>
+
+                                    {/* Guest Meta info */}
+                                    <div className="flex flex-wrap items-center justify-between gap-3 border-t border-border/10 pt-4">
+                                        <div className="flex items-center gap-3">
+                                            <div className="flex size-10 items-center justify-center rounded-full border border-primary/20 bg-primary/10 text-sm font-extrabold text-primary">
+                                                {review.avatar}
+                                            </div>
+                                            <div className="space-y-0.5 text-left">
+                                                <div className="flex items-center gap-1.5">
+                                                    <h4 className="text-xs font-bold text-foreground">
+                                                        {review.author}
+                                                    </h4>
+                                                    {review.verified && (
+                                                        <Badge
+                                                            variant="outline"
+                                                            className="flex items-center gap-0.5 border-emerald-500/20 bg-emerald-500/5 px-1 py-0 text-[8px] font-normal text-emerald-500"
+                                                        >
+                                                            <CheckCircle className="size-2.5 fill-current" />
+                                                            Verified Client
+                                                        </Badge>
+                                                    )}
+                                                </div>
+                                                <div className="flex items-center gap-1.5 text-[10px] text-muted-foreground">
+                                                    <Calendar className="size-3" />
+                                                    <span>
+                                                        Reserved in{\' \'}
+                                                        {review.date}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <Badge
+                                            variant="secondary"
+                                            className="px-2 py-0.5 font-mono text-[9px]"
+                                        >
+                                            {review.type}
+                                        </Badge>
+                                    </div>
+                                </CardContent>
+                            </Card>
+                        </SwiperSlide>
+                    ))}
+                </Swiper>
+
+                {/* Slider Navigation & Pagination Controls */}
+                <div className="mt-4 flex items-center justify-between px-2 select-none">
+                    <div className="flex gap-1">
+                        {REVIEWS_DATA.map((_, idx) => (
+                            <button
+                                key={idx}
+                                onClick={() => goToReview(idx)}
+                                className={`h-1.5 cursor-pointer rounded-full transition-all duration-300 ${
+                                    activeIndex === idx
+                                        ? \'w-6 bg-primary\'
+                                        : \'w-1.5 bg-muted-foreground/30 hover:bg-muted-foreground/60\'
+                                }`}
+                            />
+                        ))}
+                    </div>
+                    <div className="flex gap-1.5">
+                        <Button
+                            onClick={prevReview}
+                            variant="outline"
+                            size="icon"
+                            disabled={activeIndex === 0}
+                            className="size-8 cursor-pointer rounded-full border-border/40 hover:bg-muted disabled:pointer-events-none disabled:opacity-40"
+                        >
+                            <ChevronLeft className="size-4" />
+                        </Button>
+                        <Button
+                            onClick={nextReview}
+                            variant="outline"
+                            size="icon"
+                            disabled={activeIndex === REVIEWS_DATA.length - 1}
+                            className="size-8 cursor-pointer rounded-full border-border/40 hover:bg-muted disabled:pointer-events-none disabled:opacity-40"
+                        >
+                            <ChevronRight className="size-4" />
+                        </Button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+export default ReviewsSlider;
 ',
                     ],
                 ],
@@ -2515,8 +6026,8 @@ const wheelBus = (() => {
             const prev = timers.get(sub);
 
             if (prev) {
-clearTimeout(prev);
-}
+                clearTimeout(prev);
+            }
 
             timers.set(
                 sub,
@@ -2527,8 +6038,8 @@ clearTimeout(prev);
 
     function boot() {
         if (listening) {
-return;
-}
+            return;
+        }
 
         listening = true;
         window.addEventListener(\'wheel\', onWheel, { passive: true });
@@ -2536,8 +6047,8 @@ return;
 
     function teardown() {
         if (!listening) {
-return;
-}
+            return;
+        }
 
         listening = false;
         window.removeEventListener(\'wheel\', onWheel);
@@ -2552,15 +6063,15 @@ return;
                 const t = timers.get(sub);
 
                 if (t) {
-clearTimeout(t);
-}
+                    clearTimeout(t);
+                }
 
                 timers.delete(sub);
                 subs.delete(sub);
 
                 if (subs.size === 0) {
-teardown();
-}
+                    teardown();
+                }
             };
         },
     };
@@ -2617,8 +6128,8 @@ export function Marquee({
     useGSAP(
         () => {
             if (!trackRef.current) {
-return;
-}
+                return;
+            }
 
             const measure = () => {
                 const contentEl = trackRef.current!.querySelector(
@@ -2626,14 +6137,14 @@ return;
                 ) as HTMLElement | null;
 
                 if (!contentEl) {
-return;
-}
+                    return;
+                }
 
                 const singleW = contentEl.offsetWidth + gap;
 
                 if (singleW === 0) {
-return;
-}
+                    return;
+                }
 
                 setWRef.current = singleW;
 
@@ -2683,8 +6194,8 @@ return;
 
             const tick = () => {
                 if (isPausedRef.current || setWRef.current === 0) {
-return;
-}
+                    return;
+                }
 
                 // liveSpeed.value sign encodes direction; baseSign encodes axis.
                 xRef.current += liveSpeed.current.value * baseSign;
@@ -2714,16 +6225,16 @@ return;
     // teardown and re-run the entire animation.
     useEffect(() => {
         if (!scrollEnabled) {
-return;
-}
+            return;
+        }
 
         const unsub = wheelBus.subscribe({
             idleMs: scrollTimeout,
 
             onWheel(norm) {
                 if (!quickToRef.current) {
-return;
-}
+                    return;
+                }
 
                 // norm: positive = scroll down = forward, negative = scroll up = reverse
                 // Map magnitude to a speed boost, preserve direction sign
@@ -2735,8 +6246,8 @@ return;
             onIdle() {
                 // Ease back to original speed in original (forward) direction
                 if (!quickToRef.current) {
-return;
-}
+                    return;
+                }
 
                 quickToRef.current(baseSpeed);
             },
@@ -2754,14 +6265,14 @@ return;
     // ── Hover pause ────────────────────────────────────────────────────────────
     const handleMouseEnter = useCallback(() => {
         if (pauseOnHover) {
-isPausedRef.current = true;
-}
+            isPausedRef.current = true;
+        }
     }, [pauseOnHover]);
 
     const handleMouseLeave = useCallback(() => {
         if (pauseOnHover) {
-isPausedRef.current = false;
-}
+            isPausedRef.current = false;
+        }
     }, [pauseOnHover]);
 
     // ── Render ─────────────────────────────────────────────────────────────────
@@ -5445,6 +8956,151 @@ export { ANIMATIONS };
                 'theme' => null,
             ],
             [
+                'name' => 'button-magnetic',
+                'type' => 'registry:ui',
+                'title' => 'Button Magnetic',
+                'description' => null,
+                'author' => 'designbycode',
+                'dependencies' => [
+
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/buttons/button-magnetic.tsx',
+                        'type' => 'registry:ui',
+                        'content' => 'import React, { useRef, useState, useEffect } from \'react\';
+import { cn } from \'@/lib/utils\';
+
+export interface ButtonMagneticProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+    range?: number; // Distance from center where magnetism activates
+    actionStrength?: number; // How strongly the button pulls toward the mouse (0.1 to 1.0)
+    children: React.ReactNode;
+}
+
+export function ButtonMagnetic({
+    range = 60,
+    actionStrength = 0.35,
+    children,
+    className,
+    style,
+    ...props
+}: ButtonMagneticProps) {
+    const triggerRef = useRef<HTMLDivElement>(null);
+    const [position, setPosition] = useState({ x: 0, y: 0 });
+    const [isHovered, setIsHovered] = useState(false);
+
+    useEffect(() => {
+        const trigger = triggerRef.current;
+        if (!trigger) {
+            return;
+        }
+
+        const handleMouseMove = (e: MouseEvent) => {
+            const rect = trigger.getBoundingClientRect();
+
+            // Calculate absolute center of the trigger area (which is completely static)
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+
+            // Distance from mouse to center
+            const deltaX = e.clientX - centerX;
+            const deltaY = e.clientY - centerY;
+            const distance = Math.hypot(deltaX, deltaY);
+
+            // Determine active range based on dimensions or specified range
+            const activeRange = Math.max(
+                range,
+                Math.max(rect.width, rect.height) / 1.5,
+            );
+
+            if (distance < activeRange) {
+                setIsHovered(true);
+                // Pull toward mouse
+                setPosition({
+                    x: deltaX * actionStrength,
+                    y: deltaY * actionStrength,
+                });
+            } else {
+                setIsHovered(false);
+                setPosition({ x: 0, y: 0 });
+            }
+        };
+
+        const handleMouseLeave = () => {
+            setIsHovered(false);
+            setPosition({ x: 0, y: 0 });
+        };
+
+        window.addEventListener(\'mousemove\', handleMouseMove, {
+            passive: true,
+        });
+        trigger.addEventListener(\'mouseleave\', handleMouseLeave);
+
+        return () => {
+            window.removeEventListener(\'mousemove\', handleMouseMove);
+            trigger.removeEventListener(\'mouseleave\', handleMouseLeave);
+        };
+    }, [range, actionStrength]);
+
+    return (
+        <div ref={triggerRef} className="inline-block">
+            <button
+                className={cn(
+                    \'inline-flex cursor-pointer items-center justify-center rounded-lg bg-primary px-4 py-2.5 text-xs font-semibold text-primary-foreground shadow-sm select-none active:scale-95\',
+                    className,
+                )}
+                style={{
+                    transform: `translate3d(${position.x}px, ${position.y}px, 0)`,
+                    // Use a smooth, fast bezier transition when tracking to eliminate jumps, and a springy transition on snap-back
+                    transition: isHovered
+                        ? \'transform 0.2s cubic-bezier(0.25, 1, 0.5, 1)\'
+                        : \'transform 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275)\',
+                    willChange: \'transform\',
+                    ...style,
+                }}
+                {...props}
+            >
+                <span className="pointer-events-none relative z-10 transition-transform duration-200 group-hover:scale-105">
+                    {children}
+                </span>
+            </button>
+        </div>
+    );
+}
+
+export default ButtonMagnetic;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'buttons',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'buttons',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
                 'name' => 'button-particles',
                 'type' => 'registry:ui',
                 'title' => 'Button Particles',
@@ -5851,6 +9507,88 @@ function ButtonParticles({
 }
 
 export { ButtonParticles, buttonVariants };
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'buttons',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'buttons',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'button-shine',
+                'type' => 'registry:ui',
+                'title' => 'Button Shine',
+                'description' => null,
+                'author' => 'designbycode',
+                'dependencies' => [
+
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/buttons/button-shine.tsx',
+                        'type' => 'registry:ui',
+                        'content' => 'import React from \'react\';
+import { cn } from \'@/lib/utils\';
+
+export interface ButtonShineProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+    children: React.ReactNode;
+    shineColor?: string;
+}
+
+export function ButtonShine({
+    children,
+    shineColor = \'rgba(255, 255, 255, 0.3)\',
+    className,
+    style,
+    ...props
+}: ButtonShineProps) {
+    return (
+        <button
+            className={cn(
+                \'group relative inline-flex cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-primary px-5 py-2.5 text-xs font-semibold text-primary-foreground shadow-sm transition-transform select-none active:scale-95\',
+                className,
+            )}
+            style={style}
+            {...props}
+        >
+            {/* Shimmer glossy shine gradient wrapper */}
+            <span
+                className="pointer-events-none absolute inset-0 block h-full w-[200%] -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover:animate-shine"
+                style={{
+                    backgroundImage: `linear-gradient(to right, transparent, ${shineColor} 50%, transparent)`,
+                    animationDuration: \'1s\',
+                }}
+            />
+            <span className="relative z-10">{children}</span>
+        </button>
+    );
+}
+
+export default ButtonShine;
 ',
                     ],
                 ],
@@ -6324,7 +10062,11 @@ import type { HTMLAttributes, ReactNode } from \'react\';
 import { useEffect, useRef, useState } from \'react\';
 import { cn } from \'@/lib/utils\';
 import { useGlowStack } from \'@/registry/new-york/components/ui/glow/glow-stack\';
-import { isCircleOverlappingRect, isPointInRect, toElementSpace } from \'@/registry/new-york/lib/glow-geometry\';
+import {
+    isCircleOverlappingRect,
+    isPointInRect,
+    toElementSpace,
+} from \'@/registry/new-york/lib/glow-geometry\';
 
 const BORDER_MASK = {
     padding: \'2px\',
@@ -6529,7 +10271,9 @@ export function GlowStack({
 
     return (
         <GlowContext.Provider value={{ position: pos, radius }}>
-            <div className={className} style={style}>{children}</div>
+            <div className={className} style={style}>
+                {children}
+            </div>
         </GlowContext.Provider>
     );
 }
@@ -7161,6 +10905,239 @@ export {
                 'docs' => null,
                 'categories' => [
                     'inputs',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'progress-circle',
+                'type' => 'registry:ui',
+                'title' => 'Progress Circle',
+                'description' => null,
+                'author' => 'designbycode',
+                'dependencies' => [
+
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/progress/progress-circle.tsx',
+                        'type' => 'registry:ui',
+                        'content' => 'import React, { useEffect, useState } from \'react\';
+import { cn } from \'@/lib/utils\';
+
+export interface ProgressCircleProps {
+    value: number;
+    size?: number;
+    strokeWidth?: number;
+    className?: string;
+    showValue?: boolean;
+    label?: string;
+}
+
+export function ProgressCircle({
+    value = 0,
+    size = 80,
+    strokeWidth = 8,
+    className,
+    showValue = true,
+    label,
+}: ProgressCircleProps) {
+    const [currentValue, setCurrentValue] = useState(0);
+    const radius = (size - strokeWidth) / 2;
+    const circumference = radius * 2 * Math.PI;
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setCurrentValue(Math.min(Math.max(value, 0), 100));
+        }, 100);
+        return () => clearTimeout(timer);
+    }, [value]);
+
+    const strokeDashoffset =
+        circumference - (currentValue / 100) * circumference;
+
+    return (
+        <div
+            className={cn(
+                \'relative inline-flex flex-col items-center justify-center select-none\',
+                className,
+            )}
+            style={{ width: size, height: size }}
+        >
+            <svg className="-rotate-90 transform" width={size} height={size}>
+                {/* Background Circle */}
+                <circle
+                    className="text-muted/30"
+                    stroke="currentColor"
+                    strokeWidth={strokeWidth}
+                    fill="transparent"
+                    r={radius}
+                    cx={size / 2}
+                    cy={size / 2}
+                />
+                {/* Foreground Circle */}
+                <circle
+                    className="text-primary transition-all duration-1000 ease-out"
+                    stroke="currentColor"
+                    strokeWidth={strokeWidth}
+                    strokeDasharray={circumference}
+                    strokeDashoffset={strokeDashoffset}
+                    strokeLinecap="round"
+                    fill="transparent"
+                    r={radius}
+                    cx={size / 2}
+                    cy={size / 2}
+                />
+            </svg>
+
+            {showValue && (
+                <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
+                    <span className="font-mono text-sm leading-none font-extrabold tracking-tight text-foreground">
+                        {Math.round(currentValue)}%
+                    </span>
+                    {label && (
+                        <span className="mt-0.5 text-[8px] font-bold tracking-wider text-muted-foreground uppercase">
+                            {label}
+                        </span>
+                    )}
+                </div>
+            )}
+        </div>
+    );
+}
+
+export default ProgressCircle;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'progress',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'progress',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'interactive-rating',
+                'type' => 'registry:ui',
+                'title' => 'Interactive Rating',
+                'description' => null,
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/rating/interactive-rating.tsx',
+                        'type' => 'registry:ui',
+                        'content' => 'import React, { useState } from \'react\';
+import { Star } from \'lucide-react\';
+import { cn } from \'@/lib/utils\';
+
+export interface InteractiveRatingProps {
+    maxRating?: number;
+    defaultRating?: number;
+    onChange?: (rating: number) => void;
+    className?: string;
+}
+
+export function InteractiveRating({
+    maxRating = 5,
+    defaultRating = 0,
+    onChange,
+    className,
+}: InteractiveRatingProps) {
+    const [rating, setRating] = useState(defaultRating);
+    const [hoverRating, setHoverRating] = useState<number | null>(null);
+
+    const handleSelect = (val: number) => {
+        setRating(val);
+        if (onChange) {
+            onChange(val);
+        }
+    };
+
+    return (
+        <div className={cn(\'flex items-center gap-1 select-none\', className)}>
+            {[...Array(maxRating)].map((_, i) => {
+                const starVal = i + 1;
+                const isActive =
+                    hoverRating !== null
+                        ? starVal <= hoverRating
+                        : starVal <= rating;
+                return (
+                    <button
+                        key={i}
+                        type="button"
+                        onClick={() => handleSelect(starVal)}
+                        onMouseEnter={() => setHoverRating(starVal)}
+                        onMouseLeave={() => setHoverRating(null)}
+                        className="cursor-pointer transition-transform duration-100 hover:scale-115 focus:outline-hidden active:scale-95"
+                    >
+                        <Star
+                            className={cn(
+                                \'size-5 transition-colors duration-150\',
+                                isActive
+                                    ? \'fill-amber-500 text-amber-500\'
+                                    : \'text-muted-foreground/35 hover:text-muted-foreground/60\',
+                            )}
+                        />
+                    </button>
+                );
+            })}
+        </div>
+    );
+}
+
+export default InteractiveRating;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'rating',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'rating',
                 ],
                 'extends' => null,
                 'style' => null,

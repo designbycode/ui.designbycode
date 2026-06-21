@@ -49,8 +49,8 @@ function MainThemeSearch({
 
     useEffect(() => {
         if (!showFilters) {
-return;
-}
+            return;
+        }
 
         const handler = (e: MouseEvent) => {
             if (

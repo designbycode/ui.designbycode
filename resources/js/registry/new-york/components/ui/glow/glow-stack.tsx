@@ -50,7 +50,9 @@ export function GlowStack({
 
     return (
         <GlowContext.Provider value={{ position: pos, radius }}>
-            <div className={className} style={style}>{children}</div>
+            <div className={className} style={style}>
+                {children}
+            </div>
         </GlowContext.Provider>
     );
 }

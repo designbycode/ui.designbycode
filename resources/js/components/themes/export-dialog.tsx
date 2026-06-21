@@ -38,11 +38,14 @@ export function ExportDialog() {
                     <FileCode /> Export
                 </Button>
             </DialogTrigger>
-            <DialogContent className="max-w-6xl max-h-[85vh] grid-rows-[auto_1fr] overflow-hidden">
+            <DialogContent className="max-h-[85vh] max-w-6xl grid-rows-[auto_1fr] overflow-hidden">
                 <DialogHeader>
                     <DialogTitle>Export theme</DialogTitle>
                 </DialogHeader>
-                <Tabs defaultValue="css" className="flex min-h-0 flex-col overflow-hidden">
+                <Tabs
+                    defaultValue="css"
+                    className="flex min-h-0 flex-col overflow-hidden"
+                >
                     <TabsList>
                         <TabsTrigger value="css">index.css</TabsTrigger>
                         <TabsTrigger value="tw">tailwind.config</TabsTrigger>

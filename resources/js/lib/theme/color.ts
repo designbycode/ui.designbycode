@@ -7,14 +7,14 @@ export function hexToTokenValue(hex: string): string {
     const parsed = parse(hex);
 
     if (!parsed) {
-return '0 0 0';
-}
+        return '0 0 0';
+    }
 
     const o = toOklch(parsed);
 
     if (!o) {
-return '0 0 0';
-}
+        return '0 0 0';
+    }
 
     const L = round(o.l ?? 0, 3);
     const C = round(o.c ?? 0, 3);
@@ -55,14 +55,14 @@ export function derivePaletteFromPrimary(
     const parsed = parse(hex);
 
     if (!parsed) {
-return {};
-}
+        return {};
+    }
 
     const o = toOklch(parsed);
 
     if (!o) {
-return {};
-}
+        return {};
+    }
 
     const h = o.h ?? 250;
     const c = o.c ?? 0.05;

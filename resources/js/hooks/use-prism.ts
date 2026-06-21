@@ -1,18 +1,22 @@
 'use client';
 
-import Prism from 'prismjs';
+import Prism from '@/lib/prism-loader';
 import { useCallback, useMemo } from 'react';
 import 'prismjs/components/prism-markup';
 import 'prismjs/components/prism-css';
 import 'prismjs/components/prism-javascript';
+import 'prismjs/components/prism-jsx';
 import 'prismjs/components/prism-typescript';
+import 'prismjs/components/prism-tsx';
 import 'prismjs/components/prism-bash';
 import 'prismjs/components/prism-markup-templating';
 import 'prismjs/components/prism-php';
 
 const languageMap: Record<string, string> = {
     js: 'javascript',
+    jsx: 'jsx',
     ts: 'typescript',
+    tsx: 'tsx',
     css: 'css',
     php: 'php',
     markup: 'markup',

@@ -10,8 +10,10 @@ interface ThemeColors {
     border: string;
 }
 
-export function useThemeColors(): ThemeColors { // Update return type
-    const [colors, setColors] = useState<ThemeColors>(() => ({ // Specify type for useState
+export function useThemeColors(): ThemeColors {
+    // Update return type
+    const [colors, setColors] = useState<ThemeColors>(() => ({
+        // Specify type for useState
         primary: getCssVarAsColor('--primary', 'hex') ?? '#e54545',
         secondary: getCssVarAsColor('--secondary', 'hex') ?? '#0bdec4',
         muted: getCssVarAsColor('--muted', 'hex') ?? '#f2f2f2', // Default muted
@@ -27,7 +29,8 @@ export function useThemeColors(): ThemeColors { // Update return type
                 secondary: getCssVarAsColor('--secondary', 'hex') ?? '#0bdec4',
                 muted: getCssVarAsColor('--muted', 'hex') ?? '#f2f2f2',
                 accent: getCssVarAsColor('--accent', 'hex') ?? '#f2a766',
-                background: getCssVarAsColor('--background', 'hex') ?? '#ffffff',
+                background:
+                    getCssVarAsColor('--background', 'hex') ?? '#ffffff',
                 border: getCssVarAsColor('--border', 'hex') ?? '#e2e8f0',
             });
         };

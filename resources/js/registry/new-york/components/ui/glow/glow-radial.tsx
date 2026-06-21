@@ -3,7 +3,11 @@ import type { HTMLAttributes, ReactNode } from 'react';
 import { useEffect, useRef, useState } from 'react';
 import { cn } from '@/lib/utils';
 import { useGlowStack } from '@/registry/new-york/components/ui/glow/glow-stack';
-import { isCircleOverlappingRect, isPointInRect, toElementSpace } from '@/registry/new-york/lib/glow-geometry';
+import {
+    isCircleOverlappingRect,
+    isPointInRect,
+    toElementSpace,
+} from '@/registry/new-york/lib/glow-geometry';
 
 const BORDER_MASK = {
     padding: '2px',

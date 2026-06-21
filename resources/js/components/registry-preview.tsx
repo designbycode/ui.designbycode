@@ -14,9 +14,30 @@ import GlowConic from '@/registry/new-york/components/ui/glow/glow-conic';
 import { GlowRadial } from '@/registry/new-york/components/ui/glow/glow-radial';
 import { GlowStack } from '@/registry/new-york/components/ui/glow/glow-stack';
 import { InputSlug } from '@/registry/new-york/components/ui/inputs/input-slug';
-import { MultiSelect, MultiSelectTrigger, MultiSelectValue, MultiSelectContent, MultiSelectItem } from '@/registry/new-york/components/ui/inputs/multi-select';
+import {
+    MultiSelect,
+    MultiSelectTrigger,
+    MultiSelectValue,
+    MultiSelectContent,
+    MultiSelectItem,
+} from '@/registry/new-york/components/ui/inputs/multi-select';
 import { AnimatedTabs } from '@/registry/new-york/components/ui/tabs/animated-tabs';
 import WavesThree from '@/registry/new-york/components/ui/threejs/waves-three';
+import { CardsStats } from '@/registry/new-york/components/cards-stats/cards-stats';
+import PricingSection from '@/registry/new-york/components/pricing-section/pricing-section';
+import FeatureGrid from '@/registry/new-york/components/feature-grid/feature-grid';
+
+import ButtonMagnetic from '@/registry/new-york/components/ui/buttons/button-magnetic';
+import ButtonShine from '@/registry/new-york/components/ui/buttons/button-shine';
+import AnalyticsDashboard from '@/registry/new-york/components/analytics-dashboard/analytics-dashboard';
+import ButtonsGallery from '@/registry/new-york/components/buttons-gallery/buttons-gallery';
+import InputsGallery from '@/registry/new-york/components/inputs-gallery/inputs-gallery';
+import CanvasGallery from '@/registry/new-york/components/canvas-gallery/canvas-gallery';
+import BookingForm from '@/registry/new-york/components/booking-form/booking-form';
+import RentalListings from '@/registry/new-york/components/rental-listings/rental-listings';
+import PropertyDetail from '@/registry/new-york/components/property-detail/property-detail';
+import ReviewsSlider from '@/registry/new-york/components/reviews-slider/reviews-slider';
+import HeroSection from '@/registry/new-york/components/hero-section/hero-section';
 
 // Import hooks for interactive demo
 import useDarkMode from '@/registry/new-york/hooks/use-dark-mode';
@@ -27,7 +48,7 @@ export default function RegistryPreview({ name }: { name: string }) {
     // 1. Music Player
     if (name === 'music-player') {
         return (
-            <div className="w-full max-w-4xl mx-auto rounded-xl border border-border/50 bg-card p-6 shadow-lg">
+            <div className="mx-auto w-full max-w-4xl rounded-xl border border-border/50 bg-card p-6 shadow-lg">
                 <MusicPlayer />
             </div>
         );
@@ -36,10 +57,11 @@ export default function RegistryPreview({ name }: { name: string }) {
     // 2. GSAP Marquee
     if (name === 'gsap-marquee') {
         return (
-            <div className="w-full py-8 border border-border/50 rounded-xl bg-card overflow-hidden">
+            <div className="w-full overflow-hidden rounded-xl border border-border/50 bg-card py-8">
                 <GSAPMarquee duration={15}>
-                    <span className="mx-8 text-3xl font-extrabold tracking-wider text-foreground/80 uppercase font-bebas-neue!">
-                        DesignByCode • Interactive • GSAP Driven • Smooth Performance •
+                    <span className="mx-8 font-bebas-neue! text-3xl font-extrabold tracking-wider text-foreground/80 uppercase">
+                        DesignByCode • Interactive • GSAP Driven • Smooth
+                        Performance •
                     </span>
                 </GSAPMarquee>
             </div>
@@ -49,10 +71,11 @@ export default function RegistryPreview({ name }: { name: string }) {
     // 3. Marquee
     if (name === 'marquee') {
         return (
-            <div className="w-full py-8 border border-border/50 rounded-xl bg-card overflow-hidden">
+            <div className="w-full overflow-hidden rounded-xl border border-border/50 bg-card py-8">
                 <Marquee speed={0.6}>
                     <span className="mx-8 text-2xl font-bold tracking-tight text-foreground/70 uppercase">
-                        React Marquee • Touch Enabled • Scroll Control • Custom Speed •
+                        React Marquee • Touch Enabled • Scroll Control • Custom
+                        Speed •
                     </span>
                 </Marquee>
             </div>
@@ -62,7 +85,7 @@ export default function RegistryPreview({ name }: { name: string }) {
     // 4. Text Animator
     if (name === 'text-animator') {
         return (
-            <div className="w-full min-h-[150px] grid place-items-center border border-border/50 rounded-xl bg-card p-6">
+            <div className="grid min-h-[150px] w-full place-items-center rounded-xl border border-border/50 bg-card p-6">
                 <div className="text-center">
                     <TextAnimator text="Antigravity UI Design" />
                 </div>
@@ -73,8 +96,11 @@ export default function RegistryPreview({ name }: { name: string }) {
     // 5. Button Particles
     if (name === 'button-particles') {
         return (
-            <div className="w-full min-h-[150px] grid place-items-center border border-border/50 rounded-xl bg-card p-6">
-                <ButtonParticles variant="default" className="px-6 py-3 font-semibold text-lg transition-transform active:scale-95">
+            <div className="grid min-h-[150px] w-full place-items-center rounded-xl border border-border/50 bg-card p-6">
+                <ButtonParticles
+                    variant="default"
+                    className="px-6 py-3 text-lg font-semibold transition-transform active:scale-95"
+                >
                     Click for Particles!
                 </ButtonParticles>
             </div>
@@ -84,11 +110,15 @@ export default function RegistryPreview({ name }: { name: string }) {
     // 6. Pixel Canvas
     if (name === 'pixel-canvas') {
         return (
-            <div className="relative w-full h-[250px] border border-border/50 rounded-xl overflow-hidden bg-zinc-950 grid place-items-center">
+            <div className="relative grid h-[250px] w-full place-items-center overflow-hidden rounded-xl border border-border/50 bg-zinc-950">
                 <PixelCanvas className="absolute inset-0 opacity-40" />
-                <div className="relative z-10 text-center pointer-events-none">
-                    <h3 className="text-2xl font-bold text-zinc-100 font-bebas-neue!">Interactive Background</h3>
-                    <p className="text-sm text-zinc-400">Move your mouse to interact with the pixels</p>
+                <div className="pointer-events-none relative z-10 text-center">
+                    <h3 className="font-bebas-neue! text-2xl font-bold text-zinc-100">
+                        Interactive Background
+                    </h3>
+                    <p className="text-sm text-zinc-400">
+                        Move your mouse to interact with the pixels
+                    </p>
                 </div>
             </div>
         );
@@ -97,11 +127,20 @@ export default function RegistryPreview({ name }: { name: string }) {
     // 7. Back Light
     if (name === 'back-light') {
         return (
-            <div className="w-full min-h-[250px] grid place-items-center border border-border/50 rounded-xl bg-card p-6">
-                <BackLight opacity={0.8} blur={25} intensity={1.5} saturation={3}>
-                    <div className="w-64 h-36 rounded-xl bg-gradient-to-tr from-pink-500 via-purple-500 to-indigo-500 p-6 flex flex-col justify-end text-white shadow-xl">
-                        <span className="font-bebas-neue! text-2xl tracking-wide">Vibrant Backlight</span>
-                        <span className="text-xs opacity-75 font-sans">Glow matrix wrapper</span>
+            <div className="grid min-h-[250px] w-full place-items-center rounded-xl border border-border/50 bg-card p-6">
+                <BackLight
+                    opacity={0.8}
+                    blur={25}
+                    intensity={1.5}
+                    saturation={3}
+                >
+                    <div className="flex h-36 w-64 flex-col justify-end rounded-xl bg-gradient-to-tr from-pink-500 via-purple-500 to-indigo-500 p-6 text-white shadow-xl">
+                        <span className="font-bebas-neue! text-2xl tracking-wide">
+                            Vibrant Backlight
+                        </span>
+                        <span className="font-sans text-xs opacity-75">
+                            Glow matrix wrapper
+                        </span>
                     </div>
                 </BackLight>
             </div>
@@ -111,12 +150,23 @@ export default function RegistryPreview({ name }: { name: string }) {
     // 8. Glow Conic
     if (name === 'glow-conic') {
         return (
-            <div className="w-full min-h-[250px] grid place-items-center border border-border/50 rounded-xl bg-card p-6">
-                <div className="relative w-64 h-36 rounded-xl overflow-hidden bg-background">
-                    <GlowConic style={{ '--conic-color': 'var(--color-primary, #6366f1)' } as React.CSSProperties} />
-                    <div className="absolute inset-px rounded-[11px] bg-card/90 flex flex-col justify-center items-center text-center p-4">
-                        <h3 className="font-semibold text-lg font-bebas-neue!">Conic Border</h3>
-                        <p className="text-xs text-muted-foreground mt-1">Conic gradient animation</p>
+            <div className="grid min-h-[250px] w-full place-items-center rounded-xl border border-border/50 bg-card p-6">
+                <div className="relative h-36 w-64 overflow-hidden rounded-xl bg-background">
+                    <GlowConic
+                        style={
+                            {
+                                '--conic-color':
+                                    'var(--color-primary, #6366f1)',
+                            } as React.CSSProperties
+                        }
+                    />
+                    <div className="absolute inset-px flex flex-col items-center justify-center rounded-[11px] bg-card/90 p-4 text-center">
+                        <h3 className="font-bebas-neue! text-lg font-semibold">
+                            Conic Border
+                        </h3>
+                        <p className="mt-1 text-xs text-muted-foreground">
+                            Conic gradient animation
+                        </p>
                     </div>
                 </div>
             </div>
@@ -126,12 +176,14 @@ export default function RegistryPreview({ name }: { name: string }) {
     // 9. Glow Radial
     if (name === 'glow-radial') {
         return (
-            <div className="w-full min-h-[250px] grid place-items-center border border-border/50 rounded-xl bg-card p-6">
-                <div className="relative w-72 h-40 rounded-lg overflow-hidden border border-border bg-card">
+            <div className="grid min-h-[250px] w-full place-items-center rounded-xl border border-border/50 bg-card p-6">
+                <div className="relative h-40 w-72 overflow-hidden rounded-lg border border-border bg-card">
                     <GlowRadial className="opacity-50" />
-                    <div className="absolute inset-0 flex flex-col justify-center items-center pointer-events-none">
+                    <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center">
                         <h3 className="font-semibold">Radial Mouse Glow</h3>
-                        <p className="text-xs text-muted-foreground mt-1">Glow follows the cursor</p>
+                        <p className="mt-1 text-xs text-muted-foreground">
+                            Glow follows the cursor
+                        </p>
                     </div>
                 </div>
             </div>
@@ -141,15 +193,19 @@ export default function RegistryPreview({ name }: { name: string }) {
     // 10. Glow Stack
     if (name === 'glow-stack') {
         return (
-            <div className="w-full min-h-[250px] grid place-items-center border border-border/50 rounded-xl bg-card p-6">
-                <GlowStack className="grid grid-cols-2 gap-4 max-w-md w-full">
-                    <Card className="p-6 text-center hover:bg-accent/10 transition-colors">
-                        <h4 className="font-semibold text-sm">Stack Item 1</h4>
-                        <p className="text-xs text-muted-foreground mt-1">Hover coordinates shared</p>
+            <div className="grid min-h-[250px] w-full place-items-center rounded-xl border border-border/50 bg-card p-6">
+                <GlowStack className="grid w-full max-w-md grid-cols-2 gap-4">
+                    <Card className="p-6 text-center transition-colors hover:bg-accent/10">
+                        <h4 className="text-sm font-semibold">Stack Item 1</h4>
+                        <p className="mt-1 text-xs text-muted-foreground">
+                            Hover coordinates shared
+                        </p>
                     </Card>
-                    <Card className="p-6 text-center hover:bg-accent/10 transition-colors">
-                        <h4 className="font-semibold text-sm">Stack Item 2</h4>
-                        <p className="text-xs text-muted-foreground mt-1">Glow spans containers</p>
+                    <Card className="p-6 text-center transition-colors hover:bg-accent/10">
+                        <h4 className="text-sm font-semibold">Stack Item 2</h4>
+                        <p className="mt-1 text-xs text-muted-foreground">
+                            Glow spans containers
+                        </p>
                     </Card>
                 </GlowStack>
             </div>
@@ -160,18 +216,23 @@ export default function RegistryPreview({ name }: { name: string }) {
     if (name === 'input-slug') {
         const [value, setValue] = useState('');
         return (
-            <div className="w-full max-w-md mx-auto border border-border/50 rounded-xl bg-card p-6 space-y-4">
+            <div className="mx-auto w-full max-w-md space-y-4 rounded-xl border border-border/50 bg-card p-6">
                 <div className="space-y-1">
-                    <label className="text-xs font-semibold text-muted-foreground">Title to Slug Input</label>
-                    <InputSlug 
-                        value={value} 
-                        onValueChange={setValue} 
+                    <label className="text-xs font-semibold text-muted-foreground">
+                        Title to Slug Input
+                    </label>
+                    <InputSlug
+                        value={value}
+                        onValueChange={setValue}
                         placeholder="Type something to auto-slugify..."
                         className="w-full"
                     />
                 </div>
-                <div className="bg-muted/50 p-3 rounded text-xs font-mono break-all text-muted-foreground">
-                    slug: <span className="text-primary font-bold">{value || 'None'}</span>
+                <div className="rounded bg-muted/50 p-3 font-mono text-xs break-all text-muted-foreground">
+                    slug:{' '}
+                    <span className="font-bold text-primary">
+                        {value || 'None'}
+                    </span>
                 </div>
             </div>
         );
@@ -188,16 +249,21 @@ export default function RegistryPreview({ name }: { name: string }) {
             { label: 'InertiaJS', value: 'inertia' },
         ];
         return (
-            <div className="w-full max-w-sm mx-auto border border-border/50 rounded-xl bg-card p-6 space-y-4 min-h-[250px]">
+            <div className="mx-auto min-h-[250px] w-full max-w-sm space-y-4 rounded-xl border border-border/50 bg-card p-6">
                 <div className="space-y-1">
-                    <label className="text-xs font-semibold text-muted-foreground">Multi-Select Dropdown</label>
+                    <label className="text-xs font-semibold text-muted-foreground">
+                        Multi-Select Dropdown
+                    </label>
                     <MultiSelect value={selected} onValueChange={setSelected}>
                         <MultiSelectTrigger className="w-full">
                             <MultiSelectValue placeholder="Select technologies..." />
                         </MultiSelectTrigger>
                         <MultiSelectContent>
                             {options.map((opt) => (
-                                <MultiSelectItem key={opt.value} value={opt.value}>
+                                <MultiSelectItem
+                                    key={opt.value}
+                                    value={opt.value}
+                                >
                                     {opt.label}
                                 </MultiSelectItem>
                             ))}
@@ -205,7 +271,10 @@ export default function RegistryPreview({ name }: { name: string }) {
                     </MultiSelect>
                 </div>
                 <div className="text-xs text-muted-foreground">
-                    Selected: <span className="font-mono text-primary">{selected.join(', ') || 'none'}</span>
+                    Selected:{' '}
+                    <span className="font-mono text-primary">
+                        {selected.join(', ') || 'none'}
+                    </span>
                 </div>
             </div>
         );
@@ -221,14 +290,17 @@ export default function RegistryPreview({ name }: { name: string }) {
             { id: 'settings', label: 'Settings' },
         ];
         return (
-            <div className="w-full max-w-md mx-auto border border-border/50 rounded-xl bg-card p-6 flex flex-col items-center justify-center min-h-[150px]">
-                <AnimatedTabs 
-                    tabs={tabList} 
-                    value={active} 
+            <div className="mx-auto flex min-h-[150px] w-full max-w-md flex-col items-center justify-center rounded-xl border border-border/50 bg-card p-6">
+                <AnimatedTabs
+                    tabs={tabList}
+                    value={active}
                     onChange={setActive}
                 />
                 <div className="mt-4 text-xs text-muted-foreground">
-                    Active tab: <span className="font-mono text-primary font-bold">{active}</span>
+                    Active tab:{' '}
+                    <span className="font-mono font-bold text-primary">
+                        {active}
+                    </span>
                 </div>
             </div>
         );
@@ -237,10 +309,12 @@ export default function RegistryPreview({ name }: { name: string }) {
     // 14. Waves Three
     if (name === 'waves-three') {
         return (
-            <div className="relative w-full h-[250px] border border-border/50 rounded-xl overflow-hidden bg-black grid place-items-center">
+            <div className="relative grid h-[250px] w-full place-items-center overflow-hidden rounded-xl border border-border/50 bg-black">
                 <WavesThree className="absolute inset-0 opacity-80" />
-                <div className="relative z-10 text-center pointer-events-none text-white">
-                    <h3 className="text-2xl font-bold font-bebas-neue! tracking-wide">WebGL Waves Background</h3>
+                <div className="pointer-events-none relative z-10 text-center text-white">
+                    <h3 className="font-bebas-neue! text-2xl font-bold tracking-wide">
+                        WebGL Waves Background
+                    </h3>
                     <p className="text-sm text-zinc-400">Powered by Three.js</p>
                 </div>
             </div>
@@ -251,15 +325,21 @@ export default function RegistryPreview({ name }: { name: string }) {
     if (name === 'use-hover') {
         const { isHovered, hoverRef } = useHover();
         return (
-            <div className="w-full min-h-[200px] grid place-items-center border border-border/50 rounded-xl bg-card p-6">
-                <div 
+            <div className="grid min-h-[200px] w-full place-items-center rounded-xl border border-border/50 bg-card p-6">
+                <div
                     ref={hoverRef}
-                    className={`w-64 h-32 rounded-lg border-2 border-dashed flex flex-col justify-center items-center cursor-pointer transition-all duration-300 ${
-                        isHovered ? 'bg-primary/10 border-primary text-primary' : 'bg-muted/20 border-muted-foreground/30 text-muted-foreground'
+                    className={`flex h-32 w-64 cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed transition-all duration-300 ${
+                        isHovered
+                            ? 'border-primary bg-primary/10 text-primary'
+                            : 'border-muted-foreground/30 bg-muted/20 text-muted-foreground'
                     }`}
                 >
-                    <span className="font-medium">{isHovered ? 'HOVERED!' : 'Hover over me'}</span>
-                    <span className="text-[10px] font-mono mt-1">ref-bound state hook</span>
+                    <span className="font-medium">
+                        {isHovered ? 'HOVERED!' : 'Hover over me'}
+                    </span>
+                    <span className="mt-1 font-mono text-[10px]">
+                        ref-bound state hook
+                    </span>
                 </div>
             </div>
         );
@@ -272,9 +352,14 @@ export default function RegistryPreview({ name }: { name: string }) {
             document.documentElement.classList.toggle('dark');
         };
         return (
-            <div className="w-full min-h-[200px] grid place-items-center border border-border/50 rounded-xl bg-card p-6">
-                <div className="text-center space-y-3">
-                    <p className="text-sm">Current theme state: <span className="font-bold font-mono text-primary">{isDark ? 'Dark' : 'Light'}</span></p>
+            <div className="grid min-h-[200px] w-full place-items-center rounded-xl border border-border/50 bg-card p-6">
+                <div className="space-y-3 text-center">
+                    <p className="text-sm">
+                        Current theme state:{' '}
+                        <span className="font-mono font-bold text-primary">
+                            {isDark ? 'Dark' : 'Light'}
+                        </span>
+                    </p>
                     <Button onClick={toggle} variant="outline">
                         Toggle Theme Mode
                     </Button>
@@ -290,13 +375,20 @@ export default function RegistryPreview({ name }: { name: string }) {
             offset: 10,
         });
         return (
-            <div className="w-full border border-border/50 rounded-xl bg-card p-6 space-y-4">
-                <div className="text-xs text-muted-foreground mb-2">
-                    Scroll the page downwards and upwards to see useHeadroom trigger in navigation.
+            <div className="w-full space-y-4 rounded-xl border border-border/50 bg-card p-6">
+                <div className="mb-2 text-xs text-muted-foreground">
+                    Scroll the page downwards and upwards to see useHeadroom
+                    trigger in navigation.
                 </div>
-                <div className="p-4 rounded border bg-muted/30 font-mono text-xs flex justify-between">
+                <div className="flex justify-between rounded border bg-muted/30 p-4 font-mono text-xs">
                     <span>Headroom State:</span>
-                    <span className={pinned ? 'text-green-500 font-bold' : 'text-amber-500'}>
+                    <span
+                        className={
+                            pinned
+                                ? 'font-bold text-green-500'
+                                : 'text-amber-500'
+                        }
+                    >
                         {pinned ? 'PINNED (Visible)' : 'UNPINNED (Hidden)'}
                     </span>
                 </div>
@@ -304,15 +396,148 @@ export default function RegistryPreview({ name }: { name: string }) {
         );
     }
 
+    // 18. Cards Stats
+    if (name === 'cards-stats') {
+        return (
+            <div className="mx-auto w-full max-w-5xl">
+                <CardsStats />
+            </div>
+        );
+    }
+
+    // 19. Pricing Section
+    if (name === 'pricing-section') {
+        return (
+            <div className="mx-auto w-full max-w-5xl">
+                <PricingSection />
+            </div>
+        );
+    }
+
+    // 20. Feature Grid
+    if (name === 'feature-grid') {
+        return (
+            <div className="mx-auto w-full max-w-5xl">
+                <FeatureGrid />
+            </div>
+        );
+    }
+
+    // 22. Button Magnetic
+    if (name === 'button-magnetic') {
+        return (
+            <div className="grid min-h-[150px] w-full place-items-center rounded-xl border border-border/50 bg-card p-6">
+                <ButtonMagnetic className="px-6 py-3 text-sm font-semibold">
+                    Hover Me (Magnetic!)
+                </ButtonMagnetic>
+            </div>
+        );
+    }
+
+    // 23. Button Shine
+    if (name === 'button-shine') {
+        return (
+            <div className="grid min-h-[150px] w-full place-items-center rounded-xl border border-border/50 bg-card p-6">
+                <ButtonShine className="px-6 py-3 text-sm font-semibold">
+                    Hover for Shine Shimmer
+                </ButtonShine>
+            </div>
+        );
+    }
+
+    // 24. Analytics Dashboard
+    if (name === 'analytics-dashboard') {
+        return (
+            <div className="mx-auto w-full max-w-5xl">
+                <AnalyticsDashboard />
+            </div>
+        );
+    }
+
+    // 25. Buttons Gallery
+    if (name === 'buttons-gallery') {
+        return (
+            <div className="mx-auto w-full max-w-5xl">
+                <ButtonsGallery />
+            </div>
+        );
+    }
+
+    // 26. Inputs Gallery
+    if (name === 'inputs-gallery') {
+        return (
+            <div className="mx-auto w-full max-w-5xl">
+                <InputsGallery />
+            </div>
+        );
+    }
+
+    // 27. Canvas Gallery
+    if (name === 'canvas-gallery') {
+        return (
+            <div className="mx-auto w-full max-w-5xl">
+                <CanvasGallery />
+            </div>
+        );
+    }
+
+    // 28. Booking Form
+    if (name === 'booking-form') {
+        return (
+            <div className="mx-auto w-full max-w-5xl py-6">
+                <BookingForm />
+            </div>
+        );
+    }
+
+    // 29. Rental Listings
+    if (name === 'rental-listings') {
+        return (
+            <div className="mx-auto w-full max-w-5xl">
+                <RentalListings />
+            </div>
+        );
+    }
+
+    // 30. Property Detail
+    if (name === 'property-detail') {
+        return (
+            <div className="mx-auto w-full max-w-5xl">
+                <PropertyDetail />
+            </div>
+        );
+    }
+
+    // 31. Reviews Slider
+    if (name === 'reviews-slider') {
+        return (
+            <div className="mx-auto w-full max-w-5xl">
+                <ReviewsSlider />
+            </div>
+        );
+    }
+
+    // 32. Hero Section
+    if (name === 'hero-section') {
+        return (
+            <div className="mx-auto w-full max-w-5xl">
+                <HeroSection />
+            </div>
+        );
+    }
+
     // Library/Helper cards (default state)
     return (
-        <div className="w-full min-h-[200px] flex flex-col justify-center items-center border border-border/50 rounded-xl bg-card p-6 text-center">
-            <div className="size-12 rounded-full bg-muted flex items-center justify-center text-muted-foreground mb-4 font-mono font-bold">
+        <div className="flex min-h-[200px] w-full flex-col items-center justify-center rounded-xl border border-border/50 bg-card p-6 text-center">
+            <div className="mb-4 flex size-12 items-center justify-center rounded-full bg-muted font-mono font-bold text-muted-foreground">
                 {name.substring(0, 2).toUpperCase()}
             </div>
-            <h3 className="text-lg font-semibold capitalize">{name.replace(/-/g, ' ')}</h3>
-            <p className="text-xs text-muted-foreground mt-1 max-w-sm">
-                This item is a utility helper registry library or hook which provides foundational functionality to UI components.
+            <h3 className="text-lg font-semibold capitalize">
+                {name.replace(/-/g, ' ')}
+            </h3>
+            <p className="mt-1 max-w-sm text-xs text-muted-foreground">
+                This item is a utility helper registry library or hook which
+                provides foundational functionality to UI components.
             </p>
         </div>
     );

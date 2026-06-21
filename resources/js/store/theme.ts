@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { DEFAULT_LIGHT, DEFAULT_DARK  } from '@/lib/theme/defaults';
-import type {TokenMap} from '@/lib/theme/defaults';
+import { DEFAULT_LIGHT, DEFAULT_DARK } from '@/lib/theme/defaults';
+import type { TokenMap } from '@/lib/theme/defaults';
 
 export type ThemeFonts = { sans: string; serif: string; mono: string };
 
@@ -24,10 +24,17 @@ export interface ThemeState {
     setName: (v: string) => void;
     setDescription: (v: string) => void;
     setTags: (v: string[]) => void;
-    setInfo: (info: Partial<Pick<ThemeState, 'title' | 'name' | 'description' | 'tags'>>) => void;
+    setInfo: (
+        info: Partial<
+            Pick<ThemeState, 'title' | 'name' | 'description' | 'tags'>
+        >,
+    ) => void;
 
     setToken: (mode: 'light' | 'dark', token: string, value: string) => void;
-    setManyTokens: (mode: 'light' | 'dark', map: Record<string, string>) => void;
+    setManyTokens: (
+        mode: 'light' | 'dark',
+        map: Record<string, string>,
+    ) => void;
     setRadius: (v: number) => void;
     setFont: (kind: keyof ThemeFonts, v: string) => void;
     setBaseFontSize: (v: number) => void;
@@ -47,7 +54,11 @@ export const useThemeStore = create<ThemeState>()(
             light: { ...DEFAULT_LIGHT },
             dark: { ...DEFAULT_DARK },
             radius: 0.625,
-            fonts: { sans: 'Inter', serif: 'Instrument Serif', mono: 'JetBrains Mono' },
+            fonts: {
+                sans: 'Inter',
+                serif: 'Instrument Serif',
+                mono: 'JetBrains Mono',
+            },
             baseFontSize: 16,
             scaleRatio: 1.25,
             lineHeight: 1.5,

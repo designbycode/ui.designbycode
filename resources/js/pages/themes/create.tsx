@@ -19,7 +19,17 @@ const MAX_SIDEBAR_PCT = 0.5;
 
 export default function ThemeCreate() {
     const [mobileTab, setMobileTab] = useState<string>('Editor');
-    const { title, setTitle, name, description, tags, light, dark, radius, fonts } = useThemeStore();
+    const {
+        title,
+        setTitle,
+        name,
+        description,
+        tags,
+        light,
+        dark,
+        radius,
+        fonts,
+    } = useThemeStore();
     const [isEditing, setIsEditing] = useState(false);
     const inputRef = useRef<HTMLInputElement>(null);
 
@@ -81,15 +91,19 @@ export default function ThemeCreate() {
             radius,
         };
 
-        router.post(store().url, { theme_data: themeData }, {
-            onSuccess: () => {
-                toast.success('Theme saved successfully!');
+        router.post(
+            store().url,
+            { theme_data: themeData },
+            {
+                onSuccess: () => {
+                    toast.success('Theme saved successfully!');
+                },
+                onError: (errors) => {
+                    const message = Object.values(errors).flat().join(' ');
+                    toast.error(message || 'Failed to save theme.');
+                },
             },
-            onError: (errors) => {
-                const message = Object.values(errors).flat().join(' ');
-                toast.error(message || 'Failed to save theme.');
-            }
-        });
+        );
     };
 
     return (
@@ -128,9 +142,7 @@ export default function ThemeCreate() {
                         />
                     ) : (
                         <>
-                            <span className="text-sm font-medium">
-                                {title}
-                            </span>
+                            <span className="text-sm font-medium">{title}</span>
                             <button
                                 onClick={() => setIsEditing(true)}
                                 className="opacity-0 transition-opacity group-hover:opacity-100"

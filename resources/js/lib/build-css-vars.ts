@@ -55,7 +55,8 @@ function buildCSSVars(vars: Record<string, string>): React.CSSProperties {
                 result[`--color-${colorMap[normalizedKey]}`] = `hsl(${value})`;
             } else {
                 // Decimal values → raw oklch value (e.g. "0.145 0 0")
-                result[`--color-${colorMap[normalizedKey]}`] = `oklch(${value})`;
+                result[`--color-${colorMap[normalizedKey]}`] =
+                    `oklch(${value})`;
             }
         }
     }

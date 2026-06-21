@@ -1,7 +1,14 @@
 import { Head, Link, router, usePage } from '@inertiajs/react';
 import Heading from '@/components/heading';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+} from '@/components/ui/card';
 import { pricing } from '@/routes';
 import { cancel, edit, resume } from '@/routes/subscription';
 import type { Auth } from '@/types';
@@ -59,7 +66,10 @@ export default function Subscription() {
                         )}
 
                         {user.is_subscribed && !user.on_grace_period && (
-                            <Button variant="destructive" onClick={handleCancel}>
+                            <Button
+                                variant="destructive"
+                                onClick={handleCancel}
+                            >
                                 Cancel Subscription
                             </Button>
                         )}

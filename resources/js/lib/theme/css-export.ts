@@ -6,14 +6,14 @@ export function hexToTokenValue(hex: string): string {
     const parsed = parse(hex);
 
     if (!parsed) {
-return '0 0 0';
-}
+        return '0 0 0';
+    }
 
     const o = toOklch(parsed);
 
     if (!o) {
-return '0 0 0';
-}
+        return '0 0 0';
+    }
 
     const L = round(o.l ?? 0, 3);
     const C = round(o.c ?? 0, 3);
@@ -51,14 +51,14 @@ export function derivePaletteFromPrimary(
     const parsed = parse(hex);
 
     if (!parsed) {
-return {};
-}
+        return {};
+    }
 
     const o = toOklch(parsed);
 
     if (!o) {
-return {};
-}
+        return {};
+    }
 
     const h = o.h ?? 250;
     const c = o.c ?? 0.05;
@@ -133,8 +133,8 @@ export function generateIndexCss(state: {
         );
 
         if (extra) {
-lines.push(extra);
-}
+            lines.push(extra);
+        }
 
         return `${selector} {\n${lines.join('\n')}\n}`;
     };
@@ -186,15 +186,13 @@ lines.push(extra);
             ? `    --tracking-tight: ${round(state.letterSpacing - 0.025, 3)}em;\n    --tracking-normal: ${state.letterSpacing}em;\n    --tracking-wide: ${round(state.letterSpacing + 0.025, 3)}em;\n    --tracking-wider: ${round(state.letterSpacing + 0.05, 3)}em;\n    --tracking-widest: ${round(state.letterSpacing + 0.1, 3)}em;`
             : '';
 
-    const lightBlock = renderBlock(state.light, ':root', [
-        radiusVars,
-        fontVars,
-        typeScale,
-        lineHeightVars,
-        trackingVars,
-    ]
-        .filter(Boolean)
-        .join('\n'));
+    const lightBlock = renderBlock(
+        state.light,
+        ':root',
+        [radiusVars, fontVars, typeScale, lineHeightVars, trackingVars]
+            .filter(Boolean)
+            .join('\n'),
+    );
 
     const darkBlock = renderBlock(state.dark, '.dark');
 

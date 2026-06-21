@@ -134,8 +134,8 @@ const wheelBus = (() => {
             const prev = timers.get(sub);
 
             if (prev) {
-clearTimeout(prev);
-}
+                clearTimeout(prev);
+            }
 
             timers.set(
                 sub,
@@ -146,8 +146,8 @@ clearTimeout(prev);
 
     function boot() {
         if (listening) {
-return;
-}
+            return;
+        }
 
         listening = true;
         window.addEventListener('wheel', onWheel, { passive: true });
@@ -155,8 +155,8 @@ return;
 
     function teardown() {
         if (!listening) {
-return;
-}
+            return;
+        }
 
         listening = false;
         window.removeEventListener('wheel', onWheel);
@@ -171,15 +171,15 @@ return;
                 const t = timers.get(sub);
 
                 if (t) {
-clearTimeout(t);
-}
+                    clearTimeout(t);
+                }
 
                 timers.delete(sub);
                 subs.delete(sub);
 
                 if (subs.size === 0) {
-teardown();
-}
+                    teardown();
+                }
             };
         },
     };
@@ -236,8 +236,8 @@ export function Marquee({
     useGSAP(
         () => {
             if (!trackRef.current) {
-return;
-}
+                return;
+            }
 
             const measure = () => {
                 const contentEl = trackRef.current!.querySelector(
@@ -245,14 +245,14 @@ return;
                 ) as HTMLElement | null;
 
                 if (!contentEl) {
-return;
-}
+                    return;
+                }
 
                 const singleW = contentEl.offsetWidth + gap;
 
                 if (singleW === 0) {
-return;
-}
+                    return;
+                }
 
                 setWRef.current = singleW;
 
@@ -302,8 +302,8 @@ return;
 
             const tick = () => {
                 if (isPausedRef.current || setWRef.current === 0) {
-return;
-}
+                    return;
+                }
 
                 // liveSpeed.value sign encodes direction; baseSign encodes axis.
                 xRef.current += liveSpeed.current.value * baseSign;
@@ -333,16 +333,16 @@ return;
     // teardown and re-run the entire animation.
     useEffect(() => {
         if (!scrollEnabled) {
-return;
-}
+            return;
+        }
 
         const unsub = wheelBus.subscribe({
             idleMs: scrollTimeout,
 
             onWheel(norm) {
                 if (!quickToRef.current) {
-return;
-}
+                    return;
+                }
 
                 // norm: positive = scroll down = forward, negative = scroll up = reverse
                 // Map magnitude to a speed boost, preserve direction sign
@@ -354,8 +354,8 @@ return;
             onIdle() {
                 // Ease back to original speed in original (forward) direction
                 if (!quickToRef.current) {
-return;
-}
+                    return;
+                }
 
                 quickToRef.current(baseSpeed);
             },
@@ -373,14 +373,14 @@ return;
     // ── Hover pause ────────────────────────────────────────────────────────────
     const handleMouseEnter = useCallback(() => {
         if (pauseOnHover) {
-isPausedRef.current = true;
-}
+            isPausedRef.current = true;
+        }
     }, [pauseOnHover]);
 
     const handleMouseLeave = useCallback(() => {
         if (pauseOnHover) {
-isPausedRef.current = false;
-}
+            isPausedRef.current = false;
+        }
     }, [pauseOnHover]);
 
     // ── Render ─────────────────────────────────────────────────────────────────

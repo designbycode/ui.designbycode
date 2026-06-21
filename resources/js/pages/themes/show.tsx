@@ -265,7 +265,9 @@ function ThemesShow({ theme }: ThemesShowProps) {
                             )}
                             {(theme.tags as any[])?.map((tag) => (
                                 <Badge
-                                    key={typeof tag === 'string' ? tag : tag.name}
+                                    key={
+                                        typeof tag === 'string' ? tag : tag.name
+                                    }
                                     variant="secondary"
                                     className="text-[10px] capitalize"
                                 >
@@ -283,7 +285,9 @@ function ThemesShow({ theme }: ThemesShowProps) {
                         </div>
                     </div>
                     <div className="flex items-center gap-2">
-                        <Link href={create({ query: { fork: theme.name } }).url}>
+                        <Link
+                            href={create({ query: { fork: theme.name } }).url}
+                        >
                             <Button variant="outline" className="gap-2">
                                 <GitFork className="size-4" />
                                 Fork Theme

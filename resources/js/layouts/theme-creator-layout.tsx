@@ -4,9 +4,7 @@ interface ThemeCreatorLayoutProps {
 
 function ThemeCreatorLayout({ children }: ThemeCreatorLayoutProps) {
     return (
-        <div className="flex h-screen flex-col bg-background">
-            {children}
-        </div>
+        <div className="flex h-screen flex-col bg-background">{children}</div>
     );
 }
 

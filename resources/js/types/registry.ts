@@ -1,16 +1,16 @@
 export type RegistryType =
-  | 'registry:theme'
-  | 'registry:component'
-  | 'registry:block'
-  | 'registry:font'
-  | 'registry:hook'
-  | 'registry:lib'
-  | 'registry:page'
-  | 'registry:file'
-  | 'registry:style'
-  | 'registry:base'
-  | 'registry:ui'
-  | 'registry:item';
+    | 'registry:theme'
+    | 'registry:component'
+    | 'registry:block'
+    | 'registry:font'
+    | 'registry:hook'
+    | 'registry:lib'
+    | 'registry:page'
+    | 'registry:file'
+    | 'registry:style'
+    | 'registry:base'
+    | 'registry:ui'
+    | 'registry:item';
 
 export type RegistryCssVars = {
     theme: Record<string, string>;

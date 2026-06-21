@@ -2,8 +2,7 @@
 
 @import 'tw-animate-css';
 @import './prism.css';
-@import "@fontsource/bebas-neue";
-
+@import '@fontsource/bebas-neue';
 
 @source '../views';
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
@@ -11,9 +10,10 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif,
-    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
-    'Noto Color Emoji';
+    --font-sans:
+        'Instrument Sans', ui-sans-serif, system-ui, sans-serif,
+        'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+        'Noto Color Emoji';
 
     --radius-lg: var(--radius);
     --radius-md: calc(var(--radius) - 2px);
@@ -62,6 +62,16 @@
     --color-sidebar-border: var(--sidebar-border);
     --color-sidebar-ring: var(--sidebar-ring);
     --animate-glow-conic: glow-conic 3s linear infinite;
+    --animate-shine: shine 1s ease-in-out;
+
+    @keyframes shine {
+        0% {
+            transform: translateX(-100%);
+        }
+        100% {
+            transform: translateX(100%);
+        }
+    }
 }
 
 :root {
@@ -266,13 +276,15 @@
     --animate-ring: ring 0.5s ease-in-out;
     --animate-bell: bell 1s ease-in-out;
     --font-bebas-neue: 'Bebas Neue', sans-serif;
-
 }
 
 @layer utilities {
-
     @keyframes bounce {
-        0%, 20%, 50%, 80%, 100% {
+        0%,
+        20%,
+        50%,
+        80%,
+        100% {
             transform: translateY(0);
         }
         40% {
@@ -284,7 +296,8 @@
     }
 
     @keyframes pulse {
-        0%, 100% {
+        0%,
+        100% {
             opacity: 1;
         }
         50% {
@@ -293,16 +306,20 @@
     }
 
     @keyframes flash {
-        0%, 50%, 100% {
+        0%,
+        50%,
+        100% {
             opacity: 1;
         }
-        25%, 75% {
+        25%,
+        75% {
             opacity: 0;
         }
     }
 
     @keyframes wobble {
-        0%, 100% {
+        0%,
+        100% {
             transform: translateX(0%);
         }
         15% {
@@ -347,13 +364,21 @@
     }
 
     @keyframes shake {
-        0%, 100% {
+        0%,
+        100% {
             transform: translateX(0);
         }
-        10%, 30%, 50%, 70%, 90% {
+        10%,
+        30%,
+        50%,
+        70%,
+        90% {
             transform: translateX(-10px);
         }
-        20%, 40%, 60%, 80% {
+        20%,
+        40%,
+        60%,
+        80% {
             transform: translateX(10px);
         }
     }
@@ -398,16 +423,23 @@
     }
 
     @keyframes tada {
-        0%, 100% {
+        0%,
+        100% {
             transform: scale3d(1, 1, 1);
         }
-        10%, 20% {
+        10%,
+        20% {
             transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
         }
-        30%, 50%, 70%, 90% {
+        30%,
+        50%,
+        70%,
+        90% {
             transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
         }
-        40%, 60%, 80% {
+        40%,
+        60%,
+        80% {
             transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
         }
     }
@@ -460,11 +492,13 @@
             animation-timing-function: ease-out;
         }
         40% {
-            transform: perspective(400px) translate3d(0, 0, 150px) rotate3d(0, 1, 0, -190deg);
+            transform: perspective(400px) translate3d(0, 0, 150px)
+                rotate3d(0, 1, 0, -190deg);
             animation-timing-function: ease-out;
         }
         50% {
-            transform: perspective(400px) translate3d(0, 0, 150px) rotate3d(0, 1, 0, -170deg);
+            transform: perspective(400px) translate3d(0, 0, 150px)
+                rotate3d(0, 1, 0, -170deg);
             animation-timing-function: ease-in;
         }
         80% {
@@ -1034,12 +1068,14 @@
             transform-origin: top left;
             animation-timing-function: ease-in-out;
         }
-        20%, 60% {
+        20%,
+        60% {
             transform: rotate3d(0, 0, 1, 80deg);
             transform-origin: top left;
             animation-timing-function: ease-in-out;
         }
-        40%, 80% {
+        40%,
+        80% {
             transform: rotate3d(0, 0, 1, 60deg);
             transform-origin: top left;
             animation-timing-function: ease-in-out;
@@ -1159,7 +1195,8 @@
         20% {
             transform: scale3d(0.9, 0.9, 0.9);
         }
-        50%, 55% {
+        50%,
+        55% {
             opacity: 1;
             transform: scale3d(1.1, 1.1, 1.1);
         }
@@ -1173,7 +1210,8 @@
         20% {
             transform: translate3d(0, 10px, 0) scaleY(0.985);
         }
-        40%, 45% {
+        40%,
+        45% {
             opacity: 1;
             transform: translate3d(0, -20px, 0) scaleY(0.9);
         }
@@ -1209,7 +1247,8 @@
         20% {
             transform: translate3d(0, -10px, 0) scaleY(0.985);
         }
-        40%, 45% {
+        40%,
+        45% {
             opacity: 1;
             transform: translate3d(0, 20px, 0) scaleY(0.9);
         }
@@ -1440,7 +1479,8 @@
     }
 
     @keyframes float {
-        0%, 100% {
+        0%,
+        100% {
             transform: translateY(0);
         }
         50% {
@@ -1458,7 +1498,8 @@
     }
 
     @keyframes wiggle {
-        0%, 100% {
+        0%,
+        100% {
             transform: rotate(-3deg);
         }
         50% {
@@ -1467,7 +1508,8 @@
     }
 
     @keyframes ping {
-        75%, 100% {
+        75%,
+        100% {
             transform: scale(2);
             opacity: 0;
         }
@@ -1496,7 +1538,8 @@
     }
 
     @keyframes glitch {
-        0%, 100% {
+        0%,
+        100% {
             transform: translate(0);
         }
         20% {
@@ -1528,7 +1571,8 @@
     }
 
     @keyframes compress {
-        0%, 100% {
+        0%,
+        100% {
             transform: scaleY(1);
         }
         50% {
@@ -1565,7 +1609,8 @@
     }
 
     @keyframes sway {
-        0%, 100% {
+        0%,
+        100% {
             transform: rotate(-5deg);
             transform-origin: top center;
         }
@@ -1594,37 +1639,47 @@
     }
 
     @keyframes alarm {
-        0%, 100% {
+        0%,
+        100% {
             transform: rotate(0deg) scale(1);
         }
-        10%, 30% {
+        10%,
+        30% {
             transform: rotate(-25deg) scale(1.05);
         }
-        20%, 40% {
+        20%,
+        40% {
             transform: rotate(25deg) scale(1.05);
         }
-        50%, 70% {
+        50%,
+        70% {
             transform: rotate(-15deg) scale(1.02);
         }
-        60%, 80% {
+        60%,
+        80% {
             transform: rotate(15deg) scale(1.02);
         }
     }
 
     @keyframes ring {
-        0%, 100% {
+        0%,
+        100% {
             transform: rotate(0deg);
         }
-        10%, 30% {
+        10%,
+        30% {
             transform: rotate(15deg);
         }
-        20%, 40% {
+        20%,
+        40% {
             transform: rotate(-15deg);
         }
-        50%, 70% {
+        50%,
+        70% {
             transform: rotate(10deg);
         }
-        60%, 80% {
+        60%,
+        80% {
             transform: rotate(-10deg);
         }
     }
@@ -1652,6 +1707,4 @@
             transform: rotate(0);
         }
     }
-
-
 }
