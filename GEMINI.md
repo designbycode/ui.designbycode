@@ -212,4 +212,11 @@ Use Wayfinder to generate TypeScript functions for Laravel routes. Import from `
 
 - IMPORTANT: Activate `inertia-react-development` when working with Inertia React client-side patterns.
 
+=== tailwindcss/shadcn rules ===
+
+# TailwindCSS & Shadcn Colors
+
+- NEVER use hardcoded theme colors like `bg-zinc-50`, `dark:bg-black`, `bg-emerald-50/50`, `dark:bg-zinc-950`, `text-emerald-700`, `dark:text-emerald-400`.
+- ALWAYS use semantic Shadcn variables and color tokens defined in `resources/css/app.css` (e.g., `bg-background`, `text-foreground`, `bg-card`, `text-card-foreground`, `bg-muted`, `text-muted-foreground`, `bg-primary`, `text-primary-foreground`, `bg-secondary`, `text-secondary-foreground`, `border-border`, `bg-destructive`, etc.). This ensures layout consistency and automatic compatibility in both light and dark modes.
+
 </laravel-boost-guidelines>

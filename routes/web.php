@@ -3,6 +3,7 @@
 use App\Http\Controllers\AnimateController;
 use App\Http\Controllers\Auth\SocialiteController;
 use App\Http\Controllers\ComponentsController;
+use App\Http\Controllers\DashboardComponentsController;
 use App\Http\Controllers\FontsController;
 use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\NewsletterSubscriptionController;
@@ -56,6 +57,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
         abort(403);
     })->name('dashboard');
+
+    Route::middleware('role:super-admin|admin')->group(function () {
+        Route::get('dashboard/components', [DashboardComponentsController::class, 'index'])->name('dashboard.components.index');
+        Route::get('dashboard/components/create', [DashboardComponentsController::class, 'create'])->name('dashboard.components.create');
+        Route::post('dashboard/components', [DashboardComponentsController::class, 'store'])->name('dashboard.components.store');
+        Route::get('dashboard/components/{name}/edit', [DashboardComponentsController::class, 'edit'])->name('dashboard.components.edit');
+        Route::put('dashboard/components/{name}', [DashboardComponentsController::class, 'update'])->name('dashboard.components.update');
+        Route::delete('dashboard/components/{name}', [DashboardComponentsController::class, 'destroy'])->name('dashboard.components.destroy');
+    });
 });
 
 require __DIR__.'/settings.php';

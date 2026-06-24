@@ -1,1 +1,0 @@
-import{tt as e}from"./app-BvNI-Z2L.js";var t=e(`ChevronDown`,[[`path`,{d:`m6 9 6 6 6-6`,key:`qrunsl`}]]);export{t};

@@ -46,6 +46,7 @@ class HandleInertiaRequests extends Middleware
                 'plan_name' => $subscription?->type,
                 'on_grace_period' => $subscription?->onGracePeriod() ?? false,
                 'ends_at' => $subscription?->ends_at,
+                'is_admin' => $user->hasAnyRole(['super-admin', 'admin']),
             ]);
         }
 

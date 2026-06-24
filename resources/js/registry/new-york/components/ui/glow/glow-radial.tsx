@@ -31,6 +31,12 @@ interface GlowRadialProps extends HTMLAttributes<HTMLElement> {
     as?: 'div' | 'section' | 'article' | 'main' | 'header' | 'footer' | 'aside';
 }
 
+/**
+ * GlowRadial creates an interactive mouse-glow border and background effect.
+ *
+ * IMPORTANT: This component MUST be wrapped inside a <GlowStack> component
+ * to track mouse movements and function properly.
+ */
 export function GlowRadial({
     className,
     children,

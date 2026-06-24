@@ -8,6 +8,14 @@ class StoreRegistryAction
 {
     public function handle(array $data): Registry
     {
-        return Registry::create($data);
+        if (! isset($data['user_id']) && auth()->check()) {
+            $data['user_id'] = auth()->id();
+        }
+
+        $registry = new Registry;
+        $registry->forceFill($data);
+        $registry->save();
+
+        return $registry;
     }
 }

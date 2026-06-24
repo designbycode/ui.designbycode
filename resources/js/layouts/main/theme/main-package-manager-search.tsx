@@ -176,7 +176,7 @@ export function MainPackageManagerSearch({
                         className="transition-opacity hover:opacity-100"
                     >
                         {copied ? (
-                            <Check className="size-4 text-green-500" />
+                            <Check className="size-4 text-chart-2" />
                         ) : (
                             <Copy className="size-4" />
                         )}
@@ -185,7 +185,7 @@ export function MainPackageManagerSearch({
 
                     <span
                         className={cn(
-                            'text-xs text-emerald-500 transition-opacity duration-200',
+                            'text-xs text-chart-2 transition-opacity duration-200',
                             copied
                                 ? 'opacity-100'
                                 : 'pointer-events-none opacity-0',

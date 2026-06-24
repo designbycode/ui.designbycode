@@ -53,6 +53,24 @@ test('registry build command scans files and generates database items and seeder
         ->and(count($textAnimator->files))->toBe(1)
         ->and($textAnimator->files[0]['content'])->toContain('export type AnimationType');
 
+    // 4b. Assert the newly added numeric / formatted inputs are parsed correctly
+    $inputPhone = Registry::where('name', 'input-phone')->first();
+    expect($inputPhone)->not->toBeNull()
+        ->and($inputPhone->type)->toBe('registry:ui')
+        ->and($inputPhone->dependencies)->toContain('lucide-react')
+        ->and($inputPhone->registryDependencies)->toContain('input');
+
+    $inputCurrency = Registry::where('name', 'input-currency')->first();
+    expect($inputCurrency)->not->toBeNull()
+        ->and($inputCurrency->type)->toBe('registry:ui')
+        ->and($inputCurrency->registryDependencies)->toContain('input');
+
+    $inputNumber = Registry::where('name', 'input-number')->first();
+    expect($inputNumber)->not->toBeNull()
+        ->and($inputNumber->type)->toBe('registry:ui')
+        ->and($inputNumber->dependencies)->toContain('lucide-react')
+        ->and($inputNumber->registryDependencies)->toContain('input');
+
     // 5. Assert a specific multi-file block component exists and was parsed correctly
     $musicPlayer = Registry::where('name', 'music-player')->first();
     expect($musicPlayer)->not->toBeNull()

@@ -20,7 +20,7 @@ class RegistrySeeder extends Seeder
                 'name' => 'analytics-dashboard',
                 'type' => 'registry:block',
                 'title' => 'Analytics Dashboard',
-                'description' => null,
+                'description' => 'A comprehensive, premium analytics dashboard showing statistics, performance metrics, and graphs.',
                 'author' => 'designbycode',
                 'dependencies' => [
                     'recharts',
@@ -37,7 +37,7 @@ class RegistrySeeder extends Seeder
                 ],
                 'files' => [
                     [
-                        'path' => 'resources/js/registry/new-york/components/analytics-dashboard/analytics-dashboard.tsx',
+                        'path' => 'resources/js/registry/new-york/components/blocks/analytics-dashboard/analytics-dashboard.tsx',
                         'type' => 'registry:block',
                         'content' => '\'use client\';
 import React, { useState, useEffect } from \'react\';
@@ -96,14 +96,14 @@ const sourceData = [
     {
         name: \'Organic Search\',
         value: 4300,
-        color: \'var(--color-sky-500, #3b82f6)\',
+        color: \'var(--color-chart-3)\',
     },
-    { name: \'Direct\', value: 2900, color: \'var(--color-emerald-500, #10b981)\' },
-    { name: \'Social\', value: 2100, color: \'var(--color-pink-500, #ec4899)\' },
+    { name: \'Direct\', value: 2900, color: \'var(--color-chart-2)\' },
+    { name: \'Social\', value: 2100, color: \'var(--color-chart-1)\' },
     {
         name: \'Referrals\',
         value: 1400,
-        color: \'var(--color-amber-500, #f59e0b)\',
+        color: \'var(--color-chart-4)\',
     },
 ];
 
@@ -229,7 +229,7 @@ export function AnalyticsDashboard() {
             {/* Quick Metrics Cards */}
             <div className="grid w-full gap-4 sm:grid-cols-3">
                 <Card className="flex flex-row items-center gap-4 border border-border/40 bg-card/30 p-4.5 backdrop-blur-xs">
-                    <div className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-sky-500/10 text-sky-500">
+                    <div className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-chart-3/10 text-chart-3">
                         <Users className="size-5" />
                     </div>
                     <div className="min-w-0 flex-1">
@@ -240,7 +240,7 @@ export function AnalyticsDashboard() {
                             <span className="font-mono text-xl font-bold">
                                 148,290
                             </span>
-                            <span className="flex items-center gap-0.5 text-[10px] font-semibold text-emerald-500">
+                            <span className="flex items-center gap-0.5 text-[10px] font-semibold text-chart-2">
                                 <TrendingUp className="size-3" /> +12.4%
                             </span>
                         </div>
@@ -248,7 +248,7 @@ export function AnalyticsDashboard() {
                 </Card>
 
                 <Card className="flex flex-row items-center gap-4 border border-border/40 bg-card/30 p-4.5 backdrop-blur-xs">
-                    <div className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-500">
+                    <div className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-chart-2/10 text-chart-2">
                         <MousePointerClick className="size-5" />
                     </div>
                     <div className="min-w-0 flex-1">
@@ -259,7 +259,7 @@ export function AnalyticsDashboard() {
                             <span className="font-mono text-xl font-bold">
                                 3.48%
                             </span>
-                            <span className="flex items-center gap-0.5 text-[10px] font-semibold text-emerald-500">
+                            <span className="flex items-center gap-0.5 text-[10px] font-semibold text-chart-2">
                                 <TrendingUp className="size-3" /> +4.2%
                             </span>
                         </div>
@@ -267,7 +267,7 @@ export function AnalyticsDashboard() {
                 </Card>
 
                 <Card className="flex flex-row items-center gap-4 border border-border/40 bg-card/30 p-4.5 backdrop-blur-xs">
-                    <div className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-rose-500/10 text-rose-500">
+                    <div className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-destructive/10 text-destructive">
                         <Activity className="size-5" />
                     </div>
                     <div className="min-w-0 flex-1">
@@ -278,7 +278,7 @@ export function AnalyticsDashboard() {
                             <span className="font-mono text-xl font-bold">
                                 42.15%
                             </span>
-                            <span className="flex items-center gap-0.5 text-[10px] font-semibold text-rose-500">
+                            <span className="flex items-center gap-0.5 text-[10px] font-semibold text-destructive">
                                 <TrendingDown className="size-3" /> -1.8%
                             </span>
                         </div>
@@ -338,12 +338,12 @@ export function AnalyticsDashboard() {
                                     >
                                         <stop
                                             offset="5%"
-                                            stopColor="var(--color-emerald-500, #10b981)"
+                                            stopColor="var(--color-chart-2)"
                                             stopOpacity={0.2}
                                         />
                                         <stop
                                             offset="95%"
-                                            stopColor="var(--color-emerald-500, #10b981)"
+                                            stopColor="var(--color-chart-2)"
                                             stopOpacity={0.0}
                                         />
                                     </linearGradient>
@@ -379,7 +379,7 @@ export function AnalyticsDashboard() {
                                 <Area
                                     type="monotone"
                                     dataKey="pageviews"
-                                    stroke="var(--color-emerald-500, #10b981)"
+                                    stroke="var(--color-chart-2)"
                                     strokeWidth={2}
                                     fillOpacity={1}
                                     fill="url(#colorViews)"
@@ -529,12 +529,12 @@ export default AnalyticsDashboard;
                 'font_mono' => null,
                 'font_serif' => null,
                 'meta' => [
-                    'category' => 'blocks',
+                    'category' => 'analytics-dashboard',
                     'version' => '1.0.0',
                 ],
                 'docs' => null,
                 'categories' => [
-                    'blocks',
+                    'analytics-dashboard',
                 ],
                 'extends' => null,
                 'style' => null,
@@ -546,7 +546,7 @@ export default AnalyticsDashboard;
                 'name' => 'booking-form',
                 'type' => 'registry:block',
                 'title' => 'Booking Form',
-                'description' => null,
+                'description' => 'A clean and responsive booking card form layout for properties or services.',
                 'author' => 'designbycode',
                 'dependencies' => [
                     'lucide-react',
@@ -561,7 +561,7 @@ export default AnalyticsDashboard;
                 ],
                 'files' => [
                     [
-                        'path' => 'resources/js/registry/new-york/components/booking-form/booking-form.tsx',
+                        'path' => 'resources/js/registry/new-york/components/blocks/booking-form/booking-form.tsx',
                         'type' => 'registry:block',
                         'content' => 'import {
     Calendar as CalendarIcon,
@@ -644,7 +644,7 @@ export function BookingForm({
         <Card className="relative mx-auto w-full max-w-md overflow-hidden border border-border/40 bg-card/40 shadow-2xl backdrop-blur-md transition-all duration-300">
             {/* Ambient Background Glow */}
             <div className="pointer-events-none absolute top-0 right-0 h-36 w-36 rounded-full bg-primary/10 blur-2xl" />
-            <div className="pointer-events-none absolute -bottom-8 -left-8 h-36 w-36 rounded-full bg-emerald-500/5 blur-2xl" />
+            <div className="pointer-events-none absolute -bottom-8 -left-8 h-36 w-36 rounded-full bg-chart-2/5 blur-2xl" />
 
             <CardHeader className="relative z-10">
                 <div className="flex items-center justify-between">
@@ -671,7 +671,7 @@ export function BookingForm({
             <CardContent className="relative z-10 space-y-4">
                 {isBooked ? (
                     <div className="animate-fadeIn space-y-4 py-8 text-center">
-                        <div className="mx-auto flex size-14 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-500 shadow-inner">
+                        <div className="mx-auto flex size-14 items-center justify-center rounded-full bg-chart-2/10 text-chart-2 shadow-inner">
                             <CheckCircle2 className="size-8" />
                         </div>
                         <div className="space-y-2">
@@ -703,7 +703,7 @@ export function BookingForm({
                                 Change Dates
                             </Button>
                             <Button
-                                className="bg-emerald-600 font-semibold text-white hover:bg-emerald-500"
+                                className="bg-primary font-semibold text-primary-foreground hover:bg-primary/90"
                                 size="sm"
                             >
                                 Proceed to Payment
@@ -836,7 +836,7 @@ export function BookingForm({
                                     Total
                                     <Badge
                                         variant="outline"
-                                        className="border-emerald-500/20 bg-emerald-500/5 px-1 py-0 font-mono text-[9px] text-emerald-500"
+                                        className="border-primary/20 bg-primary/5 px-1 py-0 font-mono text-[9px] text-primary"
                                     >
                                         Best Price
                                     </Badge>
@@ -869,12 +869,12 @@ export default BookingForm;
                 'font_mono' => null,
                 'font_serif' => null,
                 'meta' => [
-                    'category' => 'blocks',
+                    'category' => 'forms',
                     'version' => '1.0.0',
                 ],
                 'docs' => null,
                 'categories' => [
-                    'blocks',
+                    'forms',
                 ],
                 'extends' => null,
                 'style' => null,
@@ -886,7 +886,7 @@ export default BookingForm;
                 'name' => 'buttons-gallery',
                 'type' => 'registry:block',
                 'title' => 'Buttons Gallery',
-                'description' => null,
+                'description' => 'A showcase of various button designs including magnetic, particles, and shining effect variants.',
                 'author' => 'designbycode',
                 'dependencies' => [
                     'lucide-react',
@@ -904,7 +904,7 @@ export default BookingForm;
                 ],
                 'files' => [
                     [
-                        'path' => 'resources/js/registry/new-york/components/buttons-gallery/buttons-gallery.tsx',
+                        'path' => 'resources/js/registry/new-york/components/blocks/buttons-gallery/buttons-gallery.tsx',
                         'type' => 'registry:block',
                         'content' => 'import React from \'react\';
 import { Play, Sparkles, Move, Sun, Compass } from \'lucide-react\';
@@ -945,7 +945,7 @@ export function ButtonsGallery() {
                 <Card className="flex flex-col justify-between border border-border/40 bg-card/25 backdrop-blur-xs">
                     <CardHeader className="pb-3">
                         <CardTitle className="flex items-center gap-2 text-sm font-bold">
-                            <Move className="size-4 text-sky-500" />
+                            <Move className="size-4 text-chart-3" />
                             Magnetic Button
                         </CardTitle>
                         <CardDescription className="text-xs">
@@ -953,7 +953,7 @@ export function ButtonsGallery() {
                         </CardDescription>
                     </CardHeader>
                     <CardContent className="flex h-28 items-center justify-center">
-                        <ButtonMagnetic className="h-9 bg-sky-600 px-4.5 text-xs text-white shadow-sky-500/10 hover:bg-sky-500">
+                        <ButtonMagnetic className="h-9 bg-chart-3 px-4.5 text-xs text-primary-foreground shadow-chart-3/10 hover:bg-chart-3/90">
                             Magnetic Pull
                         </ButtonMagnetic>
                     </CardContent>
@@ -963,7 +963,7 @@ export function ButtonsGallery() {
                 <Card className="flex flex-col justify-between border border-border/40 bg-card/25 backdrop-blur-xs">
                     <CardHeader className="pb-3">
                         <CardTitle className="flex items-center gap-2 text-sm font-bold">
-                            <Sun className="size-4 text-amber-500" />
+                            <Sun className="size-4 text-chart-4" />
                             Shine Button
                         </CardTitle>
                         <CardDescription className="text-xs">
@@ -973,7 +973,7 @@ export function ButtonsGallery() {
                     </CardHeader>
                     <CardContent className="flex h-28 items-center justify-center">
                         <ButtonShine
-                            className="h-9 bg-amber-600 px-4.5 text-xs text-white shadow-amber-500/10 hover:bg-amber-500"
+                            className="h-9 bg-chart-4 px-4.5 text-xs text-primary-foreground shadow-chart-4/10 hover:bg-chart-4/90"
                             shineColor="rgba(255,255,255,0.4)"
                         >
                             Glossy Shimmer
@@ -985,7 +985,7 @@ export function ButtonsGallery() {
                 <Card className="flex flex-col justify-between border border-border/40 bg-card/25 backdrop-blur-xs">
                     <CardHeader className="pb-3">
                         <CardTitle className="flex items-center gap-2 text-sm font-bold">
-                            <Sparkles className="size-4 text-purple-500" />
+                            <Sparkles className="size-4 text-chart-5" />
                             Particles Button
                         </CardTitle>
                         <CardDescription className="text-xs">
@@ -993,7 +993,7 @@ export function ButtonsGallery() {
                         </CardDescription>
                     </CardHeader>
                     <CardContent className="flex h-28 items-center justify-center">
-                        <ButtonParticles className="h-9 bg-purple-600 px-4.5 text-xs text-white shadow-purple-500/10 hover:bg-purple-500">
+                        <ButtonParticles className="h-9 bg-chart-5 px-4.5 text-xs text-primary-foreground shadow-chart-5/10 hover:bg-chart-5/90">
                             Explode Particles!
                         </ButtonParticles>
                     </CardContent>
@@ -1003,7 +1003,7 @@ export function ButtonsGallery() {
                 <Card className="flex flex-col justify-between border border-border/40 bg-card/25 backdrop-blur-xs">
                     <CardHeader className="pb-3">
                         <CardTitle className="flex items-center gap-2 text-sm font-bold">
-                            <Compass className="size-4 text-emerald-500" />
+                            <Compass className="size-4 text-chart-2" />
                             Glow Border Button
                         </CardTitle>
                         <CardDescription className="text-xs">
@@ -1011,17 +1011,16 @@ export function ButtonsGallery() {
                         </CardDescription>
                     </CardHeader>
                     <CardContent className="flex h-28 items-center justify-center">
-                        <div className="relative h-9 w-36 overflow-hidden rounded-lg bg-zinc-950">
+                        <div className="relative h-9 w-36 overflow-hidden rounded-lg bg-border/40">
                             <GlowConic
                                 style={
                                     {
-                                        \'--conic-color\':
-                                            \'var(--color-emerald-500, #10b981)\',
+                                        \'--conic-color\': \'var(--color-chart-2)\',
                                     } as React.CSSProperties
                                 }
                             />
-                            <button className="absolute inset-px flex cursor-pointer items-center justify-center gap-1.5 rounded-[7px] bg-zinc-900 text-[11px] font-semibold text-emerald-400 transition-colors select-none hover:text-white">
-                                <Play className="size-3 fill-emerald-400/20" />
+                            <button className="absolute inset-px flex cursor-pointer items-center justify-center gap-1.5 rounded-[7px] bg-background text-[11px] font-semibold text-chart-2 transition-colors select-none hover:text-foreground">
+                                <Play className="size-3 fill-chart-2/20" />
                                 Run System
                             </button>
                         </div>
@@ -1032,7 +1031,7 @@ export function ButtonsGallery() {
                 <Card className="flex flex-col justify-between border border-border/40 bg-card/25 backdrop-blur-xs">
                     <CardHeader className="pb-3">
                         <CardTitle className="flex items-center gap-2 text-sm font-bold">
-                            <Move className="size-4 text-pink-500" />
+                            <Move className="size-4 text-chart-1" />
                             Magnetic Icon Variant
                         </CardTitle>
                         <CardDescription className="text-xs">
@@ -1040,7 +1039,7 @@ export function ButtonsGallery() {
                         </CardDescription>
                     </CardHeader>
                     <CardContent className="flex h-28 items-center justify-center">
-                        <ButtonMagnetic className="flex size-10 items-center justify-center rounded-full bg-pink-600 p-0 text-white shadow-pink-500/10 hover:bg-pink-500">
+                        <ButtonMagnetic className="flex size-10 items-center justify-center rounded-full bg-chart-1 p-0 text-primary-foreground shadow-chart-1/10 hover:bg-chart-1/90">
                             <Compass className="size-4" />
                         </ButtonMagnetic>
                     </CardContent>
@@ -1063,12 +1062,12 @@ export default ButtonsGallery;
                 'font_mono' => null,
                 'font_serif' => null,
                 'meta' => [
-                    'category' => 'blocks',
+                    'category' => 'galleries',
                     'version' => '1.0.0',
                 ],
                 'docs' => null,
                 'categories' => [
-                    'blocks',
+                    'galleries',
                 ],
                 'extends' => null,
                 'style' => null,
@@ -1080,7 +1079,7 @@ export default ButtonsGallery;
                 'name' => 'canvas-gallery',
                 'type' => 'registry:block',
                 'title' => 'Canvas Gallery',
-                'description' => null,
+                'description' => 'A beautiful presentation displaying interactive HTML Canvas art and experiments.',
                 'author' => 'designbycode',
                 'dependencies' => [
                     'lucide-react',
@@ -1099,7 +1098,7 @@ export default ButtonsGallery;
                 ],
                 'files' => [
                     [
-                        'path' => 'resources/js/registry/new-york/components/canvas-gallery/canvas-gallery.tsx',
+                        'path' => 'resources/js/registry/new-york/components/blocks/canvas-gallery/canvas-gallery.tsx',
                         'type' => 'registry:block',
                         'content' => 'import React, { useState } from \'react\';
 import { Play, Pause, Layers, Sliders, Monitor } from \'lucide-react\';
@@ -1271,12 +1270,12 @@ export default CanvasGallery;
                 'font_mono' => null,
                 'font_serif' => null,
                 'meta' => [
-                    'category' => 'blocks',
+                    'category' => 'galleries',
                     'version' => '1.0.0',
                 ],
                 'docs' => null,
                 'categories' => [
-                    'blocks',
+                    'galleries',
                 ],
                 'extends' => null,
                 'style' => null,
@@ -1288,7 +1287,7 @@ export default CanvasGallery;
                 'name' => 'cards-stats',
                 'type' => 'registry:block',
                 'title' => 'Cards Stats',
-                'description' => null,
+                'description' => 'A collection of metric statistics cards with trends, indicator badges, and compact styling.',
                 'author' => 'designbycode',
                 'dependencies' => [
                     'lucide-react',
@@ -1303,7 +1302,7 @@ export default CanvasGallery;
                 ],
                 'files' => [
                     [
-                        'path' => 'resources/js/registry/new-york/components/cards-stats/cards-stats.tsx',
+                        'path' => 'resources/js/registry/new-york/components/blocks/cards-stats/cards-stats.tsx',
                         'type' => 'registry:block',
                         'content' => 'import React from \'react\';
 import { Activity, CreditCard, DollarSign, Users } from \'lucide-react\';
@@ -1361,7 +1360,7 @@ export function CardsStats() {
                 icon={<DollarSign className="size-4" />}
                 chartType="area"
                 chartData={revenueData}
-                chartColor="var(--color-emerald-500, #10b981)"
+                chartColor="var(--color-chart-2)"
             />
             <StatCard
                 title="Subscriptions"
@@ -1371,7 +1370,7 @@ export function CardsStats() {
                 icon={<CreditCard className="size-4" />}
                 chartType="bar"
                 chartData={subscriptionsData}
-                chartColor="var(--color-blue-500, #3b82f6)"
+                chartColor="var(--color-chart-3)"
             />
             <StatCard
                 title="Sales"
@@ -1381,7 +1380,7 @@ export function CardsStats() {
                 icon={<DollarSign className="size-4" />}
                 chartType="area"
                 chartData={salesData}
-                chartColor="var(--color-pink-500, #ec4899)"
+                chartColor="var(--color-chart-1)"
             />
             <StatCard
                 title="Active Now"
@@ -1391,7 +1390,7 @@ export function CardsStats() {
                 icon={<Activity className="size-4" />}
                 chartType="bar"
                 chartData={activeUsersData}
-                chartColor="var(--color-amber-500, #f59e0b)"
+                chartColor="var(--color-chart-4)"
             />
         </div>
     );
@@ -1400,7 +1399,7 @@ export default CardsStats;
 ',
                     ],
                     [
-                        'path' => 'resources/js/registry/new-york/components/cards-stats/stat-card.tsx',
+                        'path' => 'resources/js/registry/new-york/components/blocks/cards-stats/stat-card.tsx',
                         'type' => 'registry:block',
                         'content' => 'import React from \'react\';
 import { cn } from \'@/lib/utils\';
@@ -1440,7 +1439,7 @@ export function StatCard({
     return (
         <Card
             className={cn(
-                \'group relative overflow-hidden bg-card/30 backdrop-blur-sm transition-all duration-300 hover:border-primary/20 hover:shadow-md dark:hover:bg-zinc-900/50\',
+                \'group relative overflow-hidden bg-card/30 backdrop-blur-sm transition-all duration-300 hover:border-primary/20 hover:bg-muted/40 hover:shadow-md\',
                 className,
             )}
             {...props}
@@ -1467,8 +1466,8 @@ export function StatCard({
                                 className={cn(
                                     \'inline-flex items-center gap-0.5 rounded-full px-1.5 py-0.5 text-xs font-semibold\',
                                     isUp
-                                        ? \'bg-emerald-500/10 text-emerald-500\'
-                                        : \'bg-rose-500/10 text-rose-500\',
+                                        ? \'bg-chart-2/10 text-chart-2\'
+                                        : \'bg-destructive/10 text-destructive\',
                                 )}
                             >
                                 {isUp ? (
@@ -1563,12 +1562,12 @@ export function StatCard({
                 'font_mono' => null,
                 'font_serif' => null,
                 'meta' => [
-                    'category' => 'blocks',
+                    'category' => 'stats',
                     'version' => '1.0.0',
                 ],
                 'docs' => null,
                 'categories' => [
-                    'blocks',
+                    'stats',
                 ],
                 'extends' => null,
                 'style' => null,
@@ -1580,7 +1579,7 @@ export function StatCard({
                 'name' => 'feature-grid',
                 'type' => 'registry:block',
                 'title' => 'Feature Grid',
-                'description' => null,
+                'description' => 'A clean grid layout to present core features of a product with icons and card hover states.',
                 'author' => 'designbycode',
                 'dependencies' => [
                     'lucide-react',
@@ -1595,7 +1594,7 @@ export function StatCard({
                 ],
                 'files' => [
                     [
-                        'path' => 'resources/js/registry/new-york/components/feature-grid/feature-grid.tsx',
+                        'path' => 'resources/js/registry/new-york/components/blocks/feature-grid/feature-grid.tsx',
                         'type' => 'registry:block',
                         'content' => 'import React from \'react\';
 import {
@@ -1646,21 +1645,21 @@ const features: FeatureItem[] = [
             \'Leverage embedded local modeling agents that automatically predict anomalies before they impact you.\',
         icon: <Sparkles className="size-5" />,
         badge: \'AI Powered\',
-        color: \'from-purple-500 to-pink-600\',
+        color: \'from-chart-1 to-chart-5\',
     },
     {
         title: \'Real-time Synchrony\',
         description:
             \'Bidirectional sync mechanism ensuring your state is consistently distributed across devices instantly.\',
         icon: <RefreshCw className="size-5" />,
-        color: \'from-emerald-500 to-teal-600\',
+        color: \'from-chart-2 to-chart-3\',
     },
     {
         title: \'Deep Telemetry\',
         description:
             \'Granular log indexing and monitoring charts revealing queries, load distribution, and memory profiles.\',
         icon: <BarChart2 className="size-5" />,
-        color: \'from-rose-500 to-red-600\',
+        color: \'from-chart-5 to-destructive\',
     },
     {
         title: \'Infinite Scalability\',
@@ -1668,7 +1667,7 @@ const features: FeatureItem[] = [
             \'Modular microservice layer that expands dynamically when request throughput crosses user thresholds.\',
         icon: <Layers className="size-5" />,
         badge: \'Core\',
-        color: \'from-cyan-500 to-blue-600\',
+        color: \'from-chart-3 to-primary\',
     },
 ];
 
@@ -1754,12 +1753,1234 @@ export default FeatureGrid;
                 'font_mono' => null,
                 'font_serif' => null,
                 'meta' => [
-                    'category' => 'blocks',
+                    'category' => 'feature-grid',
                     'version' => '1.0.0',
                 ],
                 'docs' => null,
                 'categories' => [
-                    'blocks',
+                    'feature-grid',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'hero-conic-glow',
+                'type' => 'registry:block',
+                'title' => 'Hero Conic Glow',
+                'description' => 'A dark theme hero section displaying a centerpiece panel framed by a rotating conic border gradient.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'https://ui.test/r/heading-block.json',
+                    'https://ui.test/r/button-special.json',
+                    'https://ui.test/r/glow-conic.json',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/blocks/hero-conic-glow/hero-conic-glow.tsx',
+                        'type' => 'registry:block',
+                        'content' => '\'use client\';
+
+import * as React from \'react\';
+import { Layers, ArrowRight } from \'lucide-react\';
+import HeadingBlock from \'@/registry/new-york/components/ui/typography/heading-block\';
+import { ButtonSpecial } from \'@/registry/new-york/components/ui/buttons/button-special\';
+import GlowConic from \'@/registry/new-york/components/ui/glow/glow-conic\';
+
+export function HeroConicGlow() {
+    return (
+        <section className="relative flex w-full flex-col items-center justify-center overflow-hidden rounded-2xl border border-border/30 bg-background px-6 py-16 text-center select-none">
+            <div className="relative z-10 mb-12 flex max-w-2xl flex-col items-center">
+                <HeadingBlock
+                    badge={{
+                        text: \'Visual Edge\',
+                        icon: Layers,
+                    }}
+                    heading="Stand out with conic border animations"
+                    headingLevel={1}
+                    headClassName="text-3xl leading-tight font-extrabold tracking-tight sm:text-4xl lg:text-5xl text-foreground"
+                    description="Grab attention immediately with dynamic gradient lighting. Clean hardware-accelerated CSS animations make the border glow run perfectly smooth."
+                    descriptionClassName="text-muted-foreground"
+                    className="flex flex-col items-center"
+                />
+
+                <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
+                    <ButtonSpecial specialVariant="pulse">
+                        Get Started
+                    </ButtonSpecial>
+                    <ButtonSpecial
+                        specialVariant="gradient-border"
+                        className="flex items-center gap-1.5"
+                    >
+                        Documentation
+                        <ArrowRight className="size-4" />
+                    </ButtonSpecial>
+                </div>
+            </div>
+
+            {/* Glowing Conic Border Dashboard Frame */}
+            <div className="relative h-48 w-full max-w-2xl overflow-hidden rounded-xl border border-border/40 bg-muted">
+                <GlowConic
+                    style={
+                        {
+                            \'--conic-color\': \'var(--color-primary, #10b981)\',
+                        } as React.CSSProperties
+                    }
+                />
+                {/* Internal card details */}
+                <div className="absolute inset-px flex flex-col items-center justify-center rounded-[11px] bg-card p-6 text-center">
+                    <h3 className="mb-2 font-mono text-xs font-bold tracking-widest text-muted-foreground uppercase">
+                        Analytics Engine Online
+                    </h3>
+                    <p className="text-2xl font-extrabold tracking-tight text-foreground sm:text-3xl">
+                        12,842 requests / min
+                    </p>
+                    <div className="mt-4 flex items-center gap-4 font-mono text-[10px] text-muted-foreground">
+                        <span className="flex items-center gap-1">
+                            <span className="size-1.5 animate-pulse rounded-full bg-chart-2" />
+                            API Status: 99.98%
+                        </span>
+                        <span>•</span>
+                        <span>Ping: 12ms</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
+}
+
+export default HeroConicGlow;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'hero-sections',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'hero-sections',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'hero-features-grid',
+                'type' => 'registry:block',
+                'title' => 'Hero Features Grid',
+                'description' => 'A centered hero banner paired with a three-column micro-grid of cards displaying key app features.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'https://ui.test/r/heading-block.json',
+                    'https://ui.test/r/button-special.json',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/blocks/hero-features-grid/hero-features-grid.tsx',
+                        'type' => 'registry:block',
+                        'content' => '\'use client\';
+
+import * as React from \'react\';
+import { Layers, Activity, Terminal, Shield, ArrowRight } from \'lucide-react\';
+import HeadingBlock from \'@/registry/new-york/components/ui/typography/heading-block\';
+import { ButtonSpecial } from \'@/registry/new-york/components/ui/buttons/button-special\';
+
+export function HeroFeaturesGrid() {
+    const features = [
+        {
+            icon: Terminal,
+            title: \'CLI Scaffolding\',
+            description:
+                \'Generate production-ready controllers, model seeders, and React components with one Artisan command.\',
+        },
+        {
+            icon: Shield,
+            title: \'Fortified Security\',
+            description:
+                \'First-party support for two-factor authentication, email confirmation, and session security policies.\',
+        },
+        {
+            icon: Activity,
+            title: \'Performance Track\',
+            description:
+                \'Under-the-hood optimization for lightning-fast loads, prefetching, and state synchronization.\',
+        },
+    ];
+
+    return (
+        <section className="relative flex w-full flex-col items-center justify-center overflow-hidden rounded-2xl border border-border/30 bg-background px-6 py-16 text-center select-none">
+            <div className="relative z-10 mb-12 flex max-w-2xl flex-col items-center">
+                <HeadingBlock
+                    badge={{
+                        text: \'Integrated Ecosystem\',
+                        icon: Layers,
+                    }}
+                    heading="Engineered for high performance applications"
+                    headingLevel={1}
+                    headClassName="text-3xl leading-tight font-extrabold tracking-tight sm:text-4xl lg:text-5xl"
+                    description="A complete toolkit designed by developers, for developers. Clean architectures and styling conventions that speed up feature delivery."
+                    descriptionClassName="text-muted-foreground"
+                    className="flex flex-col items-center"
+                />
+
+                <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
+                    <ButtonSpecial specialVariant="gradient-border">
+                        Get Started
+                    </ButtonSpecial>
+                    <ButtonSpecial
+                        specialVariant="draw"
+                        className="flex items-center gap-1.5"
+                    >
+                        Read System Docs
+                        <ArrowRight className="size-4" />
+                    </ButtonSpecial>
+                </div>
+            </div>
+
+            {/* Bottom 3-Column Features Grid */}
+            <div className="relative z-10 grid w-full max-w-4xl grid-cols-1 gap-6 md:grid-cols-3">
+                {features.map((feature, i) => {
+                    const Icon = feature.icon;
+                    return (
+                        <div
+                            key={i}
+                            className="group flex flex-col items-start rounded-xl border border-border/40 bg-card/60 p-6 text-left backdrop-blur-xs transition-all hover:border-primary/20 hover:bg-card hover:shadow-lg"
+                        >
+                            <div className="mb-4 flex size-9 items-center justify-center rounded-lg bg-primary/5 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+                                <Icon className="size-4.5" />
+                            </div>
+                            <h4 className="mb-2 text-sm font-bold text-foreground">
+                                {feature.title}
+                            </h4>
+                            <p className="text-xs leading-relaxed text-muted-foreground">
+                                {feature.description}
+                            </p>
+                        </div>
+                    );
+                })}
+            </div>
+        </section>
+    );
+}
+
+export default HeroFeaturesGrid;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'hero-sections',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'hero-sections',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'hero-fullscreen-image',
+                'type' => 'registry:block',
+                'title' => 'Hero Fullscreen Image',
+                'description' => 'A beautiful component for your application.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'https://ui.test/r/heading-block.json',
+                    'https://ui.test/r/button-special.json',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/blocks/hero-fullscreen-image/hero-fullscreen-image.tsx',
+                        'type' => 'registry:block',
+                        'content' => '\'use client\';
+
+import * as React from \'react\';
+import { Image as ImageIcon, ArrowRight } from \'lucide-react\';
+import HeadingBlock from \'@/registry/new-york/components/ui/typography/heading-block\';
+import { ButtonSpecial } from \'@/registry/new-york/components/ui/buttons/button-special\';
+
+export function HeroFullscreenImage() {
+    return (
+        <section className="relative flex min-h-[600px] w-full items-center justify-center overflow-hidden rounded-2xl border border-border/30 px-6 py-20 text-center select-none md:px-12">
+            {/* Background Image at z-0 */}
+            <img
+                src="/hero-bg-premium.jpg"
+                alt="Premium Fullscreen Background"
+                className="absolute inset-0 z-0 h-full w-full object-cover object-center transition-transform duration-700 group-hover:scale-102"
+            />
+            {/* Soft Gradient Overlay at z-10 to ensure text readability */}
+            <div className="absolute inset-0 z-10 bg-gradient-to-b from-background/40 via-background/70 to-background" />
+
+            {/* Typography & Actions Container at z-20 */}
+            <div className="relative z-20 flex max-w-3xl flex-col items-center">
+                <HeadingBlock
+                    badge={{
+                        text: \'Visual Experience\',
+                        icon: ImageIcon,
+                    }}
+                    heading="Stand out with fullscreen layouts"
+                    headingLevel={1}
+                    headClassName="text-3xl leading-tight font-extrabold tracking-tight sm:text-4xl lg:text-5xl drop-shadow-sm"
+                    description="Capture attention immediately with high-resolution imagery and elegant gradient overlays. Perfectly responsive, auto-scaling to match all modern desktop and mobile device displays."
+                    descriptionClassName="text-muted-foreground/90 max-w-2xl drop-shadow-xs"
+                    className="flex flex-col items-center"
+                />
+
+                <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+                    <ButtonSpecial specialVariant="pulse">
+                        Explore Gallery
+                    </ButtonSpecial>
+                    <ButtonSpecial
+                        specialVariant="gradient-border"
+                        className="flex items-center gap-1.5"
+                    >
+                        View Case Study
+                        <ArrowRight className="size-4" />
+                    </ButtonSpecial>
+                </div>
+            </div>
+        </section>
+    );
+}
+
+export default HeroFullscreenImage;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'hero-sections',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'hero-sections',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'hero-fullscreen-video',
+                'type' => 'registry:block',
+                'title' => 'Hero Fullscreen Video',
+                'description' => 'A beautiful component for your application.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'https://ui.test/r/heading-block.json',
+                    'https://ui.test/r/button-special.json',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/blocks/hero-fullscreen-video/hero-fullscreen-video.tsx',
+                        'type' => 'registry:block',
+                        'content' => '\'use client\';
+
+import * as React from \'react\';
+import { Video as VideoIcon, ArrowRight } from \'lucide-react\';
+import HeadingBlock from \'@/registry/new-york/components/ui/typography/heading-block\';
+import { ButtonSpecial } from \'@/registry/new-york/components/ui/buttons/button-special\';
+
+export function HeroFullscreenVideo() {
+    return (
+        <section className="relative flex min-h-[600px] w-full items-center justify-center overflow-hidden rounded-2xl border border-border/30 px-6 py-20 text-center select-none md:px-12">
+            {/* Fullscreen Looping Video Background */}
+            <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="absolute inset-0 z-0 h-full w-full object-cover object-center"
+            >
+                <source
+                    src="https://assets.mixkit.co/videos/preview/mixkit-abstract-laser-lights-background-glow-37299-large.mp4"
+                    type="video/mp4"
+                />
+            </video>
+            {/* Theme-Adaptive Backdrop Mask to ensure text contrast */}
+            <div className="absolute inset-0 z-10 bg-background/85 backdrop-blur-[2px]" />
+
+            {/* Centered Content Container */}
+            <div className="relative z-20 flex max-w-2xl flex-col items-center">
+                <HeadingBlock
+                    badge={{
+                        text: \'Motion Experience\',
+                        icon: VideoIcon,
+                    }}
+                    heading="Engage visitors with ambient motion"
+                    headingLevel={1}
+                    headClassName="text-3xl leading-tight font-extrabold tracking-tight sm:text-4xl lg:text-5xl"
+                    description="Subtle background loops add a dynamic sense of depth to your SaaS landing pages. High-contrast typography and polished micro-animations keep readability perfect without distracting your users."
+                    descriptionClassName="text-muted-foreground"
+                    className="flex flex-col items-center"
+                />
+
+                <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+                    <ButtonSpecial specialVariant="pulse">
+                        Launch Demo
+                    </ButtonSpecial>
+                    <ButtonSpecial
+                        specialVariant="draw"
+                        className="flex items-center gap-1.5"
+                    >
+                        View Whitepaper
+                        <ArrowRight className="size-4" />
+                    </ButtonSpecial>
+                </div>
+            </div>
+        </section>
+    );
+}
+
+export default HeroFullscreenVideo;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'hero-sections',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'hero-sections',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'hero-glowing-cards',
+                'type' => 'registry:block',
+                'title' => 'Hero Glowing Cards',
+                'description' => 'A centered hero banner utilizing three mouse-tracing GlowingCard components to show features.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'https://ui.test/r/heading-block.json',
+                    'https://ui.test/r/button-special.json',
+                    'https://ui.test/r/glowing-card.json',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/blocks/hero-glowing-cards/hero-glowing-cards.tsx',
+                        'type' => 'registry:block',
+                        'content' => '\'use client\';
+
+import * as React from \'react\';
+import { Target, Zap, Layout, Shield } from \'lucide-react\';
+import HeadingBlock from \'@/registry/new-york/components/ui/typography/heading-block\';
+import { ButtonSpecial } from \'@/registry/new-york/components/ui/buttons/button-special\';
+import { GlowingCard } from \'@/registry/new-york/components/ui/cards/glowing-card\';
+
+export function HeroGlowingCards() {
+    const cards = [
+        {
+            icon: Zap,
+            title: \'Dynamic Spotlights\',
+            description:
+                \'Hover to trace coordinates with smooth radial gradients.\',
+            color: \'color-mix(in srgb, var(--color-chart-2) 12%, transparent)\', // Emerald/teal green glow
+        },
+        {
+            icon: Layout,
+            title: \'Grid Assembly\',
+            description:
+                \'Compose clean grids using predefined component rules.\',
+            color: \'color-mix(in srgb, var(--color-chart-3) 12%, transparent)\', // Indigo blue glow
+        },
+        {
+            icon: Shield,
+            title: \'Isolated Execution\',
+            description: \'Keep layouts fast, modular, and easy to scale.\',
+            color: \'color-mix(in srgb, var(--color-chart-1) 12%, transparent)\', // Pink glow
+        },
+    ];
+
+    return (
+        <section className="relative flex w-full flex-col items-center justify-center overflow-hidden rounded-2xl border border-border/30 bg-background px-6 py-16 text-center select-none">
+            {/* Background mesh */}
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-10%,rgba(99,102,241,0.06),rgba(0,0,0,0))]" />
+
+            <div className="relative z-10 mb-12 flex max-w-2xl flex-col items-center">
+                <HeadingBlock
+                    badge={{
+                        text: \'Spotlight Technology\',
+                        icon: Target,
+                    }}
+                    heading="Build premium glowing features"
+                    headingLevel={1}
+                    headClassName="text-3xl leading-tight font-extrabold tracking-tight sm:text-4xl lg:text-5xl"
+                    description="Move your cursor across the cards below. Each card dynamically tracks mouse hover coordinates to render a clean spotlight glow under the text."
+                    descriptionClassName="text-muted-foreground"
+                    className="flex flex-col items-center"
+                />
+
+                <div className="mt-4 flex justify-center">
+                    <ButtonSpecial specialVariant="pulse">
+                        Launch Sandbox
+                    </ButtonSpecial>
+                </div>
+            </div>
+
+            {/* Glowing Cards Grid */}
+            <div className="relative z-10 grid w-full max-w-4xl grid-cols-1 gap-6 md:grid-cols-3">
+                {cards.map((card, i) => {
+                    const Icon = card.icon;
+                    return (
+                        <GlowingCard
+                            key={i}
+                            glowColor={card.color}
+                            className="items-start text-left"
+                        >
+                            <div className="mb-4 flex size-9 shrink-0 items-center justify-center rounded-lg bg-foreground/5 text-foreground">
+                                <Icon className="size-4.5" />
+                            </div>
+                            <h4 className="mb-2 text-sm font-bold text-foreground">
+                                {card.title}
+                            </h4>
+                            <p className="text-xs leading-relaxed text-muted-foreground">
+                                {card.description}
+                            </p>
+                        </GlowingCard>
+                    );
+                })}
+            </div>
+        </section>
+    );
+}
+
+export default HeroGlowingCards;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'hero-sections',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'hero-sections',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'hero-high-energy',
+                'type' => 'registry:block',
+                'title' => 'Hero High Energy',
+                'description' => 'A beautiful component for your application.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'https://ui.test/r/heading-block.json',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/blocks/hero-high-energy/hero-high-energy.tsx',
+                        'type' => 'registry:block',
+                        'content' => '\'use client\';
+
+import React, { useState } from \'react\';
+import { Sparkles, Zap, Sliders, Layers, ArrowRight } from \'lucide-react\';
+import HeadingBlock from \'@/registry/new-york/components/ui/typography/heading-block\';
+
+const HIGHLIGHT_IMAGES = [
+    {
+        url: \'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=800&q=80\',
+        tag: \'STREET CYBERNETICS\',
+        desc: \'RAW PORTRAIT OVERLAYS // CHROMATIC ABERRATION ACTIVE\',
+    },
+    {
+        url: \'https://images.unsplash.com/photo-1504051771394-dd2e66b2e08f?auto=format&fit=crop&w=800&q=80\',
+        tag: \'BRUTAL ARCHITECTURE\',
+        desc: \'MONOLITH STRUCTURES // SOLID SHADOW EXTRUSIONS\',
+    },
+    {
+        url: \'https://images.unsplash.com/photo-1511556532299-8f662fc26c06?auto=format&fit=crop&w=800&q=80\',
+        tag: \'KINETIC NEON LINES\',
+        desc: \'HIGH-FREQUENCY LASERS // FLUID CONICAL GLOW\',
+    },
+];
+
+export function HeroHighEnergyImpact() {
+    const [activeIndex, setActiveIndex] = useState(0);
+    const [rgbOffset, setRgbOffset] = useState(4);
+    const [noiseFilter, setNoiseFilter] = useState(true);
+    const [aspectStretch, setAspectStretch] = useState(false);
+
+    return (
+        <section className="relative w-full overflow-hidden rounded-2xl border border-border/30 bg-background py-16 select-none lg:py-24">
+            {/* Dynamic Grid Background Accent */}
+            <div className="pointer-events-none absolute inset-0 z-0 bg-[linear-gradient(to_right,var(--border)_1px,transparent_1px),linear-gradient(to_bottom,var(--border)_1px,transparent_1px)] bg-[size:40px_40px] opacity-15" />
+
+            {/* Decorative Neon Header Ribbons */}
+            <div className="absolute top-0 left-0 h-[3px] w-full bg-gradient-to-r from-chart-4 via-chart-1 to-chart-3 opacity-60" />
+
+            <div className="relative z-10 mx-auto max-w-7xl px-6">
+                <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12">
+                    {/* Left Block: Ultra-dense Typography and Interactive Controller */}
+                    <div className="space-y-8 text-left lg:col-span-7">
+                        <div className="inline-flex items-center gap-2 rounded border border-chart-4/30 bg-chart-4/10 px-3 py-1 font-mono text-xs tracking-widest text-chart-4 uppercase">
+                            <Sparkles className="h-3 w-3 animate-pulse" />
+                            <span>
+                                HIGH IMPACT V2 // HIGH RESOLUTION SPECTRUM
+                            </span>
+                        </div>
+
+                        {/* Massive Bebas Neue Title */}
+                        <div className="space-y-1">
+                            <h1
+                                className="text-6xl leading-[0.85] font-black tracking-tighter text-foreground uppercase sm:text-8xl lg:text-9xl"
+                                style={{
+                                    fontFamily:
+                                        "var(--font-bebas-neue, \'Bebas Neue\', sans-serif)",
+                                }}
+                            >
+                                BREAK <br />
+                                <span className="bg-gradient-to-r from-chart-4 via-chart-1 to-chart-3 bg-clip-text text-transparent">
+                                    THE STANDARD
+                                </span>{\' \'}
+                                <br />
+                                ENGINE.
+                            </h1>
+                        </div>
+
+                        <p className="max-w-lg font-mono text-sm leading-relaxed text-muted-foreground">
+                            We engineer hyper-optimized digital products. No
+                            templates, no generic gradients, and absolutely no
+                            compromises. Control your screen spectrum layout
+                            directly below.
+                        </p>
+
+                        {/* Live Visual Controls Panel */}
+                        <div className="space-y-4 border border-l-4 border-border/40 border-chart-4 bg-card/90 p-5 shadow-xl">
+                            <div className="flex items-center gap-2 font-mono text-xs font-bold tracking-widest text-chart-4 uppercase">
+                                <Sliders className="h-4 w-4" />
+                                <span>SPECTRUM CONTROL HUB</span>
+                            </div>
+
+                            <div className="grid grid-cols-1 gap-4 font-mono text-xs sm:grid-cols-3">
+                                {/* Control 1 */}
+                                <div className="space-y-1">
+                                    <span className="block text-[10px] text-muted-foreground/75">
+                                        RGB SKEW
+                                    </span>
+                                    <div className="flex items-center gap-2">
+                                        <input
+                                            type="range"
+                                            min="0"
+                                            max="12"
+                                            value={rgbOffset}
+                                            onChange={(e) =>
+                                                setRgbOffset(
+                                                    parseInt(e.target.value),
+                                                )
+                                            }
+                                            className="h-1 w-full cursor-pointer appearance-none rounded-lg bg-muted accent-chart-4"
+                                        />
+                                        <span className="w-6 text-right text-[10px] font-bold text-chart-4">
+                                            {rgbOffset}px
+                                        </span>
+                                    </div>
+                                </div>
+
+                                {/* Control 2 */}
+                                <div className="space-y-1">
+                                    <span className="block text-[10px] text-muted-foreground/75">
+                                        STATIC NOISE
+                                    </span>
+                                    <button
+                                        onClick={() =>
+                                            setNoiseFilter(!noiseFilter)
+                                        }
+                                        className={`w-full cursor-pointer rounded border py-1.5 text-[10px] font-bold transition-all ${
+                                            noiseFilter
+                                                ? \'border-chart-4 bg-chart-4/10 text-chart-4\'
+                                                : \'border-border bg-transparent text-muted-foreground/60\'
+                                        }`}
+                                    >
+                                        {noiseFilter ? \'ACTIVE\' : \'BYPASS\'}
+                                    </button>
+                                </div>
+
+                                {/* Control 3 */}
+                                <div className="space-y-1">
+                                    <span className="block text-[10px] text-muted-foreground/75">
+                                        STRETCH ASPECT
+                                    </span>
+                                    <button
+                                        onClick={() =>
+                                            setAspectStretch(!aspectStretch)
+                                        }
+                                        className={`w-full cursor-pointer rounded border py-1.5 text-[10px] font-bold transition-all ${
+                                            aspectStretch
+                                                ? \'border-chart-4 bg-chart-4/10 text-chart-4\'
+                                                : \'border-border bg-transparent text-muted-foreground/60\'
+                                        }`}
+                                    >
+                                        {aspectStretch ? \'STRETCH\' : \'NORMAL\'}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Direct Multi-Choice Custom Interactive Slider buttons */}
+                        <div className="space-y-3 pt-2">
+                            <span className="block font-mono text-[10px] font-bold tracking-widest text-muted-foreground uppercase">
+                                [ SELECT RAW VISUAL CHANNELS ]
+                            </span>
+                            <div className="flex flex-wrap gap-2">
+                                {HIGHLIGHT_IMAGES.map((img, i) => (
+                                    <button
+                                        key={i}
+                                        onClick={() => setActiveIndex(i)}
+                                        className={`cursor-pointer border px-4 py-2 font-mono text-xs tracking-tight uppercase transition-all ${
+                                            activeIndex === i
+                                                ? \'border-foreground bg-foreground text-background shadow-[4px_4px_0_0_var(--color-chart-4)]\'
+                                                : \'border-border bg-card text-muted-foreground hover:border-border/80 hover:text-foreground\'
+                                        }`}
+                                    >
+                                        0{i + 1} // {img.tag.split(\' \')[0]}
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Powerful Action buttons */}
+                        <div className="flex flex-wrap gap-4 pt-4">
+                            <button className="cursor-pointer bg-chart-4 px-8 py-3.5 font-mono text-sm font-black text-primary-foreground uppercase shadow-[4px_4px_0px_0px_var(--color-foreground)] transition-all duration-300 hover:translate-x-1 hover:translate-y-1 hover:shadow-none">
+                                LAUNCH SPECTRUM ENGINE
+                            </button>
+                            <button className="cursor-pointer border-2 border-border bg-transparent px-6 py-3.5 font-mono text-sm text-foreground transition-all hover:border-border/80 hover:bg-muted/30">
+                                GET THE COMPILER
+                            </button>
+                        </div>
+                    </div>
+
+                    {/* Right Block: Dynamic Distorted Halftone Style Interactive Image Box */}
+                    <div className="relative lg:col-span-5">
+                        <div className="group relative overflow-hidden rounded-xl border border-border/40 bg-card p-4">
+                            {/* Halftone / scan dots overlay */}
+                            {noiseFilter && (
+                                <div className="pointer-events-none absolute inset-0 z-20 bg-[radial-gradient(var(--border)_1px,transparent_1px)] bg-[size:8px_8px] opacity-40" />
+                            )}
+
+                            {/* Distorted Image container using state controls */}
+                            <div className="relative aspect-[4/5] overflow-hidden rounded-lg border border-border/40 bg-background">
+                                {/* Simulated RGB Skew offset shadow layers */}
+                                <div
+                                    className="absolute inset-0 bg-cover bg-center opacity-60 mix-blend-screen grayscale"
+                                    style={{
+                                        backgroundImage: `url(\'${HIGHLIGHT_IMAGES[activeIndex].url}\')`,
+                                        transform: `translate(${-rgbOffset}px, ${rgbOffset / 2}px) ${
+                                            aspectStretch
+                                                ? \'scaleY(1.15)\'
+                                                : \'scale(1)\'
+                                        }`,
+                                        transition:
+                                            \'transform 0.15s ease-out, background-image 0.3s ease\',
+                                    }}
+                                />
+                                <div
+                                    className="absolute inset-0 bg-cover bg-center text-chart-3 opacity-60 mix-blend-screen"
+                                    style={{
+                                        backgroundImage: `url(\'${HIGHLIGHT_IMAGES[activeIndex].url}\')`,
+                                        transform: `translate(${rgbOffset}px, ${-rgbOffset / 2}px) ${
+                                            aspectStretch
+                                                ? \'scaleY(1.15)\'
+                                                : \'scale(1)\'
+                                        }`,
+                                        filter: \'hue-rotate(180deg)\',
+                                        transition:
+                                            \'transform 0.15s ease-out, background-image 0.3s ease\',
+                                    }}
+                                />
+                                <div
+                                    className="absolute inset-0 bg-cover bg-center opacity-70"
+                                    style={{
+                                        backgroundImage: `url(\'${HIGHLIGHT_IMAGES[activeIndex].url}\')`,
+                                        transform: aspectStretch
+                                            ? \'scaleY(1.15)\'
+                                            : \'scale(1)\',
+                                        transition:
+                                            \'transform 0.15s ease-out, background-image 0.3s ease\',
+                                    }}
+                                />
+
+                                {/* Left tags inside image box */}
+                                <div className="absolute top-3 left-3 z-30 border border-border/40 bg-card/90 px-2 py-1 font-mono text-[9px] tracking-widest text-chart-4 uppercase">
+                                    {HIGHLIGHT_IMAGES[activeIndex].tag}
+                                </div>
+
+                                {/* Floating Aspect indicator */}
+                                <div className="absolute right-3 bottom-3 z-30 flex items-center gap-1.5 rounded border border-border/40 bg-card/90 px-3 py-1.5 font-mono text-[9px] text-muted-foreground">
+                                    <Layers className="h-3.5 w-3.5 text-chart-4" />
+                                    <span>MATRIX v.902 // ACC ACTIVE</span>
+                                </div>
+                            </div>
+
+                            {/* Image Description and Stats under the preview */}
+                            <div className="mt-4 space-y-2 border-t border-border/40 pt-4 text-left font-mono">
+                                <div className="flex items-center justify-between text-xs">
+                                    <span className="text-muted-foreground">
+                                        TAG
+                                    </span>
+                                    <span className="font-bold text-foreground uppercase">
+                                        {HIGHLIGHT_IMAGES[activeIndex].tag}
+                                    </span>
+                                </div>
+
+                                <p className="rounded border border-border/20 bg-muted/30 p-2 text-[10px] leading-relaxed text-muted-foreground">
+                                    {HIGHLIGHT_IMAGES[activeIndex].desc}
+                                </p>
+
+                                <div className="flex items-center justify-between text-[10px] text-muted-foreground">
+                                    <span>RESOLVED URL</span>
+                                    <span className="max-w-[180px] truncate text-muted-foreground/80">
+                                        {HIGHLIGHT_IMAGES[
+                                            activeIndex
+                                        ].url.substring(0, 40)}
+                                        ...
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
+}
+
+export default HeroHighEnergyImpact;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'hero-sections',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'hero-sections',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'hero-minimal-centered',
+                'type' => 'registry:block',
+                'title' => 'Hero Minimal Centered',
+                'description' => 'A clean centered hero banner with simple typography and special draw and pulse CTA buttons.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'https://ui.test/r/heading-block.json',
+                    'https://ui.test/r/button-special.json',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/blocks/hero-minimal-centered/hero-minimal-centered.tsx',
+                        'type' => 'registry:block',
+                        'content' => '\'use client\';
+
+import * as React from \'react\';
+import { Sparkles, ArrowRight } from \'lucide-react\';
+import HeadingBlock from \'@/registry/new-york/components/ui/typography/heading-block\';
+import { ButtonSpecial } from \'@/registry/new-york/components/ui/buttons/button-special\';
+
+export function HeroMinimalCentered() {
+    return (
+        <section className="relative flex min-h-[450px] w-full flex-col items-center justify-center overflow-hidden rounded-2xl border border-border/30 bg-background px-6 py-16 text-center select-none">
+            {/* Subtle glow effect */}
+            <div className="pointer-events-none absolute top-0 left-1/2 h-[200px] w-[400px] -translate-x-1/2 rounded-full bg-primary/10 blur-[80px]" />
+
+            <div className="relative z-10 flex max-w-2xl flex-col items-center">
+                <HeadingBlock
+                    badge={{
+                        text: \'Next Generation SaaS\',
+                        icon: Sparkles,
+                    }}
+                    heading="Ship your project at lightspeed"
+                    headingLevel={1}
+                    headClassName="text-3xl leading-tight font-extrabold tracking-tight sm:text-4xl lg:text-5xl bg-clip-text text-transparent bg-gradient-to-r from-foreground via-foreground/90 to-muted-foreground"
+                    description="The modern way to build Web apps. Clean folder structures, preconfigured layouts, responsive sidebars, and customizable theme settings."
+                    descriptionClassName="text-muted-foreground"
+                    className="flex flex-col items-center"
+                />
+
+                <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
+                    <ButtonSpecial specialVariant="pulse">
+                        Start Deploying
+                    </ButtonSpecial>
+                    <ButtonSpecial
+                        specialVariant="draw"
+                        className="flex items-center gap-1.5"
+                    >
+                        Learn More
+                        <ArrowRight className="size-4" />
+                    </ButtonSpecial>
+                </div>
+            </div>
+        </section>
+    );
+}
+
+export default HeroMinimalCentered;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'hero-sections',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'hero-sections',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'hero-particles',
+                'type' => 'registry:block',
+                'title' => 'Hero Particles',
+                'description' => 'A high-impact centered hero set against an animated backdrop of floating ambient light particles.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'https://ui.test/r/heading-block.json',
+                    'https://ui.test/r/button-special.json',
+                    'https://ui.test/r/particles-backdrop.json',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/blocks/hero-particles/hero-particles.tsx',
+                        'type' => 'registry:block',
+                        'content' => '\'use client\';
+
+import * as React from \'react\';
+import { Star, ArrowRight } from \'lucide-react\';
+import HeadingBlock from \'@/registry/new-york/components/ui/typography/heading-block\';
+import { ButtonSpecial } from \'@/registry/new-york/components/ui/buttons/button-special\';
+import { ParticlesBackdrop } from \'@/registry/new-york/components/ui/animations/particles-backdrop\';
+
+export function HeroParticles() {
+    return (
+        <section className="relative flex min-h-[460px] w-full flex-col items-center justify-center overflow-hidden rounded-2xl border border-border/30 bg-background px-6 py-16 text-center select-none">
+            {/* Static Ambient Mesh Glow */}
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,color-mix(in_srgb,var(--color-chart-2)_5%,transparent),transparent)]" />
+
+            {/* Reusable Particles Backdrop */}
+            <ParticlesBackdrop count={15} colorClassName="bg-chart-2/30" />
+
+            <div className="relative z-10 flex max-w-2xl flex-col items-center">
+                <HeadingBlock
+                    badge={{
+                        text: \'Developer Centric\',
+                        icon: Star,
+                    }}
+                    heading="Engineered for rapid UI design"
+                    headingLevel={1}
+                    headClassName="text-3xl leading-tight font-extrabold tracking-tight sm:text-4xl lg:text-5xl text-foreground"
+                    description="Spend less time configuring webpack manifests and CSS utilities, and more time delivering visual assets that impress your clients."
+                    descriptionClassName="text-muted-foreground"
+                    className="flex flex-col items-center"
+                />
+
+                <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
+                    <ButtonSpecial
+                        specialVariant="neon"
+                        className="flex items-center gap-2"
+                    >
+                        Get Started
+                        <ArrowRight className="size-4" />
+                    </ButtonSpecial>
+                    <ButtonSpecial specialVariant="draw">
+                        View Storybook
+                    </ButtonSpecial>
+                </div>
+            </div>
+        </section>
+    );
+}
+
+export default HeroParticles;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'hero-sections',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'hero-sections',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'hero-phone-mockup',
+                'type' => 'registry:block',
+                'title' => 'Hero Phone Mockup',
+                'description' => 'A split hero layout showcasing app copy alongside a high-fidelity glowing smartphone dashboard mockup.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'https://ui.test/r/heading-block.json',
+                    'https://ui.test/r/button-special.json',
+                    'https://ui.test/r/phone-mockup.json',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/blocks/hero-phone-mockup/hero-phone-mockup.tsx',
+                        'type' => 'registry:block',
+                        'content' => '\'use client\';
+
+import * as React from \'react\';
+import { Smartphone, Zap, Sparkles } from \'lucide-react\';
+import HeadingBlock from \'@/registry/new-york/components/ui/typography/heading-block\';
+import { ButtonSpecial } from \'@/registry/new-york/components/ui/buttons/button-special\';
+import { PhoneMockup } from \'@/registry/new-york/components/ui/mockups/phone-mockup\';
+
+export function HeroPhoneMockup() {
+    return (
+        <section className="relative flex w-full flex-col gap-8 overflow-hidden rounded-2xl border border-border/30 bg-background/50 p-8 select-none lg:flex-row lg:items-center lg:p-12">
+            <div className="flex-1 space-y-6 text-left">
+                <HeadingBlock
+                    badge={{
+                        text: \'Mobile Experience Ready\',
+                        icon: Smartphone,
+                    }}
+                    heading="Stunning interfaces on every screen size"
+                    headingLevel={1}
+                    headClassName="text-3xl leading-tight font-extrabold tracking-tight sm:text-4xl lg:text-5xl"
+                    description="Responsive layouts that scale flawlessly from extra wide displays down to mobile touchscreens. Native gestures, touch states, and hardware acceleration built in."
+                    descriptionClassName="text-muted-foreground"
+                    size="sm"
+                />
+
+                <div className="flex flex-wrap items-center gap-4 pt-2">
+                    <ButtonSpecial
+                        specialVariant="neon"
+                        className="flex items-center gap-2"
+                    >
+                        <Zap className="size-4" />
+                        Download App
+                    </ButtonSpecial>
+                    <ButtonSpecial specialVariant="draw">
+                        View Demo
+                    </ButtonSpecial>
+                </div>
+            </div>
+
+            {/* Right mock smartphone */}
+            <div className="flex flex-1 items-center justify-center py-6">
+                <PhoneMockup screenClassName="justify-between">
+                    <div className="flex items-center justify-between font-mono text-[10px] text-zinc-500">
+                        <span>9:41</span>
+                        <div className="flex items-center gap-1">
+                            <span className="size-1.5 animate-pulse rounded-full bg-chart-2" />
+                            <span>LTE</span>
+                        </div>
+                    </div>
+
+                    {/* App Dashboard UI Simulator */}
+                    <div className="flex flex-1 flex-col justify-center space-y-3">
+                        <div className="mx-auto flex size-10 items-center justify-center rounded-xl bg-chart-2/20 text-chart-2">
+                            <Sparkles className="size-5" />
+                        </div>
+                        <div className="text-center">
+                            <h4 className="text-sm font-bold text-zinc-100">
+                                Antigravity Hub
+                            </h4>
+                            <p className="mt-0.5 text-[10px] text-zinc-400">
+                                Control panel active
+                            </p>
+                        </div>
+
+                        <div className="space-y-2 pt-2">
+                            <div className="bg-zinc-850/80 flex items-center justify-between rounded-lg border border-zinc-800 p-2.5 text-[10px] text-zinc-300">
+                                <span>Server Load</span>
+                                <span className="font-mono font-bold text-chart-2">
+                                    24%
+                                </span>
+                            </div>
+                            <div className="bg-zinc-850/80 flex items-center justify-between rounded-lg border border-zinc-800 p-2.5 text-[10px] text-zinc-300">
+                                <span>Active Users</span>
+                                <span className="font-mono font-bold text-chart-2">
+                                    1,842
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Interactive mini button */}
+                    <button className="w-full cursor-pointer rounded-lg bg-chart-2 py-2 text-xs font-bold text-primary-foreground transition-colors select-none hover:bg-chart-2/80 active:scale-95">
+                        Quick Connect
+                    </button>
+                </PhoneMockup>
+            </div>
+        </section>
+    );
+}
+
+export default HeroPhoneMockup;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'hero-sections',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'hero-sections',
                 ],
                 'extends' => null,
                 'style' => null,
@@ -1771,7 +2992,7 @@ export default FeatureGrid;
                 'name' => 'hero-section',
                 'type' => 'registry:block',
                 'title' => 'Hero Section',
-                'description' => null,
+                'description' => 'A stunning and modern landing page hero section with typography and call to actions.',
                 'author' => 'designbycode',
                 'dependencies' => [
                     'lucide-react',
@@ -1780,6 +3001,8 @@ export default FeatureGrid;
 
                 ],
                 'registryDependencies' => [
+                    'https://ui.test/r/heading-block.json',
+                    'https://ui.test/r/button-special.json',
                     'utils',
                     'button',
                     'badge',
@@ -1788,10 +3011,66 @@ export default FeatureGrid;
                     'https://ui.test/r/button-shine.json',
                     'https://ui.test/r/progress-circle.json',
                     'https://ui.test/r/interactive-rating.json',
+                    'https://ui.test/r/pixel-canvas.json',
                 ],
                 'files' => [
                     [
-                        'path' => 'resources/js/registry/new-york/components/hero-section/hero-section.tsx',
+                        'path' => 'resources/js/registry/new-york/components/blocks/hero-section/hero-gradient.tsx',
+                        'type' => 'registry:block',
+                        'content' => '\'use client\';
+
+import * as React from \'react\';
+import { Sparkles, ArrowRight, Zap } from \'lucide-react\';
+import HeadingBlock from \'@/registry/new-york/components/ui/typography/heading-block\';
+import { ButtonSpecial } from \'@/registry/new-york/components/ui/buttons/button-special\';
+
+export function HeroGradient() {
+    return (
+        <section className="relative flex min-h-[480px] w-full flex-col items-center justify-center overflow-hidden rounded-2xl border border-border/30 bg-background px-6 py-16 text-center shadow-2xl select-none md:px-12 lg:px-20">
+            {/* Mesh Gradient Backgrounds */}
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-20%,color-mix(in_srgb,var(--color-chart-3)_12%,transparent),transparent)]" />
+            <div className="absolute top-1/2 left-1/2 h-[250px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-r from-chart-2/8 via-chart-3/8 to-chart-1/8 opacity-70 blur-[100px]" />
+
+            <div className="relative z-10 flex max-w-3xl flex-col items-center">
+                <HeadingBlock
+                    badge={{
+                        text: \'Introducing Antigravity UI\',
+                        icon: Sparkles,
+                    }}
+                    heading="Build premium interfaces in a fraction of the time"
+                    headingLevel={1}
+                    headClassName="text-4xl leading-tight font-extrabold tracking-tight sm:text-5xl lg:text-6xl text-foreground"
+                    description="Leverage pre-configured typography, unique animated buttons, and responsive layouts to compile responsive designs that wow your users."
+                    descriptionClassName="text-muted-foreground"
+                    className="flex flex-col items-center"
+                />
+
+                <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+                    <ButtonSpecial
+                        specialVariant="neon"
+                        className="flex items-center gap-2"
+                    >
+                        Get Started
+                        <ArrowRight className="size-4" />
+                    </ButtonSpecial>
+                    <ButtonSpecial
+                        specialVariant="gradient-border"
+                        className="flex items-center gap-2"
+                    >
+                        <Zap className="size-4 text-primary" />
+                        Explore Components
+                    </ButtonSpecial>
+                </div>
+            </div>
+        </section>
+    );
+}
+
+export default HeroGradient;
+',
+                    ],
+                    [
+                        'path' => 'resources/js/registry/new-york/components/blocks/hero-section/hero-section.tsx',
                         'type' => 'registry:block',
                         'content' => 'import React, { useState } from \'react\';
 import { ArrowRight, Sparkles, Shield, Trophy, Users } from \'lucide-react\';
@@ -1863,7 +3142,7 @@ export function HeroSection() {
                     <div className="flex flex-col justify-center sm:border-l sm:border-border/40 sm:pl-4">
                         <span className="text-[10px] leading-normal text-muted-foreground">
                             {submitSuccess ? (
-                                <span className="animate-bounce font-bold text-emerald-500">
+                                <span className="animate-bounce font-bold text-chart-2">
                                     Review recorded!
                                 </span>
                             ) : (
@@ -1918,7 +3197,7 @@ export function HeroSection() {
                     <div className="space-y-3.5">
                         <div className="flex items-center justify-between border-t border-border/10 pt-3 text-xs">
                             <span className="flex items-center gap-2 text-muted-foreground">
-                                <Users className="size-4 text-sky-500" />
+                                <Users className="size-4 text-chart-3" />
                                 Host communication
                             </span>
                             <span className="font-mono font-bold">
@@ -1927,7 +3206,7 @@ export function HeroSection() {
                         </div>
                         <div className="flex items-center justify-between border-t border-border/10 pt-3 text-xs">
                             <span className="flex items-center gap-2 text-muted-foreground">
-                                <Shield className="size-4 text-emerald-500" />
+                                <Shield className="size-4 text-chart-2" />
                                 Security score
                             </span>
                             <span className="font-mono font-bold">
@@ -1959,6 +3238,81 @@ export function HeroSection() {
 export default HeroSection;
 ',
                     ],
+                    [
+                        'path' => 'resources/js/registry/new-york/components/blocks/hero-section/hero-split.tsx',
+                        'type' => 'registry:block',
+                        'content' => '\'use client\';
+
+import * as React from \'react\';
+import { Shield, Sparkles, CheckCircle2 } from \'lucide-react\';
+import HeadingBlock from \'@/registry/new-york/components/ui/typography/heading-block\';
+import { ButtonSpecial } from \'@/registry/new-york/components/ui/buttons/button-special\';
+import { PixelCanvas } from \'@/registry/new-york/components/ui/canvas/pixel-canvas\';
+
+export function HeroSplit() {
+    return (
+        <section className="relative flex w-full flex-col gap-10 overflow-hidden rounded-2xl border border-border/30 bg-background/40 p-8 shadow-xl select-none lg:flex-row lg:items-center lg:p-12">
+            {/* Left Content Column */}
+            <div className="relative z-10 flex-1 space-y-6 text-left">
+                <HeadingBlock
+                    badge={{
+                        text: \'Security & Integrity Verified\',
+                        icon: Shield,
+                    }}
+                    heading="Secure operations with zero downtime"
+                    headingLevel={1}
+                    headClassName="text-3xl leading-tight font-extrabold tracking-tight sm:text-4xl lg:text-5xl"
+                    description="Protect your workspace and client data with next-generation authorization mechanisms, end-to-end logging, and audit tracks."
+                    descriptionClassName="text-muted-foreground"
+                    size="sm"
+                />
+
+                <ul className="space-y-2.5 text-sm text-muted-foreground">
+                    <li className="flex items-center gap-2">
+                        <CheckCircle2 className="size-4.5 shrink-0 text-chart-2" />
+                        <span>Biometric & Passkey authentication methods</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                        <CheckCircle2 className="size-4.5 shrink-0 text-chart-2" />
+                        <span>Real-time anomalous action detection</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                        <CheckCircle2 className="size-4.5 shrink-0 text-chart-2" />
+                        <span>99.99% high-availability cluster setups</span>
+                    </li>
+                </ul>
+
+                <div className="flex flex-wrap items-center gap-4 pt-4">
+                    <ButtonSpecial specialVariant="pulse">
+                        Setup Shield
+                    </ButtonSpecial>
+                    <ButtonSpecial specialVariant="draw">
+                        Read Whitepaper
+                    </ButtonSpecial>
+                </div>
+            </div>
+
+            {/* Right Visual Interactive Column */}
+            <div className="relative min-h-[300px] w-full flex-1 overflow-hidden rounded-xl border border-border/40 bg-card/70 shadow-2xl">
+                <PixelCanvas className="absolute inset-0 opacity-40" />
+                <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center p-6 text-center select-none">
+                    <Sparkles className="mb-2 size-10 animate-pulse text-chart-2" />
+                    <h3 className="font-bebas-neue! text-xl font-bold tracking-wider text-foreground">
+                        Interactive Pixel Matrix
+                    </h3>
+                    <p className="mt-1 max-w-xs text-xs text-muted-foreground">
+                        Move your mouse across the grid to interact with the
+                        responsive visual canvas.
+                    </p>
+                </div>
+            </div>
+        </section>
+    );
+}
+
+export default HeroSplit;
+',
+                    ],
                 ],
                 'css' => null,
                 'tailwind' => null,
@@ -1969,12 +3323,643 @@ export default HeroSection;
                 'font_mono' => null,
                 'font_serif' => null,
                 'meta' => [
-                    'category' => 'blocks',
+                    'category' => 'hero-sections',
                     'version' => '1.0.0',
                 ],
                 'docs' => null,
                 'categories' => [
-                    'blocks',
+                    'hero-sections',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'hero-tabs-showcase',
+                'type' => 'registry:block',
+                'title' => 'Hero Tabs Showcase',
+                'description' => 'A structured full-stack hero layout with tabbed navigation displaying frontend, backend, and migration code snippets.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'https://ui.test/r/heading-block.json',
+                    'https://ui.test/r/button-special.json',
+                    'https://ui.test/r/animated-tabs.json',
+                    'https://ui.test/r/code-window.json',
+                    'button',
+                    'typography',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/blocks/hero-tabs-showcase/hero-tabs-showcase.tsx',
+                        'type' => 'registry:block',
+                        'content' => '\'use client\';
+
+import * as React from \'react\';
+import { Code, Server, Database, ArrowRight } from \'lucide-react\';
+import HeadingBlock from \'@/registry/new-york/components/ui/typography/heading-block\';
+import { ButtonSpecial } from \'@/registry/new-york/components/ui/buttons/button-special\';
+import { AnimatedTabs } from \'@/registry/new-york/components/ui/tabs/animated-tabs\';
+import { CodeWindow } from \'@/registry/new-york/components/ui/mockups/code-window\';
+
+export function HeroTabsShowcase() {
+    const [activeTab, setActiveTab] = React.useState(\'frontend\');
+
+    const tabList = [
+        { id: \'frontend\', label: \'React Frontend\' },
+        { id: \'backend\', label: \'Laravel Backend\' },
+        { id: \'database\', label: \'Database Schema\' },
+    ];
+
+    const snippets: Record<
+        string,
+        { title: string; lang: string; code: string }
+    > = {
+        frontend: {
+            title: \'dashboard.tsx\',
+            lang: \'tsx\',
+            code: `import { ButtonSpecial } from \'@/components/ui/button\';\\nimport { HeadingBlock } from \'@/components/ui/typography\';\\n\\nexport default function App() {\\n    return (\\n        <HeadingBlock\\n            heading="Compile premium interfaces"\\n            description="Built on React 19 & Tailwind v4"\\n        >\\n            <ButtonSpecial variant="neon">Get Started</ButtonSpecial>\\n        </HeadingBlock>\\n    );\\n}`,
+        },
+        backend: {
+            title: \'RouteServiceProvider.php\',
+            lang: \'php\',
+            code: `use App\\\\Http\\\\Controllers\\\\Auth\\\\SocialiteController;\\nuse Illuminate\\\\Support\\\\Facades\\\\Route;\\n\\nRoute::get(\'/auth/redirect/{provider}\', [SocialiteController::class, \'redirect\'])\\n    ->name(\'socialite.redirect\');\\n\\nRoute::get(\'/auth/callback/{provider}\', [SocialiteController::class, \'callback\'])\\n    ->name(\'socialite.callback\');`,
+        },
+        database: {
+            title: \'create_registries_table.php\',
+            lang: \'php\',
+            code: `Schema::create(\'registries\', function (Blueprint $table) {\\n    $table->id();\\n    $table->string(\'name\')->unique();\\n    $table->string(\'type\');\\n    $table->string(\'title\');\\n    $table->text(\'description\')->nullable();\\n    $table->json(\'files\');\\n    $table->timestamps();\\n});`,
+        },
+    };
+
+    return (
+        <section className="relative flex w-full flex-col items-center justify-center overflow-hidden rounded-2xl border border-border/30 bg-background px-6 py-16 text-center select-none">
+            <div className="relative z-10 mb-8 flex max-w-2xl flex-col items-center">
+                <HeadingBlock
+                    badge={{
+                        text: \'Full Stack Ready\',
+                        icon: Code,
+                    }}
+                    heading="Unified design from client to server"
+                    headingLevel={1}
+                    headClassName="text-3xl leading-tight font-extrabold tracking-tight sm:text-4xl lg:text-5xl"
+                    description="Write clean UI code, manage routing middleware, and declare migrations inside a single repository with our fully integrated templates."
+                    descriptionClassName="text-muted-foreground"
+                    className="flex flex-col items-center"
+                />
+
+                <div className="mt-4 flex flex-wrap items-center justify-center gap-4">
+                    <ButtonSpecial
+                        specialVariant="neon"
+                        className="flex items-center gap-1.5"
+                    >
+                        Start Building
+                        <ArrowRight className="size-4" />
+                    </ButtonSpecial>
+                </div>
+            </div>
+
+            {/* Showcase Tabs and Code Window */}
+            <div className="relative z-10 flex w-full max-w-2xl flex-col items-center gap-6">
+                <AnimatedTabs
+                    tabs={tabList}
+                    value={activeTab}
+                    onChange={setActiveTab}
+                />
+
+                {/* Simulated Editor Window */}
+                <CodeWindow
+                    title={snippets[activeTab].title}
+                    lang={snippets[activeTab].lang}
+                    code={snippets[activeTab].code}
+                    className="h-64 shrink-0"
+                />
+            </div>
+        </section>
+    );
+}
+
+export default HeroTabsShowcase;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'hero-sections',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'hero-sections',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'hero-trusted-by',
+                'type' => 'registry:block',
+                'title' => 'Hero Trusted By',
+                'description' => 'A centered landing page hero banner with an integrated client brand logo cloud for social proof.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'https://ui.test/r/heading-block.json',
+                    'https://ui.test/r/button-special.json',
+                    'https://ui.test/r/logo-cloud.json',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/blocks/hero-trusted-by/hero-trusted-by.tsx',
+                        'type' => 'registry:block',
+                        'content' => '\'use client\';
+
+import * as React from \'react\';
+import { Award, Globe, Heart, Sparkles, Terminal } from \'lucide-react\';
+import HeadingBlock from \'@/registry/new-york/components/ui/typography/heading-block\';
+import { ButtonSpecial } from \'@/registry/new-york/components/ui/buttons/button-special\';
+import { LogoCloud } from \'@/registry/new-york/components/ui/misc/logo-cloud\';
+
+export function HeroTrustedBy() {
+    const brands = [
+        { icon: Globe, name: \'Stripe\' },
+        { icon: Heart, name: \'Vercel\' },
+        { icon: Award, name: \'Github\' },
+        { icon: Terminal, name: \'Supabase\' },
+    ];
+
+    return (
+        <section className="relative flex w-full flex-col items-center justify-center overflow-hidden rounded-2xl border border-border/30 bg-background px-6 py-16 text-center select-none">
+            <div className="relative z-10 mb-12 flex max-w-2xl flex-col items-center">
+                <HeadingBlock
+                    badge={{
+                        text: \'Enterprise Grade\',
+                        icon: Award,
+                    }}
+                    heading="Trusted by leading software teams worldwide"
+                    headingLevel={1}
+                    headClassName="text-3xl leading-tight font-extrabold tracking-tight sm:text-4xl lg:text-5xl"
+                    description="From early stage startups to global enterprises, our codebase helps teams ship structured design languages, fast APIs, and responsive React SPAs."
+                    descriptionClassName="text-muted-foreground"
+                    className="flex flex-col items-center"
+                />
+
+                <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
+                    <ButtonSpecial specialVariant="neon">
+                        Book a Demo
+                    </ButtonSpecial>
+                    <ButtonSpecial specialVariant="draw">
+                        Contact Sales
+                    </ButtonSpecial>
+                </div>
+            </div>
+
+            {/* Logo Cloud Social Proof Strip */}
+            <LogoCloud title="POWERING TEAMS AT" items={brands} />
+        </section>
+    );
+}
+
+export default HeroTrustedBy;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'hero-sections',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'hero-sections',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'hero-video-dialog',
+                'type' => 'registry:block',
+                'title' => 'Hero Video Dialog',
+                'description' => 'A centered hero section featuring a simulated dashboard mockup with an interactive play state.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'https://ui.test/r/heading-block.json',
+                    'https://ui.test/r/button-special.json',
+                    'https://ui.test/r/browser-mockup.json',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/blocks/hero-video-dialog/hero-video-dialog.tsx',
+                        'type' => 'registry:block',
+                        'content' => '\'use client\';
+
+import * as React from \'react\';
+import { Play, Pause, Monitor, Sparkles } from \'lucide-react\';
+import HeadingBlock from \'@/registry/new-york/components/ui/typography/heading-block\';
+import { ButtonSpecial } from \'@/registry/new-york/components/ui/buttons/button-special\';
+import { BrowserMockup } from \'@/registry/new-york/components/ui/mockups/browser-mockup\';
+
+export function HeroVideoDialog() {
+    const [isPlaying, setIsPlaying] = React.useState(false);
+
+    return (
+        <section className="relative flex w-full flex-col items-center justify-center overflow-hidden rounded-2xl border border-border/30 bg-background px-6 py-16 text-center select-none">
+            <div className="relative z-10 mb-10 flex max-w-2xl flex-col items-center">
+                <HeadingBlock
+                    badge={{
+                        text: \'Product Walkthrough\',
+                        icon: Monitor,
+                    }}
+                    heading="Watch our 2-minute developer intro"
+                    headingLevel={1}
+                    headClassName="text-3xl leading-tight font-extrabold tracking-tight sm:text-4xl lg:text-5xl"
+                    description="See how our design system compiles components down to raw TypeScript, automatically formatting style grids and configuring theme states."
+                    descriptionClassName="text-muted-foreground"
+                    className="flex flex-col items-center"
+                />
+
+                <div className="mt-4 flex justify-center">
+                    <ButtonSpecial
+                        specialVariant="neon"
+                        onClick={() => setIsPlaying(!isPlaying)}
+                        className="flex items-center gap-2"
+                    >
+                        {isPlaying ? (
+                            <Pause className="size-4" />
+                        ) : (
+                            <Play className="size-4" />
+                        )}
+                        {isPlaying ? \'Pause Demo\' : \'Play Walkthrough\'}
+                    </ButtonSpecial>
+                </div>
+            </div>
+
+            {/* Video Dashboard Mock Window */}
+            <BrowserMockup
+                title="preview-player.mp4"
+                className="aspect-video max-w-3xl"
+                viewportClassName="flex flex-col justify-between"
+            >
+                {/* Main area */}
+                <div className="relative flex flex-1 items-center justify-center overflow-hidden bg-zinc-900/80">
+                    {/* Background grid */}
+                    <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]" />
+
+                    {isPlaying ? (
+                        <div className="relative z-10 flex flex-col items-center gap-3">
+                            <span className="flex size-12 animate-ping items-center justify-center rounded-full bg-chart-2/10 text-chart-2 duration-1000" />
+                            <div className="absolute inset-0 flex size-12 items-center justify-center rounded-full bg-chart-2/20 text-chart-2">
+                                <Sparkles className="size-5 animate-pulse" />
+                            </div>
+                            <span className="animate-pulse pt-8 font-mono text-xs tracking-wider text-chart-2/90">
+                                SIMULATING VIDEO STREAM...
+                            </span>
+                        </div>
+                    ) : (
+                        <button
+                            onClick={() => setIsPlaying(true)}
+                            className="group/btn relative z-10 flex size-16 cursor-pointer items-center justify-center rounded-full border border-zinc-700/60 bg-zinc-950/80 text-zinc-100 shadow-2xl transition-all hover:scale-110 hover:border-chart-2 hover:text-chart-2 active:scale-95"
+                        >
+                            <Play className="ml-1 size-6 transition-transform group-hover/btn:scale-105" />
+                        </button>
+                    )}
+                </div>
+
+                {/* Simulated playbar controls */}
+                <div className="flex h-10 shrink-0 items-center justify-between border-t border-zinc-800 bg-zinc-900/60 px-4 font-mono text-[10px] text-zinc-400">
+                    <span>{isPlaying ? \'0:24\' : \'0:00\'} / 2:00</span>
+                    <div className="mx-4 h-1 flex-1 overflow-hidden rounded-full bg-zinc-800">
+                        <div
+                            className="h-full bg-chart-2 transition-all duration-300"
+                            style={{ width: isPlaying ? \'20%\' : \'0%\' }}
+                        />
+                    </div>
+                    <span>1080p HD</span>
+                </div>
+            </BrowserMockup>
+        </section>
+    );
+}
+
+export default HeroVideoDialog;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'hero-sections',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'hero-sections',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'hero-waitlist',
+                'type' => 'registry:block',
+                'title' => 'Hero Waitlist',
+                'description' => 'An interactive private beta submission form featuring custom number steppers and subscription feedback.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'https://ui.test/r/heading-block.json',
+                    'https://ui.test/r/button-special.json',
+                    'https://ui.test/r/input-number-stepper.json',
+                    'input',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/blocks/hero-waitlist/hero-waitlist.tsx',
+                        'type' => 'registry:block',
+                        'content' => '\'use client\';
+
+import * as React from \'react\';
+import { Mail, CheckCircle2, Sparkles } from \'lucide-react\';
+import HeadingBlock from \'@/registry/new-york/components/ui/typography/heading-block\';
+import { ButtonSpecial } from \'@/registry/new-york/components/ui/buttons/button-special\';
+import { InputNumberStepper } from \'@/registry/new-york/components/ui/inputs/input-number-stepper\';
+import { Input } from \'@/components/ui/input\';
+
+export function HeroWaitlist() {
+    const [email, setEmail] = React.useState(\'\');
+    const [seats, setSeats] = React.useState<number | undefined>(3);
+    const [isSubmitted, setIsSubmitted] = React.useState(false);
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        if (email.trim()) {
+            setIsSubmitted(true);
+        }
+    };
+
+    return (
+        <section className="relative flex w-full flex-col items-center justify-center overflow-hidden rounded-2xl border border-border/30 bg-background px-6 py-16 text-center select-none">
+            {/* Mesh backdrop */}
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-10%,rgba(16,185,129,0.06),rgba(255,255,255,0))]" />
+
+            <div className="relative z-10 flex max-w-2xl flex-col items-center">
+                <HeadingBlock
+                    badge={{
+                        text: \'Private Beta Access\',
+                        icon: Mail,
+                    }}
+                    heading="Secure your spot for early access"
+                    headingLevel={1}
+                    headClassName="text-3xl leading-tight font-extrabold tracking-tight sm:text-4xl lg:text-5xl"
+                    description="We are launching our developer tools suite next month. Request early access for your team to enjoy premium rates and onboarding resources."
+                    descriptionClassName="text-muted-foreground"
+                    className="flex flex-col items-center"
+                />
+
+                {!isSubmitted ? (
+                    <form
+                        onSubmit={handleSubmit}
+                        className="mt-8 w-full max-w-md space-y-4 rounded-xl border border-border/40 bg-card/60 p-6 text-left shadow-xl backdrop-blur-xs"
+                    >
+                        <div className="space-y-1.5">
+                            <label className="text-xs font-semibold text-muted-foreground">
+                                Work Email
+                            </label>
+                            <Input
+                                type="email"
+                                placeholder="name@company.com"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                className="h-10 w-full"
+                                required
+                            />
+                        </div>
+
+                        <div className="flex flex-col justify-between gap-4 py-2 sm:flex-row sm:items-center">
+                            <div className="space-y-0.5">
+                                <label className="text-xs font-semibold text-foreground">
+                                    Number of seats requested
+                                </label>
+                                <p className="text-[10px] text-muted-foreground">
+                                    Select how many developer licenses you need.
+                                </p>
+                            </div>
+                            <InputNumberStepper
+                                value={seats}
+                                onValueChange={setSeats}
+                                min={1}
+                                max={20}
+                                variant="split"
+                            />
+                        </div>
+
+                        <ButtonSpecial
+                            type="submit"
+                            specialVariant="neon"
+                            className="mt-2 h-10 w-full font-bold"
+                        >
+                            Request Invite ({seats} licenses)
+                        </ButtonSpecial>
+                    </form>
+                ) : (
+                    <div className="mt-8 flex w-full max-w-md flex-col items-center gap-4 rounded-xl border border-primary/20 bg-primary/5 p-8 text-center shadow-xl">
+                        <div className="flex size-12 items-center justify-center rounded-full bg-primary/10 text-primary">
+                            <CheckCircle2 className="size-6 animate-bounce" />
+                        </div>
+                        <div>
+                            <h4 className="text-base font-bold text-foreground">
+                                You\'re on the list!
+                            </h4>
+                            <p className="mx-auto mt-1 max-w-xs text-xs text-muted-foreground">
+                                We sent a confirmation code to{\' \'}
+                                <span className="font-mono font-bold text-primary">
+                                    {email}
+                                </span>
+                                . We\'ve reserved {seats} seats for you.
+                            </p>
+                        </div>
+                        <button
+                            onClick={() => {
+                                setIsSubmitted(false);
+                                setEmail(\'\');
+                            }}
+                            className="cursor-pointer text-xs font-medium text-primary underline underline-offset-4 transition-colors hover:text-primary/80"
+                        >
+                            Submit another email
+                        </button>
+                    </div>
+                )}
+            </div>
+        </section>
+    );
+}
+
+export default HeroWaitlist;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'hero-sections',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'hero-sections',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'hero-waves',
+                'type' => 'registry:block',
+                'title' => 'Hero Waves',
+                'description' => 'An immersive black-themed hero banner using a WebGL 3D waves canvas backdrop behind high-end typography.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'https://ui.test/r/heading-block.json',
+                    'https://ui.test/r/button-special.json',
+                    'https://ui.test/r/waves-three.json',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/blocks/hero-waves/hero-waves.tsx',
+                        'type' => 'registry:block',
+                        'content' => '\'use client\';
+
+import * as React from \'react\';
+import { Sparkles, ArrowRight } from \'lucide-react\';
+import HeadingBlock from \'@/registry/new-york/components/ui/typography/heading-block\';
+import { ButtonSpecial } from \'@/registry/new-york/components/ui/buttons/button-special\';
+import WavesThree from \'@/registry/new-york/components/ui/threejs/waves-three\';
+
+export function HeroWaves() {
+    return (
+        <section className="relative flex min-h-[480px] w-full flex-col items-center justify-center overflow-hidden rounded-2xl border border-border/30 bg-background px-6 py-16 text-center shadow-2xl select-none">
+            {/* Interactive 3D Waves background */}
+            <div className="absolute inset-0 opacity-70">
+                <WavesThree className="absolute inset-0 size-full" />
+            </div>
+
+            {/* Backdrop gradient mask */}
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background via-transparent to-background" />
+
+            <div className="relative z-10 flex max-w-2xl flex-col items-center">
+                <HeadingBlock
+                    badge={{
+                        text: \'WebGL Accelerated\',
+                        icon: Sparkles,
+                    }}
+                    heading="Stunning WebGL 3D backdrops"
+                    headingLevel={1}
+                    headClassName="text-3xl leading-tight font-extrabold tracking-tight sm:text-4xl lg:text-5xl text-foreground"
+                    description="Deliver visually immersive client portals with interactive 3D particle animations. Completely optimized for hardware rendering without dropping frames."
+                    descriptionClassName="text-muted-foreground"
+                    className="flex flex-col items-center"
+                />
+
+                <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
+                    <ButtonSpecial
+                        specialVariant="neon"
+                        className="flex items-center gap-2"
+                    >
+                        Get Started
+                        <ArrowRight className="size-4" />
+                    </ButtonSpecial>
+                    <ButtonSpecial specialVariant="draw">
+                        API Documentation
+                    </ButtonSpecial>
+                </div>
+            </div>
+        </section>
+    );
+}
+
+export default HeroWaves;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'hero-sections',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'hero-sections',
                 ],
                 'extends' => null,
                 'style' => null,
@@ -1986,7 +3971,7 @@ export default HeroSection;
                 'name' => 'inputs-gallery',
                 'type' => 'registry:block',
                 'title' => 'Inputs Gallery',
-                'description' => null,
+                'description' => 'An interactive display showcasing specialized text, phone, currency, slug, and rating input components.',
                 'author' => 'designbycode',
                 'dependencies' => [
                     'lucide-react',
@@ -1996,6 +3981,9 @@ export default HeroSection;
                 ],
                 'registryDependencies' => [
                     'https://ui.test/r/input-slug.json',
+                    'https://ui.test/r/input-phone.json',
+                    'https://ui.test/r/input-currency.json',
+                    'https://ui.test/r/input-number.json',
                     'https://ui.test/r/multi-select.json',
                     'input',
                     'card',
@@ -2003,11 +3991,24 @@ export default HeroSection;
                 ],
                 'files' => [
                     [
-                        'path' => 'resources/js/registry/new-york/components/inputs-gallery/inputs-gallery.tsx',
+                        'path' => 'resources/js/registry/new-york/components/blocks/inputs-gallery/inputs-gallery.tsx',
                         'type' => 'registry:block',
                         'content' => 'import React, { useState } from \'react\';
-import { Tag, Search, Hash, Lock, Check } from \'lucide-react\';
+import {
+    Tag,
+    Search,
+    Hash,
+    Lock,
+    Phone,
+    DollarSign,
+    Coins,
+    Binary,
+    Sliders,
+} from \'lucide-react\';
 import { InputSlug } from \'@/registry/new-york/components/ui/inputs/input-slug\';
+import { InputPhone } from \'@/registry/new-york/components/ui/inputs/input-phone\';
+import { InputCurrency } from \'@/registry/new-york/components/ui/inputs/input-currency\';
+import { InputNumber } from \'@/registry/new-york/components/ui/inputs/input-number\';
 import {
     MultiSelect,
     MultiSelectTrigger,
@@ -2026,10 +4027,18 @@ import {
 import { Badge } from \'@/components/ui/badge\';
 
 export function InputsGallery() {
+    // Original states
     const [slugValue, setSlugValue] = useState(\'\');
     const [selectedTags, setSelectedTags] = useState<string[]>([]);
     const [searchFocused, setSearchFocused] = useState(false);
     const [searchValue, setSearchValue] = useState(\'\');
+
+    // New component states
+    const [phoneValue, setPhoneValue] = useState(\'1234567890\');
+    const [currencyUsd, setCurrencyUsd] = useState<number | undefined>(1250.75);
+    const [currencyEur, setCurrencyEur] = useState<number | undefined>(89.9);
+    const [numberVal1, setNumberVal1] = useState<number | undefined>(24);
+    const [numberVal2, setNumberVal2] = useState<number | undefined>(1.5);
 
     const options = [
         { label: \'Next.js\', value: \'next\' },
@@ -2053,16 +4062,17 @@ export function InputsGallery() {
                 </h2>
                 <p className="text-xs text-muted-foreground">
                     Explore and compare different interactive input fields, tag
-                    drop-downs, and auto-formatters.
+                    drop-downs, phone validators, currency formatters, and
+                    number steppers.
                 </p>
             </div>
 
-            <div className="grid w-full items-stretch gap-6 sm:grid-cols-2">
+            <div className="grid w-full items-stretch gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {/* 1. Slug Formatter Input */}
                 <Card className="flex flex-col justify-between border border-border/40 bg-card/25 backdrop-blur-xs">
                     <CardHeader className="pb-3">
                         <CardTitle className="flex items-center gap-2 text-sm font-bold">
-                            <Hash className="size-4 text-purple-500" />
+                            <Hash className="size-4 text-chart-5" />
                             Auto-Slug Input
                         </CardTitle>
                         <CardDescription className="text-xs">
@@ -2090,7 +4100,7 @@ export function InputsGallery() {
                 <Card className="flex flex-col justify-between border border-border/40 bg-card/25 backdrop-blur-xs">
                     <CardHeader className="pb-3">
                         <CardTitle className="flex items-center gap-2 text-sm font-bold">
-                            <Tag className="size-4 text-sky-500" />
+                            <Tag className="size-4 text-chart-3" />
                             Multi-Select Dropdown
                         </CardTitle>
                         <CardDescription className="text-xs">
@@ -2130,7 +4140,7 @@ export function InputsGallery() {
                 <Card className="flex flex-col justify-between border border-border/40 bg-card/25 backdrop-blur-xs">
                     <CardHeader className="pb-3">
                         <CardTitle className="flex items-center gap-2 text-sm font-bold">
-                            <Search className="size-4 text-emerald-500" />
+                            <Search className="size-4 text-chart-2" />
                             Focus-Glow Search
                         </CardTitle>
                         <CardDescription className="text-xs">
@@ -2163,11 +4173,166 @@ export function InputsGallery() {
                     </CardContent>
                 </Card>
 
-                {/* 4. Secure Password Field */}
+                {/* 4. Interactive Phone Number */}
                 <Card className="flex flex-col justify-between border border-border/40 bg-card/25 backdrop-blur-xs">
                     <CardHeader className="pb-3">
                         <CardTitle className="flex items-center gap-2 text-sm font-bold">
-                            <Lock className="size-4 text-pink-500" />
+                            <Phone className="size-4 text-chart-4" />
+                            Formatted Phone Input
+                        </CardTitle>
+                        <CardDescription className="text-xs">
+                            Enforces numeric input and formats to masks like US
+                            phone standard.
+                        </CardDescription>
+                    </CardHeader>
+                    <CardContent className="flex flex-1 flex-col justify-center space-y-3 pb-6">
+                        <InputPhone
+                            value={phoneValue}
+                            onValueChange={setPhoneValue}
+                            placeholder="(555) 000-0000"
+                            className="h-9 w-full text-xs"
+                        />
+                        <div className="truncate rounded border border-border/20 bg-muted/30 p-2.5 font-mono text-[10px] text-muted-foreground">
+                            digits:{\' \'}
+                            <span className="font-bold text-primary">
+                                {phoneValue || \'none\'}
+                            </span>
+                        </div>
+                    </CardContent>
+                </Card>
+
+                {/* 5. Currency Formatter (USD) */}
+                <Card className="flex flex-col justify-between border border-border/40 bg-card/25 backdrop-blur-xs">
+                    <CardHeader className="pb-3">
+                        <CardTitle className="flex items-center gap-2 text-sm font-bold">
+                            <DollarSign className="size-4 text-chart-4" />
+                            Currency Input (USD)
+                        </CardTitle>
+                        <CardDescription className="text-xs">
+                            Thousand grouping, decimal enforcement, and
+                            auto-round on blur.
+                        </CardDescription>
+                    </CardHeader>
+                    <CardContent className="flex flex-1 flex-col justify-center space-y-3 pb-6">
+                        <InputCurrency
+                            value={currencyUsd}
+                            onValueChange={(val) => setCurrencyUsd(val)}
+                            currency="USD"
+                            locale="en-US"
+                            placeholder="0.00"
+                            className="h-9 w-full text-xs"
+                        />
+                        <div className="truncate rounded border border-border/20 bg-muted/30 p-2.5 font-mono text-[10px] text-muted-foreground">
+                            float:{\' \'}
+                            <span className="font-bold text-primary">
+                                {currencyUsd !== undefined
+                                    ? currencyUsd
+                                    : \'none\'}
+                            </span>
+                        </div>
+                    </CardContent>
+                </Card>
+
+                {/* 6. Currency Formatter (EUR) */}
+                <Card className="flex flex-col justify-between border border-border/40 bg-card/25 backdrop-blur-xs">
+                    <CardHeader className="pb-3">
+                        <CardTitle className="flex items-center gap-2 text-sm font-bold">
+                            <Coins className="size-4 text-chart-3" />
+                            Currency Input (EUR)
+                        </CardTitle>
+                        <CardDescription className="text-xs">
+                            Supports international locales and currency symbols
+                            automatically.
+                        </CardDescription>
+                    </CardHeader>
+                    <CardContent className="flex flex-1 flex-col justify-center space-y-3 pb-6">
+                        <InputCurrency
+                            value={currencyEur}
+                            onValueChange={(val) => setCurrencyEur(val)}
+                            currency="EUR"
+                            locale="de-DE"
+                            placeholder="0,00"
+                            className="h-9 w-full text-xs"
+                        />
+                        <div className="truncate rounded border border-border/20 bg-muted/30 p-2.5 font-mono text-[10px] text-muted-foreground">
+                            float:{\' \'}
+                            <span className="font-bold text-primary">
+                                {currencyEur !== undefined
+                                    ? currencyEur
+                                    : \'none\'}
+                            </span>
+                        </div>
+                    </CardContent>
+                </Card>
+
+                {/* 7. Numeric Stepper / Suffix */}
+                <Card className="flex flex-col justify-between border border-border/40 bg-card/25 backdrop-blur-xs">
+                    <CardHeader className="pb-3">
+                        <CardTitle className="flex items-center gap-2 text-sm font-bold">
+                            <Binary className="size-4 text-chart-1" />
+                            Numeric Spinner (px)
+                        </CardTitle>
+                        <CardDescription className="text-xs">
+                            Numeric stepper controls, Arrow keys, limits, and
+                            suffix labels.
+                        </CardDescription>
+                    </CardHeader>
+                    <CardContent className="flex flex-1 flex-col justify-center space-y-3 pb-6">
+                        <InputNumber
+                            value={numberVal1}
+                            onValueChange={setNumberVal1}
+                            min={0}
+                            max={100}
+                            step={1}
+                            suffix="px"
+                            placeholder="0"
+                            className="h-9 w-full text-xs"
+                        />
+                        <div className="truncate rounded border border-border/20 bg-muted/30 p-2.5 font-mono text-[10px] text-muted-foreground">
+                            number:{\' \'}
+                            <span className="font-bold text-primary">
+                                {numberVal1 !== undefined ? numberVal1 : \'none\'}
+                            </span>
+                        </div>
+                    </CardContent>
+                </Card>
+
+                {/* 8. Decimals Spinner */}
+                <Card className="flex flex-col justify-between border border-border/40 bg-card/25 backdrop-blur-xs">
+                    <CardHeader className="pb-3">
+                        <CardTitle className="flex items-center gap-2 text-sm font-bold">
+                            <Sliders className="size-4 text-chart-5" />
+                            Decimals Spinner
+                        </CardTitle>
+                        <CardDescription className="text-xs">
+                            Increment with float step (e.g. 0.5) and precision
+                            auto-handling.
+                        </CardDescription>
+                    </CardHeader>
+                    <CardContent className="flex flex-1 flex-col justify-center space-y-3 pb-6">
+                        <InputNumber
+                            value={numberVal2}
+                            onValueChange={setNumberVal2}
+                            min={0}
+                            max={10}
+                            step={0.5}
+                            placeholder="0.0"
+                            className="h-9 w-full text-xs"
+                        />
+                        <div className="truncate rounded border border-border/20 bg-muted/30 p-2.5 font-mono text-[10px] text-muted-foreground">
+                            number:{\' \'}
+                            <span className="font-bold text-primary">
+                                {numberVal2 !== undefined ? numberVal2 : \'none\'}
+                            </span>
+                        </div>
+                    </CardContent>
+                </Card>
+
+                {/* 9. Secure Password Field */}
+                <Card className="flex flex-col justify-between border border-border/40 bg-card/25 backdrop-blur-xs">
+                    <CardHeader className="pb-3">
+                        <CardTitle className="flex items-center gap-2 text-sm font-bold">
+                            <Lock className="size-4 text-chart-1" />
                             Glow-Border Passcode Field
                         </CardTitle>
                         <CardDescription className="text-xs">
@@ -2180,7 +4345,7 @@ export function InputsGallery() {
                             <Input
                                 type="password"
                                 placeholder="••••••••"
-                                className="h-9 border-border/50 bg-card/15 pl-9 text-xs focus-visible:border-pink-500/50 focus-visible:ring-[3px] focus-visible:ring-pink-500/10"
+                                className="h-9 border-border/50 bg-card/15 pl-9 text-xs focus-visible:border-primary focus-visible:ring-[3px] focus-visible:ring-primary/20"
                             />
                         </div>
                     </CardContent>
@@ -2203,12 +4368,12 @@ export default InputsGallery;
                 'font_mono' => null,
                 'font_serif' => null,
                 'meta' => [
-                    'category' => 'blocks',
+                    'category' => 'galleries',
                     'version' => '1.0.0',
                 ],
                 'docs' => null,
                 'categories' => [
-                    'blocks',
+                    'galleries',
                 ],
                 'extends' => null,
                 'style' => null,
@@ -2220,7 +4385,7 @@ export default InputsGallery;
                 'name' => 'music-player',
                 'type' => 'registry:block',
                 'title' => 'Music Player',
-                'description' => null,
+                'description' => 'An immersive, premium client-side music player layout with playlist and visual controls.',
                 'author' => 'designbycode',
                 'dependencies' => [
                     'lucide-react',
@@ -2237,7 +4402,7 @@ export default InputsGallery;
                 ],
                 'files' => [
                     [
-                        'path' => 'resources/js/registry/new-york/components/music-player/audio-visualizer.tsx',
+                        'path' => 'resources/js/registry/new-york/components/blocks/music-player/audio-visualizer.tsx',
                         'type' => 'registry:block',
                         'content' => '\'use client\';
 
@@ -2587,7 +4752,7 @@ export function AudioVisualizer({
 ',
                     ],
                     [
-                        'path' => 'resources/js/registry/new-york/components/music-player/music-player.tsx',
+                        'path' => 'resources/js/registry/new-york/components/blocks/music-player/music-player.tsx',
                         'type' => 'registry:block',
                         'content' => '\'use client\';
 
@@ -2596,13 +4761,13 @@ import { Menu, ListMusic } from \'lucide-react\';
 import { useState, useRef, useEffect, useCallback, useMemo } from \'react\';
 import { Button } from \'@/components/ui/button\';
 import { useThemeColors } from \'@/lib/theme-colors\';
-import { AudioVisualizer } from \'@/registry/new-york/components/music-player/audio-visualizer\';
-import { PlayerControls } from \'@/registry/new-york/components/music-player/player-controls\';
-import { PlaylistSidebar } from \'@/registry/new-york/components/music-player/playlist-sidebar\';
-import { ProgressBar } from \'@/registry/new-york/components/music-player/progress-bar\';
-import { TrackInfo } from \'@/registry/new-york/components/music-player/track-info\';
-import { VisualizerSettings } from \'@/registry/new-york/components/music-player/visualizer-settings\';
-import { VolumeControl } from \'@/registry/new-york/components/music-player/volume-control\';
+import { AudioVisualizer } from \'@/registry/new-york/components/blocks/music-player/audio-visualizer\';
+import { PlayerControls } from \'@/registry/new-york/components/blocks/music-player/player-controls\';
+import { PlaylistSidebar } from \'@/registry/new-york/components/blocks/music-player/playlist-sidebar\';
+import { ProgressBar } from \'@/registry/new-york/components/blocks/music-player/progress-bar\';
+import { TrackInfo } from \'@/registry/new-york/components/blocks/music-player/track-info\';
+import { VisualizerSettings } from \'@/registry/new-york/components/blocks/music-player/visualizer-settings\';
+import { VolumeControl } from \'@/registry/new-york/components/blocks/music-player/volume-control\';
 import { samplePlaylists } from \'@/registry/new-york/lib/audio-context\';
 import type {
     Track,
@@ -3036,7 +5201,7 @@ export function MusicPlayer() {
 ',
                     ],
                     [
-                        'path' => 'resources/js/registry/new-york/components/music-player/player-controls.tsx',
+                        'path' => 'resources/js/registry/new-york/components/blocks/music-player/player-controls.tsx',
                         'type' => 'registry:block',
                         'content' => '\'use client\';
 
@@ -3158,7 +5323,7 @@ export function PlayerControls({
 ',
                     ],
                     [
-                        'path' => 'resources/js/registry/new-york/components/music-player/playlist-sidebar.tsx',
+                        'path' => 'resources/js/registry/new-york/components/blocks/music-player/playlist-sidebar.tsx',
                         'type' => 'registry:block',
                         'content' => '\'use client\';
 
@@ -3408,7 +5573,7 @@ export function PlaylistSidebar({
 ',
                     ],
                     [
-                        'path' => 'resources/js/registry/new-york/components/music-player/progress-bar.tsx',
+                        'path' => 'resources/js/registry/new-york/components/blocks/music-player/progress-bar.tsx',
                         'type' => 'registry:block',
                         'content' => '\'use client\';
 
@@ -3548,7 +5713,7 @@ export function ProgressBar({
 ',
                     ],
                     [
-                        'path' => 'resources/js/registry/new-york/components/music-player/track-info.tsx',
+                        'path' => 'resources/js/registry/new-york/components/blocks/music-player/track-info.tsx',
                         'type' => 'registry:block',
                         'content' => '\'use client\';
 
@@ -3633,7 +5798,7 @@ export function TrackInfo({
 ',
                     ],
                     [
-                        'path' => 'resources/js/registry/new-york/components/music-player/visualizer-settings.tsx',
+                        'path' => 'resources/js/registry/new-york/components/blocks/music-player/visualizer-settings.tsx',
                         'type' => 'registry:block',
                         'content' => '\'use client\';
 
@@ -3718,7 +5883,7 @@ export function VisualizerSettings({
 ',
                     ],
                     [
-                        'path' => 'resources/js/registry/new-york/components/music-player/volume-control.tsx',
+                        'path' => 'resources/js/registry/new-york/components/blocks/music-player/volume-control.tsx',
                         'type' => 'registry:block',
                         'content' => '\'use client\';
 
@@ -3795,12 +5960,12 @@ export function VolumeControl({ volume, onVolumeChange }: VolumeControlProps) {
                 'font_mono' => null,
                 'font_serif' => null,
                 'meta' => [
-                    'category' => 'blocks',
+                    'category' => 'media',
                     'version' => '1.0.0',
                 ],
                 'docs' => null,
                 'categories' => [
-                    'blocks',
+                    'media',
                 ],
                 'extends' => null,
                 'style' => null,
@@ -3812,7 +5977,7 @@ export function VolumeControl({ volume, onVolumeChange }: VolumeControlProps) {
                 'name' => 'pricing-section',
                 'type' => 'registry:block',
                 'title' => 'Pricing Section',
-                'description' => null,
+                'description' => 'A modern tiered pricing section with hover scale states, tags, and toggles.',
                 'author' => 'designbycode',
                 'dependencies' => [
                     'lucide-react',
@@ -3830,7 +5995,7 @@ export function VolumeControl({ volume, onVolumeChange }: VolumeControlProps) {
                 ],
                 'files' => [
                     [
-                        'path' => 'resources/js/registry/new-york/components/pricing-section/pricing-section.tsx',
+                        'path' => 'resources/js/registry/new-york/components/blocks/pricing-section/pricing-section.tsx',
                         'type' => 'registry:block',
                         'content' => 'import React, { useState } from \'react\';
 import { Check, HelpCircle } from \'lucide-react\';
@@ -3960,7 +6125,7 @@ export function PricingSection() {
                     Yearly
                     <Badge
                         variant="secondary"
-                        className="border border-emerald-500/20 bg-emerald-500/10 px-1 py-0 text-[9px] font-bold text-emerald-500 hover:bg-emerald-500/10"
+                        className="border border-primary/20 bg-primary/5 px-1 py-0 text-[9px] font-bold text-primary hover:bg-primary/10"
                     >
                         Save 20%
                     </Badge>
@@ -4071,12 +6236,12 @@ export default PricingSection;
                 'font_mono' => null,
                 'font_serif' => null,
                 'meta' => [
-                    'category' => 'blocks',
+                    'category' => 'pricing',
                     'version' => '1.0.0',
                 ],
                 'docs' => null,
                 'categories' => [
-                    'blocks',
+                    'pricing',
                 ],
                 'extends' => null,
                 'style' => null,
@@ -4088,7 +6253,7 @@ export default PricingSection;
                 'name' => 'property-detail',
                 'type' => 'registry:block',
                 'title' => 'Property Detail',
-                'description' => null,
+                'description' => 'A clean and rich property details display page containing descriptions, photos, and reviews.',
                 'author' => 'designbycode',
                 'dependencies' => [
                     'lucide-react',
@@ -4102,7 +6267,7 @@ export default PricingSection;
                 ],
                 'files' => [
                     [
-                        'path' => 'resources/js/registry/new-york/components/property-detail/property-detail.tsx',
+                        'path' => 'resources/js/registry/new-york/components/blocks/property-detail/property-detail.tsx',
                         'type' => 'registry:block',
                         'content' => 'import React from \'react\';
 import {
@@ -4168,7 +6333,7 @@ export function PropertyDetail() {
             {/* Top Header section */}
             <div className="space-y-2 border-b border-border/20 pb-6">
                 <div className="flex flex-wrap items-center gap-2">
-                    <Badge className="bg-emerald-600 font-mono text-[9px] tracking-wider text-white uppercase hover:bg-emerald-500">
+                    <Badge className="bg-chart-2 font-mono text-[9px] tracking-wider text-primary-foreground uppercase hover:bg-chart-2/90">
                         ★ Top Rated
                     </Badge>
                     <Badge
@@ -4198,7 +6363,7 @@ export function PropertyDetail() {
 
             {/* Premium Vector Mosaic Gallery */}
             <div className="grid h-[300px] grid-cols-1 gap-3 overflow-hidden rounded-xl border border-border/20 shadow-lg md:h-[400px] md:grid-cols-4">
-                <div className="relative flex h-full items-center justify-center bg-gradient-to-tr from-sky-600 via-blue-800 to-indigo-900 p-6 text-center text-white md:col-span-2">
+                <div className="relative flex h-full items-center justify-center bg-gradient-to-tr from-chart-3/95 via-chart-3/80 to-primary/40 p-6 text-center text-white md:col-span-2">
                     <div className="absolute inset-0 bg-black/10 transition-colors hover:bg-black/20" />
                     <span className="relative z-10 font-bebas-neue! text-3xl tracking-wider">
                         Ocean Front Terrace
@@ -4209,13 +6374,13 @@ export function PropertyDetail() {
                 </div>
                 <div className="grid h-full grid-rows-2 gap-3 md:col-span-2">
                     <div className="grid h-full grid-cols-2 gap-3">
-                        <div className="relative flex items-center justify-center bg-gradient-to-br from-teal-500 via-emerald-600 to-indigo-800 text-center text-white">
+                        <div className="relative flex items-center justify-center bg-gradient-to-br from-chart-2/95 via-chart-2/80 to-chart-3 text-center text-white">
                             <div className="absolute inset-0 bg-black/10" />
                             <span className="relative z-10 text-xs font-bold">
                                 Infinity Pool
                             </span>
                         </div>
-                        <div className="relative flex items-center justify-center bg-gradient-to-br from-amber-600 via-orange-700 to-stone-900 text-center text-white">
+                        <div className="relative flex items-center justify-center bg-gradient-to-br from-chart-4/95 via-chart-4/80 to-primary/50 text-center text-white">
                             <div className="absolute inset-0 bg-black/10" />
                             <span className="relative z-10 text-xs font-bold">
                                 Master Bed Suite
@@ -4223,13 +6388,13 @@ export function PropertyDetail() {
                         </div>
                     </div>
                     <div className="grid h-full grid-cols-2 gap-3">
-                        <div className="relative flex items-center justify-center bg-gradient-to-tr from-indigo-700 via-violet-800 to-fuchsia-950 text-center text-white">
+                        <div className="relative flex items-center justify-center bg-gradient-to-tr from-chart-1/95 via-chart-1/80 to-chart-5 text-center text-white">
                             <div className="absolute inset-0 bg-black/10" />
                             <span className="relative z-10 text-xs font-bold">
                                 Wellness Bath
                             </span>
                         </div>
-                        <div className="relative flex items-center justify-center bg-gradient-to-tr from-cyan-600 via-teal-700 to-blue-900 text-center text-white">
+                        <div className="relative flex items-center justify-center bg-gradient-to-tr from-chart-3/95 via-chart-3/80 to-chart-2 text-center text-white">
                             <div className="absolute inset-0 bg-black/10" />
                             <span className="relative z-10 text-xs font-bold">
                                 Direct Sand Path
@@ -4257,7 +6422,7 @@ export function PropertyDetail() {
                             <div className="flex size-12 items-center justify-center rounded-full border border-white/20 bg-gradient-to-tr from-sky-400 to-indigo-500 font-extrabold text-white shadow-inner">
                                 S
                             </div>
-                            <div className="absolute -right-1 -bottom-1 flex size-5 items-center justify-center rounded-full border-2 border-background bg-emerald-500 text-white">
+                            <div className="absolute -right-1 -bottom-1 flex size-5 items-center justify-center rounded-full border-2 border-background bg-chart-2 text-primary-foreground">
                                 <Check className="size-3 stroke-[3]" />
                             </div>
                         </div>
@@ -4360,12 +6525,12 @@ export default PropertyDetail;
                 'font_mono' => null,
                 'font_serif' => null,
                 'meta' => [
-                    'category' => 'blocks',
+                    'category' => 'properties',
                     'version' => '1.0.0',
                 ],
                 'docs' => null,
                 'categories' => [
-                    'blocks',
+                    'properties',
                 ],
                 'extends' => null,
                 'style' => null,
@@ -4377,7 +6542,7 @@ export default PropertyDetail;
                 'name' => 'rental-listings',
                 'type' => 'registry:block',
                 'title' => 'Rental Listings',
-                'description' => null,
+                'description' => 'A responsive layout showing real estate property rental cards with search filters.',
                 'author' => 'designbycode',
                 'dependencies' => [
                     'lucide-react',
@@ -4393,7 +6558,7 @@ export default PropertyDetail;
                 ],
                 'files' => [
                     [
-                        'path' => 'resources/js/registry/new-york/components/rental-listings/rental-listings.tsx',
+                        'path' => 'resources/js/registry/new-york/components/blocks/rental-listings/rental-listings.tsx',
                         'type' => 'registry:block',
                         'content' => 'import React, { useState, useMemo } from \'react\';
 import {
@@ -4449,7 +6614,7 @@ const LISTINGS_DATA: RentalItem[] = [
         baths: 1,
         featured: true,
         amenities: [\'Hot Tub\', \'Fireplace\', \'Wifi\', \'Kitchen\'],
-        gradient: \'from-amber-700 via-amber-800 to-stone-900\',
+        gradient: \'from-chart-4/70 via-chart-4 to-primary/80\',
     },
     {
         id: \'2\',
@@ -4466,7 +6631,7 @@ const LISTINGS_DATA: RentalItem[] = [
         baths: 3,
         featured: true,
         amenities: [\'Pool\', \'Sea View\', \'Wifi\', \'Breakfast\'],
-        gradient: \'from-sky-700 via-blue-800 to-indigo-900\',
+        gradient: \'from-chart-3/70 via-chart-3 to-primary/80\',
     },
     {
         id: \'3\',
@@ -4483,7 +6648,7 @@ const LISTINGS_DATA: RentalItem[] = [
         baths: 1.5,
         featured: false,
         amenities: [\'Sky View\', \'Gym\', \'Wifi\', \'Smart Home\'],
-        gradient: \'from-zinc-800 via-slate-800 to-black\',
+        gradient: \'from-muted via-border/50 to-primary/80\',
     },
     {
         id: \'4\',
@@ -4500,7 +6665,7 @@ const LISTINGS_DATA: RentalItem[] = [
         baths: 2,
         featured: true,
         amenities: [\'Beachfront\', \'Kayaks\', \'Wifi\', \'Air Conditioning\'],
-        gradient: \'from-teal-600 via-cyan-700 to-blue-900\',
+        gradient: \'from-chart-3/80 via-chart-3 to-chart-2/80\',
     },
     {
         id: \'5\',
@@ -4517,7 +6682,7 @@ const LISTINGS_DATA: RentalItem[] = [
         baths: 3.5,
         featured: false,
         amenities: [\'Ski Access\', \'Fireplace\', \'Wifi\', \'Hot Tub\'],
-        gradient: \'from-orange-800 via-red-900 to-stone-950\',
+        gradient: \'from-chart-5/70 via-chart-5 to-primary/80\',
     },
     {
         id: \'6\',
@@ -4534,7 +6699,7 @@ const LISTINGS_DATA: RentalItem[] = [
         baths: 1,
         featured: false,
         amenities: [\'Jungle View\', \'Wifi\', \'Eco-Friendly\', \'Deck\'],
-        gradient: \'from-emerald-700 via-green-800 to-teal-950\',
+        gradient: \'from-chart-2/70 via-chart-2 to-primary/80\',
     },
 ];
 
@@ -4665,7 +6830,7 @@ export function RentalListings() {
 
                                 {/* Featured Badge */}
                                 {listing.featured && (
-                                    <Badge className="absolute top-3 left-3 bg-amber-500 px-2 py-0.5 text-[9px] font-bold tracking-wide text-black uppercase shadow-md hover:bg-amber-400">
+                                    <Badge className="absolute top-3 left-3 bg-chart-4 px-2 py-0.5 text-[9px] font-bold tracking-wide text-primary-foreground uppercase shadow-md hover:bg-chart-4/90">
                                         ★ Featured
                                     </Badge>
                                 )}
@@ -4787,12 +6952,12 @@ export default RentalListings;
                 'font_mono' => null,
                 'font_serif' => null,
                 'meta' => [
-                    'category' => 'blocks',
+                    'category' => 'properties',
                     'version' => '1.0.0',
                 ],
                 'docs' => null,
                 'categories' => [
-                    'blocks',
+                    'properties',
                 ],
                 'extends' => null,
                 'style' => null,
@@ -4804,7 +6969,7 @@ export default RentalListings;
                 'name' => 'reviews-slider',
                 'type' => 'registry:block',
                 'title' => 'Reviews Slider',
-                'description' => null,
+                'description' => 'A premium, smooth testimonial reviews slider with star ratings and user profiles.',
                 'author' => 'designbycode',
                 'dependencies' => [
                     'lucide-react',
@@ -4820,7 +6985,7 @@ export default RentalListings;
                 ],
                 'files' => [
                     [
-                        'path' => 'resources/js/registry/new-york/components/reviews-slider/reviews-slider.tsx',
+                        'path' => 'resources/js/registry/new-york/components/blocks/reviews-slider/reviews-slider.tsx',
                         'type' => 'registry:block',
                         'content' => 'import React, { useState } from \'react\';
 import {
@@ -5027,7 +7192,7 @@ export function ReviewsSlider() {
                                                     {review.verified && (
                                                         <Badge
                                                             variant="outline"
-                                                            className="flex items-center gap-0.5 border-emerald-500/20 bg-emerald-500/5 px-1 py-0 text-[8px] font-normal text-emerald-500"
+                                                            className="flex items-center gap-0.5 border-primary/20 bg-primary/5 px-1 py-0 text-[8px] font-normal text-primary"
                                                         >
                                                             <CheckCircle className="size-2.5 fill-current" />
                                                             Verified Client
@@ -5110,12 +7275,12 @@ export default ReviewsSlider;
                 'font_mono' => null,
                 'font_serif' => null,
                 'meta' => [
-                    'category' => 'blocks',
+                    'category' => 'reviews',
                     'version' => '1.0.0',
                 ],
                 'docs' => null,
                 'categories' => [
-                    'blocks',
+                    'reviews',
                 ],
                 'extends' => null,
                 'style' => null,
@@ -5127,7 +7292,7 @@ export default ReviewsSlider;
                 'name' => 'gsap-marquee',
                 'type' => 'registry:ui',
                 'title' => 'Gsap Marquee',
-                'description' => null,
+                'description' => 'A high-performance GSAP-powered horizontal scrolling marquee component.',
                 'author' => 'designbycode',
                 'dependencies' => [
                     'gsap',
@@ -5874,7 +8039,7 @@ export default GSAPMarquee;
                 'name' => 'marquee',
                 'type' => 'registry:ui',
                 'title' => 'Marquee',
-                'description' => null,
+                'description' => 'A lightweight CSS-based horizontal text/elements scrolling marquee.',
                 'author' => 'designbycode',
                 'dependencies' => [
                     '@gsap/react',
@@ -6495,10 +8660,129 @@ export default Marquee;
                 'theme' => null,
             ],
             [
+                'name' => 'particles-backdrop',
+                'type' => 'registry:ui',
+                'title' => 'Particles Backdrop',
+                'description' => 'A pure CSS background animation engine rendering drifting ambient particle glows.',
+                'author' => 'designbycode',
+                'dependencies' => [
+
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/animations/particles-backdrop.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '\'use client\';
+
+import * as React from \'react\';
+import { cn } from \'@/lib/utils\';
+
+export interface ParticlesBackdropProps extends React.HTMLAttributes<HTMLDivElement> {
+    count?: number;
+    colorClassName?: string;
+}
+
+export function ParticlesBackdrop({
+    className,
+    count = 15,
+    colorClassName = \'bg-primary/40\',
+    ...props
+}: ParticlesBackdropProps) {
+    // Generate static positions for floating particles
+    const particles = React.useMemo(() => {
+        return Array.from({ length: count }, (_, i) => ({
+            id: i,
+            top: `${Math.random() * 100}%`,
+            left: `${Math.random() * 100}%`,
+            size: Math.random() * 4 + 2, // 2px to 6px
+            delay: `${Math.random() * 8}s`,
+            duration: `${15 + Math.random() * 15}s`,
+        }));
+    }, [count]);
+
+    return (
+        <div
+            className={cn(
+                \'pointer-events-none absolute inset-0 overflow-hidden select-none\',
+                className,
+            )}
+            {...props}
+        >
+            <style
+                dangerouslySetInnerHTML={{
+                    __html: `
+                @keyframes float-particle-core {
+                    0% { transform: translateY(0) scale(1); opacity: 0.15; }
+                    50% { transform: translateY(-60px) scale(1.2); opacity: 0.6; }
+                    100% { transform: translateY(0) scale(1); opacity: 0.15; }
+                }
+                .floating-dot-core {
+                    animation: float-particle-core var(--duration) ease-in-out infinite;
+                    animation-delay: var(--delay);
+                }
+            `,
+                }}
+            />
+            {particles.map((p) => (
+                <span
+                    key={p.id}
+                    className={cn(
+                        \'floating-dot-core absolute rounded-full\',
+                        colorClassName,
+                    )}
+                    style={
+                        {
+                            top: p.top,
+                            left: p.left,
+                            width: `${p.size}px`,
+                            height: `${p.size}px`,
+                            \'--delay\': p.delay,
+                            \'--duration\': p.duration,
+                        } as React.CSSProperties
+                    }
+                />
+            ))}
+        </div>
+    );
+}
+
+export default ParticlesBackdrop;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'animations',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'animations',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
                 'name' => 'text-animator',
                 'type' => 'registry:ui',
                 'title' => 'Text Animator',
-                'description' => null,
+                'description' => 'An elegant text animator rendering typography with premium transitions.',
                 'author' => 'designbycode',
                 'dependencies' => [
                     '@gsap/react',
@@ -8959,7 +11243,7 @@ export { ANIMATIONS };
                 'name' => 'button-magnetic',
                 'type' => 'registry:ui',
                 'title' => 'Button Magnetic',
-                'description' => null,
+                'description' => 'A premium magnetic button pull effect that snaps to the cursor position on hover.',
                 'author' => 'designbycode',
                 'dependencies' => [
 
@@ -9104,7 +11388,7 @@ export default ButtonMagnetic;
                 'name' => 'button-particles',
                 'type' => 'registry:ui',
                 'title' => 'Button Particles',
-                'description' => null,
+                'description' => 'A vibrant button trigger releasing interactive confetti/particle explosions on click.',
                 'author' => 'designbycode',
                 'dependencies' => [
                     '@radix-ui/react-slot',
@@ -9536,7 +11820,7 @@ export { ButtonParticles, buttonVariants };
                 'name' => 'button-shine',
                 'type' => 'registry:ui',
                 'title' => 'Button Shine',
-                'description' => null,
+                'description' => 'A sleek button design showcasing a subtle glowing reflective shine transition.',
                 'author' => 'designbycode',
                 'dependencies' => [
 
@@ -9615,10 +11899,129 @@ export default ButtonShine;
                 'theme' => null,
             ],
             [
+                'name' => 'button-special',
+                'type' => 'registry:ui',
+                'title' => 'Button Special',
+                'description' => 'A collection of unique styled buttons with pulsing, glowing, drawing, or gradient border effects.',
+                'author' => 'designbycode',
+                'dependencies' => [
+
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/buttons/button-special.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '\'use client\';
+
+import * as React from \'react\';
+import { cn } from \'@/lib/utils\';
+
+export interface ButtonSpecialProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+    /**
+     * Special button styles
+     * @default \'neon\'
+     */
+    specialVariant?: \'gradient-border\' | \'pulse\' | \'neon\' | \'draw\';
+}
+
+const ButtonSpecial = React.forwardRef<HTMLButtonElement, ButtonSpecialProps>(
+    ({ className, children, specialVariant = \'neon\', ...props }, ref) => {
+        const [isHovered, setIsHovered] = React.useState(false);
+
+        return (
+            <button
+                ref={ref}
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+                className={cn(
+                    \'relative inline-flex h-10 cursor-pointer items-center justify-center rounded-md px-6 py-2 text-sm font-semibold tracking-wide outline-hidden transition-all select-none active:scale-95 disabled:pointer-events-none disabled:opacity-50\',
+
+                    // 1. Neon Glowing Variant
+                    specialVariant === \'neon\' && [
+                        \'border border-primary/30 bg-primary/5 text-primary shadow-[0_0_15px] shadow-primary/10\',
+                        \'hover:border-primary/50 hover:bg-primary/10 hover:text-primary hover:shadow-[0_0_20px] hover:shadow-primary/20\',
+                    ],
+
+                    // 2. Breathing Pulse Variant
+                    specialVariant === \'pulse\' && [
+                        \'bg-primary text-primary-foreground shadow-lg shadow-primary/20\',
+                        \'before:absolute before:inset-0 before:animate-ping before:rounded-md before:bg-primary before:opacity-10 before:duration-1000\',
+                        \'hover:shadow-primary/30 hover:brightness-105\',
+                    ],
+
+                    // 3. Border Draw Variant
+                    specialVariant === \'draw\' && [
+                        \'overflow-hidden border border-border bg-transparent text-foreground\',
+                        \'after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-primary after:transition-transform after:duration-300\',
+                        \'hover:bg-muted/30 hover:after:scale-x-100\',
+                    ],
+
+                    // 4. Moving Gradient Border Variant
+                    specialVariant === \'gradient-border\' && [
+                        \'border border-transparent text-foreground\',
+                    ],
+
+                    className,
+                )}
+                style={
+                    specialVariant === \'gradient-border\'
+                        ? {
+                              backgroundImage: isHovered
+                                  ? \'linear-gradient(var(--background), var(--background)), linear-gradient(to right, var(--color-chart-3), var(--color-chart-1), var(--color-chart-5))\'
+                                  : \'linear-gradient(var(--background), var(--background)), linear-gradient(to right, var(--color-chart-1), var(--color-chart-5), var(--color-chart-3))\',
+                              backgroundOrigin: \'border-box\',
+                              backgroundClip: \'padding-box, border-box\',
+                          }
+                        : undefined
+                }
+                {...props}
+            >
+                {children}
+            </button>
+        );
+    },
+);
+
+ButtonSpecial.displayName = \'ButtonSpecial\';
+
+export { ButtonSpecial };
+export type { ButtonSpecialProps };
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'buttons',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'buttons',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
                 'name' => 'pixel-canvas',
                 'type' => 'registry:ui',
                 'title' => 'Pixel Canvas',
-                'description' => null,
+                'description' => 'An interactive background canvas that draws pixel highlights under the mouse cursor.',
                 'author' => 'designbycode',
                 'dependencies' => [
                     'class-variance-authority',
@@ -9855,10 +12258,118 @@ export { PixelCanvas, pixelCanvasVariants };
                 'theme' => null,
             ],
             [
+                'name' => 'glowing-card',
+                'type' => 'registry:ui',
+                'title' => 'Glowing Card',
+                'description' => 'An interactive card container that tracks mouse hover coordinates to trace a glowing radial spotlight.',
+                'author' => 'designbycode',
+                'dependencies' => [
+
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/cards/glowing-card.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '\'use client\';
+
+import * as React from \'react\';
+import { cn } from \'@/lib/utils\';
+
+export interface GlowingCardProps extends React.HTMLAttributes<HTMLDivElement> {
+    glowColor?: string;
+}
+
+const GlowingCard = React.forwardRef<HTMLDivElement, GlowingCardProps>(
+    (
+        {
+            className,
+            children,
+            glowColor = \'color-mix(in srgb, var(--color-chart-2) 15%, transparent)\',
+            ...props
+        },
+        ref,
+    ) => {
+        const localRef = React.useRef<HTMLDivElement>(null);
+        const resolvedRef = (ref ||
+            localRef) as React.RefObject<HTMLDivElement | null>;
+        const [coords, setCoords] = React.useState({ x: 0, y: 0 });
+        const [isHovered, setIsHovered] = React.useState(false);
+
+        const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+            if (!resolvedRef.current) return;
+            const rect = resolvedRef.current.getBoundingClientRect();
+            setCoords({
+                x: e.clientX - rect.left,
+                y: e.clientY - rect.top,
+            });
+        };
+
+        return (
+            <div
+                ref={resolvedRef}
+                onMouseMove={handleMouseMove}
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+                className={cn(
+                    \'relative flex flex-col overflow-hidden rounded-xl border border-border/40 bg-card/60 p-6 backdrop-blur-xs transition-all\',
+                    className,
+                )}
+                {...props}
+            >
+                {/* Mouse-tracking Radial Spotlight */}
+                <div
+                    className="pointer-events-none absolute inset-0 -z-10 transition-opacity duration-300"
+                    style={{
+                        background: `radial-gradient(200px circle at ${coords.x}px ${coords.y}px, ${glowColor}, transparent 80%)`,
+                        opacity: isHovered ? 1 : 0,
+                    }}
+                />
+                {children}
+            </div>
+        );
+    },
+);
+
+GlowingCard.displayName = \'GlowingCard\';
+
+export { GlowingCard };
+export default GlowingCard;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'cards',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'cards',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
                 'name' => 'back-light',
                 'type' => 'registry:ui',
                 'title' => 'Back Light',
-                'description' => null,
+                'description' => 'A modern card wrapper creating a glowing, color-matching backlight shadow behind components.',
                 'author' => 'designbycode',
                 'dependencies' => [
 
@@ -9963,7 +12474,7 @@ export function BackLight({
                 'name' => 'glow-conic',
                 'type' => 'registry:ui',
                 'title' => 'Glow Conic',
-                'description' => null,
+                'description' => 'A beautiful border animation powered by a rotating conic color gradient.',
                 'author' => 'designbycode',
                 'dependencies' => [
 
@@ -10040,7 +12551,7 @@ export default function GlowConic({
                 'name' => 'glow-radial',
                 'type' => 'registry:ui',
                 'title' => 'Glow Radial',
-                'description' => null,
+                'description' => 'An interactive background overlay that reflects cursor positioning with radial gradients. Requires GlowStack wrapping to function.',
                 'author' => 'designbycode',
                 'dependencies' => [
 
@@ -10090,6 +12601,12 @@ interface GlowRadialProps extends HTMLAttributes<HTMLElement> {
     as?: \'div\' | \'section\' | \'article\' | \'main\' | \'header\' | \'footer\' | \'aside\';
 }
 
+/**
+ * GlowRadial creates an interactive mouse-glow border and background effect.
+ *
+ * IMPORTANT: This component MUST be wrapped inside a <GlowStack> component
+ * to track mouse movements and function properly.
+ */
 export function GlowRadial({
     className,
     children,
@@ -10204,7 +12721,7 @@ export function GlowRadial({
                 'name' => 'glow-stack',
                 'type' => 'registry:ui',
                 'title' => 'Glow Stack',
-                'description' => null,
+                'description' => 'A coordinated hover effect sharing cursor coordinates across a card stack.',
                 'author' => 'designbycode',
                 'dependencies' => [
 
@@ -10303,10 +12820,1225 @@ export function GlowStack({
                 'theme' => null,
             ],
             [
+                'name' => 'input-currency',
+                'type' => 'registry:ui',
+                'title' => 'Input Currency',
+                'description' => 'A smart text input formatting numeric entries into localized currency notation as you type.',
+                'author' => 'designbycode',
+                'dependencies' => [
+
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'input',
+                    'utils',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/inputs/input-currency.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '\'use client\';
+
+import * as React from \'react\';
+import { Input } from \'@/components/ui/input\';
+import { cn } from \'@/lib/utils\';
+
+interface InputCurrencyProps extends Omit<
+    React.InputHTMLAttributes<HTMLInputElement>,
+    \'value\' | \'onChange\'
+> {
+    /**
+     * The numeric value (as float or integer)
+     */
+    value?: number | string;
+    /**
+     * Callback when the numeric value changes
+     * @param value The parsed number or raw string representation
+     * @param formattedValue The formatted display value
+     */
+    onValueChange?: (value: number | undefined, formattedValue: string) => void;
+    /**
+     * ISO 4217 Currency Code
+     * @default \'USD\'
+     */
+    currency?: string;
+    /**
+     * Locale for formatting
+     * @default \'en-US\'
+     */
+    locale?: string;
+    /**
+     * Allow decimal digits
+     * @default true
+     */
+    allowDecimals?: boolean;
+    /**
+     * Maximum decimal places allowed
+     * @default 2
+     */
+    decimalsLimit?: boolean | number;
+    /**
+     * Allow negative values
+     * @default false
+     */
+    allowNegativeValue?: boolean;
+}
+
+/**
+ * Get currency symbol based on locale and currency code
+ */
+function getCurrencySymbol(locale: string, currency: string): string {
+    try {
+        return (0)
+            .toLocaleString(locale, {
+                style: \'currency\',
+                currency,
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0,
+            })
+            .replace(/\\d/g, \'\')
+            .trim();
+    } catch {
+        return \'$\';
+    }
+}
+
+/**
+ * Format string as currency while typing
+ */
+function formatCurrencyString(
+    value: string,
+    locale: string,
+    allowDecimals: boolean,
+    decimalsLimit: number,
+    allowNegative: boolean,
+): string {
+    if (!value) return \'\';
+
+    // Check if it\'s negative
+    const isNegative = allowNegative && value.startsWith(\'-\');
+
+    // Clean string: keep digits, dot, and handle empty state
+    let clean = value.replace(/[^\\d.]/g, \'\');
+
+    // Make sure we only have one decimal point
+    const dotIdx = clean.indexOf(\'.\');
+    if (dotIdx !== -1) {
+        clean =
+            clean.substring(0, dotIdx + 1) +
+            clean.substring(dotIdx + 1).replace(/\\./g, \'\');
+    }
+
+    const parts = clean.split(\'.\');
+    let integerPart = parts[0];
+    let decimalPart = parts[1];
+
+    if (integerPart) {
+        const number = parseInt(integerPart, 10);
+        if (!isNaN(number)) {
+            integerPart = new Intl.NumberFormat(locale, {
+                useGrouping: true,
+            }).format(number);
+        }
+    }
+
+    if (allowDecimals && decimalPart !== undefined) {
+        decimalPart = decimalPart.slice(0, decimalsLimit);
+        return `${isNegative ? \'-\' : \'\'}${integerPart}.${decimalPart}`;
+    }
+
+    return `${isNegative ? \'-\' : \'\'}${integerPart}`;
+}
+
+const InputCurrency = React.forwardRef<HTMLInputElement, InputCurrencyProps>(
+    (
+        {
+            value: controlledValue,
+            onValueChange,
+            currency = \'USD\',
+            locale = \'en-US\',
+            allowDecimals = true,
+            decimalsLimit = 2,
+            allowNegativeValue = false,
+            className,
+            placeholder = \'0.00\',
+            onBlur,
+            onFocus,
+            ...props
+        },
+        ref,
+    ) => {
+        const isControlled = controlledValue !== undefined;
+        const [localValue, setLocalValue] = React.useState(\'\');
+        const localInputRef = React.useRef<HTMLInputElement>(null);
+
+        const resolvedRef = (ref ||
+            localInputRef) as React.RefObject<HTMLInputElement | null>;
+
+        const decimalLimitVal =
+            typeof decimalsLimit === \'number\' ? decimalsLimit : 2;
+
+        const symbol = React.useMemo(() => {
+            return getCurrencySymbol(locale, currency);
+        }, [locale, currency]);
+
+        // Synchronize external changes
+        React.useEffect(() => {
+            if (isControlled) {
+                if (
+                    controlledValue === undefined ||
+                    controlledValue === null ||
+                    controlledValue === \'\'
+                ) {
+                    setLocalValue(\'\');
+                } else {
+                    const strVal = String(controlledValue);
+                    const formatted = formatCurrencyString(
+                        strVal,
+                        locale,
+                        allowDecimals,
+                        decimalLimitVal,
+                        allowNegativeValue,
+                    );
+                    setLocalValue(formatted);
+                }
+            }
+        }, [
+            controlledValue,
+            isControlled,
+            locale,
+            allowDecimals,
+            decimalLimitVal,
+            allowNegativeValue,
+        ]);
+
+        const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+            const rawInput = e.target.value;
+            const inputEl = resolvedRef.current;
+
+            // Save cursor position
+            let cursorPosition = inputEl?.selectionStart ?? 0;
+            const lengthBefore = rawInput.length;
+
+            const formatted = formatCurrencyString(
+                rawInput,
+                locale,
+                allowDecimals,
+                decimalLimitVal,
+                allowNegativeValue,
+            );
+
+            // Calculate new cursor position to prevent jumping
+            const lengthAfter = formatted.length;
+            cursorPosition = cursorPosition + (lengthAfter - lengthBefore);
+
+            setLocalValue(formatted);
+
+            // Emit raw numeric value
+            const numericString = formatted.replace(/[^\\d.-]/g, \'\');
+            const numericValue = numericString
+                ? parseFloat(numericString)
+                : undefined;
+
+            onValueChange?.(numericValue, formatted);
+
+            // Restore cursor position on next tick
+            setTimeout(() => {
+                if (inputEl) {
+                    inputEl.setSelectionRange(cursorPosition, cursorPosition);
+                }
+            }, 0);
+        };
+
+        const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+            let finalValue = localValue;
+
+            // Format to fixed decimal places on blur if decimals are allowed and value is present
+            if (allowDecimals && localValue) {
+                const numericString = localValue.replace(/[^\\d.-]/g, \'\');
+                const number = parseFloat(numericString);
+                if (!isNaN(number)) {
+                    finalValue = new Intl.NumberFormat(locale, {
+                        useGrouping: true,
+                        minimumFractionDigits: decimalLimitVal,
+                        maximumFractionDigits: decimalLimitVal,
+                    }).format(number);
+
+                    if (
+                        allowNegativeValue &&
+                        numericString.startsWith(\'-\') &&
+                        !finalValue.startsWith(\'-\')
+                    ) {
+                        finalValue = \'-\' + finalValue;
+                    }
+                }
+            }
+
+            setLocalValue(finalValue);
+
+            const numericString = finalValue.replace(/[^\\d.-]/g, \'\');
+            const numericValue = numericString
+                ? parseFloat(numericString)
+                : undefined;
+            onValueChange?.(numericValue, finalValue);
+
+            onBlur?.(e);
+        };
+
+        return (
+            <div className="relative w-full">
+                <span className="pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 text-sm font-medium text-muted-foreground/70 select-none">
+                    {symbol}
+                </span>
+                <Input
+                    ref={resolvedRef}
+                    type="text"
+                    value={localValue}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    placeholder={placeholder}
+                    className={cn(\'pl-7\', className)}
+                    {...props}
+                />
+            </div>
+        );
+    },
+);
+
+InputCurrency.displayName = \'InputCurrency\';
+
+export { InputCurrency, getCurrencySymbol, formatCurrencyString };
+export type { InputCurrencyProps };
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'inputs',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'inputs',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'input-number-stepper',
+                'type' => 'registry:ui',
+                'title' => 'Input Number Stepper',
+                'description' => 'A numeric entry component with side-by-side plus and minus adjustment buttons.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'input',
+                    'button',
+                    'utils',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/inputs/input-number-stepper.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '\'use client\';
+
+import * as React from \'react\';
+import { Plus, Minus } from \'lucide-react\';
+import { Input } from \'@/components/ui/input\';
+import { Button } from \'@/components/ui/button\';
+import { cn } from \'@/lib/utils\';
+
+export interface InputNumberStepperProps extends Omit<
+    React.InputHTMLAttributes<HTMLInputElement>,
+    \'value\' | \'onChange\' | \'min\' | \'max\' | \'step\'
+> {
+    /** Controlled numeric value */
+    value?: number;
+    /** Default value for uncontrolled usage */
+    defaultValue?: number;
+    /** Callback when value changes */
+    onValueChange?: (value: number | undefined) => void;
+    /** Minimum allowed value */
+    min?: number;
+    /** Maximum allowed value */
+    max?: number;
+    /** Step interval */
+    step?: number;
+    /** Precision of decimal points */
+    precision?: number;
+    /**
+     * Stepper control variations
+     * @default \'split\'
+     */
+    variant?: \'split\' | \'right\' | \'left\' | \'inline\';
+}
+
+const InputNumberStepper = React.forwardRef<
+    HTMLInputElement,
+    InputNumberStepperProps
+>(
+    (
+        {
+            value: controlledValue,
+            defaultValue,
+            onValueChange,
+            min,
+            max,
+            step = 1,
+            precision,
+            variant = \'split\',
+            className,
+            disabled,
+            ...props
+        },
+        ref,
+    ) => {
+        const isControlled = controlledValue !== undefined;
+        const [localValue, setLocalValue] = React.useState<string>(
+            defaultValue !== undefined ? String(defaultValue) : \'0\',
+        );
+
+        const activeValueStr = isControlled
+            ? controlledValue !== undefined
+                ? String(controlledValue)
+                : \'\'
+            : localValue;
+        const activeValue =
+            activeValueStr !== \'\' ? parseFloat(activeValueStr) : undefined;
+
+        const resolvedPrecision = React.useMemo(() => {
+            if (precision !== undefined) return precision;
+            const stepStr = String(step);
+            if (stepStr.indexOf(\'.\') === -1) return 0;
+            return stepStr.length - stepStr.indexOf(\'.\') - 1;
+        }, [step, precision]);
+
+        React.useEffect(() => {
+            if (isControlled) {
+                setLocalValue(
+                    controlledValue !== undefined
+                        ? String(controlledValue)
+                        : \'\',
+                );
+            }
+        }, [controlledValue, isControlled]);
+
+        const clamp = React.useCallback(
+            (val: number): number => {
+                let clamped = val;
+                if (min !== undefined && clamped < min) clamped = min;
+                if (max !== undefined && clamped > max) clamped = max;
+                return parseFloat(clamped.toFixed(resolvedPrecision));
+            },
+            [min, max, resolvedPrecision],
+        );
+
+        const updateValue = React.useCallback(
+            (newVal: number | undefined) => {
+                let finalVal = newVal;
+                if (finalVal !== undefined) {
+                    finalVal = clamp(finalVal);
+                }
+
+                if (!isControlled) {
+                    setLocalValue(
+                        finalVal !== undefined ? String(finalVal) : \'\',
+                    );
+                }
+                onValueChange?.(finalVal);
+            },
+            [isControlled, clamp, onValueChange],
+        );
+
+        const handleIncrement = () => {
+            if (disabled) return;
+            const current = activeValue ?? min ?? 0;
+            updateValue(current + step);
+        };
+
+        const handleDecrement = () => {
+            if (disabled) return;
+            const current = activeValue ?? min ?? 0;
+            updateValue(current - step);
+        };
+
+        const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+            const raw = e.target.value;
+            if (raw === \'\' || raw === \'-\') {
+                setLocalValue(raw);
+                onValueChange?.(undefined);
+                return;
+            }
+
+            const parsed = parseFloat(raw);
+            if (!isNaN(parsed)) {
+                setLocalValue(raw);
+                onValueChange?.(parsed);
+            }
+        };
+
+        const handleBlur = () => {
+            if (activeValueStr === \'\' || activeValueStr === \'-\') {
+                updateValue(undefined);
+            } else {
+                const parsed = parseFloat(activeValueStr);
+                updateValue(isNaN(parsed) ? undefined : parsed);
+            }
+        };
+
+        const buttonClass =
+            \'size-9 cursor-pointer hover:bg-muted/70 active:scale-95 transition-all text-muted-foreground hover:text-foreground shrink-0\';
+
+        // Layout Variants
+        if (variant === \'split\') {
+            return (
+                <div className={cn(\'flex items-center gap-1\', className)}>
+                    <Button
+                        type="button"
+                        variant="outline"
+                        size="icon"
+                        className={buttonClass}
+                        onClick={handleDecrement}
+                        disabled={
+                            disabled ||
+                            (min !== undefined &&
+                                activeValue !== undefined &&
+                                activeValue <= min)
+                        }
+                    >
+                        <Minus className="size-4" />
+                    </Button>
+                    <Input
+                        ref={ref}
+                        type="text"
+                        inputMode="decimal"
+                        value={activeValueStr}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        disabled={disabled}
+                        className="h-9 w-16 text-center focus-visible:ring-1"
+                        {...props}
+                    />
+                    <Button
+                        type="button"
+                        variant="outline"
+                        size="icon"
+                        className={buttonClass}
+                        onClick={handleIncrement}
+                        disabled={
+                            disabled ||
+                            (max !== undefined &&
+                                activeValue !== undefined &&
+                                activeValue >= max)
+                        }
+                    >
+                        <Plus className="size-4" />
+                    </Button>
+                </div>
+            );
+        }
+
+        if (variant === \'left\') {
+            return (
+                <div className={cn(\'flex items-center gap-1\', className)}>
+                    <div className="flex overflow-hidden rounded-md border bg-background">
+                        <Button
+                            type="button"
+                            variant="ghost"
+                            className={cn(buttonClass, \'rounded-none border-r\')}
+                            onClick={handleDecrement}
+                            disabled={
+                                disabled ||
+                                (min !== undefined &&
+                                    activeValue !== undefined &&
+                                    activeValue <= min)
+                            }
+                        >
+                            <Minus className="size-4" />
+                        </Button>
+                        <Button
+                            type="button"
+                            variant="ghost"
+                            className={cn(buttonClass, \'rounded-none\')}
+                            onClick={handleIncrement}
+                            disabled={
+                                disabled ||
+                                (max !== undefined &&
+                                    activeValue !== undefined &&
+                                    activeValue >= max)
+                            }
+                        >
+                            <Plus className="size-4" />
+                        </Button>
+                    </div>
+                    <Input
+                        ref={ref}
+                        type="text"
+                        inputMode="decimal"
+                        value={activeValueStr}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        disabled={disabled}
+                        className="h-9 w-16 text-center"
+                        {...props}
+                    />
+                </div>
+            );
+        }
+
+        if (variant === \'right\') {
+            return (
+                <div className={cn(\'flex items-center gap-1\', className)}>
+                    <Input
+                        ref={ref}
+                        type="text"
+                        inputMode="decimal"
+                        value={activeValueStr}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        disabled={disabled}
+                        className="h-9 w-16 text-center"
+                        {...props}
+                    />
+                    <div className="flex overflow-hidden rounded-md border bg-background">
+                        <Button
+                            type="button"
+                            variant="ghost"
+                            className={cn(buttonClass, \'rounded-none border-r\')}
+                            onClick={handleDecrement}
+                            disabled={
+                                disabled ||
+                                (min !== undefined &&
+                                    activeValue !== undefined &&
+                                    activeValue <= min)
+                            }
+                        >
+                            <Minus className="size-4" />
+                        </Button>
+                        <Button
+                            type="button"
+                            variant="ghost"
+                            className={cn(buttonClass, \'rounded-none\')}
+                            onClick={handleIncrement}
+                            disabled={
+                                disabled ||
+                                (max !== undefined &&
+                                    activeValue !== undefined &&
+                                    activeValue >= max)
+                            }
+                        >
+                            <Plus className="size-4" />
+                        </Button>
+                    </div>
+                </div>
+            );
+        }
+
+        // Inline minimal variant: buttons overlaid inside input edges
+        return (
+            <div
+                className={cn(
+                    \'relative flex max-w-[120px] items-center\',
+                    className,
+                )}
+            >
+                <Button
+                    type="button"
+                    variant="ghost"
+                    size="icon"
+                    className="absolute left-1 z-10 size-7 cursor-pointer rounded-sm text-muted-foreground hover:bg-muted"
+                    onClick={handleDecrement}
+                    disabled={
+                        disabled ||
+                        (min !== undefined &&
+                            activeValue !== undefined &&
+                            activeValue <= min)
+                    }
+                >
+                    <Minus className="size-3.5" />
+                </Button>
+                <Input
+                    ref={ref}
+                    type="text"
+                    inputMode="decimal"
+                    value={activeValueStr}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    disabled={disabled}
+                    className="h-9 w-full px-8 text-center"
+                    {...props}
+                />
+                <Button
+                    type="button"
+                    variant="ghost"
+                    size="icon"
+                    className="absolute right-1 z-10 size-7 cursor-pointer rounded-sm text-muted-foreground hover:bg-muted"
+                    onClick={handleIncrement}
+                    disabled={
+                        disabled ||
+                        (max !== undefined &&
+                            activeValue !== undefined &&
+                            activeValue >= max)
+                    }
+                >
+                    <Plus className="size-3.5" />
+                </Button>
+            </div>
+        );
+    },
+);
+
+InputNumberStepper.displayName = \'InputNumberStepper\';
+
+export { InputNumberStepper };
+export type { InputNumberStepperProps };
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'inputs',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'inputs',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'input-number',
+                'type' => 'registry:ui',
+                'title' => 'Input Number',
+                'description' => 'A numeric spinner input containing up/down stepper buttons and range constraints.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'input',
+                    'utils',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/inputs/input-number.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '\'use client\';
+
+import * as React from \'react\';
+import { ChevronUp, ChevronDown } from \'lucide-react\';
+import { Input } from \'@/components/ui/input\';
+import { cn } from \'@/lib/utils\';
+
+interface InputNumberProps extends Omit<
+    React.InputHTMLAttributes<HTMLInputElement>,
+    \'value\' | \'onChange\' | \'min\' | \'max\' | \'step\'
+> {
+    /**
+     * Controlled numeric value
+     */
+    value?: number;
+    /**
+     * Default value for uncontrolled usage
+     */
+    defaultValue?: number;
+    /**
+     * Callback when number changes
+     */
+    onValueChange?: (value: number | undefined) => void;
+    /**
+     * Minimum allowed value
+     */
+    min?: number;
+    /**
+     * Maximum allowed value
+     */
+    max?: number;
+    /**
+     * Step interval for increment/decrement
+     * @default 1
+     */
+    step?: number;
+    /**
+     * Decimal places precision. If omitted, is computed automatically from step.
+     */
+    precision?: number;
+    /**
+     * Unit suffix (e.g. \'px\', \'rem\', \'%\', \'kg\')
+     */
+    suffix?: string;
+    /**
+     * Disable up/down stepper buttons
+     * @default false
+     */
+    hideStepper?: boolean;
+}
+
+const InputNumber = React.forwardRef<HTMLInputElement, InputNumberProps>(
+    (
+        {
+            value: controlledValue,
+            defaultValue,
+            onValueChange,
+            min,
+            max,
+            step = 1,
+            precision,
+            suffix,
+            hideStepper = false,
+            className,
+            disabled,
+            ...props
+        },
+        ref,
+    ) => {
+        const isControlled = controlledValue !== undefined;
+        const [localValue, setLocalValue] = React.useState<string>(
+            defaultValue !== undefined ? String(defaultValue) : \'\',
+        );
+
+        const activeValueStr = isControlled
+            ? controlledValue !== undefined
+                ? String(controlledValue)
+                : \'\'
+            : localValue;
+        const activeValue =
+            activeValueStr !== \'\' ? parseFloat(activeValueStr) : undefined;
+
+        // Auto-detect precision from step if not provided
+        const resolvedPrecision = React.useMemo(() => {
+            if (precision !== undefined) return precision;
+            const stepStr = String(step);
+            if (stepStr.indexOf(\'.\') === -1) return 0;
+            return stepStr.length - stepStr.indexOf(\'.\') - 1;
+        }, [step, precision]);
+
+        // Sync controlled values
+        React.useEffect(() => {
+            if (isControlled) {
+                setLocalValue(
+                    controlledValue !== undefined
+                        ? String(controlledValue)
+                        : \'\',
+                );
+            }
+        }, [controlledValue, isControlled]);
+
+        // Clamp value inside min/max bounds
+        const clamp = React.useCallback(
+            (val: number): number => {
+                let clamped = val;
+                if (min !== undefined && clamped < min) clamped = min;
+                if (max !== undefined && clamped > max) clamped = max;
+                return parseFloat(clamped.toFixed(resolvedPrecision));
+            },
+            [min, max, resolvedPrecision],
+        );
+
+        const updateValue = React.useCallback(
+            (newVal: number | undefined) => {
+                let finalVal = newVal;
+                if (finalVal !== undefined) {
+                    finalVal = clamp(finalVal);
+                }
+
+                if (!isControlled) {
+                    setLocalValue(
+                        finalVal !== undefined ? String(finalVal) : \'\',
+                    );
+                }
+                onValueChange?.(finalVal);
+            },
+            [isControlled, clamp, onValueChange],
+        );
+
+        const handleIncrement = React.useCallback(() => {
+            if (disabled) return;
+            const current = activeValue ?? min ?? 0;
+            updateValue(current + step);
+        }, [activeValue, min, step, updateValue, disabled]);
+
+        const handleDecrement = React.useCallback(() => {
+            if (disabled) return;
+            const current = activeValue ?? min ?? 0;
+            updateValue(current - step);
+        }, [activeValue, min, step, updateValue, disabled]);
+
+        // Long-press continuous step handler
+        const timerRef = React.useRef<ReturnType<typeof setTimeout> | null>(
+            null,
+        );
+        const intervalRef = React.useRef<ReturnType<typeof setInterval> | null>(
+            null,
+        );
+
+        const clearTimers = React.useCallback(() => {
+            if (timerRef.current) clearTimeout(timerRef.current);
+            if (intervalRef.current) clearInterval(intervalRef.current);
+        }, []);
+
+        const startStepper = (action: () => void) => {
+            if (disabled) return;
+            action();
+            clearTimers();
+            timerRef.current = setTimeout(() => {
+                intervalRef.current = setInterval(action, 60);
+            }, 400);
+        };
+
+        React.useEffect(() => {
+            return () => clearTimers();
+        }, [clearTimers]);
+
+        const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+            if (e.key === \'ArrowUp\') {
+                e.preventDefault();
+                handleIncrement();
+            } else if (e.key === \'ArrowDown\') {
+                e.preventDefault();
+                handleDecrement();
+            }
+        };
+
+        const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+            const raw = e.target.value;
+            // Allow typing numbers, decimals, minus sign
+            if (raw === \'\' || raw === \'-\') {
+                setLocalValue(raw);
+                onValueChange?.(undefined);
+                return;
+            }
+
+            const parsed = parseFloat(raw);
+            if (!isNaN(parsed)) {
+                setLocalValue(raw);
+                onValueChange?.(parsed);
+            }
+        };
+
+        const handleBlur = () => {
+            // Normalize value on blur
+            if (activeValueStr === \'\' || activeValueStr === \'-\') {
+                updateValue(undefined);
+            } else {
+                const parsed = parseFloat(activeValueStr);
+                if (!isNaN(parsed)) {
+                    updateValue(parsed);
+                } else {
+                    updateValue(undefined);
+                }
+            }
+        };
+
+        return (
+            <div className="relative flex w-full items-center">
+                <Input
+                    ref={ref}
+                    type="text"
+                    inputMode="decimal"
+                    value={activeValueStr}
+                    onChange={handleChange}
+                    onKeyDown={handleKeyDown}
+                    onBlur={handleBlur}
+                    disabled={disabled}
+                    className={cn(
+                        \'pr-8\',
+                        suffix && \'pr-14\',
+                        hideStepper && \'pr-3\',
+                        className,
+                    )}
+                    {...props}
+                />
+
+                {suffix && (
+                    <span
+                        className={cn(
+                            \'pointer-events-none absolute text-xs text-muted-foreground transition-opacity select-none\',
+                            hideStepper ? \'right-3\' : \'right-8\',
+                            disabled && \'opacity-50\',
+                        )}
+                    >
+                        {suffix}
+                    </span>
+                )}
+
+                {!hideStepper && !disabled && (
+                    <div className="absolute top-0.5 right-0.5 bottom-0.5 flex w-6 flex-col border-l border-border/40 bg-background/50">
+                        <button
+                            type="button"
+                            className="flex flex-1 cursor-pointer items-center justify-center rounded-tr-md border-b border-border/20 text-muted-foreground/70 transition-colors select-none hover:bg-muted/50 hover:text-foreground active:bg-muted"
+                            onMouseDown={() => startStepper(handleIncrement)}
+                            onMouseUp={clearTimers}
+                            onMouseLeave={clearTimers}
+                            title="Increment"
+                        >
+                            <ChevronUp className="size-3" />
+                        </button>
+                        <button
+                            type="button"
+                            className="flex flex-1 cursor-pointer items-center justify-center rounded-br-md text-muted-foreground/70 transition-colors select-none hover:bg-muted/50 hover:text-foreground active:bg-muted"
+                            onMouseDown={() => startStepper(handleDecrement)}
+                            onMouseUp={clearTimers}
+                            onMouseLeave={clearTimers}
+                            title="Decrement"
+                        >
+                            <ChevronDown className="size-3" />
+                        </button>
+                    </div>
+                )}
+            </div>
+        );
+    },
+);
+
+InputNumber.displayName = \'InputNumber\';
+
+export { InputNumber };
+export type { InputNumberProps };
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'inputs',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'inputs',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'input-phone',
+                'type' => 'registry:ui',
+                'title' => 'Input Phone',
+                'description' => 'A formatted text input enforcing phone masks and raw numeric outputs.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'input',
+                    'utils',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/inputs/input-phone.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '\'use client\';
+
+import * as React from \'react\';
+import { Phone } from \'lucide-react\';
+import { Input } from \'@/components/ui/input\';
+import { cn } from \'@/lib/utils\';
+
+interface InputPhoneProps extends Omit<
+    React.InputHTMLAttributes<HTMLInputElement>,
+    \'value\' | \'onChange\'
+> {
+    /**
+     * Raw numeric value (digits only)
+     */
+    value?: string;
+    /**
+     * Callback when the raw digit value changes
+     */
+    onValueChange?: (value: string) => void;
+    /**
+     * Custom phone format mask. Use \'9\' for digits.
+     * @default \'(999) 999-9999\'
+     */
+    mask?: string;
+    /**
+     * Show/hide the phone icon prefix
+     * @default true
+     */
+    showIcon?: boolean;
+}
+
+/**
+ * Formats a raw string of digits using the provided mask.
+ */
+function formatPhone(digits: string, mask: string): string {
+    let formatted = \'\';
+    let digitIdx = 0;
+
+    for (let i = 0; i < mask.length; i++) {
+        const maskChar = mask[i];
+        if (digitIdx >= digits.length) {
+            break;
+        }
+
+        if (maskChar === \'9\') {
+            formatted += digits[digitIdx];
+            digitIdx++;
+        } else {
+            formatted += maskChar;
+        }
+    }
+    return formatted;
+}
+
+const InputPhone = React.forwardRef<HTMLInputElement, InputPhoneProps>(
+    (
+        {
+            value: controlledValue,
+            onValueChange,
+            mask = \'(999) 999-9999\',
+            showIcon = true,
+            className,
+            placeholder = \'(555) 000-0000\',
+            ...props
+        },
+        ref,
+    ) => {
+        const isControlled = controlledValue !== undefined;
+        const [localValue, setLocalValue] = React.useState(\'\');
+
+        const rawValue = isControlled ? controlledValue : localValue;
+
+        // Strip non-digits to get raw value
+        const getRawDigits = (val: string) => val.replace(/\\D/g, \'\');
+
+        const maxDigits = React.useMemo(() => {
+            return mask.split(\'\').filter((c) => c === \'9\').length;
+        }, [mask]);
+
+        const formattedDisplayValue = React.useMemo(() => {
+            return formatPhone(rawValue, mask);
+        }, [rawValue, mask]);
+
+        const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+            const rawDigits = getRawDigits(e.target.value).slice(0, maxDigits);
+
+            if (!isControlled) {
+                setLocalValue(rawDigits);
+            }
+            onValueChange?.(rawDigits);
+        };
+
+        // Handle pasting and character deletion
+        const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+            // Prevent entering non-numeric chars (allow control keys)
+            const allowedKeys = [
+                \'Backspace\',
+                \'Delete\',
+                \'ArrowLeft\',
+                \'ArrowRight\',
+                \'Tab\',
+                \'Enter\',
+                \'v\',
+                \'c\',
+                \'a\',
+            ];
+            const isControlKey =
+                allowedKeys.includes(e.key) || e.ctrlKey || e.metaKey;
+
+            if (!isControlKey && !/^\\d$/.test(e.key)) {
+                e.preventDefault();
+            }
+        };
+
+        return (
+            <div className="relative w-full">
+                {showIcon && (
+                    <Phone className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted-foreground/70" />
+                )}
+                <Input
+                    ref={ref}
+                    type="text"
+                    value={formattedDisplayValue}
+                    onChange={handleChange}
+                    onKeyDown={handleKeyDown}
+                    placeholder={placeholder}
+                    className={cn(showIcon && \'pl-9\', className)}
+                    {...props}
+                />
+            </div>
+        );
+    },
+);
+
+InputPhone.displayName = \'InputPhone\';
+
+export { InputPhone, formatPhone };
+export type { InputPhoneProps };
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'inputs',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'inputs',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
                 'name' => 'input-slug',
                 'type' => 'registry:ui',
                 'title' => 'Input Slug',
-                'description' => null,
+                'description' => 'A reactive field transforming raw keystrokes into clean URL-safe slug strings.',
                 'author' => 'designbycode',
                 'dependencies' => [
 
@@ -10486,7 +14218,7 @@ export type { InputSlugProps };
                 'name' => 'multi-select',
                 'type' => 'registry:ui',
                 'title' => 'Multi Select',
-                'description' => null,
+                'description' => 'A dropdown selector allowing search, selection, and creation of multiple tags.',
                 'author' => 'designbycode',
                 'dependencies' => [
                     'cmdk',
@@ -10913,10 +14645,472 @@ export {
                 'theme' => null,
             ],
             [
+                'name' => 'logo-cloud',
+                'type' => 'registry:ui',
+                'title' => 'Logo Cloud',
+                'description' => 'A horizontal social proof logo grid displaying client/partner brands.',
+                'author' => 'designbycode',
+                'dependencies' => [
+
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/misc/logo-cloud.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '\'use client\';
+
+import * as React from \'react\';
+import { cn } from \'@/lib/utils\';
+
+export interface LogoItem {
+    icon: React.ComponentType<{ className?: string }>;
+    name: string;
+}
+
+export interface LogoCloudProps extends React.HTMLAttributes<HTMLDivElement> {
+    title?: string;
+    items: LogoItem[];
+}
+
+export function LogoCloud({
+    className,
+    title,
+    items,
+    ...props
+}: LogoCloudProps) {
+    return (
+        <div
+            className={cn(
+                \'relative z-10 flex w-full max-w-2xl flex-col items-center gap-4 border-t border-border/40 pt-8 select-none\',
+                className,
+            )}
+            {...props}
+        >
+            {title && (
+                <span className="text-[10px] font-bold tracking-widest text-muted-foreground uppercase">
+                    {title}
+                </span>
+            )}
+            <div className="mt-2 flex flex-wrap items-center justify-center gap-8 md:gap-12">
+                {items.map((item, i) => {
+                    const Icon = item.icon;
+                    return (
+                        <div
+                            key={i}
+                            className="group flex cursor-pointer items-center gap-2 text-muted-foreground/70 transition-colors hover:text-foreground"
+                        >
+                            <Icon className="size-5 text-muted-foreground/50 transition-colors group-hover:text-primary" />
+                            <span className="font-mono text-sm font-bold tracking-tight">
+                                {item.name}
+                            </span>
+                        </div>
+                    );
+                })}
+            </div>
+        </div>
+    );
+}
+
+export default LogoCloud;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'misc',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'misc',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'wrapper',
+                'type' => 'registry:ui',
+                'title' => 'Wrapper',
+                'description' => 'A beautiful component for your application.',
+                'author' => 'designbycode',
+                'dependencies' => [
+
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/misc/wrapper.tsx',
+                        'type' => 'registry:ui',
+                        'content' => 'import { cn } from \'@/lib/utils\';
+
+export default function Wrapper({
+    className,
+    as,
+    children,
+    ...props
+}: {
+    className?: string;
+    as?: React.ElementType;
+    children: React.ReactNode;
+}) {
+    const Comp = as || \'div\';
+
+    return (
+        <Comp
+            className={cn(
+                \'mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8\',
+                className,
+            )}
+            {...props}
+        >
+            {children}
+        </Comp>
+    );
+}
+
+Wrapper.displayName = \'Wrapper\';
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'misc',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'misc',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'browser-mockup',
+                'type' => 'registry:ui',
+                'title' => 'Browser Mockup',
+                'description' => 'A clean browser mockup container frame with close/minimize chrome controls and viewport slot.',
+                'author' => 'designbycode',
+                'dependencies' => [
+
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/mockups/browser-mockup.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '\'use client\';
+
+import * as React from \'react\';
+import { cn } from \'@/lib/utils\';
+
+export interface BrowserMockupProps extends React.HTMLAttributes<HTMLDivElement> {
+    title?: string;
+    viewportClassName?: string;
+}
+
+const BrowserMockup = React.forwardRef<HTMLDivElement, BrowserMockupProps>(
+    (
+        {
+            className,
+            children,
+            title = \'preview.app\',
+            viewportClassName,
+            ...props
+        },
+        ref,
+    ) => {
+        return (
+            <div
+                ref={ref}
+                className={cn(
+                    \'group relative flex w-full flex-col justify-between overflow-hidden rounded-xl border border-border/40 bg-zinc-950 shadow-2xl select-none\',
+                    className,
+                )}
+                {...props}
+            >
+                {/* Window Chrome Header */}
+                <div className="flex h-9 shrink-0 items-center gap-2 border-b border-zinc-800 bg-zinc-900/60 px-4">
+                    <div className="flex shrink-0 gap-1.5">
+                        <span className="size-3 rounded-full bg-destructive/80" />
+                        <span className="size-3 rounded-full bg-chart-4/80" />
+                        <span className="size-3 rounded-full bg-chart-2/80" />
+                    </div>
+                    <div className="mx-auto max-w-xs truncate font-mono text-[10px] text-zinc-500 select-none">
+                        {title}
+                    </div>
+                </div>
+
+                {/* Main Viewport */}
+                <div
+                    className={cn(
+                        \'relative flex-1 overflow-hidden bg-zinc-900/80\',
+                        viewportClassName,
+                    )}
+                >
+                    {children}
+                </div>
+            </div>
+        );
+    },
+);
+
+BrowserMockup.displayName = \'BrowserMockup\';
+
+export { BrowserMockup };
+export default BrowserMockup;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'mockups',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'mockups',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'code-window',
+                'type' => 'registry:ui',
+                'title' => 'Code Window',
+                'description' => 'An interactive code editor window mockup with custom file tags and active indicators.',
+                'author' => 'designbycode',
+                'dependencies' => [
+
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/mockups/code-window.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '\'use client\';
+
+import * as React from \'react\';
+import { cn } from \'@/lib/utils\';
+
+export interface CodeWindowProps extends React.HTMLAttributes<HTMLDivElement> {
+    title: string;
+    lang?: string;
+    code: string;
+    active?: boolean;
+}
+
+const CodeWindow = React.forwardRef<HTMLDivElement, CodeWindowProps>(
+    ({ className, title, lang, code, active = true, ...props }, ref) => {
+        return (
+            <div
+                ref={ref}
+                className={cn(
+                    \'flex w-full flex-col overflow-hidden rounded-xl border border-border/40 bg-zinc-950 text-left font-mono text-xs shadow-2xl select-none\',
+                    className,
+                )}
+                {...props}
+            >
+                {/* Header bar */}
+                <div className="flex h-9 shrink-0 items-center justify-between border-b border-zinc-800 bg-zinc-900/60 px-4 text-zinc-500">
+                    <div className="flex items-center gap-2">
+                        <span
+                            className={cn(
+                                \'size-2 rounded-full transition-colors\',
+                                active
+                                    ? \'animate-pulse bg-chart-2\'
+                                    : \'bg-muted\',
+                            )}
+                        />
+                        <span>{title}</span>
+                    </div>
+                    {lang && (
+                        <span className="text-[10px] font-bold tracking-widest text-zinc-600 uppercase">
+                            {lang}
+                        </span>
+                    )}
+                </div>
+
+                {/* Code Container */}
+                <div className="flex-1 overflow-y-auto bg-zinc-950/85 p-4 font-mono text-[11px] leading-relaxed whitespace-pre text-zinc-300">
+                    {code}
+                </div>
+            </div>
+        );
+    },
+);
+
+CodeWindow.displayName = \'CodeWindow\';
+
+export { CodeWindow };
+export default CodeWindow;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'mockups',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'mockups',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'phone-mockup',
+                'type' => 'registry:ui',
+                'title' => 'Phone Mockup',
+                'description' => 'A high-fidelity CSS-only smartphone mock frame that acts as a container for mobile previews.',
+                'author' => 'designbycode',
+                'dependencies' => [
+
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/mockups/phone-mockup.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '\'use client\';
+
+import * as React from \'react\';
+import { cn } from \'@/lib/utils\';
+
+export interface PhoneMockupProps extends React.HTMLAttributes<HTMLDivElement> {
+    screenClassName?: string;
+}
+
+const PhoneMockup = React.forwardRef<HTMLDivElement, PhoneMockupProps>(
+    ({ className, children, screenClassName, ...props }, ref) => {
+        return (
+            <div
+                ref={ref}
+                className={cn(
+                    \'relative mx-auto h-[480px] w-64 shrink-0 rounded-[36px] border-[6px] border-zinc-800 bg-zinc-950 p-3 shadow-2xl ring-1 ring-zinc-700/50 select-none\',
+                    className,
+                )}
+                {...props}
+            >
+                {/* Ear Speaker Notch */}
+                <div className="absolute top-2 left-1/2 flex h-4 w-20 -translate-x-1/2 items-center justify-center rounded-full bg-zinc-800">
+                    <span className="h-1 w-8 rounded-full bg-zinc-900" />
+                </div>
+
+                {/* Screen Content Container */}
+                <div
+                    className={cn(
+                        \'flex h-full w-full flex-col overflow-hidden rounded-[28px] border border-zinc-800/40 bg-zinc-900 p-4\',
+                        screenClassName,
+                    )}
+                >
+                    {children}
+                </div>
+            </div>
+        );
+    },
+);
+
+PhoneMockup.displayName = \'PhoneMockup\';
+
+export { PhoneMockup };
+export default PhoneMockup;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'mockups',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'mockups',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
                 'name' => 'progress-circle',
                 'type' => 'registry:ui',
                 'title' => 'Progress Circle',
-                'description' => null,
+                'description' => 'A clean SVG circular progress meter displaying animated percentage levels.',
                 'author' => 'designbycode',
                 'dependencies' => [
 
@@ -11045,7 +15239,7 @@ export default ProgressCircle;
                 'name' => 'interactive-rating',
                 'type' => 'registry:ui',
                 'title' => 'Interactive Rating',
-                'description' => null,
+                'description' => 'A star-based rating component supporting interactive hover feedback and selections.',
                 'author' => 'designbycode',
                 'dependencies' => [
                     'lucide-react',
@@ -11149,7 +15343,7 @@ export default InteractiveRating;
                 'name' => 'animated-tabs',
                 'type' => 'registry:ui',
                 'title' => 'Animated Tabs',
-                'description' => null,
+                'description' => 'A tab selection bar showcasing smooth fluid sliding indicator animations.',
                 'author' => 'designbycode',
                 'dependencies' => [
                     'motion',
@@ -11335,7 +15529,7 @@ export function AnimatedTabs({
                 'name' => 'waves-three',
                 'type' => 'registry:ui',
                 'title' => 'Waves Three',
-                'description' => null,
+                'description' => 'A responsive WebGL 3D waves animation powered by Three.js.',
                 'author' => 'designbycode',
                 'dependencies' => [
                     'three',
@@ -12732,12 +16926,379 @@ export default WavesThree;
                 'font_mono' => null,
                 'font_serif' => null,
                 'meta' => [
-                    'category' => 'threejs',
+                    'category' => 'canvas',
                     'version' => '1.0.0',
                 ],
                 'docs' => null,
                 'categories' => [
-                    'threejs',
+                    'canvas',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'badge-indicator',
+                'type' => 'registry:ui',
+                'title' => 'Badge Indicator',
+                'description' => 'A clean and customizable badge indicator component with optional Lucide icon support.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/typography/badge-indicator.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '\'use client\';
+
+import * as React from \'react\';
+import type { LucideIcon } from \'lucide-react\';
+import { cn } from \'@/lib/utils\';
+
+export interface BadgeIndicatorProps extends React.HTMLAttributes<HTMLSpanElement> {
+    icon?: LucideIcon;
+    children?: React.ReactNode;
+}
+
+const BadgeIndicator = React.forwardRef<HTMLSpanElement, BadgeIndicatorProps>(
+    ({ icon: Icon, className, children, ...props }, ref) => {
+        return (
+            <span
+                ref={ref}
+                className={cn(
+                    \'inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-primary/5 px-3 py-1 font-mono text-[10px] font-bold tracking-widest text-primary uppercase select-none\',
+                    className,
+                )}
+                {...props}
+            >
+                {Icon && <Icon className="size-3 shrink-0 text-primary/80" />}
+                {children}
+            </span>
+        );
+    },
+);
+
+BadgeIndicator.displayName = \'BadgeIndicator\';
+
+export default BadgeIndicator;
+export { BadgeIndicator };
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'typography',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'typography',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'heading-block',
+                'type' => 'registry:ui',
+                'title' => 'Heading Block',
+                'description' => 'A composite title heading block containing category badge, main title, and description.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'https://ui.test/r/badge-indicator.json',
+                    'https://ui.test/r/heading.json',
+                    'https://ui.test/r/paragraph.json',
+                    'utils',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/typography/heading-block.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '\'use client\';
+
+import * as React from \'react\';
+import type { LucideIcon } from \'lucide-react\';
+import BadgeIndicator from \'@/registry/new-york/components/ui/typography/badge-indicator\';
+import { Heading } from \'@/registry/new-york/components/ui/typography/heading\';
+import { Paragraph } from \'@/registry/new-york/components/ui/typography/paragraph\';
+import { cn } from \'@/lib/utils\';
+
+type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6;
+
+export interface HeadingBlockProps {
+    className?: string;
+    badge?: {
+        text: string;
+        icon?: LucideIcon;
+        className?: string;
+    };
+    heading?: string;
+    headingLevel?: HeadingLevel;
+    headClassName?: string;
+    description?: React.ReactNode;
+    descriptionClassName?: string;
+    children?: React.ReactNode;
+    size?: \'default\' | \'sm\';
+}
+
+function HeadingBlock({
+    badge,
+    className,
+    heading,
+    headClassName,
+    headingLevel = 1,
+    description,
+    descriptionClassName,
+    children,
+    size = \'default\',
+    ...props
+}: HeadingBlockProps) {
+    return (
+        <div
+            className={cn(
+                size === \'default\' && \'mb-12 max-w-2xl space-y-4\',
+                size === \'sm\' && \'max-w-none space-y-3\',
+                className,
+            )}
+            {...props}
+        >
+            {badge && (
+                <BadgeIndicator
+                    icon={badge.icon}
+                    className={cn(\'mb-1\', badge.className)}
+                >
+                    {badge.text}
+                </BadgeIndicator>
+            )}
+            {heading && (
+                <Heading
+                    level={headingLevel}
+                    className={cn(
+                        \'font-extrabold tracking-tight text-foreground\',
+                        headClassName,
+                    )}
+                >
+                    {heading}
+                </Heading>
+            )}
+            {description && (
+                <Paragraph
+                    variant={size === \'default\' ? \'lead\' : \'muted\'}
+                    className={cn(\'font-sans\', descriptionClassName)}
+                >
+                    {description}
+                </Paragraph>
+            )}
+            {children}
+        </div>
+    );
+}
+
+export default HeadingBlock;
+export { HeadingBlock };
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'typography',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'typography',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'heading',
+                'type' => 'registry:ui',
+                'title' => 'Heading',
+                'description' => 'A structured typographic heading component supporting levels 1 to 6.',
+                'author' => 'designbycode',
+                'dependencies' => [
+
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/typography/heading.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '\'use client\';
+
+import * as React from \'react\';
+import { cn } from \'@/lib/utils\';
+
+export type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6;
+
+export interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
+    level?: HeadingLevel;
+}
+
+const headingStyles: Record<HeadingLevel, string> = {
+    1: \'scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl text-foreground\',
+    2: \'scroll-m-20 border-b border-border/30 pb-2 text-3xl font-semibold tracking-tight first:mt-0 text-foreground\',
+    3: \'scroll-m-20 text-2xl font-semibold tracking-tight text-foreground\',
+    4: \'scroll-m-20 text-xl font-semibold tracking-tight text-foreground\',
+    5: \'scroll-m-20 text-lg font-semibold tracking-tight text-foreground\',
+    6: \'scroll-m-20 text-base font-semibold tracking-tight text-foreground\',
+};
+
+const Heading = React.forwardRef<HTMLHeadingElement, HeadingProps>(
+    ({ level = 1, className, children, ...props }, ref) => {
+        const Tag = `h${level}` as const;
+
+        return (
+            <Tag
+                ref={ref}
+                className={cn(headingStyles[level], className)}
+                {...props}
+            >
+                {children}
+            </Tag>
+        );
+    },
+);
+
+Heading.displayName = \'Heading\';
+
+export { Heading };
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'typography',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'typography',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'paragraph',
+                'type' => 'registry:ui',
+                'title' => 'Paragraph',
+                'description' => 'A versatile paragraph text component supporting default, lead, and muted layout variants.',
+                'author' => 'designbycode',
+                'dependencies' => [
+
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/typography/paragraph.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '\'use client\';
+
+import * as React from \'react\';
+import { cn } from \'@/lib/utils\';
+
+export interface ParagraphProps extends React.HTMLAttributes<HTMLParagraphElement> {
+    variant?: \'default\' | \'lead\' | \'muted\' | \'large\' | \'small\';
+}
+
+const paragraphStyles = {
+    default: \'leading-7 [&:not(:first-child)]:mt-6 text-foreground/80\',
+    lead: \'text-xl text-muted-foreground font-light leading-relaxed\',
+    muted: \'text-sm text-muted-foreground leading-normal\',
+    large: \'text-lg font-semibold text-foreground\',
+    small: \'text-sm font-medium leading-none text-foreground/75\',
+};
+
+const Paragraph = React.forwardRef<HTMLParagraphElement, ParagraphProps>(
+    ({ variant = \'default\', className, children, ...props }, ref) => {
+        return (
+            <p
+                ref={ref}
+                className={cn(paragraphStyles[variant], className)}
+                {...props}
+            >
+                {children}
+            </p>
+        );
+    },
+);
+
+Paragraph.displayName = \'Paragraph\';
+
+export { Paragraph };
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'typography',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'typography',
                 ],
                 'extends' => null,
                 'style' => null,
@@ -12749,7 +17310,7 @@ export default WavesThree;
                 'name' => 'use-dark-mode',
                 'type' => 'registry:hook',
                 'title' => 'Use Dark Mode',
-                'description' => null,
+                'description' => 'A React hook detecting and toggling light/dark system color schemes.',
                 'author' => 'designbycode',
                 'dependencies' => [
 
@@ -12821,7 +17382,7 @@ export default useDarkMode;
                 'name' => 'use-headroom',
                 'type' => 'registry:hook',
                 'title' => 'Use Headroom',
-                'description' => null,
+                'description' => 'A React scroll hook enabling/disabling visibility of nav headers based on scroll direction.',
                 'author' => 'designbycode',
                 'dependencies' => [
 
@@ -13023,7 +17584,7 @@ export default useHeadroom;
                 'name' => 'use-hover',
                 'type' => 'registry:hook',
                 'title' => 'Use Hover',
-                'description' => null,
+                'description' => 'A ref-bound React hover hook managing mouse entrance and exit event states.',
                 'author' => 'designbycode',
                 'dependencies' => [
 
@@ -13084,7 +17645,7 @@ export function useHover() {
                 'name' => 'use-pixel-canvas',
                 'type' => 'registry:hook',
                 'title' => 'Use Pixel Canvas',
-                'description' => null,
+                'description' => 'A helper hook handling pixel drawing mathematics for the Pixel Canvas component.',
                 'author' => 'designbycode',
                 'dependencies' => [
 
@@ -13500,7 +18061,7 @@ export function usePixelCanvas(
                 'name' => 'audio-context',
                 'type' => 'registry:lib',
                 'title' => 'Audio Context',
-                'description' => null,
+                'description' => 'A browser Web Audio API manager providing playback nodes for the music player.',
                 'author' => 'designbycode',
                 'dependencies' => [
 
@@ -13643,7 +18204,7 @@ export const formatTime = (seconds: number): string => {
                 'name' => 'glow-geometry',
                 'type' => 'registry:lib',
                 'title' => 'Glow Geometry',
-                'description' => null,
+                'description' => 'A helper library managing mouse coordinate tracking for glow wrappers.',
                 'author' => 'designbycode',
                 'dependencies' => [
 
@@ -13714,7 +18275,7 @@ export const toElementSpace = (p: Point, rect: Rect): Point => ({
                 'name' => 'pixel-canvas-helper',
                 'type' => 'registry:lib',
                 'title' => 'Pixel Canvas Helper',
-                'description' => null,
+                'description' => 'A mathematical helper module driving pixel animations for the Pixel Canvas.',
                 'author' => 'designbycode',
                 'dependencies' => [
 

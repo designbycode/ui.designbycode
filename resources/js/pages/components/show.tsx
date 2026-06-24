@@ -1,5 +1,16 @@
 import { Link } from '@inertiajs/react';
-import { ArrowLeft, Package, Settings, FileCode } from 'lucide-react';
+import {
+    ArrowLeft,
+    Package,
+    Settings,
+    FileCode,
+    Smartphone,
+    Tablet,
+    Monitor,
+    Maximize2,
+    Minimize2,
+    GripVertical,
+} from 'lucide-react';
 import React, { useState, useMemo } from 'react';
 import Heading from '@/components/heading';
 import RegistryPreview from '@/components/registry-preview';
@@ -55,24 +66,97 @@ export default function ComponentShow({
     const [selectedFileIndex, setSelectedFileIndex] = useState(0);
     const [selectedInterfaceIndex, setSelectedInterfaceIndex] = useState(0);
 
-    // Group sidebar items by type for nice organization
-    const groupedSidebarItems = useMemo(() => {
-        const groups: Record<string, SidebarItem[]> = {
-            'registry:ui': [],
-            'registry:block': [],
-            'registry:hook': [],
-            'registry:lib': [],
+    const [previewWidth, setPreviewWidth] = useState<string | number>('100%');
+    const [previewMode, setPreviewMode] = useState<
+        'mobile' | 'tablet' | 'desktop' | 'custom'
+    >('desktop');
+    const [isFullscreen, setIsFullscreen] = useState(false);
+
+    const previewRef = React.useRef<HTMLDivElement>(null);
+    const containerRef = React.useRef<HTMLDivElement>(null);
+
+    const handleResizeStart = (e: React.MouseEvent) => {
+        e.preventDefault();
+        if (!previewRef.current || !containerRef.current) {
+            return;
+        }
+
+        const rect = previewRef.current.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const parentWidth = containerRef.current.offsetWidth;
+        const maxW = parentWidth - 24;
+
+        const handleMouseMove = (moveEvent: MouseEvent) => {
+            const distanceFromCenter = Math.abs(moveEvent.clientX - centerX);
+            const newWidth = Math.max(
+                320,
+                Math.min(maxW, distanceFromCenter * 2),
+            );
+            setPreviewWidth(newWidth);
+            setPreviewMode('custom');
         };
 
+        const handleMouseUp = () => {
+            document.removeEventListener('mousemove', handleMouseMove);
+            document.removeEventListener('mouseup', handleMouseUp);
+        };
+
+        document.addEventListener('mousemove', handleMouseMove);
+        document.addEventListener('mouseup', handleMouseUp);
+    };
+
+    // Group sidebar items by category for nice organization
+    const groupedSidebarItems = useMemo(() => {
+        const groups: Record<string, SidebarItem[]> = {};
+
         sidebarItems.forEach((item) => {
-            if (groups[item.type]) {
-                groups[item.type].push(item);
-            } else {
-                groups['registry:lib'].push(item);
+            const cat =
+                item.categories && item.categories.length > 0
+                    ? item.categories[0]
+                    : 'other';
+            if (!groups[cat]) {
+                groups[cat] = [];
+            }
+            groups[cat].push(item);
+        });
+
+        // Custom order for the categories
+        const order = [
+            'buttons',
+            'inputs',
+            'rating',
+            'progress',
+            'tabs',
+            'glow',
+            'animations',
+            'canvas',
+            'hero-sections',
+            'stats',
+            'media',
+            'pricing',
+            'forms',
+            'properties',
+            'reviews',
+            'galleries',
+            'hooks',
+            'lib',
+        ];
+
+        const sortedGroups: Record<string, SidebarItem[]> = {};
+
+        order.forEach((cat) => {
+            if (groups[cat] && groups[cat].length > 0) {
+                sortedGroups[cat] = groups[cat];
             }
         });
 
-        return groups;
+        Object.keys(groups).forEach((cat) => {
+            if (!sortedGroups[cat]) {
+                sortedGroups[cat] = groups[cat];
+            }
+        });
+
+        return sortedGroups;
     }, [sidebarItems]);
 
     // Parse TypeScript interfaces or type aliases ending with Props, Options or Config
@@ -178,19 +262,33 @@ export default function ComponentShow({
     };
 
     // Label formatting helper
-    const getGroupLabel = (type: string) => {
-        switch (type) {
-            case 'registry:ui':
-                return 'UI Components';
-            case 'registry:block':
-                return 'Blocks';
-            case 'registry:hook':
-                return 'Hooks';
-            case 'registry:lib':
-                return 'Utilities';
-            default:
-                return 'Other';
-        }
+    const getGroupLabel = (cat: string) => {
+        const labels: Record<string, string> = {
+            buttons: 'Buttons',
+            inputs: 'Inputs',
+            rating: 'Rating Components',
+            progress: 'Progress Circle',
+            tabs: 'Tab Selectors',
+            glow: 'Glow Effects',
+            animations: 'Animations',
+            canvas: 'Canvas Arts',
+            'hero-sections': 'Hero Sections',
+            stats: 'Stats & Dashboards',
+            media: 'Media Players',
+            pricing: 'Pricing Plans',
+            forms: 'Booking Forms',
+            properties: 'Real Estate Listings',
+            reviews: 'Reviews & Testimonials',
+            galleries: 'Component Galleries',
+            hooks: 'React Hooks',
+            lib: 'Utility Libs',
+            other: 'Other Components',
+        };
+
+        return (
+            labels[cat] ||
+            cat.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase())
+        );
     };
 
     return (
@@ -301,11 +399,130 @@ export default function ComponentShow({
                         {/* Preview Tab Panel */}
                         <TabsContent
                             value="preview"
-                            className="focus-visible:outline-none"
+                            className="animate-in duration-200 fade-in-50 focus-visible:outline-none"
                         >
-                            <Card className="relative flex min-h-[350px] items-center justify-center overflow-hidden border border-border/50 bg-card/20 p-6 md:p-12">
-                                <RegistryPreview name={component.name} />
-                            </Card>
+                            <div
+                                ref={containerRef}
+                                className="flex w-full flex-col overflow-hidden rounded-xl border border-border/50 bg-card/25"
+                            >
+                                {/* Toolbar */}
+                                <div className="flex shrink-0 flex-wrap items-center justify-between gap-3 rounded-t-xl border-b border-border/40 bg-muted/40 px-4 py-2 select-none">
+                                    {/* Left: Size presets */}
+                                    <div className="flex items-center gap-1">
+                                        <Button
+                                            variant={
+                                                previewMode === 'desktop'
+                                                    ? 'secondary'
+                                                    : 'ghost'
+                                            }
+                                            size="sm"
+                                            onClick={() => {
+                                                setPreviewWidth('100%');
+                                                setPreviewMode('desktop');
+                                            }}
+                                            className="h-7 gap-1.5 px-2.5 text-[10px] font-bold tracking-tight uppercase"
+                                        >
+                                            <Monitor className="size-3" />
+                                            Desktop
+                                        </Button>
+                                        <Button
+                                            variant={
+                                                previewMode === 'tablet'
+                                                    ? 'secondary'
+                                                    : 'ghost'
+                                            }
+                                            size="sm"
+                                            onClick={() => {
+                                                setPreviewWidth(768);
+                                                setPreviewMode('tablet');
+                                            }}
+                                            className="h-7 gap-1.5 px-2.5 text-[10px] font-bold tracking-tight uppercase"
+                                        >
+                                            <Tablet className="size-3" />
+                                            Tablet
+                                        </Button>
+                                        <Button
+                                            variant={
+                                                previewMode === 'mobile'
+                                                    ? 'secondary'
+                                                    : 'ghost'
+                                            }
+                                            size="sm"
+                                            onClick={() => {
+                                                setPreviewWidth(375);
+                                                setPreviewMode('mobile');
+                                            }}
+                                            className="h-7 gap-1.5 px-2.5 text-[10px] font-bold tracking-tight uppercase"
+                                        >
+                                            <Smartphone className="size-3" />
+                                            Mobile
+                                        </Button>
+                                    </div>
+
+                                    {/* Center: Current width indicator */}
+                                    <div className="hidden items-center gap-1 font-mono text-[10px] font-semibold text-muted-foreground sm:flex">
+                                        <span>Width:</span>
+                                        <span className="text-foreground">
+                                            {typeof previewWidth === 'number'
+                                                ? `${previewWidth}px`
+                                                : '100%'}
+                                        </span>
+                                        {previewMode === 'custom' && (
+                                            <span className="text-primary/70">
+                                                (Custom)
+                                            </span>
+                                        )}
+                                    </div>
+
+                                    {/* Right: Fullscreen control */}
+                                    <div>
+                                        <Button
+                                            variant="ghost"
+                                            size="icon"
+                                            onClick={() =>
+                                                setIsFullscreen(true)
+                                            }
+                                            className="size-7 cursor-pointer text-muted-foreground hover:text-foreground"
+                                        >
+                                            <Maximize2 className="size-3.5" />
+                                        </Button>
+                                    </div>
+                                </div>
+
+                                {/* Preview Frame Area */}
+                                <div className="relative flex min-h-[350px] items-center justify-center overflow-x-auto bg-[radial-gradient(var(--color-border)_1px,transparent_1px)] bg-[size:16px_16px] p-6 md:p-8">
+                                    <div
+                                        ref={previewRef}
+                                        style={{
+                                            width:
+                                                typeof previewWidth === 'number'
+                                                    ? `${previewWidth}px`
+                                                    : previewWidth,
+                                            transition:
+                                                previewMode !== 'custom'
+                                                    ? 'width 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
+                                                    : 'none',
+                                        }}
+                                        className="relative flex min-h-[250px] items-center justify-center rounded-lg border border-border/40 bg-card/65 pr-3 shadow-sm backdrop-blur-xs"
+                                    >
+                                        <div className="flex h-full w-full items-center justify-center p-4">
+                                            <RegistryPreview
+                                                name={component.name}
+                                            />
+                                        </div>
+
+                                        {/* Right Resize Handle */}
+                                        <div
+                                            onMouseDown={handleResizeStart}
+                                            className="group/handle absolute top-0 right-0 bottom-0 z-20 flex w-3 cursor-ew-resize items-center justify-center select-none"
+                                        >
+                                            <div className="flex h-10 w-1 items-center justify-center rounded-full bg-border/80 transition-colors group-hover/handle:bg-primary">
+                                                <GripVertical className="size-3 text-muted-foreground opacity-0 transition-opacity group-hover/handle:opacity-100" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </TabsContent>
 
                         {/* Installation Tab Panel */}
@@ -607,6 +824,119 @@ export default function ComponentShow({
                     </Tabs>
                 </div>
             </div>
+            {/* Fullscreen Preview Overlay */}
+            {isFullscreen && (
+                <div className="fixed inset-0 z-50 flex animate-in flex-col bg-background duration-200 select-none fade-in">
+                    {/* Header bar */}
+                    <div className="flex h-14 items-center justify-between border-b border-border bg-card/60 px-6 backdrop-blur-md">
+                        <div className="flex items-center gap-4">
+                            <span className="text-sm font-bold">
+                                {component.title}
+                            </span>
+                            <span className="font-mono text-xs text-muted-foreground">
+                                {typeof previewWidth === 'number'
+                                    ? `${previewWidth}px`
+                                    : '100%'}
+                            </span>
+                        </div>
+
+                        {/* Presets */}
+                        <div className="flex items-center gap-1">
+                            <Button
+                                variant={
+                                    previewMode === 'desktop'
+                                        ? 'secondary'
+                                        : 'ghost'
+                                }
+                                size="sm"
+                                onClick={() => {
+                                    setPreviewWidth('100%');
+                                    setPreviewMode('desktop');
+                                }}
+                                className="h-8 gap-1.5 px-3 text-[10px] font-bold tracking-tight uppercase"
+                            >
+                                <Monitor className="size-3.5" />
+                                Desktop
+                            </Button>
+                            <Button
+                                variant={
+                                    previewMode === 'tablet'
+                                        ? 'secondary'
+                                        : 'ghost'
+                                }
+                                size="sm"
+                                onClick={() => {
+                                    setPreviewWidth(768);
+                                    setPreviewMode('tablet');
+                                }}
+                                className="h-8 gap-1.5 px-3 text-[10px] font-bold tracking-tight uppercase"
+                            >
+                                <Tablet className="size-3.5" />
+                                Tablet
+                            </Button>
+                            <Button
+                                variant={
+                                    previewMode === 'mobile'
+                                        ? 'secondary'
+                                        : 'ghost'
+                                }
+                                size="sm"
+                                onClick={() => {
+                                    setPreviewWidth(375);
+                                    setPreviewMode('mobile');
+                                }}
+                                className="h-8 gap-1.5 px-3 text-[10px] font-bold tracking-tight uppercase"
+                            >
+                                <Smartphone className="size-3.5" />
+                                Mobile
+                            </Button>
+                        </div>
+
+                        <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() => setIsFullscreen(false)}
+                            className="h-8 cursor-pointer gap-1.5 px-3 text-xs font-semibold"
+                        >
+                            <Minimize2 className="size-3.5" />
+                            Close
+                        </Button>
+                    </div>
+
+                    {/* Content Viewport */}
+                    <div
+                        ref={containerRef}
+                        className="flex flex-1 items-center justify-center overflow-auto bg-muted/10 bg-[radial-gradient(var(--color-border)_1px,transparent_1px)] bg-[size:16px_16px] p-8"
+                    >
+                        <div
+                            ref={previewRef}
+                            style={{
+                                width:
+                                    typeof previewWidth === 'number'
+                                        ? `${previewWidth}px`
+                                        : previewWidth,
+                                transition:
+                                    previewMode !== 'custom'
+                                        ? 'width 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
+                                        : 'none',
+                            }}
+                            className="relative flex min-h-[400px] items-center justify-center rounded-xl border border-border bg-card p-6 shadow-2xl"
+                        >
+                            <RegistryPreview name={component.name} />
+
+                            {/* Right Resize Handle */}
+                            <div
+                                onMouseDown={handleResizeStart}
+                                className="group/handle absolute top-0 right-0 bottom-0 z-20 flex w-4 cursor-ew-resize items-center justify-center select-none"
+                            >
+                                <div className="flex h-12 w-1 items-center justify-center rounded-full bg-border transition-colors group-hover/handle:bg-primary">
+                                    <GripVertical className="size-3.5 text-muted-foreground opacity-0 transition-opacity group-hover/handle:opacity-100" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
         </MainWrapper>
     );
 }

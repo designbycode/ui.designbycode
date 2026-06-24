@@ -100,13 +100,13 @@ export default function ComponentsIndex({
     const getTypeBadgeClass = (type: string) => {
         switch (type) {
             case 'registry:block':
-                return 'bg-blue-500/10 text-blue-500 border-blue-500/20';
+                return 'bg-chart-3/10 text-chart-3 border-chart-3/20';
             case 'registry:ui':
-                return 'bg-emerald-500/10 text-emerald-500 border-emerald-500/20';
+                return 'bg-chart-2/10 text-chart-2 border-chart-2/20';
             case 'registry:hook':
-                return 'bg-amber-500/10 text-amber-500 border-amber-500/20';
+                return 'bg-chart-4/10 text-chart-4 border-chart-4/20';
             default:
-                return 'bg-purple-500/10 text-purple-500 border-purple-500/20';
+                return 'bg-chart-5/10 text-chart-5 border-chart-5/20';
         }
     };
 

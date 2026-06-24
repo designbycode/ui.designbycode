@@ -26,7 +26,11 @@ function MainNavigation() {
     } as UseHeadroomOptions);
 
     const { url } = usePage();
-    const currentPath = new URL(url, window.location.origin).pathname;
+    const origin =
+        typeof window !== 'undefined'
+            ? window.location.origin
+            : 'http://localhost';
+    const currentPath = new URL(url, origin).pathname;
     const navLinks = [
         { label: 'Home', href: home() },
         { label: 'Themes', href: themesIndex() },
