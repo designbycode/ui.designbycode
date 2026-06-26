@@ -236,6 +236,7 @@ class RegistryBuildCommand extends Command
             'input-currency' => 'A smart text input formatting numeric entries into localized currency notation as you type.',
             'input-number' => 'A numeric spinner input containing up/down stepper buttons and range constraints.',
             'input-phone' => 'A formatted text input enforcing phone masks and raw numeric outputs.',
+            'input-password' => 'A password input field with a toggleable eye icon to show/hide the password text.',
             'input-slug' => 'A reactive field transforming raw keystrokes into clean URL-safe slug strings.',
             'multi-select' => 'A dropdown selector allowing search, selection, and creation of multiple tags.',
             'progress-circle' => 'A clean SVG circular progress meter displaying animated percentage levels.',

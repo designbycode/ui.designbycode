@@ -18,6 +18,7 @@ import { InputSlug } from '@/registry/new-york/components/ui/inputs/input-slug';
 import { InputPhone } from '@/registry/new-york/components/ui/inputs/input-phone';
 import { InputCurrency } from '@/registry/new-york/components/ui/inputs/input-currency';
 import { InputNumber } from '@/registry/new-york/components/ui/inputs/input-number';
+import { InputPassword } from '@/registry/new-york/components/ui/inputs/input-password';
 import {
     MultiSelect,
     MultiSelectTrigger,
@@ -350,6 +351,32 @@ export default function RegistryPreview({ name }: { name: string }) {
                     number:{' '}
                     <span className="font-bold text-primary">
                         {value !== undefined ? value : 'None'}
+                    </span>
+                </div>
+            </div>
+        );
+    }
+
+    // 11e. Input Password
+    if (name === 'input-password') {
+        const [value, setValue] = useState('');
+        return (
+            <div className="mx-auto w-full max-w-md space-y-4 rounded-xl border border-border/50 bg-card p-6">
+                <div className="space-y-1">
+                    <label className="text-xs font-semibold text-muted-foreground">
+                        Password Input
+                    </label>
+                    <InputPassword
+                        value={value}
+                        onChange={(e) => setValue(e.target.value)}
+                        placeholder="••••••••"
+                        className="w-full"
+                    />
+                </div>
+                <div className="rounded bg-muted/50 p-3 font-mono text-xs break-all text-muted-foreground">
+                    Value:{' '}
+                    <span className="font-bold text-primary">
+                        {value || 'None'}
                     </span>
                 </div>
             </div>

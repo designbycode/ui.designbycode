@@ -3984,6 +3984,7 @@ export default HeroWaves;
                     'https://ui.test/r/input-phone.json',
                     'https://ui.test/r/input-currency.json',
                     'https://ui.test/r/input-number.json',
+                    'https://ui.test/r/input-password.json',
                     'https://ui.test/r/multi-select.json',
                     'input',
                     'card',
@@ -4009,6 +4010,7 @@ import { InputSlug } from \'@/registry/new-york/components/ui/inputs/input-slug\
 import { InputPhone } from \'@/registry/new-york/components/ui/inputs/input-phone\';
 import { InputCurrency } from \'@/registry/new-york/components/ui/inputs/input-currency\';
 import { InputNumber } from \'@/registry/new-york/components/ui/inputs/input-number\';
+import { InputPassword } from \'@/registry/new-york/components/ui/inputs/input-password\';
 import {
     MultiSelect,
     MultiSelectTrigger,
@@ -4032,6 +4034,7 @@ export function InputsGallery() {
     const [selectedTags, setSelectedTags] = useState<string[]>([]);
     const [searchFocused, setSearchFocused] = useState(false);
     const [searchValue, setSearchValue] = useState(\'\');
+    const [passwordValue, setPasswordValue] = useState(\'\');
 
     // New component states
     const [phoneValue, setPhoneValue] = useState(\'1234567890\');
@@ -4333,20 +4336,24 @@ export function InputsGallery() {
                     <CardHeader className="pb-3">
                         <CardTitle className="flex items-center gap-2 text-sm font-bold">
                             <Lock className="size-4 text-chart-1" />
-                            Glow-Border Passcode Field
+                            Password Input
                         </CardTitle>
                         <CardDescription className="text-xs">
-                            Simple passcode field illustrating focused states.
+                            A secure password input field with a toggleable visibility eye icon.
                         </CardDescription>
                     </CardHeader>
-                    <CardContent className="flex flex-1 flex-col justify-center pb-6">
-                        <div className="relative">
-                            <Lock className="absolute top-1/2 left-3 size-3.5 -translate-y-1/2 text-muted-foreground" />
-                            <Input
-                                type="password"
-                                placeholder="••••••••"
-                                className="h-9 border-border/50 bg-card/15 pl-9 text-xs focus-visible:border-primary focus-visible:ring-[3px] focus-visible:ring-primary/20"
-                            />
+                    <CardContent className="flex flex-1 flex-col justify-center space-y-3 pb-6">
+                        <InputPassword
+                            value={passwordValue}
+                            onChange={(e) => setPasswordValue(e.target.value)}
+                            placeholder="••••••••"
+                            className="h-9 w-full text-xs"
+                        />
+                        <div className="truncate rounded border border-border/20 bg-muted/30 p-2.5 font-mono text-[10px] text-muted-foreground">
+                            Value:{\' \'}
+                            <span className="font-bold text-primary">
+                                {passwordValue || \'none\'}
+                            </span>
                         </div>
                     </CardContent>
                 </Card>
@@ -13826,6 +13833,109 @@ InputNumber.displayName = \'InputNumber\';
 
 export { InputNumber };
 export type { InputNumberProps };
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'inputs',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'inputs',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'input-password',
+                'type' => 'registry:ui',
+                'title' => 'Input Password',
+                'description' => 'A password input field with a toggleable eye icon to show/hide the password text.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'input',
+                    'button',
+                    'utils',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/inputs/input-password.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '\'use client\';
+
+import * as React from \'react\';
+import { Eye, EyeOff } from \'lucide-react\';
+import { Input } from \'@/components/ui/input\';
+import { Button } from \'@/components/ui/button\';
+import { cn } from \'@/lib/utils\';
+
+interface InputPasswordProps extends React.ComponentProps<\'input\'> {
+    /**
+     * Custom class name for the toggle button
+     */
+    toggleClassName?: string;
+}
+
+const InputPassword = React.forwardRef<HTMLInputElement, InputPasswordProps>(
+    ({ className, toggleClassName, ...props }, ref) => {
+        const [showPassword, setShowPassword] = React.useState(false);
+
+        const toggleVisibility = () => {
+            setShowPassword((prev) => !prev);
+        };
+
+        return (
+            <div className="relative w-full">
+                <Input
+                    type={showPassword ? \'text\' : \'password\'}
+                    className={cn(\'pr-10\', className)}
+                    ref={ref}
+                    {...props}
+                />
+                <Button
+                    type="button"
+                    variant="ghost"
+                    size="icon"
+                    className={cn(
+                        \'absolute top-1/2 right-0 size-9 -translate-y-1/2 text-muted-foreground/70 hover:bg-transparent hover:text-foreground cursor-pointer select-none\',
+                        toggleClassName
+                    )}
+                    onClick={toggleVisibility}
+                    aria-label={showPassword ? \'Hide password\' : \'Show password\'}
+                >
+                    {showPassword ? (
+                        <EyeOff className="size-4" />
+                    ) : (
+                        <Eye className="size-4" />
+                    )}
+                </Button>
+            </div>
+        );
+    }
+);
+
+InputPassword.displayName = \'InputPassword\';
+
+export { InputPassword };
+export type { InputPasswordProps };
 ',
                     ],
                 ],

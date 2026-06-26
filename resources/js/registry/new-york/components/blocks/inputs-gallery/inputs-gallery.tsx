@@ -14,6 +14,7 @@ import { InputSlug } from '@/registry/new-york/components/ui/inputs/input-slug';
 import { InputPhone } from '@/registry/new-york/components/ui/inputs/input-phone';
 import { InputCurrency } from '@/registry/new-york/components/ui/inputs/input-currency';
 import { InputNumber } from '@/registry/new-york/components/ui/inputs/input-number';
+import { InputPassword } from '@/registry/new-york/components/ui/inputs/input-password';
 import {
     MultiSelect,
     MultiSelectTrigger,
@@ -37,6 +38,7 @@ export function InputsGallery() {
     const [selectedTags, setSelectedTags] = useState<string[]>([]);
     const [searchFocused, setSearchFocused] = useState(false);
     const [searchValue, setSearchValue] = useState('');
+    const [passwordValue, setPasswordValue] = useState('');
 
     // New component states
     const [phoneValue, setPhoneValue] = useState('1234567890');
@@ -338,20 +340,24 @@ export function InputsGallery() {
                     <CardHeader className="pb-3">
                         <CardTitle className="flex items-center gap-2 text-sm font-bold">
                             <Lock className="size-4 text-chart-1" />
-                            Glow-Border Passcode Field
+                            Password Input
                         </CardTitle>
                         <CardDescription className="text-xs">
-                            Simple passcode field illustrating focused states.
+                            A secure password input field with a toggleable visibility eye icon.
                         </CardDescription>
                     </CardHeader>
-                    <CardContent className="flex flex-1 flex-col justify-center pb-6">
-                        <div className="relative">
-                            <Lock className="absolute top-1/2 left-3 size-3.5 -translate-y-1/2 text-muted-foreground" />
-                            <Input
-                                type="password"
-                                placeholder="••••••••"
-                                className="h-9 border-border/50 bg-card/15 pl-9 text-xs focus-visible:border-primary focus-visible:ring-[3px] focus-visible:ring-primary/20"
-                            />
+                    <CardContent className="flex flex-1 flex-col justify-center space-y-3 pb-6">
+                        <InputPassword
+                            value={passwordValue}
+                            onChange={(e) => setPasswordValue(e.target.value)}
+                            placeholder="••••••••"
+                            className="h-9 w-full text-xs"
+                        />
+                        <div className="truncate rounded border border-border/20 bg-muted/30 p-2.5 font-mono text-[10px] text-muted-foreground">
+                            Value:{' '}
+                            <span className="font-bold text-primary">
+                                {passwordValue || 'none'}
+                            </span>
                         </div>
                     </CardContent>
                 </Card>

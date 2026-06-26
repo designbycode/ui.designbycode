@@ -306,7 +306,10 @@ export default function ComponentShow({
             {/* Sidebar + Main content layout */}
             <div className="flex flex-col items-start gap-8 lg:flex-row">
                 {/* Sidebar Navigation */}
-                <aside className="no-scrollbar sticky top-20 hidden max-h-[calc(100vh-8rem)] w-full shrink-0 overflow-y-auto rounded-xl border border-border/40 bg-card/15 p-4 pr-2 md:block lg:w-64">
+                <aside
+                    scroll-region="true"
+                    className="no-scrollbar sticky top-20 hidden max-h-[calc(100vh-8rem)] w-full shrink-0 overflow-y-auto rounded-xl border border-border/40 bg-card/15 p-4 pr-2 md:block lg:w-64"
+                >
                     <div className="flex flex-col gap-6">
                         {Object.entries(groupedSidebarItems).map(
                             ([type, items]) => {
@@ -327,6 +330,7 @@ export default function ComponentShow({
                                                 <Link
                                                     key={item.name}
                                                     href={show(item.name).url}
+                                                    preserveScroll
                                                     className={`rounded-md px-2.5 py-1.5 text-xs font-medium transition-colors ${
                                                         component.name ===
                                                         item.name
