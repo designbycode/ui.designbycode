@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { Mail, CheckCircle2, Sparkles } from 'lucide-react';
 import HeadingBlock from '@/registry/new-york/components/ui/typography/heading-block';
-import { ButtonSpecial } from '@/registry/new-york/components/ui/buttons/button-special';
+import { ButtonNeon } from '@/registry/new-york/components/ui/buttons/button-neon';
 import { InputNumberStepper } from '@/registry/new-york/components/ui/inputs/input-number-stepper';
 import { Input } from '@/components/ui/input';
 
@@ -75,13 +75,12 @@ export function HeroWaitlist() {
                             />
                         </div>
 
-                        <ButtonSpecial
+                        <ButtonNeon
                             type="submit"
-                            specialVariant="neon"
                             className="mt-2 h-10 w-full font-bold"
                         >
                             Request Invite ({seats} licenses)
-                        </ButtonSpecial>
+                        </ButtonNeon>
                     </form>
                 ) : (
                     <div className="mt-8 flex w-full max-w-md flex-col items-center gap-4 rounded-xl border border-primary/20 bg-primary/5 p-8 text-center shadow-xl">

@@ -3,7 +3,8 @@
 import * as React from 'react';
 import { Star, ArrowRight } from 'lucide-react';
 import HeadingBlock from '@/registry/new-york/components/ui/typography/heading-block';
-import { ButtonSpecial } from '@/registry/new-york/components/ui/buttons/button-special';
+import { ButtonNeon } from '@/registry/new-york/components/ui/buttons/button-neon';
+import { ButtonDraw } from '@/registry/new-york/components/ui/buttons/button-draw';
 import { ParticlesBackdrop } from '@/registry/new-york/components/ui/animations/particles-backdrop';
 
 export function HeroParticles() {
@@ -30,16 +31,15 @@ export function HeroParticles() {
                 />
 
                 <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
-                    <ButtonSpecial
-                        specialVariant="neon"
+                    <ButtonNeon
                         className="flex items-center gap-2"
                     >
                         Get Started
                         <ArrowRight className="size-4" />
-                    </ButtonSpecial>
-                    <ButtonSpecial specialVariant="draw">
+                    </ButtonNeon>
+                    <ButtonDraw>
                         View Storybook
-                    </ButtonSpecial>
+                    </ButtonDraw>
                 </div>
             </div>
         </section>

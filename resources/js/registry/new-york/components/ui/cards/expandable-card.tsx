@@ -4,8 +4,11 @@ import * as React from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Card } from '@/components/ui/card';
 
-export interface ExpandableCardProps extends React.HTMLAttributes<HTMLDivElement> {
+const MotionCard = motion(Card);
+
+export interface ExpandableCardProps extends React.ComponentProps<typeof Card> {
     title: string;
     description?: string;
     expandedContent?: React.ReactNode;
@@ -36,11 +39,11 @@ const ExpandableCard = React.forwardRef<HTMLDivElement, ExpandableCardProps>(
         } = props as any;
 
         return (
-            <motion.div
+            <MotionCard
                 layout
                 ref={ref}
                 className={cn(
-                    'relative flex flex-col overflow-hidden rounded-xl border border-border bg-card p-6 text-card-foreground shadow-md transition-shadow hover:shadow-lg',
+                    'relative overflow-hidden p-6 shadow-md transition-shadow hover:shadow-lg',
                     className,
                 )}
                 {...safeProps}
@@ -99,7 +102,7 @@ const ExpandableCard = React.forwardRef<HTMLDivElement, ExpandableCardProps>(
                         </motion.div>
                     )}
                 </AnimatePresence>
-            </motion.div>
+            </MotionCard>
         );
     },
 );

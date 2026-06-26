@@ -2,8 +2,11 @@
 
 import * as React from 'react';
 import { cn } from '@/lib/utils';
+import { Card } from '@/components/ui/card';
 
-export interface ParallaxImageCardProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface ParallaxImageCardProps extends React.ComponentProps<
+    typeof Card
+> {
     imageUrl: string;
     imageAlt?: string;
     parallaxStrength?: number;
@@ -54,12 +57,12 @@ const ParallaxImageCard = React.forwardRef<
         };
 
         return (
-            <div
+            <Card
                 ref={resolvedRef}
                 onMouseMove={handleMouseMove}
                 onMouseLeave={handleMouseLeave}
                 className={cn(
-                    'group relative flex aspect-[4/5] w-full flex-col justify-end overflow-hidden rounded-xl border border-border shadow-md select-none',
+                    'group relative flex aspect-[4/5] w-full flex-col justify-end gap-0 overflow-hidden p-0 shadow-md select-none',
                     className,
                 )}
                 {...props}
@@ -88,7 +91,7 @@ const ParallaxImageCard = React.forwardRef<
                 <div className="p-6 text-white transition-transform duration-300 ease-out group-hover:translate-y-[-4px]">
                     {children}
                 </div>
-            </div>
+            </Card>
         );
     },
 );

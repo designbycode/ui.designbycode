@@ -2,7 +2,7 @@ import { toast } from 'sonner';
 
 export function useFileHandling<
     T extends { files: Array<{ path: string; type: string; content: string }> },
->(data: T, setData: React.Dispatch<React.SetStateAction<T>>) {
+>(data: T, setData: (callback: (prev: T) => T) => void) {
     const addFile = () => {
         setData((prev) => ({
             ...prev,

@@ -3,7 +3,8 @@
 import * as React from 'react';
 import { Layers, ArrowRight } from 'lucide-react';
 import HeadingBlock from '@/registry/new-york/components/ui/typography/heading-block';
-import { ButtonSpecial } from '@/registry/new-york/components/ui/buttons/button-special';
+import { ButtonPulse } from '@/registry/new-york/components/ui/buttons/button-pulse';
+import { ButtonGradient } from '@/registry/new-york/components/ui/buttons/button-gradient';
 import GlowConic from '@/registry/new-york/components/ui/glow/glow-conic';
 
 export function HeroConicGlow() {
@@ -24,16 +25,15 @@ export function HeroConicGlow() {
                 />
 
                 <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
-                    <ButtonSpecial specialVariant="pulse">
+                    <ButtonPulse>
                         Get Started
-                    </ButtonSpecial>
-                    <ButtonSpecial
-                        specialVariant="gradient-border"
+                    </ButtonPulse>
+                    <ButtonGradient
                         className="flex items-center gap-1.5"
                     >
                         Documentation
                         <ArrowRight className="size-4" />
-                    </ButtonSpecial>
+                    </ButtonGradient>
                 </div>
             </div>
 

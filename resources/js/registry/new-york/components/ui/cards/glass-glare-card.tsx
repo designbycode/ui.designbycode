@@ -2,8 +2,9 @@
 
 import * as React from 'react';
 import { cn } from '@/lib/utils';
+import { Card } from '@/components/ui/card';
 
-export interface GlassGlareCardProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface GlassGlareCardProps extends React.ComponentProps<typeof Card> {
     glareColor?: string;
     opacity?: number;
 }
@@ -35,13 +36,13 @@ const GlassGlareCard = React.forwardRef<HTMLDivElement, GlassGlareCardProps>(
         };
 
         return (
-            <div
+            <Card
                 ref={resolvedRef}
                 onMouseMove={handleMouseMove}
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
                 className={cn(
-                    'relative overflow-hidden rounded-2xl border border-border bg-card/40 p-6 shadow-2xl backdrop-blur-md transition-all duration-300',
+                    'relative overflow-hidden bg-card/40 p-6 shadow-2xl backdrop-blur-md transition-all duration-300',
                     className,
                 )}
                 {...props}
@@ -65,7 +66,7 @@ const GlassGlareCard = React.forwardRef<HTMLDivElement, GlassGlareCardProps>(
                 />
 
                 <div className="relative z-10 text-foreground">{children}</div>
-            </div>
+            </Card>
         );
     },
 );

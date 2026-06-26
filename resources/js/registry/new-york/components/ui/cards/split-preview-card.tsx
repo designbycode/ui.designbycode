@@ -3,6 +3,7 @@
 import * as React from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { cn } from '@/lib/utils';
+import { Card } from '@/components/ui/card';
 
 export interface SplitPreviewItem {
     id: string;
@@ -12,7 +13,9 @@ export interface SplitPreviewItem {
     icon?: React.ReactNode;
 }
 
-export interface SplitPreviewCardProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface SplitPreviewCardProps extends React.ComponentProps<
+    typeof Card
+> {
     items: SplitPreviewItem[];
     defaultActiveId?: string;
 }
@@ -27,10 +30,10 @@ const SplitPreviewCard = React.forwardRef<
     const activeItem = items.find((item) => item.id === activeId) || items[0];
 
     return (
-        <div
+        <Card
             ref={ref}
             className={cn(
-                'grid grid-cols-1 overflow-hidden rounded-xl border border-border bg-card shadow-md md:grid-cols-12',
+                'grid grid-cols-1 gap-0 overflow-hidden p-0 shadow-md md:grid-cols-12',
                 className,
             )}
             {...props}
@@ -146,7 +149,7 @@ const SplitPreviewCard = React.forwardRef<
                     ))}
                 </div>
             </div>
-        </div>
+        </Card>
     );
 });
 

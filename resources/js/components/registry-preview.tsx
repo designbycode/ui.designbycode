@@ -70,7 +70,13 @@ import { Paragraph } from '@/registry/new-york/components/ui/typography/paragrap
 import { BadgeIndicator } from '@/registry/new-york/components/ui/typography/badge-indicator';
 import { HeadingBlock } from '@/registry/new-york/components/ui/typography/heading-block';
 import { InputNumberStepper } from '@/registry/new-york/components/ui/inputs/input-number-stepper';
-import { ButtonSpecial } from '@/registry/new-york/components/ui/buttons/button-special';
+import { ButtonNeon } from '@/registry/new-york/components/ui/buttons/button-neon';
+import { ButtonPulse } from '@/registry/new-york/components/ui/buttons/button-pulse';
+import { ButtonDraw } from '@/registry/new-york/components/ui/buttons/button-draw';
+import { ButtonGradient } from '@/registry/new-york/components/ui/buttons/button-gradient';
+import { ButtonRipple } from '@/registry/new-york/components/ui/buttons/button-ripple';
+import { ButtonArrow } from '@/registry/new-york/components/ui/buttons/button-arrow';
+import { ButtonGlowingAura } from '@/registry/new-york/components/ui/buttons/button-glowing-aura';
 import { HeroGradient } from '@/registry/new-york/components/blocks/hero-section/hero-gradient';
 import { HeroSplit } from '@/registry/new-york/components/blocks/hero-section/hero-split';
 import { HeroMinimalCentered } from '@/registry/new-york/components/blocks/hero-minimal-centered/hero-minimal-centered';
@@ -103,6 +109,8 @@ import { MetricSparkCard } from '@/registry/new-york/components/ui/cards/metric-
 import { SplitPreviewCard } from '@/registry/new-york/components/ui/cards/split-preview-card';
 import { GrainyNoiseCard } from '@/registry/new-york/components/ui/cards/grainy-noise-card';
 import { ScratchCard } from '@/registry/new-york/components/ui/cards/scratch-card';
+import { HeroHighEnergyImpact } from '@/registry/new-york/components/blocks/hero-high-energy/hero-high-energy';
+import Wrapper from '@/registry/new-york/components/ui/misc/wrapper';
 
 import ButtonMagnetic from '@/registry/new-york/components/ui/buttons/button-magnetic';
 import ButtonShine from '@/registry/new-york/components/ui/buttons/button-shine';
@@ -176,7 +184,7 @@ export default function RegistryPreview({ name }: { name: string }) {
             <div className="grid min-h-[150px] w-full place-items-center rounded-xl border border-border/50 bg-card p-6">
                 <ButtonParticles
                     variant="default"
-                    className="px-6 py-3 text-lg font-semibold transition-transform active:scale-95"
+                    className="transition-transform active:scale-95"
                 >
                     Click for Particles!
                 </ButtonParticles>
@@ -1328,7 +1336,7 @@ export default function RegistryPreview({ name }: { name: string }) {
     if (name === 'button-magnetic') {
         return (
             <div className="grid min-h-[150px] w-full place-items-center rounded-xl border border-border/50 bg-card p-6">
-                <ButtonMagnetic className="px-6 py-3 text-sm font-semibold">
+                <ButtonMagnetic>
                     Hover Me (Magnetic!)
                 </ButtonMagnetic>
             </div>
@@ -1339,7 +1347,7 @@ export default function RegistryPreview({ name }: { name: string }) {
     if (name === 'button-shine') {
         return (
             <div className="grid min-h-[150px] w-full place-items-center rounded-xl border border-border/50 bg-card p-6">
-                <ButtonShine className="px-6 py-3 text-sm font-semibold">
+                <ButtonShine>
                     Hover for Shine Shimmer
                 </ButtonShine>
             </div>
@@ -1591,42 +1599,65 @@ export default function RegistryPreview({ name }: { name: string }) {
         );
     }
 
-    // Button Special
-    if (name === 'button-special') {
+    // Button Neon
+    if (name === 'button-neon') {
         return (
-            <div className="flex flex-wrap items-center justify-center gap-6 rounded-xl border border-border/50 bg-card p-8">
-                <div className="flex flex-col items-center gap-2">
-                    <span className="text-xs text-muted-foreground">
-                        Neon Glow
-                    </span>
-                    <ButtonSpecial specialVariant="neon">
-                        Neon Button
-                    </ButtonSpecial>
-                </div>
-                <div className="flex flex-col items-center gap-2">
-                    <span className="text-xs text-muted-foreground">
-                        Breathing Pulse
-                    </span>
-                    <ButtonSpecial specialVariant="pulse">
-                        Pulse Button
-                    </ButtonSpecial>
-                </div>
-                <div className="flex flex-col items-center gap-2">
-                    <span className="text-xs text-muted-foreground">
-                        Border Draw
-                    </span>
-                    <ButtonSpecial specialVariant="draw">
-                        Draw Button
-                    </ButtonSpecial>
-                </div>
-                <div className="flex flex-col items-center gap-2">
-                    <span className="text-xs text-muted-foreground">
-                        Gradient Border
-                    </span>
-                    <ButtonSpecial specialVariant="gradient-border">
-                        Gradient Border
-                    </ButtonSpecial>
-                </div>
+            <div className="flex min-h-[150px] w-full items-center justify-center rounded-xl border border-border/50 bg-card p-6">
+                <ButtonNeon>Neon Glow</ButtonNeon>
+            </div>
+        );
+    }
+
+    // Button Pulse
+    if (name === 'button-pulse') {
+        return (
+            <div className="flex min-h-[150px] w-full items-center justify-center rounded-xl border border-border/50 bg-card p-6">
+                <ButtonPulse>Pulse Animation</ButtonPulse>
+            </div>
+        );
+    }
+
+    // Button Draw
+    if (name === 'button-draw') {
+        return (
+            <div className="flex min-h-[150px] w-full items-center justify-center rounded-xl border border-border/50 bg-card p-6">
+                <ButtonDraw>Draw Border</ButtonDraw>
+            </div>
+        );
+    }
+
+    // Button Gradient
+    if (name === 'button-gradient') {
+        return (
+            <div className="flex min-h-[150px] w-full items-center justify-center rounded-xl border border-border/50 bg-card p-6">
+                <ButtonGradient>Gradient Border</ButtonGradient>
+            </div>
+        );
+    }
+
+    // Button Ripple
+    if (name === 'button-ripple') {
+        return (
+            <div className="flex min-h-[150px] w-full items-center justify-center rounded-xl border border-border/50 bg-card p-6">
+                <ButtonRipple>Click Me (Ripple!)</ButtonRipple>
+            </div>
+        );
+    }
+
+    // Button Arrow
+    if (name === 'button-arrow') {
+        return (
+            <div className="flex min-h-[150px] w-full items-center justify-center rounded-xl border border-border/50 bg-card p-6">
+                <ButtonArrow>Explore More</ButtonArrow>
+            </div>
+        );
+    }
+
+    // Button Glowing Aura
+    if (name === 'button-glowing-aura') {
+        return (
+            <div className="flex min-h-[150px] w-full items-center justify-center rounded-xl border border-border/50 bg-card p-6">
+                <ButtonGlowingAura auraColor="var(--color-chart-2)">Glowing Backlight</ButtonGlowingAura>
             </div>
         );
     }
@@ -2128,6 +2159,34 @@ export default function RegistryPreview({ name }: { name: string }) {
         return (
             <div className="mx-auto w-full max-w-5xl">
                 <HeroGlowingCards />
+            </div>
+        );
+    }
+
+    // Hero High Energy
+    if (name === 'hero-high-energy') {
+        return (
+            <div className="w-full">
+                <HeroHighEnergyImpact />
+            </div>
+        );
+    }
+
+    // Wrapper
+    if (name === 'wrapper') {
+        return (
+            <div className="w-full py-4">
+                <Wrapper className="border border-dashed border-primary/40 bg-muted/20 p-6 text-center rounded-xl">
+                    <span className="font-mono text-xs text-muted-foreground">
+                        [Wrapper Container Boundary (max-w-7xl, centered, padded)]
+                    </span>
+                    <h4 className="mt-2 text-sm font-bold text-foreground">
+                        Container Wrapper
+                    </h4>
+                    <p className="mx-auto mt-1 max-w-xs text-xs text-muted-foreground">
+                        This layout component enforces unified gutters and maximum width limits across screen breakpoints.
+                    </p>
+                </Wrapper>
             </div>
         );
     }

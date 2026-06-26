@@ -1145,10 +1145,12 @@ export function CanvasGallery() {
                 <Card className="relative flex min-h-[380px] flex-col justify-between overflow-hidden border border-border/40 bg-zinc-950 text-white">
                     {/* Live Waves background */}
                     {playWaves && (
-                        <WavesThree
+                        <div
                             className="absolute inset-0 transition-opacity duration-300"
                             style={{ opacity: opacity[0] / 100 }}
-                        />
+                        >
+                            <WavesThree />
+                        </div>
                     )}
 
                     {/* Glass Control Box */}
@@ -1780,7 +1782,8 @@ export default FeatureGrid;
                 ],
                 'registryDependencies' => [
                     'https://ui.test/r/heading-block.json',
-                    'https://ui.test/r/button-special.json',
+                    'https://ui.test/r/button-pulse.json',
+                    'https://ui.test/r/button-gradient.json',
                     'https://ui.test/r/glow-conic.json',
                 ],
                 'files' => [
@@ -1792,7 +1795,8 @@ export default FeatureGrid;
 import * as React from \'react\';
 import { Layers, ArrowRight } from \'lucide-react\';
 import HeadingBlock from \'@/registry/new-york/components/ui/typography/heading-block\';
-import { ButtonSpecial } from \'@/registry/new-york/components/ui/buttons/button-special\';
+import { ButtonPulse } from \'@/registry/new-york/components/ui/buttons/button-pulse\';
+import { ButtonGradient } from \'@/registry/new-york/components/ui/buttons/button-gradient\';
 import GlowConic from \'@/registry/new-york/components/ui/glow/glow-conic\';
 
 export function HeroConicGlow() {
@@ -1813,16 +1817,15 @@ export function HeroConicGlow() {
                 />
 
                 <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
-                    <ButtonSpecial specialVariant="pulse">
+                    <ButtonPulse>
                         Get Started
-                    </ButtonSpecial>
-                    <ButtonSpecial
-                        specialVariant="gradient-border"
+                    </ButtonPulse>
+                    <ButtonGradient
                         className="flex items-center gap-1.5"
                     >
                         Documentation
                         <ArrowRight className="size-4" />
-                    </ButtonSpecial>
+                    </ButtonGradient>
                 </div>
             </div>
 
@@ -1897,7 +1900,8 @@ export default HeroConicGlow;
                 ],
                 'registryDependencies' => [
                     'https://ui.test/r/heading-block.json',
-                    'https://ui.test/r/button-special.json',
+                    'https://ui.test/r/button-gradient.json',
+                    'https://ui.test/r/button-draw.json',
                 ],
                 'files' => [
                     [
@@ -1908,7 +1912,8 @@ export default HeroConicGlow;
 import * as React from \'react\';
 import { Layers, Activity, Terminal, Shield, ArrowRight } from \'lucide-react\';
 import HeadingBlock from \'@/registry/new-york/components/ui/typography/heading-block\';
-import { ButtonSpecial } from \'@/registry/new-york/components/ui/buttons/button-special\';
+import { ButtonGradient } from \'@/registry/new-york/components/ui/buttons/button-gradient\';
+import { ButtonDraw } from \'@/registry/new-york/components/ui/buttons/button-draw\';
 
 export function HeroFeaturesGrid() {
     const features = [
@@ -1949,16 +1954,15 @@ export function HeroFeaturesGrid() {
                 />
 
                 <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
-                    <ButtonSpecial specialVariant="gradient-border">
+                    <ButtonGradient>
                         Get Started
-                    </ButtonSpecial>
-                    <ButtonSpecial
-                        specialVariant="draw"
+                    </ButtonGradient>
+                    <ButtonDraw
                         className="flex items-center gap-1.5"
                     >
                         Read System Docs
                         <ArrowRight className="size-4" />
-                    </ButtonSpecial>
+                    </ButtonDraw>
                 </div>
             </div>
 
@@ -2028,7 +2032,8 @@ export default HeroFeaturesGrid;
                 ],
                 'registryDependencies' => [
                     'https://ui.test/r/heading-block.json',
-                    'https://ui.test/r/button-special.json',
+                    'https://ui.test/r/button-pulse.json',
+                    'https://ui.test/r/button-gradient.json',
                 ],
                 'files' => [
                     [
@@ -2039,7 +2044,8 @@ export default HeroFeaturesGrid;
 import * as React from \'react\';
 import { Image as ImageIcon, ArrowRight } from \'lucide-react\';
 import HeadingBlock from \'@/registry/new-york/components/ui/typography/heading-block\';
-import { ButtonSpecial } from \'@/registry/new-york/components/ui/buttons/button-special\';
+import { ButtonPulse } from \'@/registry/new-york/components/ui/buttons/button-pulse\';
+import { ButtonGradient } from \'@/registry/new-york/components/ui/buttons/button-gradient\';
 
 export function HeroFullscreenImage() {
     return (
@@ -2069,16 +2075,15 @@ export function HeroFullscreenImage() {
                 />
 
                 <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-                    <ButtonSpecial specialVariant="pulse">
+                    <ButtonPulse>
                         Explore Gallery
-                    </ButtonSpecial>
-                    <ButtonSpecial
-                        specialVariant="gradient-border"
+                    </ButtonPulse>
+                    <ButtonGradient
                         className="flex items-center gap-1.5"
                     >
                         View Case Study
                         <ArrowRight className="size-4" />
-                    </ButtonSpecial>
+                    </ButtonGradient>
                 </div>
             </div>
         </section>
@@ -2125,7 +2130,8 @@ export default HeroFullscreenImage;
                 ],
                 'registryDependencies' => [
                     'https://ui.test/r/heading-block.json',
-                    'https://ui.test/r/button-special.json',
+                    'https://ui.test/r/button-pulse.json',
+                    'https://ui.test/r/button-draw.json',
                 ],
                 'files' => [
                     [
@@ -2136,7 +2142,8 @@ export default HeroFullscreenImage;
 import * as React from \'react\';
 import { Video as VideoIcon, ArrowRight } from \'lucide-react\';
 import HeadingBlock from \'@/registry/new-york/components/ui/typography/heading-block\';
-import { ButtonSpecial } from \'@/registry/new-york/components/ui/buttons/button-special\';
+import { ButtonPulse } from \'@/registry/new-york/components/ui/buttons/button-pulse\';
+import { ButtonDraw } from \'@/registry/new-york/components/ui/buttons/button-draw\';
 
 export function HeroFullscreenVideo() {
     return (
@@ -2173,16 +2180,15 @@ export function HeroFullscreenVideo() {
                 />
 
                 <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-                    <ButtonSpecial specialVariant="pulse">
+                    <ButtonPulse>
                         Launch Demo
-                    </ButtonSpecial>
-                    <ButtonSpecial
-                        specialVariant="draw"
+                    </ButtonPulse>
+                    <ButtonDraw
                         className="flex items-center gap-1.5"
                     >
                         View Whitepaper
                         <ArrowRight className="size-4" />
-                    </ButtonSpecial>
+                    </ButtonDraw>
                 </div>
             </div>
         </section>
@@ -2229,7 +2235,7 @@ export default HeroFullscreenVideo;
                 ],
                 'registryDependencies' => [
                     'https://ui.test/r/heading-block.json',
-                    'https://ui.test/r/button-special.json',
+                    'https://ui.test/r/button-pulse.json',
                     'https://ui.test/r/glowing-card.json',
                 ],
                 'files' => [
@@ -2241,7 +2247,7 @@ export default HeroFullscreenVideo;
 import * as React from \'react\';
 import { Target, Zap, Layout, Shield } from \'lucide-react\';
 import HeadingBlock from \'@/registry/new-york/components/ui/typography/heading-block\';
-import { ButtonSpecial } from \'@/registry/new-york/components/ui/buttons/button-special\';
+import { ButtonPulse } from \'@/registry/new-york/components/ui/buttons/button-pulse\';
 import { GlowingCard } from \'@/registry/new-york/components/ui/cards/glowing-card\';
 
 export function HeroGlowingCards() {
@@ -2288,9 +2294,9 @@ export function HeroGlowingCards() {
                 />
 
                 <div className="mt-4 flex justify-center">
-                    <ButtonSpecial specialVariant="pulse">
+                    <ButtonPulse>
                         Launch Sandbox
-                    </ButtonSpecial>
+                    </ButtonPulse>
                 </div>
             </div>
 
@@ -2682,7 +2688,8 @@ export default HeroHighEnergyImpact;
                 ],
                 'registryDependencies' => [
                     'https://ui.test/r/heading-block.json',
-                    'https://ui.test/r/button-special.json',
+                    'https://ui.test/r/button-pulse.json',
+                    'https://ui.test/r/button-draw.json',
                 ],
                 'files' => [
                     [
@@ -2693,7 +2700,8 @@ export default HeroHighEnergyImpact;
 import * as React from \'react\';
 import { Sparkles, ArrowRight } from \'lucide-react\';
 import HeadingBlock from \'@/registry/new-york/components/ui/typography/heading-block\';
-import { ButtonSpecial } from \'@/registry/new-york/components/ui/buttons/button-special\';
+import { ButtonPulse } from \'@/registry/new-york/components/ui/buttons/button-pulse\';
+import { ButtonDraw } from \'@/registry/new-york/components/ui/buttons/button-draw\';
 
 export function HeroMinimalCentered() {
     return (
@@ -2716,16 +2724,15 @@ export function HeroMinimalCentered() {
                 />
 
                 <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
-                    <ButtonSpecial specialVariant="pulse">
+                    <ButtonPulse>
                         Start Deploying
-                    </ButtonSpecial>
-                    <ButtonSpecial
-                        specialVariant="draw"
+                    </ButtonPulse>
+                    <ButtonDraw
                         className="flex items-center gap-1.5"
                     >
                         Learn More
                         <ArrowRight className="size-4" />
-                    </ButtonSpecial>
+                    </ButtonDraw>
                 </div>
             </div>
         </section>
@@ -2772,7 +2779,8 @@ export default HeroMinimalCentered;
                 ],
                 'registryDependencies' => [
                     'https://ui.test/r/heading-block.json',
-                    'https://ui.test/r/button-special.json',
+                    'https://ui.test/r/button-neon.json',
+                    'https://ui.test/r/button-draw.json',
                     'https://ui.test/r/particles-backdrop.json',
                 ],
                 'files' => [
@@ -2784,7 +2792,8 @@ export default HeroMinimalCentered;
 import * as React from \'react\';
 import { Star, ArrowRight } from \'lucide-react\';
 import HeadingBlock from \'@/registry/new-york/components/ui/typography/heading-block\';
-import { ButtonSpecial } from \'@/registry/new-york/components/ui/buttons/button-special\';
+import { ButtonNeon } from \'@/registry/new-york/components/ui/buttons/button-neon\';
+import { ButtonDraw } from \'@/registry/new-york/components/ui/buttons/button-draw\';
 import { ParticlesBackdrop } from \'@/registry/new-york/components/ui/animations/particles-backdrop\';
 
 export function HeroParticles() {
@@ -2811,16 +2820,15 @@ export function HeroParticles() {
                 />
 
                 <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
-                    <ButtonSpecial
-                        specialVariant="neon"
+                    <ButtonNeon
                         className="flex items-center gap-2"
                     >
                         Get Started
                         <ArrowRight className="size-4" />
-                    </ButtonSpecial>
-                    <ButtonSpecial specialVariant="draw">
+                    </ButtonNeon>
+                    <ButtonDraw>
                         View Storybook
-                    </ButtonSpecial>
+                    </ButtonDraw>
                 </div>
             </div>
         </section>
@@ -2867,7 +2875,8 @@ export default HeroParticles;
                 ],
                 'registryDependencies' => [
                     'https://ui.test/r/heading-block.json',
-                    'https://ui.test/r/button-special.json',
+                    'https://ui.test/r/button-neon.json',
+                    'https://ui.test/r/button-draw.json',
                     'https://ui.test/r/phone-mockup.json',
                 ],
                 'files' => [
@@ -2879,7 +2888,8 @@ export default HeroParticles;
 import * as React from \'react\';
 import { Smartphone, Zap, Sparkles } from \'lucide-react\';
 import HeadingBlock from \'@/registry/new-york/components/ui/typography/heading-block\';
-import { ButtonSpecial } from \'@/registry/new-york/components/ui/buttons/button-special\';
+import { ButtonNeon } from \'@/registry/new-york/components/ui/buttons/button-neon\';
+import { ButtonDraw } from \'@/registry/new-york/components/ui/buttons/button-draw\';
 import { PhoneMockup } from \'@/registry/new-york/components/ui/mockups/phone-mockup\';
 
 export function HeroPhoneMockup() {
@@ -2900,16 +2910,15 @@ export function HeroPhoneMockup() {
                 />
 
                 <div className="flex flex-wrap items-center gap-4 pt-2">
-                    <ButtonSpecial
-                        specialVariant="neon"
+                    <ButtonNeon
                         className="flex items-center gap-2"
                     >
                         <Zap className="size-4" />
                         Download App
-                    </ButtonSpecial>
-                    <ButtonSpecial specialVariant="draw">
+                    </ButtonNeon>
+                    <ButtonDraw>
                         View Demo
-                    </ButtonSpecial>
+                    </ButtonDraw>
                 </div>
             </div>
 
@@ -3004,7 +3013,8 @@ export default HeroPhoneMockup;
                 ],
                 'registryDependencies' => [
                     'https://ui.test/r/heading-block.json',
-                    'https://ui.test/r/button-special.json',
+                    'https://ui.test/r/button-neon.json',
+                    'https://ui.test/r/button-gradient.json',
                     'utils',
                     'button',
                     'badge',
@@ -3013,6 +3023,8 @@ export default HeroPhoneMockup;
                     'https://ui.test/r/button-shine.json',
                     'https://ui.test/r/progress-circle.json',
                     'https://ui.test/r/interactive-rating.json',
+                    'https://ui.test/r/button-pulse.json',
+                    'https://ui.test/r/button-draw.json',
                     'https://ui.test/r/pixel-canvas.json',
                 ],
                 'files' => [
@@ -3024,7 +3036,8 @@ export default HeroPhoneMockup;
 import * as React from \'react\';
 import { Sparkles, ArrowRight, Zap } from \'lucide-react\';
 import HeadingBlock from \'@/registry/new-york/components/ui/typography/heading-block\';
-import { ButtonSpecial } from \'@/registry/new-york/components/ui/buttons/button-special\';
+import { ButtonNeon } from \'@/registry/new-york/components/ui/buttons/button-neon\';
+import { ButtonGradient } from \'@/registry/new-york/components/ui/buttons/button-gradient\';
 
 export function HeroGradient() {
     return (
@@ -3048,20 +3061,18 @@ export function HeroGradient() {
                 />
 
                 <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-                    <ButtonSpecial
-                        specialVariant="neon"
+                    <ButtonNeon
                         className="flex items-center gap-2"
                     >
                         Get Started
                         <ArrowRight className="size-4" />
-                    </ButtonSpecial>
-                    <ButtonSpecial
-                        specialVariant="gradient-border"
+                    </ButtonNeon>
+                    <ButtonGradient
                         className="flex items-center gap-2"
                     >
                         <Zap className="size-4 text-primary" />
                         Explore Components
-                    </ButtonSpecial>
+                    </ButtonGradient>
                 </div>
             </div>
         </section>
@@ -3248,7 +3259,8 @@ export default HeroSection;
 import * as React from \'react\';
 import { Shield, Sparkles, CheckCircle2 } from \'lucide-react\';
 import HeadingBlock from \'@/registry/new-york/components/ui/typography/heading-block\';
-import { ButtonSpecial } from \'@/registry/new-york/components/ui/buttons/button-special\';
+import { ButtonPulse } from \'@/registry/new-york/components/ui/buttons/button-pulse\';
+import { ButtonDraw } from \'@/registry/new-york/components/ui/buttons/button-draw\';
 import { PixelCanvas } from \'@/registry/new-york/components/ui/canvas/pixel-canvas\';
 
 export function HeroSplit() {
@@ -3285,12 +3297,12 @@ export function HeroSplit() {
                 </ul>
 
                 <div className="flex flex-wrap items-center gap-4 pt-4">
-                    <ButtonSpecial specialVariant="pulse">
+                    <ButtonPulse>
                         Setup Shield
-                    </ButtonSpecial>
-                    <ButtonSpecial specialVariant="draw">
+                    </ButtonPulse>
+                    <ButtonDraw>
                         Read Whitepaper
-                    </ButtonSpecial>
+                    </ButtonDraw>
                 </div>
             </div>
 
@@ -3352,7 +3364,7 @@ export default HeroSplit;
                 ],
                 'registryDependencies' => [
                     'https://ui.test/r/heading-block.json',
-                    'https://ui.test/r/button-special.json',
+                    'https://ui.test/r/button-neon.json',
                     'https://ui.test/r/animated-tabs.json',
                     'https://ui.test/r/code-window.json',
                     'button',
@@ -3367,7 +3379,7 @@ export default HeroSplit;
 import * as React from \'react\';
 import { Code, Server, Database, ArrowRight } from \'lucide-react\';
 import HeadingBlock from \'@/registry/new-york/components/ui/typography/heading-block\';
-import { ButtonSpecial } from \'@/registry/new-york/components/ui/buttons/button-special\';
+import { ButtonNeon } from \'@/registry/new-york/components/ui/buttons/button-neon\';
 import { AnimatedTabs } from \'@/registry/new-york/components/ui/tabs/animated-tabs\';
 import { CodeWindow } from \'@/registry/new-york/components/ui/mockups/code-window\';
 
@@ -3387,7 +3399,7 @@ export function HeroTabsShowcase() {
         frontend: {
             title: \'dashboard.tsx\',
             lang: \'tsx\',
-            code: `import { ButtonSpecial } from \'@/components/ui/button\';\\nimport { HeadingBlock } from \'@/components/ui/typography\';\\n\\nexport default function App() {\\n    return (\\n        <HeadingBlock\\n            heading="Compile premium interfaces"\\n            description="Built on React 19 & Tailwind v4"\\n        >\\n            <ButtonSpecial variant="neon">Get Started</ButtonSpecial>\\n        </HeadingBlock>\\n    );\\n}`,
+            code: `import { ButtonNeon } from \'@/components/ui/button\';\\nimport { HeadingBlock } from \'@/components/ui/typography\';\\n\\nexport default function App() {\\n    return (\\n        <HeadingBlock\\n            heading="Compile premium interfaces"\\n            description="Built on React 19 & Tailwind v4"\\n        >\\n            <ButtonNeon>Get Started</ButtonNeon>\\n        </HeadingBlock>\\n    );\\n}`,
         },
         backend: {
             title: \'RouteServiceProvider.php\',
@@ -3418,13 +3430,12 @@ export function HeroTabsShowcase() {
                 />
 
                 <div className="mt-4 flex flex-wrap items-center justify-center gap-4">
-                    <ButtonSpecial
-                        specialVariant="neon"
+                    <ButtonNeon
                         className="flex items-center gap-1.5"
                     >
                         Start Building
                         <ArrowRight className="size-4" />
-                    </ButtonSpecial>
+                    </ButtonNeon>
                 </div>
             </div>
 
@@ -3488,7 +3499,8 @@ export default HeroTabsShowcase;
                 ],
                 'registryDependencies' => [
                     'https://ui.test/r/heading-block.json',
-                    'https://ui.test/r/button-special.json',
+                    'https://ui.test/r/button-neon.json',
+                    'https://ui.test/r/button-draw.json',
                     'https://ui.test/r/logo-cloud.json',
                 ],
                 'files' => [
@@ -3500,7 +3512,8 @@ export default HeroTabsShowcase;
 import * as React from \'react\';
 import { Award, Globe, Heart, Sparkles, Terminal } from \'lucide-react\';
 import HeadingBlock from \'@/registry/new-york/components/ui/typography/heading-block\';
-import { ButtonSpecial } from \'@/registry/new-york/components/ui/buttons/button-special\';
+import { ButtonNeon } from \'@/registry/new-york/components/ui/buttons/button-neon\';
+import { ButtonDraw } from \'@/registry/new-york/components/ui/buttons/button-draw\';
 import { LogoCloud } from \'@/registry/new-york/components/ui/misc/logo-cloud\';
 
 export function HeroTrustedBy() {
@@ -3528,12 +3541,12 @@ export function HeroTrustedBy() {
                 />
 
                 <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
-                    <ButtonSpecial specialVariant="neon">
+                    <ButtonNeon>
                         Book a Demo
-                    </ButtonSpecial>
-                    <ButtonSpecial specialVariant="draw">
+                    </ButtonNeon>
+                    <ButtonDraw>
                         Contact Sales
-                    </ButtonSpecial>
+                    </ButtonDraw>
                 </div>
             </div>
 
@@ -3583,7 +3596,7 @@ export default HeroTrustedBy;
                 ],
                 'registryDependencies' => [
                     'https://ui.test/r/heading-block.json',
-                    'https://ui.test/r/button-special.json',
+                    'https://ui.test/r/button-neon.json',
                     'https://ui.test/r/browser-mockup.json',
                 ],
                 'files' => [
@@ -3595,7 +3608,7 @@ export default HeroTrustedBy;
 import * as React from \'react\';
 import { Play, Pause, Monitor, Sparkles } from \'lucide-react\';
 import HeadingBlock from \'@/registry/new-york/components/ui/typography/heading-block\';
-import { ButtonSpecial } from \'@/registry/new-york/components/ui/buttons/button-special\';
+import { ButtonNeon } from \'@/registry/new-york/components/ui/buttons/button-neon\';
 import { BrowserMockup } from \'@/registry/new-york/components/ui/mockups/browser-mockup\';
 
 export function HeroVideoDialog() {
@@ -3618,8 +3631,7 @@ export function HeroVideoDialog() {
                 />
 
                 <div className="mt-4 flex justify-center">
-                    <ButtonSpecial
-                        specialVariant="neon"
+                    <ButtonNeon
                         onClick={() => setIsPlaying(!isPlaying)}
                         className="flex items-center gap-2"
                     >
@@ -3629,7 +3641,7 @@ export function HeroVideoDialog() {
                             <Play className="size-4" />
                         )}
                         {isPlaying ? \'Pause Demo\' : \'Play Walkthrough\'}
-                    </ButtonSpecial>
+                    </ButtonNeon>
                 </div>
             </div>
 
@@ -3720,7 +3732,7 @@ export default HeroVideoDialog;
                 ],
                 'registryDependencies' => [
                     'https://ui.test/r/heading-block.json',
-                    'https://ui.test/r/button-special.json',
+                    'https://ui.test/r/button-neon.json',
                     'https://ui.test/r/input-number-stepper.json',
                     'input',
                 ],
@@ -3733,7 +3745,7 @@ export default HeroVideoDialog;
 import * as React from \'react\';
 import { Mail, CheckCircle2, Sparkles } from \'lucide-react\';
 import HeadingBlock from \'@/registry/new-york/components/ui/typography/heading-block\';
-import { ButtonSpecial } from \'@/registry/new-york/components/ui/buttons/button-special\';
+import { ButtonNeon } from \'@/registry/new-york/components/ui/buttons/button-neon\';
 import { InputNumberStepper } from \'@/registry/new-york/components/ui/inputs/input-number-stepper\';
 import { Input } from \'@/components/ui/input\';
 
@@ -3805,13 +3817,12 @@ export function HeroWaitlist() {
                             />
                         </div>
 
-                        <ButtonSpecial
+                        <ButtonNeon
                             type="submit"
-                            specialVariant="neon"
                             className="mt-2 h-10 w-full font-bold"
                         >
                             Request Invite ({seats} licenses)
-                        </ButtonSpecial>
+                        </ButtonNeon>
                     </form>
                 ) : (
                     <div className="mt-8 flex w-full max-w-md flex-col items-center gap-4 rounded-xl border border-primary/20 bg-primary/5 p-8 text-center shadow-xl">
@@ -3886,7 +3897,8 @@ export default HeroWaitlist;
                 ],
                 'registryDependencies' => [
                     'https://ui.test/r/heading-block.json',
-                    'https://ui.test/r/button-special.json',
+                    'https://ui.test/r/button-neon.json',
+                    'https://ui.test/r/button-draw.json',
                     'https://ui.test/r/waves-three.json',
                 ],
                 'files' => [
@@ -3898,7 +3910,8 @@ export default HeroWaitlist;
 import * as React from \'react\';
 import { Sparkles, ArrowRight } from \'lucide-react\';
 import HeadingBlock from \'@/registry/new-york/components/ui/typography/heading-block\';
-import { ButtonSpecial } from \'@/registry/new-york/components/ui/buttons/button-special\';
+import { ButtonNeon } from \'@/registry/new-york/components/ui/buttons/button-neon\';
+import { ButtonDraw } from \'@/registry/new-york/components/ui/buttons/button-draw\';
 import WavesThree from \'@/registry/new-york/components/ui/threejs/waves-three\';
 
 export function HeroWaves() {
@@ -3927,16 +3940,15 @@ export function HeroWaves() {
                 />
 
                 <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
-                    <ButtonSpecial
-                        specialVariant="neon"
+                    <ButtonNeon
                         className="flex items-center gap-2"
                     >
                         Get Started
                         <ArrowRight className="size-4" />
-                    </ButtonSpecial>
-                    <ButtonSpecial specialVariant="draw">
+                    </ButtonNeon>
+                    <ButtonDraw>
                         API Documentation
-                    </ButtonSpecial>
+                    </ButtonDraw>
                 </div>
             </div>
         </section>
@@ -11403,6 +11415,7 @@ export function BannerExpandable({
                 ],
                 'registryDependencies' => [
                     'utils',
+                    'card',
                 ],
                 'files' => [
                     [
@@ -11412,6 +11425,9 @@ export function BannerExpandable({
 import { motion, AnimatePresence } from \'motion/react\';
 import { X } from \'lucide-react\';
 import { cn } from \'@/lib/utils\';
+import { Card } from \'@/components/ui/card\';
+
+const MotionCard = motion(Card);
 
 interface BannerFloatingProps extends React.HTMLAttributes<HTMLDivElement> {
     title: string;
@@ -11435,6 +11451,9 @@ export function BannerFloating({
     ...props
 }: BannerFloatingProps) {
     const [isVisible, setIsVisible] = React.useState(true);
+
+    const { onDrag, onDragStart, onDragEnd, onAnimationStart, ...safeProps } =
+        props as any;
 
     const handleDismiss = () => {
         setIsVisible(false);
@@ -11471,17 +11490,17 @@ export function BannerFloating({
     return (
         <AnimatePresence>
             {isVisible && (
-                <motion.div
+                <MotionCard
                     initial={animations[position].initial}
                     animate={animations[position].animate}
                     exit={animations[position].exit}
                     transition={{ type: \'spring\', stiffness: 260, damping: 20 }}
                     className={cn(
-                        \'fixed z-50 rounded-xl border border-border bg-card/95 p-5 shadow-lg backdrop-blur-md select-none\',
+                        \'fixed z-50 bg-card/95 p-5 shadow-lg backdrop-blur-md select-none\',
                         positionClasses[position],
                         className,
                     )}
-                    {...props}
+                    {...safeProps}
                 >
                     <div className="flex items-start gap-4">
                         {icon && (
@@ -11514,7 +11533,7 @@ export function BannerFloating({
                             <X className="size-4" />
                         </button>
                     </div>
-                </motion.div>
+                </MotionCard>
             )}
         </AnimatePresence>
     );
@@ -11921,6 +11940,317 @@ export function BannerSticky({
                 'theme' => null,
             ],
             [
+                'name' => 'button-arrow',
+                'type' => 'registry:ui',
+                'title' => 'Button Arrow',
+                'description' => 'A beautiful component for your application.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                    'button',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/buttons/button-arrow.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '\'use client\';
+import * as React from \'react\';
+import { ArrowRight } from \'lucide-react\';
+import { cn } from \'@/lib/utils\';
+import { Button } from \'@/components/ui/button\';
+
+export interface ButtonArrowProps extends React.ComponentPropsWithRef<typeof Button> {}
+
+export const ButtonArrow = React.forwardRef<HTMLButtonElement, ButtonArrowProps>(
+    ({ className, children, ...props }, ref) => {
+        return (
+            <Button
+                ref={ref}
+                className={cn(
+                    \'group relative overflow-hidden pr-10 select-none active:scale-95 transition-all duration-300\',
+                    className,
+                )}
+                {...props}
+            >
+                <span>{children}</span>
+                <span className="absolute right-4 flex items-center justify-center transition-transform duration-300 group-hover:translate-x-1 group-hover:scale-110">
+                    <ArrowRight className="size-4 shrink-0" />
+                </span>
+            </Button>
+        );
+    },
+);
+
+ButtonArrow.displayName = \'ButtonArrow\';
+
+export default ButtonArrow;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'buttons',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'buttons',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'button-draw',
+                'type' => 'registry:ui',
+                'title' => 'Button Draw',
+                'description' => 'A beautiful component for your application.',
+                'author' => 'designbycode',
+                'dependencies' => [
+
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                    'button',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/buttons/button-draw.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '\'use client\';
+import * as React from \'react\';
+import { cn } from \'@/lib/utils\';
+import { Button } from \'@/components/ui/button\';
+
+export interface ButtonDrawProps extends React.ComponentPropsWithRef<typeof Button> {}
+
+export const ButtonDraw = React.forwardRef<HTMLButtonElement, ButtonDrawProps>(
+    ({ className, children, ...props }, ref) => {
+        return (
+            <Button
+                ref={ref}
+                className={cn(
+                    \'relative select-none active:scale-95 overflow-hidden border border-border bg-transparent text-foreground after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-primary after:transition-transform after:duration-300 hover:bg-muted/30 hover:after:scale-x-100\',
+                    className,
+                )}
+                {...props}
+            >
+                {children}
+            </Button>
+        );
+    },
+);
+
+ButtonDraw.displayName = \'ButtonDraw\';
+
+export default ButtonDraw;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'buttons',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'buttons',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'button-glowing-aura',
+                'type' => 'registry:ui',
+                'title' => 'Button Glowing Aura',
+                'description' => 'A beautiful component for your application.',
+                'author' => 'designbycode',
+                'dependencies' => [
+
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                    'button',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/buttons/button-glowing-aura.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '\'use client\';
+import * as React from \'react\';
+import { cn } from \'@/lib/utils\';
+import { Button } from \'@/components/ui/button\';
+
+export interface ButtonGlowingAuraProps extends React.ComponentPropsWithRef<typeof Button> {
+    auraColor?: string;
+}
+
+export const ButtonGlowingAura = React.forwardRef<HTMLButtonElement, ButtonGlowingAuraProps>(
+    ({ className, children, auraColor = \'var(--color-primary)\', ...props }, ref) => {
+        return (
+            <div className="relative group inline-block">
+                {/* Glowing backlight aura */}
+                <div
+                    className="absolute -inset-1 -z-10 rounded-lg opacity-40 blur-md transition duration-500 group-hover:opacity-75 group-hover:blur-lg"
+                    style={{
+                        background: `radial-gradient(circle, ${auraColor} 0%, transparent 70%)`,
+                    }}
+                />
+                <Button
+                    ref={ref}
+                    className={cn(\'relative select-none active:scale-95 shadow-lg border border-primary/20\', className)}
+                    {...props}
+                >
+                    {children}
+                </Button>
+            </div>
+        );
+    },
+);
+
+ButtonGlowingAura.displayName = \'ButtonGlowingAura\';
+
+export default ButtonGlowingAura;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'buttons',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'buttons',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'button-gradient',
+                'type' => 'registry:ui',
+                'title' => 'Button Gradient',
+                'description' => 'A beautiful component for your application.',
+                'author' => 'designbycode',
+                'dependencies' => [
+
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                    'button',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/buttons/button-gradient.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '\'use client\';
+import * as React from \'react\';
+import { cn } from \'@/lib/utils\';
+import { Button } from \'@/components/ui/button\';
+
+export interface ButtonGradientProps extends React.ComponentPropsWithRef<typeof Button> {}
+
+export const ButtonGradient = React.forwardRef<HTMLButtonElement, ButtonGradientProps>(
+    ({ className, children, ...props }, ref) => {
+        const [isHovered, setIsHovered] = React.useState(false);
+
+        return (
+            <Button
+                ref={ref}
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+                className={cn(
+                    \'relative select-none active:scale-95 border border-transparent text-foreground\',
+                    className,
+                )}
+                style={{
+                    backgroundImage: isHovered
+                        ? \'linear-gradient(var(--background), var(--background)), linear-gradient(to right, var(--color-chart-3), var(--color-chart-1), var(--color-chart-5))\'
+                        : \'linear-gradient(var(--background), var(--background)), linear-gradient(to right, var(--color-chart-1), var(--color-chart-5), var(--color-chart-3))\',
+                    backgroundOrigin: \'border-box\',
+                    backgroundClip: \'padding-box, border-box\',
+                }}
+                {...props}
+            >
+                {children}
+            </Button>
+        );
+    },
+);
+
+ButtonGradient.displayName = \'ButtonGradient\';
+
+export default ButtonGradient;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'buttons',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'buttons',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
                 'name' => 'button-magnetic',
                 'type' => 'registry:ui',
                 'title' => 'Button Magnetic',
@@ -11934,6 +12264,7 @@ export function BannerSticky({
                 ],
                 'registryDependencies' => [
                     'utils',
+                    'button',
                 ],
                 'files' => [
                     [
@@ -11941,11 +12272,11 @@ export function BannerSticky({
                         'type' => 'registry:ui',
                         'content' => 'import React, { useRef, useState, useEffect } from \'react\';
 import { cn } from \'@/lib/utils\';
+import { Button } from \'@/components/ui/button\';
 
-export interface ButtonMagneticProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonMagneticProps extends React.ComponentProps<typeof Button> {
     range?: number; // Distance from center where magnetism activates
     actionStrength?: number; // How strongly the button pulls toward the mouse (0.1 to 1.0)
-    children: React.ReactNode;
 }
 
 export function ButtonMagnetic({
@@ -12015,9 +12346,9 @@ export function ButtonMagnetic({
 
     return (
         <div ref={triggerRef} className="inline-block">
-            <button
+            <Button
                 className={cn(
-                    \'inline-flex cursor-pointer items-center justify-center rounded-lg bg-primary px-4 py-2.5 text-xs font-semibold text-primary-foreground shadow-sm select-none active:scale-95\',
+                    \'select-none active:scale-95\',
                     className,
                 )}
                 style={{
@@ -12034,12 +12365,84 @@ export function ButtonMagnetic({
                 <span className="pointer-events-none relative z-10 transition-transform duration-200 group-hover:scale-105">
                     {children}
                 </span>
-            </button>
+            </Button>
         </div>
     );
 }
 
 export default ButtonMagnetic;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'buttons',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'buttons',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'button-neon',
+                'type' => 'registry:ui',
+                'title' => 'Button Neon',
+                'description' => 'A beautiful component for your application.',
+                'author' => 'designbycode',
+                'dependencies' => [
+
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                    'button',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/buttons/button-neon.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '\'use client\';
+import * as React from \'react\';
+import { cn } from \'@/lib/utils\';
+import { Button } from \'@/components/ui/button\';
+
+export interface ButtonNeonProps extends React.ComponentPropsWithRef<typeof Button> {}
+
+export const ButtonNeon = React.forwardRef<HTMLButtonElement, ButtonNeonProps>(
+    ({ className, children, ...props }, ref) => {
+        return (
+            <Button
+                ref={ref}
+                className={cn(
+                    \'relative select-none active:scale-95 border border-primary/30 bg-primary/5 text-primary shadow-[0_0_15px] shadow-primary/10 hover:border-primary/50 hover:bg-primary/10 hover:text-primary hover:shadow-[0_0_20px] hover:shadow-primary/20\',
+                    className,
+                )}
+                {...props}
+            >
+                {children}
+            </Button>
+        );
+    },
+);
+
+ButtonNeon.displayName = \'ButtonNeon\';
+
+export default ButtonNeon;
 ',
                     ],
                 ],
@@ -12072,13 +12475,13 @@ export default ButtonMagnetic;
                 'description' => 'A vibrant button trigger releasing interactive confetti/particle explosions on click.',
                 'author' => 'designbycode',
                 'dependencies' => [
-                    '@radix-ui/react-slot',
-                    'class-variance-authority',
+
                 ],
                 'devDependencies' => [
 
                 ],
                 'registryDependencies' => [
+                    'button',
                     'utils',
                 ],
                 'files' => [
@@ -12086,42 +12489,10 @@ export default ButtonMagnetic;
                         'path' => 'resources/js/registry/new-york/components/ui/buttons/button-particles.tsx',
                         'type' => 'registry:ui',
                         'content' => '\'use client\';
-import { Slot } from \'@radix-ui/react-slot\';
-import type { VariantProps } from \'class-variance-authority\';
-import { cva } from \'class-variance-authority\';
 import * as React from \'react\';
 import { useEffect, useRef } from \'react\';
+import { Button, buttonVariants } from \'@/components/ui/button\';
 import { cn } from \'@/lib/utils\';
-
-const buttonVariants = cva(
-    "relative isolate inline-flex items-center justify-center gap-2 overflow-visible rounded-md text-sm font-medium whitespace-nowrap transition-[color,box-shadow] outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*=\'size-\'])]:size-4",
-    {
-        variants: {
-            variant: {
-                default:
-                    \'bg-primary text-primary-foreground shadow-xs hover:bg-primary/90\',
-                destructive:
-                    \'bg-destructive text-white shadow-xs hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40\',
-                outline:
-                    \'border border-input bg-background shadow-xs hover:bg-accent hover:text-accent-foreground\',
-                secondary:
-                    \'bg-secondary text-secondary-foreground shadow-xs hover:bg-secondary/80\',
-                ghost: \'hover:bg-accent hover:text-accent-foreground\',
-                link: \'text-primary underline-offset-4 hover:underline\',
-            },
-            size: {
-                default: \'h-9 px-4 py-2 has-[>svg]:px-3\',
-                sm: \'h-8 rounded-md px-3 has-[>svg]:px-2.5\',
-                lg: \'h-10 rounded-md px-6 has-[>svg]:px-4\',
-                icon: \'size-9\',
-            },
-        },
-        defaultVariants: {
-            variant: \'default\',
-            size: \'default\',
-        },
-    },
-);
 
 // --- Particle style injection ---
 // One unique keyframe per particle slot so each gets its own randomised
@@ -12252,24 +12623,20 @@ export type ParticleType =
     | \'hburst\'
     | \'spiral\';
 
+interface ButtonParticlesProps extends React.ComponentProps<typeof Button> {
+    particle?: ParticleType;
+    particles?: number;
+    colors?: string[];
+}
+
 function ButtonParticles({
     className,
-    variant,
-    size,
     particle = \'burst\',
     particles = DEFAULT_PARTICLE_COUNT,
     colors = DEFAULT_COLORS,
     children,
-    asChild = false,
     ...props
-}: React.ComponentProps<\'button\'> &
-    VariantProps<typeof buttonVariants> & {
-        asChild?: boolean;
-        particle?: ParticleType;
-        particles?: number;
-        colors?: string[];
-    }) {
-    const Comp = asChild ? Slot : \'button\';
+}: ButtonParticlesProps) {
     const ref = useRef<HTMLButtonElement>(null);
 
     useEffect(() => {
@@ -12458,20 +12825,225 @@ function ButtonParticles({
     };
 
     return (
-        <Comp
+        <Button
             ref={ref}
-            data-slot="button"
             data-particle={particle}
-            className={cn(buttonVariants({ variant, size, className }))}
+            className={cn(\'relative isolate overflow-visible\', className)}
             {...props}
             onClick={handleClick}
         >
             {children}
-        </Comp>
+        </Button>
     );
 }
 
 export { ButtonParticles, buttonVariants };
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'buttons',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'buttons',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'button-pulse',
+                'type' => 'registry:ui',
+                'title' => 'Button Pulse',
+                'description' => 'A beautiful component for your application.',
+                'author' => 'designbycode',
+                'dependencies' => [
+
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                    'button',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/buttons/button-pulse.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '\'use client\';
+import * as React from \'react\';
+import { cn } from \'@/lib/utils\';
+import { Button } from \'@/components/ui/button\';
+
+export interface ButtonPulseProps extends React.ComponentPropsWithRef<typeof Button> {}
+
+export const ButtonPulse = React.forwardRef<HTMLButtonElement, ButtonPulseProps>(
+    ({ className, children, ...props }, ref) => {
+        return (
+            <Button
+                ref={ref}
+                className={cn(
+                    \'relative select-none active:scale-95 bg-primary text-primary-foreground shadow-lg shadow-primary/20 before:absolute before:inset-0 before:animate-ping before:rounded-md before:bg-primary before:opacity-10 before:duration-1000 hover:shadow-primary/30 hover:brightness-105\',
+                    className,
+                )}
+                {...props}
+            >
+                {children}
+            </Button>
+        );
+    },
+);
+
+ButtonPulse.displayName = \'ButtonPulse\';
+
+export default ButtonPulse;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'buttons',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'buttons',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'button-ripple',
+                'type' => 'registry:ui',
+                'title' => 'Button Ripple',
+                'description' => 'A beautiful component for your application.',
+                'author' => 'designbycode',
+                'dependencies' => [
+
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                    'button',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/buttons/button-ripple.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '\'use client\';
+import * as React from \'react\';
+import { cn } from \'@/lib/utils\';
+import { Button } from \'@/components/ui/button\';
+
+export interface ButtonRippleProps extends React.ComponentPropsWithRef<typeof Button> {}
+
+const RIPPLE_STYLE_ID = \'button-ripple-styles\';
+function injectRippleStyles() {
+    if (typeof document === \'undefined\' || document.getElementById(RIPPLE_STYLE_ID)) {
+        return;
+    }
+    const style = document.createElement(\'style\');
+    style.id = RIPPLE_STYLE_ID;
+    style.textContent = `
+        @keyframes bp-ripple-effect {
+            0% { transform: translate(-50%, -50%) scale(0); opacity: 0.5; }
+            100% { transform: translate(-50%, -50%) scale(40); opacity: 0; }
+        }
+        .bp-ripple {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            background-color: currentColor;
+            opacity: 0.25;
+            width: 8px;
+            height: 8px;
+            animation: bp-ripple-effect 0.6s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+        }
+    `;
+    document.head.appendChild(style);
+}
+
+export const ButtonRipple = React.forwardRef<HTMLButtonElement, ButtonRippleProps>(
+    ({ className, children, onClick, ...props }, ref) => {
+        const [ripples, setRipples] = React.useState<Array<{ id: number; x: number; y: number }>>([]);
+        const nextId = React.useRef(0);
+
+        React.useEffect(() => {
+            injectRippleStyles();
+        }, []);
+
+        const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+            const button = e.currentTarget;
+            const rect = button.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            const id = nextId.current++;
+            setRipples((prev) => [...prev, { id, x, y }]);
+
+            onClick?.(e);
+        };
+
+        React.useEffect(() => {
+            if (ripples.length > 0) {
+                const timer = setTimeout(() => {
+                    setRipples([]);
+                }, 600);
+                return () => clearTimeout(timer);
+            }
+        }, [ripples]);
+
+        return (
+            <Button
+                ref={ref}
+                onClick={handleClick}
+                className={cn(\'relative overflow-hidden select-none active:scale-95 isolate\', className)}
+                {...props}
+            >
+                <span className="relative z-10">{children}</span>
+                {ripples.map((ripple) => (
+                    <span
+                        key={ripple.id}
+                        className="bp-ripple"
+                        style={{
+                            left: ripple.x,
+                            top: ripple.y,
+                        }}
+                    />
+                ))}
+            </Button>
+        );
+    },
+);
+
+ButtonRipple.displayName = \'ButtonRipple\';
+
+export default ButtonRipple;
 ',
                     ],
                 ],
@@ -12511,6 +13083,7 @@ export { ButtonParticles, buttonVariants };
                 ],
                 'registryDependencies' => [
                     'utils',
+                    'button',
                 ],
                 'files' => [
                     [
@@ -12518,9 +13091,9 @@ export { ButtonParticles, buttonVariants };
                         'type' => 'registry:ui',
                         'content' => 'import React from \'react\';
 import { cn } from \'@/lib/utils\';
+import { Button } from \'@/components/ui/button\';
 
-export interface ButtonShineProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-    children: React.ReactNode;
+export interface ButtonShineProps extends React.ComponentProps<typeof Button> {
     shineColor?: string;
 }
 
@@ -12532,9 +13105,9 @@ export function ButtonShine({
     ...props
 }: ButtonShineProps) {
     return (
-        <button
+        <Button
             className={cn(
-                \'group relative inline-flex cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-primary px-5 py-2.5 text-xs font-semibold text-primary-foreground shadow-sm transition-transform select-none active:scale-95\',
+                \'group relative overflow-hidden select-none active:scale-95\',
                 className,
             )}
             style={style}
@@ -12549,130 +13122,11 @@ export function ButtonShine({
                 }}
             />
             <span className="relative z-10">{children}</span>
-        </button>
+        </Button>
     );
 }
 
 export default ButtonShine;
-',
-                    ],
-                ],
-                'css' => null,
-                'tailwind' => null,
-                'vars_theme' => null,
-                'vars_light' => null,
-                'vars_dark' => null,
-                'font_family' => null,
-                'font_mono' => null,
-                'font_serif' => null,
-                'meta' => [
-                    'category' => 'buttons',
-                    'version' => '1.0.0',
-                ],
-                'docs' => null,
-                'categories' => [
-                    'buttons',
-                ],
-                'extends' => null,
-                'style' => null,
-                'icon_library' => null,
-                'base_color' => null,
-                'theme' => null,
-            ],
-            [
-                'name' => 'button-special',
-                'type' => 'registry:ui',
-                'title' => 'Button Special',
-                'description' => 'A collection of unique styled buttons with pulsing, glowing, drawing, or gradient border effects.',
-                'author' => 'designbycode',
-                'dependencies' => [
-
-                ],
-                'devDependencies' => [
-
-                ],
-                'registryDependencies' => [
-                    'utils',
-                ],
-                'files' => [
-                    [
-                        'path' => 'resources/js/registry/new-york/components/ui/buttons/button-special.tsx',
-                        'type' => 'registry:ui',
-                        'content' => '\'use client\';
-
-import * as React from \'react\';
-import { cn } from \'@/lib/utils\';
-
-export interface ButtonSpecialProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-    /**
-     * Special button styles
-     * @default \'neon\'
-     */
-    specialVariant?: \'gradient-border\' | \'pulse\' | \'neon\' | \'draw\';
-}
-
-const ButtonSpecial = React.forwardRef<HTMLButtonElement, ButtonSpecialProps>(
-    ({ className, children, specialVariant = \'neon\', ...props }, ref) => {
-        const [isHovered, setIsHovered] = React.useState(false);
-
-        return (
-            <button
-                ref={ref}
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
-                className={cn(
-                    \'relative inline-flex h-10 cursor-pointer items-center justify-center rounded-md px-6 py-2 text-sm font-semibold tracking-wide outline-hidden transition-all select-none active:scale-95 disabled:pointer-events-none disabled:opacity-50\',
-
-                    // 1. Neon Glowing Variant
-                    specialVariant === \'neon\' && [
-                        \'border border-primary/30 bg-primary/5 text-primary shadow-[0_0_15px] shadow-primary/10\',
-                        \'hover:border-primary/50 hover:bg-primary/10 hover:text-primary hover:shadow-[0_0_20px] hover:shadow-primary/20\',
-                    ],
-
-                    // 2. Breathing Pulse Variant
-                    specialVariant === \'pulse\' && [
-                        \'bg-primary text-primary-foreground shadow-lg shadow-primary/20\',
-                        \'before:absolute before:inset-0 before:animate-ping before:rounded-md before:bg-primary before:opacity-10 before:duration-1000\',
-                        \'hover:shadow-primary/30 hover:brightness-105\',
-                    ],
-
-                    // 3. Border Draw Variant
-                    specialVariant === \'draw\' && [
-                        \'overflow-hidden border border-border bg-transparent text-foreground\',
-                        \'after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-primary after:transition-transform after:duration-300\',
-                        \'hover:bg-muted/30 hover:after:scale-x-100\',
-                    ],
-
-                    // 4. Moving Gradient Border Variant
-                    specialVariant === \'gradient-border\' && [
-                        \'border border-transparent text-foreground\',
-                    ],
-
-                    className,
-                )}
-                style={
-                    specialVariant === \'gradient-border\'
-                        ? {
-                              backgroundImage: isHovered
-                                  ? \'linear-gradient(var(--background), var(--background)), linear-gradient(to right, var(--color-chart-3), var(--color-chart-1), var(--color-chart-5))\'
-                                  : \'linear-gradient(var(--background), var(--background)), linear-gradient(to right, var(--color-chart-1), var(--color-chart-5), var(--color-chart-3))\',
-                              backgroundOrigin: \'border-box\',
-                              backgroundClip: \'padding-box, border-box\',
-                          }
-                        : undefined
-                }
-                {...props}
-            >
-                {children}
-            </button>
-        );
-    },
-);
-
-ButtonSpecial.displayName = \'ButtonSpecial\';
-
-export { ButtonSpecial };
-export type { ButtonSpecialProps };
 ',
                     ],
                 ],
@@ -12953,6 +13407,7 @@ export { PixelCanvas, pixelCanvasVariants };
                 ],
                 'registryDependencies' => [
                     'utils',
+                    'card',
                 ],
                 'files' => [
                     [
@@ -12964,8 +13419,11 @@ import * as React from \'react\';
 import { motion, AnimatePresence } from \'motion/react\';
 import { ChevronDown } from \'lucide-react\';
 import { cn } from \'@/lib/utils\';
+import { Card } from \'@/components/ui/card\';
 
-export interface ExpandableCardProps extends React.HTMLAttributes<HTMLDivElement> {
+const MotionCard = motion(Card);
+
+export interface ExpandableCardProps extends React.ComponentProps<typeof Card> {
     title: string;
     description?: string;
     expandedContent?: React.ReactNode;
@@ -12996,11 +13454,11 @@ const ExpandableCard = React.forwardRef<HTMLDivElement, ExpandableCardProps>(
         } = props as any;
 
         return (
-            <motion.div
+            <MotionCard
                 layout
                 ref={ref}
                 className={cn(
-                    \'relative flex flex-col overflow-hidden rounded-xl border border-border bg-card p-6 text-card-foreground shadow-md transition-shadow hover:shadow-lg\',
+                    \'relative overflow-hidden p-6 shadow-md transition-shadow hover:shadow-lg\',
                     className,
                 )}
                 {...safeProps}
@@ -13059,7 +13517,7 @@ const ExpandableCard = React.forwardRef<HTMLDivElement, ExpandableCardProps>(
                         </motion.div>
                     )}
                 </AnimatePresence>
-            </motion.div>
+            </MotionCard>
         );
     },
 );
@@ -13107,6 +13565,7 @@ export default ExpandableCard;
                 ],
                 'registryDependencies' => [
                     'utils',
+                    'card',
                 ],
                 'files' => [
                     [
@@ -13116,8 +13575,9 @@ export default ExpandableCard;
 
 import * as React from \'react\';
 import { cn } from \'@/lib/utils\';
+import { Card } from \'@/components/ui/card\';
 
-export interface GlassGlareCardProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface GlassGlareCardProps extends React.ComponentProps<typeof Card> {
     glareColor?: string;
     opacity?: number;
 }
@@ -13149,13 +13609,13 @@ const GlassGlareCard = React.forwardRef<HTMLDivElement, GlassGlareCardProps>(
         };
 
         return (
-            <div
+            <Card
                 ref={resolvedRef}
                 onMouseMove={handleMouseMove}
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
                 className={cn(
-                    \'relative overflow-hidden rounded-2xl border border-border bg-card/40 p-6 shadow-2xl backdrop-blur-md transition-all duration-300\',
+                    \'relative overflow-hidden bg-card/40 p-6 shadow-2xl backdrop-blur-md transition-all duration-300\',
                     className,
                 )}
                 {...props}
@@ -13179,7 +13639,7 @@ const GlassGlareCard = React.forwardRef<HTMLDivElement, GlassGlareCardProps>(
                 />
 
                 <div className="relative z-10 text-foreground">{children}</div>
-            </div>
+            </Card>
         );
     },
 );
@@ -13227,6 +13687,7 @@ export default GlassGlareCard;
                 ],
                 'registryDependencies' => [
                     'utils',
+                    'card',
                 ],
                 'files' => [
                     [
@@ -13236,8 +13697,9 @@ export default GlassGlareCard;
 
 import * as React from \'react\';
 import { cn } from \'@/lib/utils\';
+import { Card } from \'@/components/ui/card\';
 
-export interface GlowingCardProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface GlowingCardProps extends React.ComponentProps<typeof Card> {
     glowColor?: string;
 }
 
@@ -13267,13 +13729,13 @@ const GlowingCard = React.forwardRef<HTMLDivElement, GlowingCardProps>(
         };
 
         return (
-            <div
+            <Card
                 ref={resolvedRef}
                 onMouseMove={handleMouseMove}
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
                 className={cn(
-                    \'relative flex flex-col overflow-hidden rounded-xl border border-border/40 bg-card/60 p-6 backdrop-blur-xs transition-all\',
+                    \'relative overflow-hidden bg-card/60 p-6 backdrop-blur-xs transition-all\',
                     className,
                 )}
                 {...props}
@@ -13287,7 +13749,7 @@ const GlowingCard = React.forwardRef<HTMLDivElement, GlowingCardProps>(
                     }}
                 />
                 {children}
-            </div>
+            </Card>
         );
     },
 );
@@ -13335,6 +13797,7 @@ export default GlowingCard;
                 ],
                 'registryDependencies' => [
                     'utils',
+                    'card',
                 ],
                 'files' => [
                     [
@@ -13344,8 +13807,11 @@ export default GlowingCard;
 
 import * as React from \'react\';
 import { cn } from \'@/lib/utils\';
+import { Card } from \'@/components/ui/card\';
 
-export interface GrainyNoiseCardProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface GrainyNoiseCardProps extends React.ComponentProps<
+    typeof Card
+> {
     noiseOpacity?: number;
     glowColor?: string;
 }
@@ -13364,12 +13830,12 @@ const GrainyNoiseCard = React.forwardRef<HTMLDivElement, GrainyNoiseCardProps>(
         const [isHovered, setIsHovered] = React.useState(false);
 
         return (
-            <div
+            <Card
                 ref={ref}
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
                 className={cn(
-                    \'relative overflow-hidden rounded-2xl border border-border bg-card/75 p-6 shadow-xl backdrop-blur-md transition-all duration-500\',
+                    \'relative overflow-hidden bg-card/75 p-6 shadow-xl backdrop-blur-md transition-all duration-500\',
                     isHovered ? \'scale-[1.01] border-border/80 shadow-2xl\' : \'\',
                     className,
                 )}
@@ -13396,7 +13862,7 @@ const GrainyNoiseCard = React.forwardRef<HTMLDivElement, GrainyNoiseCardProps>(
                 />
 
                 <div className="relative text-card-foreground">{children}</div>
-            </div>
+            </Card>
         );
     },
 );
@@ -13444,6 +13910,7 @@ export default GrainyNoiseCard;
                 ],
                 'registryDependencies' => [
                     'utils',
+                    'card',
                 ],
                 'files' => [
                     [
@@ -13453,8 +13920,9 @@ export default GrainyNoiseCard;
 
 import * as React from \'react\';
 import { cn } from \'@/lib/utils\';
+import { Card } from \'@/components/ui/card\';
 
-export interface MagneticCardProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface MagneticCardProps extends React.ComponentProps<typeof Card> {
     strength?: number;
 }
 
@@ -13491,19 +13959,19 @@ const MagneticCard = React.forwardRef<HTMLDivElement, MagneticCardProps>(
         };
 
         return (
-            <div
+            <Card
                 ref={resolvedRef}
                 onMouseMove={handleMouseMove}
                 onMouseLeave={handleMouseLeave}
                 style={style}
                 className={cn(
-                    \'relative flex flex-col overflow-hidden rounded-xl border border-border bg-card p-6 text-card-foreground shadow-md transition-shadow select-none hover:shadow-lg\',
+                    \'relative overflow-hidden p-6 shadow-md transition-shadow select-none hover:shadow-lg\',
                     className,
                 )}
                 {...props}
             >
                 {children}
-            </div>
+            </Card>
         );
     },
 );
@@ -13551,6 +14019,7 @@ export default MagneticCard;
                 ],
                 'registryDependencies' => [
                     'utils',
+                    'card',
                 ],
                 'files' => [
                     [
@@ -13560,8 +14029,11 @@ export default MagneticCard;
 
 import * as React from \'react\';
 import { cn } from \'@/lib/utils\';
+import { Card } from \'@/components/ui/card\';
 
-export interface MetricSparkCardProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface MetricSparkCardProps extends React.ComponentProps<
+    typeof Card
+> {
     title: string;
     value: string;
     trend?: string;
@@ -13602,12 +14074,12 @@ const MetricSparkCard = React.forwardRef<HTMLDivElement, MetricSparkCardProps>(
             .join(\' \');
 
         return (
-            <div
+            <Card
                 ref={ref}
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
                 className={cn(
-                    \'relative flex flex-col justify-between overflow-hidden rounded-xl border border-border bg-card p-6 text-card-foreground shadow-md transition-all hover:shadow-lg\',
+                    \'relative overflow-hidden p-6 shadow-md transition-all hover:shadow-lg\',
                     className,
                 )}
                 {...props}
@@ -13668,7 +14140,7 @@ const MetricSparkCard = React.forwardRef<HTMLDivElement, MetricSparkCardProps>(
 
                     {children && <div className="text-xs">{children}</div>}
                 </div>
-            </div>
+            </Card>
         );
     },
 );
@@ -13716,6 +14188,7 @@ export default MetricSparkCard;
                 ],
                 'registryDependencies' => [
                     'utils',
+                    'card',
                 ],
                 'files' => [
                     [
@@ -13725,6 +14198,7 @@ export default MetricSparkCard;
 
 import * as React from \'react\';
 import { cn } from \'@/lib/utils\';
+import { Card } from \'@/components/ui/card\';
 
 export interface NeonBorderCardProps extends React.HTMLAttributes<HTMLDivElement> {
     duration?: number;
@@ -13778,10 +14252,10 @@ const NeonBorderCard = React.forwardRef<HTMLDivElement, NeonBorderCardProps>(
                     }
                 />
 
-                {/* Card interior content */}
-                <div className="relative flex h-full w-full flex-col rounded-[11px] bg-card/95 p-6 text-card-foreground backdrop-blur-xs">
+                {/* Card interior content composed with standard Card component */}
+                <Card className="relative flex h-full w-full flex-col rounded-[11px] border-0 bg-card/95 p-6 text-card-foreground shadow-none backdrop-blur-xs">
                     {children}
-                </div>
+                </Card>
             </div>
         );
     },
@@ -13830,6 +14304,7 @@ export default NeonBorderCard;
                 ],
                 'registryDependencies' => [
                     'utils',
+                    'card',
                 ],
                 'files' => [
                     [
@@ -13839,8 +14314,11 @@ export default NeonBorderCard;
 
 import * as React from \'react\';
 import { cn } from \'@/lib/utils\';
+import { Card } from \'@/components/ui/card\';
 
-export interface ParallaxImageCardProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface ParallaxImageCardProps extends React.ComponentProps<
+    typeof Card
+> {
     imageUrl: string;
     imageAlt?: string;
     parallaxStrength?: number;
@@ -13891,12 +14369,12 @@ const ParallaxImageCard = React.forwardRef<
         };
 
         return (
-            <div
+            <Card
                 ref={resolvedRef}
                 onMouseMove={handleMouseMove}
                 onMouseLeave={handleMouseLeave}
                 className={cn(
-                    \'group relative flex aspect-[4/5] w-full flex-col justify-end overflow-hidden rounded-xl border border-border shadow-md select-none\',
+                    \'group relative flex aspect-[4/5] w-full flex-col justify-end gap-0 overflow-hidden p-0 shadow-md select-none\',
                     className,
                 )}
                 {...props}
@@ -13925,7 +14403,7 @@ const ParallaxImageCard = React.forwardRef<
                 <div className="p-6 text-white transition-transform duration-300 ease-out group-hover:translate-y-[-4px]">
                     {children}
                 </div>
-            </div>
+            </Card>
         );
     },
 );
@@ -13973,6 +14451,7 @@ export default ParallaxImageCard;
                 ],
                 'registryDependencies' => [
                     'utils',
+                    'card',
                 ],
                 'files' => [
                     [
@@ -13982,6 +14461,7 @@ export default ParallaxImageCard;
 
 import * as React from \'react\';
 import { cn } from \'@/lib/utils\';
+import { Card } from \'@/components/ui/card\';
 
 export interface RevealCardProps extends React.HTMLAttributes<HTMLDivElement> {
     borderColor?: string;
@@ -14038,10 +14518,10 @@ const RevealCard = React.forwardRef<HTMLDivElement, RevealCardProps>(
                     }}
                 />
 
-                {/* Card body */}
-                <div className="relative flex h-full w-full flex-col rounded-[11px] bg-card/90 p-6 text-card-foreground backdrop-blur-xs">
+                {/* Card body composed with standard Card component */}
+                <Card className="relative flex h-full w-full flex-col rounded-[11px] border-0 bg-card/90 p-6 text-card-foreground shadow-none backdrop-blur-xs">
                     {children}
-                </div>
+                </Card>
             </div>
         );
     },
@@ -14090,6 +14570,7 @@ export default RevealCard;
                 ],
                 'registryDependencies' => [
                     'utils',
+                    'card',
                 ],
                 'files' => [
                     [
@@ -14099,8 +14580,9 @@ export default RevealCard;
 
 import * as React from \'react\';
 import { cn } from \'@/lib/utils\';
+import { Card } from \'@/components/ui/card\';
 
-export interface ScratchCardProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface ScratchCardProps extends React.ComponentProps<typeof Card> {
     width?: number;
     height?: number;
     overlayColor?: string;
@@ -14216,10 +14698,10 @@ const ScratchCard = React.forwardRef<HTMLDivElement, ScratchCardProps>(
         };
 
         return (
-            <div
+            <Card
                 ref={resolvedRef}
                 className={cn(
-                    \'relative overflow-hidden rounded-xl border border-border bg-card p-6 text-card-foreground shadow-md select-none\',
+                    \'relative overflow-hidden p-6 shadow-md select-none\',
                     className,
                 )}
                 {...props}
@@ -14241,7 +14723,7 @@ const ScratchCard = React.forwardRef<HTMLDivElement, ScratchCardProps>(
                         className="absolute inset-0 z-20 cursor-crosshair touch-none"
                     />
                 )}
-            </div>
+            </Card>
         );
     },
 );
@@ -14289,6 +14771,7 @@ export default ScratchCard;
                 ],
                 'registryDependencies' => [
                     'utils',
+                    'card',
                 ],
                 'files' => [
                     [
@@ -14299,6 +14782,7 @@ export default ScratchCard;
 import * as React from \'react\';
 import { motion, AnimatePresence } from \'motion/react\';
 import { cn } from \'@/lib/utils\';
+import { Card } from \'@/components/ui/card\';
 
 export interface SplitPreviewItem {
     id: string;
@@ -14308,7 +14792,9 @@ export interface SplitPreviewItem {
     icon?: React.ReactNode;
 }
 
-export interface SplitPreviewCardProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface SplitPreviewCardProps extends React.ComponentProps<
+    typeof Card
+> {
     items: SplitPreviewItem[];
     defaultActiveId?: string;
 }
@@ -14323,10 +14809,10 @@ const SplitPreviewCard = React.forwardRef<
     const activeItem = items.find((item) => item.id === activeId) || items[0];
 
     return (
-        <div
+        <Card
             ref={ref}
             className={cn(
-                \'grid grid-cols-1 overflow-hidden rounded-xl border border-border bg-card shadow-md md:grid-cols-12\',
+                \'grid grid-cols-1 gap-0 overflow-hidden p-0 shadow-md md:grid-cols-12\',
                 className,
             )}
             {...props}
@@ -14442,7 +14928,7 @@ const SplitPreviewCard = React.forwardRef<
                     ))}
                 </div>
             </div>
-        </div>
+        </Card>
     );
 });
 
@@ -14489,6 +14975,7 @@ export default SplitPreviewCard;
                 ],
                 'registryDependencies' => [
                     'utils',
+                    'card',
                 ],
                 'files' => [
                     [
@@ -14498,8 +14985,9 @@ export default SplitPreviewCard;
 
 import * as React from \'react\';
 import { cn } from \'@/lib/utils\';
+import { Card } from \'@/components/ui/card\';
 
-export interface TiltCardProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface TiltCardProps extends React.ComponentProps<typeof Card> {
     maxTilt?: number;
     perspective?: number;
     scale?: number;
@@ -14568,13 +15056,13 @@ const TiltCard = React.forwardRef<HTMLDivElement, TiltCardProps>(
         };
 
         return (
-            <div
+            <Card
                 ref={resolvedRef}
                 onMouseMove={handleMouseMove}
                 onMouseLeave={handleMouseLeave}
                 style={style}
                 className={cn(
-                    \'relative flex flex-col overflow-hidden rounded-xl border border-border/40 bg-card/60 p-6 shadow-md backdrop-blur-xs select-none\',
+                    \'relative overflow-hidden bg-card/60 p-6 backdrop-blur-xs select-none\',
                     className,
                 )}
                 {...props}
@@ -14585,7 +15073,7 @@ const TiltCard = React.forwardRef<HTMLDivElement, TiltCardProps>(
                     style={glareStyle}
                 />
                 {children}
-            </div>
+            </Card>
         );
     },
 );
@@ -17994,7 +18482,7 @@ import { Input } from \'@/components/ui/input\';
 import { Button } from \'@/components/ui/button\';
 import { cn } from \'@/lib/utils\';
 
-export interface InputNumberStepperProps extends Omit<
+interface InputNumberStepperProps extends Omit<
     React.InputHTMLAttributes<HTMLInputElement>,
     \'value\' | \'onChange\' | \'min\' | \'max\' | \'step\'
 > {
@@ -20287,14 +20775,18 @@ export default InteractiveRating;
                 ],
                 'registryDependencies' => [
                     'utils',
+                    'card',
                 ],
                 'files' => [
                     [
                         'path' => 'resources/js/registry/new-york/components/ui/reviews/review-card.tsx',
                         'type' => 'registry:ui',
-                        'content' => 'import * as React from \'react\';
+                        'content' => '\'use client\';
+
+import * as React from \'react\';
 import { Star, CheckCircle } from \'lucide-react\';
 import { cn } from \'@/lib/utils\';
+import { Card } from \'@/components/ui/card\';
 
 export interface ReviewItem {
     id: string | number;
@@ -20309,7 +20801,7 @@ export interface ReviewItem {
     tags?: string[];
 }
 
-interface ReviewCardProps extends React.HTMLAttributes<HTMLDivElement> {
+interface ReviewCardProps extends React.ComponentProps<typeof Card> {
     review: ReviewItem;
     showQuoteIcon?: boolean;
 }
@@ -20339,9 +20831,9 @@ export function ReviewCard({
     };
 
     return (
-        <div
+        <Card
             className={cn(
-                \'relative flex flex-col justify-between overflow-hidden rounded-2xl border border-border/80 bg-card/65 p-6 shadow-xs backdrop-blur-md transition-all duration-300 select-none hover:border-primary/20 hover:shadow-md\',
+                \'relative flex flex-col justify-between overflow-hidden bg-card/65 p-6 backdrop-blur-md transition-all duration-300 select-none hover:border-primary/20 hover:shadow-md\',
                 className,
             )}
             {...props}
@@ -20358,7 +20850,7 @@ export function ReviewCard({
                 <div className="flex items-center justify-between gap-4">
                     {renderStars(review.rating)}
                     {review.verified && (
-                        <span className="inline-flex items-center gap-1 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-2 py-0.5 text-[9px] font-semibold text-emerald-600 dark:text-emerald-400">
+                        <span className="inline-flex items-center gap-1 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-2 py-0.5 text-[9px] font-semibold text-emerald-600">
                             <CheckCircle className="size-2.5 fill-current" />
                             Verified
                         </span>
@@ -20419,9 +20911,11 @@ export function ReviewCard({
                     ))}
                 </div>
             )}
-        </div>
+        </Card>
     );
 }
+
+export default ReviewCard;
 ',
                     ],
                 ],
@@ -20735,17 +21229,21 @@ export function ReviewGrid({
                 ],
                 'registryDependencies' => [
                     'utils',
+                    'card',
                 ],
                 'files' => [
                     [
                         'path' => 'resources/js/registry/new-york/components/ui/reviews/review-hero.tsx',
                         'type' => 'registry:ui',
-                        'content' => 'import * as React from \'react\';
+                        'content' => '\'use client\';
+
+import * as React from \'react\';
 import { Star, CheckCircle } from \'lucide-react\';
 import { cn } from \'@/lib/utils\';
+import { Card } from \'@/components/ui/card\';
 import { ReviewItem } from \'./review-card\';
 
-interface ReviewHeroProps extends React.HTMLAttributes<HTMLDivElement> {
+interface ReviewHeroProps extends React.ComponentProps<typeof Card> {
     review: ReviewItem;
 }
 
@@ -20769,9 +21267,9 @@ export function ReviewHero({ review, className, ...props }: ReviewHeroProps) {
     };
 
     return (
-        <div
+        <Card
             className={cn(
-                \'relative mx-auto flex max-w-4xl flex-col justify-between overflow-hidden rounded-3xl border border-border bg-card/45 p-8 shadow-xl backdrop-blur-md select-none md:p-12\',
+                \'relative mx-auto flex max-w-4xl flex-col justify-between overflow-hidden bg-card/45 p-8 shadow-xl backdrop-blur-md select-none md:p-12\',
                 className,
             )}
             {...props}
@@ -20790,7 +21288,7 @@ export function ReviewHero({ review, className, ...props }: ReviewHeroProps) {
                 <div className="flex items-center gap-4">
                     {renderStars(review.rating)}
                     {review.verified && (
-                        <span className="inline-flex items-center gap-1 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-0.5 text-[10px] font-semibold text-emerald-600 dark:text-emerald-400">
+                        <span className="inline-flex items-center gap-1 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-0.5 text-[10px] font-semibold text-emerald-600">
                             <CheckCircle className="size-3 fill-current" />
                             Verified Customer Feedback
                         </span>
@@ -20851,9 +21349,11 @@ export function ReviewHero({ review, className, ...props }: ReviewHeroProps) {
                     ))}
                 </div>
             )}
-        </div>
+        </Card>
     );
 }
+
+export default ReviewHero;
 ',
                     ],
                 ],
@@ -22685,6 +23185,7 @@ export default WavesThree;
                 ],
                 'registryDependencies' => [
                     'utils',
+                    'card',
                 ],
                 'files' => [
                     [
@@ -22702,6 +23203,7 @@ import {
 } from \'lucide-react\';
 import { cn } from \'@/lib/utils\';
 import { TimelineItem } from \'./timeline-vertical\';
+import { Card } from \'@/components/ui/card\';
 
 interface TimelineCollapsibleProps extends React.HTMLAttributes<HTMLDivElement> {
     items: TimelineItem[];
@@ -22761,7 +23263,7 @@ export function TimelineCollapsible({
                             return {
                                 ring: \'border-primary bg-primary text-primary-foreground\',
                                 labelBg:
-                                    \'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20\',
+                                    \'bg-emerald-500/10 text-emerald-600 border-emerald-500/20\',
                                 labelText: item.statusLabel || \'Completed\',
                                 icon: <CheckCircle2 className="size-4" />,
                             };
@@ -22815,9 +23317,9 @@ export function TimelineCollapsible({
 
                             {/* Expandable Premium Glassmorphic Content Card */}
                             <div className="w-[calc(100%-4.5rem)]">
-                                <div
+                                <Card
                                     className={cn(
-                                        \'group cursor-pointer rounded-xl border border-border/80 bg-card/60 p-5 shadow-xs backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/20 hover:shadow-md\',
+                                        \'group cursor-pointer bg-card/60 p-5 shadow-xs backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/20 hover:shadow-md\',
                                         isExpanded &&
                                             \'translate-y-0 border-primary/30 bg-card/90 shadow-md\',
                                     )}
@@ -22961,7 +23463,7 @@ export function TimelineCollapsible({
                                             </motion.div>
                                         )}
                                     </AnimatePresence>
-                                </div>
+                                </Card>
                             </div>
                         </div>
                     );
@@ -23009,6 +23511,7 @@ export function TimelineCollapsible({
                 ],
                 'registryDependencies' => [
                     'utils',
+                    'card',
                 ],
                 'files' => [
                     [
@@ -23017,6 +23520,7 @@ export function TimelineCollapsible({
                         'content' => 'import * as React from \'react\';
 import { cn } from \'@/lib/utils\';
 import { TimelineItem } from \'./timeline-vertical\';
+import { Card } from \'@/components/ui/card\';
 
 interface TimelineGlowProps extends React.HTMLAttributes<HTMLDivElement> {
     items: TimelineItem[];
@@ -23118,7 +23622,7 @@ export function TimelineGlow({
                                         : \'w-[calc(100%-4rem)]\',
                                 )}
                             >
-                                <div className="group relative rounded-xl border border-border bg-card p-5 shadow-xs transition-all duration-300 hover:border-purple-500/30 hover:shadow-lg">
+                                <Card className="group relative border-border bg-card p-5 shadow-xs transition-all duration-300 hover:border-purple-500/30 hover:shadow-lg">
                                     {/* Ambient card corner glow */}
                                     <div className="pointer-events-none absolute inset-0 rounded-xl bg-linear-to-tr from-indigo-500/0 via-purple-500/0 to-pink-500/0 opacity-0 transition-all duration-500 group-hover:from-indigo-500/5 group-hover:via-purple-500/5 group-hover:to-pink-500/5 group-hover:opacity-100" />
 
@@ -23130,7 +23634,7 @@ export function TimelineGlow({
                                                 \'md:flex-row-reverse\',
                                         )}
                                     >
-                                        <h3 className="text-base font-semibold text-foreground transition-colors group-hover:text-purple-500 dark:group-hover:text-purple-400">
+                                        <h3 className="text-base font-semibold text-foreground transition-colors group-hover:text-purple-500">
                                             {item.title}
                                         </h3>
                                         {item.date && (
@@ -23144,7 +23648,7 @@ export function TimelineGlow({
                                             {item.description}
                                         </div>
                                     )}
-                                </div>
+                                </Card>
                             </div>
                         </div>
                     );
@@ -23520,6 +24024,7 @@ export function TimelineMotion({
                 ],
                 'registryDependencies' => [
                     'utils',
+                    'card',
                 ],
                 'files' => [
                     [
@@ -23527,6 +24032,7 @@ export function TimelineMotion({
                         'type' => 'registry:ui',
                         'content' => 'import * as React from \'react\';
 import { cn } from \'@/lib/utils\';
+import { Card } from \'@/components/ui/card\';
 
 export interface TimelineItem {
     id: string | number;
@@ -23629,7 +24135,7 @@ export function TimelineVertical({
                                         : \'w-[calc(100%-4rem)]\',
                                 )}
                             >
-                                <div className="rounded-xl border border-border bg-card p-5 shadow-xs transition-all hover:shadow-md">
+                                <Card className="border-border bg-card p-5 shadow-xs transition-all hover:shadow-md">
                                     <div
                                         className={cn(
                                             \'flex flex-col gap-1 md:flex-row md:items-baseline md:justify-between\',
@@ -23652,7 +24158,7 @@ export function TimelineVertical({
                                             {item.description}
                                         </div>
                                     )}
-                                </div>
+                                </Card>
                             </div>
                         </div>
                     );

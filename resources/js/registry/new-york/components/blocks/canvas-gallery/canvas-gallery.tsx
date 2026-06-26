@@ -43,10 +43,12 @@ export function CanvasGallery() {
                 <Card className="relative flex min-h-[380px] flex-col justify-between overflow-hidden border border-border/40 bg-zinc-950 text-white">
                     {/* Live Waves background */}
                     {playWaves && (
-                        <WavesThree
+                        <div
                             className="absolute inset-0 transition-opacity duration-300"
                             style={{ opacity: opacity[0] / 100 }}
-                        />
+                        >
+                            <WavesThree />
+                        </div>
                     )}
 
                     {/* Glass Control Box */}

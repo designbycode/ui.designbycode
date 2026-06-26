@@ -3,7 +3,8 @@
 import * as React from 'react';
 import { Layers, Activity, Terminal, Shield, ArrowRight } from 'lucide-react';
 import HeadingBlock from '@/registry/new-york/components/ui/typography/heading-block';
-import { ButtonSpecial } from '@/registry/new-york/components/ui/buttons/button-special';
+import { ButtonGradient } from '@/registry/new-york/components/ui/buttons/button-gradient';
+import { ButtonDraw } from '@/registry/new-york/components/ui/buttons/button-draw';
 
 export function HeroFeaturesGrid() {
     const features = [
@@ -44,16 +45,15 @@ export function HeroFeaturesGrid() {
                 />
 
                 <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
-                    <ButtonSpecial specialVariant="gradient-border">
+                    <ButtonGradient>
                         Get Started
-                    </ButtonSpecial>
-                    <ButtonSpecial
-                        specialVariant="draw"
+                    </ButtonGradient>
+                    <ButtonDraw
                         className="flex items-center gap-1.5"
                     >
                         Read System Docs
                         <ArrowRight className="size-4" />
-                    </ButtonSpecial>
+                    </ButtonDraw>
                 </div>
             </div>
 

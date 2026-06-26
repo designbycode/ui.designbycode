@@ -3,7 +3,8 @@
 import * as React from 'react';
 import { Shield, Sparkles, CheckCircle2 } from 'lucide-react';
 import HeadingBlock from '@/registry/new-york/components/ui/typography/heading-block';
-import { ButtonSpecial } from '@/registry/new-york/components/ui/buttons/button-special';
+import { ButtonPulse } from '@/registry/new-york/components/ui/buttons/button-pulse';
+import { ButtonDraw } from '@/registry/new-york/components/ui/buttons/button-draw';
 import { PixelCanvas } from '@/registry/new-york/components/ui/canvas/pixel-canvas';
 
 export function HeroSplit() {
@@ -40,12 +41,12 @@ export function HeroSplit() {
                 </ul>
 
                 <div className="flex flex-wrap items-center gap-4 pt-4">
-                    <ButtonSpecial specialVariant="pulse">
+                    <ButtonPulse>
                         Setup Shield
-                    </ButtonSpecial>
-                    <ButtonSpecial specialVariant="draw">
+                    </ButtonPulse>
+                    <ButtonDraw>
                         Read Whitepaper
-                    </ButtonSpecial>
+                    </ButtonDraw>
                 </div>
             </div>
 

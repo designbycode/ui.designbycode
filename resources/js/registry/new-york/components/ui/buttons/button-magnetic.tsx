@@ -1,10 +1,10 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
+import { Button } from '@/components/ui/button';
 
-export interface ButtonMagneticProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonMagneticProps extends React.ComponentProps<typeof Button> {
     range?: number; // Distance from center where magnetism activates
     actionStrength?: number; // How strongly the button pulls toward the mouse (0.1 to 1.0)
-    children: React.ReactNode;
 }
 
 export function ButtonMagnetic({
@@ -74,9 +74,9 @@ export function ButtonMagnetic({
 
     return (
         <div ref={triggerRef} className="inline-block">
-            <button
+            <Button
                 className={cn(
-                    'inline-flex cursor-pointer items-center justify-center rounded-lg bg-primary px-4 py-2.5 text-xs font-semibold text-primary-foreground shadow-sm select-none active:scale-95',
+                    'select-none active:scale-95',
                     className,
                 )}
                 style={{
@@ -93,7 +93,7 @@ export function ButtonMagnetic({
                 <span className="pointer-events-none relative z-10 transition-transform duration-200 group-hover:scale-105">
                     {children}
                 </span>
-            </button>
+            </Button>
         </div>
     );
 }

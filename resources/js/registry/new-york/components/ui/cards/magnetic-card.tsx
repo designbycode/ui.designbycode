@@ -2,8 +2,9 @@
 
 import * as React from 'react';
 import { cn } from '@/lib/utils';
+import { Card } from '@/components/ui/card';
 
-export interface MagneticCardProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface MagneticCardProps extends React.ComponentProps<typeof Card> {
     strength?: number;
 }
 
@@ -40,19 +41,19 @@ const MagneticCard = React.forwardRef<HTMLDivElement, MagneticCardProps>(
         };
 
         return (
-            <div
+            <Card
                 ref={resolvedRef}
                 onMouseMove={handleMouseMove}
                 onMouseLeave={handleMouseLeave}
                 style={style}
                 className={cn(
-                    'relative flex flex-col overflow-hidden rounded-xl border border-border bg-card p-6 text-card-foreground shadow-md transition-shadow select-none hover:shadow-lg',
+                    'relative overflow-hidden p-6 shadow-md transition-shadow select-none hover:shadow-lg',
                     className,
                 )}
                 {...props}
             >
                 {children}
-            </div>
+            </Card>
         );
     },
 );

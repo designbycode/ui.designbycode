@@ -6,7 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
-export interface InputNumberStepperProps extends Omit<
+interface InputNumberStepperProps extends Omit<
     React.InputHTMLAttributes<HTMLInputElement>,
     'value' | 'onChange' | 'min' | 'max' | 'step'
 > {

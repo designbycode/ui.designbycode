@@ -3,7 +3,8 @@
 import * as React from 'react';
 import { Image as ImageIcon, ArrowRight } from 'lucide-react';
 import HeadingBlock from '@/registry/new-york/components/ui/typography/heading-block';
-import { ButtonSpecial } from '@/registry/new-york/components/ui/buttons/button-special';
+import { ButtonPulse } from '@/registry/new-york/components/ui/buttons/button-pulse';
+import { ButtonGradient } from '@/registry/new-york/components/ui/buttons/button-gradient';
 
 export function HeroFullscreenImage() {
     return (
@@ -33,16 +34,15 @@ export function HeroFullscreenImage() {
                 />
 
                 <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-                    <ButtonSpecial specialVariant="pulse">
+                    <ButtonPulse>
                         Explore Gallery
-                    </ButtonSpecial>
-                    <ButtonSpecial
-                        specialVariant="gradient-border"
+                    </ButtonPulse>
+                    <ButtonGradient
                         className="flex items-center gap-1.5"
                     >
                         View Case Study
                         <ArrowRight className="size-4" />
-                    </ButtonSpecial>
+                    </ButtonGradient>
                 </div>
             </div>
         </section>

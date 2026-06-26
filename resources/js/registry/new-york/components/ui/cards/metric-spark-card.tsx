@@ -2,8 +2,11 @@
 
 import * as React from 'react';
 import { cn } from '@/lib/utils';
+import { Card } from '@/components/ui/card';
 
-export interface MetricSparkCardProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface MetricSparkCardProps extends React.ComponentProps<
+    typeof Card
+> {
     title: string;
     value: string;
     trend?: string;
@@ -44,12 +47,12 @@ const MetricSparkCard = React.forwardRef<HTMLDivElement, MetricSparkCardProps>(
             .join(' ');
 
         return (
-            <div
+            <Card
                 ref={ref}
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
                 className={cn(
-                    'relative flex flex-col justify-between overflow-hidden rounded-xl border border-border bg-card p-6 text-card-foreground shadow-md transition-all hover:shadow-lg',
+                    'relative overflow-hidden p-6 shadow-md transition-all hover:shadow-lg',
                     className,
                 )}
                 {...props}
@@ -110,7 +113,7 @@ const MetricSparkCard = React.forwardRef<HTMLDivElement, MetricSparkCardProps>(
 
                     {children && <div className="text-xs">{children}</div>}
                 </div>
-            </div>
+            </Card>
         );
     },
 );

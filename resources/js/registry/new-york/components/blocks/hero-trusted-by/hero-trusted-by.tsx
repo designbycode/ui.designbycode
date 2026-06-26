@@ -3,7 +3,8 @@
 import * as React from 'react';
 import { Award, Globe, Heart, Sparkles, Terminal } from 'lucide-react';
 import HeadingBlock from '@/registry/new-york/components/ui/typography/heading-block';
-import { ButtonSpecial } from '@/registry/new-york/components/ui/buttons/button-special';
+import { ButtonNeon } from '@/registry/new-york/components/ui/buttons/button-neon';
+import { ButtonDraw } from '@/registry/new-york/components/ui/buttons/button-draw';
 import { LogoCloud } from '@/registry/new-york/components/ui/misc/logo-cloud';
 
 export function HeroTrustedBy() {
@@ -31,12 +32,12 @@ export function HeroTrustedBy() {
                 />
 
                 <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
-                    <ButtonSpecial specialVariant="neon">
+                    <ButtonNeon>
                         Book a Demo
-                    </ButtonSpecial>
-                    <ButtonSpecial specialVariant="draw">
+                    </ButtonNeon>
+                    <ButtonDraw>
                         Contact Sales
-                    </ButtonSpecial>
+                    </ButtonDraw>
                 </div>
             </div>
 

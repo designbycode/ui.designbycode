@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { Play, Pause, Monitor, Sparkles } from 'lucide-react';
 import HeadingBlock from '@/registry/new-york/components/ui/typography/heading-block';
-import { ButtonSpecial } from '@/registry/new-york/components/ui/buttons/button-special';
+import { ButtonNeon } from '@/registry/new-york/components/ui/buttons/button-neon';
 import { BrowserMockup } from '@/registry/new-york/components/ui/mockups/browser-mockup';
 
 export function HeroVideoDialog() {
@@ -26,8 +26,7 @@ export function HeroVideoDialog() {
                 />
 
                 <div className="mt-4 flex justify-center">
-                    <ButtonSpecial
-                        specialVariant="neon"
+                    <ButtonNeon
                         onClick={() => setIsPlaying(!isPlaying)}
                         className="flex items-center gap-2"
                     >
@@ -37,7 +36,7 @@ export function HeroVideoDialog() {
                             <Play className="size-4" />
                         )}
                         {isPlaying ? 'Pause Demo' : 'Play Walkthrough'}
-                    </ButtonSpecial>
+                    </ButtonNeon>
                 </div>
             </div>
 

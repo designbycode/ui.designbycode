@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import { cn } from '@/lib/utils';
+import { Card } from '@/components/ui/card';
 
 export interface RevealCardProps extends React.HTMLAttributes<HTMLDivElement> {
     borderColor?: string;
@@ -58,10 +59,10 @@ const RevealCard = React.forwardRef<HTMLDivElement, RevealCardProps>(
                     }}
                 />
 
-                {/* Card body */}
-                <div className="relative flex h-full w-full flex-col rounded-[11px] bg-card/90 p-6 text-card-foreground backdrop-blur-xs">
+                {/* Card body composed with standard Card component */}
+                <Card className="relative flex h-full w-full flex-col rounded-[11px] border-0 bg-card/90 p-6 text-card-foreground shadow-none backdrop-blur-xs">
                     {children}
-                </div>
+                </Card>
             </div>
         );
     },

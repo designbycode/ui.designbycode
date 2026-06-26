@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { Target, Zap, Layout, Shield } from 'lucide-react';
 import HeadingBlock from '@/registry/new-york/components/ui/typography/heading-block';
-import { ButtonSpecial } from '@/registry/new-york/components/ui/buttons/button-special';
+import { ButtonPulse } from '@/registry/new-york/components/ui/buttons/button-pulse';
 import { GlowingCard } from '@/registry/new-york/components/ui/cards/glowing-card';
 
 export function HeroGlowingCards() {
@@ -50,9 +50,9 @@ export function HeroGlowingCards() {
                 />
 
                 <div className="mt-4 flex justify-center">
-                    <ButtonSpecial specialVariant="pulse">
+                    <ButtonPulse>
                         Launch Sandbox
-                    </ButtonSpecial>
+                    </ButtonPulse>
                 </div>
             </div>
 

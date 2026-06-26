@@ -2,8 +2,11 @@
 
 import * as React from 'react';
 import { cn } from '@/lib/utils';
+import { Card } from '@/components/ui/card';
 
-export interface GrainyNoiseCardProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface GrainyNoiseCardProps extends React.ComponentProps<
+    typeof Card
+> {
     noiseOpacity?: number;
     glowColor?: string;
 }
@@ -22,12 +25,12 @@ const GrainyNoiseCard = React.forwardRef<HTMLDivElement, GrainyNoiseCardProps>(
         const [isHovered, setIsHovered] = React.useState(false);
 
         return (
-            <div
+            <Card
                 ref={ref}
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
                 className={cn(
-                    'relative overflow-hidden rounded-2xl border border-border bg-card/75 p-6 shadow-xl backdrop-blur-md transition-all duration-500',
+                    'relative overflow-hidden bg-card/75 p-6 shadow-xl backdrop-blur-md transition-all duration-500',
                     isHovered ? 'scale-[1.01] border-border/80 shadow-2xl' : '',
                     className,
                 )}
@@ -54,7 +57,7 @@ const GrainyNoiseCard = React.forwardRef<HTMLDivElement, GrainyNoiseCardProps>(
                 />
 
                 <div className="relative text-card-foreground">{children}</div>
-            </div>
+            </Card>
         );
     },
 );

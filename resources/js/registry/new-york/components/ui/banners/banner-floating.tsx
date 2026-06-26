@@ -2,6 +2,9 @@ import * as React from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { X } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Card } from '@/components/ui/card';
+
+const MotionCard = motion(Card);
 
 interface BannerFloatingProps extends React.HTMLAttributes<HTMLDivElement> {
     title: string;
@@ -25,6 +28,9 @@ export function BannerFloating({
     ...props
 }: BannerFloatingProps) {
     const [isVisible, setIsVisible] = React.useState(true);
+
+    const { onDrag, onDragStart, onDragEnd, onAnimationStart, ...safeProps } =
+        props as any;
 
     const handleDismiss = () => {
         setIsVisible(false);
@@ -61,17 +67,17 @@ export function BannerFloating({
     return (
         <AnimatePresence>
             {isVisible && (
-                <motion.div
+                <MotionCard
                     initial={animations[position].initial}
                     animate={animations[position].animate}
                     exit={animations[position].exit}
                     transition={{ type: 'spring', stiffness: 260, damping: 20 }}
                     className={cn(
-                        'fixed z-50 rounded-xl border border-border bg-card/95 p-5 shadow-lg backdrop-blur-md select-none',
+                        'fixed z-50 bg-card/95 p-5 shadow-lg backdrop-blur-md select-none',
                         positionClasses[position],
                         className,
                     )}
-                    {...props}
+                    {...safeProps}
                 >
                     <div className="flex items-start gap-4">
                         {icon && (
@@ -104,7 +110,7 @@ export function BannerFloating({
                             <X className="size-4" />
                         </button>
                     </div>
-                </motion.div>
+                </MotionCard>
             )}
         </AnimatePresence>
     );

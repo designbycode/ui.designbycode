@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { cn } from '@/lib/utils';
+import { Card } from '@/components/ui/card';
 
 export interface TimelineItem {
     id: string | number;
@@ -102,7 +103,7 @@ export function TimelineVertical({
                                         : 'w-[calc(100%-4rem)]',
                                 )}
                             >
-                                <div className="rounded-xl border border-border bg-card p-5 shadow-xs transition-all hover:shadow-md">
+                                <Card className="border-border bg-card p-5 shadow-xs transition-all hover:shadow-md">
                                     <div
                                         className={cn(
                                             'flex flex-col gap-1 md:flex-row md:items-baseline md:justify-between',
@@ -125,7 +126,7 @@ export function TimelineVertical({
                                             {item.description}
                                         </div>
                                     )}
-                                </div>
+                                </Card>
                             </div>
                         </div>
                     );

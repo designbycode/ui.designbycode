@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { Code, Server, Database, ArrowRight } from 'lucide-react';
 import HeadingBlock from '@/registry/new-york/components/ui/typography/heading-block';
-import { ButtonSpecial } from '@/registry/new-york/components/ui/buttons/button-special';
+import { ButtonNeon } from '@/registry/new-york/components/ui/buttons/button-neon';
 import { AnimatedTabs } from '@/registry/new-york/components/ui/tabs/animated-tabs';
 import { CodeWindow } from '@/registry/new-york/components/ui/mockups/code-window';
 
@@ -23,7 +23,7 @@ export function HeroTabsShowcase() {
         frontend: {
             title: 'dashboard.tsx',
             lang: 'tsx',
-            code: `import { ButtonSpecial } from '@/components/ui/button';\nimport { HeadingBlock } from '@/components/ui/typography';\n\nexport default function App() {\n    return (\n        <HeadingBlock\n            heading="Compile premium interfaces"\n            description="Built on React 19 & Tailwind v4"\n        >\n            <ButtonSpecial variant="neon">Get Started</ButtonSpecial>\n        </HeadingBlock>\n    );\n}`,
+            code: `import { ButtonNeon } from '@/components/ui/button';\nimport { HeadingBlock } from '@/components/ui/typography';\n\nexport default function App() {\n    return (\n        <HeadingBlock\n            heading="Compile premium interfaces"\n            description="Built on React 19 & Tailwind v4"\n        >\n            <ButtonNeon>Get Started</ButtonNeon>\n        </HeadingBlock>\n    );\n}`,
         },
         backend: {
             title: 'RouteServiceProvider.php',
@@ -54,13 +54,12 @@ export function HeroTabsShowcase() {
                 />
 
                 <div className="mt-4 flex flex-wrap items-center justify-center gap-4">
-                    <ButtonSpecial
-                        specialVariant="neon"
+                    <ButtonNeon
                         className="flex items-center gap-1.5"
                     >
                         Start Building
                         <ArrowRight className="size-4" />
-                    </ButtonSpecial>
+                    </ButtonNeon>
                 </div>
             </div>
 

@@ -3,7 +3,8 @@
 import * as React from 'react';
 import { Sparkles, ArrowRight, Zap } from 'lucide-react';
 import HeadingBlock from '@/registry/new-york/components/ui/typography/heading-block';
-import { ButtonSpecial } from '@/registry/new-york/components/ui/buttons/button-special';
+import { ButtonNeon } from '@/registry/new-york/components/ui/buttons/button-neon';
+import { ButtonGradient } from '@/registry/new-york/components/ui/buttons/button-gradient';
 
 export function HeroGradient() {
     return (
@@ -27,20 +28,18 @@ export function HeroGradient() {
                 />
 
                 <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-                    <ButtonSpecial
-                        specialVariant="neon"
+                    <ButtonNeon
                         className="flex items-center gap-2"
                     >
                         Get Started
                         <ArrowRight className="size-4" />
-                    </ButtonSpecial>
-                    <ButtonSpecial
-                        specialVariant="gradient-border"
+                    </ButtonNeon>
+                    <ButtonGradient
                         className="flex items-center gap-2"
                     >
                         <Zap className="size-4 text-primary" />
                         Explore Components
-                    </ButtonSpecial>
+                    </ButtonGradient>
                 </div>
             </div>
         </section>

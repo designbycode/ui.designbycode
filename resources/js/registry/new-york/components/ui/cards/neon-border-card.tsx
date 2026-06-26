@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import { cn } from '@/lib/utils';
+import { Card } from '@/components/ui/card';
 
 export interface NeonBorderCardProps extends React.HTMLAttributes<HTMLDivElement> {
     duration?: number;
@@ -55,10 +56,10 @@ const NeonBorderCard = React.forwardRef<HTMLDivElement, NeonBorderCardProps>(
                     }
                 />
 
-                {/* Card interior content */}
-                <div className="relative flex h-full w-full flex-col rounded-[11px] bg-card/95 p-6 text-card-foreground backdrop-blur-xs">
+                {/* Card interior content composed with standard Card component */}
+                <Card className="relative flex h-full w-full flex-col rounded-[11px] border-0 bg-card/95 p-6 text-card-foreground shadow-none backdrop-blur-xs">
                     {children}
-                </div>
+                </Card>
             </div>
         );
     },

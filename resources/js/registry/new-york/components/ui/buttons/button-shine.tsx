@@ -1,8 +1,8 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
+import { Button } from '@/components/ui/button';
 
-export interface ButtonShineProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-    children: React.ReactNode;
+export interface ButtonShineProps extends React.ComponentProps<typeof Button> {
     shineColor?: string;
 }
 
@@ -14,9 +14,9 @@ export function ButtonShine({
     ...props
 }: ButtonShineProps) {
     return (
-        <button
+        <Button
             className={cn(
-                'group relative inline-flex cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-primary px-5 py-2.5 text-xs font-semibold text-primary-foreground shadow-sm transition-transform select-none active:scale-95',
+                'group relative overflow-hidden select-none active:scale-95',
                 className,
             )}
             style={style}
@@ -31,7 +31,7 @@ export function ButtonShine({
                 }}
             />
             <span className="relative z-10">{children}</span>
-        </button>
+        </Button>
     );
 }
 

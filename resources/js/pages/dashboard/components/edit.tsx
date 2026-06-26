@@ -117,7 +117,7 @@ export default function EditComponent({
             onSuccess: () => {
                 toast.success('Component updated successfully!');
             },
-            onError: (errs) => {
+            onError: (errs: any) => {
                 const message = Object.values(errs).flat().join(' ');
                 toast.error(message || 'Failed to update component.');
             },
@@ -280,7 +280,7 @@ export default function EditComponent({
                                         {existingCategories.join(', ')}
                                     </p>
                                 )}
-                                <InputError message={errors.categories} />
+                                <InputError message={(errors as any).categories} />
                             </div>
 
                             <div className="grid gap-4 sm:grid-cols-2">
@@ -299,7 +299,7 @@ export default function EditComponent({
                                             )
                                         }
                                     />
-                                    <InputError message={errors.dependencies} />
+                                    <InputError message={(errors as any).dependencies} />
                                 </div>
                                 <div className="space-y-1">
                                     <Label htmlFor="registryDependencies">
@@ -317,7 +317,7 @@ export default function EditComponent({
                                         }
                                     />
                                     <InputError
-                                        message={errors.registryDependencies}
+                                        message={(errors as any).registryDependencies}
                                     />
                                 </div>
                             </div>

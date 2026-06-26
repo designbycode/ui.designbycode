@@ -134,6 +134,7 @@ function FontSelect({
     value,
     onChange,
 }: {
+    kind?: string;
     label: string;
     options: string[];
     value: string;

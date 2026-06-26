@@ -1,6 +1,9 @@
+'use client';
+
 import * as React from 'react';
 import { Star, CheckCircle } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Card } from '@/components/ui/card';
 
 export interface ReviewItem {
     id: string | number;
@@ -15,7 +18,7 @@ export interface ReviewItem {
     tags?: string[];
 }
 
-interface ReviewCardProps extends React.HTMLAttributes<HTMLDivElement> {
+interface ReviewCardProps extends React.ComponentProps<typeof Card> {
     review: ReviewItem;
     showQuoteIcon?: boolean;
 }
@@ -45,9 +48,9 @@ export function ReviewCard({
     };
 
     return (
-        <div
+        <Card
             className={cn(
-                'relative flex flex-col justify-between overflow-hidden rounded-2xl border border-border/80 bg-card/65 p-6 shadow-xs backdrop-blur-md transition-all duration-300 select-none hover:border-primary/20 hover:shadow-md',
+                'relative flex flex-col justify-between overflow-hidden bg-card/65 p-6 backdrop-blur-md transition-all duration-300 select-none hover:border-primary/20 hover:shadow-md',
                 className,
             )}
             {...props}
@@ -64,7 +67,7 @@ export function ReviewCard({
                 <div className="flex items-center justify-between gap-4">
                     {renderStars(review.rating)}
                     {review.verified && (
-                        <span className="inline-flex items-center gap-1 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-2 py-0.5 text-[9px] font-semibold text-emerald-600 dark:text-emerald-400">
+                        <span className="inline-flex items-center gap-1 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-2 py-0.5 text-[9px] font-semibold text-emerald-600">
                             <CheckCircle className="size-2.5 fill-current" />
                             Verified
                         </span>
@@ -125,6 +128,8 @@ export function ReviewCard({
                     ))}
                 </div>
             )}
-        </div>
+        </Card>
     );
 }
+
+export default ReviewCard;

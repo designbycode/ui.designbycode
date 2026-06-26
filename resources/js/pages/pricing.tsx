@@ -51,7 +51,7 @@ export function Pricing() {
             window.Paddle.Checkout.open({
                 ...checkoutData,
                 settings: {
-                    ...checkoutData.settings,
+                    ...(checkoutData.settings as any),
                     displayMode: 'overlay',
                 },
             });

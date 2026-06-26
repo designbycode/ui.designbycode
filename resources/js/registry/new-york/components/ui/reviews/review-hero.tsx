@@ -1,9 +1,12 @@
+'use client';
+
 import * as React from 'react';
 import { Star, CheckCircle } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Card } from '@/components/ui/card';
 import { ReviewItem } from './review-card';
 
-interface ReviewHeroProps extends React.HTMLAttributes<HTMLDivElement> {
+interface ReviewHeroProps extends React.ComponentProps<typeof Card> {
     review: ReviewItem;
 }
 
@@ -27,9 +30,9 @@ export function ReviewHero({ review, className, ...props }: ReviewHeroProps) {
     };
 
     return (
-        <div
+        <Card
             className={cn(
-                'relative mx-auto flex max-w-4xl flex-col justify-between overflow-hidden rounded-3xl border border-border bg-card/45 p-8 shadow-xl backdrop-blur-md select-none md:p-12',
+                'relative mx-auto flex max-w-4xl flex-col justify-between overflow-hidden bg-card/45 p-8 shadow-xl backdrop-blur-md select-none md:p-12',
                 className,
             )}
             {...props}
@@ -48,7 +51,7 @@ export function ReviewHero({ review, className, ...props }: ReviewHeroProps) {
                 <div className="flex items-center gap-4">
                     {renderStars(review.rating)}
                     {review.verified && (
-                        <span className="inline-flex items-center gap-1 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-0.5 text-[10px] font-semibold text-emerald-600 dark:text-emerald-400">
+                        <span className="inline-flex items-center gap-1 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-0.5 text-[10px] font-semibold text-emerald-600">
                             <CheckCircle className="size-3 fill-current" />
                             Verified Customer Feedback
                         </span>
@@ -109,6 +112,8 @@ export function ReviewHero({ review, className, ...props }: ReviewHeroProps) {
                     ))}
                 </div>
             )}
-        </div>
+        </Card>
     );
 }
+
+export default ReviewHero;

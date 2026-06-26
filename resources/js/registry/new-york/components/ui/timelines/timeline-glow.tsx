@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { cn } from '@/lib/utils';
 import { TimelineItem } from './timeline-vertical';
+import { Card } from '@/components/ui/card';
 
 interface TimelineGlowProps extends React.HTMLAttributes<HTMLDivElement> {
     items: TimelineItem[];
@@ -102,7 +103,7 @@ export function TimelineGlow({
                                         : 'w-[calc(100%-4rem)]',
                                 )}
                             >
-                                <div className="group relative rounded-xl border border-border bg-card p-5 shadow-xs transition-all duration-300 hover:border-purple-500/30 hover:shadow-lg">
+                                <Card className="group relative border-border bg-card p-5 shadow-xs transition-all duration-300 hover:border-purple-500/30 hover:shadow-lg">
                                     {/* Ambient card corner glow */}
                                     <div className="pointer-events-none absolute inset-0 rounded-xl bg-linear-to-tr from-indigo-500/0 via-purple-500/0 to-pink-500/0 opacity-0 transition-all duration-500 group-hover:from-indigo-500/5 group-hover:via-purple-500/5 group-hover:to-pink-500/5 group-hover:opacity-100" />
 
@@ -114,7 +115,7 @@ export function TimelineGlow({
                                                 'md:flex-row-reverse',
                                         )}
                                     >
-                                        <h3 className="text-base font-semibold text-foreground transition-colors group-hover:text-purple-500 dark:group-hover:text-purple-400">
+                                        <h3 className="text-base font-semibold text-foreground transition-colors group-hover:text-purple-500">
                                             {item.title}
                                         </h3>
                                         {item.date && (
@@ -128,7 +129,7 @@ export function TimelineGlow({
                                             {item.description}
                                         </div>
                                     )}
-                                </div>
+                                </Card>
                             </div>
                         </div>
                     );

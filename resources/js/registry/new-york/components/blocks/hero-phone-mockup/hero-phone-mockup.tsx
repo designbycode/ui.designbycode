@@ -3,7 +3,8 @@
 import * as React from 'react';
 import { Smartphone, Zap, Sparkles } from 'lucide-react';
 import HeadingBlock from '@/registry/new-york/components/ui/typography/heading-block';
-import { ButtonSpecial } from '@/registry/new-york/components/ui/buttons/button-special';
+import { ButtonNeon } from '@/registry/new-york/components/ui/buttons/button-neon';
+import { ButtonDraw } from '@/registry/new-york/components/ui/buttons/button-draw';
 import { PhoneMockup } from '@/registry/new-york/components/ui/mockups/phone-mockup';
 
 export function HeroPhoneMockup() {
@@ -24,16 +25,15 @@ export function HeroPhoneMockup() {
                 />
 
                 <div className="flex flex-wrap items-center gap-4 pt-2">
-                    <ButtonSpecial
-                        specialVariant="neon"
+                    <ButtonNeon
                         className="flex items-center gap-2"
                     >
                         <Zap className="size-4" />
                         Download App
-                    </ButtonSpecial>
-                    <ButtonSpecial specialVariant="draw">
+                    </ButtonNeon>
+                    <ButtonDraw>
                         View Demo
-                    </ButtonSpecial>
+                    </ButtonDraw>
                 </div>
             </div>
 

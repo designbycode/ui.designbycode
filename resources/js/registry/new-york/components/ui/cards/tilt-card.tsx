@@ -2,8 +2,9 @@
 
 import * as React from 'react';
 import { cn } from '@/lib/utils';
+import { Card } from '@/components/ui/card';
 
-export interface TiltCardProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface TiltCardProps extends React.ComponentProps<typeof Card> {
     maxTilt?: number;
     perspective?: number;
     scale?: number;
@@ -72,13 +73,13 @@ const TiltCard = React.forwardRef<HTMLDivElement, TiltCardProps>(
         };
 
         return (
-            <div
+            <Card
                 ref={resolvedRef}
                 onMouseMove={handleMouseMove}
                 onMouseLeave={handleMouseLeave}
                 style={style}
                 className={cn(
-                    'relative flex flex-col overflow-hidden rounded-xl border border-border/40 bg-card/60 p-6 shadow-md backdrop-blur-xs select-none',
+                    'relative overflow-hidden bg-card/60 p-6 backdrop-blur-xs select-none',
                     className,
                 )}
                 {...props}
@@ -89,7 +90,7 @@ const TiltCard = React.forwardRef<HTMLDivElement, TiltCardProps>(
                     style={glareStyle}
                 />
                 {children}
-            </div>
+            </Card>
         );
     },
 );

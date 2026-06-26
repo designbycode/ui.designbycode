@@ -2,8 +2,9 @@
 
 import * as React from 'react';
 import { cn } from '@/lib/utils';
+import { Card } from '@/components/ui/card';
 
-export interface GlowingCardProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface GlowingCardProps extends React.ComponentProps<typeof Card> {
     glowColor?: string;
 }
 
@@ -33,13 +34,13 @@ const GlowingCard = React.forwardRef<HTMLDivElement, GlowingCardProps>(
         };
 
         return (
-            <div
+            <Card
                 ref={resolvedRef}
                 onMouseMove={handleMouseMove}
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
                 className={cn(
-                    'relative flex flex-col overflow-hidden rounded-xl border border-border/40 bg-card/60 p-6 backdrop-blur-xs transition-all',
+                    'relative overflow-hidden bg-card/60 p-6 backdrop-blur-xs transition-all',
                     className,
                 )}
                 {...props}
@@ -53,7 +54,7 @@ const GlowingCard = React.forwardRef<HTMLDivElement, GlowingCardProps>(
                     }}
                 />
                 {children}
-            </div>
+            </Card>
         );
     },
 );

@@ -2,8 +2,9 @@
 
 import * as React from 'react';
 import { cn } from '@/lib/utils';
+import { Card } from '@/components/ui/card';
 
-export interface ScratchCardProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface ScratchCardProps extends React.ComponentProps<typeof Card> {
     width?: number;
     height?: number;
     overlayColor?: string;
@@ -119,10 +120,10 @@ const ScratchCard = React.forwardRef<HTMLDivElement, ScratchCardProps>(
         };
 
         return (
-            <div
+            <Card
                 ref={resolvedRef}
                 className={cn(
-                    'relative overflow-hidden rounded-xl border border-border bg-card p-6 text-card-foreground shadow-md select-none',
+                    'relative overflow-hidden p-6 shadow-md select-none',
                     className,
                 )}
                 {...props}
@@ -144,7 +145,7 @@ const ScratchCard = React.forwardRef<HTMLDivElement, ScratchCardProps>(
                         className="absolute inset-0 z-20 cursor-crosshair touch-none"
                     />
                 )}
-            </div>
+            </Card>
         );
     },
 );

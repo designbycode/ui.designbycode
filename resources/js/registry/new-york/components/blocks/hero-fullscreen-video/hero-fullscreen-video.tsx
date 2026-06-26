@@ -3,7 +3,8 @@
 import * as React from 'react';
 import { Video as VideoIcon, ArrowRight } from 'lucide-react';
 import HeadingBlock from '@/registry/new-york/components/ui/typography/heading-block';
-import { ButtonSpecial } from '@/registry/new-york/components/ui/buttons/button-special';
+import { ButtonPulse } from '@/registry/new-york/components/ui/buttons/button-pulse';
+import { ButtonDraw } from '@/registry/new-york/components/ui/buttons/button-draw';
 
 export function HeroFullscreenVideo() {
     return (
@@ -40,16 +41,15 @@ export function HeroFullscreenVideo() {
                 />
 
                 <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-                    <ButtonSpecial specialVariant="pulse">
+                    <ButtonPulse>
                         Launch Demo
-                    </ButtonSpecial>
-                    <ButtonSpecial
-                        specialVariant="draw"
+                    </ButtonPulse>
+                    <ButtonDraw
                         className="flex items-center gap-1.5"
                     >
                         View Whitepaper
                         <ArrowRight className="size-4" />
-                    </ButtonSpecial>
+                    </ButtonDraw>
                 </div>
             </div>
         </section>

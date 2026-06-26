@@ -10,6 +10,7 @@ import {
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { TimelineItem } from './timeline-vertical';
+import { Card } from '@/components/ui/card';
 
 interface TimelineCollapsibleProps extends React.HTMLAttributes<HTMLDivElement> {
     items: TimelineItem[];
@@ -69,7 +70,7 @@ export function TimelineCollapsible({
                             return {
                                 ring: 'border-primary bg-primary text-primary-foreground',
                                 labelBg:
-                                    'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20',
+                                    'bg-emerald-500/10 text-emerald-600 border-emerald-500/20',
                                 labelText: item.statusLabel || 'Completed',
                                 icon: <CheckCircle2 className="size-4" />,
                             };
@@ -123,9 +124,9 @@ export function TimelineCollapsible({
 
                             {/* Expandable Premium Glassmorphic Content Card */}
                             <div className="w-[calc(100%-4.5rem)]">
-                                <div
+                                <Card
                                     className={cn(
-                                        'group cursor-pointer rounded-xl border border-border/80 bg-card/60 p-5 shadow-xs backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/20 hover:shadow-md',
+                                        'group cursor-pointer bg-card/60 p-5 shadow-xs backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/20 hover:shadow-md',
                                         isExpanded &&
                                             'translate-y-0 border-primary/30 bg-card/90 shadow-md',
                                     )}
@@ -269,7 +270,7 @@ export function TimelineCollapsible({
                                             </motion.div>
                                         )}
                                     </AnimatePresence>
-                                </div>
+                                </Card>
                             </div>
                         </div>
                     );
