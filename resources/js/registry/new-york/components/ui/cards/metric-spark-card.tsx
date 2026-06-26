@@ -1,0 +1,121 @@
+'use client';
+
+import * as React from 'react';
+import { cn } from '@/lib/utils';
+
+export interface MetricSparkCardProps extends React.HTMLAttributes<HTMLDivElement> {
+    title: string;
+    value: string;
+    trend?: string;
+    trendType?: 'positive' | 'negative' | 'neutral';
+    dataPoints?: number[];
+}
+
+const MetricSparkCard = React.forwardRef<HTMLDivElement, MetricSparkCardProps>(
+    (
+        {
+            className,
+            title,
+            value,
+            trend,
+            trendType = 'positive',
+            dataPoints = [10, 22, 18, 35, 30, 45, 40, 55],
+            children,
+            ...props
+        },
+        ref,
+    ) => {
+        const [isHovered, setIsHovered] = React.useState(false);
+
+        // SVG Sparkline path generation
+        const svgWidth = 140;
+        const svgHeight = 40;
+        const maxVal = Math.max(...dataPoints);
+        const minVal = Math.min(...dataPoints);
+        const range = maxVal - minVal || 1;
+
+        const points = dataPoints
+            .map((val, idx) => {
+                const x = (idx / (dataPoints.length - 1)) * svgWidth;
+                const y =
+                    svgHeight - 4 - ((val - minVal) / range) * (svgHeight - 8);
+                return `${x},${y}`;
+            })
+            .join(' ');
+
+        return (
+            <div
+                ref={ref}
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+                className={cn(
+                    'relative flex flex-col justify-between overflow-hidden rounded-xl border border-border bg-card p-6 text-card-foreground shadow-md transition-all hover:shadow-lg',
+                    className,
+                )}
+                {...props}
+            >
+                <div className="flex items-start justify-between">
+                    <div className="space-y-1">
+                        <span className="text-xs font-semibold tracking-wider text-muted-foreground uppercase">
+                            {title}
+                        </span>
+                        <div className="font-mono text-2xl font-black tracking-tight">
+                            {value}
+                        </div>
+                    </div>
+
+                    {trend && (
+                        <span
+                            className={cn(
+                                'rounded px-2 py-0.5 font-mono text-[10px] font-bold tracking-wide',
+                                trendType === 'positive' &&
+                                    'border border-primary/20 bg-primary/10 text-primary',
+                                trendType === 'negative' &&
+                                    'border border-destructive/20 bg-destructive/10 text-destructive',
+                                trendType === 'neutral' &&
+                                    'bg-muted text-muted-foreground',
+                            )}
+                        >
+                            {trend}
+                        </span>
+                    )}
+                </div>
+
+                <div className="mt-6 flex items-center justify-between gap-4">
+                    {/* Glowing Sparkline visualization */}
+                    <div className="relative">
+                        <svg
+                            width={svgWidth}
+                            height={svgHeight}
+                            className="overflow-visible"
+                        >
+                            <polyline
+                                fill="none"
+                                stroke="var(--color-primary)"
+                                strokeWidth="2.5"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                points={points}
+                                className="transition-all duration-500 ease-out"
+                                style={{
+                                    strokeDasharray: isHovered ? '0' : '300',
+                                    strokeDashoffset: isHovered ? '0' : '10',
+                                    filter: isHovered
+                                        ? 'drop-shadow(0 0 4px var(--color-primary))'
+                                        : 'none',
+                                }}
+                            />
+                        </svg>
+                    </div>
+
+                    {children && <div className="text-xs">{children}</div>}
+                </div>
+            </div>
+        );
+    },
+);
+
+MetricSparkCard.displayName = 'MetricSparkCard';
+
+export { MetricSparkCard };
+export default MetricSparkCard;

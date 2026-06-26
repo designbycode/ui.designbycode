@@ -63,6 +63,7 @@
     --color-sidebar-ring: var(--sidebar-ring);
     --animate-glow-conic: glow-conic 3s linear infinite;
     --animate-shine: shine 1s ease-in-out;
+    --animate-marquee: marquee var(--speed, 30s) linear infinite;
 
     @keyframes shine {
         0% {
@@ -70,6 +71,15 @@
         }
         100% {
             transform: translateX(100%);
+        }
+    }
+
+    @keyframes marquee {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(-50%);
         }
     }
 }

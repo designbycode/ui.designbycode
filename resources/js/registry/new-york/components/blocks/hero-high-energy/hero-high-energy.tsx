@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { Sparkles, Zap, Sliders, Layers, ArrowRight } from 'lucide-react';
 import HeadingBlock from '@/registry/new-york/components/ui/typography/heading-block';
+import Wrapper from '@/registry/new-york/components/ui/misc/wrapper';
 
 const HIGHLIGHT_IMAGES = [
     {
@@ -36,7 +37,7 @@ export function HeroHighEnergyImpact() {
             {/* Decorative Neon Header Ribbons */}
             <div className="absolute top-0 left-0 h-[3px] w-full bg-gradient-to-r from-chart-4 via-chart-1 to-chart-3 opacity-60" />
 
-            <div className="relative z-10 mx-auto max-w-7xl px-6">
+            <Wrapper className="relative z-10">
                 <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12">
                     {/* Left Block: Ultra-dense Typography and Interactive Controller */}
                     <div className="space-y-8 text-left lg:col-span-7">
@@ -267,7 +268,7 @@ export function HeroHighEnergyImpact() {
                         </div>
                     </div>
                 </div>
-            </div>
+            </Wrapper>
         </section>
     );
 }

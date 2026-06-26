@@ -1,1 +1,0 @@
-var e={"registry:font":`font`,"registry:style":`style`,"registry:hook":`hook`,"registry:ui":`ui`,"registry:lib":`lib`,"registry:block":`block`,"registry:component":`component`,"registry:page":`page`,"registry:file":`file`,"registry:base":`base`,"registry:item":`item`,"registry:theme":`theme`};export{e as t};

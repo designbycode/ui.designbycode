@@ -2361,6 +2361,7 @@ export default HeroGlowingCards;
                 ],
                 'registryDependencies' => [
                     'https://ui.test/r/heading-block.json',
+                    'https://ui.test/r/wrapper.json',
                 ],
                 'files' => [
                     [
@@ -2371,6 +2372,7 @@ export default HeroGlowingCards;
 import React, { useState } from \'react\';
 import { Sparkles, Zap, Sliders, Layers, ArrowRight } from \'lucide-react\';
 import HeadingBlock from \'@/registry/new-york/components/ui/typography/heading-block\';
+import Wrapper from \'@/registry/new-york/components/ui/misc/wrapper\';
 
 const HIGHLIGHT_IMAGES = [
     {
@@ -2404,7 +2406,7 @@ export function HeroHighEnergyImpact() {
             {/* Decorative Neon Header Ribbons */}
             <div className="absolute top-0 left-0 h-[3px] w-full bg-gradient-to-r from-chart-4 via-chart-1 to-chart-3 opacity-60" />
 
-            <div className="relative z-10 mx-auto max-w-7xl px-6">
+            <Wrapper className="relative z-10">
                 <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12">
                     {/* Left Block: Ultra-dense Typography and Interactive Controller */}
                     <div className="space-y-8 text-left lg:col-span-7">
@@ -2635,7 +2637,7 @@ export function HeroHighEnergyImpact() {
                         </div>
                     </div>
                 </div>
-            </div>
+            </Wrapper>
         </section>
     );
 }
@@ -4339,7 +4341,8 @@ export function InputsGallery() {
                             Password Input
                         </CardTitle>
                         <CardDescription className="text-xs">
-                            A secure password input field with a toggleable visibility eye icon.
+                            A secure password input field with a toggleable
+                            visibility eye icon.
                         </CardDescription>
                     </CardHeader>
                     <CardContent className="flex flex-1 flex-col justify-center space-y-3 pb-6">
@@ -11247,6 +11250,677 @@ export { ANIMATIONS };
                 'theme' => null,
             ],
             [
+                'name' => 'banner-expandable',
+                'type' => 'registry:ui',
+                'title' => 'Banner Expandable',
+                'description' => 'A collapsible header banner that expands vertically to reveal rich release logs or details.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'motion',
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                    'https://ui.test/r/wrapper.json',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/banners/banner-expandable.tsx',
+                        'type' => 'registry:ui',
+                        'content' => 'import * as React from \'react\';
+import { motion, AnimatePresence } from \'motion/react\';
+import { X, ChevronDown } from \'lucide-react\';
+import { cn } from \'@/lib/utils\';
+import Wrapper from \'@/registry/new-york/components/ui/misc/wrapper\';
+
+interface BannerExpandableProps extends React.HTMLAttributes<HTMLDivElement> {
+    title: string;
+    description: React.ReactNode;
+    badgeLabel?: string;
+    onClose?: () => void;
+}
+
+export function BannerExpandable({
+    title,
+    description,
+    badgeLabel,
+    onClose,
+    className,
+    ...props
+}: BannerExpandableProps) {
+    const [isExpanded, setIsExpanded] = React.useState(false);
+    const [isVisible, setIsVisible] = React.useState(true);
+
+    if (!isVisible) return null;
+
+    return (
+        <div
+            className={cn(
+                \'relative w-full border-b border-border bg-card/65 backdrop-blur-md transition-all duration-350 select-none\',
+                isExpanded && \'border-border/80 bg-card shadow-md\',
+                className,
+            )}
+            {...props}
+        >
+            <Wrapper className="flex flex-col justify-between gap-3 py-3.5 text-xs md:flex-row md:items-center">
+                {/* Header Section */}
+                <div className="flex min-w-0 flex-1 items-center gap-3">
+                    {badgeLabel && (
+                        <span className="shrink-0 rounded-full border border-primary/20 bg-primary/10 px-2.5 py-0.5 text-[10px] font-bold tracking-wide text-primary uppercase">
+                            {badgeLabel}
+                        </span>
+                    )}
+                    <span className="cursor-default truncate font-bold text-foreground select-text">
+                        {title}
+                    </span>
+                    <button
+                        onClick={() => setIsExpanded(!isExpanded)}
+                        className="ml-1 inline-flex shrink-0 cursor-pointer items-center gap-1 border-0 bg-transparent font-semibold text-primary transition-all hover:text-primary/95 hover:underline"
+                    >
+                        {isExpanded ? \'Show Less\' : \'Learn More\'}
+                        <ChevronDown
+                            className={cn(
+                                \'size-3.5 transition-transform duration-200\',
+                                isExpanded && \'rotate-180 text-primary\',
+                            )}
+                        />
+                    </button>
+                </div>
+
+                {/* Dismiss Button */}
+                <div className="flex items-center justify-end gap-2">
+                    <button
+                        onClick={() => {
+                            setIsVisible(false);
+                            if (onClose) onClose();
+                        }}
+                        className="shrink-0 cursor-pointer rounded-lg p-1 text-muted-foreground/70 transition-all hover:bg-muted hover:text-foreground"
+                    >
+                        <X className="size-4" />
+                    </button>
+                </div>
+            </Wrapper>
+
+            {/* Expand Panel */}
+            <AnimatePresence initial={false}>
+                {isExpanded && (
+                    <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: \'auto\', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.25, ease: \'easeInOut\' }}
+                        className="overflow-hidden border-t border-border/50 bg-muted/20"
+                    >
+                        <Wrapper className="py-5 text-xs leading-relaxed text-muted-foreground">
+                            {description}
+                        </Wrapper>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+        </div>
+    );
+}
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'banners',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'banners',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'banner-floating',
+                'type' => 'registry:ui',
+                'title' => 'Banner Floating',
+                'description' => 'A floating dismissible card banner layout with entry and exit spring motion transitions.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'motion',
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/banners/banner-floating.tsx',
+                        'type' => 'registry:ui',
+                        'content' => 'import * as React from \'react\';
+import { motion, AnimatePresence } from \'motion/react\';
+import { X } from \'lucide-react\';
+import { cn } from \'@/lib/utils\';
+
+interface BannerFloatingProps extends React.HTMLAttributes<HTMLDivElement> {
+    title: string;
+    description: string;
+    actionLabel?: string;
+    onActionClick?: () => void;
+    onClose?: () => void;
+    position?: \'bottom-right\' | \'bottom-left\' | \'top-center\';
+    icon?: React.ReactNode;
+}
+
+export function BannerFloating({
+    title,
+    description,
+    actionLabel,
+    onActionClick,
+    onClose,
+    position = \'bottom-right\',
+    icon,
+    className,
+    ...props
+}: BannerFloatingProps) {
+    const [isVisible, setIsVisible] = React.useState(true);
+
+    const handleDismiss = () => {
+        setIsVisible(false);
+        if (onClose) {
+            onClose();
+        }
+    };
+
+    const positionClasses = {
+        \'bottom-right\': \'bottom-6 right-6 md:max-w-md\',
+        \'bottom-left\': \'bottom-6 left-6 md:max-w-md\',
+        \'top-center\':
+            \'top-6 left-1/2 -translate-x-1/2 md:max-w-xl w-[calc(100%-2rem)]\',
+    };
+
+    const animations = {
+        \'bottom-right\': {
+            initial: { opacity: 0, y: 50, scale: 0.95 },
+            animate: { opacity: 1, y: 0, scale: 1 },
+            exit: { opacity: 0, y: 20, scale: 0.95 },
+        },
+        \'bottom-left\': {
+            initial: { opacity: 0, y: 50, scale: 0.95 },
+            animate: { opacity: 1, y: 0, scale: 1 },
+            exit: { opacity: 0, y: 20, scale: 0.95 },
+        },
+        \'top-center\': {
+            initial: { opacity: 0, y: -50, scale: 0.95 },
+            animate: { opacity: 1, y: 0, scale: 1 },
+            exit: { opacity: 0, y: -20, scale: 0.95 },
+        },
+    };
+
+    return (
+        <AnimatePresence>
+            {isVisible && (
+                <motion.div
+                    initial={animations[position].initial}
+                    animate={animations[position].animate}
+                    exit={animations[position].exit}
+                    transition={{ type: \'spring\', stiffness: 260, damping: 20 }}
+                    className={cn(
+                        \'fixed z-50 rounded-xl border border-border bg-card/95 p-5 shadow-lg backdrop-blur-md select-none\',
+                        positionClasses[position],
+                        className,
+                    )}
+                    {...props}
+                >
+                    <div className="flex items-start gap-4">
+                        {icon && (
+                            <div className="flex size-9 shrink-0 items-center justify-center rounded-lg border border-border/40 bg-muted text-foreground">
+                                {icon}
+                            </div>
+                        )}
+                        <div className="flex-1 space-y-1">
+                            <h4 className="text-sm font-bold tracking-tight text-foreground">
+                                {title}
+                            </h4>
+                            <p className="text-xs leading-relaxed text-muted-foreground">
+                                {description}
+                            </p>
+                            {actionLabel && (
+                                <div className="pt-2">
+                                    <button
+                                        onClick={onActionClick}
+                                        className="inline-flex h-7 cursor-pointer items-center justify-center rounded-md bg-primary px-3 text-[11px] font-semibold text-primary-foreground shadow-xs transition-colors hover:bg-primary/95 active:scale-95"
+                                    >
+                                        {actionLabel}
+                                    </button>
+                                </div>
+                            )}
+                        </div>
+                        <button
+                            onClick={handleDismiss}
+                            className="cursor-pointer rounded-lg p-1.5 text-muted-foreground/70 transition-all hover:bg-muted hover:text-foreground"
+                        >
+                            <X className="size-4" />
+                        </button>
+                    </div>
+                </motion.div>
+            )}
+        </AnimatePresence>
+    );
+}
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'banners',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'banners',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'banner-glow',
+                'type' => 'registry:ui',
+                'title' => 'Banner Glow',
+                'description' => 'A premium launch announcement bar styled with animated glowing neon gradient borders.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/banners/banner-glow.tsx',
+                        'type' => 'registry:ui',
+                        'content' => 'import * as React from \'react\';
+import { X, Sparkles } from \'lucide-react\';
+import { cn } from \'@/lib/utils\';
+
+interface BannerGlowProps extends React.HTMLAttributes<HTMLDivElement> {
+    message: string;
+    actionLabel?: string;
+    onActionClick?: () => void;
+    onClose?: () => void;
+}
+
+export function BannerGlow({
+    message,
+    actionLabel,
+    onActionClick,
+    onClose,
+    className,
+    ...props
+}: BannerGlowProps) {
+    const [isVisible, setIsVisible] = React.useState(true);
+
+    if (!isVisible) return null;
+
+    return (
+        <div
+            className={cn(
+                \'relative flex w-full items-center justify-between gap-4 overflow-hidden border-b border-border/80 bg-card px-4 py-3 shadow-sm select-none\',
+                className,
+            )}
+            {...props}
+        >
+            {/* Animated background glow tracks */}
+            <div className="pointer-events-none absolute inset-0 bg-linear-to-r from-violet-500/8 via-pink-500/8 to-indigo-500/8" />
+
+            {/* Bottom glowing line edge */}
+            <div className="pointer-events-none absolute right-0 bottom-0 left-0 h-[1.5px] animate-pulse bg-linear-to-r from-violet-500 via-pink-500 to-indigo-500" />
+
+            <div className="relative z-10 flex flex-1 flex-wrap items-center justify-center gap-x-3 gap-y-1 text-xs">
+                <span className="inline-flex items-center gap-1.5 text-center font-semibold text-foreground">
+                    <Sparkles className="size-3.5 shrink-0 animate-pulse text-pink-500" />
+                    {message}
+                </span>
+                {actionLabel && (
+                    <button
+                        onClick={onActionClick}
+                        className="inline-flex h-6 cursor-pointer items-center justify-center rounded-md border border-pink-500/20 bg-linear-to-r from-violet-600 to-pink-600 px-3 text-[10px] font-bold text-white shadow-md transition-all hover:brightness-110 active:scale-95"
+                    >
+                        {actionLabel}
+                    </button>
+                )}
+            </div>
+
+            <button
+                onClick={() => {
+                    setIsVisible(false);
+                    if (onClose) onClose();
+                }}
+                className="relative z-10 shrink-0 cursor-pointer rounded-lg p-1 text-muted-foreground/70 transition-all hover:bg-muted hover:text-foreground"
+            >
+                <X className="size-4" />
+            </button>
+        </div>
+    );
+}
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'banners',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'banners',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'banner-sliding',
+                'type' => 'registry:ui',
+                'title' => 'Banner Sliding',
+                'description' => 'A rotating carousel announcement bar sliding automatically through multiple marketing steps.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'motion',
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/banners/banner-sliding.tsx',
+                        'type' => 'registry:ui',
+                        'content' => 'import * as React from \'react\';
+import { motion, AnimatePresence } from \'motion/react\';
+import { ChevronLeft, ChevronRight } from \'lucide-react\';
+import { cn } from \'@/lib/utils\';
+
+interface SlidingMessage {
+    id: string | number;
+    text: string;
+    actionLabel?: string;
+    onActionClick?: () => void;
+}
+
+interface BannerSlidingProps extends React.HTMLAttributes<HTMLDivElement> {
+    messages: SlidingMessage[];
+    interval?: number; // ms, default 4000
+    transitionType?: \'slide-horizontal\' | \'fade\';
+}
+
+export function BannerSliding({
+    messages,
+    interval = 4500,
+    transitionType = \'slide-horizontal\',
+    className,
+    ...props
+}: BannerSlidingProps) {
+    const [index, setIndex] = React.useState(0);
+    const [isHovered, setIsHovered] = React.useState(false);
+
+    React.useEffect(() => {
+        if (isHovered || messages.length <= 1) return;
+        const timer = setInterval(() => {
+            setIndex((prev) => (prev + 1) % messages.length);
+        }, interval);
+        return () => clearInterval(timer);
+    }, [isHovered, messages.length, interval]);
+
+    if (messages.length === 0) return null;
+
+    const currentMessage = messages[index];
+
+    // Slide horizontal variables
+    const slideVariants = {
+        initial: {
+            opacity: 0,
+            x: transitionType === \'slide-horizontal\' ? 30 : 0,
+        },
+        animate: { opacity: 1, x: 0 },
+        exit: {
+            opacity: 0,
+            x: transitionType === \'slide-horizontal\' ? -30 : 0,
+        },
+    };
+
+    const handlePrev = () => {
+        setIndex((prev) => (prev === 0 ? messages.length - 1 : prev - 1));
+    };
+
+    const handleNext = () => {
+        setIndex((prev) => (prev + 1) % messages.length);
+    };
+
+    return (
+        <div
+            className={cn(
+                \'group relative flex w-full items-center justify-between gap-4 border-b border-border bg-muted px-8 py-2.5 text-xs font-semibold text-foreground select-none\',
+                className,
+            )}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            {...props}
+        >
+            {/* Nav Prev Button */}
+            {messages.length > 1 && (
+                <button
+                    onClick={handlePrev}
+                    className="absolute top-1/2 left-2 z-10 flex size-6 -translate-y-1/2 cursor-pointer items-center justify-center rounded-md border border-transparent p-1 text-muted-foreground/60 opacity-0 transition-all group-hover:opacity-100 hover:border-border hover:bg-background hover:text-foreground"
+                >
+                    <ChevronLeft className="size-3.5" />
+                </button>
+            )}
+
+            {/* Sliding Content */}
+            <div className="flex min-h-6 flex-1 items-center justify-center overflow-hidden">
+                <AnimatePresence mode="wait">
+                    <motion.div
+                        key={index}
+                        variants={slideVariants}
+                        initial="initial"
+                        animate="animate"
+                        exit="exit"
+                        transition={{ duration: 0.3, ease: \'easeInOut\' }}
+                        className="flex flex-wrap items-center justify-center gap-x-2 gap-y-0.5 px-4 text-center"
+                    >
+                        <span>{currentMessage.text}</span>
+                        {currentMessage.actionLabel && (
+                            <button
+                                onClick={currentMessage.onActionClick}
+                                className="inline-flex cursor-pointer items-center gap-0.5 font-bold text-primary underline hover:text-primary/95"
+                            >
+                                {currentMessage.actionLabel}
+                            </button>
+                        )}
+                    </motion.div>
+                </AnimatePresence>
+            </div>
+
+            {/* Nav Next Button */}
+            {messages.length > 1 && (
+                <button
+                    onClick={handleNext}
+                    className="absolute top-1/2 right-2 z-10 flex size-6 -translate-y-1/2 cursor-pointer items-center justify-center rounded-md border border-transparent p-1 text-muted-foreground/60 opacity-0 transition-all group-hover:opacity-100 hover:border-border hover:bg-background hover:text-foreground"
+                >
+                    <ChevronRight className="size-3.5" />
+                </button>
+            )}
+        </div>
+    );
+}
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'banners',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'banners',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'banner-sticky',
+                'type' => 'registry:ui',
+                'title' => 'Banner Sticky',
+                'description' => 'A top-pinned sticky announcement bar featuring click action triggers and custom dismiss controls.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/banners/banner-sticky.tsx',
+                        'type' => 'registry:ui',
+                        'content' => 'import * as React from \'react\';
+import { X, ArrowRight } from \'lucide-react\';
+import { cn } from \'@/lib/utils\';
+
+interface BannerStickyProps extends React.HTMLAttributes<HTMLDivElement> {
+    message: string;
+    actionLabel?: string;
+    onActionClick?: () => void;
+    onClose?: () => void;
+    sticky?: boolean;
+}
+
+export function BannerSticky({
+    message,
+    actionLabel,
+    onActionClick,
+    onClose,
+    sticky = true,
+    className,
+    ...props
+}: BannerStickyProps) {
+    const [isVisible, setIsVisible] = React.useState(true);
+
+    if (!isVisible) return null;
+
+    return (
+        <div
+            className={cn(
+                \'flex w-full items-center justify-between gap-4 border-b border-border/80 bg-linear-to-r from-primary/10 via-primary/5 to-background px-4 py-3 select-none\',
+                sticky && \'sticky top-0 z-45\',
+                className,
+            )}
+            {...props}
+        >
+            <div className="flex flex-1 flex-wrap items-center justify-center gap-x-3 gap-y-1 text-xs">
+                <span className="text-center font-semibold text-foreground">
+                    {message}
+                </span>
+                {actionLabel && (
+                    <button
+                        onClick={onActionClick}
+                        className="group inline-flex cursor-pointer items-center gap-1 text-xs font-bold text-primary transition-all hover:text-primary/95 hover:underline"
+                    >
+                        {actionLabel}
+                        <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-0.5" />
+                    </button>
+                )}
+            </div>
+
+            <button
+                onClick={() => {
+                    setIsVisible(false);
+                    if (onClose) onClose();
+                }}
+                className="shrink-0 cursor-pointer rounded-lg p-1 text-muted-foreground/70 transition-all hover:bg-muted hover:text-foreground"
+            >
+                <X className="size-4" />
+            </button>
+        </div>
+    );
+}
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'banners',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'banners',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
                 'name' => 'button-magnetic',
                 'type' => 'registry:ui',
                 'title' => 'Button Magnetic',
@@ -12265,6 +12939,281 @@ export { PixelCanvas, pixelCanvasVariants };
                 'theme' => null,
             ],
             [
+                'name' => 'expandable-card',
+                'type' => 'registry:ui',
+                'title' => 'Expandable Card',
+                'description' => 'A card with smooth layout-animated accordion-style expansions powered by Framer Motion.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'motion',
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/cards/expandable-card.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '\'use client\';
+
+import * as React from \'react\';
+import { motion, AnimatePresence } from \'motion/react\';
+import { ChevronDown } from \'lucide-react\';
+import { cn } from \'@/lib/utils\';
+
+export interface ExpandableCardProps extends React.HTMLAttributes<HTMLDivElement> {
+    title: string;
+    description?: string;
+    expandedContent?: React.ReactNode;
+    defaultExpanded?: boolean;
+}
+
+const ExpandableCard = React.forwardRef<HTMLDivElement, ExpandableCardProps>(
+    (
+        {
+            className,
+            title,
+            description,
+            expandedContent,
+            defaultExpanded = false,
+            children,
+            ...props
+        },
+        ref,
+    ) => {
+        const [isExpanded, setIsExpanded] = React.useState(defaultExpanded);
+
+        const {
+            onDrag,
+            onDragStart,
+            onDragEnd,
+            onAnimationStart,
+            ...safeProps
+        } = props as any;
+
+        return (
+            <motion.div
+                layout
+                ref={ref}
+                className={cn(
+                    \'relative flex flex-col overflow-hidden rounded-xl border border-border bg-card p-6 text-card-foreground shadow-md transition-shadow hover:shadow-lg\',
+                    className,
+                )}
+                {...safeProps}
+            >
+                {/* Header section always visible */}
+                <div
+                    onClick={() => setIsExpanded(!isExpanded)}
+                    className="flex cursor-pointer items-start justify-between gap-4 select-none"
+                >
+                    <div className="space-y-1">
+                        <motion.h3
+                            layout="position"
+                            className="text-lg font-bold tracking-tight"
+                        >
+                            {title}
+                        </motion.h3>
+                        {description && (
+                            <motion.p
+                                layout="position"
+                                className="text-sm text-muted-foreground"
+                            >
+                                {description}
+                            </motion.p>
+                        )}
+                    </div>
+                    <motion.div
+                        layout
+                        animate={{ rotate: isExpanded ? 180 : 0 }}
+                        transition={{ duration: 0.2 }}
+                        className="rounded-full p-1.5 text-muted-foreground transition-colors hover:bg-muted"
+                    >
+                        <ChevronDown className="h-4 w-4" />
+                    </motion.div>
+                </div>
+
+                {/* Default layout children */}
+                {children && (
+                    <motion.div layout="position" className="mt-4">
+                        {children}
+                    </motion.div>
+                )}
+
+                {/* Expanded content section */}
+                <AnimatePresence initial={false}>
+                    {isExpanded && expandedContent && (
+                        <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: \'auto\', opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.3, ease: \'easeInOut\' }}
+                            className="overflow-hidden"
+                        >
+                            <div className="mt-4 border-t border-border/40 pt-4 text-sm text-muted-foreground">
+                                {expandedContent}
+                            </div>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
+            </motion.div>
+        );
+    },
+);
+
+ExpandableCard.displayName = \'ExpandableCard\';
+
+export { ExpandableCard };
+export default ExpandableCard;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'cards',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'cards',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'glass-glare-card',
+                'type' => 'registry:ui',
+                'title' => 'Glass Glare Card',
+                'description' => 'A premium frosted glass layout featuring realistic cursor-following glare reflections.',
+                'author' => 'designbycode',
+                'dependencies' => [
+
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/cards/glass-glare-card.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '\'use client\';
+
+import * as React from \'react\';
+import { cn } from \'@/lib/utils\';
+
+export interface GlassGlareCardProps extends React.HTMLAttributes<HTMLDivElement> {
+    glareColor?: string;
+    opacity?: number;
+}
+
+const GlassGlareCard = React.forwardRef<HTMLDivElement, GlassGlareCardProps>(
+    (
+        {
+            className,
+            children,
+            glareColor = \'rgba(255, 255, 255, 0.15)\',
+            opacity = 0.2,
+            ...props
+        },
+        ref,
+    ) => {
+        const localRef = React.useRef<HTMLDivElement>(null);
+        const resolvedRef = (ref ||
+            localRef) as React.RefObject<HTMLDivElement | null>;
+        const [glarePos, setGlarePos] = React.useState({ x: 50, y: 50 });
+        const [isHovered, setIsHovered] = React.useState(false);
+
+        const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+            const card = resolvedRef.current;
+            if (!card) return;
+            const rect = card.getBoundingClientRect();
+            const x = ((e.clientX - rect.left) / rect.width) * 100;
+            const y = ((e.clientY - rect.top) / rect.height) * 100;
+            setGlarePos({ x, y });
+        };
+
+        return (
+            <div
+                ref={resolvedRef}
+                onMouseMove={handleMouseMove}
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+                className={cn(
+                    \'relative overflow-hidden rounded-2xl border border-border bg-card/40 p-6 shadow-2xl backdrop-blur-md transition-all duration-300\',
+                    className,
+                )}
+                {...props}
+            >
+                {/* Dynamic Glare Overlay */}
+                <div
+                    className="pointer-events-none absolute inset-0 -z-10 transition-opacity duration-300"
+                    style={{
+                        background: `radial-gradient(circle at ${glarePos.x}% ${glarePos.y}%, ${glareColor}, transparent 50%)`,
+                        opacity: isHovered ? opacity : 0,
+                    }}
+                />
+
+                {/* Linear Shine overlay */}
+                <div
+                    className="pointer-events-none absolute inset-0 -z-10 transition-opacity duration-500"
+                    style={{
+                        background: `linear-gradient(${135 + (glarePos.x - 50) / 2}deg, transparent 40%, rgba(255, 255, 255, 0.08) 50%, transparent 60%)`,
+                        opacity: isHovered ? 1 : 0,
+                    }}
+                />
+
+                <div className="relative z-10 text-foreground">{children}</div>
+            </div>
+        );
+    },
+);
+
+GlassGlareCard.displayName = \'GlassGlareCard\';
+
+export { GlassGlareCard };
+export default GlassGlareCard;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'cards',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'cards',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
                 'name' => 'glowing-card',
                 'type' => 'registry:ui',
                 'title' => 'Glowing Card',
@@ -12365,6 +13314,3879 @@ export default GlowingCard;
                 'docs' => null,
                 'categories' => [
                     'cards',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'grainy-noise-card',
+                'type' => 'registry:ui',
+                'title' => 'Grainy Noise Card',
+                'description' => 'A card applying textured frosted glassmorphism overlays with glowing color backlights.',
+                'author' => 'designbycode',
+                'dependencies' => [
+
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/cards/grainy-noise-card.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '\'use client\';
+
+import * as React from \'react\';
+import { cn } from \'@/lib/utils\';
+
+export interface GrainyNoiseCardProps extends React.HTMLAttributes<HTMLDivElement> {
+    noiseOpacity?: number;
+    glowColor?: string;
+}
+
+const GrainyNoiseCard = React.forwardRef<HTMLDivElement, GrainyNoiseCardProps>(
+    (
+        {
+            className,
+            children,
+            noiseOpacity = 0.04,
+            glowColor = \'var(--color-primary)\',
+            ...props
+        },
+        ref,
+    ) => {
+        const [isHovered, setIsHovered] = React.useState(false);
+
+        return (
+            <div
+                ref={ref}
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+                className={cn(
+                    \'relative overflow-hidden rounded-2xl border border-border bg-card/75 p-6 shadow-xl backdrop-blur-md transition-all duration-500\',
+                    isHovered ? \'scale-[1.01] border-border/80 shadow-2xl\' : \'\',
+                    className,
+                )}
+                {...props}
+            >
+                {/* SVG Grain/Noise Filter Overlay */}
+                <div
+                    className="pointer-events-none absolute inset-0 -z-10 mix-blend-overlay transition-opacity duration-300"
+                    style={{
+                        opacity: noiseOpacity,
+                        backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.8\' numOctaves=\'3\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\'/%3E%3C/svg%3E")`,
+                    }}
+                />
+
+                {/* Glowing Soft Backdrop Accent */}
+                <div
+                    className="pointer-events-none absolute -top-20 -right-20 -z-20 size-48 rounded-full opacity-20 blur-3xl transition-all duration-700"
+                    style={{
+                        background: glowColor,
+                        transform: isHovered
+                            ? \'scale(1.3) translate3d(-10px, 10px, 0)\'
+                            : \'scale(1) translate3d(0, 0, 0)\',
+                    }}
+                />
+
+                <div className="relative text-card-foreground">{children}</div>
+            </div>
+        );
+    },
+);
+
+GrainyNoiseCard.displayName = \'GrainyNoiseCard\';
+
+export { GrainyNoiseCard };
+export default GrainyNoiseCard;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'cards',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'cards',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'magnetic-card',
+                'type' => 'registry:ui',
+                'title' => 'Magnetic Card',
+                'description' => 'A tactile card that translates physically towards the cursor position on hover.',
+                'author' => 'designbycode',
+                'dependencies' => [
+
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/cards/magnetic-card.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '\'use client\';
+
+import * as React from \'react\';
+import { cn } from \'@/lib/utils\';
+
+export interface MagneticCardProps extends React.HTMLAttributes<HTMLDivElement> {
+    strength?: number;
+}
+
+const MagneticCard = React.forwardRef<HTMLDivElement, MagneticCardProps>(
+    ({ className, children, strength = 15, ...props }, ref) => {
+        const localRef = React.useRef<HTMLDivElement>(null);
+        const resolvedRef = (ref ||
+            localRef) as React.RefObject<HTMLDivElement | null>;
+        const [style, setStyle] = React.useState<React.CSSProperties>({});
+
+        const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+            const card = resolvedRef.current;
+            if (!card) return;
+
+            const rect = card.getBoundingClientRect();
+            const mouseX = e.clientX - rect.left - rect.width / 2;
+            const mouseY = e.clientY - rect.top - rect.height / 2;
+
+            // Normalized translation coordinates
+            const x = (mouseX / (rect.width / 2)) * strength;
+            const y = (mouseY / (rect.height / 2)) * strength;
+
+            setStyle({
+                transform: `translate3d(${x}px, ${y}px, 0)`,
+                transition: \'transform 0.1s cubic-bezier(0.25, 1, 0.5, 1)\',
+            });
+        };
+
+        const handleMouseLeave = () => {
+            setStyle({
+                transform: \'translate3d(0, 0, 0)\',
+                transition: \'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)\',
+            });
+        };
+
+        return (
+            <div
+                ref={resolvedRef}
+                onMouseMove={handleMouseMove}
+                onMouseLeave={handleMouseLeave}
+                style={style}
+                className={cn(
+                    \'relative flex flex-col overflow-hidden rounded-xl border border-border bg-card p-6 text-card-foreground shadow-md transition-shadow select-none hover:shadow-lg\',
+                    className,
+                )}
+                {...props}
+            >
+                {children}
+            </div>
+        );
+    },
+);
+
+MagneticCard.displayName = \'MagneticCard\';
+
+export { MagneticCard };
+export default MagneticCard;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'cards',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'cards',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'metric-spark-card',
+                'type' => 'registry:ui',
+                'title' => 'Metric Spark Card',
+                'description' => 'A dashboard statistics card featuring a glowing mini-sparkline SVG that dynamically animates on hover.',
+                'author' => 'designbycode',
+                'dependencies' => [
+
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/cards/metric-spark-card.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '\'use client\';
+
+import * as React from \'react\';
+import { cn } from \'@/lib/utils\';
+
+export interface MetricSparkCardProps extends React.HTMLAttributes<HTMLDivElement> {
+    title: string;
+    value: string;
+    trend?: string;
+    trendType?: \'positive\' | \'negative\' | \'neutral\';
+    dataPoints?: number[];
+}
+
+const MetricSparkCard = React.forwardRef<HTMLDivElement, MetricSparkCardProps>(
+    (
+        {
+            className,
+            title,
+            value,
+            trend,
+            trendType = \'positive\',
+            dataPoints = [10, 22, 18, 35, 30, 45, 40, 55],
+            children,
+            ...props
+        },
+        ref,
+    ) => {
+        const [isHovered, setIsHovered] = React.useState(false);
+
+        // SVG Sparkline path generation
+        const svgWidth = 140;
+        const svgHeight = 40;
+        const maxVal = Math.max(...dataPoints);
+        const minVal = Math.min(...dataPoints);
+        const range = maxVal - minVal || 1;
+
+        const points = dataPoints
+            .map((val, idx) => {
+                const x = (idx / (dataPoints.length - 1)) * svgWidth;
+                const y =
+                    svgHeight - 4 - ((val - minVal) / range) * (svgHeight - 8);
+                return `${x},${y}`;
+            })
+            .join(\' \');
+
+        return (
+            <div
+                ref={ref}
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+                className={cn(
+                    \'relative flex flex-col justify-between overflow-hidden rounded-xl border border-border bg-card p-6 text-card-foreground shadow-md transition-all hover:shadow-lg\',
+                    className,
+                )}
+                {...props}
+            >
+                <div className="flex items-start justify-between">
+                    <div className="space-y-1">
+                        <span className="text-xs font-semibold tracking-wider text-muted-foreground uppercase">
+                            {title}
+                        </span>
+                        <div className="font-mono text-2xl font-black tracking-tight">
+                            {value}
+                        </div>
+                    </div>
+
+                    {trend && (
+                        <span
+                            className={cn(
+                                \'rounded px-2 py-0.5 font-mono text-[10px] font-bold tracking-wide\',
+                                trendType === \'positive\' &&
+                                    \'border border-primary/20 bg-primary/10 text-primary\',
+                                trendType === \'negative\' &&
+                                    \'border border-destructive/20 bg-destructive/10 text-destructive\',
+                                trendType === \'neutral\' &&
+                                    \'bg-muted text-muted-foreground\',
+                            )}
+                        >
+                            {trend}
+                        </span>
+                    )}
+                </div>
+
+                <div className="mt-6 flex items-center justify-between gap-4">
+                    {/* Glowing Sparkline visualization */}
+                    <div className="relative">
+                        <svg
+                            width={svgWidth}
+                            height={svgHeight}
+                            className="overflow-visible"
+                        >
+                            <polyline
+                                fill="none"
+                                stroke="var(--color-primary)"
+                                strokeWidth="2.5"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                points={points}
+                                className="transition-all duration-500 ease-out"
+                                style={{
+                                    strokeDasharray: isHovered ? \'0\' : \'300\',
+                                    strokeDashoffset: isHovered ? \'0\' : \'10\',
+                                    filter: isHovered
+                                        ? \'drop-shadow(0 0 4px var(--color-primary))\'
+                                        : \'none\',
+                                }}
+                            />
+                        </svg>
+                    </div>
+
+                    {children && <div className="text-xs">{children}</div>}
+                </div>
+            </div>
+        );
+    },
+);
+
+MetricSparkCard.displayName = \'MetricSparkCard\';
+
+export { MetricSparkCard };
+export default MetricSparkCard;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'cards',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'cards',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'neon-border-card',
+                'type' => 'registry:ui',
+                'title' => 'Neon Border Card',
+                'description' => 'A modern card containing a glowing rotating conic border gradient beam.',
+                'author' => 'designbycode',
+                'dependencies' => [
+
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/cards/neon-border-card.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '\'use client\';
+
+import * as React from \'react\';
+import { cn } from \'@/lib/utils\';
+
+export interface NeonBorderCardProps extends React.HTMLAttributes<HTMLDivElement> {
+    duration?: number;
+    colorFrom?: string;
+    colorTo?: string;
+    borderWidth?: number;
+    beamSize?: number;
+}
+
+const NeonBorderCard = React.forwardRef<HTMLDivElement, NeonBorderCardProps>(
+    (
+        {
+            className,
+            children,
+            duration = 4,
+            colorFrom = \'var(--color-primary)\',
+            colorTo = \'var(--color-chart-1)\',
+            borderWidth = 1,
+            beamSize = 120,
+            ...props
+        },
+        ref,
+    ) => {
+        return (
+            <div
+                ref={ref}
+                className={cn(
+                    \'relative overflow-hidden rounded-xl bg-card p-[1px] shadow-lg transition-shadow duration-300 hover:shadow-primary/10\',
+                    className,
+                )}
+                {...props}
+            >
+                {/* Neon Border Beam layer */}
+                <div
+                    className="pointer-events-none absolute inset-0 -z-10 rounded-xl"
+                    style={
+                        {
+                            \'--beam-duration\': `${duration}s`,
+                            \'--color-from\': colorFrom,
+                            \'--color-to\': colorTo,
+                            position: \'absolute\',
+                            width: \'200%\',
+                            height: \'200%\',
+                            top: \'-50%\',
+                            left: \'-50%\',
+                            background:
+                                \'conic-gradient(from 0deg at 50% 50%, transparent 60%, var(--color-from) 85%, var(--color-to) 95%, transparent 100%)\',
+                            animation:
+                                \'spin var(--beam-duration) linear infinite\',
+                        } as React.CSSProperties
+                    }
+                />
+
+                {/* Card interior content */}
+                <div className="relative flex h-full w-full flex-col rounded-[11px] bg-card/95 p-6 text-card-foreground backdrop-blur-xs">
+                    {children}
+                </div>
+            </div>
+        );
+    },
+);
+
+NeonBorderCard.displayName = \'NeonBorderCard\';
+
+export { NeonBorderCard };
+export default NeonBorderCard;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'cards',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'cards',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'parallax-image-card',
+                'type' => 'registry:ui',
+                'title' => 'Parallax Image Card',
+                'description' => 'A visual card component displaying a background image that shifts in parallax response to cursor movements.',
+                'author' => 'designbycode',
+                'dependencies' => [
+
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/cards/parallax-image-card.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '\'use client\';
+
+import * as React from \'react\';
+import { cn } from \'@/lib/utils\';
+
+export interface ParallaxImageCardProps extends React.HTMLAttributes<HTMLDivElement> {
+    imageUrl: string;
+    imageAlt?: string;
+    parallaxStrength?: number;
+    overlayGradient?: string;
+}
+
+const ParallaxImageCard = React.forwardRef<
+    HTMLDivElement,
+    ParallaxImageCardProps
+>(
+    (
+        {
+            className,
+            children,
+            imageUrl,
+            imageAlt = \'Card image\',
+            parallaxStrength = 15,
+            overlayGradient = \'linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0) 100%)\',
+            ...props
+        },
+        ref,
+    ) => {
+        const localRef = React.useRef<HTMLDivElement>(null);
+        const resolvedRef = (ref ||
+            localRef) as React.RefObject<HTMLDivElement | null>;
+        const [offset, setOffset] = React.useState({ x: 0, y: 0 });
+
+        const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+            const card = resolvedRef.current;
+            if (!card) return;
+
+            const rect = card.getBoundingClientRect();
+            const mouseX = e.clientX - rect.left;
+            const mouseY = e.clientY - rect.top;
+
+            // Calculate offset between -1 and 1
+            const xPercent = (mouseX / rect.width - 0.5) * 2;
+            const yPercent = (mouseY / rect.height - 0.5) * 2;
+
+            setOffset({
+                x: xPercent * parallaxStrength,
+                y: yPercent * parallaxStrength,
+            });
+        };
+
+        const handleMouseLeave = () => {
+            setOffset({ x: 0, y: 0 });
+        };
+
+        return (
+            <div
+                ref={resolvedRef}
+                onMouseMove={handleMouseMove}
+                onMouseLeave={handleMouseLeave}
+                className={cn(
+                    \'group relative flex aspect-[4/5] w-full flex-col justify-end overflow-hidden rounded-xl border border-border shadow-md select-none\',
+                    className,
+                )}
+                {...props}
+            >
+                {/* Parallax Background Image Wrapper */}
+                <div
+                    className="absolute inset-0 -z-20 scale-110 transition-transform duration-300 ease-out"
+                    style={{
+                        transform: `translate3d(${-offset.x}px, ${-offset.y}px, 0)`,
+                    }}
+                >
+                    <img
+                        src={imageUrl}
+                        alt={imageAlt}
+                        className="h-full w-full object-cover object-center transition-all duration-700 group-hover:scale-105"
+                    />
+                </div>
+
+                {/* Dark Gradient Overlay */}
+                <div
+                    className="pointer-events-none absolute inset-0 -z-10"
+                    style={{ background: overlayGradient }}
+                />
+
+                {/* Content Overlay */}
+                <div className="p-6 text-white transition-transform duration-300 ease-out group-hover:translate-y-[-4px]">
+                    {children}
+                </div>
+            </div>
+        );
+    },
+);
+
+ParallaxImageCard.displayName = \'ParallaxImageCard\';
+
+export { ParallaxImageCard };
+export default ParallaxImageCard;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'cards',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'cards',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'reveal-card',
+                'type' => 'registry:ui',
+                'title' => 'Reveal Card',
+                'description' => 'An interactive card with a mouse-tracking border spotlight glow.',
+                'author' => 'designbycode',
+                'dependencies' => [
+
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/cards/reveal-card.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '\'use client\';
+
+import * as React from \'react\';
+import { cn } from \'@/lib/utils\';
+
+export interface RevealCardProps extends React.HTMLAttributes<HTMLDivElement> {
+    borderColor?: string;
+    borderWidth?: number;
+    spotlightRadius?: number;
+}
+
+const RevealCard = React.forwardRef<HTMLDivElement, RevealCardProps>(
+    (
+        {
+            className,
+            children,
+            borderColor = \'color-mix(in srgb, var(--color-primary) 35%, transparent)\',
+            borderWidth = 1,
+            spotlightRadius = 150,
+            ...props
+        },
+        ref,
+    ) => {
+        const localRef = React.useRef<HTMLDivElement>(null);
+        const resolvedRef = (ref ||
+            localRef) as React.RefObject<HTMLDivElement | null>;
+        const [coords, setCoords] = React.useState({ x: 0, y: 0 });
+        const [isHovered, setIsHovered] = React.useState(false);
+
+        const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+            const card = resolvedRef.current;
+            if (!card) return;
+            const rect = card.getBoundingClientRect();
+            setCoords({
+                x: e.clientX - rect.left,
+                y: e.clientY - rect.top,
+            });
+        };
+
+        return (
+            <div
+                ref={resolvedRef}
+                onMouseMove={handleMouseMove}
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+                className={cn(
+                    \'relative overflow-hidden rounded-xl bg-muted/40 p-[1px] transition-all\',
+                    className,
+                )}
+                {...props}
+            >
+                {/* Border spotlight overlay */}
+                <div
+                    className="pointer-events-none absolute inset-0 transition-opacity duration-300"
+                    style={{
+                        background: `radial-gradient(${spotlightRadius}px circle at ${coords.x}px ${coords.y}px, ${borderColor}, transparent 80%)`,
+                        opacity: isHovered ? 1 : 0,
+                    }}
+                />
+
+                {/* Card body */}
+                <div className="relative flex h-full w-full flex-col rounded-[11px] bg-card/90 p-6 text-card-foreground backdrop-blur-xs">
+                    {children}
+                </div>
+            </div>
+        );
+    },
+);
+
+RevealCard.displayName = \'RevealCard\';
+
+export { RevealCard };
+export default RevealCard;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'cards',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'cards',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'scratch-card',
+                'type' => 'registry:ui',
+                'title' => 'Scratch Card',
+                'description' => 'An interactive scratch-off card using an HTML5 Canvas to reveal hidden secret content.',
+                'author' => 'designbycode',
+                'dependencies' => [
+
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/cards/scratch-card.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '\'use client\';
+
+import * as React from \'react\';
+import { cn } from \'@/lib/utils\';
+
+export interface ScratchCardProps extends React.HTMLAttributes<HTMLDivElement> {
+    width?: number;
+    height?: number;
+    overlayColor?: string;
+    brushRadius?: number;
+    percentToReveal?: number;
+    onComplete?: () => void;
+}
+
+const ScratchCard = React.forwardRef<HTMLDivElement, ScratchCardProps>(
+    (
+        {
+            className,
+            overlayColor = \'#3f3f46\', // Zinc-700
+            brushRadius = 20,
+            percentToReveal = 50,
+            onComplete,
+            children,
+            ...props
+        },
+        ref,
+    ) => {
+        const localRef = React.useRef<HTMLDivElement>(null);
+        const resolvedRef = (ref ||
+            localRef) as React.RefObject<HTMLDivElement | null>;
+        const canvasRef = React.useRef<HTMLCanvasElement>(null);
+        const [isScratching, setIsScratching] = React.useState(false);
+        const [isFinished, setIsFinished] = React.useState(false);
+
+        React.useEffect(() => {
+            const canvas = canvasRef.current;
+            const container = resolvedRef.current;
+            if (!canvas || !container) return;
+
+            const rect = container.getBoundingClientRect();
+            canvas.width = rect.width;
+            canvas.height = rect.height;
+
+            const ctx = canvas.getContext(\'2d\');
+            if (!ctx) return;
+
+            // Fill canvas with overlay color
+            ctx.fillStyle = overlayColor;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Draw a subtle texture or text on top of scratch card
+            ctx.fillStyle = \'#71717a\'; // Zinc-500
+            ctx.font = \'bold 12px sans-serif\';
+            ctx.textAlign = \'center\';
+            ctx.textBaseline = \'middle\';
+            ctx.fillText(
+                \'SCRATCH TO REVEAL\',
+                canvas.width / 2,
+                canvas.height / 2,
+            );
+        }, [overlayColor, resolvedRef]);
+
+        const getMousePos = (e: React.MouseEvent | React.TouchEvent) => {
+            const canvas = canvasRef.current;
+            if (!canvas) return { x: 0, y: 0 };
+            const rect = canvas.getBoundingClientRect();
+
+            // Handle touch events vs mouse events
+            const clientX = \'touches\' in e ? e.touches[0].clientX : e.clientX;
+            const clientY = \'touches\' in e ? e.touches[0].clientY : e.clientY;
+
+            return {
+                x: clientX - rect.left,
+                y: clientY - rect.top,
+            };
+        };
+
+        const scratch = (e: React.MouseEvent | React.TouchEvent) => {
+            const canvas = canvasRef.current;
+            if (!canvas || !isScratching || isFinished) return;
+
+            const ctx = canvas.getContext(\'2d\');
+            if (!ctx) return;
+
+            const { x, y } = getMousePos(e);
+
+            ctx.globalCompositeOperation = \'destination-out\';
+            ctx.beginPath();
+            ctx.arc(x, y, brushRadius, 0, Math.PI * 2);
+            ctx.fill();
+
+            checkRevealPercentage();
+        };
+
+        const checkRevealPercentage = () => {
+            const canvas = canvasRef.current;
+            if (!canvas) return;
+
+            const ctx = canvas.getContext(\'2d\');
+            if (!ctx) return;
+
+            const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            const pixels = imgData.data;
+            let transparentPixels = 0;
+
+            for (let i = 3; i < pixels.length; i += 4) {
+                if (pixels[i] === 0) {
+                    transparentPixels++;
+                }
+            }
+
+            const percentage = (transparentPixels / (pixels.length / 4)) * 100;
+            if (percentage >= percentToReveal && !isFinished) {
+                setIsFinished(true);
+                // Clear the whole canvas
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                if (onComplete) onComplete();
+            }
+        };
+
+        return (
+            <div
+                ref={resolvedRef}
+                className={cn(
+                    \'relative overflow-hidden rounded-xl border border-border bg-card p-6 text-card-foreground shadow-md select-none\',
+                    className,
+                )}
+                {...props}
+            >
+                {/* Hidden contents below the scratch layer */}
+                <div className="relative z-0 h-full w-full">{children}</div>
+
+                {/* Scratch Canvas layer */}
+                {!isFinished && (
+                    <canvas
+                        ref={canvasRef}
+                        onMouseDown={() => setIsScratching(true)}
+                        onMouseUp={() => setIsScratching(false)}
+                        onMouseLeave={() => setIsScratching(false)}
+                        onMouseMove={scratch}
+                        onTouchStart={() => setIsScratching(true)}
+                        onTouchEnd={() => setIsScratching(false)}
+                        onTouchMove={scratch}
+                        className="absolute inset-0 z-20 cursor-crosshair touch-none"
+                    />
+                )}
+            </div>
+        );
+    },
+);
+
+ScratchCard.displayName = \'ScratchCard\';
+
+export { ScratchCard };
+export default ScratchCard;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'cards',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'cards',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'split-preview-card',
+                'type' => 'registry:ui',
+                'title' => 'Split Preview Card',
+                'description' => 'An interactive split-layout card linking lists to morphing color and detail previews.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'motion',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/cards/split-preview-card.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '\'use client\';
+
+import * as React from \'react\';
+import { motion, AnimatePresence } from \'motion/react\';
+import { cn } from \'@/lib/utils\';
+
+export interface SplitPreviewItem {
+    id: string;
+    label: string;
+    details: string;
+    previewColor: string; // e.g. \'var(--color-chart-1)\' or \'var(--color-primary)\'
+    icon?: React.ReactNode;
+}
+
+export interface SplitPreviewCardProps extends React.HTMLAttributes<HTMLDivElement> {
+    items: SplitPreviewItem[];
+    defaultActiveId?: string;
+}
+
+const SplitPreviewCard = React.forwardRef<
+    HTMLDivElement,
+    SplitPreviewCardProps
+>(({ className, items, defaultActiveId, ...props }, ref) => {
+    const [activeId, setActiveId] = React.useState(
+        defaultActiveId || items[0]?.id,
+    );
+    const activeItem = items.find((item) => item.id === activeId) || items[0];
+
+    return (
+        <div
+            ref={ref}
+            className={cn(
+                \'grid grid-cols-1 overflow-hidden rounded-xl border border-border bg-card shadow-md md:grid-cols-12\',
+                className,
+            )}
+            {...props}
+        >
+            {/* Left side: Dynamic morphing preview block */}
+            <div
+                className="relative flex flex-col justify-between p-6 text-white transition-colors duration-500 md:col-span-5"
+                style={{
+                    backgroundColor: activeItem
+                        ? `color-mix(in srgb, ${activeItem.previewColor} 12%, rgba(0,0,0,0.85))`
+                        : \'black\',
+                    borderRight: \'1px solid var(--color-border)\',
+                }}
+            >
+                {/* Glowing backlight overlay */}
+                <div
+                    className="pointer-events-none absolute inset-0 opacity-40 blur-2xl transition-all duration-700"
+                    style={{
+                        background: `radial-gradient(circle at 50% 50%, ${activeItem?.previewColor || \'var(--color-primary)\'}, transparent 70%)`,
+                    }}
+                />
+
+                <div className="relative z-10 flex items-center justify-between">
+                    <span className="font-mono text-xs tracking-wider uppercase opacity-60">
+                        STATUS PREVIEW
+                    </span>
+                    <div
+                        className="size-3.5 animate-pulse rounded-full"
+                        style={{ backgroundColor: activeItem?.previewColor }}
+                    />
+                </div>
+
+                <div className="relative z-10 my-8 flex justify-center">
+                    <AnimatePresence mode="wait">
+                        <motion.div
+                            key={activeItem?.id}
+                            initial={{ scale: 0.8, opacity: 0, rotate: -10 }}
+                            animate={{ scale: 1, opacity: 1, rotate: 0 }}
+                            exit={{ scale: 0.8, opacity: 0, rotate: 10 }}
+                            transition={{ duration: 0.25 }}
+                            className="flex size-16 items-center justify-center rounded-xl border border-white/20 bg-white/10 text-white shadow-lg backdrop-blur-xs"
+                            style={{
+                                boxShadow: `0 8px 32px 0 color-mix(in srgb, ${activeItem?.previewColor} 30%, transparent)`,
+                            }}
+                        >
+                            {activeItem?.icon || (
+                                <div className="size-6 rounded bg-white/30" />
+                            )}
+                        </motion.div>
+                    </AnimatePresence>
+                </div>
+
+                <div className="relative z-10 space-y-1">
+                    <AnimatePresence mode="wait">
+                        <motion.h4
+                            key={activeItem?.id}
+                            initial={{ y: 10, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
+                            exit={{ y: -10, opacity: 0 }}
+                            transition={{ duration: 0.2 }}
+                            className="text-base font-black tracking-tight uppercase"
+                        >
+                            {activeItem?.label}
+                        </motion.h4>
+                    </AnimatePresence>
+                    <AnimatePresence mode="wait">
+                        <motion.p
+                            key={activeItem?.id}
+                            initial={{ y: 10, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
+                            exit={{ y: -10, opacity: 0 }}
+                            transition={{ duration: 0.2 }}
+                            className="line-clamp-2 text-xs opacity-75"
+                        >
+                            {activeItem?.details}
+                        </motion.p>
+                    </AnimatePresence>
+                </div>
+            </div>
+
+            {/* Right side: Interactive navigation items */}
+            <div className="flex flex-col justify-center bg-card p-4 md:col-span-7">
+                <div className="space-y-1">
+                    {items.map((item) => (
+                        <div
+                            key={item.id}
+                            onMouseEnter={() => setActiveId(item.id)}
+                            className={cn(
+                                \'relative flex cursor-pointer items-center justify-between rounded-lg p-3 transition-colors select-none\',
+                                activeId === item.id
+                                    ? \'bg-muted text-foreground\'
+                                    : \'text-muted-foreground hover:bg-muted/40\',
+                            )}
+                        >
+                            <div className="space-y-0.5">
+                                <span className="text-sm font-bold text-foreground">
+                                    {item.label}
+                                </span>
+                                <p className="line-clamp-1 text-xs text-muted-foreground">
+                                    {item.details}
+                                </p>
+                            </div>
+                            {activeId === item.id && (
+                                <motion.div
+                                    layoutId="activeIndicator"
+                                    className="absolute right-3 size-2 rounded-full"
+                                    style={{
+                                        backgroundColor: item.previewColor,
+                                    }}
+                                />
+                            )}
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    );
+});
+
+SplitPreviewCard.displayName = \'SplitPreviewCard\';
+
+export { SplitPreviewCard };
+export default SplitPreviewCard;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'cards',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'cards',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'tilt-card',
+                'type' => 'registry:ui',
+                'title' => 'Tilt Card',
+                'description' => 'A 3D perspective tilting card that follows the user\'s cursor with a dynamic lighting glare layer.',
+                'author' => 'designbycode',
+                'dependencies' => [
+
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/cards/tilt-card.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '\'use client\';
+
+import * as React from \'react\';
+import { cn } from \'@/lib/utils\';
+
+export interface TiltCardProps extends React.HTMLAttributes<HTMLDivElement> {
+    maxTilt?: number;
+    perspective?: number;
+    scale?: number;
+    glareOpacity?: number;
+}
+
+const TiltCard = React.forwardRef<HTMLDivElement, TiltCardProps>(
+    (
+        {
+            className,
+            children,
+            maxTilt = 15,
+            perspective = 1000,
+            scale = 1.02,
+            glareOpacity = 0.15,
+            ...props
+        },
+        ref,
+    ) => {
+        const localRef = React.useRef<HTMLDivElement>(null);
+        const resolvedRef = (ref ||
+            localRef) as React.RefObject<HTMLDivElement | null>;
+        const [style, setStyle] = React.useState<React.CSSProperties>({});
+        const [glareStyle, setGlareStyle] = React.useState<React.CSSProperties>(
+            { opacity: 0 },
+        );
+
+        const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+            const card = resolvedRef.current;
+            if (!card) return;
+
+            const rect = card.getBoundingClientRect();
+            const width = rect.width;
+            const height = rect.height;
+
+            const mouseX = e.clientX - rect.left - width / 2;
+            const mouseY = e.clientY - rect.top - height / 2;
+
+            const rotateX = ((-mouseY / (height / 2)) * maxTilt).toFixed(2);
+            const rotateY = ((mouseX / (width / 2)) * maxTilt).toFixed(2);
+
+            setStyle({
+                transform: `perspective(${perspective}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(${scale}, ${scale}, ${scale})`,
+                transition: \'transform 0.1s cubic-bezier(0.25, 1, 0.5, 1)\',
+            });
+
+            // Calculate position for glare
+            const glareX = ((e.clientX - rect.left) / width) * 100;
+            const glareY = ((e.clientY - rect.top) / height) * 100;
+
+            setGlareStyle({
+                background: `radial-gradient(circle at ${glareX}% ${glareY}%, rgba(255, 255, 255, ${glareOpacity}), transparent 60%)`,
+                opacity: 1,
+            });
+        };
+
+        const handleMouseLeave = () => {
+            setStyle({
+                transform: `perspective(${perspective}px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`,
+                transition: \'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)\',
+            });
+            setGlareStyle({
+                opacity: 0,
+                transition: \'opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1)\',
+            });
+        };
+
+        return (
+            <div
+                ref={resolvedRef}
+                onMouseMove={handleMouseMove}
+                onMouseLeave={handleMouseLeave}
+                style={style}
+                className={cn(
+                    \'relative flex flex-col overflow-hidden rounded-xl border border-border/40 bg-card/60 p-6 shadow-md backdrop-blur-xs select-none\',
+                    className,
+                )}
+                {...props}
+            >
+                {/* Glare effect layer */}
+                <div
+                    className="pointer-events-none absolute inset-0 -z-10 transition-opacity"
+                    style={glareStyle}
+                />
+                {children}
+            </div>
+        );
+    },
+);
+
+TiltCard.displayName = \'TiltCard\';
+
+export { TiltCard };
+export default TiltCard;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'cards',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'cards',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'carousel-3d',
+                'type' => 'registry:ui',
+                'title' => 'Carousel 3D',
+                'description' => 'A premium 3D Coverflow slider using Swiper with rotation and depth adjustments.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                    'swiper',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'button',
+                    'utils',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/carousels/carousel-3d.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '\'use client\';
+
+import * as React from \'react\';
+import { ChevronLeft, ChevronRight } from \'lucide-react\';
+import { Swiper, SwiperSlide } from \'swiper/react\';
+import type { Swiper as SwiperClass } from \'swiper\';
+import { Autoplay, EffectCoverflow } from \'swiper/modules\';
+import { Button } from \'@/components/ui/button\';
+import { cn } from \'@/lib/utils\';
+
+import \'swiper/css\';
+import \'swiper/css/effect-coverflow\';
+
+interface Carousel3dProps {
+    items: React.ReactNode[];
+    autoplay?: boolean;
+    autoplayDelay?: number;
+    className?: string;
+}
+
+export function Carousel3d({
+    items,
+    autoplay = true,
+    autoplayDelay = 3000,
+    className,
+}: Carousel3dProps) {
+    const [swiper, setSwiper] = React.useState<SwiperClass | null>(null);
+    const [activeIndex, setActiveIndex] = React.useState(0);
+
+    return (
+        <div className={cn(\'relative w-full space-y-6\', className)}>
+            <div className="relative overflow-hidden py-4">
+                <Swiper
+                    modules={[Autoplay, EffectCoverflow]}
+                    effect="coverflow"
+                    grabCursor={true}
+                    centeredSlides={true}
+                    slidesPerView="auto"
+                    coverflowEffect={{
+                        rotate: 35,
+                        stretch: 0,
+                        depth: 160,
+                        modifier: 1,
+                        slideShadows: false,
+                    }}
+                    onSwiper={setSwiper}
+                    onSlideChange={(s) => setActiveIndex(s.realIndex)}
+                    autoplay={
+                        autoplay
+                            ? {
+                                  delay: autoplayDelay,
+                                  disableOnInteraction: false,
+                              }
+                            : false
+                    }
+                    loop={true}
+                    className="w-full max-w-3xl"
+                >
+                    {items.map((item, idx) => (
+                        <SwiperSlide
+                            key={idx}
+                            className="w-[280px] sm:w-[320px]"
+                        >
+                            <div className="h-full w-full select-none">
+                                {item}
+                            </div>
+                        </SwiperSlide>
+                    ))}
+                </Swiper>
+            </div>
+
+            {/* Controls */}
+            <div className="flex items-center justify-between px-2 select-none">
+                <div className="flex gap-1.5">
+                    {items.map((_, idx) => (
+                        <button
+                            key={idx}
+                            onClick={() => swiper?.slideToLoop(idx)}
+                            className={cn(
+                                \'h-1.5 cursor-pointer rounded-full transition-all duration-300\',
+                                activeIndex === idx
+                                    ? \'w-6 bg-primary\'
+                                    : \'w-1.5 bg-muted-foreground/30 hover:bg-muted-foreground/60\',
+                            )}
+                            aria-label={`Go to slide ${idx + 1}`}
+                        />
+                    ))}
+                </div>
+                <div className="flex gap-2">
+                    <Button
+                        onClick={() => swiper?.slidePrev()}
+                        variant="outline"
+                        size="icon"
+                        className="size-8 cursor-pointer rounded-full border-border/40 hover:bg-muted"
+                    >
+                        <ChevronLeft className="size-4" />
+                    </Button>
+                    <Button
+                        onClick={() => swiper?.slideNext()}
+                        variant="outline"
+                        size="icon"
+                        className="size-8 cursor-pointer rounded-full border-border/40 hover:bg-muted"
+                    >
+                        <ChevronRight className="size-4" />
+                    </Button>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+export default Carousel3d;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'carousels',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'carousels',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'carousel-auto-scroll',
+                'type' => 'registry:ui',
+                'title' => 'Carousel Auto Scroll',
+                'description' => 'A continuous linear auto-scrolling carousel (logo wall / infinite ticker tape effect).',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'swiper',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/carousels/carousel-auto-scroll.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '\'use client\';
+
+import * as React from \'react\';
+import { Swiper, SwiperSlide } from \'swiper/react\';
+import { Autoplay } from \'swiper/modules\';
+import { cn } from \'@/lib/utils\';
+
+import \'swiper/css\';
+
+interface CarouselAutoScrollProps {
+    items: React.ReactNode[];
+    speed?: number;
+    spaceBetween?: number;
+    className?: string;
+    pauseOnHover?: boolean;
+}
+
+export function CarouselAutoScroll({
+    items,
+    speed = 3000,
+    spaceBetween = 20,
+    className,
+    pauseOnHover = true,
+}: CarouselAutoScrollProps) {
+    return (
+        <div
+            className={cn(
+                \'relative w-full overflow-hidden rounded-xl border border-border/40 bg-card/15 py-4\',
+                className,
+            )}
+        >
+            <Swiper
+                modules={[Autoplay]}
+                speed={speed}
+                autoplay={{
+                    delay: 0,
+                    disableOnInteraction: false,
+                    pauseOnMouseEnter: pauseOnHover,
+                }}
+                loop={true}
+                allowTouchMove={true}
+                slidesPerView="auto"
+                spaceBetween={spaceBetween}
+                className="[&>.swiper-wrapper]:!transition-timing-function-[linear] w-full [&>.swiper-wrapper]:!ease-linear"
+            >
+                {items.map((item, idx) => (
+                    <SwiperSlide
+                        key={idx}
+                        className="flex w-auto items-center justify-center"
+                    >
+                        <div className="shrink-0 select-none">{item}</div>
+                    </SwiperSlide>
+                ))}
+            </Swiper>
+        </div>
+    );
+}
+
+export default CarouselAutoScroll;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'carousels',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'carousels',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'carousel-basic',
+                'type' => 'registry:ui',
+                'title' => 'Carousel Basic',
+                'description' => 'A basic, fully responsive card/item carousel using Swiper with custom external controls.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                    'swiper',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'button',
+                    'utils',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/carousels/carousel-basic.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '\'use client\';
+
+import * as React from \'react\';
+import { ChevronLeft, ChevronRight } from \'lucide-react\';
+import { Swiper, SwiperSlide } from \'swiper/react\';
+import type { Swiper as SwiperClass } from \'swiper\';
+import { Autoplay, Pagination } from \'swiper/modules\';
+import { Button } from \'@/components/ui/button\';
+import { cn } from \'@/lib/utils\';
+
+import \'swiper/css\';
+
+interface CarouselBasicProps {
+    items: React.ReactNode[];
+    autoplay?: boolean;
+    autoplayDelay?: number;
+    loop?: boolean;
+    slidesPerView?: number;
+    spaceBetween?: number;
+    className?: string;
+}
+
+export function CarouselBasic({
+    items,
+    autoplay = true,
+    autoplayDelay = 3000,
+    loop = true,
+    slidesPerView = 3,
+    spaceBetween = 20,
+    className,
+}: CarouselBasicProps) {
+    const [swiper, setSwiper] = React.useState<SwiperClass | null>(null);
+    const [activeIndex, setActiveIndex] = React.useState(0);
+
+    return (
+        <div className={cn(\'relative w-full space-y-4\', className)}>
+            <div className="relative overflow-hidden rounded-xl border border-border/40 bg-card/15 p-4.5">
+                <Swiper
+                    modules={[Autoplay, Pagination]}
+                    onSwiper={setSwiper}
+                    onSlideChange={(s) => setActiveIndex(s.realIndex)}
+                    autoplay={
+                        autoplay
+                            ? {
+                                  delay: autoplayDelay,
+                                  disableOnInteraction: false,
+                              }
+                            : false
+                    }
+                    loop={loop}
+                    spaceBetween={spaceBetween}
+                    slidesPerView={1}
+                    breakpoints={{
+                        640: { slidesPerView: Math.min(2, slidesPerView) },
+                        1024: { slidesPerView: slidesPerView },
+                    }}
+                    className="w-full"
+                >
+                    {items.map((item, idx) => (
+                        <SwiperSlide key={idx} className="h-auto">
+                            <div className="h-full w-full select-none">
+                                {item}
+                            </div>
+                        </SwiperSlide>
+                    ))}
+                </Swiper>
+            </div>
+
+            {/* Controls */}
+            <div className="flex items-center justify-between px-2 select-none">
+                <div className="flex gap-1.5">
+                    {items.map((_, idx) => (
+                        <button
+                            key={idx}
+                            onClick={() => swiper?.slideToLoop(idx)}
+                            className={cn(
+                                \'h-1.5 cursor-pointer rounded-full transition-all duration-300\',
+                                activeIndex === idx
+                                    ? \'w-6 bg-primary\'
+                                    : \'w-1.5 bg-muted-foreground/30 hover:bg-muted-foreground/60\',
+                            )}
+                            aria-label={`Go to slide ${idx + 1}`}
+                        />
+                    ))}
+                </div>
+                <div className="flex gap-2">
+                    <Button
+                        onClick={() => swiper?.slidePrev()}
+                        variant="outline"
+                        size="icon"
+                        className="size-8 cursor-pointer rounded-full border-border/40 hover:bg-muted"
+                    >
+                        <ChevronLeft className="size-4" />
+                    </Button>
+                    <Button
+                        onClick={() => swiper?.slideNext()}
+                        variant="outline"
+                        size="icon"
+                        className="size-8 cursor-pointer rounded-full border-border/40 hover:bg-muted"
+                    >
+                        <ChevronRight className="size-4" />
+                    </Button>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+export default CarouselBasic;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'carousels',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'carousels',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'carousel-cards',
+                'type' => 'registry:ui',
+                'title' => 'Carousel Cards',
+                'description' => 'A stacked card deck slider using Swiper EffectCards module.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                    'swiper',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'button',
+                    'utils',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/carousels/carousel-cards.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '\'use client\';
+
+import * as React from \'react\';
+import { ChevronLeft, ChevronRight } from \'lucide-react\';
+import { Swiper, SwiperSlide } from \'swiper/react\';
+import type { Swiper as SwiperClass } from \'swiper\';
+import { Autoplay, EffectCards } from \'swiper/modules\';
+import { Button } from \'@/components/ui/button\';
+import { cn } from \'@/lib/utils\';
+
+import \'swiper/css\';
+import \'swiper/css/effect-cards\';
+
+interface CarouselCardsProps {
+    items: React.ReactNode[];
+    autoplay?: boolean;
+    autoplayDelay?: number;
+    className?: string;
+}
+
+export function CarouselCards({
+    items,
+    autoplay = true,
+    autoplayDelay = 3000,
+    className,
+}: CarouselCardsProps) {
+    const [swiper, setSwiper] = React.useState<SwiperClass | null>(null);
+
+    return (
+        <div
+            className={cn(
+                \'relative flex flex-col items-center gap-4\',
+                className,
+            )}
+        >
+            <div className="w-full max-w-[280px] py-4 sm:max-w-[320px]">
+                <Swiper
+                    modules={[Autoplay, EffectCards]}
+                    effect="cards"
+                    grabCursor={true}
+                    onSwiper={setSwiper}
+                    autoplay={
+                        autoplay
+                            ? {
+                                  delay: autoplayDelay,
+                                  disableOnInteraction: false,
+                              }
+                            : false
+                    }
+                    loop={true}
+                    className="aspect-3/4 w-full"
+                >
+                    {items.map((item, idx) => (
+                        <SwiperSlide
+                            key={idx}
+                            className="overflow-hidden rounded-xl border border-border/40 shadow-lg"
+                        >
+                            <div className="h-full w-full select-none">
+                                {item}
+                            </div>
+                        </SwiperSlide>
+                    ))}
+                </Swiper>
+            </div>
+
+            {/* Navigation Controls */}
+            <div className="flex gap-2 select-none">
+                <Button
+                    onClick={() => swiper?.slidePrev()}
+                    variant="outline"
+                    size="icon"
+                    className="size-8 cursor-pointer rounded-full border-border/40 hover:bg-muted"
+                >
+                    <ChevronLeft className="size-4" />
+                </Button>
+                <Button
+                    onClick={() => swiper?.slideNext()}
+                    variant="outline"
+                    size="icon"
+                    className="size-8 cursor-pointer rounded-full border-border/40 hover:bg-muted"
+                >
+                    <ChevronRight className="size-4" />
+                </Button>
+            </div>
+        </div>
+    );
+}
+
+export default CarouselCards;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'carousels',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'carousels',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'carousel-creative',
+                'type' => 'registry:ui',
+                'title' => 'Carousel Creative',
+                'description' => 'A creative-transition slider using Swiper EffectCreative module.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                    'swiper',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'button',
+                    'utils',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/carousels/carousel-creative.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '\'use client\';
+
+import * as React from \'react\';
+import { ChevronLeft, ChevronRight } from \'lucide-react\';
+import { Swiper, SwiperSlide } from \'swiper/react\';
+import type { Swiper as SwiperClass } from \'swiper\';
+import { Autoplay, EffectCreative } from \'swiper/modules\';
+import { Button } from \'@/components/ui/button\';
+import { cn } from \'@/lib/utils\';
+
+import \'swiper/css\';
+import \'swiper/css/effect-creative\';
+
+interface CarouselCreativeProps {
+    items: React.ReactNode[];
+    autoplay?: boolean;
+    autoplayDelay?: number;
+    className?: string;
+}
+
+export function CarouselCreative({
+    items,
+    autoplay = true,
+    autoplayDelay = 3500,
+    className,
+}: CarouselCreativeProps) {
+    const [swiper, setSwiper] = React.useState<SwiperClass | null>(null);
+    const [activeIndex, setActiveIndex] = React.useState(0);
+
+    return (
+        <div className={cn(\'relative w-full space-y-4\', className)}>
+            <div className="relative overflow-hidden rounded-xl border border-border/40 bg-card/15 p-4">
+                <Swiper
+                    modules={[Autoplay, EffectCreative]}
+                    effect="creative"
+                    grabCursor={true}
+                    creativeEffect={{
+                        prev: {
+                            shadow: true,
+                            translate: [\'-20%\', 0, -1],
+                        },
+                        next: {
+                            translate: [\'100%\', 0, 0],
+                        },
+                    }}
+                    onSwiper={setSwiper}
+                    onSlideChange={(s) => setActiveIndex(s.realIndex)}
+                    autoplay={
+                        autoplay
+                            ? {
+                                  delay: autoplayDelay,
+                                  disableOnInteraction: false,
+                              }
+                            : false
+                    }
+                    loop={true}
+                    slidesPerView={1}
+                    className="w-full"
+                >
+                    {items.map((item, idx) => (
+                        <SwiperSlide key={idx} className="h-auto">
+                            <div className="h-full w-full select-none">
+                                {item}
+                            </div>
+                        </SwiperSlide>
+                    ))}
+                </Swiper>
+            </div>
+
+            {/* Controls */}
+            <div className="flex items-center justify-between px-2 select-none">
+                <div className="flex gap-1.5">
+                    {items.map((_, idx) => (
+                        <button
+                            key={idx}
+                            onClick={() => swiper?.slideToLoop(idx)}
+                            className={cn(
+                                \'h-1.5 cursor-pointer rounded-full transition-all duration-300\',
+                                activeIndex === idx
+                                    ? \'w-6 bg-primary\'
+                                    : \'w-1.5 bg-muted-foreground/30 hover:bg-muted-foreground/60\',
+                            )}
+                            aria-label={`Go to slide ${idx + 1}`}
+                        />
+                    ))}
+                </div>
+                <div className="flex gap-2">
+                    <Button
+                        onClick={() => swiper?.slidePrev()}
+                        variant="outline"
+                        size="icon"
+                        className="size-8 cursor-pointer rounded-full border-border/40 hover:bg-muted"
+                    >
+                        <ChevronLeft className="size-4" />
+                    </Button>
+                    <Button
+                        onClick={() => swiper?.slideNext()}
+                        variant="outline"
+                        size="icon"
+                        className="size-8 cursor-pointer rounded-full border-border/40 hover:bg-muted"
+                    >
+                        <ChevronRight className="size-4" />
+                    </Button>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+export default CarouselCreative;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'carousels',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'carousels',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'carousel-fade',
+                'type' => 'registry:ui',
+                'title' => 'Carousel Fade',
+                'description' => 'A cross-fade carousel using Swiper for premium and smooth transition effects.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                    'swiper',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'button',
+                    'utils',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/carousels/carousel-fade.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '\'use client\';
+
+import * as React from \'react\';
+import { ChevronLeft, ChevronRight } from \'lucide-react\';
+import { Swiper, SwiperSlide } from \'swiper/react\';
+import type { Swiper as SwiperClass } from \'swiper\';
+import { Autoplay, EffectFade } from \'swiper/modules\';
+import { Button } from \'@/components/ui/button\';
+import { cn } from \'@/lib/utils\';
+
+import \'swiper/css\';
+import \'swiper/css/effect-fade\';
+
+interface CarouselFadeProps {
+    items: React.ReactNode[];
+    autoplay?: boolean;
+    autoplayDelay?: number;
+    className?: string;
+}
+
+export function CarouselFade({
+    items,
+    autoplay = true,
+    autoplayDelay = 4000,
+    className,
+}: CarouselFadeProps) {
+    const [swiper, setSwiper] = React.useState<SwiperClass | null>(null);
+    const [activeIndex, setActiveIndex] = React.useState(0);
+
+    return (
+        <div className={cn(\'relative w-full space-y-4\', className)}>
+            <div className="relative overflow-hidden rounded-xl border border-border/40 bg-card/15">
+                <Swiper
+                    modules={[Autoplay, EffectFade]}
+                    effect="fade"
+                    fadeEffect={{ crossFade: true }}
+                    onSwiper={setSwiper}
+                    onSlideChange={(s) => setActiveIndex(s.realIndex)}
+                    autoplay={
+                        autoplay
+                            ? {
+                                  delay: autoplayDelay,
+                                  disableOnInteraction: false,
+                              }
+                            : false
+                    }
+                    loop={true}
+                    slidesPerView={1}
+                    className="w-full"
+                >
+                    {items.map((item, idx) => (
+                        <SwiperSlide key={idx} className="h-auto">
+                            <div className="h-full w-full select-none">
+                                {item}
+                            </div>
+                        </SwiperSlide>
+                    ))}
+                </Swiper>
+            </div>
+
+            {/* Controls */}
+            <div className="flex items-center justify-between px-2 select-none">
+                <div className="flex gap-1.5">
+                    {items.map((_, idx) => (
+                        <button
+                            key={idx}
+                            onClick={() => swiper?.slideToLoop(idx)}
+                            className={cn(
+                                \'h-1.5 cursor-pointer rounded-full transition-all duration-300\',
+                                activeIndex === idx
+                                    ? \'w-6 bg-primary\'
+                                    : \'w-1.5 bg-muted-foreground/30 hover:bg-muted-foreground/60\',
+                            )}
+                            aria-label={`Go to slide ${idx + 1}`}
+                        />
+                    ))}
+                </div>
+                <div className="flex gap-2">
+                    <Button
+                        onClick={() => swiper?.slidePrev()}
+                        variant="outline"
+                        size="icon"
+                        className="size-8 cursor-pointer rounded-full border-border/40 hover:bg-muted"
+                    >
+                        <ChevronLeft className="size-4" />
+                    </Button>
+                    <Button
+                        onClick={() => swiper?.slideNext()}
+                        variant="outline"
+                        size="icon"
+                        className="size-8 cursor-pointer rounded-full border-border/40 hover:bg-muted"
+                    >
+                        <ChevronRight className="size-4" />
+                    </Button>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+export default CarouselFade;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'carousels',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'carousels',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'carousel-motion',
+                'type' => 'registry:ui',
+                'title' => 'Carousel Motion',
+                'description' => 'A physics-driven drag slider using motion/react with spring animation effects.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                    'motion',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'button',
+                    'utils',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/carousels/carousel-motion.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '\'use client\';
+
+import * as React from \'react\';
+import { ChevronLeft, ChevronRight } from \'lucide-react\';
+import { motion } from \'motion/react\';
+import { Button } from \'@/components/ui/button\';
+import { cn } from \'@/lib/utils\';
+
+interface CarouselMotionProps {
+    items: React.ReactNode[];
+    className?: string;
+}
+
+export function CarouselMotion({ items, className }: CarouselMotionProps) {
+    const containerRef = React.useRef<HTMLDivElement>(null);
+    const [width, setWidth] = React.useState(0);
+    const [position, setPosition] = React.useState(0);
+
+    React.useEffect(() => {
+        if (!containerRef.current) return;
+        const updateWidth = () => {
+            setWidth(
+                containerRef.current!.scrollWidth -
+                    containerRef.current!.offsetWidth,
+            );
+        };
+        updateWidth();
+        window.addEventListener(\'resize\', updateWidth);
+        return () => window.removeEventListener(\'resize\', updateWidth);
+    }, [items]);
+
+    const handlePrev = () => {
+        setPosition((prev) => Math.min(0, prev + 300));
+    };
+
+    const handleNext = () => {
+        setPosition((prev) => Math.max(-width, prev - 300));
+    };
+
+    return (
+        <div className={cn(\'relative w-full space-y-4\', className)}>
+            <motion.div
+                ref={containerRef}
+                className="cursor-grab overflow-hidden rounded-xl border border-border/40 bg-card/15 p-4.5 active:cursor-grabbing"
+            >
+                <motion.div
+                    drag="x"
+                    dragConstraints={{ right: 0, left: -width }}
+                    dragElastic={0.15}
+                    animate={{ x: position }}
+                    transition={{ type: \'spring\', damping: 25, stiffness: 180 }}
+                    onDragEnd={(_, info) => {
+                        const targetX = Math.max(
+                            -width,
+                            Math.min(0, position + info.offset.x),
+                        );
+                        setPosition(targetX);
+                    }}
+                    className="flex w-max gap-4"
+                >
+                    {items.map((item, idx) => (
+                        <div
+                            key={idx}
+                            className="w-[260px] shrink-0 select-none sm:w-[300px]"
+                        >
+                            {item}
+                        </div>
+                    ))}
+                </motion.div>
+            </motion.div>
+
+            {/* Controls */}
+            <div className="flex justify-end gap-2 px-2 select-none">
+                <Button
+                    onClick={handlePrev}
+                    variant="outline"
+                    size="icon"
+                    disabled={position >= 0}
+                    className="size-8 cursor-pointer rounded-full border-border/40 hover:bg-muted disabled:opacity-40"
+                >
+                    <ChevronLeft className="size-4" />
+                </Button>
+                <Button
+                    onClick={handleNext}
+                    variant="outline"
+                    size="icon"
+                    disabled={position <= -width}
+                    className="size-8 cursor-pointer rounded-full border-border/40 hover:bg-muted disabled:opacity-40"
+                >
+                    <ChevronRight className="size-4" />
+                </Button>
+            </div>
+        </div>
+    );
+}
+
+export default CarouselMotion;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'carousels',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'carousels',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'carousel-scale',
+                'type' => 'registry:ui',
+                'title' => 'Carousel Scale',
+                'description' => 'A center-scale focus slider using Swiper with custom responsive viewports.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                    'swiper',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'button',
+                    'utils',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/carousels/carousel-scale.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '\'use client\';
+
+import * as React from \'react\';
+import { ChevronLeft, ChevronRight } from \'lucide-react\';
+import { Swiper, SwiperSlide } from \'swiper/react\';
+import type { Swiper as SwiperClass } from \'swiper\';
+import { Autoplay, Pagination } from \'swiper/modules\';
+import { Button } from \'@/components/ui/button\';
+import { cn } from \'@/lib/utils\';
+
+import \'swiper/css\';
+
+interface CarouselScaleProps {
+    items: React.ReactNode[];
+    autoplay?: boolean;
+    autoplayDelay?: number;
+    className?: string;
+}
+
+export function CarouselScale({
+    items,
+    autoplay = true,
+    autoplayDelay = 3000,
+    className,
+}: CarouselScaleProps) {
+    const [swiper, setSwiper] = React.useState<SwiperClass | null>(null);
+    const [activeIndex, setActiveIndex] = React.useState(0);
+
+    return (
+        <div className={cn(\'relative w-full space-y-6\', className)}>
+            <div className="relative overflow-hidden py-4">
+                <Swiper
+                    modules={[Autoplay, Pagination]}
+                    centeredSlides={true}
+                    slidesPerView={1.5}
+                    spaceBetween={16}
+                    onSwiper={setSwiper}
+                    onSlideChange={(s) => setActiveIndex(s.realIndex)}
+                    autoplay={
+                        autoplay
+                            ? {
+                                  delay: autoplayDelay,
+                                  disableOnInteraction: false,
+                              }
+                            : false
+                    }
+                    loop={true}
+                    breakpoints={{
+                        640: { slidesPerView: 2.2, spaceBetween: 24 },
+                        1024: { slidesPerView: 3, spaceBetween: 30 },
+                    }}
+                    className="w-full"
+                >
+                    {items.map((item, idx) => (
+                        <SwiperSlide key={idx} className="h-auto">
+                            {({ isActive }) => (
+                                <div
+                                    className={cn(
+                                        \'h-full w-full transform transition-all duration-500 ease-out select-none\',
+                                        isActive
+                                            ? \'scale-100 opacity-100 shadow-md\'
+                                            : \'scale-85 opacity-40 blur-[0.5px]\',
+                                    )}
+                                >
+                                    {item}
+                                </div>
+                            )}
+                        </SwiperSlide>
+                    ))}
+                </Swiper>
+            </div>
+
+            {/* Controls */}
+            <div className="flex items-center justify-between px-2 select-none">
+                <div className="flex gap-1.5">
+                    {items.map((_, idx) => (
+                        <button
+                            key={idx}
+                            onClick={() => swiper?.slideToLoop(idx)}
+                            className={cn(
+                                \'h-1.5 cursor-pointer rounded-full transition-all duration-300\',
+                                activeIndex === idx
+                                    ? \'w-6 bg-primary\'
+                                    : \'w-1.5 bg-muted-foreground/30 hover:bg-muted-foreground/60\',
+                            )}
+                            aria-label={`Go to slide ${idx + 1}`}
+                        />
+                    ))}
+                </div>
+                <div className="flex gap-2">
+                    <Button
+                        onClick={() => swiper?.slidePrev()}
+                        variant="outline"
+                        size="icon"
+                        className="size-8 cursor-pointer rounded-full border-border/40 hover:bg-muted"
+                    >
+                        <ChevronLeft className="size-4" />
+                    </Button>
+                    <Button
+                        onClick={() => swiper?.slideNext()}
+                        variant="outline"
+                        size="icon"
+                        className="size-8 cursor-pointer rounded-full border-border/40 hover:bg-muted"
+                    >
+                        <ChevronRight className="size-4" />
+                    </Button>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+export default CarouselScale;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'carousels',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'carousels',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'carousel-thumbs',
+                'type' => 'registry:ui',
+                'title' => 'Carousel Thumbs',
+                'description' => 'A thumbnail slider using Swiper with double slide controllers and sync updates.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                    'swiper',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'button',
+                    'utils',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/carousels/carousel-thumbs.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '\'use client\';
+
+import * as React from \'react\';
+import { ChevronLeft, ChevronRight } from \'lucide-react\';
+import { Swiper, SwiperSlide } from \'swiper/react\';
+import type { Swiper as SwiperClass } from \'swiper\';
+import { Thumbs, FreeMode } from \'swiper/modules\';
+import { Button } from \'@/components/ui/button\';
+import { cn } from \'@/lib/utils\';
+
+import \'swiper/css\';
+import \'swiper/css/thumbs\';
+import \'swiper/css/free-mode\';
+
+interface CarouselThumbsProps {
+    items: React.ReactNode[];
+    thumbnails: React.ReactNode[];
+    className?: string;
+}
+
+export function CarouselThumbs({
+    items,
+    thumbnails,
+    className,
+}: CarouselThumbsProps) {
+    const [mainSwiper, setMainSwiper] = React.useState<SwiperClass | null>(
+        null,
+    );
+    const [thumbsSwiper, setThumbsSwiper] = React.useState<any>(null);
+    const [activeIndex, setActiveIndex] = React.useState(0);
+
+    return (
+        <div className={cn(\'w-full space-y-4\', className)}>
+            {/* Main Swiper Slider */}
+            <div className="relative overflow-hidden rounded-xl border border-border/40 bg-card/15 p-4">
+                <Swiper
+                    modules={[Thumbs, FreeMode]}
+                    thumbs={{
+                        swiper:
+                            thumbsSwiper && !thumbsSwiper.destroyed
+                                ? thumbsSwiper
+                                : null,
+                    }}
+                    onSwiper={setMainSwiper}
+                    onSlideChange={(s) => setActiveIndex(s.activeIndex)}
+                    spaceBetween={10}
+                    slidesPerView={1}
+                    className="w-full"
+                >
+                    {items.map((item, idx) => (
+                        <SwiperSlide key={idx} className="h-auto">
+                            <div className="h-full w-full select-none">
+                                {item}
+                            </div>
+                        </SwiperSlide>
+                    ))}
+                </Swiper>
+
+                {/* Left/Right Arrows */}
+                <Button
+                    onClick={() => mainSwiper?.slidePrev()}
+                    variant="outline"
+                    size="icon"
+                    className="absolute top-1/2 left-6 z-10 size-8 -translate-y-1/2 rounded-full border-border/40 bg-background/80 shadow-sm backdrop-blur-xs hover:bg-muted"
+                >
+                    <ChevronLeft className="size-4" />
+                </Button>
+                <Button
+                    onClick={() => mainSwiper?.slideNext()}
+                    variant="outline"
+                    size="icon"
+                    className="absolute top-1/2 right-6 z-10 size-8 -translate-y-1/2 rounded-full border-border/40 bg-background/80 shadow-sm backdrop-blur-xs hover:bg-muted"
+                >
+                    <ChevronRight className="size-4" />
+                </Button>
+            </div>
+
+            {/* Thumbnail Navigation Slider */}
+            <div className="px-2">
+                <Swiper
+                    onSwiper={setThumbsSwiper}
+                    spaceBetween={10}
+                    slidesPerView={4}
+                    freeMode={true}
+                    watchSlidesProgress={true}
+                    modules={[Thumbs, FreeMode]}
+                    className="w-full cursor-pointer select-none"
+                    breakpoints={{
+                        640: { slidesPerView: Math.min(6, thumbnails.length) },
+                    }}
+                >
+                    {thumbnails.map((thumb, idx) => (
+                        <SwiperSlide key={idx}>
+                            <div
+                                className={cn(
+                                    \'overflow-hidden rounded-lg border-2 transition-all duration-300\',
+                                    activeIndex === idx
+                                        ? \'scale-95 border-primary bg-primary/5 shadow-sm\'
+                                        : \'border-border/30 hover:border-border/80\',
+                                )}
+                            >
+                                {thumb}
+                            </div>
+                        </SwiperSlide>
+                    ))}
+                </Swiper>
+            </div>
+        </div>
+    );
+}
+
+export default CarouselThumbs;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'carousels',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'carousels',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'carousel-vertical',
+                'type' => 'registry:ui',
+                'title' => 'Carousel Vertical',
+                'description' => 'A vertical layout card slider using Swiper.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                    'swiper',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'button',
+                    'utils',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/carousels/carousel-vertical.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '\'use client\';
+
+import * as React from \'react\';
+import { ChevronUp, ChevronDown } from \'lucide-react\';
+import { Swiper, SwiperSlide } from \'swiper/react\';
+import type { Swiper as SwiperClass } from \'swiper\';
+import { Autoplay, Pagination } from \'swiper/modules\';
+import { Button } from \'@/components/ui/button\';
+import { cn } from \'@/lib/utils\';
+
+import \'swiper/css\';
+import \'swiper/css/pagination\';
+
+interface CarouselVerticalProps {
+    items: React.ReactNode[];
+    autoplay?: boolean;
+    autoplayDelay?: number;
+    className?: string;
+    height?: string;
+}
+
+export function CarouselVertical({
+    items,
+    autoplay = true,
+    autoplayDelay = 3000,
+    className,
+    height = \'240px\',
+}: CarouselVerticalProps) {
+    const [swiper, setSwiper] = React.useState<SwiperClass | null>(null);
+    const [activeIndex, setActiveIndex] = React.useState(0);
+
+    return (
+        <div
+            className={cn(
+                \'relative flex w-full items-center justify-center gap-4\',
+                className,
+            )}
+        >
+            {/* Slider container with constrained height */}
+            <div
+                style={{ height }}
+                className="relative flex-1 overflow-hidden rounded-xl border border-border/40 bg-card/15 p-4"
+            >
+                <Swiper
+                    modules={[Autoplay, Pagination]}
+                    direction="vertical"
+                    onSwiper={setSwiper}
+                    onSlideChange={(s) => setActiveIndex(s.realIndex)}
+                    autoplay={
+                        autoplay
+                            ? {
+                                  delay: autoplayDelay,
+                                  disableOnInteraction: false,
+                              }
+                            : false
+                    }
+                    loop={true}
+                    slidesPerView={1}
+                    className="h-full w-full"
+                >
+                    {items.map((item, idx) => (
+                        <SwiperSlide key={idx} className="h-full">
+                            <div className="h-full w-full select-none">
+                                {item}
+                            </div>
+                        </SwiperSlide>
+                    ))}
+                </Swiper>
+            </div>
+
+            {/* Vertical Controls and Pagination */}
+            <div className="flex flex-col items-center gap-4 select-none">
+                <Button
+                    onClick={() => swiper?.slidePrev()}
+                    variant="outline"
+                    size="icon"
+                    className="size-8 cursor-pointer rounded-full border-border/40 hover:bg-muted"
+                    aria-label="Previous slide"
+                >
+                    <ChevronUp className="size-4" />
+                </Button>
+
+                {/* Vertical indicators */}
+                <div className="flex flex-col gap-2">
+                    {items.map((_, idx) => (
+                        <button
+                            key={idx}
+                            onClick={() => swiper?.slideToLoop(idx)}
+                            className={cn(
+                                \'w-1.5 cursor-pointer rounded-full transition-all duration-300\',
+                                activeIndex === idx
+                                    ? \'h-6 bg-primary\'
+                                    : \'h-1.5 bg-muted-foreground/30 hover:bg-muted-foreground/60\',
+                            )}
+                            aria-label={`Go to slide ${idx + 1}`}
+                        />
+                    ))}
+                </div>
+
+                <Button
+                    onClick={() => swiper?.slideNext()}
+                    variant="outline"
+                    size="icon"
+                    className="size-8 cursor-pointer rounded-full border-border/40 hover:bg-muted"
+                    aria-label="Next slide"
+                >
+                    <ChevronDown className="size-4" />
+                </Button>
+            </div>
+        </div>
+    );
+}
+
+export default CarouselVertical;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'carousels',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'carousels',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'comparison-slider-basic',
+                'type' => 'registry:ui',
+                'title' => 'Comparison Slider Basic',
+                'description' => 'A premium horizontal before/after image comparison slider with an interactive drag handle.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/comparison-sliders/comparison-slider-basic.tsx',
+                        'type' => 'registry:ui',
+                        'content' => 'import * as React from \'react\';
+import { ChevronsLeftRight } from \'lucide-react\';
+import { cn } from \'@/lib/utils\';
+
+interface ComparisonSliderBasicProps extends React.HTMLAttributes<HTMLDivElement> {
+    beforeImage: string;
+    afterImage: string;
+    beforeLabel?: string;
+    afterLabel?: string;
+    defaultPosition?: number;
+    aspectRatio?: \'video\' | \'square\' | \'wide\' | \'auto\';
+}
+
+export function ComparisonSliderBasic({
+    beforeImage,
+    afterImage,
+    beforeLabel = \'Before\',
+    afterLabel = \'After\',
+    defaultPosition = 50,
+    aspectRatio = \'video\',
+    className,
+    ...props
+}: ComparisonSliderBasicProps) {
+    const [sliderPosition, setSliderPosition] = React.useState(defaultPosition);
+    const [isDragging, setIsDragging] = React.useState(false);
+    const containerRef = React.useRef<HTMLDivElement>(null);
+
+    const handleMove = (clientX: number) => {
+        if (!containerRef.current) return;
+        const rect = containerRef.current.getBoundingClientRect();
+        const x = clientX - rect.left;
+        const position = Math.max(0, Math.min(100, (x / rect.width) * 100));
+        setSliderPosition(position);
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+        if (!isDragging) return;
+        handleMove(e.touches[0].clientX);
+    };
+
+    const handleMouseMove = (e: MouseEvent) => {
+        if (!isDragging) return;
+        handleMove(e.clientX);
+    };
+
+    const handleMouseUp = () => {
+        setIsDragging(false);
+    };
+
+    React.useEffect(() => {
+        if (isDragging) {
+            window.addEventListener(\'mousemove\', handleMouseMove);
+            window.addEventListener(\'mouseup\', handleMouseUp);
+            window.addEventListener(\'touchmove\', handleTouchMove);
+            window.addEventListener(\'touchend\', handleMouseUp);
+        }
+
+        return () => {
+            window.removeEventListener(\'mousemove\', handleMouseMove);
+            window.removeEventListener(\'mouseup\', handleMouseUp);
+            window.removeEventListener(\'touchmove\', handleTouchMove);
+            window.removeEventListener(\'touchend\', handleMouseUp);
+        };
+    }, [isDragging]);
+
+    const handleMouseDown = (e: React.MouseEvent) => {
+        e.preventDefault();
+        setIsDragging(true);
+        if (containerRef.current) {
+            const rect = containerRef.current.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            setSliderPosition(
+                Math.max(0, Math.min(100, (x / rect.width) * 100)),
+            );
+        }
+    };
+
+    const handleTouchStart = (e: React.TouchEvent) => {
+        setIsDragging(true);
+        if (containerRef.current) {
+            const rect = containerRef.current.getBoundingClientRect();
+            const x = e.touches[0].clientX - rect.left;
+            setSliderPosition(
+                Math.max(0, Math.min(100, (x / rect.width) * 100)),
+            );
+        }
+    };
+
+    const aspectClasses = {
+        video: \'aspect-video\',
+        square: \'aspect-square\',
+        wide: \'aspect-21/9\',
+        auto: \'h-full w-full\',
+    };
+
+    return (
+        <div
+            ref={containerRef}
+            className={cn(
+                \'relative overflow-hidden rounded-xl border border-border bg-muted shadow-lg select-none\',
+                aspectClasses[aspectRatio],
+                className,
+            )}
+            onMouseDown={handleMouseDown}
+            onTouchStart={handleTouchStart}
+            {...props}
+        >
+            {/* After Image (Base) */}
+            <img
+                src={afterImage}
+                alt="After"
+                className="pointer-events-none absolute inset-0 size-full object-cover"
+            />
+
+            {/* After Label */}
+            {afterLabel && (
+                <div className="absolute right-4 bottom-4 z-10 rounded-md bg-background/70 px-2.5 py-1 text-xs font-medium text-foreground backdrop-blur-xs transition-opacity duration-300">
+                    {afterLabel}
+                </div>
+            )}
+
+            {/* Before Image (Clipped overlay) */}
+            <div
+                className="pointer-events-none absolute inset-0 size-full"
+                style={{
+                    clipPath: `polygon(0 0, ${sliderPosition}% 0, ${sliderPosition}% 100%, 0 100%)`,
+                }}
+            >
+                <img
+                    src={beforeImage}
+                    alt="Before"
+                    className="absolute inset-0 size-full object-cover"
+                />
+            </div>
+
+            {/* Before Label */}
+            {beforeLabel && (
+                <div
+                    className="absolute bottom-4 left-4 z-10 rounded-md bg-background/70 px-2.5 py-1 text-xs font-medium text-foreground backdrop-blur-xs transition-opacity duration-300"
+                    style={{
+                        opacity: sliderPosition < 15 ? 0 : 1,
+                    }}
+                >
+                    {beforeLabel}
+                </div>
+            )}
+
+            {/* Slider Line & Handle */}
+            <div
+                className="absolute top-0 bottom-0 z-20 w-0.5 cursor-ew-resize bg-background/85 transition-colors hover:bg-background/95"
+                style={{ left: `${sliderPosition}%` }}
+            >
+                <div
+                    className={cn(
+                        \'absolute top-1/2 flex size-9 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-background shadow-md transition-transform duration-200 select-none\',
+                        isDragging && \'scale-110 border-primary\',
+                    )}
+                >
+                    <ChevronsLeftRight className="size-4 text-muted-foreground" />
+                </div>
+            </div>
+        </div>
+    );
+}
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'comparison-sliders',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'comparison-sliders',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'comparison-slider-diagonal',
+                'type' => 'registry:ui',
+                'title' => 'Comparison Slider Diagonal',
+                'description' => 'A diagonal split before/after image comparison slider using responsive clip paths.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/comparison-sliders/comparison-slider-diagonal.tsx',
+                        'type' => 'registry:ui',
+                        'content' => 'import * as React from \'react\';
+import { ChevronsLeftRight } from \'lucide-react\';
+import { cn } from \'@/lib/utils\';
+
+interface ComparisonSliderDiagonalProps extends React.HTMLAttributes<HTMLDivElement> {
+    beforeImage: string;
+    afterImage: string;
+    beforeLabel?: string;
+    afterLabel?: string;
+    defaultPosition?: number;
+    aspectRatio?: \'video\' | \'square\' | \'wide\' | \'auto\';
+    maxSkew?: number; // percentage skew at center, default 8
+}
+
+export function ComparisonSliderDiagonal({
+    beforeImage,
+    afterImage,
+    beforeLabel = \'Before\',
+    afterLabel = \'After\',
+    defaultPosition = 50,
+    aspectRatio = \'video\',
+    maxSkew = 8,
+    className,
+    ...props
+}: ComparisonSliderDiagonalProps) {
+    const [sliderPosition, setSliderPosition] = React.useState(defaultPosition);
+    const [isDragging, setIsDragging] = React.useState(false);
+    const containerRef = React.useRef<HTMLDivElement>(null);
+
+    const handleMove = (clientX: number) => {
+        if (!containerRef.current) return;
+        const rect = containerRef.current.getBoundingClientRect();
+        const x = clientX - rect.left;
+        const position = Math.max(0, Math.min(100, (x / rect.width) * 100));
+        setSliderPosition(position);
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+        if (!isDragging) return;
+        handleMove(e.touches[0].clientX);
+    };
+
+    const handleMouseMove = (e: MouseEvent) => {
+        if (!isDragging) return;
+        handleMove(e.clientX);
+    };
+
+    const handleMouseUp = () => {
+        setIsDragging(false);
+    };
+
+    React.useEffect(() => {
+        if (isDragging) {
+            window.addEventListener(\'mousemove\', handleMouseMove);
+            window.addEventListener(\'mouseup\', handleMouseUp);
+            window.addEventListener(\'touchmove\', handleTouchMove);
+            window.addEventListener(\'touchend\', handleMouseUp);
+        }
+
+        return () => {
+            window.removeEventListener(\'mousemove\', handleMouseMove);
+            window.removeEventListener(\'mouseup\', handleMouseUp);
+            window.removeEventListener(\'touchmove\', handleTouchMove);
+            window.removeEventListener(\'touchend\', handleMouseUp);
+        };
+    }, [isDragging]);
+
+    const handleMouseDown = (e: React.MouseEvent) => {
+        e.preventDefault();
+        setIsDragging(true);
+        if (containerRef.current) {
+            const rect = containerRef.current.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            setSliderPosition(
+                Math.max(0, Math.min(100, (x / rect.width) * 100)),
+            );
+        }
+    };
+
+    const handleTouchStart = (e: React.TouchEvent) => {
+        setIsDragging(true);
+        if (containerRef.current) {
+            const rect = containerRef.current.getBoundingClientRect();
+            const x = e.touches[0].clientX - rect.left;
+            setSliderPosition(
+                Math.max(0, Math.min(100, (x / rect.width) * 100)),
+            );
+        }
+    };
+
+    // Calculate skewed clip-path coordinates. Taper skew to 0 at the bounds (0 and 100).
+    const currentSkew = maxSkew * (1 - Math.abs(sliderPosition - 50) / 50);
+    const topPoint = Math.max(0, Math.min(100, sliderPosition - currentSkew));
+    const bottomPoint = Math.max(
+        0,
+        Math.min(100, sliderPosition + currentSkew),
+    );
+
+    const aspectClasses = {
+        video: \'aspect-video\',
+        square: \'aspect-square\',
+        wide: \'aspect-21/9\',
+        auto: \'h-full w-full\',
+    };
+
+    return (
+        <div
+            ref={containerRef}
+            className={cn(
+                \'relative overflow-hidden rounded-xl border border-border bg-muted shadow-lg select-none\',
+                aspectClasses[aspectRatio],
+                className,
+            )}
+            onMouseDown={handleMouseDown}
+            onTouchStart={handleTouchStart}
+            {...props}
+        >
+            {/* After Image (Base) */}
+            <img
+                src={afterImage}
+                alt="After"
+                className="pointer-events-none absolute inset-0 size-full object-cover"
+            />
+
+            {/* After Label */}
+            {afterLabel && (
+                <div className="absolute right-4 bottom-4 z-10 rounded-md bg-background/70 px-2.5 py-1 text-xs font-medium text-foreground backdrop-blur-xs transition-opacity duration-300">
+                    {afterLabel}
+                </div>
+            )}
+
+            {/* Before Image (Clipped overlay) */}
+            <div
+                className="pointer-events-none absolute inset-0 size-full"
+                style={{
+                    clipPath: `polygon(0 0, ${topPoint}% 0, ${bottomPoint}% 100%, 0 100%)`,
+                }}
+            >
+                <img
+                    src={beforeImage}
+                    alt="Before"
+                    className="absolute inset-0 size-full object-cover"
+                />
+            </div>
+
+            {/* Before Label */}
+            {beforeLabel && (
+                <div
+                    className="absolute bottom-4 left-4 z-10 rounded-md bg-background/70 px-2.5 py-1 text-xs font-medium text-foreground backdrop-blur-xs transition-opacity duration-300"
+                    style={{
+                        opacity: sliderPosition < 15 ? 0 : 1,
+                    }}
+                >
+                    {beforeLabel}
+                </div>
+            )}
+
+            {/* Diagonal SVG Divider Line */}
+            <svg
+                className="pointer-events-none absolute inset-0 z-20 size-full"
+                style={{ filter: \'drop-shadow(0px 0px 1px rgba(0,0,0,0.5))\' }}
+            >
+                <line
+                    x1={`${topPoint}%`}
+                    y1="0"
+                    x2={`${bottomPoint}%`}
+                    y2="100%"
+                    className="stroke-background/90"
+                    strokeWidth="2.5"
+                />
+            </svg>
+
+            {/* Slider Handle (located at center of diagonal line) */}
+            <div
+                className="absolute top-1/2 z-20 -translate-x-1/2 -translate-y-1/2 cursor-ew-resize"
+                style={{ left: `${sliderPosition}%` }}
+            >
+                <div
+                    className={cn(
+                        \'flex size-9 items-center justify-center rounded-full border border-border bg-background shadow-md transition-transform duration-200 select-none\',
+                        isDragging && \'scale-110 border-primary\',
+                    )}
+                >
+                    <ChevronsLeftRight className="size-4 text-muted-foreground" />
+                </div>
+            </div>
+        </div>
+    );
+}
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'comparison-sliders',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'comparison-sliders',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'comparison-slider-hover',
+                'type' => 'registry:ui',
+                'title' => 'Comparison Slider Hover',
+                'description' => 'A cursor-following hover-reveal before/after image comparison slider with optional click locking.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/comparison-sliders/comparison-slider-hover.tsx',
+                        'type' => 'registry:ui',
+                        'content' => 'import * as React from \'react\';
+import { Lock, Unlock } from \'lucide-react\';
+import { cn } from \'@/lib/utils\';
+
+interface ComparisonSliderHoverProps extends React.HTMLAttributes<HTMLDivElement> {
+    beforeImage: string;
+    afterImage: string;
+    beforeLabel?: string;
+    afterLabel?: string;
+    defaultPosition?: number;
+    aspectRatio?: \'video\' | \'square\' | \'wide\' | \'auto\';
+    resetOnLeave?: boolean;
+}
+
+export function ComparisonSliderHover({
+    beforeImage,
+    afterImage,
+    beforeLabel = \'Before\',
+    afterLabel = \'After\',
+    defaultPosition = 50,
+    aspectRatio = \'video\',
+    resetOnLeave = false,
+    className,
+    ...props
+}: ComparisonSliderHoverProps) {
+    const [sliderPosition, setSliderPosition] = React.useState(defaultPosition);
+    const [isLocked, setIsLocked] = React.useState(false);
+    const containerRef = React.useRef<HTMLDivElement>(null);
+
+    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+        if (isLocked || !containerRef.current) return;
+        const rect = containerRef.current.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const position = Math.max(0, Math.min(100, (x / rect.width) * 100));
+        setSliderPosition(position);
+    };
+
+    const handleMouseLeave = () => {
+        if (isLocked || !resetOnLeave) return;
+        setSliderPosition(defaultPosition);
+    };
+
+    const handleContainerClick = (e: React.MouseEvent) => {
+        // Toggle locking
+        setIsLocked(!isLocked);
+    };
+
+    const aspectClasses = {
+        video: \'aspect-video\',
+        square: \'aspect-square\',
+        wide: \'aspect-21/9\',
+        auto: \'h-full w-full\',
+    };
+
+    return (
+        <div
+            ref={containerRef}
+            className={cn(
+                \'relative cursor-crosshair overflow-hidden rounded-xl border border-border bg-muted shadow-lg select-none\',
+                aspectClasses[aspectRatio],
+                className,
+            )}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+            onClick={handleContainerClick}
+            {...props}
+        >
+            {/* After Image (Base) */}
+            <img
+                src={afterImage}
+                alt="After"
+                className="pointer-events-none absolute inset-0 size-full object-cover"
+            />
+
+            {/* After Label */}
+            {afterLabel && (
+                <div className="absolute right-4 bottom-4 z-10 rounded-md bg-background/70 px-2.5 py-1 text-xs font-medium text-foreground backdrop-blur-xs transition-opacity duration-300">
+                    {afterLabel}
+                </div>
+            )}
+
+            {/* Before Image (Clipped overlay) */}
+            <div
+                className="pointer-events-none absolute inset-0 size-full"
+                style={{
+                    clipPath: `polygon(0 0, ${sliderPosition}% 0, ${sliderPosition}% 100%, 0 100%)`,
+                }}
+            >
+                <img
+                    src={beforeImage}
+                    alt="Before"
+                    className="absolute inset-0 size-full object-cover"
+                />
+            </div>
+
+            {/* Before Label */}
+            {beforeLabel && (
+                <div
+                    className="absolute bottom-4 left-4 z-10 rounded-md bg-background/70 px-2.5 py-1 text-xs font-medium text-foreground backdrop-blur-xs transition-opacity duration-300"
+                    style={{
+                        opacity: sliderPosition < 15 ? 0 : 1,
+                    }}
+                >
+                    {beforeLabel}
+                </div>
+            )}
+
+            {/* Locked/Unlocked Alert Tooltip */}
+            <div className="absolute top-4 right-4 z-10 rounded-md border border-border bg-background/80 px-2 py-1 text-[10px] font-semibold text-foreground shadow-xs backdrop-blur-xs">
+                {isLocked
+                    ? \'Locked (Click to unlock)\'
+                    : \'Hover to move (Click to lock)\'}
+            </div>
+
+            {/* Slider Line & Handle */}
+            <div
+                className={cn(
+                    \'pointer-events-none absolute top-0 bottom-0 z-20 w-0.5 bg-background/80 transition-colors hover:bg-background/95\',
+                    isLocked && \'bg-primary\',
+                )}
+                style={{ left: `${sliderPosition}%` }}
+            >
+                <div
+                    className={cn(
+                        \'absolute top-1/2 flex size-9 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border bg-background shadow-md transition-all duration-200\',
+                        isLocked
+                            ? \'scale-110 border-primary text-primary\'
+                            : \'border-border text-muted-foreground\',
+                    )}
+                >
+                    {isLocked ? (
+                        <Lock className="size-4" />
+                    ) : (
+                        <Unlock className="size-4 animate-pulse" />
+                    )}
+                </div>
+            </div>
+        </div>
+    );
+}
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'comparison-sliders',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'comparison-sliders',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'comparison-slider-three-way',
+                'type' => 'registry:ui',
+                'title' => 'Comparison Slider Three Way',
+                'description' => 'A multi-image before/after/filtered image comparison slider featuring dual interactive drag handles.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/comparison-sliders/comparison-slider-three-way.tsx',
+                        'type' => 'registry:ui',
+                        'content' => 'import * as React from \'react\';
+import { ChevronsLeftRight } from \'lucide-react\';
+import { cn } from \'@/lib/utils\';
+
+interface ComparisonSliderThreeWayProps extends React.HTMLAttributes<HTMLDivElement> {
+    leftImage: string;
+    centerImage: string;
+    rightImage: string;
+    leftLabel?: string;
+    centerLabel?: string;
+    rightLabel?: string;
+    defaultLeftPosition?: number;
+    defaultRightPosition?: number;
+    minGap?: number; // minimum percentage gap between handles
+    aspectRatio?: \'video\' | \'square\' | \'wide\' | \'auto\';
+}
+
+export function ComparisonSliderThreeWay({
+    leftImage,
+    centerImage,
+    rightImage,
+    leftLabel = \'Original\',
+    centerLabel = \'Filtered\',
+    rightLabel = \'B&W\',
+    defaultLeftPosition = 33,
+    defaultRightPosition = 66,
+    minGap = 5,
+    aspectRatio = \'video\',
+    className,
+    ...props
+}: ComparisonSliderThreeWayProps) {
+    const [leftPos, setLeftPos] = React.useState(defaultLeftPosition);
+    const [rightPos, setRightPos] = React.useState(defaultRightPosition);
+    const [activeHandle, setActiveHandle] = React.useState<
+        \'left\' | \'right\' | null
+    >(null);
+    const containerRef = React.useRef<HTMLDivElement>(null);
+
+    const handleMove = (clientX: number) => {
+        if (!containerRef.current || !activeHandle) return;
+        const rect = containerRef.current.getBoundingClientRect();
+        const x = clientX - rect.left;
+        const percentage = Math.max(0, Math.min(100, (x / rect.width) * 100));
+
+        if (activeHandle === \'left\') {
+            // Left handle cannot exceed right handle minus minimum gap
+            const newLeft = Math.min(percentage, rightPos - minGap);
+            setLeftPos(newLeft);
+        } else {
+            // Right handle cannot be less than left handle plus minimum gap
+            const newRight = Math.max(percentage, leftPos + minGap);
+            setRightPos(newRight);
+        }
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+        if (!activeHandle) return;
+        handleMove(e.touches[0].clientX);
+    };
+
+    const handleMouseMove = (e: MouseEvent) => {
+        if (!activeHandle) return;
+        handleMove(e.clientX);
+    };
+
+    const handleMouseUp = () => {
+        setActiveHandle(null);
+    };
+
+    React.useEffect(() => {
+        if (activeHandle) {
+            window.addEventListener(\'mousemove\', handleMouseMove);
+            window.addEventListener(\'mouseup\', handleMouseUp);
+            window.addEventListener(\'touchmove\', handleTouchMove);
+            window.addEventListener(\'touchend\', handleMouseUp);
+        }
+
+        return () => {
+            window.removeEventListener(\'mousemove\', handleMouseMove);
+            window.removeEventListener(\'mouseup\', handleMouseUp);
+            window.removeEventListener(\'touchmove\', handleTouchMove);
+            window.removeEventListener(\'touchend\', handleMouseUp);
+        };
+    }, [activeHandle, leftPos, rightPos]);
+
+    const startDraggingLeft = (e: React.MouseEvent | React.TouchEvent) => {
+        e.stopPropagation();
+        setActiveHandle(\'left\');
+    };
+
+    const startDraggingRight = (e: React.MouseEvent | React.TouchEvent) => {
+        e.stopPropagation();
+        setActiveHandle(\'right\');
+    };
+
+    const aspectClasses = {
+        video: \'aspect-video\',
+        square: \'aspect-square\',
+        wide: \'aspect-21/9\',
+        auto: \'h-full w-full\',
+    };
+
+    return (
+        <div
+            ref={containerRef}
+            className={cn(
+                \'relative overflow-hidden rounded-xl border border-border bg-muted shadow-lg select-none\',
+                aspectClasses[aspectRatio],
+                className,
+            )}
+            {...props}
+        >
+            {/* Right Image (Base / Rightmost) */}
+            <img
+                src={rightImage}
+                alt="Right state"
+                className="pointer-events-none absolute inset-0 size-full object-cover"
+            />
+
+            {/* Right Label (Bottom right) */}
+            {rightLabel && (
+                <div className="absolute right-4 bottom-4 z-10 rounded-md bg-background/70 px-2.5 py-1 text-xs font-medium text-foreground backdrop-blur-xs transition-opacity duration-300">
+                    {rightLabel}
+                </div>
+            )}
+
+            {/* Center Image (Clipped overlay / Center section) */}
+            <div
+                className="pointer-events-none absolute inset-0 size-full"
+                style={{
+                    clipPath: `polygon(${leftPos}% 0, ${rightPos}% 0, ${rightPos}% 100%, ${leftPos}% 100%)`,
+                }}
+            >
+                <img
+                    src={centerImage}
+                    alt="Center state"
+                    className="absolute inset-0 size-full object-cover"
+                />
+            </div>
+
+            {/* Center Label (Bottom center) */}
+            {centerLabel && (
+                <div
+                    className="absolute bottom-4 left-1/2 z-10 -translate-x-1/2 rounded-md bg-background/70 px-2.5 py-1 text-xs font-medium text-foreground backdrop-blur-xs transition-opacity duration-300"
+                    style={{
+                        opacity: rightPos - leftPos < 20 ? 0 : 1,
+                    }}
+                >
+                    {centerLabel}
+                </div>
+            )}
+
+            {/* Left Image (Clipped overlay / Left section) */}
+            <div
+                className="pointer-events-none absolute inset-0 size-full"
+                style={{
+                    clipPath: `polygon(0 0, ${leftPos}% 0, ${leftPos}% 100%, 0 100%)`,
+                }}
+            >
+                <img
+                    src={leftImage}
+                    alt="Left state"
+                    className="absolute inset-0 size-full object-cover"
+                />
+            </div>
+
+            {/* Left Label (Bottom left) */}
+            {leftLabel && (
+                <div
+                    className="absolute bottom-4 left-4 z-10 rounded-md bg-background/70 px-2.5 py-1 text-xs font-medium text-foreground backdrop-blur-xs transition-opacity duration-300"
+                    style={{
+                        opacity: leftPos < 15 ? 0 : 1,
+                    }}
+                >
+                    {leftLabel}
+                </div>
+            )}
+
+            {/* Left Divider Line & Handle */}
+            <div
+                className={cn(
+                    \'absolute top-0 bottom-0 z-20 w-0.5 cursor-ew-resize transition-colors\',
+                    activeHandle === \'left\'
+                        ? \'bg-primary\'
+                        : \'bg-background/80 hover:bg-background/95\',
+                )}
+                style={{ left: `${leftPos}%` }}
+                onMouseDown={startDraggingLeft}
+                onTouchStart={startDraggingLeft}
+            >
+                <div
+                    className={cn(
+                        \'absolute top-1/2 flex size-8 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-background shadow-md transition-transform duration-200 select-none\',
+                        activeHandle === \'left\' && \'scale-110 border-primary\',
+                    )}
+                >
+                    <ChevronsLeftRight className="size-3.5 text-muted-foreground" />
+                </div>
+            </div>
+
+            {/* Right Divider Line & Handle */}
+            <div
+                className={cn(
+                    \'absolute top-0 bottom-0 z-20 w-0.5 cursor-ew-resize transition-colors\',
+                    activeHandle === \'right\'
+                        ? \'bg-primary\'
+                        : \'bg-background/80 hover:bg-background/95\',
+                )}
+                style={{ left: `${rightPos}%` }}
+                onMouseDown={startDraggingRight}
+                onTouchStart={startDraggingRight}
+            >
+                <div
+                    className={cn(
+                        \'absolute top-1/2 flex size-8 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-background shadow-md transition-transform duration-200 select-none\',
+                        activeHandle === \'right\' && \'scale-110 border-primary\',
+                    )}
+                >
+                    <ChevronsLeftRight className="size-3.5 text-muted-foreground" />
+                </div>
+            </div>
+        </div>
+    );
+}
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'comparison-sliders',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'comparison-sliders',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'comparison-slider-vertical',
+                'type' => 'registry:ui',
+                'title' => 'Comparison Slider Vertical',
+                'description' => 'A premium vertical before/after image comparison slider with an interactive drag handle.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/comparison-sliders/comparison-slider-vertical.tsx',
+                        'type' => 'registry:ui',
+                        'content' => 'import * as React from \'react\';
+import { ChevronsUpDown } from \'lucide-react\';
+import { cn } from \'@/lib/utils\';
+
+interface ComparisonSliderVerticalProps extends React.HTMLAttributes<HTMLDivElement> {
+    beforeImage: string;
+    afterImage: string;
+    beforeLabel?: string;
+    afterLabel?: string;
+    defaultPosition?: number;
+    aspectRatio?: \'video\' | \'square\' | \'wide\' | \'auto\';
+}
+
+export function ComparisonSliderVertical({
+    beforeImage,
+    afterImage,
+    beforeLabel = \'Before\',
+    afterLabel = \'After\',
+    defaultPosition = 50,
+    aspectRatio = \'video\',
+    className,
+    ...props
+}: ComparisonSliderVerticalProps) {
+    const [sliderPosition, setSliderPosition] = React.useState(defaultPosition);
+    const [isDragging, setIsDragging] = React.useState(false);
+    const containerRef = React.useRef<HTMLDivElement>(null);
+
+    const handleMove = (clientY: number) => {
+        if (!containerRef.current) return;
+        const rect = containerRef.current.getBoundingClientRect();
+        const y = clientY - rect.top;
+        const position = Math.max(0, Math.min(100, (y / rect.height) * 100));
+        setSliderPosition(position);
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+        if (!isDragging) return;
+        handleMove(e.touches[0].clientY);
+    };
+
+    const handleMouseMove = (e: MouseEvent) => {
+        if (!isDragging) return;
+        handleMove(e.clientY);
+    };
+
+    const handleMouseUp = () => {
+        setIsDragging(false);
+    };
+
+    React.useEffect(() => {
+        if (isDragging) {
+            window.addEventListener(\'mousemove\', handleMouseMove);
+            window.addEventListener(\'mouseup\', handleMouseUp);
+            window.addEventListener(\'touchmove\', handleTouchMove);
+            window.addEventListener(\'touchend\', handleMouseUp);
+        }
+
+        return () => {
+            window.removeEventListener(\'mousemove\', handleMouseMove);
+            window.removeEventListener(\'mouseup\', handleMouseUp);
+            window.removeEventListener(\'touchmove\', handleTouchMove);
+            window.removeEventListener(\'touchend\', handleMouseUp);
+        };
+    }, [isDragging]);
+
+    const handleMouseDown = (e: React.MouseEvent) => {
+        e.preventDefault();
+        setIsDragging(true);
+        if (containerRef.current) {
+            const rect = containerRef.current.getBoundingClientRect();
+            const y = e.clientY - rect.top;
+            setSliderPosition(
+                Math.max(0, Math.min(100, (y / rect.height) * 100)),
+            );
+        }
+    };
+
+    const handleTouchStart = (e: React.TouchEvent) => {
+        setIsDragging(true);
+        if (containerRef.current) {
+            const rect = containerRef.current.getBoundingClientRect();
+            const y = e.touches[0].clientY - rect.top;
+            setSliderPosition(
+                Math.max(0, Math.min(100, (y / rect.height) * 100)),
+            );
+        }
+    };
+
+    const aspectClasses = {
+        video: \'aspect-video\',
+        square: \'aspect-square\',
+        wide: \'aspect-21/9\',
+        auto: \'h-full w-full\',
+    };
+
+    return (
+        <div
+            ref={containerRef}
+            className={cn(
+                \'relative overflow-hidden rounded-xl border border-border bg-muted shadow-lg select-none\',
+                aspectClasses[aspectRatio],
+                className,
+            )}
+            onMouseDown={handleMouseDown}
+            onTouchStart={handleTouchStart}
+            {...props}
+        >
+            {/* After Image (Base / Bottom) */}
+            <img
+                src={afterImage}
+                alt="After"
+                className="pointer-events-none absolute inset-0 size-full object-cover"
+            />
+
+            {/* After Label (Bottom right) */}
+            {afterLabel && (
+                <div className="absolute right-4 bottom-4 z-10 rounded-md bg-background/70 px-2.5 py-1 text-xs font-medium text-foreground backdrop-blur-xs transition-opacity duration-300">
+                    {afterLabel}
+                </div>
+            )}
+
+            {/* Before Image (Clipped overlay / Top) */}
+            <div
+                className="pointer-events-none absolute inset-0 size-full"
+                style={{
+                    clipPath: `polygon(0 0, 100% 0, 100% ${sliderPosition}%, 0 ${sliderPosition}%)`,
+                }}
+            >
+                <img
+                    src={beforeImage}
+                    alt="Before"
+                    className="absolute inset-0 size-full object-cover"
+                />
+            </div>
+
+            {/* Before Label (Top left) */}
+            {beforeLabel && (
+                <div
+                    className="absolute top-4 left-4 z-10 rounded-md bg-background/70 px-2.5 py-1 text-xs font-medium text-foreground backdrop-blur-xs transition-opacity duration-300"
+                    style={{
+                        opacity: sliderPosition < 15 ? 0 : 1,
+                    }}
+                >
+                    {beforeLabel}
+                </div>
+            )}
+
+            {/* Slider Line & Handle (Horizontal Line sliding up/down) */}
+            <div
+                className="absolute right-0 left-0 z-20 h-0.5 cursor-ns-resize bg-background/85 transition-colors hover:bg-background/95"
+                style={{ top: `${sliderPosition}%` }}
+            >
+                <div
+                    className={cn(
+                        \'absolute left-1/2 flex size-9 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-background shadow-md transition-transform duration-200 select-none\',
+                        isDragging && \'scale-110 border-primary\',
+                    )}
+                >
+                    <ChevronsUpDown className="size-4 text-muted-foreground" />
+                </div>
+            </div>
+        </div>
+    );
+}
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'comparison-sliders',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'comparison-sliders',
                 ],
                 'extends' => null,
                 'style' => null,
@@ -13915,11 +18737,13 @@ const InputPassword = React.forwardRef<HTMLInputElement, InputPasswordProps>(
                     variant="ghost"
                     size="icon"
                     className={cn(
-                        \'absolute top-1/2 right-0 size-9 -translate-y-1/2 text-muted-foreground/70 hover:bg-transparent hover:text-foreground cursor-pointer select-none\',
-                        toggleClassName
+                        \'absolute top-1/2 right-0 size-9 -translate-y-1/2 cursor-pointer text-muted-foreground/70 select-none hover:bg-transparent hover:text-foreground\',
+                        toggleClassName,
                     )}
                     onClick={toggleVisibility}
-                    aria-label={showPassword ? \'Hide password\' : \'Show password\'}
+                    aria-label={
+                        showPassword ? \'Hide password\' : \'Show password\'
+                    }
                 >
                     {showPassword ? (
                         <EyeOff className="size-4" />
@@ -13929,7 +18753,7 @@ const InputPassword = React.forwardRef<HTMLInputElement, InputPasswordProps>(
                 </Button>
             </div>
         );
-    }
+    },
 );
 
 InputPassword.displayName = \'InputPassword\';
@@ -15442,6 +20266,803 @@ export default InteractiveRating;
                 'docs' => null,
                 'categories' => [
                     'rating',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'review-card',
+                'type' => 'registry:ui',
+                'title' => 'Review Card',
+                'description' => 'A reusable client review card displaying star ratings, verified badges, and client profile data.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/reviews/review-card.tsx',
+                        'type' => 'registry:ui',
+                        'content' => 'import * as React from \'react\';
+import { Star, CheckCircle } from \'lucide-react\';
+import { cn } from \'@/lib/utils\';
+
+export interface ReviewItem {
+    id: string | number;
+    author: string;
+    avatar?: string; // image URL or initial letter
+    role?: string;
+    company?: string;
+    rating: number;
+    comment: string;
+    date?: string;
+    verified?: boolean;
+    tags?: string[];
+}
+
+interface ReviewCardProps extends React.HTMLAttributes<HTMLDivElement> {
+    review: ReviewItem;
+    showQuoteIcon?: boolean;
+}
+
+export function ReviewCard({
+    review,
+    showQuoteIcon = false,
+    className,
+    ...props
+}: ReviewCardProps) {
+    const renderStars = (rating: number) => {
+        const floor = Math.floor(rating);
+        return (
+            <div className="flex items-center gap-0.5 text-amber-500">
+                {[...Array(5)].map((_, i) => (
+                    <Star
+                        key={i}
+                        className={cn(
+                            \'size-4 fill-current\',
+                            i >= floor &&
+                                \'fill-transparent text-muted-foreground/40 opacity-25\',
+                        )}
+                    />
+                ))}
+            </div>
+        );
+    };
+
+    return (
+        <div
+            className={cn(
+                \'relative flex flex-col justify-between overflow-hidden rounded-2xl border border-border/80 bg-card/65 p-6 shadow-xs backdrop-blur-md transition-all duration-300 select-none hover:border-primary/20 hover:shadow-md\',
+                className,
+            )}
+            {...props}
+        >
+            {/* Background Quote Mark */}
+            {showQuoteIcon && (
+                <span className="pointer-events-none absolute -top-3 -right-2 font-serif text-8xl font-bold text-primary/5 select-none">
+                    “
+                </span>
+            )}
+
+            <div className="space-y-4">
+                {/* Rating & Verified Badge */}
+                <div className="flex items-center justify-between gap-4">
+                    {renderStars(review.rating)}
+                    {review.verified && (
+                        <span className="inline-flex items-center gap-1 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-2 py-0.5 text-[9px] font-semibold text-emerald-600 dark:text-emerald-400">
+                            <CheckCircle className="size-2.5 fill-current" />
+                            Verified
+                        </span>
+                    )}
+                </div>
+
+                {/* Comment Text */}
+                <p className="text-sm leading-relaxed text-muted-foreground italic">
+                    "{review.comment}"
+                </p>
+            </div>
+
+            {/* Author Profile Footer */}
+            <div className="mt-6 flex items-center justify-between gap-4 border-t border-border/50 pt-4">
+                <div className="flex items-center gap-3">
+                    {review.avatar && review.avatar.startsWith(\'http\') ? (
+                        <img
+                            src={review.avatar}
+                            alt={review.author}
+                            className="size-10 rounded-full border border-border object-cover"
+                        />
+                    ) : (
+                        <div className="flex size-10 shrink-0 items-center justify-center rounded-full border border-primary/20 bg-primary/10 text-sm font-extrabold text-primary uppercase">
+                            {review.avatar || review.author.charAt(0)}
+                        </div>
+                    )}
+
+                    <div className="min-w-0 space-y-0.5 text-left">
+                        <h4 className="truncate text-xs font-bold text-foreground">
+                            {review.author}
+                        </h4>
+                        {(review.role || review.company) && (
+                            <p className="truncate text-[10px] text-muted-foreground">
+                                {review.role}{\' \'}
+                                {review.company && `@ ${review.company}`}
+                            </p>
+                        )}
+                    </div>
+                </div>
+
+                {review.date && (
+                    <span className="shrink-0 text-[10px] font-medium text-muted-foreground/80">
+                        {review.date}
+                    </span>
+                )}
+            </div>
+
+            {/* Pill tags */}
+            {review.tags && review.tags.length > 0 && (
+                <div className="mt-3.5 flex flex-wrap gap-1">
+                    {review.tags.map((tag) => (
+                        <span
+                            key={tag}
+                            className="rounded-full border border-border/20 bg-muted/60 px-2 py-0.5 text-[9px] font-medium text-muted-foreground/80"
+                        >
+                            #{tag}
+                        </span>
+                    ))}
+                </div>
+            )}
+        </div>
+    );
+}
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'reviews',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'reviews',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'review-carousel',
+                'type' => 'registry:ui',
+                'title' => 'Review Carousel',
+                'description' => 'A dynamic client reviews slider utilizing Swiper with auto-scroll and dot pagination controls.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'swiper',
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/reviews/review-carousel.tsx',
+                        'type' => 'registry:ui',
+                        'content' => 'import * as React from \'react\';
+import { Swiper, SwiperSlide } from \'swiper/react\';
+import type { Swiper as SwiperClass } from \'swiper\';
+import { Autoplay, Pagination, Navigation } from \'swiper/modules\';
+import { ChevronLeft, ChevronRight } from \'lucide-react\';
+import { cn } from \'@/lib/utils\';
+import { ReviewItem, ReviewCard } from \'./review-card\';
+
+// Import Swiper styles
+import \'swiper/css\';
+import \'swiper/css/pagination\';
+import \'swiper/css/navigation\';
+
+interface ReviewCarouselProps extends React.HTMLAttributes<HTMLDivElement> {
+    reviews: ReviewItem[];
+    autoplay?: boolean;
+    autoplayDelay?: number;
+    slidesPerView?: number | \'auto\';
+    spaceBetween?: number;
+}
+
+export function ReviewCarousel({
+    reviews,
+    autoplay = true,
+    autoplayDelay = 5000,
+    slidesPerView = 1,
+    spaceBetween = 24,
+    className,
+    ...props
+}: ReviewCarouselProps) {
+    const [swiper, setSwiper] = React.useState<SwiperClass | null>(null);
+    const [activeIndex, setActiveIndex] = React.useState(0);
+
+    const handlePrev = () => {
+        swiper?.slidePrev();
+    };
+
+    const handleNext = () => {
+        swiper?.slideNext();
+    };
+
+    const handleDotClick = (index: number) => {
+        swiper?.slideTo(index);
+    };
+
+    const modules = [];
+    if (autoplay) {
+        modules.push(Autoplay);
+    }
+    modules.push(Pagination, Navigation);
+
+    return (
+        <div
+            className={cn(
+                \'group relative mx-auto w-full max-w-5xl px-4 py-8 select-none\',
+                className,
+            )}
+            {...props}
+        >
+            <div className="relative overflow-visible">
+                <Swiper
+                    onSwiper={setSwiper}
+                    onSlideChange={(s) => setActiveIndex(s.activeIndex)}
+                    modules={modules}
+                    spaceBetween={spaceBetween}
+                    slidesPerView={slidesPerView}
+                    centeredSlides={slidesPerView === 1 ? false : true}
+                    loop={reviews.length > 2}
+                    autoplay={
+                        autoplay
+                            ? {
+                                  delay: autoplayDelay,
+                                  disableOnInteraction: false,
+                                  pauseOnMouseEnter: true,
+                              }
+                            : false
+                    }
+                    breakpoints={{
+                        640: {
+                            slidesPerView: Math.min(
+                                slidesPerView === \'auto\'
+                                    ? 2
+                                    : (slidesPerView as number),
+                                2,
+                            ),
+                        },
+                        1024: {
+                            slidesPerView:
+                                slidesPerView === \'auto\'
+                                    ? 3
+                                    : (slidesPerView as number),
+                        },
+                    }}
+                    className="w-full"
+                >
+                    {reviews.map((review) => (
+                        <SwiperSlide
+                            key={review.id}
+                            className="flex h-auto py-2"
+                        >
+                            <ReviewCard
+                                review={review}
+                                showQuoteIcon
+                                className="h-full w-full flex-1"
+                            />
+                        </SwiperSlide>
+                    ))}
+                </Swiper>
+
+                {/* Styled Arrow Navigation (shown on hover) */}
+                {reviews.length > 1 && (
+                    <>
+                        <button
+                            onClick={handlePrev}
+                            className="absolute top-1/2 -left-4 z-20 flex size-9 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-border bg-background text-muted-foreground opacity-0 shadow-xs transition-all group-hover:opacity-100 hover:bg-muted hover:text-foreground active:scale-90"
+                        >
+                            <ChevronLeft className="size-4" />
+                        </button>
+                        <button
+                            onClick={handleNext}
+                            className="absolute top-1/2 -right-4 z-20 flex size-9 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-border bg-background text-muted-foreground opacity-0 shadow-xs transition-all group-hover:opacity-100 hover:bg-muted hover:text-foreground active:scale-90"
+                        >
+                            <ChevronRight className="size-4" />
+                        </button>
+                    </>
+                )}
+            </div>
+
+            {/* Custom styled slider dot indicators */}
+            {reviews.length > 1 && (
+                <div className="mt-6 flex items-center justify-center gap-1.5">
+                    {reviews.map((_, idx) => (
+                        <button
+                            key={idx}
+                            onClick={() => handleDotClick(idx)}
+                            className={cn(
+                                \'h-1.5 cursor-pointer rounded-full transition-all duration-300\',
+                                activeIndex === idx
+                                    ? \'w-5 bg-primary\'
+                                    : \'w-1.5 bg-muted-foreground/30 hover:bg-muted-foreground/60\',
+                            )}
+                        />
+                    ))}
+                </div>
+            )}
+        </div>
+    );
+}
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'reviews',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'reviews',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'review-grid',
+                'type' => 'registry:ui',
+                'title' => 'Review Grid',
+                'description' => 'A responsive grid layout to present client reviews in neat columns.',
+                'author' => 'designbycode',
+                'dependencies' => [
+
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/reviews/review-grid.tsx',
+                        'type' => 'registry:ui',
+                        'content' => 'import * as React from \'react\';
+import { cn } from \'@/lib/utils\';
+import { ReviewItem, ReviewCard } from \'./review-card\';
+
+interface ReviewGridProps extends React.HTMLAttributes<HTMLDivElement> {
+    reviews: ReviewItem[];
+    columns?: 1 | 2 | 3 | 4;
+}
+
+export function ReviewGrid({
+    reviews,
+    columns = 3,
+    className,
+    ...props
+}: ReviewGridProps) {
+    const columnClasses = {
+        1: \'grid-cols-1\',
+        2: \'grid-cols-1 md:grid-cols-2\',
+        3: \'grid-cols-1 md:grid-cols-2 lg:grid-cols-3\',
+        4: \'grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4\',
+    };
+
+    return (
+        <div
+            className={cn(
+                \'mx-auto grid w-full max-w-7xl gap-6 px-4 py-8\',
+                columnClasses[columns],
+                className,
+            )}
+            {...props}
+        >
+            {reviews.map((review) => (
+                <ReviewCard key={review.id} review={review} showQuoteIcon />
+            ))}
+        </div>
+    );
+}
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'reviews',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'reviews',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'review-hero',
+                'type' => 'registry:ui',
+                'title' => 'Review Hero',
+                'description' => 'A premium single centerpiece spotlight customer review hero component.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/reviews/review-hero.tsx',
+                        'type' => 'registry:ui',
+                        'content' => 'import * as React from \'react\';
+import { Star, CheckCircle } from \'lucide-react\';
+import { cn } from \'@/lib/utils\';
+import { ReviewItem } from \'./review-card\';
+
+interface ReviewHeroProps extends React.HTMLAttributes<HTMLDivElement> {
+    review: ReviewItem;
+}
+
+export function ReviewHero({ review, className, ...props }: ReviewHeroProps) {
+    const renderStars = (rating: number) => {
+        const floor = Math.floor(rating);
+        return (
+            <div className="flex items-center gap-1 text-amber-500">
+                {[...Array(5)].map((_, i) => (
+                    <Star
+                        key={i}
+                        className={cn(
+                            \'size-5 fill-current\',
+                            i >= floor &&
+                                \'fill-transparent text-muted-foreground/40 opacity-25\',
+                        )}
+                    />
+                ))}
+            </div>
+        );
+    };
+
+    return (
+        <div
+            className={cn(
+                \'relative mx-auto flex max-w-4xl flex-col justify-between overflow-hidden rounded-3xl border border-border bg-card/45 p-8 shadow-xl backdrop-blur-md select-none md:p-12\',
+                className,
+            )}
+            {...props}
+        >
+            {/* Ambient Radial Backlight Glow */}
+            <div className="pointer-events-none absolute -top-36 -right-36 -z-10 size-96 rounded-full bg-primary/5 blur-3xl" />
+            <div className="pointer-events-none absolute -bottom-36 -left-36 -z-10 size-96 rounded-full bg-primary/5 blur-3xl" />
+
+            {/* Giant quote mark backdrop */}
+            <span className="pointer-events-none absolute top-4 left-6 font-serif text-[180px] leading-none font-bold text-primary/8 select-none">
+                “
+            </span>
+
+            <div className="relative z-10 space-y-6 pt-8">
+                {/* Rating stars */}
+                <div className="flex items-center gap-4">
+                    {renderStars(review.rating)}
+                    {review.verified && (
+                        <span className="inline-flex items-center gap-1 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-0.5 text-[10px] font-semibold text-emerald-600 dark:text-emerald-400">
+                            <CheckCircle className="size-3 fill-current" />
+                            Verified Customer Feedback
+                        </span>
+                    )}
+                </div>
+
+                {/* Big testimonial quotation comment */}
+                <blockquote className="text-lg leading-relaxed font-medium text-foreground italic md:text-xl">
+                    "{review.comment}"
+                </blockquote>
+            </div>
+
+            {/* Author Profile and Details */}
+            <div className="relative z-10 mt-8 flex flex-col justify-between gap-4 border-t border-border/50 pt-6 sm:flex-row sm:items-center">
+                <div className="flex items-center gap-4">
+                    {review.avatar && review.avatar.startsWith(\'http\') ? (
+                        <img
+                            src={review.avatar}
+                            alt={review.author}
+                            className="size-12 rounded-full border border-border object-cover"
+                        />
+                    ) : (
+                        <div className="flex size-12 shrink-0 items-center justify-center rounded-full border border-primary/20 bg-primary/10 text-base font-extrabold text-primary uppercase">
+                            {review.avatar || review.author.charAt(0)}
+                        </div>
+                    )}
+
+                    <div className="min-w-0 space-y-1 text-left">
+                        <h4 className="truncate text-sm font-bold text-foreground">
+                            {review.author}
+                        </h4>
+                        {(review.role || review.company) && (
+                            <p className="truncate text-xs text-muted-foreground">
+                                {review.role}{\' \'}
+                                {review.company && `at ${review.company}`}
+                            </p>
+                        )}
+                    </div>
+                </div>
+
+                {review.date && (
+                    <span className="shrink-0 text-xs font-semibold text-muted-foreground/80">
+                        {review.date}
+                    </span>
+                )}
+            </div>
+
+            {/* Tags display */}
+            {review.tags && review.tags.length > 0 && (
+                <div className="relative z-10 mt-4 flex flex-wrap gap-2">
+                    {review.tags.map((tag) => (
+                        <span
+                            key={tag}
+                            className="rounded-md border border-border/30 bg-muted px-2.5 py-0.5 text-[10px] font-semibold text-muted-foreground"
+                        >
+                            #{tag}
+                        </span>
+                    ))}
+                </div>
+            )}
+        </div>
+    );
+}
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'reviews',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'reviews',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'review-marquee',
+                'type' => 'registry:ui',
+                'title' => 'Review Marquee',
+                'description' => 'An infinite scrolling testimonial track marquee that pauses on hover.',
+                'author' => 'designbycode',
+                'dependencies' => [
+
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/reviews/review-marquee.tsx',
+                        'type' => 'registry:ui',
+                        'content' => 'import * as React from \'react\';
+import { cn } from \'@/lib/utils\';
+import { ReviewItem, ReviewCard } from \'./review-card\';
+
+interface ReviewMarqueeProps extends React.HTMLAttributes<HTMLDivElement> {
+    reviews: ReviewItem[];
+    speed?: \'slow\' | \'medium\' | \'fast\';
+    direction?: \'left\' | \'right\';
+    pauseOnHover?: boolean;
+}
+
+export function ReviewMarquee({
+    reviews,
+    speed = \'medium\',
+    direction = \'left\',
+    pauseOnHover = true,
+    className,
+    ...props
+}: ReviewMarqueeProps) {
+    const speedClasses = {
+        slow: \'[animation-duration:55s]\',
+        medium: \'[animation-duration:35s]\',
+        fast: \'[animation-duration:20s]\',
+    };
+
+    const directionClasses = {
+        left: \'animate-marquee flex-row\',
+        right: \'animate-marquee flex-row [animation-direction:reverse]\',
+    };
+
+    // Duplicate reviews to fill the scrolling track cleanly
+    const doubledReviews = [...reviews, ...reviews];
+
+    return (
+        <div
+            className={cn(
+                \'mask-image-horizontal relative flex w-full overflow-x-hidden py-8 select-none\',
+                className,
+            )}
+            {...props}
+        >
+            {/* Masking visual fades on edges */}
+            <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-linear-to-r from-background to-transparent" />
+            <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-linear-to-l from-background to-transparent" />
+
+            <div
+                className={cn(
+                    \'flex w-max shrink-0 gap-6\',
+                    directionClasses[direction],
+                    speedClasses[speed],
+                    pauseOnHover && \'hover:[animation-play-state:paused]\',
+                )}
+            >
+                {doubledReviews.map((review, index) => (
+                    <ReviewCard
+                        key={`${review.id}-${index}`}
+                        review={review}
+                        className="w-[300px] shrink-0 md:w-[360px]"
+                    />
+                ))}
+            </div>
+        </div>
+    );
+}
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'reviews',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'reviews',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'review-masonry',
+                'type' => 'registry:ui',
+                'title' => 'Review Masonry',
+                'description' => 'A wall-of-love style masonry layout that handles varying testimonial text heights.',
+                'author' => 'designbycode',
+                'dependencies' => [
+
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/reviews/review-masonry.tsx',
+                        'type' => 'registry:ui',
+                        'content' => 'import * as React from \'react\';
+import { cn } from \'@/lib/utils\';
+import { ReviewItem, ReviewCard } from \'./review-card\';
+
+interface ReviewMasonryProps extends React.HTMLAttributes<HTMLDivElement> {
+    reviews: ReviewItem[];
+    columns?: 1 | 2 | 3 | 4;
+}
+
+export function ReviewMasonry({
+    reviews,
+    columns = 3,
+    className,
+    ...props
+}: ReviewMasonryProps) {
+    const columnClasses = {
+        1: \'columns-1\',
+        2: \'columns-1 md:columns-2\',
+        3: \'columns-1 md:columns-2 lg:columns-3\',
+        4: \'columns-1 sm:columns-2 md:columns-3 lg:columns-4\',
+    };
+
+    return (
+        <div
+            className={cn(
+                \'mx-auto w-full max-w-7xl gap-6 px-4 py-8\',
+                columnClasses[columns],
+                className,
+            )}
+            {...props}
+        >
+            {reviews.map((review) => (
+                <div key={review.id} className="mb-6 break-inside-avoid">
+                    <ReviewCard review={review} showQuoteIcon />
+                </div>
+            ))}
+        </div>
+    );
+}
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'reviews',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'reviews',
                 ],
                 'extends' => null,
                 'style' => null,
@@ -17042,6 +22663,1022 @@ export default WavesThree;
                 'docs' => null,
                 'categories' => [
                     'canvas',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'timeline-collapsible',
+                'type' => 'registry:ui',
+                'title' => 'Timeline Collapsible',
+                'description' => 'An interactive collapsible vertical timeline allowing accordion-style detail expansion.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'motion',
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/timelines/timeline-collapsible.tsx',
+                        'type' => 'registry:ui',
+                        'content' => 'import * as React from \'react\';
+import { motion, AnimatePresence } from \'motion/react\';
+import {
+    ChevronDown,
+    Check,
+    Circle,
+    CheckCircle2,
+    PlayCircle,
+    HelpCircle,
+} from \'lucide-react\';
+import { cn } from \'@/lib/utils\';
+import { TimelineItem } from \'./timeline-vertical\';
+
+interface TimelineCollapsibleProps extends React.HTMLAttributes<HTMLDivElement> {
+    items: TimelineItem[];
+    allowMultiple?: boolean;
+    defaultExpandedIds?: (string | number)[];
+}
+
+export function TimelineCollapsible({
+    items,
+    allowMultiple = false,
+    defaultExpandedIds = [],
+    className,
+    ...props
+}: TimelineCollapsibleProps) {
+    const [expandedIds, setExpandedIds] = React.useState<
+        Record<string | number, boolean>
+    >(() => {
+        const initial: Record<string | number, boolean> = {};
+        defaultExpandedIds.forEach((id) => {
+            initial[id] = true;
+        });
+        return initial;
+    });
+
+    const toggleExpand = (id: string | number) => {
+        setExpandedIds((prev) => {
+            if (allowMultiple) {
+                return { ...prev, [id]: !prev[id] };
+            } else {
+                const isCurrentlyExpanded = prev[id];
+                const next: Record<string | number, boolean> = {};
+                if (!isCurrentlyExpanded) {
+                    next[id] = true;
+                }
+                return next;
+            }
+        });
+    };
+
+    return (
+        <div
+            className={cn(\'relative w-full max-w-4xl px-4 py-8\', className)}
+            {...props}
+        >
+            {/* Elegant Gradient Track Line */}
+            <div className="pointer-events-none absolute top-0 bottom-0 left-8 w-[2px] bg-linear-to-b from-primary/80 via-primary/30 to-border/30" />
+
+            <div className="flex flex-col gap-6">
+                {items.map((item) => {
+                    const isExpanded = !!expandedIds[item.id];
+                    const isCompleted = item.status === \'completed\';
+                    const isCurrent = item.status === \'current\';
+
+                    // Status details styling
+                    const getStatusStyles = () => {
+                        if (isCompleted) {
+                            return {
+                                ring: \'border-primary bg-primary text-primary-foreground\',
+                                labelBg:
+                                    \'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20\',
+                                labelText: item.statusLabel || \'Completed\',
+                                icon: <CheckCircle2 className="size-4" />,
+                            };
+                        }
+                        if (isCurrent) {
+                            return {
+                                ring: \'border-primary ring-4 ring-primary/20\',
+                                labelBg:
+                                    \'bg-primary/10 text-primary border-primary/20\',
+                                labelText: item.statusLabel || \'In Progress\',
+                                icon: (
+                                    <PlayCircle className="size-4 animate-pulse" />
+                                ),
+                            };
+                        }
+                        return {
+                            ring: \'border-muted-foreground/30 text-muted-foreground bg-muted/40\',
+                            labelBg:
+                                \'bg-muted text-muted-foreground border-border\',
+                            labelText: item.statusLabel || \'Planned\',
+                            icon: <HelpCircle className="size-4" />,
+                        };
+                    };
+
+                    const statusInfo = getStatusStyles();
+
+                    return (
+                        <div
+                            key={item.id}
+                            className="group/row relative flex w-full justify-end text-left"
+                        >
+                            {/* Interactive Node Icon */}
+                            <button
+                                onClick={() => toggleExpand(item.id)}
+                                className={cn(
+                                    \'absolute top-4 left-0 z-10 flex size-8 cursor-pointer items-center justify-center rounded-full border shadow-xs transition-all duration-300 hover:scale-105 active:scale-95\',
+                                    statusInfo.ring,
+                                )}
+                            >
+                                {isCurrent && (
+                                    <span className="absolute inset-0 animate-ping rounded-full border border-primary opacity-75" />
+                                )}
+                                {item.icon ? (
+                                    <div className="flex size-4 items-center justify-center [&_svg]:size-4">
+                                        {item.icon}
+                                    </div>
+                                ) : (
+                                    <div className="size-2 rounded-full bg-current" />
+                                )}
+                            </button>
+
+                            {/* Expandable Premium Glassmorphic Content Card */}
+                            <div className="w-[calc(100%-4.5rem)]">
+                                <div
+                                    className={cn(
+                                        \'group cursor-pointer rounded-xl border border-border/80 bg-card/60 p-5 shadow-xs backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/20 hover:shadow-md\',
+                                        isExpanded &&
+                                            \'translate-y-0 border-primary/30 bg-card/90 shadow-md\',
+                                    )}
+                                    onClick={() => toggleExpand(item.id)}
+                                >
+                                    {/* Header Layout */}
+                                    <div className="flex items-start justify-between gap-4">
+                                        <div className="flex flex-1 flex-col gap-2">
+                                            {/* Top badges bar */}
+                                            <div className="flex flex-wrap items-center gap-2">
+                                                <span
+                                                    className={cn(
+                                                        \'inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-[10px] font-semibold tracking-wide uppercase\',
+                                                        statusInfo.labelBg,
+                                                    )}
+                                                >
+                                                    {statusInfo.icon}
+                                                    {statusInfo.labelText}
+                                                </span>
+                                                {item.date && (
+                                                    <span className="text-[11px] font-medium text-muted-foreground/80">
+                                                        • {item.date}
+                                                    </span>
+                                                )}
+                                            </div>
+
+                                            {/* Milestone Title */}
+                                            <h3 className="text-lg font-bold tracking-tight text-foreground transition-colors group-hover:text-primary">
+                                                {item.title}
+                                            </h3>
+                                        </div>
+
+                                        {/* Dropdown Chevron */}
+                                        <div className="flex size-7 items-center justify-center rounded-lg border border-transparent bg-muted/40 text-muted-foreground transition-all group-hover:border-border/60 group-hover:bg-muted/80">
+                                            <ChevronDown
+                                                className={cn(
+                                                    \'size-4 transition-transform duration-200\',
+                                                    isExpanded &&
+                                                        \'rotate-180 text-primary\',
+                                                )}
+                                            />
+                                        </div>
+                                    </div>
+
+                                    {/* Expandable Content Area */}
+                                    <AnimatePresence initial={false}>
+                                        {isExpanded && (
+                                            <motion.div
+                                                initial={{
+                                                    height: 0,
+                                                    opacity: 0,
+                                                    marginTop: 0,
+                                                }}
+                                                animate={{
+                                                    height: \'auto\',
+                                                    opacity: 1,
+                                                    marginTop: 16,
+                                                }}
+                                                exit={{
+                                                    height: 0,
+                                                    opacity: 0,
+                                                    marginTop: 0,
+                                                }}
+                                                transition={{
+                                                    duration: 0.25,
+                                                    ease: \'easeInOut\',
+                                                }}
+                                                className="overflow-hidden border-t border-border/50 pt-4"
+                                                onClick={(e) =>
+                                                    e.stopPropagation()
+                                                } // Stop click toggle inside content
+                                            >
+                                                {/* Description Text */}
+                                                {item.description && (
+                                                    <div className="text-sm leading-relaxed text-muted-foreground">
+                                                        {item.description}
+                                                    </div>
+                                                )}
+
+                                                {/* Sub-steps / Checklist (if provided) */}
+                                                {item.subtasks &&
+                                                    item.subtasks.length >
+                                                        0 && (
+                                                        <div className="mt-4 flex flex-col gap-2 rounded-lg border border-border/40 bg-muted/30 p-4">
+                                                            <h4 className="text-[11px] font-bold tracking-wider text-muted-foreground/80 uppercase">
+                                                                Task
+                                                                Deliverables
+                                                            </h4>
+                                                            <div className="mt-2 flex flex-col gap-2">
+                                                                {item.subtasks.map(
+                                                                    (
+                                                                        task,
+                                                                        i,
+                                                                    ) => (
+                                                                        <div
+                                                                            key={
+                                                                                i
+                                                                            }
+                                                                            className="flex items-center gap-2.5 text-xs text-muted-foreground"
+                                                                        >
+                                                                            {task.completed ? (
+                                                                                <Check className="size-4 shrink-0 rounded-sm border border-emerald-500/20 bg-emerald-500/10 p-0.5 text-emerald-500" />
+                                                                            ) : (
+                                                                                <Circle className="size-4 shrink-0 text-muted-foreground/40" />
+                                                                            )}
+                                                                            <span
+                                                                                className={cn(
+                                                                                    task.completed &&
+                                                                                        \'text-muted-foreground/60 line-through\',
+                                                                                )}
+                                                                            >
+                                                                                {
+                                                                                    task.title
+                                                                                }
+                                                                            </span>
+                                                                        </div>
+                                                                    ),
+                                                                )}
+                                                            </div>
+                                                        </div>
+                                                    )}
+
+                                                {/* Tag list pills */}
+                                                {item.tags &&
+                                                    item.tags.length > 0 && (
+                                                        <div className="mt-4 flex flex-wrap gap-1.5">
+                                                            {item.tags.map(
+                                                                (tag) => (
+                                                                    <span
+                                                                        key={
+                                                                            tag
+                                                                        }
+                                                                        className="rounded-md border border-border/40 bg-muted px-2 py-0.5 text-[10px] font-medium text-muted-foreground"
+                                                                    >
+                                                                        #{tag}
+                                                                    </span>
+                                                                ),
+                                                            )}
+                                                        </div>
+                                                    )}
+                                            </motion.div>
+                                        )}
+                                    </AnimatePresence>
+                                </div>
+                            </div>
+                        </div>
+                    );
+                })}
+            </div>
+        </div>
+    );
+}
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'timelines',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'timelines',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'timeline-glow',
+                'type' => 'registry:ui',
+                'title' => 'Timeline Glow',
+                'description' => 'A premium modern vertical timeline featuring a glowing neon track line and backing card spotlights.',
+                'author' => 'designbycode',
+                'dependencies' => [
+
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/timelines/timeline-glow.tsx',
+                        'type' => 'registry:ui',
+                        'content' => 'import * as React from \'react\';
+import { cn } from \'@/lib/utils\';
+import { TimelineItem } from \'./timeline-vertical\';
+
+interface TimelineGlowProps extends React.HTMLAttributes<HTMLDivElement> {
+    items: TimelineItem[];
+    align?: \'left\' | \'alternate\';
+}
+
+export function TimelineGlow({
+    items,
+    align = \'left\',
+    className,
+    ...props
+}: TimelineGlowProps) {
+    return (
+        <div
+            className={cn(\'relative w-full max-w-4xl px-4 py-8\', className)}
+            {...props}
+        >
+            {/* Glowing Gradient Track Line */}
+            <div
+                className={cn(
+                    \'pointer-events-none absolute top-0 bottom-0 w-0.5 bg-linear-to-b from-indigo-500 via-purple-500 to-pink-500 opacity-80\',
+                    align === \'alternate\'
+                        ? \'left-1/2 -translate-x-1/2\'
+                        : \'left-8\',
+                )}
+            />
+
+            <div className="flex flex-col gap-10">
+                {items.map((item, index) => {
+                    const isEven = index % 2 === 0;
+                    const isCompleted = item.status === \'completed\';
+                    const isCurrent = item.status === \'current\';
+
+                    return (
+                        <div
+                            key={item.id}
+                            className={cn(
+                                \'relative flex w-full\',
+                                align === \'alternate\'
+                                    ? isEven
+                                        ? \'justify-start text-right\'
+                                        : \'justify-end text-left\'
+                                    : \'justify-end text-left\',
+                            )}
+                        >
+                            {/* Glowing Node Circle */}
+                            <div
+                                className={cn(
+                                    \'absolute top-1.5 z-10 flex size-8 items-center justify-center rounded-full border bg-background shadow-xs\',
+                                    align === \'alternate\'
+                                        ? \'left-1/2 -translate-x-1/2\'
+                                        : \'left-0\',
+                                    isCompleted &&
+                                        \'border-purple-500 bg-linear-to-tr from-indigo-500 to-purple-500 text-white\',
+                                    isCurrent &&
+                                        \'border-pink-500 ring-2 ring-pink-500/20\',
+                                    !isCompleted &&
+                                        !isCurrent &&
+                                        \'border-muted-foreground/30 text-muted-foreground\',
+                                )}
+                            >
+                                {/* Backlight blur glow effect */}
+                                {(isCompleted || isCurrent) && (
+                                    <div
+                                        className={cn(
+                                            \'absolute -inset-1 -z-10 animate-pulse rounded-full opacity-75 blur-xs\',
+                                            isCompleted &&
+                                                \'bg-linear-to-tr from-indigo-500 to-purple-500\',
+                                            isCurrent && \'bg-pink-500\',
+                                        )}
+                                    />
+                                )}
+
+                                {item.icon ? (
+                                    <div className="flex size-4 items-center justify-center [&_svg]:size-4">
+                                        {item.icon}
+                                    </div>
+                                ) : (
+                                    <div
+                                        className={cn(
+                                            \'size-2 rounded-full\',
+                                            isCompleted && \'bg-white\',
+                                            isCurrent &&
+                                                \'animate-ping bg-pink-500\',
+                                            !isCompleted &&
+                                                !isCurrent &&
+                                                \'bg-muted-foreground/40\',
+                                        )}
+                                    />
+                                )}
+                            </div>
+
+                            {/* Glowing Card Wrapper */}
+                            <div
+                                className={cn(
+                                    \'w-[calc(100%-3rem)] md:w-[calc(50%-2rem)]\',
+                                    align === \'alternate\'
+                                        ? \'\'
+                                        : \'w-[calc(100%-4rem)]\',
+                                )}
+                            >
+                                <div className="group relative rounded-xl border border-border bg-card p-5 shadow-xs transition-all duration-300 hover:border-purple-500/30 hover:shadow-lg">
+                                    {/* Ambient card corner glow */}
+                                    <div className="pointer-events-none absolute inset-0 rounded-xl bg-linear-to-tr from-indigo-500/0 via-purple-500/0 to-pink-500/0 opacity-0 transition-all duration-500 group-hover:from-indigo-500/5 group-hover:via-purple-500/5 group-hover:to-pink-500/5 group-hover:opacity-100" />
+
+                                    <div
+                                        className={cn(
+                                            \'flex flex-col gap-1 md:flex-row md:items-baseline md:justify-between\',
+                                            align === \'alternate\' &&
+                                                isEven &&
+                                                \'md:flex-row-reverse\',
+                                        )}
+                                    >
+                                        <h3 className="text-base font-semibold text-foreground transition-colors group-hover:text-purple-500 dark:group-hover:text-purple-400">
+                                            {item.title}
+                                        </h3>
+                                        {item.date && (
+                                            <span className="text-xs font-medium text-muted-foreground">
+                                                {item.date}
+                                            </span>
+                                        )}
+                                    </div>
+                                    {item.description && (
+                                        <div className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                                            {item.description}
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+                    );
+                })}
+            </div>
+        </div>
+    );
+}
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'timelines',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'timelines',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'timeline-horizontal',
+                'type' => 'registry:ui',
+                'title' => 'Timeline Horizontal',
+                'description' => 'A responsive horizontal stepper/timeline progress tracker with connecting status lines.',
+                'author' => 'designbycode',
+                'dependencies' => [
+
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/timelines/timeline-horizontal.tsx',
+                        'type' => 'registry:ui',
+                        'content' => 'import * as React from \'react\';
+import { cn } from \'@/lib/utils\';
+import { TimelineItem } from \'./timeline-vertical\';
+
+interface TimelineHorizontalProps extends React.HTMLAttributes<HTMLDivElement> {
+    items: TimelineItem[];
+}
+
+export function TimelineHorizontal({
+    items,
+    className,
+    ...props
+}: TimelineHorizontalProps) {
+    return (
+        <div
+            className={cn(
+                \'relative w-full scrollbar-thin scrollbar-thumb-muted-foreground/20 scrollbar-track-transparent overflow-x-auto pb-4\',
+                className,
+            )}
+            {...props}
+        >
+            <div className="flex min-w-[640px] justify-between gap-4 px-6 py-6">
+                {items.map((item, index) => {
+                    const isCompleted = item.status === \'completed\';
+                    const isCurrent = item.status === \'current\';
+                    const isLast = index === items.length - 1;
+
+                    return (
+                        <div
+                            key={item.id}
+                            className="relative flex flex-1 flex-col items-center"
+                        >
+                            {/* Connecting Line (drawn from the current node to the next one) */}
+                            {!isLast && (
+                                <div
+                                    className={cn(
+                                        \'absolute top-5 right-[-50%] left-1/2 z-0 h-0.5 bg-border\',
+                                        isCompleted && \'bg-primary\',
+                                    )}
+                                />
+                            )}
+
+                            {/* Node Icon/Dot */}
+                            <div
+                                className={cn(
+                                    \'relative z-10 flex size-10 items-center justify-center rounded-full border bg-background shadow-xs transition-all\',
+                                    isCompleted &&
+                                        \'border-primary bg-primary text-primary-foreground\',
+                                    isCurrent &&
+                                        \'border-primary ring-4 ring-primary/10\',
+                                    !isCompleted &&
+                                        !isCurrent &&
+                                        \'border-muted-foreground/30 text-muted-foreground\',
+                                )}
+                            >
+                                {item.icon ? (
+                                    <div className="flex size-4.5 items-center justify-center [&_svg]:size-4.5">
+                                        {item.icon}
+                                    </div>
+                                ) : (
+                                    <span className="text-xs font-semibold">
+                                        {index + 1}
+                                    </span>
+                                )}
+                            </div>
+
+                            {/* Content */}
+                            <div className="mt-4 flex flex-col items-center px-2 text-center">
+                                <h3 className="text-sm font-semibold text-foreground">
+                                    {item.title}
+                                </h3>
+                                {item.date && (
+                                    <span className="mt-0.5 text-[11px] font-medium text-muted-foreground">
+                                        {item.date}
+                                    </span>
+                                )}
+                                {item.description && (
+                                    <p className="mt-1 max-w-[160px] text-xs leading-relaxed text-muted-foreground">
+                                        {item.description}
+                                    </p>
+                                )}
+                            </div>
+                        </div>
+                    );
+                })}
+            </div>
+        </div>
+    );
+}
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'timelines',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'timelines',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'timeline-motion',
+                'type' => 'registry:ui',
+                'title' => 'Timeline Motion',
+                'description' => 'An animated vertical timeline utilizing motion/react to trigger scroll-linked entry transitions.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'motion',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/timelines/timeline-motion.tsx',
+                        'type' => 'registry:ui',
+                        'content' => 'import * as React from \'react\';
+import { motion } from \'motion/react\';
+import { cn } from \'@/lib/utils\';
+import { TimelineItem } from \'./timeline-vertical\';
+
+interface TimelineMotionProps extends React.HTMLAttributes<HTMLDivElement> {
+    items: TimelineItem[];
+    align?: \'left\' | \'alternate\';
+}
+
+export function TimelineMotion({
+    items,
+    align = \'left\',
+    className,
+    ...props
+}: TimelineMotionProps) {
+    return (
+        <div
+            className={cn(\'relative w-full max-w-4xl px-4 py-8\', className)}
+            {...props}
+        >
+            {/* Animated Draw-in Track Line */}
+            <motion.div
+                initial={{ scaleY: 0 }}
+                whileInView={{ scaleY: 1 }}
+                viewport={{ once: true, margin: \'-10% 0px\' }}
+                transition={{ duration: 0.8, ease: \'easeOut\' }}
+                className={cn(
+                    \'pointer-events-none absolute top-0 bottom-0 w-0.5 origin-top bg-linear-to-b from-primary via-primary/50 to-border\',
+                    align === \'alternate\'
+                        ? \'left-1/2 -translate-x-1/2\'
+                        : \'left-8\',
+                )}
+            />
+
+            <div className="flex flex-col gap-10">
+                {items.map((item, index) => {
+                    const isEven = index % 2 === 0;
+                    const isCompleted = item.status === \'completed\';
+                    const isCurrent = item.status === \'current\';
+
+                    return (
+                        <div
+                            key={item.id}
+                            className={cn(
+                                \'relative flex w-full\',
+                                align === \'alternate\'
+                                    ? isEven
+                                        ? \'justify-start text-right\'
+                                        : \'justify-end text-left\'
+                                    : \'justify-end text-left\',
+                            )}
+                        >
+                            {/* Animated Node Circle */}
+                            <motion.div
+                                initial={{ scale: 0, opacity: 0 }}
+                                whileInView={{ scale: 1, opacity: 1 }}
+                                viewport={{ once: true, margin: \'-15% 0px\' }}
+                                transition={{
+                                    type: \'spring\',
+                                    stiffness: 200,
+                                    damping: 15,
+                                    delay: 0.1,
+                                }}
+                                className={cn(
+                                    \'absolute top-1.5 z-10 flex size-8 items-center justify-center rounded-full border bg-background shadow-xs\',
+                                    align === \'alternate\'
+                                        ? \'left-1/2 -translate-x-1/2\'
+                                        : \'left-0\',
+                                    isCompleted &&
+                                        \'border-primary bg-primary text-primary-foreground\',
+                                    isCurrent &&
+                                        \'border-primary ring-2 ring-primary/20\',
+                                    !isCompleted &&
+                                        !isCurrent &&
+                                        \'border-muted-foreground/30 text-muted-foreground\',
+                                )}
+                            >
+                                {item.icon ? (
+                                    <div className="flex size-4 items-center justify-center [&_svg]:size-4">
+                                        {item.icon}
+                                    </div>
+                                ) : (
+                                    <div
+                                        className={cn(
+                                            \'size-2 rounded-full\',
+                                            isCompleted &&
+                                                \'bg-primary-foreground\',
+                                            isCurrent &&
+                                                \'animate-pulse bg-primary\',
+                                            !isCompleted &&
+                                                !isCurrent &&
+                                                \'bg-muted-foreground/40\',
+                                        )}
+                                    />
+                                )}
+                            </motion.div>
+
+                            {/* Animated Content Card */}
+                            <motion.div
+                                initial={{
+                                    opacity: 0,
+                                    x:
+                                        align === \'alternate\'
+                                            ? isEven
+                                                ? -30
+                                                : 30
+                                            : 30,
+                                }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true, margin: \'-15% 0px\' }}
+                                transition={{ duration: 0.5, ease: \'easeOut\' }}
+                                className={cn(
+                                    \'w-[calc(100%-3rem)] md:w-[calc(50%-2rem)]\',
+                                    align === \'alternate\'
+                                        ? \'\'
+                                        : \'w-[calc(100%-4rem)]\',
+                                )}
+                            >
+                                <div className="rounded-xl border border-border bg-card p-5 shadow-xs transition-all hover:border-primary/20 hover:shadow-md">
+                                    <div
+                                        className={cn(
+                                            \'flex flex-col gap-1 md:flex-row md:items-baseline md:justify-between\',
+                                            align === \'alternate\' &&
+                                                isEven &&
+                                                \'md:flex-row-reverse\',
+                                        )}
+                                    >
+                                        <h3 className="text-base font-semibold text-foreground">
+                                            {item.title}
+                                        </h3>
+                                        {item.date && (
+                                            <span className="text-xs font-medium text-muted-foreground">
+                                                {item.date}
+                                            </span>
+                                        )}
+                                    </div>
+                                    {item.description && (
+                                        <div className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                                            {item.description}
+                                        </div>
+                                    )}
+                                </div>
+                            </motion.div>
+                        </div>
+                    );
+                })}
+            </div>
+        </div>
+    );
+}
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'timelines',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'timelines',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'timeline-vertical',
+                'type' => 'registry:ui',
+                'title' => 'Timeline Vertical',
+                'description' => 'A customizable vertical timeline component with options for alternating alignment and status indicators.',
+                'author' => 'designbycode',
+                'dependencies' => [
+
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/timelines/timeline-vertical.tsx',
+                        'type' => 'registry:ui',
+                        'content' => 'import * as React from \'react\';
+import { cn } from \'@/lib/utils\';
+
+export interface TimelineItem {
+    id: string | number;
+    title: string;
+    description?: React.ReactNode;
+    date?: string;
+    icon?: React.ReactNode;
+    status?: \'completed\' | \'current\' | \'upcoming\';
+    tags?: string[];
+    subtasks?: { title: string; completed: boolean }[];
+    statusLabel?: string;
+}
+
+interface TimelineVerticalProps extends React.HTMLAttributes<HTMLDivElement> {
+    items: TimelineItem[];
+    align?: \'left\' | \'alternate\';
+}
+
+export function TimelineVertical({
+    items,
+    align = \'left\',
+    className,
+    ...props
+}: TimelineVerticalProps) {
+    return (
+        <div
+            className={cn(\'relative w-full max-w-4xl px-4 py-8\', className)}
+            {...props}
+        >
+            {/* Center/Left Track Line */}
+            <div
+                className={cn(
+                    \'pointer-events-none absolute top-0 bottom-0 w-0.5 bg-border\',
+                    align === \'alternate\'
+                        ? \'left-1/2 -translate-x-1/2\'
+                        : \'left-8\',
+                )}
+            />
+
+            <div className="flex flex-col gap-8">
+                {items.map((item, index) => {
+                    const isEven = index % 2 === 0;
+                    const isCompleted = item.status === \'completed\';
+                    const isCurrent = item.status === \'current\';
+
+                    return (
+                        <div
+                            key={item.id}
+                            className={cn(
+                                \'relative flex w-full\',
+                                align === \'alternate\'
+                                    ? isEven
+                                        ? \'justify-start text-right\'
+                                        : \'justify-end text-left\'
+                                    : \'justify-end text-left\',
+                            )}
+                        >
+                            {/* Node Point */}
+                            <div
+                                className={cn(
+                                    \'absolute top-1.5 z-10 flex size-8 items-center justify-center rounded-full border bg-background shadow-xs transition-colors\',
+                                    align === \'alternate\'
+                                        ? \'left-1/2 -translate-x-1/2\'
+                                        : \'left-0\',
+                                    isCompleted &&
+                                        \'border-primary bg-primary text-primary-foreground\',
+                                    isCurrent &&
+                                        \'border-primary ring-2 ring-primary/20\',
+                                    !isCompleted &&
+                                        !isCurrent &&
+                                        \'border-muted-foreground/30 text-muted-foreground\',
+                                )}
+                            >
+                                {item.icon ? (
+                                    <div className="flex size-4 items-center justify-center [&_svg]:size-4">
+                                        {item.icon}
+                                    </div>
+                                ) : (
+                                    <div
+                                        className={cn(
+                                            \'size-2 rounded-full\',
+                                            isCompleted &&
+                                                \'bg-primary-foreground\',
+                                            isCurrent &&
+                                                \'animate-pulse bg-primary\',
+                                            !isCompleted &&
+                                                !isCurrent &&
+                                                \'bg-muted-foreground/40\',
+                                        )}
+                                    />
+                                )}
+                            </div>
+
+                            {/* Content Card Wrapper */}
+                            <div
+                                className={cn(
+                                    \'w-[calc(100%-3rem)] md:w-[calc(50%-2rem)]\',
+                                    align === \'alternate\'
+                                        ? \'\'
+                                        : \'w-[calc(100%-4rem)]\',
+                                )}
+                            >
+                                <div className="rounded-xl border border-border bg-card p-5 shadow-xs transition-all hover:shadow-md">
+                                    <div
+                                        className={cn(
+                                            \'flex flex-col gap-1 md:flex-row md:items-baseline md:justify-between\',
+                                            align === \'alternate\' &&
+                                                isEven &&
+                                                \'md:flex-row-reverse\',
+                                        )}
+                                    >
+                                        <h3 className="text-base font-semibold text-foreground">
+                                            {item.title}
+                                        </h3>
+                                        {item.date && (
+                                            <span className="text-xs font-medium text-muted-foreground">
+                                                {item.date}
+                                            </span>
+                                        )}
+                                    </div>
+                                    {item.description && (
+                                        <div className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                                            {item.description}
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+                    );
+                })}
+            </div>
+        </div>
+    );
+}
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'timelines',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'timelines',
                 ],
                 'extends' => null,
                 'style' => null,

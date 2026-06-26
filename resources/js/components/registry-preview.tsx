@@ -30,6 +30,37 @@ import { AnimatedTabs } from '@/registry/new-york/components/ui/tabs/animated-ta
 import { InteractiveRating } from '@/registry/new-york/components/ui/rating/interactive-rating';
 import { ProgressCircle } from '@/registry/new-york/components/ui/progress/progress-circle';
 import WavesThree from '@/registry/new-york/components/ui/threejs/waves-three';
+import { CarouselBasic } from '@/registry/new-york/components/ui/carousels/carousel-basic';
+import { CarouselFade } from '@/registry/new-york/components/ui/carousels/carousel-fade';
+import { Carousel3d } from '@/registry/new-york/components/ui/carousels/carousel-3d';
+import { CarouselThumbs } from '@/registry/new-york/components/ui/carousels/carousel-thumbs';
+import { CarouselMotion } from '@/registry/new-york/components/ui/carousels/carousel-motion';
+import { CarouselCards } from '@/registry/new-york/components/ui/carousels/carousel-cards';
+import { CarouselCreative } from '@/registry/new-york/components/ui/carousels/carousel-creative';
+import { CarouselAutoScroll } from '@/registry/new-york/components/ui/carousels/carousel-auto-scroll';
+import { CarouselScale } from '@/registry/new-york/components/ui/carousels/carousel-scale';
+import { CarouselVertical } from '@/registry/new-york/components/ui/carousels/carousel-vertical';
+import { ComparisonSliderBasic } from '@/registry/new-york/components/ui/comparison-sliders/comparison-slider-basic';
+import { ComparisonSliderVertical } from '@/registry/new-york/components/ui/comparison-sliders/comparison-slider-vertical';
+import { ComparisonSliderHover } from '@/registry/new-york/components/ui/comparison-sliders/comparison-slider-hover';
+import { ComparisonSliderDiagonal } from '@/registry/new-york/components/ui/comparison-sliders/comparison-slider-diagonal';
+import { ComparisonSliderThreeWay } from '@/registry/new-york/components/ui/comparison-sliders/comparison-slider-three-way';
+import { TimelineVertical } from '@/registry/new-york/components/ui/timelines/timeline-vertical';
+import { TimelineHorizontal } from '@/registry/new-york/components/ui/timelines/timeline-horizontal';
+import { TimelineMotion } from '@/registry/new-york/components/ui/timelines/timeline-motion';
+import { TimelineGlow } from '@/registry/new-york/components/ui/timelines/timeline-glow';
+import { TimelineCollapsible } from '@/registry/new-york/components/ui/timelines/timeline-collapsible';
+import { BannerFloating } from '@/registry/new-york/components/ui/banners/banner-floating';
+import { BannerSticky } from '@/registry/new-york/components/ui/banners/banner-sticky';
+import { BannerSliding } from '@/registry/new-york/components/ui/banners/banner-sliding';
+import { BannerExpandable } from '@/registry/new-york/components/ui/banners/banner-expandable';
+import { BannerGlow } from '@/registry/new-york/components/ui/banners/banner-glow';
+import { ReviewCard } from '@/registry/new-york/components/ui/reviews/review-card';
+import { ReviewGrid } from '@/registry/new-york/components/ui/reviews/review-grid';
+import { ReviewMarquee } from '@/registry/new-york/components/ui/reviews/review-marquee';
+import { ReviewMasonry } from '@/registry/new-york/components/ui/reviews/review-masonry';
+import { ReviewHero } from '@/registry/new-york/components/ui/reviews/review-hero';
+import { ReviewCarousel } from '@/registry/new-york/components/ui/reviews/review-carousel';
 import { CardsStats } from '@/registry/new-york/components/blocks/cards-stats/cards-stats';
 import PricingSection from '@/registry/new-york/components/blocks/pricing-section/pricing-section';
 import FeatureGrid from '@/registry/new-york/components/blocks/feature-grid/feature-grid';
@@ -61,6 +92,17 @@ import { ParticlesBackdrop } from '@/registry/new-york/components/ui/animations/
 import { LogoCloud } from '@/registry/new-york/components/ui/misc/logo-cloud';
 import { GlowingCard } from '@/registry/new-york/components/ui/cards/glowing-card';
 import { HeroGlowingCards } from '@/registry/new-york/components/blocks/hero-glowing-cards/hero-glowing-cards';
+import { TiltCard } from '@/registry/new-york/components/ui/cards/tilt-card';
+import { RevealCard } from '@/registry/new-york/components/ui/cards/reveal-card';
+import { NeonBorderCard } from '@/registry/new-york/components/ui/cards/neon-border-card';
+import { GlassGlareCard } from '@/registry/new-york/components/ui/cards/glass-glare-card';
+import { ExpandableCard } from '@/registry/new-york/components/ui/cards/expandable-card';
+import { ParallaxImageCard } from '@/registry/new-york/components/ui/cards/parallax-image-card';
+import { MagneticCard } from '@/registry/new-york/components/ui/cards/magnetic-card';
+import { MetricSparkCard } from '@/registry/new-york/components/ui/cards/metric-spark-card';
+import { SplitPreviewCard } from '@/registry/new-york/components/ui/cards/split-preview-card';
+import { GrainyNoiseCard } from '@/registry/new-york/components/ui/cards/grainy-noise-card';
+import { ScratchCard } from '@/registry/new-york/components/ui/cards/scratch-card';
 
 import ButtonMagnetic from '@/registry/new-york/components/ui/buttons/button-magnetic';
 import ButtonShine from '@/registry/new-york/components/ui/buttons/button-shine';
@@ -534,6 +576,648 @@ export default function RegistryPreview({ name }: { name: string }) {
                     </h3>
                     <p className="text-sm text-zinc-400">Powered by Three.js</p>
                 </div>
+            </div>
+        );
+    }
+
+    // Helper for rendering mock carousel cards
+    const getMockCarouselCards = () => [
+        <div
+            key="1"
+            className="flex h-44 flex-col justify-end rounded-xl bg-linear-to-tr from-pink-500 to-rose-500 p-6 text-white select-none"
+        >
+            <h4 className="text-base font-bold">Creative Design</h4>
+            <p className="text-[10px] opacity-80">Smooth slide transitions</p>
+        </div>,
+        <div
+            key="2"
+            className="flex h-44 flex-col justify-end rounded-xl bg-linear-to-tr from-amber-500 to-orange-500 p-6 text-white select-none"
+        >
+            <h4 className="text-base font-bold">Custom Speed</h4>
+            <p className="text-[10px] opacity-80">Autoplay with mouse pause</p>
+        </div>,
+        <div
+            key="3"
+            className="flex h-44 flex-col justify-end rounded-xl bg-linear-to-tr from-emerald-500 to-teal-500 p-6 text-white select-none"
+        >
+            <h4 className="text-base font-bold">Responsive layout</h4>
+            <p className="text-[10px] opacity-80">Breakpoints support</p>
+        </div>,
+        <div
+            key="4"
+            className="flex h-44 flex-col justify-end rounded-xl bg-linear-to-tr from-blue-500 to-indigo-500 p-6 text-white select-none"
+        >
+            <h4 className="text-base font-bold">Touch gesture</h4>
+            <p className="text-[10px] opacity-80">Drag and swipe physics</p>
+        </div>,
+        <div
+            key="5"
+            className="flex h-44 flex-col justify-end rounded-xl bg-linear-to-tr from-purple-500 to-violet-500 p-6 text-white select-none"
+        >
+            <h4 className="text-base font-bold">Premium details</h4>
+            <p className="text-[10px] opacity-80">Interactive controls</p>
+        </div>,
+    ];
+
+    if (name === 'carousel-basic') {
+        return (
+            <div className="w-full max-w-2xl py-4">
+                <CarouselBasic
+                    items={getMockCarouselCards()}
+                    slidesPerView={2}
+                />
+            </div>
+        );
+    }
+
+    if (name === 'carousel-fade') {
+        return (
+            <div className="w-full max-w-md py-4">
+                <CarouselFade items={getMockCarouselCards()} />
+            </div>
+        );
+    }
+
+    if (name === 'carousel-3d') {
+        return (
+            <div className="w-full py-4">
+                <Carousel3d items={getMockCarouselCards()} />
+            </div>
+        );
+    }
+
+    if (name === 'carousel-thumbs') {
+        const thumbs = [
+            <div
+                key="t1"
+                className="h-10 w-full bg-linear-to-tr from-pink-500 to-rose-500"
+            />,
+            <div
+                key="t2"
+                className="h-10 w-full bg-linear-to-tr from-amber-500 to-orange-500"
+            />,
+            <div
+                key="t3"
+                className="h-10 w-full bg-linear-to-tr from-emerald-500 to-teal-500"
+            />,
+            <div
+                key="t4"
+                className="h-10 w-full bg-linear-to-tr from-blue-500 to-indigo-500"
+            />,
+            <div
+                key="t5"
+                className="h-10 w-full bg-linear-to-tr from-purple-500 to-violet-500"
+            />,
+        ];
+        return (
+            <div className="w-full max-w-md py-4">
+                <CarouselThumbs
+                    items={getMockCarouselCards()}
+                    thumbnails={thumbs}
+                />
+            </div>
+        );
+    }
+
+    if (name === 'carousel-motion') {
+        return (
+            <div className="w-full max-w-2xl py-4">
+                <CarouselMotion items={getMockCarouselCards()} />
+            </div>
+        );
+    }
+
+    if (name === 'carousel-cards') {
+        return (
+            <div className="flex w-full justify-center py-4">
+                <CarouselCards items={getMockCarouselCards()} />
+            </div>
+        );
+    }
+
+    if (name === 'carousel-creative') {
+        return (
+            <div className="w-full max-w-md py-4">
+                <CarouselCreative items={getMockCarouselCards()} />
+            </div>
+        );
+    }
+
+    if (name === 'carousel-auto-scroll') {
+        const mockLogos = [
+            <div
+                key="l1"
+                className="flex h-10 items-center justify-center rounded-lg border border-border bg-card px-6 text-xs font-bold select-none"
+            >
+                Next.js
+            </div>,
+            <div
+                key="l2"
+                className="flex h-10 items-center justify-center rounded-lg border border-border bg-card px-6 text-xs font-bold select-none"
+            >
+                Laravel
+            </div>,
+            <div
+                key="l3"
+                className="flex h-10 items-center justify-center rounded-lg border border-border bg-card px-6 text-xs font-bold select-none"
+            >
+                React
+            </div>,
+            <div
+                key="l4"
+                className="flex h-10 items-center justify-center rounded-lg border border-border bg-card px-6 text-xs font-bold select-none"
+            >
+                Tailwind
+            </div>,
+            <div
+                key="l5"
+                className="flex h-10 items-center justify-center rounded-lg border border-border bg-card px-6 text-xs font-bold select-none"
+            >
+                Vite
+            </div>,
+            <div
+                key="l6"
+                className="flex h-10 items-center justify-center rounded-lg border border-border bg-card px-6 text-xs font-bold select-none"
+            >
+                Inertia
+            </div>,
+        ];
+        return (
+            <div className="w-full py-4">
+                <CarouselAutoScroll
+                    items={mockLogos}
+                    speed={2500}
+                    spaceBetween={16}
+                />
+            </div>
+        );
+    }
+
+    if (name === 'carousel-scale') {
+        return (
+            <div className="w-full py-4">
+                <CarouselScale items={getMockCarouselCards()} />
+            </div>
+        );
+    }
+
+    if (name === 'carousel-vertical') {
+        return (
+            <div className="w-full max-w-md py-4">
+                <CarouselVertical
+                    items={getMockCarouselCards()}
+                    height="200px"
+                />
+            </div>
+        );
+    }
+
+    if (name === 'comparison-slider-basic') {
+        return (
+            <div className="w-full max-w-2xl py-4">
+                <ComparisonSliderBasic
+                    beforeImage="https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?auto=format&fit=crop&w=800&q=80"
+                    afterImage="https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?auto=format&fit=crop&w=800&q=80&sat=100&contrast=120"
+                    beforeLabel="Original (Raw)"
+                    afterLabel="Vivid (Graded)"
+                    aspectRatio="video"
+                />
+            </div>
+        );
+    }
+
+    if (name === 'comparison-slider-vertical') {
+        return (
+            <div className="w-full max-w-md py-4">
+                <ComparisonSliderVertical
+                    beforeImage="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80"
+                    afterImage="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80&sat=-100"
+                    beforeLabel="Landscape (Color)"
+                    afterLabel="Landscape (B&W)"
+                    aspectRatio="square"
+                />
+            </div>
+        );
+    }
+
+    if (name === 'comparison-slider-hover') {
+        return (
+            <div className="w-full max-w-2xl py-4">
+                <ComparisonSliderHover
+                    beforeImage="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80"
+                    afterImage="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80&sat=-100"
+                    beforeLabel="Portrait (Color)"
+                    afterLabel="Portrait (B&W)"
+                    aspectRatio="video"
+                    resetOnLeave={false}
+                />
+            </div>
+        );
+    }
+
+    if (name === 'comparison-slider-diagonal') {
+        return (
+            <div className="w-full max-w-2xl py-4">
+                <ComparisonSliderDiagonal
+                    beforeImage="https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?auto=format&fit=crop&w=800&q=80"
+                    afterImage="https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?auto=format&fit=crop&w=800&q=80&sat=100&contrast=120"
+                    beforeLabel="Original"
+                    afterLabel="Vivid"
+                    aspectRatio="video"
+                    maxSkew={10}
+                />
+            </div>
+        );
+    }
+
+    if (name === 'comparison-slider-three-way') {
+        return (
+            <div className="w-full max-w-2xl py-4">
+                <ComparisonSliderThreeWay
+                    leftImage="https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?auto=format&fit=crop&w=800&q=80&sat=-100"
+                    centerImage="https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?auto=format&fit=crop&w=800&q=80"
+                    rightImage="https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?auto=format&fit=crop&w=800&q=80&sat=100&contrast=120"
+                    leftLabel="Monochrome"
+                    centerLabel="Original (Raw)"
+                    rightLabel="Vivid (Graded)"
+                    aspectRatio="video"
+                />
+            </div>
+        );
+    }
+
+    const getMockTimelineItems = () => [
+        {
+            id: 1,
+            title: 'Project Initialization',
+            date: 'Jan 2026',
+            description:
+                'Established codebase structure, repository setup, database schema design, and configured initial project dependencies.',
+            icon: <Terminal className="size-4" />,
+            status: 'completed' as const,
+            statusLabel: 'Completed',
+            tags: ['setup', 'laravel', 'database'],
+            subtasks: [
+                {
+                    title: 'Initialize Laravel framework codebase',
+                    completed: true,
+                },
+                {
+                    title: 'Configure database schema migrations',
+                    completed: true,
+                },
+                { title: 'Install NPM package dependencies', completed: true },
+            ],
+        },
+        {
+            id: 2,
+            title: 'Alpha Milestone',
+            date: 'Mar 2026',
+            description:
+                'Developed core application features, established API routes, and connected Inertia React client frontend controllers.',
+            icon: <Award className="size-4" />,
+            status: 'completed' as const,
+            statusLabel: 'Completed',
+            tags: ['api', 'controllers', 'inertia'],
+            subtasks: [
+                {
+                    title: 'Create backend service classes and models',
+                    completed: true,
+                },
+                { title: 'Build React pages and layouts', completed: true },
+                { title: 'Register Inertia page controllers', completed: true },
+            ],
+        },
+        {
+            id: 3,
+            title: 'Security & QA Audit',
+            date: 'May 2026',
+            description:
+                'Conducted comprehensive penetration testing, configured rate-limiting middleware, and resolved active diagnostics.',
+            icon: <Shield className="size-4" />,
+            status: 'current' as const,
+            statusLabel: 'Active Audit',
+            tags: ['security', 'testing', 'audit'],
+            subtasks: [
+                {
+                    title: 'Perform manual codebase security audit',
+                    completed: true,
+                },
+                {
+                    title: 'Configure rate limiting middleware',
+                    completed: false,
+                },
+                {
+                    title: 'Resolve open static analysis warnings',
+                    completed: false,
+                },
+            ],
+        },
+        {
+            id: 4,
+            title: 'Public Release',
+            date: 'Jun 2026',
+            description:
+                'Deployed production-ready build to cloud environments and opened registration access to public beta waitlist.',
+            icon: <Sparkles className="size-4" />,
+            status: 'upcoming' as const,
+            statusLabel: 'Planned',
+            tags: ['deployment', 'beta', 'waitlist'],
+            subtasks: [
+                {
+                    title: 'Compile production assets & bundle sizes',
+                    completed: false,
+                },
+                {
+                    title: 'Deploy to cloud cluster endpoints',
+                    completed: false,
+                },
+                { title: 'Announce waitlist wait times', completed: false },
+            ],
+        },
+    ];
+
+    if (name === 'timeline-vertical') {
+        return (
+            <div className="flex w-full flex-col items-center gap-6 py-4">
+                <TimelineVertical
+                    items={getMockTimelineItems()}
+                    align="left"
+                    className="rounded-xl border bg-card"
+                />
+                <TimelineVertical
+                    items={getMockTimelineItems()}
+                    align="alternate"
+                    className="rounded-xl border bg-card"
+                />
+            </div>
+        );
+    }
+
+    if (name === 'timeline-horizontal') {
+        return (
+            <div className="w-full max-w-4xl rounded-xl border bg-card py-4">
+                <TimelineHorizontal items={getMockTimelineItems()} />
+            </div>
+        );
+    }
+
+    if (name === 'timeline-motion') {
+        return (
+            <div className="flex w-full flex-col items-center gap-6 py-4">
+                <TimelineMotion
+                    items={getMockTimelineItems()}
+                    align="alternate"
+                    className="rounded-xl border bg-card"
+                />
+            </div>
+        );
+    }
+
+    if (name === 'timeline-glow') {
+        return (
+            <div className="flex w-full flex-col items-center gap-6 py-4">
+                <TimelineGlow
+                    items={getMockTimelineItems()}
+                    align="alternate"
+                    className="rounded-xl border bg-card"
+                />
+            </div>
+        );
+    }
+
+    if (name === 'timeline-collapsible') {
+        return (
+            <div className="flex w-full flex-col items-center gap-6 py-4">
+                <TimelineCollapsible
+                    items={getMockTimelineItems()}
+                    defaultExpandedIds={[3]}
+                    className="rounded-xl border bg-card"
+                />
+            </div>
+        );
+    }
+
+    if (name === 'banner-floating') {
+        return (
+            <div className="relative flex h-[300px] w-full items-center justify-center overflow-hidden rounded-xl border bg-muted/10 p-6">
+                <span className="text-xs text-muted-foreground">
+                    Floating Banner Demo (Positioned relative to this container)
+                </span>
+                <BannerFloating
+                    title="Interactive Workspace"
+                    description="We've upgraded your development workspace with brand new premium components. Tap to explore."
+                    actionLabel="Get Started"
+                    onActionClick={() => alert('Action triggered!')}
+                    position="bottom-right"
+                    className="!absolute !right-4 !bottom-4"
+                    icon={<Sparkles className="size-4.5 text-pink-500" />}
+                />
+            </div>
+        );
+    }
+
+    if (name === 'banner-sticky') {
+        return (
+            <div className="flex w-full flex-col gap-4 overflow-hidden rounded-xl border bg-muted/10 py-4">
+                <BannerSticky
+                    message="⚡ System maintenance scheduled for Sunday, June 28 at 02:00 UTC."
+                    actionLabel="View Details"
+                    onActionClick={() =>
+                        alert('Opening maintenance details...')
+                    }
+                    sticky={false}
+                />
+            </div>
+        );
+    }
+
+    if (name === 'banner-sliding') {
+        const mockSlidingMessages = [
+            {
+                id: 1,
+                text: '🎉 Special Promo: Use code LAUNCH20 to get 20% off!',
+                actionLabel: 'Apply code',
+                onActionClick: () => alert('Applied code LAUNCH20!'),
+            },
+            {
+                id: 2,
+                text: '📦 Free standard shipping on all domestic orders over $50.',
+                actionLabel: 'Shop now',
+                onActionClick: () => alert('Redirecting to shop...'),
+            },
+            {
+                id: 3,
+                text: '🔒 Code audit completed successfully. View our security report.',
+                actionLabel: 'Read report',
+                onActionClick: () => alert('Loading security report...'),
+            },
+        ];
+        return (
+            <div className="w-full overflow-hidden rounded-xl border bg-muted/10 py-4">
+                <BannerSliding messages={mockSlidingMessages} />
+            </div>
+        );
+    }
+
+    if (name === 'banner-expandable') {
+        const mockDetailedContent = (
+            <div className="space-y-3">
+                <p className="font-semibold text-foreground">
+                    What's new in version 2.4.0:
+                </p>
+                <ul className="list-disc space-y-1.5 pl-4">
+                    <li>
+                        Added 5 new comparison slider UI components for
+                        before/after media showcasing.
+                    </li>
+                    <li>
+                        Added 5 new timeline step and progress flow components
+                        with spring scroll transitions.
+                    </li>
+                    <li>
+                        Optimized asset loading bundles to reduce Initial Server
+                        Response Time by 18%.
+                    </li>
+                </ul>
+            </div>
+        );
+        return (
+            <div className="w-full overflow-hidden rounded-xl border bg-muted/10 py-4">
+                <BannerExpandable
+                    title="🚀 Workspace Update: Version 2.4.0 is now live!"
+                    description={mockDetailedContent}
+                    badgeLabel="Update"
+                />
+            </div>
+        );
+    }
+
+    if (name === 'banner-glow') {
+        return (
+            <div className="w-full overflow-hidden rounded-xl border bg-muted/10 py-4">
+                <BannerGlow
+                    message="✨ Introducing our new design system built for maximum efficiency and speed."
+                    actionLabel="Explore System"
+                    onActionClick={() =>
+                        alert('Redirecting to design system...')
+                    }
+                />
+            </div>
+        );
+    }
+
+    const getMockReviews = () => [
+        {
+            id: 1,
+            author: 'Sarah Jenkins',
+            role: 'Product Lead',
+            company: 'Acme Corp',
+            rating: 5,
+            comment:
+                'This UI kit completely accelerated our development process. The attention to detail, clean typography, and smooth micro-animations are exceptional. Our team built a fully functional prototype in days rather than weeks.',
+            date: 'June 2026',
+            verified: true,
+            tags: ['efficiency', 'design-system'],
+        },
+        {
+            id: 2,
+            author: 'Michael Chen',
+            role: 'Senior Frontend Engineer',
+            company: 'Stripe',
+            rating: 4.8,
+            comment:
+                'The codebase is incredibly clean and follows React and Tailwind v4 best practices. Reusable components are lightweight and simple to extend. It integrates seamlessly with our Laravel Inertia setup.',
+            date: 'May 2026',
+            verified: true,
+            tags: ['react', 'tailwind'],
+        },
+        {
+            id: 3,
+            author: 'Emily Watson',
+            role: 'Creative Director',
+            company: 'DesignCo',
+            rating: 5,
+            comment:
+                'I am absolutely blown away by the design aesthetics. The animations feel premium, and the color palettes are incredibly balanced. It sets a new benchmark for UI kits.',
+            date: 'May 2026',
+            verified: true,
+            tags: ['ux', 'premium'],
+        },
+        {
+            id: 4,
+            author: 'David Ross',
+            role: 'Founder',
+            company: 'SaaSify',
+            rating: 5,
+            comment:
+                'As a non-designer founder, this kit helped me launch a stunning product that looks like it was designed by a world-class agency. Customer feedback on the UI has been amazing.',
+            date: 'April 2026',
+            verified: true,
+            tags: ['startup', 'conversion'],
+        },
+        {
+            id: 5,
+            author: 'Sophia Martinez',
+            role: 'UI Engineer',
+            company: 'Vercel',
+            rating: 4.9,
+            comment:
+                'The performance is outstanding. Components code-split efficiently and load instantaneously. Using semantic color tokens makes theme toggling work flawlessly.',
+            date: 'April 2026',
+            verified: true,
+            tags: ['performance', 'theming'],
+        },
+    ];
+
+    if (name === 'review-card') {
+        return (
+            <div className="w-full max-w-md py-4">
+                <ReviewCard review={getMockReviews()[0]} showQuoteIcon />
+            </div>
+        );
+    }
+
+    if (name === 'review-grid') {
+        return (
+            <div className="w-full rounded-xl border bg-card py-4">
+                <ReviewGrid reviews={getMockReviews()} columns={3} />
+            </div>
+        );
+    }
+
+    if (name === 'review-marquee') {
+        return (
+            <div className="w-full overflow-hidden rounded-xl border bg-card py-4">
+                <ReviewMarquee
+                    reviews={getMockReviews()}
+                    speed="medium"
+                    direction="left"
+                />
+            </div>
+        );
+    }
+
+    if (name === 'review-masonry') {
+        return (
+            <div className="w-full rounded-xl border bg-card py-4">
+                <ReviewMasonry reviews={getMockReviews()} columns={3} />
+            </div>
+        );
+    }
+
+    if (name === 'review-hero') {
+        return (
+            <div className="w-full rounded-xl border bg-card p-6 py-4">
+                <ReviewHero review={getMockReviews()[0]} />
+            </div>
+        );
+    }
+
+    if (name === 'review-carousel') {
+        return (
+            <div className="w-full overflow-hidden rounded-xl border bg-card py-4">
+                <ReviewCarousel reviews={getMockReviews()} slidesPerView={1} />
             </div>
         );
     }
@@ -1168,6 +1852,273 @@ export default function RegistryPreview({ name }: { name: string }) {
                         tracking spotlight.
                     </p>
                 </GlowingCard>
+            </div>
+        );
+    }
+
+    // Tilt Card
+    if (name === 'tilt-card') {
+        return (
+            <div className="grid min-h-[300px] w-full place-items-center rounded-xl border border-border/50 bg-background p-6">
+                <TiltCard className="max-w-xs text-left" maxTilt={20}>
+                    <div className="space-y-4">
+                        <div className="flex size-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                            <Sparkles className="size-5" />
+                        </div>
+                        <div>
+                            <h4 className="text-sm font-bold text-foreground">
+                                3D Tilt Interaction
+                            </h4>
+                            <p className="mt-1 text-xs text-muted-foreground">
+                                A physical-feeling card that rotates based on
+                                cursor movements.
+                            </p>
+                        </div>
+                    </div>
+                </TiltCard>
+            </div>
+        );
+    }
+
+    // Reveal Card
+    if (name === 'reveal-card') {
+        return (
+            <div className="grid min-h-[300px] w-full place-items-center rounded-xl border border-border/50 bg-background p-6">
+                <RevealCard className="max-w-xs text-left">
+                    <div className="space-y-4">
+                        <div className="flex size-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                            <Shield className="size-5" />
+                        </div>
+                        <div>
+                            <h4 className="text-sm font-bold text-foreground">
+                                Reveal Border
+                            </h4>
+                            <p className="mt-1 text-xs text-muted-foreground">
+                                The border shines with a dynamic spotlight glow
+                                tracking your mouse.
+                            </p>
+                        </div>
+                    </div>
+                </RevealCard>
+            </div>
+        );
+    }
+
+    // Neon Border Card
+    if (name === 'neon-border-card') {
+        return (
+            <div className="grid min-h-[300px] w-full place-items-center rounded-xl border border-border/50 bg-background p-6">
+                <NeonBorderCard className="max-w-xs text-left">
+                    <div className="space-y-4">
+                        <div className="flex size-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                            <Terminal className="size-5" />
+                        </div>
+                        <div>
+                            <h4 className="text-sm font-bold text-foreground">
+                                Neon Border
+                            </h4>
+                            <p className="mt-1 text-xs text-muted-foreground">
+                                A continuous rotating laser light beam
+                                accentuates the card edge.
+                            </p>
+                        </div>
+                    </div>
+                </NeonBorderCard>
+            </div>
+        );
+    }
+
+    // Glass Glare Card
+    if (name === 'glass-glare-card') {
+        return (
+            <div className="grid min-h-[300px] w-full place-items-center rounded-xl border border-border/50 bg-neutral-950 p-6">
+                <GlassGlareCard className="max-w-xs border-white/10 bg-white/[0.02] text-left">
+                    <div className="space-y-4">
+                        <div className="flex size-10 items-center justify-center rounded-lg bg-white/10 text-white">
+                            <Globe className="size-5" />
+                        </div>
+                        <div>
+                            <h4 className="text-sm font-bold text-white">
+                                Glass Glare
+                            </h4>
+                            <p className="mt-1 text-xs text-zinc-400">
+                                Frosted credit card glass styling with
+                                reflections on hover.
+                            </p>
+                        </div>
+                    </div>
+                </GlassGlareCard>
+            </div>
+        );
+    }
+
+    // Expandable Card
+    if (name === 'expandable-card') {
+        return (
+            <div className="grid min-h-[350px] w-full place-items-center rounded-xl border border-border/50 bg-background p-6">
+                <ExpandableCard
+                    title="Expandable Layout"
+                    description="Click to toggle details"
+                    expandedContent={
+                        <div className="space-y-2">
+                            <p>
+                                This details block slides open with an organic
+                                layout transition.
+                            </p>
+                            <Button size="sm" className="w-full">
+                                Interactive Action
+                            </Button>
+                        </div>
+                    }
+                    className="w-full max-w-sm"
+                >
+                    <p className="text-xs text-muted-foreground">
+                        This space is always visible. The expansion is animated.
+                    </p>
+                </ExpandableCard>
+            </div>
+        );
+    }
+
+    // Parallax Image Card
+    if (name === 'parallax-image-card') {
+        return (
+            <div className="grid min-h-[400px] w-full place-items-center rounded-xl border border-border/50 bg-background p-6">
+                <div className="w-full max-w-xs">
+                    <ParallaxImageCard
+                        imageUrl="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=800&q=80"
+                        imageAlt="Portrait"
+                        parallaxStrength={20}
+                    >
+                        <h4 className="text-lg font-black tracking-tight uppercase">
+                            Depth Effect
+                        </h4>
+                        <p className="text-xs opacity-80">
+                            Move your cursor over the image to experience visual
+                            depth.
+                        </p>
+                    </ParallaxImageCard>
+                </div>
+            </div>
+        );
+    }
+
+    // Magnetic Card
+    if (name === 'magnetic-card') {
+        return (
+            <div className="grid min-h-[300px] w-full place-items-center rounded-xl border border-border/50 bg-background p-6">
+                <MagneticCard className="max-w-xs text-left" strength={20}>
+                    <div className="space-y-4">
+                        <div className="flex size-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                            <Heart className="size-5" />
+                        </div>
+                        <div>
+                            <h4 className="text-sm font-bold text-foreground">
+                                Magnetic Card
+                            </h4>
+                            <p className="mt-1 text-xs text-muted-foreground">
+                                The card boundaries translation shifts towards
+                                the mouse cursor.
+                            </p>
+                        </div>
+                    </div>
+                </MagneticCard>
+            </div>
+        );
+    }
+
+    // Metric Spark Card
+    if (name === 'metric-spark-card') {
+        return (
+            <div className="grid min-h-[300px] w-full place-items-center rounded-xl border border-border/50 bg-background p-6">
+                <MetricSparkCard
+                    title="REVENUE GROWTH"
+                    value="$84,293.00"
+                    trend="+18.4%"
+                    trendType="positive"
+                    dataPoints={[20, 24, 22, 28, 26, 32, 38, 48]}
+                    className="w-full max-w-sm"
+                />
+            </div>
+        );
+    }
+
+    // Split Preview Card
+    if (name === 'split-preview-card') {
+        const items = [
+            {
+                id: '1',
+                label: 'Primary Spark',
+                details: 'Full dynamic power core active',
+                previewColor: 'var(--color-primary)',
+                icon: <Sparkles className="size-6" />,
+            },
+            {
+                id: '2',
+                label: 'Shield Protection',
+                details: 'Firewall integrity is stable',
+                previewColor: 'var(--color-chart-1)',
+                icon: <Shield className="size-6" />,
+            },
+            {
+                id: '3',
+                label: 'Global Server',
+                details: 'Connecting node latency is 8ms',
+                previewColor: 'var(--color-chart-2)',
+                icon: <Globe className="size-6" />,
+            },
+        ];
+        return (
+            <div className="w-full max-w-xl py-4">
+                <SplitPreviewCard items={items} />
+            </div>
+        );
+    }
+
+    // Grainy Noise Card
+    if (name === 'grainy-noise-card') {
+        return (
+            <div className="grid min-h-[300px] w-full place-items-center rounded-xl border border-border/50 bg-neutral-950 p-6">
+                <GrainyNoiseCard
+                    className="max-w-xs border-zinc-800 bg-zinc-900/60 text-left"
+                    glowColor="rgba(99,102,241,0.25)"
+                >
+                    <div className="space-y-4">
+                        <div className="flex size-10 items-center justify-center rounded-lg bg-indigo-500/10 text-indigo-400">
+                            <Award className="size-5" />
+                        </div>
+                        <div>
+                            <h4 className="text-sm font-bold text-zinc-100">
+                                Grainy Glass
+                            </h4>
+                            <p className="mt-1 text-xs text-zinc-400">
+                                Frosted grain noise filter texture with a
+                                glowing violet backlight.
+                            </p>
+                        </div>
+                    </div>
+                </GrainyNoiseCard>
+            </div>
+        );
+    }
+
+    // Scratch Card
+    if (name === 'scratch-card') {
+        return (
+            <div className="grid min-h-[300px] w-full place-items-center rounded-xl border border-border/50 bg-background p-6">
+                <ScratchCard className="flex h-36 w-64 flex-col items-center justify-center text-center">
+                    <div className="space-y-1">
+                        <span className="text-xs font-bold text-primary">
+                            CONGRATULATIONS!
+                        </span>
+                        <h4 className="text-sm font-bold">
+                            You Won $100 Gift Card
+                        </h4>
+                        <span className="text-[10px] text-muted-foreground">
+                            Code: REVEAL100
+                        </span>
+                    </div>
+                </ScratchCard>
             </div>
         );
     }

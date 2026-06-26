@@ -343,7 +343,8 @@ export function InputsGallery() {
                             Password Input
                         </CardTitle>
                         <CardDescription className="text-xs">
-                            A secure password input field with a toggleable visibility eye icon.
+                            A secure password input field with a toggleable
+                            visibility eye icon.
                         </CardDescription>
                     </CardHeader>
                     <CardContent className="flex flex-1 flex-col justify-center space-y-3 pb-6">

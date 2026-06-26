@@ -34,11 +34,13 @@ const InputPassword = React.forwardRef<HTMLInputElement, InputPasswordProps>(
                     variant="ghost"
                     size="icon"
                     className={cn(
-                        'absolute top-1/2 right-0 size-9 -translate-y-1/2 text-muted-foreground/70 hover:bg-transparent hover:text-foreground cursor-pointer select-none',
-                        toggleClassName
+                        'absolute top-1/2 right-0 size-9 -translate-y-1/2 cursor-pointer text-muted-foreground/70 select-none hover:bg-transparent hover:text-foreground',
+                        toggleClassName,
                     )}
                     onClick={toggleVisibility}
-                    aria-label={showPassword ? 'Hide password' : 'Show password'}
+                    aria-label={
+                        showPassword ? 'Hide password' : 'Show password'
+                    }
                 >
                     {showPassword ? (
                         <EyeOff className="size-4" />
@@ -48,7 +50,7 @@ const InputPassword = React.forwardRef<HTMLInputElement, InputPasswordProps>(
                 </Button>
             </div>
         );
-    }
+    },
 );
 
 InputPassword.displayName = 'InputPassword';
