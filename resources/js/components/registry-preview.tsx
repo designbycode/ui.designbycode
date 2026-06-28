@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import { Sparkles, Shield, Globe, Heart, Award, Terminal } from 'lucide-react';
 
 // Import all registry components
@@ -10,6 +10,11 @@ import Marquee from '@/registry/new-york/components/ui/animations/marquee';
 import TextAnimator from '@/registry/new-york/components/ui/animations/text-animator';
 import { ButtonParticles } from '@/registry/new-york/components/ui/buttons/button-particles';
 import { PixelCanvas } from '@/registry/new-york/components/ui/canvas/pixel-canvas';
+import { ConstellationCanvas } from '@/registry/new-york/components/ui/canvas/constellation-canvas';
+import { FlowFieldCanvas } from '@/registry/new-york/components/ui/canvas/flow-field-canvas';
+import { MetaballCanvas } from '@/registry/new-york/components/ui/canvas/metaball-canvas';
+import { AuroraCanvas } from '@/registry/new-york/components/ui/canvas/aurora-canvas';
+import { WaveGridCanvas } from '@/registry/new-york/components/ui/canvas/wave-grid-canvas';
 import { BackLight } from '@/registry/new-york/components/ui/glow/back-light';
 import GlowConic from '@/registry/new-york/components/ui/glow/glow-conic';
 import { GlowRadial } from '@/registry/new-york/components/ui/glow/glow-radial';
@@ -63,6 +68,10 @@ import { ReviewHero } from '@/registry/new-york/components/ui/reviews/review-her
 import { ReviewCarousel } from '@/registry/new-york/components/ui/reviews/review-carousel';
 import { CardsStats } from '@/registry/new-york/components/blocks/cards-stats/cards-stats';
 import PricingSection from '@/registry/new-york/components/blocks/pricing-section/pricing-section';
+import { PricingGlowing } from '@/registry/new-york/components/blocks/pricing-glowing/pricing-glowing';
+import { PricingComparison } from '@/registry/new-york/components/blocks/pricing-comparison/pricing-comparison';
+import { PricingResources } from '@/registry/new-york/components/blocks/pricing-resources/pricing-resources';
+import { PricingModernCards } from '@/registry/new-york/components/blocks/pricing-modern-cards/pricing-modern-cards';
 import FeatureGrid from '@/registry/new-york/components/blocks/feature-grid/feature-grid';
 
 import { Heading } from '@/registry/new-york/components/ui/typography/heading';
@@ -110,7 +119,34 @@ import { SplitPreviewCard } from '@/registry/new-york/components/ui/cards/split-
 import { GrainyNoiseCard } from '@/registry/new-york/components/ui/cards/grainy-noise-card';
 import { ScratchCard } from '@/registry/new-york/components/ui/cards/scratch-card';
 import { HeroHighEnergyImpact } from '@/registry/new-york/components/blocks/hero-high-energy/hero-high-energy';
+import { RainbowBorder } from '@/registry/new-york/components/ui/borders/rainbow-border';
+import { GradientButton } from '@/registry/new-york/components/ui/buttons/rainbow-button';
+import { RainbowBorderButton } from '@/registry/new-york/components/ui/buttons/rainbow-border-button';
+import { RainbowBorderCard } from '@/registry/new-york/components/ui/cards/rainbow-border-card';
+import { RainbowBorderInput } from '@/registry/new-york/components/ui/inputs/rainbow-border-input';
 import Wrapper from '@/registry/new-york/components/ui/misc/wrapper';
+
+import { AvatarDropzoneBadge } from '@/registry/new-york/components/ui/dropzones/avatar-dropzone-badge';
+import { AvatarDropzoneCard } from '@/registry/new-york/components/ui/dropzones/avatar-dropzone-card';
+import { AvatarDropzoneField } from '@/registry/new-york/components/ui/dropzones/avatar-dropzone-field';
+import { AvatarDropzoneGhost } from '@/registry/new-york/components/ui/dropzones/avatar-dropzone-ghost';
+import { AvatarDropzoneInline } from '@/registry/new-york/components/ui/dropzones/avatar-dropzone-inline';
+import { AvatarDropzoneMinimal } from '@/registry/new-york/components/ui/dropzones/avatar-dropzone-minimal';
+import { AvatarDropzoneOutlined } from '@/registry/new-york/components/ui/dropzones/avatar-dropzone-outlined';
+import { AvatarDropzoneSortableRow } from '@/registry/new-york/components/ui/dropzones/avatar-dropzone-sortable-row';
+import { AvatarDropzoneSortableStack } from '@/registry/new-york/components/ui/dropzones/avatar-dropzone-sortable-stack';
+import { AvatarDropzoneSquare } from '@/registry/new-york/components/ui/dropzones/avatar-dropzone-square';
+import { GalleryDropzoneCarousel } from '@/registry/new-york/components/ui/dropzones/gallery-dropzone-carousel';
+import { GalleryDropzoneCompact } from '@/registry/new-york/components/ui/dropzones/gallery-dropzone-compact';
+import { GalleryDropzoneDialog } from '@/registry/new-york/components/ui/dropzones/gallery-dropzone-dialog';
+import { GalleryDropzoneList } from '@/registry/new-york/components/ui/dropzones/gallery-dropzone-list';
+import { GalleryDropzoneMasonry } from '@/registry/new-york/components/ui/dropzones/gallery-dropzone-masonry';
+import { GalleryDropzonePills } from '@/registry/new-york/components/ui/dropzones/gallery-dropzone-pills';
+import { GalleryDropzoneSimple } from '@/registry/new-york/components/ui/dropzones/gallery-dropzone-simple';
+import { GalleryDropzoneSortableCards } from '@/registry/new-york/components/ui/dropzones/gallery-dropzone-sortable-cards';
+import { GalleryDropzoneSortableGrid } from '@/registry/new-york/components/ui/dropzones/gallery-dropzone-sortable-grid';
+import { GalleryDropzoneSortableList } from '@/registry/new-york/components/ui/dropzones/gallery-dropzone-sortable-list';
+import { GalleryDropzoneTable } from '@/registry/new-york/components/ui/dropzones/gallery-dropzone-table';
 
 import ButtonMagnetic from '@/registry/new-york/components/ui/buttons/button-magnetic';
 import ButtonShine from '@/registry/new-york/components/ui/buttons/button-shine';
@@ -203,6 +239,91 @@ export default function RegistryPreview({ name }: { name: string }) {
                     </h3>
                     <p className="text-sm text-zinc-400">
                         Move your mouse to interact with the pixels
+                    </p>
+                </div>
+            </div>
+        );
+    }
+
+    // Constellation Canvas
+    if (name === 'constellation-canvas') {
+        return (
+            <div className="relative grid h-[250px] w-full place-items-center overflow-hidden rounded-xl border border-border/50 bg-card">
+                <ConstellationCanvas className="absolute inset-0 opacity-40 text-primary" />
+                <div className="pointer-events-none relative z-10 text-center">
+                    <h3 className="text-xl font-bold text-foreground">
+                        Constellation Canvas
+                    </h3>
+                    <p className="text-xs text-muted-foreground">
+                        Move your mouse to connect floating star nodes
+                    </p>
+                </div>
+            </div>
+        );
+    }
+
+    // Flow Field Canvas
+    if (name === 'flow-field-canvas') {
+        return (
+            <div className="relative grid h-[250px] w-full place-items-center overflow-hidden rounded-xl border border-border/50 bg-card">
+                <FlowFieldCanvas className="absolute inset-0 opacity-30 text-primary" />
+                <div className="pointer-events-none relative z-10 text-center">
+                    <h3 className="text-xl font-bold text-foreground">
+                        Flow Field Canvas
+                    </h3>
+                    <p className="text-xs text-muted-foreground">
+                        Generative particle paths flowing along a vector field
+                    </p>
+                </div>
+            </div>
+        );
+    }
+
+    // Metaball Canvas
+    if (name === 'metaball-canvas') {
+        return (
+            <div className="relative grid h-[250px] w-full place-items-center overflow-hidden rounded-xl border border-border/50 bg-card">
+                <MetaballCanvas className="absolute inset-0 opacity-50" color="var(--color-primary)" />
+                <div className="pointer-events-none relative z-10 text-center">
+                    <h3 className="text-xl font-bold text-foreground">
+                        Metaball Canvas
+                    </h3>
+                    <p className="text-xs text-muted-foreground">
+                        Organic liquid blobs that morph and merge on contact
+                    </p>
+                </div>
+            </div>
+        );
+    }
+
+    // Aurora Canvas
+    if (name === 'aurora-canvas') {
+        return (
+            <div className="relative grid h-[250px] w-full place-items-center overflow-hidden rounded-xl border border-border/50 bg-card">
+                <AuroraCanvas className="absolute inset-0 opacity-45" />
+                <div className="pointer-events-none relative z-10 text-center">
+                    <h3 className="text-xl font-bold text-foreground">
+                        Aurora Canvas
+                    </h3>
+                    <p className="text-xs text-muted-foreground">
+                        Slowly shifting glowing waves of northern lights
+                    </p>
+                </div>
+            </div>
+        );
+    }
+
+    // Wave Grid Canvas
+    if (name === 'wave-grid-canvas') {
+        return (
+            <div className="relative grid h-[250px] w-full place-items-center overflow-hidden rounded-xl border border-border/50 bg-card">
+                <WaveGridCanvas className="absolute inset-0 opacity-60 text-primary" />
+                <div className="pointer-events-none relative z-10 text-center">
+                    <h3 className="text-xl font-bold text-foreground">
+                        Wave Grid Canvas
+                    </h3>
+                    <p className="text-xs text-muted-foreground">
+                        Rippling array of geometric shapes tracking the cursor
                     </p>
                 </div>
             </div>
@@ -1323,6 +1444,38 @@ export default function RegistryPreview({ name }: { name: string }) {
         );
     }
 
+    if (name === 'pricing-glowing') {
+        return (
+            <div className="mx-auto w-full max-w-5xl">
+                <PricingGlowing />
+            </div>
+        );
+    }
+
+    if (name === 'pricing-comparison') {
+        return (
+            <div className="mx-auto w-full max-w-5xl">
+                <PricingComparison />
+            </div>
+        );
+    }
+
+    if (name === 'pricing-resources') {
+        return (
+            <div className="mx-auto w-full max-w-5xl">
+                <PricingResources />
+            </div>
+        );
+    }
+
+    if (name === 'pricing-modern-cards') {
+        return (
+            <div className="mx-auto w-full max-w-5xl">
+                <PricingModernCards />
+            </div>
+        );
+    }
+
     // 20. Feature Grid
     if (name === 'feature-grid') {
         return (
@@ -2187,6 +2340,216 @@ export default function RegistryPreview({ name }: { name: string }) {
                         This layout component enforces unified gutters and maximum width limits across screen breakpoints.
                     </p>
                 </Wrapper>
+            </div>
+        );
+    }
+
+    // Dropzone previews
+    if (name === 'avatar-dropzone-badge') {
+        return (
+            <div className="grid min-h-[200px] w-full place-items-center rounded-xl border border-border/50 bg-card p-6">
+                <AvatarDropzoneBadge />
+            </div>
+        );
+    }
+    if (name === 'avatar-dropzone-card') {
+        return (
+            <div className="mx-auto w-full max-w-md py-4">
+                <AvatarDropzoneCard />
+            </div>
+        );
+    }
+    if (name === 'avatar-dropzone-field') {
+        return (
+            <div className="mx-auto w-full max-w-md py-4">
+                <AvatarDropzoneField />
+            </div>
+        );
+    }
+    if (name === 'avatar-dropzone-ghost') {
+        return (
+            <div className="grid min-h-[200px] w-full place-items-center rounded-xl border border-border/50 bg-card p-6">
+                <AvatarDropzoneGhost />
+            </div>
+        );
+    }
+    if (name === 'avatar-dropzone-inline') {
+        return (
+            <div className="mx-auto w-full max-w-md py-4">
+                <AvatarDropzoneInline />
+            </div>
+        );
+    }
+    if (name === 'avatar-dropzone-minimal') {
+        return (
+            <div className="grid min-h-[200px] w-full place-items-center rounded-xl border border-border/50 bg-card p-6">
+                <AvatarDropzoneMinimal />
+            </div>
+        );
+    }
+    if (name === 'avatar-dropzone-outlined') {
+        return (
+            <div className="grid min-h-[200px] w-full place-items-center rounded-xl border border-border/50 bg-card p-6">
+                <AvatarDropzoneOutlined />
+            </div>
+        );
+    }
+    if (name === 'avatar-dropzone-sortable-row') {
+        return (
+            <div className="mx-auto w-full max-w-md py-4">
+                <AvatarDropzoneSortableRow />
+            </div>
+        );
+    }
+    if (name === 'avatar-dropzone-sortable-stack') {
+        return (
+            <div className="mx-auto w-full max-w-md py-4">
+                <AvatarDropzoneSortableStack />
+            </div>
+        );
+    }
+    if (name === 'avatar-dropzone-square') {
+        return (
+            <div className="grid min-h-[200px] w-full place-items-center rounded-xl border border-border/50 bg-card p-6">
+                <AvatarDropzoneSquare />
+            </div>
+        );
+    }
+    if (name === 'gallery-dropzone-carousel') {
+        return (
+            <div className="mx-auto w-full max-w-xl py-4">
+                <GalleryDropzoneCarousel />
+            </div>
+        );
+    }
+    if (name === 'gallery-dropzone-compact') {
+        return (
+            <div className="mx-auto w-full max-w-md py-4">
+                <GalleryDropzoneCompact />
+            </div>
+        );
+    }
+    if (name === 'gallery-dropzone-dialog') {
+        return (
+            <div className="mx-auto w-full max-w-md py-4">
+                <GalleryDropzoneDialog />
+            </div>
+        );
+    }
+    if (name === 'gallery-dropzone-list') {
+        return (
+            <div className="mx-auto w-full max-w-md py-4">
+                <GalleryDropzoneList />
+            </div>
+        );
+    }
+    if (name === 'gallery-dropzone-masonry') {
+        return (
+            <div className="mx-auto w-full max-w-2xl py-4">
+                <GalleryDropzoneMasonry />
+            </div>
+        );
+    }
+    if (name === 'gallery-dropzone-pills') {
+        return (
+            <div className="mx-auto w-full max-w-md py-4">
+                <GalleryDropzonePills />
+            </div>
+        );
+    }
+    if (name === 'gallery-dropzone-simple') {
+        return (
+            <div className="mx-auto w-full max-w-md py-4">
+                <GalleryDropzoneSimple />
+            </div>
+        );
+    }
+    if (name === 'gallery-dropzone-sortable-cards') {
+        return (
+            <div className="mx-auto w-full max-w-xl py-4">
+                <GalleryDropzoneSortableCards />
+            </div>
+        );
+    }
+    if (name === 'gallery-dropzone-sortable-grid') {
+        return (
+            <div className="mx-auto w-full max-w-xl py-4">
+                <GalleryDropzoneSortableGrid />
+            </div>
+        );
+    }
+    if (name === 'gallery-dropzone-sortable-list') {
+        return (
+            <div className="mx-auto w-full max-w-md py-4">
+                <GalleryDropzoneSortableList />
+            </div>
+        );
+    }
+    if (name === 'gallery-dropzone-table') {
+        return (
+            <div className="mx-auto w-full max-w-2xl py-4">
+                <GalleryDropzoneTable />
+            </div>
+        );
+    }
+
+    if (name === 'rainbow-border') {
+        return (
+            <div className="grid min-h-[200px] w-full place-items-center rounded-xl border border-border/50 bg-card p-6">
+                <RainbowBorder rounded="lg" glow={true} className="p-[2px]">
+                    <div className="bg-background text-foreground px-6 py-3 rounded-[7px] text-sm font-semibold shadow-sm">
+                        Rainbow Border Content
+                    </div>
+                </RainbowBorder>
+            </div>
+        );
+    }
+
+    if (name === 'rainbow-button') {
+        return (
+            <div className="grid min-h-[200px] w-full place-items-center rounded-xl border border-border/50 bg-card p-6">
+                <GradientButton className="h-10 px-6 rounded-md">
+                    Rainbow Button
+                </GradientButton>
+            </div>
+        );
+    }
+
+    if (name === 'rainbow-border-button') {
+        return (
+            <div className="grid min-h-[200px] w-full place-items-center rounded-xl border border-border/50 bg-card p-6">
+                <RainbowBorderButton rounded="lg" glow={true}>
+                    Rainbow Border Button
+                </RainbowBorderButton>
+            </div>
+        );
+    }
+
+    if (name === 'rainbow-border-card') {
+        return (
+            <div className="mx-auto w-full max-w-md py-4">
+                <RainbowBorderCard rounded="lg" glow={true}>
+                    <CardHeader>
+                        <CardTitle className="text-lg">Rainbow Card</CardTitle>
+                        <CardDescription>A standard Card component wrapped in a customizable scrolling glow border.</CardDescription>
+                    </CardHeader>
+                    <CardContent className="text-xs">
+                        This card container is fully styled to match the dark/light mode configurations while showcasing a colorful border glow.
+                    </CardContent>
+                </RainbowBorderCard>
+            </div>
+        );
+    }
+
+    if (name === 'rainbow-border-input') {
+        return (
+            <div className="mx-auto w-full max-w-sm py-4">
+                <RainbowBorderInput
+                    rounded="md"
+                    glow={true}
+                    placeholder="Enter email address..."
+                    type="email"
+                />
             </div>
         );
     }

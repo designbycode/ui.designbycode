@@ -3,17 +3,29 @@ import * as React from 'react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 
+import { useHover } from '@/registry/new-york/hooks/use-hover';
+
 export interface ButtonGradientProps extends React.ComponentPropsWithRef<typeof Button> {}
 
 export const ButtonGradient = React.forwardRef<HTMLButtonElement, ButtonGradientProps>(
     ({ className, children, ...props }, ref) => {
-        const [isHovered, setIsHovered] = React.useState(false);
+        const { isHovered, hoverRef } = useHover();
+
+        const combinedRef = React.useCallback(
+            (node: HTMLButtonElement | null) => {
+                hoverRef(node);
+                if (typeof ref === 'function') {
+                    ref(node);
+                } else if (ref) {
+                    (ref as React.MutableRefObject<HTMLButtonElement | null>).current = node;
+                }
+            },
+            [ref, hoverRef]
+        );
 
         return (
             <Button
-                ref={ref}
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
+                ref={combinedRef}
                 className={cn(
                     'relative select-none active:scale-95 border border-transparent text-foreground',
                     className,

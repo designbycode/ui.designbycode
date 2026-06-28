@@ -4,6 +4,8 @@ import * as React from 'react';
 import { cn } from '@/lib/utils';
 import { Card } from '@/components/ui/card';
 
+import { useHover } from '@/registry/new-york/hooks/use-hover';
+
 export interface GrainyNoiseCardProps extends React.ComponentProps<
     typeof Card
 > {
@@ -22,13 +24,23 @@ const GrainyNoiseCard = React.forwardRef<HTMLDivElement, GrainyNoiseCardProps>(
         },
         ref,
     ) => {
-        const [isHovered, setIsHovered] = React.useState(false);
+        const { isHovered, hoverRef } = useHover();
+
+        const combinedRef = React.useCallback(
+            (node: HTMLDivElement | null) => {
+                hoverRef(node);
+                if (typeof ref === 'function') {
+                    ref(node);
+                } else if (ref) {
+                    (ref as React.MutableRefObject<HTMLDivElement | null>).current = node;
+                }
+            },
+            [ref, hoverRef]
+        );
 
         return (
             <Card
-                ref={ref}
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
+                ref={combinedRef}
                 className={cn(
                     'relative overflow-hidden bg-card/75 p-6 shadow-xl backdrop-blur-md transition-all duration-500',
                     isHovered ? 'scale-[1.01] border-border/80 shadow-2xl' : '',

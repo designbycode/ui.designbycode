@@ -87,7 +87,7 @@ class RegistryBuildCommand extends Command
                 'music-player' => 'media',
                 'threejs' => 'canvas',
             ];
-            $category = str_starts_with($category, 'hero-') ? 'hero-sections' : ($categoryMap[$category] ?? $category);
+            $category = str_starts_with($category, 'hero-') ? 'hero-sections' : (str_starts_with($category, 'pricing-') ? 'pricing' : ($categoryMap[$category] ?? $category));
 
             $name = $filename;
             if ($itemType === 'registry:block') {
@@ -260,6 +260,11 @@ class RegistryBuildCommand extends Command
             'button-particles' => 'A vibrant button trigger releasing interactive confetti/particle explosions on click.',
             'button-shine' => 'A sleek button design showcasing a subtle glowing reflective shine transition.',
             'pixel-canvas' => 'An interactive background canvas that draws pixel highlights under the mouse cursor.',
+            'constellation-canvas' => 'An interactive network of floating particles that draw connecting links to neighboring nodes and follow mouse movements.',
+            'flow-field-canvas' => 'A dynamic particle flow simulation mapping trailing lines along mathematical vector wave coordinates.',
+            'metaball-canvas' => 'Organic fluid liquid spheres that bounce around the canvas and seamlessly merge together on contact.',
+            'aurora-canvas' => 'A slow-waving glow animation displaying layered shifting bezier bands resembling the northern lights.',
+            'wave-grid-canvas' => 'A grid of geometric nodes that dynamically ripple, scale, and rotate in response to mouse cursor distance.',
             'back-light' => 'A modern card wrapper creating a glowing, color-matching backlight shadow behind components.',
             'glow-conic' => 'A beautiful border animation powered by a rotating conic color gradient.',
             'glow-radial' => 'An interactive background overlay that reflects cursor positioning with radial gradients. Requires GlowStack wrapping to function.',

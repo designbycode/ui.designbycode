@@ -82,7 +82,7 @@ export function PricingSection() {
     const [isYearly, setIsYearly] = useState(false);
 
     return (
-        <div className="mx-auto flex w-full max-w-5xl flex-col items-center gap-8 px-4 py-8">
+        <div className="mx-auto flex w-full max-w-5xl flex-col items-center gap-8 px-4 py-8 @container">
             <div className="max-w-xl space-y-3 text-center">
                 <Badge
                     variant="outline"
@@ -134,7 +134,7 @@ export function PricingSection() {
             </div>
 
             {/* Pricing cards grid */}
-            <div className="grid w-full items-stretch gap-6 md:grid-cols-3">
+            <div className="grid w-full items-stretch gap-6 grid-cols-1 @3xl:grid-cols-3">
                 {tiers.map((tier) => {
                     const price = isYearly
                         ? tier.yearlyPrice

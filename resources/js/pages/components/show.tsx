@@ -235,6 +235,83 @@ export default function ComponentShow({
         return list;
     }, [component.files]);
 
+    const usageSnippet = useMemo(() => {
+        const mainFile = component.files.find(f => f.path.includes(component.name)) || component.files[0];
+        if (!mainFile || !mainFile.content) {
+            return '';
+        }
+
+        // Get import path
+        let importPath = mainFile.path;
+        const prefix = 'resources/js/registry/new-york/';
+        if (importPath.startsWith(prefix)) {
+            importPath = importPath.substring(prefix.length);
+        }
+        
+        if (importPath.startsWith('components/')) {
+            importPath = importPath.replace('components/', '@/components/');
+        } else if (importPath.startsWith('hooks/')) {
+            importPath = importPath.replace('hooks/', '@/hooks/');
+        } else if (importPath.startsWith('lib/')) {
+            importPath = importPath.replace('lib/', '@/lib/');
+        } else if (importPath.startsWith('types/')) {
+            importPath = importPath.replace('types/', '@/types/');
+        } else {
+            importPath = '@/' + importPath;
+        }
+        
+        importPath = importPath.replace(/\.(tsx|ts|jsx|js)$/, '');
+
+        // Extract exported symbols (functions, consts, classes)
+        const exportRegex = /export\s+(?:default\s+)?(?:const|function|class)\s+([a-zA-Z0-9_]+)/g;
+        const exports: string[] = [];
+        let match;
+        while ((match = exportRegex.exec(mainFile.content)) !== null) {
+            const name = match[1];
+            if (
+                name &&
+                !name.endsWith('Props') &&
+                !name.endsWith('Options') &&
+                !name.endsWith('Config') &&
+                !name.endsWith('Variants') &&
+                name !== 'default' &&
+                !name.startsWith('_')
+            ) {
+                exports.push(name);
+            }
+        }
+
+        if (exports.length === 0) {
+            const defaultExportRegex = /export\s+default\s+([a-zA-Z0-9_]+)/;
+            const defMatch = defaultExportRegex.exec(mainFile.content);
+            if (defMatch && defMatch[1]) {
+                exports.push(defMatch[1]);
+            }
+        }
+
+        if (exports.length === 0) {
+            const camelCaseName = component.name
+                .split('-')
+                .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                .join('');
+            exports.push(camelCaseName);
+        }
+
+        const primarySymbol = exports[0];
+        const isHook = primarySymbol.startsWith('use');
+
+        if (isHook) {
+            return `import { ${primarySymbol} } from '${importPath}';\n\nexport default function Demo() {\n    const [ref, value] = ${primarySymbol}();\n\n    return (\n        <div ref={ref}>\n            {value ? 'Active' : 'Inactive'}\n        </div>\n    );\n}`;
+        }
+
+        const needsChildren = ['Button', 'Card', 'Badge', 'Alert', 'Heading', 'Paragraph'].some(p => primarySymbol.includes(p));
+        if (needsChildren) {
+            return `import { ${primarySymbol} } from '${importPath}';\n\nexport default function Demo() {\n    return (\n        <${primarySymbol}>\n            Get Started\n        </${primarySymbol}>\n    );\n}`;
+        }
+
+        return `import { ${primarySymbol} } from '${importPath}';\n\nexport default function Demo() {\n    return (\n        <${primarySymbol} />\n    );\n}`;
+    }, [component]);
+
     const activeFileIdx =
         selectedFileIndex >= component.files.length ? 0 : selectedFileIndex;
     const activeFile = component.files[activeFileIdx] || null;
@@ -552,6 +629,26 @@ export default function ComponentShow({
                                     />
                                 </CardContent>
                             </Card>
+
+                            {usageSnippet && (
+                                <Card className="border border-border/50">
+                                    <CardHeader>
+                                        <CardTitle className="text-base font-semibold">
+                                            How to Use
+                                        </CardTitle>
+                                        <CardDescription>
+                                            Import and render this component in your project.
+                                        </CardDescription>
+                                    </CardHeader>
+                                    <CardContent>
+                                        <MainCodeBlock
+                                            code={usageSnippet}
+                                            language="tsx"
+                                            variant="default"
+                                        />
+                                    </CardContent>
+                                </Card>
+                            )}
 
                             {/* Dependencies Lists */}
                             {(component.dependencies.length > 0 ||

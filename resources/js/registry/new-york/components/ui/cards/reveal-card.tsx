@@ -4,6 +4,8 @@ import * as React from 'react';
 import { cn } from '@/lib/utils';
 import { Card } from '@/components/ui/card';
 
+import { useHover } from '@/registry/new-york/hooks/use-hover';
+
 export interface RevealCardProps extends React.HTMLAttributes<HTMLDivElement> {
     borderColor?: string;
     borderWidth?: number;
@@ -23,13 +25,24 @@ const RevealCard = React.forwardRef<HTMLDivElement, RevealCardProps>(
         ref,
     ) => {
         const localRef = React.useRef<HTMLDivElement>(null);
-        const resolvedRef = (ref ||
-            localRef) as React.RefObject<HTMLDivElement | null>;
+        const { isHovered, hoverRef } = useHover();
         const [coords, setCoords] = React.useState({ x: 0, y: 0 });
-        const [isHovered, setIsHovered] = React.useState(false);
+
+        const combinedRef = React.useCallback(
+            (node: HTMLDivElement | null) => {
+                hoverRef(node);
+                if (typeof ref === 'function') {
+                    ref(node);
+                } else if (ref) {
+                    (ref as React.MutableRefObject<HTMLDivElement | null>).current = node;
+                }
+                (localRef as React.MutableRefObject<HTMLDivElement | null>).current = node;
+            },
+            [ref, hoverRef]
+        );
 
         const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-            const card = resolvedRef.current;
+            const card = localRef.current;
             if (!card) return;
             const rect = card.getBoundingClientRect();
             setCoords({
@@ -40,10 +53,8 @@ const RevealCard = React.forwardRef<HTMLDivElement, RevealCardProps>(
 
         return (
             <div
-                ref={resolvedRef}
+                ref={combinedRef}
                 onMouseMove={handleMouseMove}
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
                 className={cn(
                     'relative overflow-hidden rounded-xl bg-muted/40 p-[1px] transition-all',
                     className,

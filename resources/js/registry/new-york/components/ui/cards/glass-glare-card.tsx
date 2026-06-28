@@ -4,6 +4,8 @@ import * as React from 'react';
 import { cn } from '@/lib/utils';
 import { Card } from '@/components/ui/card';
 
+import { useHover } from '@/registry/new-york/hooks/use-hover';
+
 export interface GlassGlareCardProps extends React.ComponentProps<typeof Card> {
     glareColor?: string;
     opacity?: number;
@@ -21,13 +23,24 @@ const GlassGlareCard = React.forwardRef<HTMLDivElement, GlassGlareCardProps>(
         ref,
     ) => {
         const localRef = React.useRef<HTMLDivElement>(null);
-        const resolvedRef = (ref ||
-            localRef) as React.RefObject<HTMLDivElement | null>;
+        const { isHovered, hoverRef } = useHover();
         const [glarePos, setGlarePos] = React.useState({ x: 50, y: 50 });
-        const [isHovered, setIsHovered] = React.useState(false);
+
+        const combinedRef = React.useCallback(
+            (node: HTMLDivElement | null) => {
+                hoverRef(node);
+                if (typeof ref === 'function') {
+                    ref(node);
+                } else if (ref) {
+                    (ref as React.MutableRefObject<HTMLDivElement | null>).current = node;
+                }
+                (localRef as React.MutableRefObject<HTMLDivElement | null>).current = node;
+            },
+            [ref, hoverRef]
+        );
 
         const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-            const card = resolvedRef.current;
+            const card = localRef.current;
             if (!card) return;
             const rect = card.getBoundingClientRect();
             const x = ((e.clientX - rect.left) / rect.width) * 100;
@@ -37,10 +50,8 @@ const GlassGlareCard = React.forwardRef<HTMLDivElement, GlassGlareCardProps>(
 
         return (
             <Card
-                ref={resolvedRef}
+                ref={combinedRef}
                 onMouseMove={handleMouseMove}
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
                 className={cn(
                     'relative overflow-hidden bg-card/40 p-6 shadow-2xl backdrop-blur-md transition-all duration-300',
                     className,

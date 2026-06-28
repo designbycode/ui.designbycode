@@ -5996,6 +5996,1012 @@ export function VolumeControl({ volume, onVolumeChange }: VolumeControlProps) {
                 'theme' => null,
             ],
             [
+                'name' => 'pricing-comparison',
+                'type' => 'registry:block',
+                'title' => 'Pricing Comparison',
+                'description' => 'A beautiful component for your application.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                    'button',
+                    'badge',
+                    'table',
+                    'switch',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/blocks/pricing-comparison/pricing-comparison.tsx',
+                        'type' => 'registry:block',
+                        'content' => '\'use client\';
+
+import React, { useState } from \'react\';
+import { Check, X, Minus } from \'lucide-react\';
+import { cn } from \'@/lib/utils\';
+import { Button } from \'@/components/ui/button\';
+import { Badge } from \'@/components/ui/badge\';
+import {
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableRow,
+} from \'@/components/ui/table\';
+import { Switch } from \'@/components/ui/switch\';
+
+interface ComparisonFeature {
+    name: string;
+    description?: string;
+    hobby: React.ReactNode;
+    pro: React.ReactNode;
+    enterprise: React.ReactNode;
+}
+
+interface FeatureSection {
+    category: string;
+    features: ComparisonFeature[];
+}
+
+const comparisonData: FeatureSection[] = [
+    {
+        category: \'Workspace & Projects\',
+        features: [
+            { name: \'Active Projects\', hobby: \'Up to 3\', pro: \'Unlimited\', enterprise: \'Unlimited (Isolated Node)\' },
+            { name: \'Monthly bandwidth\', hobby: \'10GB\', pro: \'100GB\', enterprise: \'Unlimited\' },
+            { name: \'SSD Storage\', hobby: \'5GB\', pro: \'50GB\', enterprise: \'Custom Capacity\' },
+            { name: \'Team Collaboration Seats\', hobby: \'1 seat\', pro: \'Up to 5 seats\', enterprise: \'Infinite\' },
+        ],
+    },
+    {
+        category: \'Metrics & Observability\',
+        features: [
+            { name: \'Telemetry resolution\', hobby: \'5 mins\', pro: \'Realtime (1s)\', enterprise: \'Realtime (sub-second)\' },
+            { name: \'Log Retention\', hobby: \'7 days\', pro: \'30 days\', enterprise: \'365 days\' },
+            { name: \'Custom Alert Triggers\', hobby: <Minus className="size-4 text-muted-foreground" />, pro: <Check className="size-4 text-primary" />, enterprise: <Check className="size-4 text-primary" /> },
+            { name: \'Grafana & Datadog exports\', hobby: <X className="size-4 text-destructive" />, pro: <Check className="size-4 text-primary" />, enterprise: <Check className="size-4 text-primary" /> },
+        ],
+    },
+    {
+        category: \'Security & SLA\',
+        features: [
+            { name: \'Weekly vulnerability scans\', hobby: <Check className="size-4 text-primary" />, pro: <Check className="size-4 text-primary" />, enterprise: <Check className="size-4 text-primary" /> },
+            { name: \'SAML / SSO Authentications\', hobby: <X className="size-4 text-destructive" />, pro: <Minus className="size-4 text-muted-foreground" />, enterprise: <Check className="size-4 text-primary" /> },
+            { name: \'Support Channels\', hobby: \'Community Forum\', pro: \'Priority Email\', enterprise: \'Dedicated Slack + 99.9% SLA\' },
+        ],
+    },
+];
+
+export function PricingComparison() {
+    const [isYearly, setIsYearly] = useState(false);
+
+    return (
+        <div className="mx-auto flex w-full max-w-5xl flex-col items-center gap-8 px-4 py-12 @container">
+            {/* Header */}
+            <div className="max-w-2xl space-y-4 text-center">
+                <Badge
+                    variant="outline"
+                    className="border-primary/20 bg-primary/5 px-3 py-1 font-mono text-xs tracking-widest text-primary uppercase"
+                >
+                    Feature Comparison
+                </Badge>
+                <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+                    Compare Plans & Features
+                </h2>
+                <p className="text-sm text-muted-foreground max-w-md mx-auto">
+                    Deep dive into all features to choose the exact plan that suits your production and compliance requirements.
+                </p>
+            </div>
+
+            {/* Toggle Switch */}
+            <div className="flex items-center justify-center gap-4">
+                <span className={cn(\'text-sm font-medium\', !isYearly ? \'text-foreground\' : \'text-muted-foreground\')}>
+                    Monthly Billing
+                </span>
+                <Switch
+                    checked={isYearly}
+                    onCheckedChange={setIsYearly}
+                />
+                <span className={cn(\'text-sm font-medium flex items-center gap-1.5\', isYearly ? \'text-foreground\' : \'text-muted-foreground\')}>
+                    Yearly Billing
+                    <Badge variant="secondary" className="bg-primary/10 text-primary text-[10px] py-0 px-1.5 border-0">
+                        Save 20%
+                    </Badge>
+                </span>
+            </div>
+
+            {/* Comparison Table */}
+            <div className="w-full overflow-x-auto rounded-xl border bg-card/50 shadow-md">
+                <Table>
+                    <TableHeader>
+                        <TableRow className="hover:bg-transparent">
+                            <TableHead className="w-[30%] min-w-[200px] font-bold text-foreground">Features</TableHead>
+                            <TableHead className="w-[23%] text-center">
+                                <div className="space-y-1 py-2">
+                                    <h4 className="font-bold text-foreground text-sm">Hobby</h4>
+                                    <div className="font-mono text-base font-extrabold text-foreground">
+                                        ${isYearly ? 7 : 9}
+                                        <span className="text-[10px] text-muted-foreground font-normal">/mo</span>
+                                    </div>
+                                    <Button variant="outline" size="sm" className="mt-2 w-full max-w-[120px] text-xs h-7">
+                                        Get Started
+                                    </Button>
+                                </div>
+                            </TableHead>
+                            <TableHead className="w-[24%] text-center bg-primary/5">
+                                <div className="space-y-1 py-2">
+                                    <div className="inline-block rounded-full bg-primary/10 px-2 py-0.5 text-[9px] font-bold text-primary uppercase tracking-wider">
+                                        Popular
+                                    </div>
+                                    <h4 className="font-bold text-foreground text-sm">Professional</h4>
+                                    <div className="font-mono text-base font-extrabold text-primary">
+                                        ${isYearly ? 24 : 29}
+                                        <span className="text-[10px] text-muted-foreground font-normal">/mo</span>
+                                    </div>
+                                    <Button size="sm" className="mt-2 w-full max-w-[120px] text-xs h-7 bg-primary text-primary-foreground hover:bg-primary/90">
+                                        Choose Pro
+                                    </Button>
+                                </div>
+                            </TableHead>
+                            <TableHead className="w-[23%] text-center">
+                                <div className="space-y-1 py-2">
+                                    <h4 className="font-bold text-foreground text-sm">Enterprise</h4>
+                                    <div className="font-mono text-base font-extrabold text-foreground">
+                                        ${isYearly ? 79 : 99}
+                                        <span className="text-[10px] text-muted-foreground font-normal">/mo</span>
+                                    </div>
+                                    <Button variant="outline" size="sm" className="mt-2 w-full max-w-[120px] text-xs h-7">
+                                        Contact Sales
+                                    </Button>
+                                </div>
+                            </TableHead>
+                        </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                        {comparisonData.map((section, sIdx) => (
+                            <React.Fragment key={sIdx}>
+                                {/* Category Header */}
+                                <TableRow className="bg-muted/30 hover:bg-muted/30 font-semibold text-xs tracking-wider uppercase text-muted-foreground">
+                                    <TableCell colSpan={4} className="py-2.5 pl-4 align-middle">
+                                        {section.category}
+                                    </TableCell>
+                                </TableRow>
+
+                                {/* Features rows */}
+                                {section.features.map((feature, fIdx) => (
+                                    <TableRow key={fIdx} className="hover:bg-muted/10 transition-colors">
+                                        <TableCell className="font-medium text-foreground py-3 pl-4">
+                                            <div className="flex flex-col gap-0.5">
+                                                <span>{feature.name}</span>
+                                                {feature.description && (
+                                                    <span className="text-[10px] text-muted-foreground font-normal leading-normal">
+                                                        {feature.description}
+                                                    </span>
+                                                )}
+                                            </div>
+                                        </TableCell>
+                                        <TableCell className="text-center font-medium text-xs py-3">
+                                            <div className="flex items-center justify-center">
+                                                {feature.hobby}
+                                            </div>
+                                        </TableCell>
+                                        <TableCell className="text-center font-semibold text-xs py-3 bg-primary/5">
+                                            <div className="flex items-center justify-center">
+                                                {feature.pro}
+                                            </div>
+                                        </TableCell>
+                                        <TableCell className="text-center font-medium text-xs py-3">
+                                            <div className="flex items-center justify-center">
+                                                {feature.enterprise}
+                                            </div>
+                                        </TableCell>
+                                    </TableRow>
+                                ))}
+                            </React.Fragment>
+                        ))}
+                    </TableBody>
+                </Table>
+            </div>
+        </div>
+    );
+}
+
+export default PricingComparison;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'pricing',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'pricing',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'pricing-glowing',
+                'type' => 'registry:block',
+                'title' => 'Pricing Glowing',
+                'description' => 'A beautiful component for your application.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                    'button',
+                    'badge',
+                    'card',
+                    'slider',
+                    'switch',
+                    'label',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/blocks/pricing-glowing/pricing-glowing.tsx',
+                        'type' => 'registry:block',
+                        'content' => '\'use client\';
+
+import React, { useState } from \'react\';
+import { Check, Sparkles } from \'lucide-react\';
+import { cn } from \'@/lib/utils\';
+import { Button } from \'@/components/ui/button\';
+import { Badge } from \'@/components/ui/badge\';
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+} from \'@/components/ui/card\';
+import { Slider } from \'@/components/ui/slider\';
+import { Switch } from \'@/components/ui/switch\';
+import { Label } from \'@/components/ui/label\';
+
+export function PricingGlowing() {
+    const [isYearly, setIsYearly] = useState(false);
+    const [userCount, setUserCount] = useState([10]); // Slider state for number of team seats
+
+    const getPrice = (basePrice: number) => {
+        const multiplier = isYearly ? 0.8 : 1; // 20% discount
+        const seats = userCount[0];
+        const seatPrice = Math.max(0, (seats - 5) * 4); // Extra $4 per seat above 5 seats
+        return Math.round((basePrice + seatPrice) * multiplier);
+    };
+
+    return (
+        <div className="mx-auto flex w-full max-w-5xl flex-col items-center gap-10 px-4 py-12 @container">
+            {/* Header */}
+            <div className="max-w-2xl space-y-4 text-center">
+                <Badge
+                    variant="outline"
+                    className="border-primary/30 bg-primary/5 px-3 py-1 font-mono text-xs tracking-widest text-primary uppercase animate-pulse"
+                >
+                    <Sparkles className="mr-1.5 size-3.5 inline-block text-primary" />
+                    Scale-on-Demand Pricing
+                </Badge>
+                <h2 className="text-4xl font-extrabold tracking-tight sm:text-5xl bg-gradient-to-r from-foreground via-foreground/90 to-muted-foreground bg-clip-text text-transparent">
+                    Pay Only For What You Use
+                </h2>
+                <p className="text-sm text-muted-foreground max-w-lg mx-auto">
+                    Choose a plan built to grow with you. Adjust the seat slider below to see how our volume discounts apply.
+                </p>
+            </div>
+
+            {/* Slider Controls */}
+            <Card className="w-full max-w-xl border bg-card/65 backdrop-blur-xs p-6 shadow-md">
+                <div className="space-y-6">
+                    <div className="flex items-center justify-between">
+                        <Label className="text-sm font-semibold text-foreground">
+                            Number of Seats
+                        </Label>
+                        <span className="font-mono text-lg font-bold text-primary">
+                            {userCount[0]} {userCount[0] === 1 ? \'user\' : \'users\'}
+                        </span>
+                    </div>
+                    <Slider
+                        value={userCount}
+                        onValueChange={setUserCount}
+                        min={1}
+                        max={100}
+                        step={1}
+                        className="py-2"
+                    />
+                    <div className="flex items-center justify-between text-xs text-muted-foreground font-mono">
+                        <span>1 Seat</span>
+                        <span>50 Seats</span>
+                        <span>100 Seats</span>
+                    </div>
+
+                    <div className="flex items-center justify-center gap-4 pt-4 border-t">
+                        <span className={cn(\'text-sm font-medium\', !isYearly ? \'text-foreground\' : \'text-muted-foreground\')}>
+                            Monthly
+                        </span>
+                        <Switch
+                            checked={isYearly}
+                            onCheckedChange={setIsYearly}
+                        />
+                        <span className={cn(\'text-sm font-medium flex items-center gap-1.5\', isYearly ? \'text-foreground\' : \'text-muted-foreground\')}>
+                            Yearly
+                            <Badge variant="secondary" className="bg-primary/10 text-primary text-[10px] py-0 px-1.5 border-0">
+                                Save 20%
+                            </Badge>
+                        </span>
+                    </div>
+                </div>
+            </Card>
+
+            {/* Pricing Tiers Grid */}
+            <div className="grid w-full grid-cols-1 gap-8 @3xl:grid-cols-3">
+                {/* Standard / Hobby */}
+                <Card className="relative flex flex-col justify-between overflow-hidden bg-card/45 backdrop-blur-xs border transition-all duration-300 hover:scale-[1.01]">
+                    <CardHeader className="space-y-2">
+                        <CardTitle className="text-xl font-bold">Startup</CardTitle>
+                        <CardDescription className="text-xs">Ideal for small dev teams and initial projects.</CardDescription>
+                    </CardHeader>
+                    <CardContent className="space-y-6 flex-grow">
+                        <div className="flex items-baseline">
+                            <span className="text-4xl font-extrabold font-mono tracking-tight">
+                                ${getPrice(15)}
+                            </span>
+                            <span className="text-xs text-muted-foreground ml-1">/month</span>
+                        </div>
+                        <ul className="space-y-3 text-xs">
+                            <li className="flex items-center gap-2">
+                                <Check className="size-4 shrink-0 text-primary" />
+                                <span>Includes first 5 users</span>
+                            </li>
+                            <li className="flex items-center gap-2">
+                                <Check className="size-4 shrink-0 text-primary" />
+                                <span>15 active repositories</span>
+                            </li>
+                            <li className="flex items-center gap-2">
+                                <Check className="size-4 shrink-0 text-primary" />
+                                <span>25GB SSD Storage</span>
+                            </li>
+                            <li className="flex items-center gap-2">
+                                <Check className="size-4 shrink-0 text-primary" />
+                                <span>Weekly security scans</span>
+                            </li>
+                        </ul>
+                    </CardContent>
+                    <CardFooter>
+                        <Button className="w-full" variant="outline">
+                            Get Started
+                        </Button>
+                    </CardFooter>
+                </Card>
+
+                {/* Pro Tier (Glowing/Popular) */}
+                <Card className="relative flex flex-col justify-between overflow-hidden bg-card/60 backdrop-blur-xs border-primary shadow-lg ring-1 ring-primary transition-all duration-300 hover:scale-[1.02]">
+                    <div className="absolute top-0 right-0 rounded-bl-lg bg-primary px-3 py-1 font-mono text-[9px] font-bold text-primary-foreground uppercase tracking-widest">
+                        Popular
+                    </div>
+                    <CardHeader className="space-y-2">
+                        <CardTitle className="text-xl font-bold text-foreground">Pro Team</CardTitle>
+                        <CardDescription className="text-xs">For teams needing advanced scaling and metrics.</CardDescription>
+                    </CardHeader>
+                    <CardContent className="space-y-6 flex-grow">
+                        <div className="flex items-baseline">
+                            <span className="text-4xl font-extrabold font-mono tracking-tight text-primary">
+                                ${getPrice(49)}
+                            </span>
+                            <span className="text-xs text-muted-foreground ml-1">/month</span>
+                        </div>
+                        <ul className="space-y-3 text-xs">
+                            <li className="flex items-center gap-2">
+                                <Check className="size-4 shrink-0 text-primary" />
+                                <span className="font-semibold text-foreground">Custom seat scaling</span>
+                            </li>
+                            <li className="flex items-center gap-2">
+                                <Check className="size-4 shrink-0 text-primary" />
+                                <span>Unlimited repositories</span>
+                            </li>
+                            <li className="flex items-center gap-2">
+                                <Check className="size-4 shrink-0 text-primary" />
+                                <span>200GB SSD Storage</span>
+                            </li>
+                            <li className="flex items-center gap-2">
+                                <Check className="size-4 shrink-0 text-primary" />
+                                <span>Realtime container metrics</span>
+                            </li>
+                            <li className="flex items-center gap-2">
+                                <Check className="size-4 shrink-0 text-primary" />
+                                <span>Daily automated backups</span>
+                            </li>
+                        </ul>
+                    </CardContent>
+                    <CardFooter>
+                        <Button className="w-full shadow-md bg-primary text-primary-foreground hover:bg-primary/90">
+                            Upgrade to Pro
+                        </Button>
+                    </CardFooter>
+                </Card>
+
+                {/* Scale Tier */}
+                <Card className="relative flex flex-col justify-between overflow-hidden bg-card/45 backdrop-blur-xs border transition-all duration-300 hover:scale-[1.01]">
+                    <CardHeader className="space-y-2">
+                        <CardTitle className="text-xl font-bold">Scale Plan</CardTitle>
+                        <CardDescription className="text-xs">Tailored for corporate infrastructure and strict SLA.</CardDescription>
+                    </CardHeader>
+                    <CardContent className="space-y-6 flex-grow">
+                        <div className="flex items-baseline">
+                            <span className="text-4xl font-extrabold font-mono tracking-tight">
+                                ${getPrice(149)}
+                            </span>
+                            <span className="text-xs text-muted-foreground ml-1">/month</span>
+                        </div>
+                        <ul className="space-y-3 text-xs">
+                            <li className="flex items-center gap-2">
+                                <Check className="size-4 shrink-0 text-primary" />
+                                <span>Dedicated isolated nodes</span>
+                            </li>
+                            <li className="flex items-center gap-2">
+                                <Check className="size-4 shrink-0 text-primary" />
+                                <span>1TB SSD Storage</span>
+                            </li>
+                            <li className="flex items-center gap-2">
+                                <Check className="size-4 shrink-0 text-primary" />
+                                <span>SAML SSO Integration</span>
+                            </li>
+                            <li className="flex items-center gap-2">
+                                <Check className="size-4 shrink-0 text-primary" />
+                                <span>24/7 dedicated support SLA</span>
+                            </li>
+                        </ul>
+                    </CardContent>
+                    <CardFooter>
+                        <Button className="w-full" variant="outline">
+                            Contact Sales
+                        </Button>
+                    </CardFooter>
+                </Card>
+            </div>
+        </div>
+    );
+}
+
+export default PricingGlowing;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'pricing',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'pricing',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'pricing-modern-cards',
+                'type' => 'registry:block',
+                'title' => 'Pricing Modern Cards',
+                'description' => 'A beautiful component for your application.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                    'button',
+                    'badge',
+                    'card',
+                    'switch',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/blocks/pricing-modern-cards/pricing-modern-cards.tsx',
+                        'type' => 'registry:block',
+                        'content' => '\'use client\';
+
+import React, { useState } from \'react\';
+import { Check, Shield, Zap, Target, Star } from \'lucide-react\';
+import { cn } from \'@/lib/utils\';
+import { Button } from \'@/components/ui/button\';
+import { Badge } from \'@/components/ui/badge\';
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+} from \'@/components/ui/card\';
+import { Switch } from \'@/components/ui/switch\';
+
+interface TierData {
+    name: string;
+    description: string;
+    monthlyPrice: number;
+    yearlyPrice: number;
+    icon: React.ReactNode;
+    features: { text: string; included: boolean }[];
+    popular?: boolean;
+    cta: string;
+}
+
+const tiers: TierData[] = [
+    {
+        name: \'Basic Dev\',
+        description: \'For students, hobbyists, and side projects.\',
+        monthlyPrice: 0,
+        yearlyPrice: 0,
+        icon: <Target className="size-5 text-muted-foreground" />,
+        features: [
+            { text: \'1 active workspace node\', included: true },
+            { text: \'Basic error monitoring\', included: true },
+            { text: \'1GB bandwidth limits\', included: true },
+            { text: \'Custom domains integration\', included: false },
+            { text: \'Priority Slack support\', included: false },
+        ],
+        cta: \'Launch Free Node\',
+    },
+    {
+        name: \'Scale Up\',
+        description: \'Perfect for fast growing web applications.\',
+        monthlyPrice: 19,
+        yearlyPrice: 15,
+        icon: <Zap className="size-5 text-primary" />,
+        features: [
+            { text: \'10 active workspace nodes\', included: true },
+            { text: \'Real-time telemetry reports\', included: true },
+            { text: \'50GB bandwidth limits\', included: true },
+            { text: \'Custom domains integration\', included: true },
+            { text: \'Priority Slack support\', included: false },
+        ],
+        popular: true,
+        cta: \'Upgrade to Scale\',
+    },
+    {
+        name: \'Max Ops\',
+        description: \'High performance cluster infrastructure.\',
+        monthlyPrice: 89,
+        yearlyPrice: 71,
+        icon: <Shield className="size-5 text-primary" />,
+        features: [
+            { text: \'Unlimited active nodes\', included: true },
+            { text: \'Advanced security auditing\', included: true },
+            { text: \'Unlimited bandwidth limits\', included: true },
+            { text: \'Custom domains integration\', included: true },
+            { text: \'Priority Slack support (24/7)\', included: true },
+        ],
+        cta: \'Contact Max Ops\',
+    },
+];
+
+export function PricingModernCards() {
+    const [isYearly, setIsYearly] = useState(false);
+
+    return (
+        <div className="mx-auto flex w-full max-w-5xl flex-col items-center gap-10 px-4 py-12 @container">
+            {/* Header */}
+            <div className="max-w-2xl space-y-4 text-center">
+                <Badge
+                    variant="outline"
+                    className="border-primary/20 bg-primary/5 px-3 py-1 font-mono text-xs tracking-widest text-primary uppercase"
+                >
+                    Predictable Plans
+                </Badge>
+                <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl bg-gradient-to-r from-foreground via-foreground/90 to-muted-foreground bg-clip-text text-transparent">
+                    Simple pricing. No hidden fees.
+                </h2>
+                <p className="text-sm text-muted-foreground max-w-sm mx-auto">
+                    Choose the perfect subscription package for your workload. Cancel anytime.
+                </p>
+            </div>
+
+            {/* Toggle */}
+            <div className="flex items-center justify-center gap-3">
+                <span className={cn(\'text-sm font-semibold\', !isYearly ? \'text-foreground\' : \'text-muted-foreground\')}>
+                    Monthly
+                </span>
+                <Switch
+                    checked={isYearly}
+                    onCheckedChange={setIsYearly}
+                />
+                <span className={cn(\'text-sm font-semibold flex items-center gap-1.5\', isYearly ? \'text-foreground\' : \'text-muted-foreground\')}>
+                    Yearly
+                    <Badge variant="secondary" className="bg-primary/10 text-primary text-[10px] py-0 px-1.5 border-0">
+                        2 months free
+                    </Badge>
+                </span>
+            </div>
+
+            {/* Grid */}
+            <div className="grid w-full grid-cols-1 gap-6 @3xl:grid-cols-3 items-stretch">
+                {tiers.map((tier, idx) => (
+                    <Card
+                        key={idx}
+                        className={cn(
+                            \'relative flex flex-col justify-between overflow-hidden bg-card/45 backdrop-blur-xs border transition-all duration-300 hover:scale-[1.01]\',
+                            tier.popular ? \'border-primary ring-1 ring-primary/45 bg-card/60 shadow-lg\' : \'shadow-sm\'
+                        )}
+                    >
+                        {tier.popular && (
+                            <div className="absolute top-3 right-3 flex items-center gap-1 rounded-full bg-primary/10 border border-primary/20 px-2.5 py-0.5 text-[8px] font-bold text-primary uppercase tracking-wider animate-pulse">
+                                <Star className="size-2.5 fill-current text-primary" />
+                                Recommended
+                            </div>
+                        )}
+
+                        <CardHeader className="space-y-3 pb-6">
+                            <div className="flex items-center gap-2">
+                                <div className="p-1.5 rounded bg-muted/50 border shrink-0">
+                                    {tier.icon}
+                                </div>
+                                <CardTitle className="text-lg font-bold">{tier.name}</CardTitle>
+                            </div>
+                            <CardDescription className="text-xs min-h-[32px] leading-relaxed">
+                                {tier.description}
+                            </CardDescription>
+                        </CardHeader>
+
+                        <CardContent className="space-y-6 flex-grow pb-6">
+                            <div className="flex items-baseline">
+                                <span className="text-4xl font-extrabold font-mono tracking-tight text-foreground">
+                                    ${isYearly ? tier.yearlyPrice : tier.monthlyPrice}
+                                </span>
+                                <span className="text-xs text-muted-foreground ml-1">/month</span>
+                            </div>
+
+                            <ul className="space-y-3 text-xs border-t pt-6">
+                                {tier.features.map((feat, fIdx) => (
+                                    <li
+                                        key={fIdx}
+                                        className={cn(
+                                            \'flex items-center gap-2\',
+                                            feat.included ? \'text-foreground\' : \'text-muted-foreground/60 line-through\'
+                                        )}
+                                    >
+                                        <Check
+                                            className={cn(
+                                                \'size-4 shrink-0\',
+                                                feat.included ? \'text-primary\' : \'text-muted-foreground/30\'
+                                            )}
+                                        />
+                                        <span>{feat.text}</span>
+                                    </li>
+                                ))}
+                            </ul>
+                        </CardContent>
+
+                        <CardFooter className="pt-0">
+                            <Button
+                                className="w-full text-xs h-9"
+                                variant={tier.popular ? \'default\' : \'outline\'}
+                            >
+                                {tier.cta}
+                            </Button>
+                        </CardFooter>
+                    </Card>
+                ))}
+            </div>
+        </div>
+    );
+}
+
+export default PricingModernCards;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'pricing',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'pricing',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'pricing-resources',
+                'type' => 'registry:block',
+                'title' => 'Pricing Resources',
+                'description' => 'A beautiful component for your application.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                    'button',
+                    'badge',
+                    'card',
+                    'slider',
+                    'switch',
+                    'label',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/blocks/pricing-resources/pricing-resources.tsx',
+                        'type' => 'registry:block',
+                        'content' => '\'use client\';
+
+import React, { useState } from \'react\';
+import { Cpu, HardDrive, Check, Sparkles } from \'lucide-react\';
+import { cn } from \'@/lib/utils\';
+import { Button } from \'@/components/ui/button\';
+import { Badge } from \'@/components/ui/badge\';
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+} from \'@/components/ui/card\';
+import { Slider } from \'@/components/ui/slider\';
+import { Switch } from \'@/components/ui/switch\';
+import { Label } from \'@/components/ui/label\';
+
+export function PricingResources() {
+    const [isYearly, setIsYearly] = useState(false);
+    const [cpu, setCpu] = useState([2]); // 1 to 16 cores
+    const [ram, setRam] = useState([4]); // 2 to 64 GB
+    const [storage, setStorage] = useState([50]); // 10 to 1000 GB
+
+    const calculateMonthlyPrice = () => {
+        const cpuCost = cpu[0] * 8; // $8 per core
+        const ramCost = ram[0] * 2.5; // $2.50 per GB RAM
+        const storageCost = storage[0] * 0.15; // $0.15 per GB storage
+        const total = cpuCost + ramCost + storageCost;
+        const discountMultiplier = isYearly ? 0.8 : 1; // 20% discount
+        return Math.round(total * discountMultiplier);
+    };
+
+    return (
+        <div className="mx-auto flex w-full max-w-5xl flex-col items-center gap-10 px-4 py-12 @container">
+            {/* Header */}
+            <div className="max-w-2xl space-y-4 text-center">
+                <Badge
+                    variant="outline"
+                    className="border-primary/30 bg-primary/5 px-3 py-1 font-mono text-xs tracking-widest text-primary uppercase"
+                >
+                    <Sparkles className="mr-1.5 size-3.5 inline-block text-primary animate-pulse" />
+                    Custom Calculator
+                </Badge>
+                <h2 className="text-4xl font-extrabold tracking-tight sm:text-5xl">
+                    Configure Your Resources
+                </h2>
+                <p className="text-sm text-muted-foreground max-w-lg mx-auto">
+                    Design a custom server container suited for your deployment. Move the sliders to scale CPU, RAM, and Storage.
+                </p>
+            </div>
+
+            <div className="grid w-full grid-cols-1 gap-8 @4xl:grid-cols-12 items-stretch">
+                {/* Sliders Card */}
+                <Card className="col-span-1 @4xl:col-span-7 border bg-card/65 backdrop-blur-xs p-6 shadow-md space-y-8 flex flex-col justify-between">
+                    {/* CPU Sliders */}
+                    <div className="space-y-4">
+                        <div className="flex items-center justify-between">
+                            <Label className="flex items-center gap-2 text-sm font-semibold text-foreground">
+                                <Cpu className="size-4 text-primary" />
+                                vCPU Cores
+                            </Label>
+                            <span className="font-mono text-base font-bold text-foreground">
+                                {cpu[0]} {cpu[0] === 1 ? \'Core\' : \'Cores\'}
+                            </span>
+                        </div>
+                        <Slider
+                            value={cpu}
+                            onValueChange={setCpu}
+                            min={1}
+                            max={16}
+                            step={1}
+                            className="py-1"
+                        />
+                        <div className="flex justify-between text-[10px] text-muted-foreground font-mono">
+                            <span>1 Core</span>
+                            <span>8 Cores</span>
+                            <span>16 Cores</span>
+                        </div>
+                    </div>
+
+                    {/* RAM Sliders */}
+                    <div className="space-y-4">
+                        <div className="flex items-center justify-between">
+                            <Label className="flex items-center gap-2 text-sm font-semibold text-foreground">
+                                <Cpu className="size-4 text-primary animate-pulse" />
+                                Memory (RAM)
+                            </Label>
+                            <span className="font-mono text-base font-bold text-foreground">
+                                {ram[0]} GB
+                            </span>
+                        </div>
+                        <Slider
+                            value={ram}
+                            onValueChange={setRam}
+                            min={2}
+                            max={64}
+                            step={2}
+                            className="py-1"
+                        />
+                        <div className="flex justify-between text-[10px] text-muted-foreground font-mono">
+                            <span>2 GB</span>
+                            <span>32 GB</span>
+                            <span>64 GB</span>
+                        </div>
+                    </div>
+
+                    {/* Storage Slider */}
+                    <div className="space-y-4">
+                        <div className="flex items-center justify-between">
+                            <Label className="flex items-center gap-2 text-sm font-semibold text-foreground">
+                                <HardDrive className="size-4 text-primary" />
+                                SSD Storage
+                            </Label>
+                            <span className="font-mono text-base font-bold text-foreground">
+                                {storage[0]} GB
+                            </span>
+                        </div>
+                        <Slider
+                            value={storage}
+                            onValueChange={setStorage}
+                            min={10}
+                            max={1000}
+                            step={10}
+                            className="py-1"
+                        />
+                        <div className="flex justify-between text-[10px] text-muted-foreground font-mono">
+                            <span>10 GB</span>
+                            <span>500 GB</span>
+                            <span>1TB (1000 GB)</span>
+                        </div>
+                    </div>
+                </Card>
+
+                {/* Estimate & Checkout Card */}
+                <Card className="col-span-1 @4xl:col-span-5 border border-primary bg-card/90 shadow-xl p-6 flex flex-col justify-between min-h-[380px]">
+                    <div className="space-y-6">
+                        <CardHeader className="p-0">
+                            <CardTitle className="text-xl font-bold">Estimated Cost</CardTitle>
+                            <CardDescription className="text-xs">Based on your selected vCPU, RAM, and Storage layout.</CardDescription>
+                        </CardHeader>
+
+                        {/* Price Display */}
+                        <div className="py-4 border-y space-y-2">
+                            <div className="flex items-baseline justify-center">
+                                <span className="text-5xl font-black font-mono tracking-tight text-primary animate-pulse">
+                                    ${calculateMonthlyPrice()}
+                                </span>
+                                <span className="text-sm text-muted-foreground ml-1">/month</span>
+                            </div>
+
+                            {/* Billing Switch */}
+                            <div className="flex items-center justify-center gap-3 pt-3">
+                                <span className={cn(\'text-xs font-semibold\', !isYearly ? \'text-foreground\' : \'text-muted-foreground\')}>
+                                    Monthly
+                                </span>
+                                <Switch
+                                    checked={isYearly}
+                                    onCheckedChange={setIsYearly}
+                                    className="scale-90"
+                                />
+                                <span className={cn(\'text-xs font-semibold flex items-center gap-1\', isYearly ? \'text-foreground\' : \'text-muted-foreground\')}>
+                                    Yearly
+                                    <Badge variant="secondary" className="bg-primary/15 text-primary text-[9px] py-0 px-1 border-0">
+                                        -20%
+                                    </Badge>
+                                </span>
+                            </div>
+                        </div>
+
+                        {/* Features checklist */}
+                        <ul className="space-y-3 text-xs">
+                            <li className="flex items-center gap-2">
+                                <Check className="size-4 shrink-0 text-primary" />
+                                <span>Dedicated host container nodes</span>
+                            </li>
+                            <li className="flex items-center gap-2">
+                                <Check className="size-4 shrink-0 text-primary" />
+                                <span>99.99% network uptime SLA</span>
+                            </li>
+                            <li className="flex items-center gap-2">
+                                <Check className="size-4 shrink-0 text-primary" />
+                                <span>Automated daily snap backups</span>
+                            </li>
+                            <li className="flex items-center gap-2">
+                                <Check className="size-4 shrink-0 text-primary" />
+                                <span>Unlimited incoming/outgoing bandwidth</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <CardFooter className="p-0 pt-6">
+                        <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90 shadow-md">
+                            Deploy Server Now
+                        </Button>
+                    </CardFooter>
+                </Card>
+            </div>
+        </div>
+    );
+}
+
+export default PricingResources;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'pricing',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'pricing',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
                 'name' => 'pricing-section',
                 'type' => 'registry:block',
                 'title' => 'Pricing Section',
@@ -6103,7 +7109,7 @@ export function PricingSection() {
     const [isYearly, setIsYearly] = useState(false);
 
     return (
-        <div className="mx-auto flex w-full max-w-5xl flex-col items-center gap-8 px-4 py-8">
+        <div className="mx-auto flex w-full max-w-5xl flex-col items-center gap-8 px-4 py-8 @container">
             <div className="max-w-xl space-y-3 text-center">
                 <Badge
                     variant="outline"
@@ -6155,7 +7161,7 @@ export function PricingSection() {
             </div>
 
             {/* Pricing cards grid */}
-            <div className="grid w-full items-stretch gap-6 md:grid-cols-3">
+            <div className="grid w-full items-stretch gap-6 grid-cols-1 @3xl:grid-cols-3">
                 {tiers.map((tier) => {
                     const price = isYearly
                         ? tier.yearlyPrice
@@ -11940,6 +12946,205 @@ export function BannerSticky({
                 'theme' => null,
             ],
             [
+                'name' => 'rainbow-border',
+                'type' => 'registry:ui',
+                'title' => 'Rainbow Border',
+                'description' => 'A beautiful component for your application.',
+                'author' => 'designbycode',
+                'dependencies' => [
+
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/borders/rainbow-border.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '\'use client\';
+
+import * as React from \'react\';
+import { cn } from \'@/lib/utils\';
+
+export const colorMap: Record<string, string> = {
+    slate: \'#64748b\',
+    gray: \'#6b7280\',
+    zinc: \'#71717a\',
+    stone: \'#78716c\',
+    red: \'#ef4444\',
+    orange: \'#f97316\',
+    amber: \'#f59e0b\',
+    yellow: \'#eab308\',
+    lime: \'#84cc16\',
+    green: \'#22c55e\',
+    emerald: \'#10b981\',
+    teal: \'#14b8a6\',
+    cyan: \'#06b6d4\',
+    sky: \'#0ea5e9\',
+    blue: \'#3b82f6\',
+    indigo: \'#6366f1\',
+    violet: \'#8b5cf6\',
+    purple: \'#a855f7\',
+    fuchsia: \'#d946ef\',
+    pink: \'#ec4899\',
+    rose: \'#f43f5e\',
+};
+
+export const roundedMap: Record<string, string> = {
+    none: \'rounded-none\',
+    xs: \'rounded-xs\',
+    sm: \'rounded-sm\',
+    md: \'rounded-md\',
+    lg: \'rounded-lg\',
+    full: \'rounded-full\',
+};
+
+export interface RainbowBorderProps {
+    borderWidth?: string;
+    animationDuration?: string;
+    colors?: string[];
+    rounded?: keyof typeof roundedMap;
+    glow?: boolean;
+    glowBlur?: string;
+    glowOpacity?: number;
+    className?: string;
+    children: React.ReactNode;
+}
+
+function RainbowBorder({
+    borderWidth = \'2px\',
+    animationDuration = \'3s\',
+    colors,
+    rounded = \'md\',
+    glow = true,
+    glowBlur = `30px`,
+    glowOpacity = 50,
+    className,
+    children,
+}: RainbowBorderProps) {
+    const defaultColors = [
+        \'var(--rainbow-1)\',
+        \'var(--rainbow-2)\',
+        \'var(--rainbow-3)\',
+        \'var(--rainbow-4)\',
+        \'var(--rainbow-5)\',
+        \'var(--rainbow-6)\',
+        \'var(--rainbow-7)\',
+    ];
+
+    const gradientColors = React.useMemo(() => {
+        const userColors = colors && colors.length > 0 ? colors : defaultColors;
+        const resolvedColors = userColors.map((color) => {
+            const lowerColor = color.toLowerCase();
+
+            if (color.startsWith(\'#\')) {
+                return color;
+            }
+
+            return colorMap[lowerColor] || color;
+        });
+
+        return resolvedColors.join(\', \');
+    }, [colors]);
+
+    const roundedClass = roundedMap[rounded] || \'rounded-md\';
+
+    return (
+        <div className={cn(`group relative isolate inline-flex`, className)}>
+            {/* Inject keyframes and variables if not globally defined */}
+            <style>{`
+                @keyframes rainbow-scroll {
+                    0% { background-position: 0% 50%; }
+                    100% { background-position: 200% 50%; }
+                }
+                :root {
+                    --rainbow-1: #ef4444;
+                    --rainbow-2: #f97316;
+                    --rainbow-3: #f59e0b;
+                    --rainbow-4: #10b981;
+                    --rainbow-5: #3b82f6;
+                    --rainbow-6: #6366f1;
+                    --rainbow-7: #a855f7;
+                }
+            `}</style>
+            
+            <div
+                aria-hidden="true"
+                className={cn(
+                    `pointer-events-none absolute inset-0 z-10 bg-repeat-x transition-opacity duration-300`,
+                    roundedClass,
+                )}
+                style={{
+                    background: `linear-gradient(90deg, ${gradientColors})`,
+                    backgroundSize: \'200% 100%\',
+                    animation: `rainbow-scroll ${animationDuration} linear infinite`,
+                    opacity: glow ? glowOpacity / 100 : 0,
+                    filter: `blur(${glowBlur})`,
+                }}
+            />
+            <div
+                aria-hidden="true"
+                className={cn(
+                    \'pointer-events-none absolute blur-lg inset-0 z-20 bg-repeat-x\',
+                    roundedClass,
+                )}
+                style={{
+                    background: `repeating-linear-gradient(90deg, ${gradientColors})`,
+                    backgroundSize: \'200% 100%\',
+                    animation: `rainbow-scroll ${animationDuration} linear infinite`,
+                    padding: borderWidth,
+                    WebkitMask:
+                        \'repeating-linear-gradient(#fff 0 0) content-box, repeating-linear-gradient(#fff 0 0)\',
+                    WebkitMaskComposite: \'xor\',
+                    maskComposite: \'exclude\',
+                }}
+            />
+            {children}
+            <div
+                className="absolute inset-x-5 -bottom-1 block h-1 rounded-full blur-sm"
+                style={{
+                    background: `repeating-linear-gradient(90deg, ${gradientColors})`,
+                    backgroundSize: \'200% 100%\',
+                    animation: `rainbow-scroll ${animationDuration} linear infinite`,
+                }}
+            />
+        </div>
+    );
+}
+
+RainbowBorder.displayName = \'RainbowBorder\';
+
+export { RainbowBorder };
+export default RainbowBorder;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'borders',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'borders',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
                 'name' => 'button-arrow',
                 'type' => 'registry:ui',
                 'title' => 'Button Arrow',
@@ -12182,6 +13387,7 @@ export default ButtonGlowingAura;
                 'registryDependencies' => [
                     'utils',
                     'button',
+                    'https://ui.test/r/use-hover.json',
                 ],
                 'files' => [
                     [
@@ -12192,17 +13398,29 @@ import * as React from \'react\';
 import { cn } from \'@/lib/utils\';
 import { Button } from \'@/components/ui/button\';
 
+import { useHover } from \'@/registry/new-york/hooks/use-hover\';
+
 export interface ButtonGradientProps extends React.ComponentPropsWithRef<typeof Button> {}
 
 export const ButtonGradient = React.forwardRef<HTMLButtonElement, ButtonGradientProps>(
     ({ className, children, ...props }, ref) => {
-        const [isHovered, setIsHovered] = React.useState(false);
+        const { isHovered, hoverRef } = useHover();
+
+        const combinedRef = React.useCallback(
+            (node: HTMLButtonElement | null) => {
+                hoverRef(node);
+                if (typeof ref === \'function\') {
+                    ref(node);
+                } else if (ref) {
+                    (ref as React.MutableRefObject<HTMLButtonElement | null>).current = node;
+                }
+            },
+            [ref, hoverRef]
+        );
 
         return (
             <Button
-                ref={ref}
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
+                ref={combinedRef}
                 className={cn(
                     \'relative select-none active:scale-95 border border-transparent text-foreground\',
                     className,
@@ -12421,7 +13639,9 @@ import * as React from \'react\';
 import { cn } from \'@/lib/utils\';
 import { Button } from \'@/components/ui/button\';
 
-export interface ButtonNeonProps extends React.ComponentPropsWithRef<typeof Button> {}
+export interface ButtonNeonProps extends React.ComponentPropsWithRef<
+    typeof Button
+> {}
 
 export const ButtonNeon = React.forwardRef<HTMLButtonElement, ButtonNeonProps>(
     ({ className, children, ...props }, ref) => {
@@ -12429,7 +13649,7 @@ export const ButtonNeon = React.forwardRef<HTMLButtonElement, ButtonNeonProps>(
             <Button
                 ref={ref}
                 className={cn(
-                    \'relative select-none active:scale-95 border border-primary/30 bg-primary/5 text-primary shadow-[0_0_15px] shadow-primary/10 hover:border-primary/50 hover:bg-primary/10 hover:text-primary hover:shadow-[0_0_20px] hover:shadow-primary/20\',
+                    \'relative border border-primary/50 bg-primary/15 text-primary shadow-[0_0_15px] shadow-primary/10 select-none hover:border-primary/50 hover:bg-primary/10 hover:text-primary hover:shadow-[0_0_20px] hover:shadow-primary/20 active:scale-95\',
                     className,
                 )}
                 {...props}
@@ -13153,6 +14373,1322 @@ export default ButtonShine;
                 'theme' => null,
             ],
             [
+                'name' => 'rainbow-border-button',
+                'type' => 'registry:ui',
+                'title' => 'Rainbow Border Button',
+                'description' => 'A beautiful component for your application.',
+                'author' => 'designbycode',
+                'dependencies' => [
+
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                    'button',
+                    'https://ui.test/r/rainbow-border.json',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/buttons/rainbow-border-button.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '\'use client\';
+
+import * as React from \'react\';
+import { cn } from \'@/lib/utils\';
+import { Button } from \'@/components/ui/button\';
+import { RainbowBorder } from \'@/registry/new-york/components/ui/borders/rainbow-border\';
+
+export interface RainbowBorderButtonProps extends React.ComponentProps<typeof Button> {
+    borderWidth?: string;
+    animationDuration?: string;
+    colors?: string[];
+    rounded?: \'none\' | \'xs\' | \'sm\' | \'md\' | \'lg\' | \'full\';
+    glow?: boolean;
+    glowBlur?: string;
+    glowOpacity?: number;
+}
+
+export const RainbowBorderButton = React.forwardRef<HTMLButtonElement, RainbowBorderButtonProps>(
+    (
+        {
+            className,
+            borderWidth = \'2px\',
+            animationDuration = \'3s\',
+            colors,
+            rounded = \'md\',
+            glow = true,
+            glowBlur = \'30px\',
+            glowOpacity = 50,
+            children,
+            ...props
+        },
+        ref,
+    ) => {
+        const roundedButtonClass = 
+            rounded === \'none\' ? \'rounded-none\' :
+            rounded === \'xs\' ? \'rounded-xs\' :
+            rounded === \'sm\' ? \'rounded-sm\' :
+            rounded === \'md\' ? \'rounded-md\' :
+            rounded === \'lg\' ? \'rounded-lg\' : \'rounded-full\';
+
+        return (
+            <RainbowBorder
+                borderWidth={borderWidth}
+                animationDuration={animationDuration}
+                colors={colors}
+                rounded={rounded}
+                glow={glow}
+                glowBlur={glowBlur}
+                glowOpacity={glowOpacity}
+                className="p-[1px]"
+            >
+                <Button
+                    ref={ref}
+                    className={cn(
+                        \'bg-background text-foreground hover:bg-background/95 transition-all select-none active:scale-95 border-0 h-9 px-4 text-xs font-semibold\',
+                        roundedButtonClass,
+                        className,
+                    )}
+                    {...props}
+                >
+                    {children}
+                </Button>
+            </RainbowBorder>
+        );
+    },
+);
+
+RainbowBorderButton.displayName = \'RainbowBorderButton\';
+
+export default RainbowBorderButton;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'buttons',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'buttons',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'rainbow-button',
+                'type' => 'registry:ui',
+                'title' => 'Rainbow Button',
+                'description' => 'A beautiful component for your application.',
+                'author' => 'designbycode',
+                'dependencies' => [
+
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                    'button',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/buttons/rainbow-button.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '\'use client\';
+import React from \'react\';
+import { cn } from \'@/lib/utils\';
+import { Button } from \'@/components/ui/button\';
+
+type GradientDirection =
+    | \'right\'
+    | \'left\'
+    | \'top\'
+    | \'bottom\'
+    | \'top-left\'
+    | \'top-right\'
+    | \'bottom-left\'
+    | \'bottom-right\';
+
+interface GradientButtonProps extends React.ComponentProps<typeof Button> {
+    colors?: string[];
+    direction?: GradientDirection;
+}
+
+const directionMap: Record<GradientDirection, string> = {
+    right: \'to right\',
+    left: \'to left\',
+    top: \'to top\',
+    bottom: \'to bottom\',
+    \'top-left\': \'to top left\',
+    \'top-right\': \'to top right\',
+    \'bottom-left\': \'to bottom left\',
+    \'bottom-right\': \'to bottom right\',
+};
+
+const GradientButton = ({
+    className,
+    colors,
+    direction = \'right\',
+    ...props
+}: GradientButtonProps) => {
+    const gradientColors = colors ?? [
+        \'var(--color-primary)\',
+        \'var(--color-secondary)\',
+    ];
+    const gradient = `linear-gradient(${directionMap[direction]}, ${gradientColors.join(\', \')})`;
+
+    return (
+        <Button
+            className={cn(
+                \'border-0 text-primary-foreground transition-all duration-300 hover:scale-105 dark:text-foreground\',
+                className,
+            )}
+            style={{
+                background: gradient,
+            }}
+            {...props}
+        />
+    );
+};
+
+export { GradientButton };
+export default GradientButton;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'buttons',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'buttons',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'aurora-canvas',
+                'type' => 'registry:ui',
+                'title' => 'Aurora Canvas',
+                'description' => 'A slow-waving glow animation displaying layered shifting bezier bands resembling the northern lights.',
+                'author' => 'designbycode',
+                'dependencies' => [
+
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/canvas/aurora-canvas.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '\'use client\';
+
+import * as React from \'react\';
+import { cn } from \'@/lib/utils\';
+
+export interface AuroraCanvasProps extends React.HTMLAttributes<HTMLDivElement> {
+    /** Number of colored auroral bands to render */
+    bandCount?: number;
+    /** Shifting speed of the waves */
+    speed?: number;
+    /** Vertical wave amplitude */
+    amplitude?: number;
+    /** Color bands palette array */
+    colors?: string[];
+    /** Canvas global composite blend operation (e.g. \'screen\', \'lighter\', \'source-over\') */
+    blendMode?: GlobalCompositeOperation;
+    /** Enable gentle mouse interaction to attract the aurora bands */
+    interactive?: boolean;
+}
+
+export const AuroraCanvas = React.forwardRef<HTMLDivElement, AuroraCanvasProps>(
+    (
+        {
+            className,
+            bandCount = 4,
+            speed = 0.6,
+            amplitude = 50,
+            colors = [\'#10b981\', \'#06b6d4\', \'#3b82f6\', \'#8b5cf6\'],
+            blendMode = \'screen\',
+            interactive = true,
+            ...props
+        },
+        ref
+    ) => {
+        const containerRef = React.useRef<HTMLDivElement>(null);
+        const canvasRef = React.useRef<HTMLCanvasElement>(null);
+        const mouseRef = React.useRef<{ x: number; y: number } | null>(null);
+
+        React.useImperativeHandle(ref, () => containerRef.current as HTMLDivElement);
+
+        React.useEffect(() => {
+            const canvas = canvasRef.current;
+            const container = containerRef.current;
+            if (!canvas || !container) {
+                return;
+            }
+
+            const ctx = canvas.getContext(\'2d\');
+            if (!ctx) {
+                return;
+            }
+
+            let animationId: number;
+            let width = (canvas.width = container.offsetWidth);
+            let height = (canvas.height = container.offsetHeight);
+            let time = 0;
+
+            const resizeObserver = new ResizeObserver((entries) => {
+                for (const entry of entries) {
+                    width = canvas.width = entry.contentRect.width;
+                    height = canvas.height = entry.contentRect.height;
+                }
+            });
+            resizeObserver.observe(container);
+
+            const handleMouseMove = (e: MouseEvent) => {
+                if (!interactive) return;
+                const rect = canvas.getBoundingClientRect();
+                mouseRef.current = {
+                    x: e.clientX - rect.left,
+                    y: e.clientY - rect.top,
+                };
+            };
+
+            const handleMouseLeave = () => {
+                mouseRef.current = null;
+            };
+
+            if (interactive) {
+                container.addEventListener(\'mousemove\', handleMouseMove);
+                container.addEventListener(\'mouseleave\', handleMouseLeave);
+            }
+
+            const resolveColor = (colorStr: string, defaultVal: string) => {
+                if (!colorStr) return defaultVal;
+                let targetColor = colorStr;
+                if (colorStr.startsWith(\'--\')) {
+                    targetColor = `var(${colorStr})`;
+                }
+                if (!targetColor.includes(\'var(\') && !targetColor.includes(\'--\')) {
+                    return targetColor;
+                }
+                try {
+                    const temp = document.createElement(\'div\');
+                    temp.style.color = targetColor;
+                    container.appendChild(temp);
+                    const resolved = window.getComputedStyle(temp).color;
+                    container.removeChild(temp);
+                    return resolved || defaultVal;
+                } catch (e) {
+                    return defaultVal;
+                }
+            };
+
+            // Draw loop
+            const draw = () => {
+                // Clear canvas with black/transparent depending on theme
+                ctx.clearRect(0, 0, width, height);
+
+                ctx.save();
+                ctx.globalCompositeOperation = blendMode;
+
+                time += speed * 0.003;
+
+                // Render each auroral wave band
+                for (let i = 0; i < bandCount; i++) {
+                    const colorIndex = i % colors.length;
+                    const baseColor = colors[colorIndex];
+                    const activeBaseColor = resolveColor(baseColor, \'#10b981\');
+                    const offset = i * (Math.PI / bandCount);
+
+                    // Dynamic wave points
+                    const y1 = height * 0.5 + Math.sin(time + offset) * amplitude;
+                    const y2 = height * 0.5 + Math.cos(time + offset * 1.5) * amplitude;
+                    
+                    // Mouse influence
+                    let mouseInfluenceX = 0;
+                    let mouseInfluenceY = 0;
+                    if (mouseRef.current) {
+                        mouseInfluenceX = (mouseRef.current.x - width * 0.5) * 0.05;
+                        mouseInfluenceY = (mouseRef.current.y - height * 0.5) * 0.15;
+                    }
+
+                    const cp1x = width * 0.25 + mouseInfluenceX;
+                    const cp1y = height * 0.5 + Math.sin(time * 1.2 + offset * 2) * (amplitude * 2) + mouseInfluenceY;
+                    const cp2x = width * 0.75 - mouseInfluenceX;
+                    const cp2y = height * 0.5 + Math.cos(time * 0.8 + offset * 2.5) * (amplitude * 2.5) + mouseInfluenceY;
+
+                    // Setup linear gradient for glowing transparency along the path
+                    const grad = ctx.createLinearGradient(0, 0, width, 0);
+                    grad.addColorStop(0, \'rgba(0,0,0,0)\');
+                    grad.addColorStop(0.3, activeBaseColor);
+                    grad.addColorStop(0.7, activeBaseColor);
+                    grad.addColorStop(1, \'rgba(0,0,0,0)\');
+
+                    // Wave path
+                    ctx.beginPath();
+                    ctx.moveTo(0, y1);
+                    ctx.bezierCurveTo(cp1x, cp1y, cp2x, cp2y, width, y2);
+
+                    // Thick strokes with high opacity blur mimic auroral bands
+                    ctx.strokeStyle = grad;
+                    ctx.lineWidth = 90 + Math.sin(time + i) * 30; // Shifting wave thickness
+                    ctx.lineCap = \'round\';
+                    ctx.shadowColor = activeBaseColor;
+                    ctx.shadowBlur = 45;
+                    ctx.globalAlpha = 0.22 - (i * 0.03); // Overlay layers nicely
+                    ctx.stroke();
+                }
+
+                ctx.restore();
+                animationId = requestAnimationFrame(draw);
+            };
+
+            draw();
+
+            return () => {
+                cancelAnimationFrame(animationId);
+                resizeObserver.disconnect();
+                if (interactive) {
+                    container.removeEventListener(\'mousemove\', handleMouseMove);
+                    container.removeEventListener(\'mouseleave\', handleMouseLeave);
+                }
+            };
+        }, [bandCount, speed, amplitude, colors, blendMode, interactive]);
+
+        return (
+            <div
+                ref={containerRef}
+                className={cn(\'relative w-full h-full overflow-hidden select-none bg-background/55\', className)}
+                {...props}
+            >
+                <canvas
+                    ref={canvasRef}
+                    className="absolute inset-0 size-full"
+                    style={{ pointerEvents: \'none\' }}
+                />
+            </div>
+        );
+    }
+);
+
+AuroraCanvas.displayName = \'AuroraCanvas\';
+
+export default AuroraCanvas;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'canvas',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'canvas',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'constellation-canvas',
+                'type' => 'registry:ui',
+                'title' => 'Constellation Canvas',
+                'description' => 'An interactive network of floating particles that draw connecting links to neighboring nodes and follow mouse movements.',
+                'author' => 'designbycode',
+                'dependencies' => [
+
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/canvas/constellation-canvas.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '\'use client\';
+
+import * as React from \'react\';
+import { cn } from \'@/lib/utils\';
+
+export interface ConstellationCanvasProps extends React.HTMLAttributes<HTMLDivElement> {
+    /** Number of particles in the constellation */
+    particleCount?: number;
+    /** Maximum distance between connected particles */
+    maxDistance?: number;
+    /** Movement speed multiplier */
+    speed?: number;
+    /** Color of the particles, defaults to CSS variable or currentColor */
+    particleColor?: string;
+    /** Color of the connecting lines */
+    linkColor?: string;
+    /** Enable mouse interaction */
+    interactive?: boolean;
+    /** Size of the particles */
+    particleSize?: number;
+}
+
+interface Particle {
+    x: number;
+    y: number;
+    vx: number;
+    vy: number;
+    radius: number;
+}
+
+export const ConstellationCanvas = React.forwardRef<HTMLDivElement, ConstellationCanvasProps>(
+    (
+        {
+            className,
+            particleCount = 60,
+            maxDistance = 100,
+            speed = 0.5,
+            particleColor,
+            linkColor,
+            interactive = true,
+            particleSize = 2,
+            ...props
+        },
+        ref
+    ) => {
+        const containerRef = React.useRef<HTMLDivElement>(null);
+        const canvasRef = React.useRef<HTMLCanvasElement>(null);
+        const mouseRef = React.useRef<{ x: number; y: number } | null>(null);
+
+        React.useImperativeHandle(ref, () => containerRef.current as HTMLDivElement);
+
+        React.useEffect(() => {
+            const canvas = canvasRef.current;
+            const container = containerRef.current;
+            if (!canvas || !container) {
+                return;
+            }
+
+            const ctx = canvas.getContext(\'2d\');
+            if (!ctx) {
+                return;
+            }
+
+            let animationId: number;
+            let width = (canvas.width = container.offsetWidth);
+            let height = (canvas.height = container.offsetHeight);
+
+            const particles: Particle[] = [];
+
+            // Initialize particles
+            const initParticles = () => {
+                particles.length = 0;
+                for (let i = 0; i < particleCount; i++) {
+                    particles.push({
+                        x: Math.random() * width,
+                        y: Math.random() * height,
+                        vx: (Math.random() - 0.5) * speed,
+                        vy: (Math.random() - 0.5) * speed,
+                        radius: Math.random() * particleSize + 1,
+                    });
+                }
+            };
+
+            initParticles();
+
+            // Resize observer
+            const resizeObserver = new ResizeObserver((entries) => {
+                for (const entry of entries) {
+                    width = canvas.width = entry.contentRect.width;
+                    height = canvas.height = entry.contentRect.height;
+                    initParticles();
+                }
+            });
+            resizeObserver.observe(container);
+
+            // Mouse events
+            const handleMouseMove = (e: MouseEvent) => {
+                if (!interactive) return;
+                const rect = canvas.getBoundingClientRect();
+                mouseRef.current = {
+                    x: e.clientX - rect.left,
+                    y: e.clientY - rect.top,
+                };
+            };
+
+            const handleMouseLeave = () => {
+                mouseRef.current = null;
+            };
+
+            if (interactive) {
+                container.addEventListener(\'mousemove\', handleMouseMove);
+                container.addEventListener(\'mouseleave\', handleMouseLeave);
+            }
+
+            const resolveColor = (colorStr: string, defaultVal: string) => {
+                if (!colorStr) return defaultVal;
+                // If it is a raw HSL variable (like "240 5.9% 90%"), wrap it in var() if it is a variable name,
+                // or if it contains spaces and no HSL wrapper, try wrapping it.
+                let targetColor = colorStr;
+                if (colorStr.startsWith(\'--\')) {
+                    targetColor = `var(${colorStr})`;
+                }
+                if (!targetColor.includes(\'var(\') && !targetColor.includes(\'--\')) {
+                    return targetColor;
+                }
+                try {
+                    const temp = document.createElement(\'div\');
+                    temp.style.color = targetColor;
+                    container.appendChild(temp);
+                    const resolved = window.getComputedStyle(temp).color;
+                    container.removeChild(temp);
+                    return resolved || defaultVal;
+                } catch (e) {
+                    return defaultVal;
+                }
+            };
+
+            // Draw loop
+            const draw = () => {
+                ctx.clearRect(0, 0, width, height);
+
+                // Fetch colors inside loop to support reactive color scheme swaps
+                const activeParticleColor = resolveColor(
+                    particleColor || getComputedStyle(container).color,
+                    \'rgba(16, 185, 129, 0.8)\'
+                );
+                const activeLinkColor = resolveColor(
+                    linkColor || `var(--border)`,
+                    \'rgba(226, 232, 240, 0.4)\'
+                );
+
+                // Update and draw particles
+                particles.forEach((p) => {
+                    p.x += p.vx;
+                    p.y += p.vy;
+
+                    // Boundary collision
+                    if (p.x < 0 || p.x > width) p.vx *= -1;
+                    if (p.y < 0 || p.y > height) p.vy *= -1;
+
+                    // Draw particle
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = activeParticleColor;
+                    ctx.fill();
+                });
+
+                // Connect particles
+                for (let i = 0; i < particles.length; i++) {
+                    const pi = particles[i];
+                    
+                    // Connect to mouse if active
+                    if (mouseRef.current) {
+                        const dx = mouseRef.current.x - pi.x;
+                        const dy = mouseRef.current.y - pi.y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+
+                        if (dist < maxDistance * 1.5) {
+                            ctx.beginPath();
+                            ctx.moveTo(pi.x, pi.y);
+                            ctx.lineTo(mouseRef.current.x, mouseRef.current.y);
+                            const alpha = (1 - dist / (maxDistance * 1.5)) * 0.45;
+                            ctx.strokeStyle = activeLinkColor.includes(\'rgba\')
+                                ? activeLinkColor.replace(/[\\d.]+\\)$/, `${alpha})`)
+                                : `rgba(16, 185, 129, ${alpha})`;
+                            ctx.lineWidth = 1;
+                            ctx.stroke();
+                        }
+                    }
+
+                    for (let j = i + 1; j < particles.length; j++) {
+                        const pj = particles[j];
+                        const dx = pi.x - pj.x;
+                        const dy = pi.y - pj.y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+
+                        if (dist < maxDistance) {
+                            ctx.beginPath();
+                            ctx.moveTo(pi.x, pi.y);
+                            ctx.lineTo(pj.x, pj.y);
+                            const alpha = (1 - dist / maxDistance) * 0.25;
+                            ctx.strokeStyle = activeLinkColor.includes(\'rgba\')
+                                ? activeLinkColor.replace(/[\\d.]+\\)$/, `${alpha})`)
+                                : `rgba(16, 185, 129, ${alpha})`;
+                            ctx.lineWidth = 0.5;
+                            ctx.stroke();
+                        }
+                    }
+                }
+
+                animationId = requestAnimationFrame(draw);
+            };
+
+            draw();
+
+            return () => {
+                cancelAnimationFrame(animationId);
+                resizeObserver.disconnect();
+                if (interactive) {
+                    container.removeEventListener(\'mousemove\', handleMouseMove);
+                    container.removeEventListener(\'mouseleave\', handleMouseLeave);
+                }
+            };
+        }, [particleCount, maxDistance, speed, particleColor, linkColor, interactive, particleSize]);
+
+        return (
+            <div
+                ref={containerRef}
+                className={cn(\'relative w-full h-full overflow-hidden select-none\', className)}
+                {...props}
+            >
+                <canvas
+                    ref={canvasRef}
+                    className="absolute inset-0 size-full"
+                    style={{ pointerEvents: \'none\' }}
+                />
+            </div>
+        );
+    }
+);
+
+ConstellationCanvas.displayName = \'ConstellationCanvas\';
+
+export default ConstellationCanvas;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'canvas',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'canvas',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'flow-field-canvas',
+                'type' => 'registry:ui',
+                'title' => 'Flow Field Canvas',
+                'description' => 'A dynamic particle flow simulation mapping trailing lines along mathematical vector wave coordinates.',
+                'author' => 'designbycode',
+                'dependencies' => [
+
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/canvas/flow-field-canvas.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '\'use client\';
+
+import * as React from \'react\';
+import { cn } from \'@/lib/utils\';
+
+export interface FlowFieldCanvasProps extends React.HTMLAttributes<HTMLDivElement> {
+    /** Number of particles flowing in the field */
+    particleCount?: number;
+    /** Speed multiplier for the particle movement */
+    speed?: number;
+    /** Scale of the vector field grid (lower is smoother waves, higher is more chaotic) */
+    fieldScale?: number;
+    /** Line width of the particle trails */
+    lineWidth?: number;
+    /** Particle trail fade speed (0.01 - 0.1 for longer trails, 1 for no trails) */
+    fadeRate?: number;
+    /** Color of the flow lines, defaults to primary or text color */
+    color?: string;
+    /** Enable mouse interaction to deflect the vector field */
+    interactive?: boolean;
+}
+
+interface FlowParticle {
+    x: number;
+    y: number;
+    px: number;
+    py: number;
+    vx: number;
+    vy: number;
+    life: number;
+    maxLife: number;
+}
+
+export const FlowFieldCanvas = React.forwardRef<HTMLDivElement, FlowFieldCanvasProps>(
+    (
+        {
+            className,
+            particleCount = 200,
+            speed = 1.2,
+            fieldScale = 0.004,
+            lineWidth = 1.2,
+            fadeRate = 0.06,
+            color,
+            interactive = true,
+            ...props
+        },
+        ref
+    ) => {
+        const containerRef = React.useRef<HTMLDivElement>(null);
+        const canvasRef = React.useRef<HTMLCanvasElement>(null);
+        const mouseRef = React.useRef<{ x: number; y: number } | null>(null);
+
+        React.useImperativeHandle(ref, () => containerRef.current as HTMLDivElement);
+
+        React.useEffect(() => {
+            const canvas = canvasRef.current;
+            const container = containerRef.current;
+            if (!canvas || !container) {
+                return;
+            }
+
+            const ctx = canvas.getContext(\'2d\', { willReadFrequently: false });
+            if (!ctx) {
+                return;
+            }
+
+            let animationId: number;
+            let width = (canvas.width = container.offsetWidth);
+            let height = (canvas.height = container.offsetHeight);
+            let time = 0;
+
+            const particles: FlowParticle[] = [];
+
+            const createParticle = (): FlowParticle => {
+                const rx = Math.random() * width;
+                const ry = Math.random() * height;
+                return {
+                    x: rx,
+                    y: ry,
+                    px: rx,
+                    py: ry,
+                    vx: 0,
+                    vy: 0,
+                    life: 0,
+                    maxLife: Math.random() * 200 + 100,
+                };
+            };
+
+            const initParticles = () => {
+                particles.length = 0;
+                for (let i = 0; i < particleCount; i++) {
+                    particles.push(createParticle());
+                }
+                ctx.clearRect(0, 0, width, height);
+            };
+
+            initParticles();
+
+            // Resize listener
+            const resizeObserver = new ResizeObserver((entries) => {
+                for (const entry of entries) {
+                    width = canvas.width = entry.contentRect.width;
+                    height = canvas.height = entry.contentRect.height;
+                    initParticles();
+                }
+            });
+            resizeObserver.observe(container);
+
+            // Mouse coordinates
+            const handleMouseMove = (e: MouseEvent) => {
+                if (!interactive) return;
+                const rect = canvas.getBoundingClientRect();
+                mouseRef.current = {
+                    x: e.clientX - rect.left,
+                    y: e.clientY - rect.top,
+                };
+            };
+
+            const handleMouseLeave = () => {
+                mouseRef.current = null;
+            };
+
+            if (interactive) {
+                container.addEventListener(\'mousemove\', handleMouseMove);
+                container.addEventListener(\'mouseleave\', handleMouseLeave);
+            }
+
+            const resolveColor = (colorStr: string, defaultVal: string) => {
+                if (!colorStr) return defaultVal;
+                let targetColor = colorStr;
+                if (colorStr.startsWith(\'--\')) {
+                    targetColor = `var(${colorStr})`;
+                }
+                if (!targetColor.includes(\'var(\') && !targetColor.includes(\'--\')) {
+                    return targetColor;
+                }
+                try {
+                    const temp = document.createElement(\'div\');
+                    temp.style.color = targetColor;
+                    container.appendChild(temp);
+                    const resolved = window.getComputedStyle(temp).color;
+                    container.removeChild(temp);
+                    return resolved || defaultVal;
+                } catch (e) {
+                    return defaultVal;
+                }
+            };
+
+            // Draw loop
+            const draw = () => {
+                // Apply trail fade effect
+                ctx.fillStyle = `rgba(0, 0, 0, ${fadeRate})`;
+                
+                // If trail fade is not 1, we fill with translucent black/card background to fade trails
+                // We fetch the theme background color to make trail fade work on light/dark modes
+                const bgStyle = window.getComputedStyle(container).backgroundColor;
+                const isDark = bgStyle.includes(\'rgba(0, 0, 0\') || bgStyle.includes(\'rgb(0, 0, 0\') || bgStyle.includes(\'rgb(9, 9, 11\');
+                
+                ctx.fillStyle = isDark 
+                    ? `rgba(9, 9, 11, ${fadeRate})` 
+                    : `rgba(255, 255, 255, ${fadeRate})`;
+                
+                ctx.fillRect(0, 0, width, height);
+
+                const activeColor = resolveColor(
+                    color || window.getComputedStyle(container).color,
+                    \'rgba(16, 185, 129, 0.8)\'
+                );
+
+                time += 0.003;
+
+                particles.forEach((p, idx) => {
+                    p.life++;
+
+                    // Respawn dead particles or boundary checks
+                    if (p.life > p.maxLife || p.x < 0 || p.x > width || p.y < 0 || p.y > height) {
+                        Object.assign(p, createParticle());
+                    }
+
+                    // Vector field generation using nested trigonometric math functions (Perlin surrogate)
+                    let angle =
+                        Math.sin(p.x * fieldScale + time) * Math.PI * 2 +
+                        Math.cos(p.y * fieldScale - time) * Math.PI * 2;
+
+                    // Mouse attraction influence
+                    if (mouseRef.current) {
+                        const dx = mouseRef.current.x - p.x;
+                        const dy = mouseRef.current.y - p.y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        if (dist < 150) {
+                            const mouseAngle = Math.atan2(dy, dx);
+                            // Blend angle towards mouse direction
+                            const blendStrength = (1 - dist / 150) * 0.45;
+                            angle = angle * (1 - blendStrength) + mouseAngle * blendStrength;
+                        }
+                    }
+
+                    // Compute velocity from angle
+                    p.vx = Math.cos(angle) * speed;
+                    p.vy = Math.sin(angle) * speed;
+
+                    p.px = p.x;
+                    p.py = p.y;
+
+                    p.x += p.vx;
+                    p.y += p.vy;
+
+                    // Draw line segments
+                    ctx.beginPath();
+                    ctx.moveTo(p.px, p.py);
+                    ctx.lineTo(p.x, p.y);
+                    ctx.strokeStyle = activeColor;
+                    ctx.lineWidth = lineWidth;
+                    ctx.lineCap = \'round\';
+                    ctx.stroke();
+                });
+
+                animationId = requestAnimationFrame(draw);
+            };
+
+            draw();
+
+            return () => {
+                cancelAnimationFrame(animationId);
+                resizeObserver.disconnect();
+                if (interactive) {
+                    container.removeEventListener(\'mousemove\', handleMouseMove);
+                    container.removeEventListener(\'mouseleave\', handleMouseLeave);
+                }
+            };
+        }, [particleCount, speed, fieldScale, lineWidth, fadeRate, color, interactive]);
+
+        return (
+            <div
+                ref={containerRef}
+                className={cn(\'relative w-full h-full overflow-hidden select-none\', className)}
+                {...props}
+            >
+                <canvas
+                    ref={canvasRef}
+                    className="absolute inset-0 size-full"
+                    style={{ pointerEvents: \'none\' }}
+                />
+            </div>
+        );
+    }
+);
+
+FlowFieldCanvas.displayName = \'FlowFieldCanvas\';
+
+export default FlowFieldCanvas;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'canvas',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'canvas',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'metaball-canvas',
+                'type' => 'registry:ui',
+                'title' => 'Metaball Canvas',
+                'description' => 'Organic fluid liquid spheres that bounce around the canvas and seamlessly merge together on contact.',
+                'author' => 'designbycode',
+                'dependencies' => [
+
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/canvas/metaball-canvas.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '\'use client\';
+
+import * as React from \'react\';
+import { cn } from \'@/lib/utils\';
+
+export interface MetaballCanvasProps extends React.HTMLAttributes<HTMLDivElement> {
+    /** Number of fluid blobs */
+    blobCount?: number;
+    /** Base blob radius range (min and max) */
+    minRadius?: number;
+    maxRadius?: number;
+    /** Bouncing speed */
+    speed?: number;
+    /** Color of the metaballs, defaults to primary */
+    color?: string;
+    /** Enable mouse interaction (mouse acts as a large custom blob) */
+    interactive?: boolean;
+}
+
+interface Blob {
+    x: number;
+    y: number;
+    vx: number;
+    vy: number;
+    radius: number;
+}
+
+export const MetaballCanvas = React.forwardRef<HTMLDivElement, MetaballCanvasProps>(
+    (
+        {
+            className,
+            blobCount = 10,
+            minRadius = 30,
+            maxRadius = 60,
+            speed = 1.0,
+            color,
+            interactive = true,
+            ...props
+        },
+        ref
+    ) => {
+        const containerRef = React.useRef<HTMLDivElement>(null);
+        const canvasRef = React.useRef<HTMLCanvasElement>(null);
+        const mouseRef = React.useRef<{ x: number; y: number } | null>(null);
+
+        React.useImperativeHandle(ref, () => containerRef.current as HTMLDivElement);
+
+        React.useEffect(() => {
+            const canvas = canvasRef.current;
+            const container = containerRef.current;
+            if (!canvas || !container) {
+                return;
+            }
+
+            const ctx = canvas.getContext(\'2d\');
+            if (!ctx) {
+                return;
+            }
+
+            let animationId: number;
+            let width = (canvas.width = container.offsetWidth);
+            let height = (canvas.height = container.offsetHeight);
+
+            const blobs: Blob[] = [];
+
+            // Initialize blobs
+            const initBlobs = () => {
+                blobs.length = 0;
+                for (let i = 0; i < blobCount; i++) {
+                    const radius = Math.random() * (maxRadius - minRadius) + minRadius;
+                    blobs.push({
+                        x: Math.random() * (width - radius * 2) + radius,
+                        y: Math.random() * (height - radius * 2) + radius,
+                        vx: (Math.random() - 0.5) * speed * 2,
+                        vy: (Math.random() - 0.5) * speed * 2,
+                        radius,
+                    });
+                }
+            };
+
+            initBlobs();
+
+            // Resize listener
+            const resizeObserver = new ResizeObserver((entries) => {
+                for (const entry of entries) {
+                    width = canvas.width = entry.contentRect.width;
+                    height = canvas.height = entry.contentRect.height;
+                    initBlobs();
+                }
+            });
+            resizeObserver.observe(container);
+
+            // Mouse coordinate updates
+            const handleMouseMove = (e: MouseEvent) => {
+                if (!interactive) return;
+                const rect = canvas.getBoundingClientRect();
+                mouseRef.current = {
+                    x: e.clientX - rect.left,
+                    y: e.clientY - rect.top,
+                };
+            };
+
+            const handleMouseLeave = () => {
+                mouseRef.current = null;
+            };
+
+            if (interactive) {
+                container.addEventListener(\'mousemove\', handleMouseMove);
+                container.addEventListener(\'mouseleave\', handleMouseLeave);
+            }
+
+            const resolveColor = (colorStr: string) => {
+                if (!colorStr) return \'rgb(16, 185, 129)\';
+                if (!colorStr.includes(\'var(\') && !colorStr.includes(\'--\')) {
+                    return colorStr;
+                }
+                try {
+                    const temp = document.createElement(\'div\');
+                    temp.style.color = colorStr;
+                    container.appendChild(temp);
+                    const resolved = window.getComputedStyle(temp).color;
+                    container.removeChild(temp);
+                    return resolved || \'rgb(16, 185, 129)\';
+                } catch (e) {
+                    return \'rgb(16, 185, 129)\';
+                }
+            };
+
+            // Draw loop
+            const draw = () => {
+                // Clear with transparent background
+                ctx.clearRect(0, 0, width, height);
+
+                const activeColor = resolveColor(
+                    color ||
+                    window.getComputedStyle(container).color ||
+                    \'#10b981\'
+                );
+
+                // Draw standard blobs
+                blobs.forEach((b) => {
+                    b.x += b.vx;
+                    b.y += b.vy;
+
+                    // Bounce logic
+                    if (b.x - b.radius < 0) {
+                        b.x = b.radius;
+                        b.vx *= -1;
+                    } else if (b.x + b.radius > width) {
+                        b.x = width - b.radius;
+                        b.vx *= -1;
+                    }
+
+                    if (b.y - b.radius < 0) {
+                        b.y = b.radius;
+                        b.vy *= -1;
+                    } else if (b.y + b.radius > height) {
+                        b.y = height - b.radius;
+                        b.vy *= -1;
+                    }
+
+                    // Render blob with soft radial edge that contrast filter will solidify
+                    const grad = ctx.createRadialGradient(b.x, b.y, b.radius * 0.1, b.x, b.y, b.radius);
+                    grad.addColorStop(0, activeColor);
+                    grad.addColorStop(1, \'rgba(0, 0, 0, 0)\');
+
+                    ctx.beginPath();
+                    ctx.arc(b.x, b.y, b.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = grad;
+                    ctx.fill();
+                });
+
+                // Draw mouse cursor blob
+                if (mouseRef.current) {
+                    const mouseRadius = (minRadius + maxRadius) * 0.6;
+                    const grad = ctx.createRadialGradient(
+                        mouseRef.current.x,
+                        mouseRef.current.y,
+                        mouseRadius * 0.1,
+                        mouseRef.current.x,
+                        mouseRef.current.y,
+                        mouseRadius
+                    );
+                    grad.addColorStop(0, activeColor);
+                    grad.addColorStop(1, \'rgba(0, 0, 0, 0)\');
+
+                    ctx.beginPath();
+                    ctx.arc(mouseRef.current.x, mouseRef.current.y, mouseRadius, 0, Math.PI * 2);
+                    ctx.fillStyle = grad;
+                    ctx.fill();
+                }
+
+                animationId = requestAnimationFrame(draw);
+            };
+
+            draw();
+
+            return () => {
+                cancelAnimationFrame(animationId);
+                resizeObserver.disconnect();
+                if (interactive) {
+                    container.removeEventListener(\'mousemove\', handleMouseMove);
+                    container.removeEventListener(\'mouseleave\', handleMouseLeave);
+                }
+            };
+        }, [blobCount, minRadius, maxRadius, speed, color, interactive]);
+
+        return (
+            <div
+                ref={containerRef}
+                className={cn(\'relative w-full h-full overflow-hidden select-none bg-background\', className)}
+                {...props}
+            >
+                {/* The CSS filter properties create the gooey metaball fusion effect */}
+                <canvas
+                    ref={canvasRef}
+                    className="absolute inset-0 size-full"
+                    style={{ 
+                        pointerEvents: \'none\',
+                        filter: \'blur(14px) contrast(20) hue-rotate(0deg)\',
+                    }}
+                />
+            </div>
+        );
+    }
+);
+
+MetaballCanvas.displayName = \'MetaballCanvas\';
+
+export default MetaballCanvas;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'canvas',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'canvas',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
                 'name' => 'pixel-canvas',
                 'type' => 'registry:ui',
                 'title' => 'Pixel Canvas',
@@ -13393,6 +15929,267 @@ export { PixelCanvas, pixelCanvasVariants };
                 'theme' => null,
             ],
             [
+                'name' => 'wave-grid-canvas',
+                'type' => 'registry:ui',
+                'title' => 'Wave Grid Canvas',
+                'description' => 'A grid of geometric nodes that dynamically ripple, scale, and rotate in response to mouse cursor distance.',
+                'author' => 'designbycode',
+                'dependencies' => [
+
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/canvas/wave-grid-canvas.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '\'use client\';
+
+import * as React from \'react\';
+import { cn } from \'@/lib/utils\';
+
+export interface WaveGridCanvasProps extends React.HTMLAttributes<HTMLDivElement> {
+    /** Spacing between grid points in pixels */
+    gridSpacing?: number;
+    /** Shape to render at grid nodes (\'circle\' | \'square\' | \'cross\') */
+    shape?: \'circle\' | \'square\' | \'cross\';
+    /** Maximum scale factor when rippling */
+    maxScale?: number;
+    /** Animation speed multiplier */
+    speed?: number;
+    /** Grid color, defaults to muted border color or primary */
+    color?: string;
+    /** Enable hover interaction (ripple originates from mouse pointer) */
+    interactive?: boolean;
+}
+
+export const WaveGridCanvas = React.forwardRef<HTMLDivElement, WaveGridCanvasProps>(
+    (
+        {
+            className,
+            gridSpacing = 30,
+            shape = \'circle\',
+            maxScale = 2.0,
+            speed = 1.0,
+            color,
+            interactive = true,
+            ...props
+        },
+        ref
+    ) => {
+        const containerRef = React.useRef<HTMLDivElement>(null);
+        const canvasRef = React.useRef<HTMLCanvasElement>(null);
+        const mouseRef = React.useRef<{ x: number; y: number } | null>(null);
+
+        React.useImperativeHandle(ref, () => containerRef.current as HTMLDivElement);
+
+        React.useEffect(() => {
+            const canvas = canvasRef.current;
+            const container = containerRef.current;
+            if (!canvas || !container) {
+                return;
+            }
+
+            const ctx = canvas.getContext(\'2d\');
+            if (!ctx) {
+                return;
+            }
+
+            let animationId: number;
+            let width = (canvas.width = container.offsetWidth);
+            let height = (canvas.height = container.offsetHeight);
+            let time = 0;
+
+            const resizeObserver = new ResizeObserver((entries) => {
+                for (const entry of entries) {
+                    width = canvas.width = entry.contentRect.width;
+                    height = canvas.height = entry.contentRect.height;
+                }
+            });
+            resizeObserver.observe(container);
+
+            const handleMouseMove = (e: MouseEvent) => {
+                if (!interactive) return;
+                const rect = canvas.getBoundingClientRect();
+                mouseRef.current = {
+                    x: e.clientX - rect.left,
+                    y: e.clientY - rect.top,
+                };
+            };
+
+            const handleMouseLeave = () => {
+                mouseRef.current = null;
+            };
+
+            if (interactive) {
+                container.addEventListener(\'mousemove\', handleMouseMove);
+                container.addEventListener(\'mouseleave\', handleMouseLeave);
+            }
+
+            const resolveColor = (colorStr: string, defaultVal: string) => {
+                if (!colorStr) return defaultVal;
+                let targetColor = colorStr;
+                if (colorStr.startsWith(\'--\')) {
+                    targetColor = `var(${colorStr})`;
+                }
+                if (!targetColor.includes(\'var(\') && !targetColor.includes(\'--\')) {
+                    return targetColor;
+                }
+                try {
+                    const temp = document.createElement(\'div\');
+                    temp.style.color = targetColor;
+                    container.appendChild(temp);
+                    const resolved = window.getComputedStyle(temp).color;
+                    container.removeChild(temp);
+                    return resolved || defaultVal;
+                } catch (e) {
+                    return defaultVal;
+                }
+            };
+
+            // Draw loop
+            const draw = () => {
+                ctx.clearRect(0, 0, width, height);
+
+                const activeColor = resolveColor(
+                    color || window.getComputedStyle(container).color,
+                    \'rgba(16, 185, 129, 0.4)\'
+                );
+
+                time += speed * 0.05;
+
+                const cols = Math.floor(width / gridSpacing) + 2;
+                const rows = Math.floor(height / gridSpacing) + 2;
+
+                const offsetX = (width % gridSpacing) / 2;
+                const offsetY = (height % gridSpacing) / 2;
+
+                for (let c = 0; c < cols; c++) {
+                    for (let r = 0; r < rows; r++) {
+                        const x = c * gridSpacing - gridSpacing / 2 + offsetX;
+                        const y = r * gridSpacing - gridSpacing / 2 + offsetY;
+
+                        let dist = 0;
+                        let influence = 0;
+
+                        if (mouseRef.current) {
+                            const dx = mouseRef.current.x - x;
+                            const dy = mouseRef.current.y - y;
+                            dist = Math.sqrt(dx * dx + dy * dy);
+                            
+                            // Proximity influence within 200px of mouse
+                            if (dist < 220) {
+                                influence = (1 - dist / 220);
+                            }
+                        } else {
+                            // Subtle default pulsing wave in the center if no mouse
+                            const dx = (width * 0.5) - x;
+                            const dy = (height * 0.5) - y;
+                            dist = Math.sqrt(dx * dx + dy * dy);
+                            influence = Math.sin(dist * 0.02 - time * 0.3) * 0.5 + 0.5;
+                        }
+
+                        // Calculate scale & opacity based on influence and sine ripples
+                        const waveFactor = Math.sin(dist * 0.04 - time) * 0.5 + 0.5;
+                        const scale = 1.0 + (maxScale - 1.0) * influence * waveFactor;
+                        const opacity = 0.15 + 0.65 * influence * waveFactor;
+
+                        ctx.save();
+                        ctx.translate(x, y);
+                        ctx.globalAlpha = opacity;
+                        ctx.fillStyle = activeColor;
+                        ctx.strokeStyle = activeColor;
+
+                        const baseSize = 2.5;
+                        const size = baseSize * scale;
+
+                        // Render geometric shape
+                        if (shape === \'circle\') {
+                            ctx.beginPath();
+                            ctx.arc(0, 0, size, 0, Math.PI * 2);
+                            ctx.fill();
+                        } else if (shape === \'square\') {
+                            ctx.fillRect(-size, -size, size * 2, size * 2);
+                        } else if (shape === \'cross\') {
+                            ctx.lineWidth = 1.2;
+                            ctx.beginPath();
+                            // Horizontal
+                            ctx.moveTo(-size, 0);
+                            ctx.lineTo(size, 0);
+                            // Vertical
+                            ctx.moveTo(0, -size);
+                            ctx.lineTo(0, size);
+                            ctx.stroke();
+                        }
+
+                        ctx.restore();
+                    }
+                }
+
+                animationId = requestAnimationFrame(draw);
+            };
+
+            draw();
+
+            return () => {
+                cancelAnimationFrame(animationId);
+                resizeObserver.disconnect();
+                if (interactive) {
+                    container.removeEventListener(\'mousemove\', handleMouseMove);
+                    container.removeEventListener(\'mouseleave\', handleMouseLeave);
+                }
+            };
+        }, [gridSpacing, shape, maxScale, speed, color, interactive]);
+
+        return (
+            <div
+                ref={containerRef}
+                className={cn(\'relative w-full h-full overflow-hidden select-none bg-background\', className)}
+                {...props}
+            >
+                <canvas
+                    ref={canvasRef}
+                    className="absolute inset-0 size-full"
+                    style={{ pointerEvents: \'none\' }}
+                />
+            </div>
+        );
+    }
+);
+
+WaveGridCanvas.displayName = \'WaveGridCanvas\';
+
+export default WaveGridCanvas;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'canvas',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'canvas',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
                 'name' => 'expandable-card',
                 'type' => 'registry:ui',
                 'title' => 'Expandable Card',
@@ -13566,6 +16363,7 @@ export default ExpandableCard;
                 'registryDependencies' => [
                     'utils',
                     'card',
+                    'https://ui.test/r/use-hover.json',
                 ],
                 'files' => [
                     [
@@ -13576,6 +16374,8 @@ export default ExpandableCard;
 import * as React from \'react\';
 import { cn } from \'@/lib/utils\';
 import { Card } from \'@/components/ui/card\';
+
+import { useHover } from \'@/registry/new-york/hooks/use-hover\';
 
 export interface GlassGlareCardProps extends React.ComponentProps<typeof Card> {
     glareColor?: string;
@@ -13594,13 +16394,24 @@ const GlassGlareCard = React.forwardRef<HTMLDivElement, GlassGlareCardProps>(
         ref,
     ) => {
         const localRef = React.useRef<HTMLDivElement>(null);
-        const resolvedRef = (ref ||
-            localRef) as React.RefObject<HTMLDivElement | null>;
+        const { isHovered, hoverRef } = useHover();
         const [glarePos, setGlarePos] = React.useState({ x: 50, y: 50 });
-        const [isHovered, setIsHovered] = React.useState(false);
+
+        const combinedRef = React.useCallback(
+            (node: HTMLDivElement | null) => {
+                hoverRef(node);
+                if (typeof ref === \'function\') {
+                    ref(node);
+                } else if (ref) {
+                    (ref as React.MutableRefObject<HTMLDivElement | null>).current = node;
+                }
+                (localRef as React.MutableRefObject<HTMLDivElement | null>).current = node;
+            },
+            [ref, hoverRef]
+        );
 
         const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-            const card = resolvedRef.current;
+            const card = localRef.current;
             if (!card) return;
             const rect = card.getBoundingClientRect();
             const x = ((e.clientX - rect.left) / rect.width) * 100;
@@ -13610,10 +16421,8 @@ const GlassGlareCard = React.forwardRef<HTMLDivElement, GlassGlareCardProps>(
 
         return (
             <Card
-                ref={resolvedRef}
+                ref={combinedRef}
                 onMouseMove={handleMouseMove}
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
                 className={cn(
                     \'relative overflow-hidden bg-card/40 p-6 shadow-2xl backdrop-blur-md transition-all duration-300\',
                     className,
@@ -13688,6 +16497,7 @@ export default GlassGlareCard;
                 'registryDependencies' => [
                     'utils',
                     'card',
+                    'https://ui.test/r/use-hover.json',
                 ],
                 'files' => [
                     [
@@ -13698,6 +16508,8 @@ export default GlassGlareCard;
 import * as React from \'react\';
 import { cn } from \'@/lib/utils\';
 import { Card } from \'@/components/ui/card\';
+
+import { useHover } from \'@/registry/new-york/hooks/use-hover\';
 
 export interface GlowingCardProps extends React.ComponentProps<typeof Card> {
     glowColor?: string;
@@ -13714,14 +16526,25 @@ const GlowingCard = React.forwardRef<HTMLDivElement, GlowingCardProps>(
         ref,
     ) => {
         const localRef = React.useRef<HTMLDivElement>(null);
-        const resolvedRef = (ref ||
-            localRef) as React.RefObject<HTMLDivElement | null>;
+        const { isHovered, hoverRef } = useHover();
         const [coords, setCoords] = React.useState({ x: 0, y: 0 });
-        const [isHovered, setIsHovered] = React.useState(false);
+
+        const combinedRef = React.useCallback(
+            (node: HTMLDivElement | null) => {
+                hoverRef(node);
+                if (typeof ref === \'function\') {
+                    ref(node);
+                } else if (ref) {
+                    (ref as React.MutableRefObject<HTMLDivElement | null>).current = node;
+                }
+                (localRef as React.MutableRefObject<HTMLDivElement | null>).current = node;
+            },
+            [ref, hoverRef]
+        );
 
         const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-            if (!resolvedRef.current) return;
-            const rect = resolvedRef.current.getBoundingClientRect();
+            if (!localRef.current) return;
+            const rect = localRef.current.getBoundingClientRect();
             setCoords({
                 x: e.clientX - rect.left,
                 y: e.clientY - rect.top,
@@ -13730,10 +16553,8 @@ const GlowingCard = React.forwardRef<HTMLDivElement, GlowingCardProps>(
 
         return (
             <Card
-                ref={resolvedRef}
+                ref={combinedRef}
                 onMouseMove={handleMouseMove}
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
                 className={cn(
                     \'relative overflow-hidden bg-card/60 p-6 backdrop-blur-xs transition-all\',
                     className,
@@ -13798,6 +16619,7 @@ export default GlowingCard;
                 'registryDependencies' => [
                     'utils',
                     'card',
+                    'https://ui.test/r/use-hover.json',
                 ],
                 'files' => [
                     [
@@ -13808,6 +16630,8 @@ export default GlowingCard;
 import * as React from \'react\';
 import { cn } from \'@/lib/utils\';
 import { Card } from \'@/components/ui/card\';
+
+import { useHover } from \'@/registry/new-york/hooks/use-hover\';
 
 export interface GrainyNoiseCardProps extends React.ComponentProps<
     typeof Card
@@ -13827,13 +16651,23 @@ const GrainyNoiseCard = React.forwardRef<HTMLDivElement, GrainyNoiseCardProps>(
         },
         ref,
     ) => {
-        const [isHovered, setIsHovered] = React.useState(false);
+        const { isHovered, hoverRef } = useHover();
+
+        const combinedRef = React.useCallback(
+            (node: HTMLDivElement | null) => {
+                hoverRef(node);
+                if (typeof ref === \'function\') {
+                    ref(node);
+                } else if (ref) {
+                    (ref as React.MutableRefObject<HTMLDivElement | null>).current = node;
+                }
+            },
+            [ref, hoverRef]
+        );
 
         return (
             <Card
-                ref={ref}
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
+                ref={combinedRef}
                 className={cn(
                     \'relative overflow-hidden bg-card/75 p-6 shadow-xl backdrop-blur-md transition-all duration-500\',
                     isHovered ? \'scale-[1.01] border-border/80 shadow-2xl\' : \'\',
@@ -14020,6 +16854,7 @@ export default MagneticCard;
                 'registryDependencies' => [
                     'utils',
                     'card',
+                    'https://ui.test/r/use-hover.json',
                 ],
                 'files' => [
                     [
@@ -14030,6 +16865,8 @@ export default MagneticCard;
 import * as React from \'react\';
 import { cn } from \'@/lib/utils\';
 import { Card } from \'@/components/ui/card\';
+
+import { useHover } from \'@/registry/new-york/hooks/use-hover\';
 
 export interface MetricSparkCardProps extends React.ComponentProps<
     typeof Card
@@ -14055,7 +16892,19 @@ const MetricSparkCard = React.forwardRef<HTMLDivElement, MetricSparkCardProps>(
         },
         ref,
     ) => {
-        const [isHovered, setIsHovered] = React.useState(false);
+        const { isHovered, hoverRef } = useHover();
+
+        const combinedRef = React.useCallback(
+            (node: HTMLDivElement | null) => {
+                hoverRef(node);
+                if (typeof ref === \'function\') {
+                    ref(node);
+                } else if (ref) {
+                    (ref as React.MutableRefObject<HTMLDivElement | null>).current = node;
+                }
+            },
+            [ref, hoverRef]
+        );
 
         // SVG Sparkline path generation
         const svgWidth = 140;
@@ -14075,9 +16924,7 @@ const MetricSparkCard = React.forwardRef<HTMLDivElement, MetricSparkCardProps>(
 
         return (
             <Card
-                ref={ref}
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
+                ref={combinedRef}
                 className={cn(
                     \'relative overflow-hidden p-6 shadow-md transition-all hover:shadow-lg\',
                     className,
@@ -14438,6 +17285,129 @@ export default ParallaxImageCard;
                 'theme' => null,
             ],
             [
+                'name' => 'rainbow-border-card',
+                'type' => 'registry:ui',
+                'title' => 'Rainbow Border Card',
+                'description' => 'A beautiful component for your application.',
+                'author' => 'designbycode',
+                'dependencies' => [
+
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                    'card',
+                    'https://ui.test/r/rainbow-border.json',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/cards/rainbow-border-card.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '\'use client\';
+
+import * as React from \'react\';
+import { cn } from \'@/lib/utils\';
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+} from \'@/components/ui/card\';
+import { RainbowBorder } from \'@/registry/new-york/components/ui/borders/rainbow-border\';
+
+export interface RainbowBorderCardProps extends React.ComponentProps<typeof Card> {
+    borderWidth?: string;
+    animationDuration?: string;
+    colors?: string[];
+    rounded?: \'none\' | \'xs\' | \'sm\' | \'md\' | \'lg\' | \'full\';
+    glow?: boolean;
+    glowBlur?: string;
+    glowOpacity?: number;
+}
+
+export const RainbowBorderCard = React.forwardRef<HTMLDivElement, RainbowBorderCardProps>(
+    (
+        {
+            className,
+            borderWidth = \'2px\',
+            animationDuration = \'4s\',
+            colors,
+            rounded = \'lg\',
+            glow = true,
+            glowBlur = \'40px\',
+            glowOpacity = 40,
+            children,
+            ...props
+        },
+        ref,
+    ) => {
+        const roundedCardClass = 
+            rounded === \'none\' ? \'rounded-none\' :
+            rounded === \'xs\' ? \'rounded-xs\' :
+            rounded === \'sm\' ? \'rounded-sm\' :
+            rounded === \'md\' ? \'rounded-md\' :
+            rounded === \'lg\' ? \'rounded-lg\' : \'rounded-full\';
+
+        return (
+            <RainbowBorder
+                borderWidth={borderWidth}
+                animationDuration={animationDuration}
+                colors={colors}
+                rounded={rounded}
+                glow={glow}
+                glowBlur={glowBlur}
+                glowOpacity={glowOpacity}
+                className="p-[1px] w-full"
+            >
+                <Card
+                    ref={ref}
+                    className={cn(
+                        \'bg-card text-card-foreground border-0 shadow-sm w-full\',
+                        roundedCardClass,
+                        className,
+                    )}
+                    {...props}
+                >
+                    {children}
+                </Card>
+            </RainbowBorder>
+        );
+    },
+);
+
+RainbowBorderCard.displayName = \'RainbowBorderCard\';
+
+export default RainbowBorderCard;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'cards',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'cards',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
                 'name' => 'reveal-card',
                 'type' => 'registry:ui',
                 'title' => 'Reveal Card',
@@ -14452,6 +17422,7 @@ export default ParallaxImageCard;
                 'registryDependencies' => [
                     'utils',
                     'card',
+                    'https://ui.test/r/use-hover.json',
                 ],
                 'files' => [
                     [
@@ -14462,6 +17433,8 @@ export default ParallaxImageCard;
 import * as React from \'react\';
 import { cn } from \'@/lib/utils\';
 import { Card } from \'@/components/ui/card\';
+
+import { useHover } from \'@/registry/new-york/hooks/use-hover\';
 
 export interface RevealCardProps extends React.HTMLAttributes<HTMLDivElement> {
     borderColor?: string;
@@ -14482,13 +17455,24 @@ const RevealCard = React.forwardRef<HTMLDivElement, RevealCardProps>(
         ref,
     ) => {
         const localRef = React.useRef<HTMLDivElement>(null);
-        const resolvedRef = (ref ||
-            localRef) as React.RefObject<HTMLDivElement | null>;
+        const { isHovered, hoverRef } = useHover();
         const [coords, setCoords] = React.useState({ x: 0, y: 0 });
-        const [isHovered, setIsHovered] = React.useState(false);
+
+        const combinedRef = React.useCallback(
+            (node: HTMLDivElement | null) => {
+                hoverRef(node);
+                if (typeof ref === \'function\') {
+                    ref(node);
+                } else if (ref) {
+                    (ref as React.MutableRefObject<HTMLDivElement | null>).current = node;
+                }
+                (localRef as React.MutableRefObject<HTMLDivElement | null>).current = node;
+            },
+            [ref, hoverRef]
+        );
 
         const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-            const card = resolvedRef.current;
+            const card = localRef.current;
             if (!card) return;
             const rect = card.getBoundingClientRect();
             setCoords({
@@ -14499,10 +17483,8 @@ const RevealCard = React.forwardRef<HTMLDivElement, RevealCardProps>(
 
         return (
             <div
-                ref={resolvedRef}
+                ref={combinedRef}
                 onMouseMove={handleMouseMove}
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
                 className={cn(
                     \'relative overflow-hidden rounded-xl bg-muted/40 p-[1px] transition-all\',
                     className,
@@ -17683,6 +20665,5102 @@ export function ComparisonSliderVertical({
                 'theme' => null,
             ],
             [
+                'name' => 'avatar-dropzone-badge',
+                'type' => 'registry:ui',
+                'title' => 'Avatar Dropzone Badge',
+                'description' => 'A beautiful component for your application.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                    'avatar',
+                    'badge',
+                    'progress',
+                    'tooltip',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/dropzones/avatar-dropzone-badge.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '"use client"
+
+import * as React from "react"
+import { cn } from "@/lib/utils"
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
+import { Badge } from "@/components/ui/badge"
+import { Progress } from "@/components/ui/progress"
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
+import { User, Camera, Check, AlertCircle, Loader2 } from "lucide-react"
+
+interface AvatarDropzoneBadgeProps {
+  className?: string
+  onFileSelect?: (file: File | null) => void
+  maxSize?: number
+  defaultImage?: string
+  size?: "sm" | "md" | "lg"
+}
+
+type Status = "idle" | "uploading" | "success" | "error"
+
+const sizeMap = {
+  sm: { avatar: "size-12", icon: "size-4", badge: "size-4" },
+  md: { avatar: "size-20", icon: "size-6", badge: "size-6" },
+  lg: { avatar: "size-28", icon: "size-8", badge: "size-8" },
+}
+
+export function AvatarDropzoneBadge({
+  className,
+  onFileSelect,
+  maxSize = 5,
+  defaultImage,
+  size = "md",
+}: AvatarDropzoneBadgeProps) {
+  const [isDragOver, setIsDragOver] = React.useState(false)
+  const [preview, setPreview] = React.useState<string | null>(defaultImage || null)
+  const [status, setStatus] = React.useState<Status>("idle")
+  const [progress, setProgress] = React.useState(0)
+  const [error, setError] = React.useState<string | null>(null)
+  const inputRef = React.useRef<HTMLInputElement>(null)
+
+  const sizes = sizeMap[size]
+
+  const simulateUpload = React.useCallback(() => {
+    setStatus("uploading")
+    setProgress(0)
+    setError(null)
+    const interval = setInterval(() => {
+      setProgress((prev) => {
+        if (prev >= 100) {
+          clearInterval(interval)
+          setStatus("success")
+          return 100
+        }
+        return prev + 15
+      })
+    }, 120)
+  }, [])
+
+  const handleFile = React.useCallback(
+    (file: File) => {
+      setError(null)
+      if (!file.type.startsWith("image/")) {
+        setError("Invalid file type")
+        setStatus("error")
+        return
+      }
+      if (file.size > maxSize * 1024 * 1024) {
+        setError(`Max size is ${maxSize}MB`)
+        setStatus("error")
+        return
+      }
+
+      const reader = new FileReader()
+      reader.onload = (e) => {
+        setPreview(e.target?.result as string)
+        simulateUpload()
+        onFileSelect?.(file)
+      }
+      reader.readAsDataURL(file)
+    },
+    [maxSize, onFileSelect, simulateUpload]
+  )
+
+  const handleDrop = React.useCallback(
+    (e: React.DragEvent) => {
+      e.preventDefault()
+      setIsDragOver(false)
+      const file = e.dataTransfer.files[0]
+      if (file) handleFile(file)
+    },
+    [handleFile]
+  )
+
+  const statusBadge = () => {
+    if (status === "uploading") {
+      return (
+        <Badge className={cn(sizes.badge, "rounded-full p-0 bg-primary")}>
+          <Loader2 className="size-3 animate-spin text-primary-foreground" />
+        </Badge>
+      )
+    }
+    if (status === "success") {
+      return (
+        <Badge className={cn(sizes.badge, "rounded-full p-0 bg-success")}>
+          <Check className="size-3 text-success-foreground" />
+        </Badge>
+      )
+    }
+    if (status === "error") {
+      return (
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Badge className={cn(sizes.badge, "rounded-full p-0 bg-destructive cursor-help")}>
+              <AlertCircle className="size-3 text-white" />
+            </Badge>
+          </TooltipTrigger>
+          <TooltipContent>{error || "Upload failed"}</TooltipContent>
+        </Tooltip>
+      )
+    }
+    return null
+  }
+
+  return (
+    <div className={cn("flex flex-col items-center gap-3", className)}>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <div
+            role="button"
+            tabIndex={0}
+            aria-label="Upload avatar"
+            onClick={() => inputRef.current?.click()}
+            onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && inputRef.current?.click()}
+            onDrop={handleDrop}
+            onDragOver={(e) => { e.preventDefault(); setIsDragOver(true) }}
+            onDragLeave={(e) => { e.preventDefault(); setIsDragOver(false) }}
+            className={cn(
+              "group relative cursor-pointer rounded-full transition-all",
+              isDragOver && "ring-2 ring-primary ring-offset-2 ring-offset-background"
+            )}
+          >
+            <Avatar className={cn(sizes.avatar, "border-2 border-border transition-all group-hover:border-primary")}>
+              {preview ? (
+                <AvatarImage src={preview} alt="Avatar" className="object-cover" />
+              ) : (
+                <AvatarFallback className="bg-muted">
+                  <User className={cn(sizes.icon, "text-muted-foreground")} />
+                </AvatarFallback>
+              )}
+            </Avatar>
+
+            {/* Camera overlay on hover */}
+            <div className="absolute inset-0 flex items-center justify-center rounded-full bg-foreground/50 opacity-0 transition-opacity group-hover:opacity-100">
+              <Camera className="size-5 text-background" />
+            </div>
+
+            {/* Status badge */}
+            <div className="absolute -bottom-1 -right-1">
+              {statusBadge()}
+            </div>
+          </div>
+        </TooltipTrigger>
+        <TooltipContent>Click to upload photo</TooltipContent>
+      </Tooltip>
+
+      {status === "uploading" && (
+        <Progress value={progress} className="h-1 w-20" />
+      )}
+
+      <input
+        ref={inputRef}
+        type="file"
+        accept="image/*"
+        onChange={(e) => e.target.files?.[0] && handleFile(e.target.files[0])}
+        className="sr-only"
+      />
+    </div>
+  )
+}
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'dropzones',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'dropzones',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'avatar-dropzone-card',
+                'type' => 'registry:ui',
+                'title' => 'Avatar Dropzone Card',
+                'description' => 'A beautiful component for your application.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                    'avatar',
+                    'button',
+                    'card',
+                    'progress',
+                    'badge',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/dropzones/avatar-dropzone-card.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '"use client"
+
+import * as React from "react"
+import { cn } from "@/lib/utils"
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
+import { Progress } from "@/components/ui/progress"
+import { Badge } from "@/components/ui/badge"
+import { User, Upload, Trash2, CheckCircle2 } from "lucide-react"
+
+interface AvatarDropzoneCardProps {
+  className?: string
+  onFileSelect?: (file: File | null) => void
+  maxSize?: number
+  defaultImage?: string
+}
+
+type Status = "idle" | "uploading" | "success" | "error"
+
+export function AvatarDropzoneCard({
+  className,
+  onFileSelect,
+  maxSize = 5,
+  defaultImage,
+}: AvatarDropzoneCardProps) {
+  const [isDragOver, setIsDragOver] = React.useState(false)
+  const [preview, setPreview] = React.useState<string | null>(defaultImage || null)
+  const [status, setStatus] = React.useState<Status>("idle")
+  const [progress, setProgress] = React.useState(0)
+  const [fileName, setFileName] = React.useState<string | null>(null)
+  const inputRef = React.useRef<HTMLInputElement>(null)
+
+  const simulateUpload = React.useCallback(() => {
+    setStatus("uploading")
+    setProgress(0)
+    const interval = setInterval(() => {
+      setProgress((prev) => {
+        if (prev >= 100) {
+          clearInterval(interval)
+          setStatus("success")
+          return 100
+        }
+        return prev + 12
+      })
+    }, 100)
+  }, [])
+
+  const handleFile = React.useCallback(
+    (file: File) => {
+      if (!file.type.startsWith("image/") || file.size > maxSize * 1024 * 1024) {
+        setStatus("error")
+        return
+      }
+
+      setFileName(file.name)
+      const reader = new FileReader()
+      reader.onload = (e) => {
+        setPreview(e.target?.result as string)
+        simulateUpload()
+        onFileSelect?.(file)
+      }
+      reader.readAsDataURL(file)
+    },
+    [maxSize, onFileSelect, simulateUpload]
+  )
+
+  const handleDrop = React.useCallback(
+    (e: React.DragEvent) => {
+      e.preventDefault()
+      setIsDragOver(false)
+      const file = e.dataTransfer.files[0]
+      if (file) handleFile(file)
+    },
+    [handleFile]
+  )
+
+  const handleRemove = () => {
+    setPreview(null)
+    setStatus("idle")
+    setProgress(0)
+    setFileName(null)
+    onFileSelect?.(null)
+  }
+
+  return (
+    <Card className={cn("w-full max-w-xs", className)}>
+      <CardContent className="flex items-center gap-4 p-4">
+        <div
+          role="button"
+          tabIndex={0}
+          aria-label="Upload avatar"
+          onClick={() => inputRef.current?.click()}
+          onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && inputRef.current?.click()}
+          onDrop={handleDrop}
+          onDragOver={(e) => { e.preventDefault(); setIsDragOver(true) }}
+          onDragLeave={(e) => { e.preventDefault(); setIsDragOver(false) }}
+          className={cn(
+            "shrink-0 cursor-pointer rounded-full ring-2 ring-offset-2 ring-offset-background transition-all",
+            isDragOver ? "ring-primary scale-105" : "ring-transparent hover:ring-muted-foreground/30"
+          )}
+        >
+          <Avatar className="size-16">
+            {preview ? (
+              <AvatarImage src={preview} alt="Avatar" className="object-cover" />
+            ) : (
+              <AvatarFallback className="bg-muted">
+                <User className="size-6 text-muted-foreground" />
+              </AvatarFallback>
+            )}
+          </Avatar>
+        </div>
+
+        <div className="flex min-w-0 flex-1 flex-col gap-2">
+          {status === "idle" && !preview && (
+            <>
+              <p className="text-sm font-medium">Profile Photo</p>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => inputRef.current?.click()}
+                className="w-fit"
+              >
+                <Upload className="mr-1.5 size-3.5" />
+                Upload
+              </Button>
+            </>
+          )}
+
+          {status === "uploading" && (
+            <>
+              <p className="truncate text-sm font-medium">{fileName}</p>
+              <Progress value={progress} className="h-1.5" />
+              <span className="text-xs text-muted-foreground">{progress}% uploaded</span>
+            </>
+          )}
+
+          {status === "success" && preview && (
+            <>
+              <div className="flex items-center gap-2">
+                <p className="truncate text-sm font-medium">{fileName}</p>
+                <Badge variant="secondary" className="shrink-0 gap-1 text-success">
+                  <CheckCircle2 className="size-3" />
+                  Done
+                </Badge>
+              </div>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={handleRemove}
+                className="w-fit text-muted-foreground hover:text-destructive"
+              >
+                <Trash2 className="mr-1.5 size-3.5" />
+                Remove
+              </Button>
+            </>
+          )}
+        </div>
+
+        <input
+          ref={inputRef}
+          type="file"
+          accept="image/*"
+          onChange={(e) => e.target.files?.[0] && handleFile(e.target.files[0])}
+          className="sr-only"
+        />
+      </CardContent>
+    </Card>
+  )
+}
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'dropzones',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'dropzones',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'avatar-dropzone-field',
+                'type' => 'registry:ui',
+                'title' => 'Avatar Dropzone Field',
+                'description' => 'A beautiful component for your application.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                    'button',
+                    'label',
+                    'avatar',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/dropzones/avatar-dropzone-field.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '"use client"
+
+import { useState, useCallback, useRef } from "react"
+import { Upload, Trash2, RefreshCw, Loader2 } from "lucide-react"
+import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
+import { Label } from "@/components/ui/label"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+
+interface AvatarDropzoneFieldProps {
+  label?: string
+  description?: string
+  onFileSelect?: (file: File | null) => void
+  defaultImage?: string
+  initials?: string
+  maxSize?: number
+  className?: string
+}
+
+export function AvatarDropzoneField({
+  label = "Profile photo",
+  description = "JPG, PNG or GIF. Max 5MB.",
+  onFileSelect,
+  defaultImage,
+  initials = "U",
+  maxSize = 5 * 1024 * 1024,
+  className,
+}: AvatarDropzoneFieldProps) {
+  const [preview, setPreview] = useState<string | null>(defaultImage || null)
+  const [isUploading, setIsUploading] = useState(false)
+  const [isDragging, setIsDragging] = useState(false)
+  const inputRef = useRef<HTMLInputElement>(null)
+
+  const handleFile = useCallback(
+    (file: File) => {
+      if (!file.type.startsWith("image/") || file.size > maxSize) return
+
+      const reader = new FileReader()
+      reader.onload = (e) => {
+        setPreview(e.target?.result as string)
+        setIsUploading(true)
+
+        setTimeout(() => {
+          setIsUploading(false)
+          onFileSelect?.(file)
+        }, 1000)
+      }
+      reader.readAsDataURL(file)
+    },
+    [maxSize, onFileSelect]
+  )
+
+  const handleDrop = useCallback(
+    (e: React.DragEvent) => {
+      e.preventDefault()
+      setIsDragging(false)
+      const file = e.dataTransfer.files[0]
+      if (file) handleFile(file)
+    },
+    [handleFile]
+  )
+
+  const handleRemove = () => {
+    setPreview(defaultImage || null)
+    onFileSelect?.(null)
+    if (inputRef.current) inputRef.current.value = ""
+  }
+
+  return (
+    <div className={cn("space-y-2", className)}>
+      {label && <Label>{label}</Label>}
+
+      <div
+        className={cn(
+          "flex items-center gap-4 rounded-lg border p-4 transition-colors",
+          isDragging && "border-primary bg-muted/50"
+        )}
+        onDragOver={(e) => {
+          e.preventDefault()
+          setIsDragging(true)
+        }}
+        onDragLeave={() => setIsDragging(false)}
+        onDrop={handleDrop}
+      >
+        <input
+          ref={inputRef}
+          type="file"
+          accept="image/*"
+          onChange={(e) => {
+            const file = e.target.files?.[0]
+            if (file) handleFile(file)
+          }}
+          className="sr-only"
+        />
+
+        <Avatar className="size-16">
+          <AvatarImage src={preview || undefined} alt="Avatar" />
+          <AvatarFallback className="bg-muted text-muted-foreground text-xl">{initials}</AvatarFallback>
+        </Avatar>
+
+        <div className="flex flex-1 flex-col gap-1">
+          {description && <p className="text-sm text-muted-foreground">{description}</p>}
+
+          <div className="flex items-center gap-2">
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              onClick={() => inputRef.current?.click()}
+              disabled={isUploading}
+            >
+              {isUploading ? (
+                <>
+                  <Loader2 className="size-4 mr-2 animate-spin" />
+                  Uploading...
+                </>
+              ) : preview ? (
+                <>
+                  <RefreshCw className="size-4 mr-2" />
+                  Change
+                </>
+              ) : (
+                <>
+                  <Upload className="size-4 mr-2" />
+                  Upload
+                </>
+              )}
+            </Button>
+
+            {preview && !isUploading && (
+              <Button type="button" variant="ghost" size="sm" onClick={handleRemove}>
+                <Trash2 className="size-4 mr-2" />
+                Remove
+              </Button>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'dropzones',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'dropzones',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'avatar-dropzone-ghost',
+                'type' => 'registry:ui',
+                'title' => 'Avatar Dropzone Ghost',
+                'description' => 'A beautiful component for your application.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                    'avatar',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/dropzones/avatar-dropzone-ghost.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '"use client"
+
+import { useState, useCallback, useRef } from "react"
+import { Camera, X, Loader2 } from "lucide-react"
+import { cn } from "@/lib/utils"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+
+interface AvatarDropzoneGhostProps {
+  onFileSelect?: (file: File | null) => void
+  defaultImage?: string
+  initials?: string
+  maxSize?: number
+  className?: string
+}
+
+export function AvatarDropzoneGhost({
+  onFileSelect,
+  defaultImage,
+  initials = "?",
+  maxSize = 5 * 1024 * 1024,
+  className,
+}: AvatarDropzoneGhostProps) {
+  const [preview, setPreview] = useState<string | null>(defaultImage || null)
+  const [isUploading, setIsUploading] = useState(false)
+  const [isHovered, setIsHovered] = useState(false)
+  const inputRef = useRef<HTMLInputElement>(null)
+
+  const handleFile = useCallback(
+    (file: File) => {
+      if (!file.type.startsWith("image/") || file.size > maxSize) return
+
+      const reader = new FileReader()
+      reader.onload = (e) => {
+        setPreview(e.target?.result as string)
+        setIsUploading(true)
+
+        setTimeout(() => {
+          setIsUploading(false)
+          onFileSelect?.(file)
+        }, 1200)
+      }
+      reader.readAsDataURL(file)
+    },
+    [maxSize, onFileSelect]
+  )
+
+  const handleDrop = useCallback(
+    (e: React.DragEvent) => {
+      e.preventDefault()
+      setIsHovered(false)
+      const file = e.dataTransfer.files[0]
+      if (file) handleFile(file)
+    },
+    [handleFile]
+  )
+
+  const handleRemove = (e: React.MouseEvent) => {
+    e.stopPropagation()
+    setPreview(defaultImage || null)
+    onFileSelect?.(null)
+    if (inputRef.current) inputRef.current.value = ""
+  }
+
+  return (
+    <div
+      className={cn(
+        "group relative cursor-pointer",
+        className
+      )}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      onDragOver={(e) => {
+        e.preventDefault()
+        setIsHovered(true)
+      }}
+      onDragLeave={() => setIsHovered(false)}
+      onDrop={handleDrop}
+      onClick={() => inputRef.current?.click()}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault()
+          inputRef.current?.click()
+        }
+      }}
+      tabIndex={0}
+      role="button"
+      aria-label="Upload avatar"
+    >
+      <input
+        ref={inputRef}
+        type="file"
+        accept="image/*"
+        onChange={(e) => {
+          const file = e.target.files?.[0]
+          if (file) handleFile(file)
+        }}
+        className="sr-only"
+      />
+
+      <Avatar className="size-24 ring-2 ring-transparent transition-all group-hover:ring-primary/20 group-focus-visible:ring-ring">
+        <AvatarImage src={preview || undefined} alt="Avatar" />
+        <AvatarFallback className="text-lg bg-muted">{initials}</AvatarFallback>
+      </Avatar>
+
+      <div
+        className={cn(
+          "absolute inset-0 flex items-center justify-center rounded-full bg-black/50 transition-opacity",
+          isHovered || isUploading ? "opacity-100" : "opacity-0"
+        )}
+      >
+        {isUploading ? (
+          <Loader2 className="size-6 animate-spin text-white" />
+        ) : (
+          <Camera className="size-6 text-white" />
+        )}
+      </div>
+
+      {preview && preview !== defaultImage && !isUploading && (
+        <button
+          onClick={handleRemove}
+          className={cn(
+            "absolute -right-1 -top-1 flex size-6 items-center justify-center rounded-full bg-muted text-muted-foreground shadow-sm transition-all hover:bg-destructive hover:text-white",
+            isHovered ? "opacity-100" : "opacity-0"
+          )}
+          aria-label="Remove avatar"
+        >
+          <X className="size-3" />
+        </button>
+      )}
+    </div>
+  )
+}
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'dropzones',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'dropzones',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'avatar-dropzone-inline',
+                'type' => 'registry:ui',
+                'title' => 'Avatar Dropzone Inline',
+                'description' => 'A beautiful component for your application.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                    'avatar',
+                    'button',
+                    'skeleton',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/dropzones/avatar-dropzone-inline.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '"use client"
+
+import * as React from "react"
+import { cn } from "@/lib/utils"
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
+import { Button } from "@/components/ui/button"
+import { Skeleton } from "@/components/ui/skeleton"
+import { User, Pencil, X } from "lucide-react"
+
+interface AvatarDropzoneInlineProps {
+  className?: string
+  onFileSelect?: (file: File | null) => void
+  maxSize?: number
+  defaultImage?: string
+  label?: string
+  description?: string
+}
+
+export function AvatarDropzoneInline({
+  className,
+  onFileSelect,
+  maxSize = 5,
+  defaultImage,
+  label = "Profile picture",
+  description = "JPG, PNG or GIF. Max 5MB.",
+}: AvatarDropzoneInlineProps) {
+  const [preview, setPreview] = React.useState<string | null>(defaultImage || null)
+  const [isUploading, setIsUploading] = React.useState(false)
+  const inputRef = React.useRef<HTMLInputElement>(null)
+
+  const handleFile = React.useCallback(
+    (file: File) => {
+      if (!file.type.startsWith("image/") || file.size > maxSize * 1024 * 1024) return
+
+      setIsUploading(true)
+      const reader = new FileReader()
+      reader.onload = (e) => {
+        setTimeout(() => {
+          setPreview(e.target?.result as string)
+          setIsUploading(false)
+          onFileSelect?.(file)
+        }, 800)
+      }
+      reader.readAsDataURL(file)
+    },
+    [maxSize, onFileSelect]
+  )
+
+  return (
+    <div className={cn("flex items-center gap-4", className)}>
+      <div className="relative">
+        {isUploading ? (
+          <Skeleton className="size-14 rounded-full" />
+        ) : (
+          <Avatar className="size-14 border border-border">
+            {preview ? (
+              <AvatarImage src={preview} alt="Avatar" className="object-cover" />
+            ) : (
+              <AvatarFallback className="bg-muted">
+                <User className="size-6 text-muted-foreground" />
+              </AvatarFallback>
+            )}
+          </Avatar>
+        )}
+
+        {preview && !isUploading && (
+          <button
+            type="button"
+            onClick={() => {
+              setPreview(null)
+              onFileSelect?.(null)
+            }}
+            className="absolute -right-1 -top-1 flex size-5 items-center justify-center rounded-full border border-border bg-background shadow-sm hover:bg-destructive hover:text-white hover:border-destructive transition-colors"
+            aria-label="Remove photo"
+          >
+            <X className="size-3" />
+          </button>
+        )}
+      </div>
+
+      <div className="flex flex-col gap-1">
+        <p className="text-sm font-medium text-foreground">{label}</p>
+        <p className="text-xs text-muted-foreground">{description}</p>
+        <div className="mt-1 flex gap-2">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => inputRef.current?.click()}
+            disabled={isUploading}
+            className="h-7 text-xs"
+          >
+            <Pencil className="mr-1 size-3" />
+            {preview ? "Change" : "Upload"}
+          </Button>
+        </div>
+      </div>
+
+      <input
+        ref={inputRef}
+        type="file"
+        accept="image/*"
+        onChange={(e) => e.target.files?.[0] && handleFile(e.target.files[0])}
+        className="sr-only"
+      />
+    </div>
+  )
+}
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'dropzones',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'dropzones',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'avatar-dropzone-minimal',
+                'type' => 'registry:ui',
+                'title' => 'Avatar Dropzone Minimal',
+                'description' => 'A beautiful component for your application.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                    'avatar',
+                    'spinner',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/dropzones/avatar-dropzone-minimal.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '"use client"
+
+import * as React from "react"
+import { cn } from "@/lib/utils"
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
+import { Spinner } from "@/components/ui/spinner"
+import { Camera, X } from "lucide-react"
+
+interface AvatarDropzoneMinimalProps {
+  className?: string
+  onFileSelect?: (file: File | null) => void
+  maxSize?: number
+  defaultImage?: string
+}
+
+export function AvatarDropzoneMinimal({
+  className,
+  onFileSelect,
+  maxSize = 5,
+  defaultImage,
+}: AvatarDropzoneMinimalProps) {
+  const [isDragOver, setIsDragOver] = React.useState(false)
+  const [preview, setPreview] = React.useState<string | null>(defaultImage || null)
+  const [isUploading, setIsUploading] = React.useState(false)
+  const inputRef = React.useRef<HTMLInputElement>(null)
+
+  const handleFile = React.useCallback(
+    (file: File) => {
+      if (!file.type.startsWith("image/") || file.size > maxSize * 1024 * 1024) return
+
+      setIsUploading(true)
+      const reader = new FileReader()
+      reader.onload = (e) => {
+        setPreview(e.target?.result as string)
+        setTimeout(() => {
+          setIsUploading(false)
+          onFileSelect?.(file)
+        }, 1000)
+      }
+      reader.readAsDataURL(file)
+    },
+    [maxSize, onFileSelect]
+  )
+
+  const handleDrop = React.useCallback(
+    (e: React.DragEvent) => {
+      e.preventDefault()
+      setIsDragOver(false)
+      const file = e.dataTransfer.files[0]
+      if (file) handleFile(file)
+    },
+    [handleFile]
+  )
+
+  return (
+    <div className={cn("flex flex-col items-center gap-2", className)}>
+      <div
+        role="button"
+        tabIndex={0}
+        aria-label="Upload avatar"
+        onClick={() => inputRef.current?.click()}
+        onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && inputRef.current?.click()}
+        onDrop={handleDrop}
+        onDragOver={(e) => { e.preventDefault(); setIsDragOver(true) }}
+        onDragLeave={(e) => { e.preventDefault(); setIsDragOver(false) }}
+        className={cn(
+          "group relative size-16 cursor-pointer transition-transform hover:scale-105",
+          isDragOver && "scale-110"
+        )}
+      >
+        <Avatar className="size-full border-2 border-border">
+          {preview ? (
+            <AvatarImage src={preview} alt="Avatar" className="object-cover" />
+          ) : (
+            <AvatarFallback className="bg-muted text-muted-foreground">
+              <Camera className="size-5" />
+            </AvatarFallback>
+          )}
+        </Avatar>
+
+        {isUploading && (
+          <div className="absolute inset-0 flex items-center justify-center rounded-full bg-background/80">
+            <Spinner className="size-5 text-primary" />
+          </div>
+        )}
+
+        {!isUploading && (
+          <div className="absolute inset-0 flex items-center justify-center rounded-full bg-foreground/60 opacity-0 transition-opacity group-hover:opacity-100">
+            <Camera className="size-4 text-background" />
+          </div>
+        )}
+
+        {preview && !isUploading && (
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation()
+              setPreview(null)
+              onFileSelect?.(null)
+            }}
+            className="absolute -right-1 -top-1 flex size-5 items-center justify-center rounded-full bg-destructive text-white"
+            aria-label="Remove"
+          >
+            <X className="size-3" />
+          </button>
+        )}
+      </div>
+
+      <input
+        ref={inputRef}
+        type="file"
+        accept="image/*"
+        onChange={(e) => e.target.files?.[0] && handleFile(e.target.files[0])}
+        className="sr-only"
+      />
+
+      <span className="text-xs text-muted-foreground">Click to upload</span>
+    </div>
+  )
+}
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'dropzones',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'dropzones',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'avatar-dropzone-outlined',
+                'type' => 'registry:ui',
+                'title' => 'Avatar Dropzone Outlined',
+                'description' => 'A beautiful component for your application.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                    'button',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/dropzones/avatar-dropzone-outlined.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '"use client"
+
+import { useState, useCallback, useRef } from "react"
+import { Upload, X, Check, AlertCircle, Loader2 } from "lucide-react"
+import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
+
+interface AvatarDropzoneOutlinedProps {
+  onFileSelect?: (file: File | null) => void
+  maxSize?: number
+  className?: string
+}
+
+export function AvatarDropzoneOutlined({
+  onFileSelect,
+  maxSize = 5 * 1024 * 1024,
+  className,
+}: AvatarDropzoneOutlinedProps) {
+  const [preview, setPreview] = useState<string | null>(null)
+  const [isDragging, setIsDragging] = useState(false)
+  const [status, setStatus] = useState<"idle" | "uploading" | "success" | "error">("idle")
+  const [error, setError] = useState<string | null>(null)
+  const inputRef = useRef<HTMLInputElement>(null)
+
+  const handleFile = useCallback(
+    (file: File) => {
+      setError(null)
+
+      if (!file.type.startsWith("image/")) {
+        setError("Please upload an image file")
+        setStatus("error")
+        return
+      }
+
+      if (file.size > maxSize) {
+        setError(`File must be less than ${Math.round(maxSize / 1024 / 1024)}MB`)
+        setStatus("error")
+        return
+      }
+
+      const reader = new FileReader()
+      reader.onload = (e) => {
+        setPreview(e.target?.result as string)
+        setStatus("uploading")
+
+        setTimeout(() => {
+          setStatus("success")
+          onFileSelect?.(file)
+        }, 1500)
+      }
+      reader.readAsDataURL(file)
+    },
+    [maxSize, onFileSelect]
+  )
+
+  const handleDrop = useCallback(
+    (e: React.DragEvent) => {
+      e.preventDefault()
+      setIsDragging(false)
+      const file = e.dataTransfer.files[0]
+      if (file) handleFile(file)
+    },
+    [handleFile]
+  )
+
+  const handleChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const file = e.target.files?.[0]
+      if (file) handleFile(file)
+    },
+    [handleFile]
+  )
+
+  const handleRemove = () => {
+    setPreview(null)
+    setStatus("idle")
+    setError(null)
+    onFileSelect?.(null)
+    if (inputRef.current) inputRef.current.value = ""
+  }
+
+  return (
+    <div className={cn("flex flex-col items-center gap-3", className)}>
+      <div
+        className={cn(
+          "relative size-28 rounded-full border-2 border-dashed transition-all duration-200",
+          isDragging && "border-primary bg-primary/5 scale-105",
+          status === "error" && "border-destructive",
+          status === "success" && "border-primary",
+          !preview && status === "idle" && "border-muted-foreground/25 hover:border-muted-foreground/50"
+        )}
+        onDragOver={(e) => {
+          e.preventDefault()
+          setIsDragging(true)
+        }}
+        onDragLeave={() => setIsDragging(false)}
+        onDrop={handleDrop}
+      >
+        <input
+          ref={inputRef}
+          type="file"
+          accept="image/*"
+          onChange={handleChange}
+          className="absolute inset-0 cursor-pointer opacity-0 rounded-full"
+          aria-label="Upload avatar image"
+        />
+
+        {preview ? (
+          <img
+            src={preview}
+            alt="Avatar preview"
+            className="size-full rounded-full object-cover"
+          />
+        ) : (
+          <div className="absolute inset-0 flex flex-col items-center justify-center text-muted-foreground">
+            <Upload className="size-6 mb-1" />
+            <span className="text-xs">Upload</span>
+          </div>
+        )}
+
+        {status === "uploading" && (
+          <div className="absolute inset-0 flex items-center justify-center rounded-full bg-background/80">
+            <Loader2 className="size-6 animate-spin text-primary" />
+          </div>
+        )}
+
+        {status === "success" && preview && (
+          <div className="absolute -bottom-1 -right-1 flex size-7 items-center justify-center rounded-full border-2 border-background bg-primary text-primary-foreground">
+            <Check className="size-4" />
+          </div>
+        )}
+
+        {status === "error" && (
+          <div className="absolute -bottom-1 -right-1 flex size-7 items-center justify-center rounded-full border-2 border-background bg-destructive text-white">
+            <AlertCircle className="size-4" />
+          </div>
+        )}
+      </div>
+
+      {preview && status !== "uploading" && (
+        <Button variant="ghost" size="sm" onClick={handleRemove} className="text-muted-foreground">
+          <X className="size-4 mr-1" />
+          Remove
+        </Button>
+      )}
+
+      {error && <p className="text-xs text-destructive">{error}</p>}
+    </div>
+  )
+}
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'dropzones',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'dropzones',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'avatar-dropzone-sortable-row',
+                'type' => 'registry:ui',
+                'title' => 'Avatar Dropzone Sortable Row',
+                'description' => 'A beautiful component for your application.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                    '@dnd-kit/react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                    'button',
+                    'card',
+                    'badge',
+                    'avatar',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/dropzones/avatar-dropzone-sortable-row.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '"use client"
+
+import * as React from "react"
+import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Plus, X, GripVertical, User, Upload, Trash2 } from "lucide-react"
+import { DragDropProvider } from "@dnd-kit/react"
+import { useSortable, isSortable } from "@dnd-kit/react/sortable"
+
+interface AvatarFile {
+  file: File
+  preview: string
+  id: string
+}
+
+interface SortableAvatarRowItemProps {
+  avatar: AvatarFile
+  index: number
+  onRemove: (id: string) => void
+  showHandle?: boolean
+}
+
+function SortableAvatarRowItem({
+  avatar,
+  index,
+  onRemove,
+  showHandle,
+}: SortableAvatarRowItemProps) {
+  const { ref, handleRef, isDragging } = useSortable({
+    id: avatar.id,
+    index,
+  })
+
+  return (
+    <div
+      ref={ref}
+      className={cn(
+        "group flex items-center gap-3 rounded-md border bg-card p-2 transition-all",
+        isDragging && "z-10 shadow-md ring-2 ring-primary"
+      )}
+    >
+      {showHandle && (
+        <button
+          ref={handleRef}
+          className="flex size-6 cursor-grab items-center justify-center rounded text-muted-foreground hover:bg-muted active:cursor-grabbing"
+          aria-label="Drag to reorder"
+        >
+          <GripVertical className="size-4" />
+        </button>
+      )}
+
+      <Avatar className="size-10 border">
+        <AvatarImage src={avatar.preview} alt="" />
+        <AvatarFallback>
+          <User className="size-5 text-muted-foreground" />
+        </AvatarFallback>
+      </Avatar>
+
+      <div className="flex min-w-0 flex-1 flex-col">
+        <span className="truncate text-sm font-medium">{avatar.file.name}</span>
+        <span className="text-xs text-muted-foreground">
+          {(avatar.file.size / 1024).toFixed(1)} KB
+        </span>
+      </div>
+
+      <Badge variant="secondary" className="shrink-0">
+        #{index + 1}
+      </Badge>
+
+      <Button
+        variant="ghost"
+        size="sm"
+        onClick={() => onRemove(avatar.id)}
+        className="size-8 shrink-0 p-0 text-muted-foreground hover:text-destructive"
+      >
+        <X className="size-4" />
+      </Button>
+    </div>
+  )
+}
+
+interface AvatarDropzoneSortableRowProps {
+  onFilesSelect?: (files: File[]) => void
+  onReorder?: (files: File[]) => void
+  maxAvatars?: number
+  maxSize?: number
+  className?: string
+  enableReorder?: boolean
+  title?: string
+  description?: string
+}
+
+export function AvatarDropzoneSortableRow({
+  onFilesSelect,
+  onReorder,
+  maxAvatars = 4,
+  maxSize = 5 * 1024 * 1024,
+  className,
+  enableReorder = true,
+  title = "Team Members",
+  description = "Add and reorder team member avatars",
+}: AvatarDropzoneSortableRowProps) {
+  const [avatars, setAvatars] = React.useState<AvatarFile[]>([])
+  const [isDragging, setIsDragging] = React.useState(false)
+  const inputRef = React.useRef<HTMLInputElement>(null)
+
+  const handleFiles = React.useCallback(
+    (newFiles: FileList) => {
+      const validFiles = Array.from(newFiles)
+        .filter((file) => file.type.startsWith("image/") && file.size <= maxSize)
+        .slice(0, maxAvatars - avatars.length)
+
+      const newAvatarObjects = validFiles.map((file) => ({
+        file,
+        preview: URL.createObjectURL(file),
+        id: Math.random().toString(36).slice(2),
+      }))
+
+      const updated = [...avatars, ...newAvatarObjects].slice(0, maxAvatars)
+      setAvatars(updated)
+      onFilesSelect?.(updated.map((a) => a.file))
+    },
+    [avatars, maxAvatars, maxSize, onFilesSelect]
+  )
+
+  const handleDrop = React.useCallback(
+    (e: React.DragEvent) => {
+      e.preventDefault()
+      setIsDragging(false)
+      if (e.dataTransfer.files.length) handleFiles(e.dataTransfer.files)
+    },
+    [handleFiles]
+  )
+
+  const removeAvatar = (id: string) => {
+    const updated = avatars.filter((a) => a.id !== id)
+    setAvatars(updated)
+    onFilesSelect?.(updated.map((a) => a.file))
+  }
+
+  const clearAll = () => {
+    setAvatars([])
+    onFilesSelect?.([])
+    if (inputRef.current) inputRef.current.value = ""
+  }
+
+  const handleDragEnd = React.useCallback(
+    (event: { canceled: boolean; operation: { source: unknown } }) => {
+      if (event.canceled) return
+
+      const source = event.operation.source as any
+
+      if (isSortable(source)) {
+        const { initialIndex, index } = source
+
+        if (initialIndex !== index) {
+          setAvatars((prev) => {
+            const newAvatars = [...prev]
+            const [removed] = newAvatars.splice(initialIndex, 1)
+            newAvatars.splice(index, 0, removed)
+            onReorder?.(newAvatars.map((a) => a.file))
+            return newAvatars
+          })
+        }
+      }
+    },
+    [onReorder]
+  )
+
+  const avatarsContent = (
+    <div className="space-y-2">
+      {avatars.map((avatar, index) => (
+        <SortableAvatarRowItem
+          key={avatar.id}
+          avatar={avatar}
+          index={index}
+          onRemove={removeAvatar}
+          showHandle={enableReorder}
+        />
+      ))}
+    </div>
+  )
+
+  return (
+    <Card className={cn(className)}>
+      <CardHeader className="pb-4">
+        <div className="flex items-center justify-between">
+          <div>
+            <CardTitle className="text-base">{title}</CardTitle>
+            <CardDescription className="text-sm">{description}</CardDescription>
+          </div>
+          {avatars.length > 0 && (
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={clearAll}
+              className="gap-1 text-muted-foreground hover:text-destructive"
+            >
+              <Trash2 className="size-3" />
+              Clear
+            </Button>
+          )}
+        </div>
+      </CardHeader>
+
+      <CardContent className="space-y-4">
+        <input
+          ref={inputRef}
+          type="file"
+          accept="image/*"
+          multiple
+          onChange={(e) => e.target.files && handleFiles(e.target.files)}
+          className="sr-only"
+        />
+
+        {avatars.length === 0 ? (
+          <div
+            className={cn(
+              "flex cursor-pointer flex-col items-center gap-2 rounded-md border-2 border-dashed p-6 transition-colors",
+              isDragging
+                ? "border-primary bg-primary/5"
+                : "border-muted hover:border-muted-foreground/50"
+            )}
+            onDragOver={(e) => {
+              e.preventDefault()
+              setIsDragging(true)
+            }}
+            onDragLeave={() => setIsDragging(false)}
+            onDrop={handleDrop}
+            onClick={() => inputRef.current?.click()}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault()
+                inputRef.current?.click()
+              }
+            }}
+            tabIndex={0}
+            role="button"
+            aria-label="Upload avatars"
+          >
+            <Upload className="size-6 text-muted-foreground" />
+            <p className="text-sm text-muted-foreground">
+              Drop images or click to add team members
+            </p>
+          </div>
+        ) : (
+          <>
+            {enableReorder ? (
+              <DragDropProvider onDragEnd={handleDragEnd}>
+                {avatarsContent}
+              </DragDropProvider>
+            ) : (
+              avatarsContent
+            )}
+
+            {avatars.length < maxAvatars && (
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => inputRef.current?.click()}
+                className="w-full gap-1"
+              >
+                <Plus className="size-4" />
+                Add Member ({avatars.length}/{maxAvatars})
+              </Button>
+            )}
+
+            {enableReorder && (
+              <p className="text-center text-xs text-muted-foreground">
+                Drag items to change order
+              </p>
+            )}
+          </>
+        )}
+      </CardContent>
+    </Card>
+  )
+}
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'dropzones',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'dropzones',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'avatar-dropzone-sortable-stack',
+                'type' => 'registry:ui',
+                'title' => 'Avatar Dropzone Sortable Stack',
+                'description' => 'A beautiful component for your application.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                    '@dnd-kit/react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                    'button',
+                    'tooltip',
+                    'avatar',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/dropzones/avatar-dropzone-sortable-stack.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '"use client"
+
+import * as React from "react"
+import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Plus, X, GripVertical, UserCircle } from "lucide-react"
+import { DragDropProvider } from "@dnd-kit/react"
+import { useSortable, isSortable } from "@dnd-kit/react/sortable"
+
+interface AvatarFile {
+  file: File
+  preview: string
+  id: string
+}
+
+interface SortableAvatarProps {
+  avatar: AvatarFile
+  index: number
+  onRemove: (id: string) => void
+  showHandle?: boolean
+  size?: "sm" | "md" | "lg"
+}
+
+const sizeClasses = {
+  sm: "size-8",
+  md: "size-10",
+  lg: "size-12",
+}
+
+function SortableAvatar({
+  avatar,
+  index,
+  onRemove,
+  showHandle,
+  size = "md",
+}: SortableAvatarProps) {
+  const { ref, handleRef, isDragging } = useSortable({
+    id: avatar.id,
+    index,
+  })
+
+  return (
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <div
+            ref={ref}
+            className={cn(
+              "group relative -ml-2 first:ml-0",
+              isDragging && "z-10"
+            )}
+          >
+            <Avatar
+              className={cn(
+                sizeClasses[size],
+                "border-2 border-background transition-transform",
+                isDragging && "scale-110 ring-2 ring-primary"
+              )}
+            >
+              <AvatarImage src={avatar.preview} alt="" />
+              <AvatarFallback>
+                <UserCircle className="size-full text-muted-foreground" />
+              </AvatarFallback>
+            </Avatar>
+
+            <div className="absolute -right-1 -top-1 flex gap-0.5 opacity-0 transition-opacity group-hover:opacity-100">
+              {showHandle && (
+                <button
+                  ref={handleRef}
+                  className="flex size-4 cursor-grab items-center justify-center rounded-full bg-muted text-muted-foreground shadow-sm active:cursor-grabbing"
+                  aria-label="Drag to reorder"
+                >
+                  <GripVertical className="size-2.5" />
+                </button>
+              )}
+              <button
+                onClick={() => onRemove(avatar.id)}
+                className="flex size-4 items-center justify-center rounded-full bg-destructive text-destructive-foreground shadow-sm"
+                aria-label="Remove"
+              >
+                <X className="size-2.5" />
+              </button>
+            </div>
+          </div>
+        </TooltipTrigger>
+        <TooltipContent>
+          <p className="text-xs">{avatar.file.name}</p>
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
+  )
+}
+
+interface AvatarDropzoneSortableStackProps {
+  onFilesSelect?: (files: File[]) => void
+  onReorder?: (files: File[]) => void
+  maxAvatars?: number
+  maxSize?: number
+  className?: string
+  enableReorder?: boolean
+  size?: "sm" | "md" | "lg"
+}
+
+export function AvatarDropzoneSortableStack({
+  onFilesSelect,
+  onReorder,
+  maxAvatars = 5,
+  maxSize = 5 * 1024 * 1024,
+  className,
+  enableReorder = true,
+  size = "md",
+}: AvatarDropzoneSortableStackProps) {
+  const [avatars, setAvatars] = React.useState<AvatarFile[]>([])
+  const inputRef = React.useRef<HTMLInputElement>(null)
+
+  const handleFiles = React.useCallback(
+    (newFiles: FileList) => {
+      const validFiles = Array.from(newFiles)
+        .filter((file) => file.type.startsWith("image/") && file.size <= maxSize)
+        .slice(0, maxAvatars - avatars.length)
+
+      const newAvatarObjects = validFiles.map((file) => ({
+        file,
+        preview: URL.createObjectURL(file),
+        id: Math.random().toString(36).slice(2),
+      }))
+
+      const updated = [...avatars, ...newAvatarObjects].slice(0, maxAvatars)
+      setAvatars(updated)
+      onFilesSelect?.(updated.map((a) => a.file))
+    },
+    [avatars, maxAvatars, maxSize, onFilesSelect]
+  )
+
+  const removeAvatar = (id: string) => {
+    const updated = avatars.filter((a) => a.id !== id)
+    setAvatars(updated)
+    onFilesSelect?.(updated.map((a) => a.file))
+  }
+
+  const handleDragEnd = React.useCallback(
+    (event: { canceled: boolean; operation: { source: unknown } }) => {
+      if (event.canceled) return
+
+      const source = event.operation.source as any
+
+      if (isSortable(source)) {
+        const { initialIndex, index } = source
+
+        if (initialIndex !== index) {
+          setAvatars((prev) => {
+            const newAvatars = [...prev]
+            const [removed] = newAvatars.splice(initialIndex, 1)
+            newAvatars.splice(index, 0, removed)
+            onReorder?.(newAvatars.map((a) => a.file))
+            return newAvatars
+          })
+        }
+      }
+    },
+    [onReorder]
+  )
+
+  const avatarsContent = (
+    <div className="flex items-center">
+      {avatars.map((avatar, index) => (
+        <SortableAvatar
+          key={avatar.id}
+          avatar={avatar}
+          index={index}
+          onRemove={removeAvatar}
+          showHandle={enableReorder}
+          size={size}
+        />
+      ))}
+
+      {avatars.length < maxAvatars && (
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button
+                variant="outline"
+                size="icon"
+                onClick={() => inputRef.current?.click()}
+                className={cn(
+                  sizeClasses[size],
+                  "ml-2 rounded-full border-dashed"
+                )}
+              >
+                <Plus className="size-4" />
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>Add avatar ({avatars.length}/{maxAvatars})</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+      )}
+    </div>
+  )
+
+  return (
+    <div className={cn("flex flex-col gap-2", className)}>
+      <input
+        ref={inputRef}
+        type="file"
+        accept="image/*"
+        multiple
+        onChange={(e) => e.target.files && handleFiles(e.target.files)}
+        className="sr-only"
+      />
+
+      {enableReorder ? (
+        <DragDropProvider onDragEnd={handleDragEnd}>
+          {avatarsContent}
+        </DragDropProvider>
+      ) : (
+        avatarsContent
+      )}
+
+      {avatars.length > 0 && (
+        <p className="text-xs text-muted-foreground">
+          {enableReorder ? "Drag to reorder avatars" : `${avatars.length} avatar${avatars.length > 1 ? "s" : ""}`}
+        </p>
+      )}
+    </div>
+  )
+}
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'dropzones',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'dropzones',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'avatar-dropzone-square',
+                'type' => 'registry:ui',
+                'title' => 'Avatar Dropzone Square',
+                'description' => 'A beautiful component for your application.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                    'button',
+                    'progress',
+                    'badge',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/dropzones/avatar-dropzone-square.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '"use client"
+
+import * as React from "react"
+import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
+import { Progress } from "@/components/ui/progress"
+import { Badge } from "@/components/ui/badge"
+import { User, Upload, RotateCcw, Check, X } from "lucide-react"
+
+interface AvatarDropzoneSquareProps {
+  className?: string
+  onFileSelect?: (file: File | null) => void
+  maxSize?: number
+  defaultImage?: string
+}
+
+type Status = "idle" | "uploading" | "success" | "error"
+
+export function AvatarDropzoneSquare({
+  className,
+  onFileSelect,
+  maxSize = 5,
+  defaultImage,
+}: AvatarDropzoneSquareProps) {
+  const [isDragOver, setIsDragOver] = React.useState(false)
+  const [preview, setPreview] = React.useState<string | null>(defaultImage || null)
+  const [status, setStatus] = React.useState<Status>("idle")
+  const [progress, setProgress] = React.useState(0)
+  const inputRef = React.useRef<HTMLInputElement>(null)
+
+  const simulateUpload = React.useCallback(() => {
+    setStatus("uploading")
+    setProgress(0)
+    const interval = setInterval(() => {
+      setProgress((prev) => {
+        if (prev >= 100) {
+          clearInterval(interval)
+          setStatus("success")
+          return 100
+        }
+        return prev + 10
+      })
+    }, 100)
+  }, [])
+
+  const handleFile = React.useCallback(
+    (file: File) => {
+      if (!file.type.startsWith("image/") || file.size > maxSize * 1024 * 1024) {
+        setStatus("error")
+        return
+      }
+
+      const reader = new FileReader()
+      reader.onload = (e) => {
+        setPreview(e.target?.result as string)
+        simulateUpload()
+        onFileSelect?.(file)
+      }
+      reader.readAsDataURL(file)
+    },
+    [maxSize, onFileSelect, simulateUpload]
+  )
+
+  const handleDrop = React.useCallback(
+    (e: React.DragEvent) => {
+      e.preventDefault()
+      setIsDragOver(false)
+      const file = e.dataTransfer.files[0]
+      if (file) handleFile(file)
+    },
+    [handleFile]
+  )
+
+  const handleRemove = () => {
+    setPreview(null)
+    setStatus("idle")
+    setProgress(0)
+    onFileSelect?.(null)
+  }
+
+  return (
+    <div className={cn("flex flex-col items-center gap-3", className)}>
+      <div
+        role="button"
+        tabIndex={0}
+        aria-label="Upload avatar"
+        onClick={() => status !== "success" && inputRef.current?.click()}
+        onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && status !== "success" && inputRef.current?.click()}
+        onDrop={handleDrop}
+        onDragOver={(e) => { e.preventDefault(); setIsDragOver(true) }}
+        onDragLeave={(e) => { e.preventDefault(); setIsDragOver(false) }}
+        className={cn(
+          "relative size-32 overflow-hidden rounded-lg border-2 transition-all",
+          status !== "success" && "cursor-pointer",
+          isDragOver
+            ? "border-primary bg-primary/5 scale-[1.02]"
+            : status === "error"
+            ? "border-destructive"
+            : status === "success"
+            ? "border-success"
+            : "border-dashed border-border hover:border-primary/50"
+        )}
+      >
+        {preview ? (
+          <img src={preview} alt="Avatar preview" className="h-full w-full object-cover" />
+        ) : (
+          <div className="flex h-full w-full flex-col items-center justify-center gap-2 bg-muted/30">
+            <User className="size-10 text-muted-foreground/50" />
+            <span className="text-xs text-muted-foreground">No image</span>
+          </div>
+        )}
+
+        {/* Upload overlay */}
+        {!preview && isDragOver && (
+          <div className="absolute inset-0 flex items-center justify-center bg-primary/10">
+            <Upload className="size-8 text-primary" />
+          </div>
+        )}
+
+        {/* Progress overlay */}
+        {status === "uploading" && (
+          <div className="absolute inset-0 flex flex-col items-center justify-center bg-background/80">
+            <div className="mb-2 text-lg font-bold text-foreground">{Math.round(progress)}%</div>
+            <Progress value={progress} className="h-1.5 w-24" />
+          </div>
+        )}
+
+        {/* Success badge */}
+        {status === "success" && (
+          <Badge className="absolute right-2 top-2 gap-1 bg-success text-success-foreground">
+            <Check className="size-3" />
+            Uploaded
+          </Badge>
+        )}
+      </div>
+
+      <input
+        ref={inputRef}
+        type="file"
+        accept="image/*"
+        onChange={(e) => e.target.files?.[0] && handleFile(e.target.files[0])}
+        className="sr-only"
+      />
+
+      {/* Action buttons */}
+      <div className="flex gap-2">
+        {status === "success" ? (
+          <>
+            <Button variant="outline" size="sm" onClick={() => inputRef.current?.click()}>
+              <RotateCcw className="mr-1.5 size-3.5" />
+              Replace
+            </Button>
+            <Button variant="ghost" size="sm" onClick={handleRemove} className="text-destructive hover:text-destructive">
+              <X className="mr-1.5 size-3.5" />
+              Remove
+            </Button>
+          </>
+        ) : (
+          <Button variant="outline" size="sm" onClick={() => inputRef.current?.click()}>
+            <Upload className="mr-1.5 size-3.5" />
+            Select Image
+          </Button>
+        )}
+      </div>
+    </div>
+  )
+}
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'dropzones',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'dropzones',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'gallery-dropzone-carousel',
+                'type' => 'registry:ui',
+                'title' => 'Gallery Dropzone Carousel',
+                'description' => 'A beautiful component for your application.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                    'button',
+                    'progress',
+                    'badge',
+                    'scroll-area',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/dropzones/gallery-dropzone-carousel.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '"use client"
+
+import * as React from "react"
+import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
+import { Progress } from "@/components/ui/progress"
+import { Badge } from "@/components/ui/badge"
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
+import { ImageIcon, Upload, X, Check, ChevronLeft, ChevronRight, Plus } from "lucide-react"
+
+interface ImageFile {
+  id: string
+  file: File
+  preview: string
+  progress: number
+  status: "uploading" | "success" | "error"
+}
+
+interface GalleryDropzoneCarouselProps {
+  className?: string
+  onFilesChange?: (files: File[]) => void
+  maxFiles?: number
+  maxSize?: number
+}
+
+export function GalleryDropzoneCarousel({
+  className,
+  onFilesChange,
+  maxFiles = 10,
+  maxSize = 10,
+}: GalleryDropzoneCarouselProps) {
+  const [isDragOver, setIsDragOver] = React.useState(false)
+  const [images, setImages] = React.useState<ImageFile[]>([])
+  const [activeIndex, setActiveIndex] = React.useState(0)
+  const inputRef = React.useRef<HTMLInputElement>(null)
+  const scrollRef = React.useRef<HTMLDivElement>(null)
+
+  const simulateUpload = React.useCallback((imageId: string) => {
+    const interval = setInterval(() => {
+      setImages((prev) =>
+        prev.map((img) => {
+          if (img.id !== imageId) return img
+          if (img.progress >= 100) {
+            clearInterval(interval)
+            return { ...img, progress: 100, status: "success" }
+          }
+          return { ...img, progress: img.progress + 18 }
+        })
+      )
+    }, 100)
+  }, [])
+
+  const processFiles = React.useCallback(
+    (files: FileList | File[]) => {
+      const fileArray = Array.from(files)
+      const remainingSlots = maxFiles - images.length
+      const filesToProcess = fileArray.slice(0, remainingSlots)
+
+      const newImages: ImageFile[] = filesToProcess.map((file) => {
+        const id = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`
+
+        if (!file.type.startsWith("image/") || file.size > maxSize * 1024 * 1024) {
+          return { id, file, preview: "", progress: 0, status: "error" as const }
+        }
+
+        const reader = new FileReader()
+        reader.onload = (e) => {
+          setImages((prev) =>
+            prev.map((img) => (img.id === id ? { ...img, preview: e.target?.result as string } : img))
+          )
+        }
+        reader.readAsDataURL(file)
+
+        return { id, file, preview: "", progress: 0, status: "uploading" as const }
+      })
+
+      setImages((prev) => [...prev, ...newImages])
+      newImages.forEach((img) => {
+        if (img.status !== "error") setTimeout(() => simulateUpload(img.id), 50)
+      })
+
+      onFilesChange?.([...images, ...newImages].filter((i) => i.status !== "error").map((i) => i.file))
+    },
+    [images, maxFiles, maxSize, onFilesChange, simulateUpload]
+  )
+
+  const handleDrop = React.useCallback((e: React.DragEvent) => {
+    e.preventDefault()
+    setIsDragOver(false)
+    processFiles(e.dataTransfer.files)
+  }, [processFiles])
+
+  const handleRemove = React.useCallback((id: string) => {
+    setImages((prev) => {
+      const updated = prev.filter((img) => img.id !== id)
+      onFilesChange?.(updated.filter((i) => i.status !== "error").map((i) => i.file))
+      if (activeIndex >= updated.length) setActiveIndex(Math.max(0, updated.length - 1))
+      return updated
+    })
+  }, [activeIndex, onFilesChange])
+
+  const activeImage = images[activeIndex]
+
+  return (
+    <div className={cn("flex flex-col gap-4", className)}>
+      {/* Main preview area */}
+      <div
+        role="button"
+        tabIndex={0}
+        aria-label="Upload images"
+        onClick={() => images.length === 0 && inputRef.current?.click()}
+        onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && images.length === 0 && inputRef.current?.click()}
+        onDrop={handleDrop}
+        onDragOver={(e) => { e.preventDefault(); setIsDragOver(true) }}
+        onDragLeave={(e) => { e.preventDefault(); setIsDragOver(false) }}
+        className={cn(
+          "relative aspect-[16/10] overflow-hidden rounded-lg border-2 transition-all",
+          images.length === 0 && "cursor-pointer border-dashed",
+          isDragOver ? "border-primary bg-primary/5" : "border-border"
+        )}
+      >
+        {images.length === 0 ? (
+          <div className="flex h-full flex-col items-center justify-center gap-3">
+            <div className="rounded-full bg-muted p-4">
+              <ImageIcon className="size-10 text-muted-foreground" />
+            </div>
+            <div className="text-center">
+              <p className="font-medium">Add photos to your gallery</p>
+              <p className="text-sm text-muted-foreground">Drag & drop or click to upload</p>
+            </div>
+            <Button variant="outline">
+              <Upload className="mr-2 size-4" />
+              Browse Files
+            </Button>
+          </div>
+        ) : activeImage ? (
+          <>
+            {activeImage.preview ? (
+              <img src={activeImage.preview} alt="" className="h-full w-full object-contain bg-muted" />
+            ) : (
+              <div className="flex h-full w-full items-center justify-center bg-muted">
+                <ImageIcon className="size-12 text-muted-foreground" />
+              </div>
+            )}
+
+            {activeImage.status === "uploading" && (
+              <div className="absolute inset-0 flex flex-col items-center justify-center bg-background/70">
+                <span className="mb-2 text-lg font-bold">{Math.round(activeImage.progress)}%</span>
+                <Progress value={activeImage.progress} className="h-2 w-1/2" />
+              </div>
+            )}
+
+            {activeImage.status === "success" && (
+              <Badge className="absolute right-3 top-3 gap-1 bg-success text-success-foreground">
+                <Check className="size-3.5" />
+                Uploaded
+              </Badge>
+            )}
+
+            <button
+              type="button"
+              onClick={() => handleRemove(activeImage.id)}
+              className="absolute right-3 bottom-3 flex size-8 items-center justify-center rounded-full bg-foreground/80 text-background hover:bg-destructive"
+              aria-label="Remove image"
+            >
+              <X className="size-4" />
+            </button>
+
+            {/* Navigation arrows */}
+            {images.length > 1 && (
+              <>
+                <button
+                  type="button"
+                  onClick={() => setActiveIndex((prev) => (prev - 1 + images.length) % images.length)}
+                  className="absolute left-2 top-1/2 flex size-8 -translate-y-1/2 items-center justify-center rounded-full bg-foreground/80 text-background hover:bg-foreground"
+                  aria-label="Previous image"
+                >
+                  <ChevronLeft className="size-5" />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setActiveIndex((prev) => (prev + 1) % images.length)}
+                  className="absolute right-2 top-1/2 flex size-8 -translate-y-1/2 items-center justify-center rounded-full bg-foreground/80 text-background hover:bg-foreground"
+                  aria-label="Next image"
+                >
+                  <ChevronRight className="size-5" />
+                </button>
+              </>
+            )}
+
+            <div className="absolute bottom-3 left-3 rounded-full bg-foreground/80 px-2 py-0.5 text-xs text-background">
+              {activeIndex + 1} / {images.length}
+            </div>
+          </>
+        ) : null}
+
+        {isDragOver && (
+          <div className="absolute inset-0 flex items-center justify-center bg-primary/20">
+            <Upload className="size-12 text-primary" />
+          </div>
+        )}
+      </div>
+
+      {/* Thumbnail strip */}
+      {images.length > 0 && (
+        <ScrollArea className="w-full whitespace-nowrap">
+          <div ref={scrollRef} className="flex gap-2 pb-2">
+            {images.map((image, idx) => (
+              <button
+                key={image.id}
+                type="button"
+                onClick={() => setActiveIndex(idx)}
+                className={cn(
+                  "relative size-16 shrink-0 overflow-hidden rounded-md border-2 transition-all",
+                  idx === activeIndex ? "border-primary ring-2 ring-primary/20" : "border-transparent hover:border-muted-foreground/30"
+                )}
+              >
+                {image.preview ? (
+                  <img src={image.preview} alt="" className="h-full w-full object-cover" />
+                ) : (
+                  <div className="flex h-full w-full items-center justify-center bg-muted">
+                    <ImageIcon className="size-5 text-muted-foreground" />
+                  </div>
+                )}
+                {image.status === "uploading" && (
+                  <div className="absolute inset-0 flex items-center justify-center bg-background/60">
+                    <Progress value={image.progress} className="h-1 w-10" />
+                  </div>
+                )}
+              </button>
+            ))}
+
+            {images.length < maxFiles && (
+              <button
+                type="button"
+                onClick={() => inputRef.current?.click()}
+                className="flex size-16 shrink-0 items-center justify-center rounded-md border-2 border-dashed border-muted-foreground/30 hover:border-primary/50 hover:bg-muted/30"
+                aria-label="Add more images"
+              >
+                <Plus className="size-5 text-muted-foreground" />
+              </button>
+            )}
+          </div>
+          <ScrollBar orientation="horizontal" />
+        </ScrollArea>
+      )}
+
+      <input
+        ref={inputRef}
+        type="file"
+        accept="image/*"
+        multiple
+        onChange={(e) => e.target.files && processFiles(e.target.files)}
+        className="sr-only"
+      />
+    </div>
+  )
+}
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'dropzones',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'dropzones',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'gallery-dropzone-compact',
+                'type' => 'registry:ui',
+                'title' => 'Gallery Dropzone Compact',
+                'description' => 'A beautiful component for your application.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                    'button',
+                    'progress',
+                    'tooltip',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/dropzones/gallery-dropzone-compact.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '"use client"
+
+import * as React from "react"
+import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
+import { Progress } from "@/components/ui/progress"
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
+import { ImageIcon, Plus, X, Check, AlertCircle } from "lucide-react"
+
+interface ImageFile {
+  id: string
+  file: File
+  preview: string
+  progress: number
+  status: "uploading" | "success" | "error"
+}
+
+interface GalleryDropzoneCompactProps {
+  className?: string
+  onFilesChange?: (files: File[]) => void
+  maxFiles?: number
+  maxSize?: number
+}
+
+export function GalleryDropzoneCompact({
+  className,
+  onFilesChange,
+  maxFiles = 6,
+  maxSize = 10,
+}: GalleryDropzoneCompactProps) {
+  const [images, setImages] = React.useState<ImageFile[]>([])
+  const inputRef = React.useRef<HTMLInputElement>(null)
+
+  const simulateUpload = React.useCallback((imageId: string) => {
+    const interval = setInterval(() => {
+      setImages((prev) =>
+        prev.map((img) => {
+          if (img.id !== imageId) return img
+          if (img.progress >= 100) {
+            clearInterval(interval)
+            return { ...img, progress: 100, status: "success" }
+          }
+          return { ...img, progress: img.progress + 20 }
+        })
+      )
+    }, 100)
+  }, [])
+
+  const processFiles = React.useCallback(
+    (files: FileList | File[]) => {
+      const fileArray = Array.from(files)
+      const remainingSlots = maxFiles - images.length
+      const filesToProcess = fileArray.slice(0, remainingSlots)
+
+      const newImages: ImageFile[] = filesToProcess.map((file) => {
+        const id = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`
+
+        if (!file.type.startsWith("image/") || file.size > maxSize * 1024 * 1024) {
+          return { id, file, preview: "", progress: 0, status: "error" as const }
+        }
+
+        const reader = new FileReader()
+        reader.onload = (e) => {
+          setImages((prev) =>
+            prev.map((img) => (img.id === id ? { ...img, preview: e.target?.result as string } : img))
+          )
+        }
+        reader.readAsDataURL(file)
+
+        return { id, file, preview: "", progress: 0, status: "uploading" as const }
+      })
+
+      setImages((prev) => [...prev, ...newImages])
+      newImages.forEach((img) => {
+        if (img.status !== "error") setTimeout(() => simulateUpload(img.id), 50)
+      })
+
+      onFilesChange?.([...images, ...newImages].filter((i) => i.status !== "error").map((i) => i.file))
+    },
+    [images, maxFiles, maxSize, onFilesChange, simulateUpload]
+  )
+
+  const handleRemove = React.useCallback((id: string) => {
+    setImages((prev) => {
+      const updated = prev.filter((img) => img.id !== id)
+      onFilesChange?.(updated.filter((i) => i.status !== "error").map((i) => i.file))
+      return updated
+    })
+  }, [onFilesChange])
+
+  return (
+    <div className={cn("flex flex-wrap items-center gap-2", className)}>
+      {images.map((image) => (
+        <Tooltip key={image.id}>
+          <TooltipTrigger asChild>
+            <div className="group relative size-14 overflow-hidden rounded-md border bg-muted">
+              {image.preview ? (
+                <img src={image.preview} alt="" className="h-full w-full object-cover" />
+              ) : (
+                <div className="flex h-full w-full items-center justify-center">
+                  <ImageIcon className="size-5 text-muted-foreground" />
+                </div>
+              )}
+
+              {/* Progress overlay */}
+              {image.status === "uploading" && (
+                <div className="absolute inset-0 flex items-center justify-center bg-background/70">
+                  <Progress value={Math.min(image.progress, 100)} className="h-1 w-10" />
+                </div>
+              )}
+
+              {/* Status icons */}
+              {image.status === "success" && (
+                <div className="absolute bottom-0.5 right-0.5 rounded-full bg-success p-0.5">
+                  <Check className="size-2.5 text-success-foreground" />
+                </div>
+              )}
+              {image.status === "error" && (
+                <div className="absolute bottom-0.5 right-0.5 rounded-full bg-destructive p-0.5">
+                  <AlertCircle className="size-2.5 text-white" />
+                </div>
+              )}
+
+              {/* Remove button */}
+              <button
+                type="button"
+                onClick={() => handleRemove(image.id)}
+                className="absolute right-0.5 top-0.5 flex size-4 items-center justify-center rounded-full bg-foreground/80 text-background opacity-0 transition-opacity group-hover:opacity-100"
+                aria-label="Remove"
+              >
+                <X className="size-2.5" />
+              </button>
+            </div>
+          </TooltipTrigger>
+          <TooltipContent side="bottom" className="text-xs">{image.file.name}</TooltipContent>
+        </Tooltip>
+      ))}
+
+      {images.length < maxFiles && (
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => inputRef.current?.click()}
+          className="size-14 border-dashed"
+        >
+          <Plus className="size-5 text-muted-foreground" />
+        </Button>
+      )}
+
+      <input
+        ref={inputRef}
+        type="file"
+        accept="image/*"
+        multiple
+        onChange={(e) => e.target.files && processFiles(e.target.files)}
+        className="sr-only"
+      />
+    </div>
+  )
+}
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'dropzones',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'dropzones',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'gallery-dropzone-dialog',
+                'type' => 'registry:ui',
+                'title' => 'Gallery Dropzone Dialog',
+                'description' => 'A beautiful component for your application.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                    'button',
+                    'progress',
+                    'badge',
+                    'dialog',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/dropzones/gallery-dropzone-dialog.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '"use client"
+
+import * as React from "react"
+import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
+import { Progress } from "@/components/ui/progress"
+import { Badge } from "@/components/ui/badge"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+  DialogFooter,
+} from "@/components/ui/dialog"
+import { ImageIcon, Upload, X, Check, Plus, Images } from "lucide-react"
+
+interface ImageFile {
+  id: string
+  file: File
+  preview: string
+  progress: number
+  status: "uploading" | "success" | "error"
+}
+
+interface GalleryDropzoneDialogProps {
+  className?: string
+  onFilesChange?: (files: File[]) => void
+  maxFiles?: number
+  maxSize?: number
+}
+
+export function GalleryDropzoneDialog({
+  className,
+  onFilesChange,
+  maxFiles = 12,
+  maxSize = 10,
+}: GalleryDropzoneDialogProps) {
+  const [isOpen, setIsOpen] = React.useState(false)
+  const [isDragOver, setIsDragOver] = React.useState(false)
+  const [images, setImages] = React.useState<ImageFile[]>([])
+  const inputRef = React.useRef<HTMLInputElement>(null)
+
+  const simulateUpload = React.useCallback((imageId: string) => {
+    const interval = setInterval(() => {
+      setImages((prev) =>
+        prev.map((img) => {
+          if (img.id !== imageId) return img
+          if (img.progress >= 100) {
+            clearInterval(interval)
+            return { ...img, progress: 100, status: "success" }
+          }
+          return { ...img, progress: img.progress + 12 }
+        })
+      )
+    }, 100)
+  }, [])
+
+  const processFiles = React.useCallback(
+    (files: FileList | File[]) => {
+      const fileArray = Array.from(files)
+      const remainingSlots = maxFiles - images.length
+      const filesToProcess = fileArray.slice(0, remainingSlots)
+
+      const newImages: ImageFile[] = filesToProcess.map((file) => {
+        const id = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`
+
+        if (!file.type.startsWith("image/") || file.size > maxSize * 1024 * 1024) {
+          return { id, file, preview: "", progress: 0, status: "error" as const }
+        }
+
+        const reader = new FileReader()
+        reader.onload = (e) => {
+          setImages((prev) =>
+            prev.map((img) => (img.id === id ? { ...img, preview: e.target?.result as string } : img))
+          )
+        }
+        reader.readAsDataURL(file)
+
+        return { id, file, preview: "", progress: 0, status: "uploading" as const }
+      })
+
+      setImages((prev) => [...prev, ...newImages])
+      newImages.forEach((img) => {
+        if (img.status !== "error") setTimeout(() => simulateUpload(img.id), 50)
+      })
+    },
+    [images.length, maxFiles, maxSize, simulateUpload]
+  )
+
+  const handleDrop = React.useCallback((e: React.DragEvent) => {
+    e.preventDefault()
+    setIsDragOver(false)
+    processFiles(e.dataTransfer.files)
+  }, [processFiles])
+
+  const handleRemove = (id: string) => setImages((prev) => prev.filter((img) => img.id !== id))
+
+  const handleSave = () => {
+    onFilesChange?.(images.filter((i) => i.status === "success").map((i) => i.file))
+    setIsOpen(false)
+  }
+
+  const successCount = images.filter((i) => i.status === "success").length
+
+  return (
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+      <DialogTrigger asChild>
+        <Button variant="outline" className={cn("gap-2", className)}>
+          <Images className="size-4" />
+          Upload Gallery
+          {successCount > 0 && (
+            <Badge variant="secondary" className="ml-1">{successCount}</Badge>
+          )}
+        </Button>
+      </DialogTrigger>
+
+      <DialogContent className="max-w-2xl">
+        <DialogHeader>
+          <DialogTitle>Upload Images</DialogTitle>
+          <DialogDescription>
+            Add up to {maxFiles} images to your gallery. Max {maxSize}MB per file.
+          </DialogDescription>
+        </DialogHeader>
+
+        {/* Dropzone area */}
+        <div
+          role="button"
+          tabIndex={0}
+          aria-label="Upload images"
+          onClick={() => images.length < maxFiles && inputRef.current?.click()}
+          onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && images.length < maxFiles && inputRef.current?.click()}
+          onDrop={handleDrop}
+          onDragOver={(e) => { e.preventDefault(); setIsDragOver(true) }}
+          onDragLeave={(e) => { e.preventDefault(); setIsDragOver(false) }}
+          className={cn(
+            "relative min-h-[300px] rounded-lg border-2 border-dashed p-4 transition-all",
+            images.length < maxFiles && "cursor-pointer",
+            isDragOver ? "border-primary bg-primary/5" : "border-muted hover:border-primary/40"
+          )}
+        >
+          {images.length === 0 ? (
+            <div className="flex h-full min-h-[260px] flex-col items-center justify-center gap-4">
+              <div className="rounded-full bg-muted p-5">
+                <Upload className="size-10 text-muted-foreground" />
+              </div>
+              <div className="text-center">
+                <p className="font-medium">Drag & drop your images here</p>
+                <p className="text-sm text-muted-foreground">or click anywhere to browse</p>
+              </div>
+            </div>
+          ) : (
+            <div className="grid grid-cols-3 gap-3">
+              {images.map((image) => (
+                <div
+                  key={image.id}
+                  className="group relative aspect-square overflow-hidden rounded-md border bg-muted"
+                >
+                  {image.preview ? (
+                    <img src={image.preview} alt="" className="h-full w-full object-cover" />
+                  ) : (
+                    <div className="flex h-full w-full items-center justify-center">
+                      <ImageIcon className="size-8 text-muted-foreground" />
+                    </div>
+                  )}
+
+                  {image.status === "uploading" && (
+                    <div className="absolute inset-0 flex flex-col items-center justify-center bg-background/70">
+                      <span className="mb-1 text-sm font-medium">{Math.round(image.progress)}%</span>
+                      <Progress value={image.progress} className="h-1.5 w-3/4" />
+                    </div>
+                  )}
+
+                  {image.status === "success" && (
+                    <div className="absolute right-1.5 top-1.5 rounded-full bg-success p-1">
+                      <Check className="size-3 text-success-foreground" />
+                    </div>
+                  )}
+
+                  <button
+                    type="button"
+                    onClick={(e) => { e.stopPropagation(); handleRemove(image.id) }}
+                    className="absolute left-1.5 top-1.5 flex size-6 items-center justify-center rounded-full bg-foreground/80 text-background opacity-0 transition-opacity group-hover:opacity-100 hover:bg-destructive"
+                    aria-label="Remove"
+                  >
+                    <X className="size-3.5" />
+                  </button>
+                </div>
+              ))}
+
+              {images.length < maxFiles && (
+                <button
+                  type="button"
+                  onClick={(e) => { e.stopPropagation(); inputRef.current?.click() }}
+                  className="flex aspect-square items-center justify-center rounded-md border-2 border-dashed border-muted-foreground/30 hover:border-primary/50"
+                  aria-label="Add more"
+                >
+                  <Plus className="size-8 text-muted-foreground" />
+                </button>
+              )}
+            </div>
+          )}
+
+          {isDragOver && (
+            <div className="absolute inset-0 flex items-center justify-center rounded-lg bg-primary/20">
+              <Upload className="size-12 text-primary" />
+            </div>
+          )}
+        </div>
+
+        <input
+          ref={inputRef}
+          type="file"
+          accept="image/*"
+          multiple
+          onChange={(e) => e.target.files && processFiles(e.target.files)}
+          className="sr-only"
+        />
+
+        <DialogFooter className="gap-2 sm:gap-0">
+          <div className="mr-auto text-sm text-muted-foreground">
+            {images.length} of {maxFiles} images
+          </div>
+          <Button variant="outline" onClick={() => setIsOpen(false)}>Cancel</Button>
+          <Button onClick={handleSave} disabled={successCount === 0}>
+            Save {successCount > 0 && `(${successCount})`}
+          </Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  )
+}
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'dropzones',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'dropzones',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'gallery-dropzone-list',
+                'type' => 'registry:ui',
+                'title' => 'Gallery Dropzone List',
+                'description' => 'A beautiful component for your application.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                    'button',
+                    'progress',
+                    'badge',
+                    'separator',
+                    'scroll-area',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/dropzones/gallery-dropzone-list.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '"use client"
+
+import * as React from "react"
+import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
+import { Progress } from "@/components/ui/progress"
+import { Badge } from "@/components/ui/badge"
+import { Separator } from "@/components/ui/separator"
+import { ScrollArea } from "@/components/ui/scroll-area"
+import { ImageIcon, Upload, X, Check, FileWarning, Trash2 } from "lucide-react"
+
+interface ImageFile {
+  id: string
+  file: File
+  preview: string
+  progress: number
+  status: "uploading" | "success" | "error"
+  error?: string
+}
+
+interface GalleryDropzoneListProps {
+  className?: string
+  onFilesChange?: (files: File[]) => void
+  maxFiles?: number
+  maxSize?: number
+}
+
+export function GalleryDropzoneList({
+  className,
+  onFilesChange,
+  maxFiles = 10,
+  maxSize = 10,
+}: GalleryDropzoneListProps) {
+  const [isDragOver, setIsDragOver] = React.useState(false)
+  const [images, setImages] = React.useState<ImageFile[]>([])
+  const inputRef = React.useRef<HTMLInputElement>(null)
+
+  const simulateUpload = React.useCallback((imageId: string) => {
+    const interval = setInterval(() => {
+      setImages((prev) =>
+        prev.map((img) => {
+          if (img.id !== imageId) return img
+          if (img.progress >= 100) {
+            clearInterval(interval)
+            return { ...img, progress: 100, status: "success" }
+          }
+          return { ...img, progress: img.progress + Math.random() * 20 + 10 }
+        })
+      )
+    }, 150)
+  }, [])
+
+  const processFiles = React.useCallback(
+    (files: FileList | File[]) => {
+      const fileArray = Array.from(files)
+      const remainingSlots = maxFiles - images.length
+      const filesToProcess = fileArray.slice(0, remainingSlots)
+
+      const newImages: ImageFile[] = filesToProcess.map((file) => {
+        const id = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`
+
+        if (!file.type.startsWith("image/")) {
+          return { id, file, preview: "", progress: 0, status: "error" as const, error: "Not an image" }
+        }
+        if (file.size > maxSize * 1024 * 1024) {
+          return { id, file, preview: "", progress: 0, status: "error" as const, error: `Max ${maxSize}MB` }
+        }
+
+        const reader = new FileReader()
+        reader.onload = (e) => {
+          setImages((prev) =>
+            prev.map((img) => (img.id === id ? { ...img, preview: e.target?.result as string } : img))
+          )
+        }
+        reader.readAsDataURL(file)
+
+        return { id, file, preview: "", progress: 0, status: "uploading" as const }
+      })
+
+      setImages((prev) => [...prev, ...newImages])
+      newImages.forEach((img) => {
+        if (img.status !== "error") setTimeout(() => simulateUpload(img.id), 50)
+      })
+
+      onFilesChange?.([...images, ...newImages].filter((i) => i.status !== "error").map((i) => i.file))
+    },
+    [images, maxFiles, maxSize, onFilesChange, simulateUpload]
+  )
+
+  const handleDrop = React.useCallback((e: React.DragEvent) => {
+    e.preventDefault()
+    setIsDragOver(false)
+    processFiles(e.dataTransfer.files)
+  }, [processFiles])
+
+  const handleRemove = React.useCallback((id: string) => {
+    setImages((prev) => {
+      const updated = prev.filter((img) => img.id !== id)
+      onFilesChange?.(updated.filter((i) => i.status !== "error").map((i) => i.file))
+      return updated
+    })
+  }, [onFilesChange])
+
+  const formatSize = (bytes: number) => {
+    if (bytes < 1024) return bytes + " B"
+    if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + " KB"
+    return (bytes / (1024 * 1024)).toFixed(1) + " MB"
+  }
+
+  return (
+    <div className={cn("flex flex-col gap-4 rounded-lg border border-border p-4", className)}>
+      {/* Dropzone header */}
+      <div
+        role="button"
+        tabIndex={0}
+        aria-label="Upload images"
+        onClick={() => inputRef.current?.click()}
+        onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && inputRef.current?.click()}
+        onDrop={handleDrop}
+        onDragOver={(e) => { e.preventDefault(); setIsDragOver(true) }}
+        onDragLeave={(e) => { e.preventDefault(); setIsDragOver(false) }}
+        className={cn(
+          "flex cursor-pointer flex-col items-center gap-3 rounded-md border-2 border-dashed p-6 transition-colors",
+          isDragOver ? "border-primary bg-primary/5" : "border-muted hover:border-muted-foreground/50"
+        )}
+      >
+        <div className="rounded-full bg-muted p-3">
+          <Upload className="size-5 text-muted-foreground" />
+        </div>
+        <div className="text-center">
+          <p className="text-sm font-medium">Drop files here or click to browse</p>
+          <p className="text-xs text-muted-foreground">Max {maxFiles} files, {maxSize}MB each</p>
+        </div>
+      </div>
+
+      <input
+        ref={inputRef}
+        type="file"
+        accept="image/*"
+        multiple
+        onChange={(e) => e.target.files && processFiles(e.target.files)}
+        className="sr-only"
+      />
+
+      {/* File list */}
+      {images.length > 0 && (
+        <>
+          <div className="flex items-center justify-between">
+            <span className="text-sm font-medium">{images.length} file{images.length > 1 ? "s" : ""}</span>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => { setImages([]); onFilesChange?.([]) }}
+              className="h-7 text-xs text-muted-foreground hover:text-destructive"
+            >
+              <Trash2 className="mr-1 size-3" />
+              Clear all
+            </Button>
+          </div>
+
+          <ScrollArea className="max-h-[240px]">
+            <div className="space-y-2">
+              {images.map((image, idx) => (
+                <React.Fragment key={image.id}>
+                  <div className="flex items-center gap-3 py-2">
+                    {/* Thumbnail */}
+                    <div className="size-10 shrink-0 overflow-hidden rounded border bg-muted">
+                      {image.preview ? (
+                        <img src={image.preview} alt="" className="h-full w-full object-cover" />
+                      ) : (
+                        <div className="flex h-full w-full items-center justify-center">
+                          <ImageIcon className="size-4 text-muted-foreground" />
+                        </div>
+                      )}
+                    </div>
+
+                    {/* File info */}
+                    <div className="flex min-w-0 flex-1 flex-col gap-1">
+                      <div className="flex items-center gap-2">
+                        <span className="truncate text-sm">{image.file.name}</span>
+                        {image.status === "success" && (
+                          <Badge variant="secondary" className="shrink-0 gap-0.5 px-1.5 py-0 text-xs text-success">
+                            <Check className="size-3" /> Done
+                          </Badge>
+                        )}
+                        {image.status === "error" && (
+                          <Badge variant="destructive" className="shrink-0 gap-0.5 px-1.5 py-0 text-xs">
+                            <FileWarning className="size-3" /> {image.error}
+                          </Badge>
+                        )}
+                      </div>
+                      {image.status === "uploading" ? (
+                        <Progress value={Math.min(image.progress, 100)} className="h-1" />
+                      ) : (
+                        <span className="text-xs text-muted-foreground">{formatSize(image.file.size)}</span>
+                      )}
+                    </div>
+
+                    {/* Remove */}
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => handleRemove(image.id)}
+                      className="size-8 shrink-0 p-0 text-muted-foreground hover:text-destructive"
+                    >
+                      <X className="size-4" />
+                    </Button>
+                  </div>
+                  {idx < images.length - 1 && <Separator />}
+                </React.Fragment>
+              ))}
+            </div>
+          </ScrollArea>
+        </>
+      )}
+    </div>
+  )
+}
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'dropzones',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'dropzones',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'gallery-dropzone-masonry',
+                'type' => 'registry:ui',
+                'title' => 'Gallery Dropzone Masonry',
+                'description' => 'A beautiful component for your application.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                    'button',
+                    'card',
+                    'progress',
+                    'badge',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/dropzones/gallery-dropzone-masonry.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '"use client"
+
+import * as React from "react"
+import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
+import { Progress } from "@/components/ui/progress"
+import { Badge } from "@/components/ui/badge"
+import { ImageIcon, Upload, X, Check, Images, Trash2 } from "lucide-react"
+
+interface ImageFile {
+  id: string
+  file: File
+  preview: string
+  progress: number
+  status: "uploading" | "success" | "error"
+  aspectRatio: number
+}
+
+interface GalleryDropzoneMasonryProps {
+  className?: string
+  onFilesChange?: (files: File[]) => void
+  maxFiles?: number
+  maxSize?: number
+}
+
+export function GalleryDropzoneMasonry({
+  className,
+  onFilesChange,
+  maxFiles = 9,
+  maxSize = 10,
+}: GalleryDropzoneMasonryProps) {
+  const [isDragOver, setIsDragOver] = React.useState(false)
+  const [images, setImages] = React.useState<ImageFile[]>([])
+  const inputRef = React.useRef<HTMLInputElement>(null)
+
+  const simulateUpload = React.useCallback((imageId: string) => {
+    const interval = setInterval(() => {
+      setImages((prev) =>
+        prev.map((img) => {
+          if (img.id !== imageId) return img
+          if (img.progress >= 100) {
+            clearInterval(interval)
+            return { ...img, progress: 100, status: "success" }
+          }
+          return { ...img, progress: img.progress + 15 }
+        })
+      )
+    }, 120)
+  }, [])
+
+  const processFiles = React.useCallback(
+    (files: FileList | File[]) => {
+      const fileArray = Array.from(files)
+      const remainingSlots = maxFiles - images.length
+      const filesToProcess = fileArray.slice(0, remainingSlots)
+
+      filesToProcess.forEach((file) => {
+        if (!file.type.startsWith("image/") || file.size > maxSize * 1024 * 1024) return
+
+        const id = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`
+        const reader = new FileReader()
+
+        reader.onload = (e) => {
+          const img = new Image()
+          img.crossOrigin = "anonymous"
+          img.onload = () => {
+            const aspectRatio = img.width / img.height
+            setImages((prev) => [
+              ...prev,
+              { id, file, preview: e.target?.result as string, progress: 0, status: "uploading", aspectRatio },
+            ])
+            setTimeout(() => simulateUpload(id), 50)
+          }
+          img.src = e.target?.result as string
+        }
+        reader.readAsDataURL(file)
+      })
+    },
+    [images.length, maxFiles, maxSize, simulateUpload]
+  )
+
+  React.useEffect(() => {
+    onFilesChange?.(images.filter((i) => i.status === "success").map((i) => i.file))
+  }, [images, onFilesChange])
+
+  const handleDrop = React.useCallback((e: React.DragEvent) => {
+    e.preventDefault()
+    setIsDragOver(false)
+    processFiles(e.dataTransfer.files)
+  }, [processFiles])
+
+  const handleRemove = (id: string) => setImages((prev) => prev.filter((img) => img.id !== id))
+
+  const successCount = images.filter((i) => i.status === "success").length
+
+  // Distribute images into columns for masonry
+  const columns: ImageFile[][] = [[], [], []]
+  images.forEach((img, idx) => {
+    columns[idx % 3].push(img)
+  })
+
+  return (
+    <Card className={cn("w-full", className)}>
+      <CardHeader className="pb-4">
+        <div className="flex items-start justify-between">
+          <div>
+            <CardTitle className="flex items-center gap-2">
+              <Images className="size-5" />
+              Photo Gallery
+            </CardTitle>
+            <CardDescription>
+              {images.length === 0 
+                ? `Upload up to ${maxFiles} images` 
+                : `${successCount} of ${images.length} uploaded`}
+            </CardDescription>
+          </div>
+          {images.length > 0 && (
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setImages([])}
+              className="text-muted-foreground hover:text-destructive"
+            >
+              <Trash2 className="mr-1 size-3.5" />
+              Clear
+            </Button>
+          )}
+        </div>
+      </CardHeader>
+
+      <CardContent>
+        {/* Dropzone */}
+        <div
+          role="button"
+          tabIndex={0}
+          aria-label="Upload images"
+          onClick={() => images.length < maxFiles && inputRef.current?.click()}
+          onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && images.length < maxFiles && inputRef.current?.click()}
+          onDrop={handleDrop}
+          onDragOver={(e) => { e.preventDefault(); setIsDragOver(true) }}
+          onDragLeave={(e) => { e.preventDefault(); setIsDragOver(false) }}
+          className={cn(
+            "relative min-h-[200px] rounded-lg border-2 border-dashed p-4 transition-all",
+            images.length < maxFiles && "cursor-pointer",
+            isDragOver ? "border-primary bg-primary/5" : "border-border hover:border-primary/30"
+          )}
+        >
+          {images.length === 0 ? (
+            <div className="flex h-[180px] flex-col items-center justify-center gap-3">
+              <div className="rounded-full bg-muted p-4">
+                <ImageIcon className="size-8 text-muted-foreground" />
+              </div>
+              <div className="text-center">
+                <p className="font-medium">Drop images here</p>
+                <p className="text-sm text-muted-foreground">or click to browse</p>
+              </div>
+              <Button variant="outline" size="sm">
+                <Upload className="mr-2 size-4" />
+                Select Files
+              </Button>
+            </div>
+          ) : (
+            <div className="flex gap-3">
+              {columns.map((col, colIdx) => (
+                <div key={colIdx} className="flex flex-1 flex-col gap-3">
+                  {col.map((image) => (
+                    <div
+                      key={image.id}
+                      className="group relative overflow-hidden rounded-md border bg-muted"
+                      style={{ aspectRatio: image.aspectRatio }}
+                    >
+                      <img src={image.preview} alt="" className="h-full w-full object-cover" />
+
+                      {image.status === "uploading" && (
+                        <div className="absolute inset-0 flex flex-col items-center justify-center bg-background/60">
+                          <span className="mb-1 text-sm font-medium">{Math.round(image.progress)}%</span>
+                          <Progress value={image.progress} className="h-1 w-2/3" />
+                        </div>
+                      )}
+
+                      {image.status === "success" && (
+                        <Badge className="absolute right-1.5 top-1.5 gap-1 bg-success/90 text-success-foreground">
+                          <Check className="size-3" />
+                        </Badge>
+                      )}
+
+                      <button
+                        type="button"
+                        onClick={(e) => { e.stopPropagation(); handleRemove(image.id) }}
+                        className="absolute left-1.5 top-1.5 flex size-6 items-center justify-center rounded-full bg-foreground/80 text-background opacity-0 transition-opacity group-hover:opacity-100 hover:bg-destructive"
+                        aria-label="Remove"
+                      >
+                        <X className="size-3.5" />
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+          )}
+
+          {isDragOver && (
+            <div className="absolute inset-0 flex items-center justify-center rounded-lg bg-primary/10">
+              <div className="rounded-full bg-primary p-4">
+                <Upload className="size-8 text-primary-foreground" />
+              </div>
+            </div>
+          )}
+        </div>
+
+        <input
+          ref={inputRef}
+          type="file"
+          accept="image/*"
+          multiple
+          onChange={(e) => e.target.files && processFiles(e.target.files)}
+          className="sr-only"
+        />
+      </CardContent>
+    </Card>
+  )
+}
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'dropzones',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'dropzones',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'gallery-dropzone-pills',
+                'type' => 'registry:ui',
+                'title' => 'Gallery Dropzone Pills',
+                'description' => 'A beautiful component for your application.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                    'badge',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/dropzones/gallery-dropzone-pills.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '"use client"
+
+import { useState, useCallback, useRef } from "react"
+import { Plus, X, Loader2, Check } from "lucide-react"
+import { cn } from "@/lib/utils"
+import { Badge } from "@/components/ui/badge"
+
+interface FileWithStatus {
+  file: File
+  preview: string
+  id: string
+  status: "uploading" | "complete"
+}
+
+interface GalleryDropzonePillsProps {
+  onFilesSelect?: (files: File[]) => void
+  maxFiles?: number
+  maxSize?: number
+  className?: string
+}
+
+export function GalleryDropzonePills({
+  onFilesSelect,
+  maxFiles = 8,
+  maxSize = 10 * 1024 * 1024,
+  className,
+}: GalleryDropzonePillsProps) {
+  const [files, setFiles] = useState<FileWithStatus[]>([])
+  const [isDragging, setIsDragging] = useState(false)
+  const inputRef = useRef<HTMLInputElement>(null)
+
+  const handleFiles = useCallback(
+    (newFiles: FileList) => {
+      const validFiles = Array.from(newFiles)
+        .filter((file) => file.type.startsWith("image/") && file.size <= maxSize)
+        .slice(0, maxFiles - files.length)
+
+      const newFileObjects = validFiles.map((file) => ({
+        file,
+        preview: URL.createObjectURL(file),
+        id: Math.random().toString(36).slice(2),
+        status: "uploading" as const,
+      }))
+
+      const updated = [...files, ...newFileObjects].slice(0, maxFiles)
+      setFiles(updated)
+
+      // Simulate upload
+      newFileObjects.forEach((fileObj) => {
+        setTimeout(() => {
+          setFiles((prev) =>
+            prev.map((f) => (f.id === fileObj.id ? { ...f, status: "complete" } : f))
+          )
+        }, 800 + Math.random() * 800)
+      })
+
+      onFilesSelect?.(updated.map((f) => f.file))
+    },
+    [files, maxFiles, maxSize, onFilesSelect]
+  )
+
+  const handleDrop = useCallback(
+    (e: React.DragEvent) => {
+      e.preventDefault()
+      setIsDragging(false)
+      if (e.dataTransfer.files.length) handleFiles(e.dataTransfer.files)
+    },
+    [handleFiles]
+  )
+
+  const removeFile = (id: string) => {
+    const updated = files.filter((f) => f.id !== id)
+    setFiles(updated)
+    onFilesSelect?.(updated.map((f) => f.file))
+  }
+
+  return (
+    <div
+      className={cn(
+        "flex min-h-[48px] flex-wrap items-center gap-2 rounded-lg border p-3 transition-colors",
+        isDragging && "border-primary bg-muted/50",
+        className
+      )}
+      onDragOver={(e) => {
+        e.preventDefault()
+        setIsDragging(true)
+      }}
+      onDragLeave={() => setIsDragging(false)}
+      onDrop={handleDrop}
+    >
+      <input
+        ref={inputRef}
+        type="file"
+        accept="image/*"
+        multiple
+        onChange={(e) => e.target.files && handleFiles(e.target.files)}
+        className="sr-only"
+      />
+
+      {files.map((file) => (
+        <Badge key={file.id} variant="secondary" className="h-8 gap-2 pl-1 pr-1">
+          <div className="size-6 overflow-hidden rounded">
+            <img src={file.preview} alt="" className="size-full object-cover" />
+          </div>
+          <span className="max-w-[100px] truncate text-xs">{file.file.name}</span>
+          {file.status === "uploading" ? (
+            <Loader2 className="size-3 animate-spin" />
+          ) : (
+            <button
+              onClick={() => removeFile(file.id)}
+              className="flex size-4 items-center justify-center rounded-full hover:bg-muted"
+              aria-label="Remove"
+            >
+              <X className="size-3" />
+            </button>
+          )}
+        </Badge>
+      ))}
+
+      {files.length < maxFiles && (
+        <button
+          onClick={() => inputRef.current?.click()}
+          className="flex h-8 items-center gap-1 rounded-md border border-dashed px-3 text-sm text-muted-foreground transition-colors hover:border-foreground hover:text-foreground"
+        >
+          <Plus className="size-4" />
+          Add images
+        </button>
+      )}
+
+      {files.length === 0 && (
+        <span className="text-sm text-muted-foreground">Drop images here or click to add</span>
+      )}
+    </div>
+  )
+}
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'dropzones',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'dropzones',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'gallery-dropzone-simple',
+                'type' => 'registry:ui',
+                'title' => 'Gallery Dropzone Simple',
+                'description' => 'A beautiful component for your application.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                    'button',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/dropzones/gallery-dropzone-simple.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '"use client"
+
+import { useState, useCallback, useRef } from "react"
+import { Upload, X, ImageIcon } from "lucide-react"
+import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
+
+interface FileWithPreview {
+  file: File
+  preview: string
+  id: string
+}
+
+interface GalleryDropzoneSimpleProps {
+  onFilesSelect?: (files: File[]) => void
+  maxFiles?: number
+  maxSize?: number
+  className?: string
+}
+
+export function GalleryDropzoneSimple({
+  onFilesSelect,
+  maxFiles = 6,
+  maxSize = 10 * 1024 * 1024,
+  className,
+}: GalleryDropzoneSimpleProps) {
+  const [files, setFiles] = useState<FileWithPreview[]>([])
+  const [isDragging, setIsDragging] = useState(false)
+  const inputRef = useRef<HTMLInputElement>(null)
+
+  const handleFiles = useCallback(
+    (newFiles: FileList) => {
+      const validFiles = Array.from(newFiles)
+        .filter((file) => file.type.startsWith("image/") && file.size <= maxSize)
+        .slice(0, maxFiles - files.length)
+
+      const newFileObjects = validFiles.map((file) => ({
+        file,
+        preview: URL.createObjectURL(file),
+        id: Math.random().toString(36).slice(2),
+      }))
+
+      const updated = [...files, ...newFileObjects].slice(0, maxFiles)
+      setFiles(updated)
+      onFilesSelect?.(updated.map((f) => f.file))
+    },
+    [files, maxFiles, maxSize, onFilesSelect]
+  )
+
+  const handleDrop = useCallback(
+    (e: React.DragEvent) => {
+      e.preventDefault()
+      setIsDragging(false)
+      if (e.dataTransfer.files.length) handleFiles(e.dataTransfer.files)
+    },
+    [handleFiles]
+  )
+
+  const removeFile = (id: string) => {
+    const updated = files.filter((f) => f.id !== id)
+    setFiles(updated)
+    onFilesSelect?.(updated.map((f) => f.file))
+  }
+
+  const clearAll = () => {
+    setFiles([])
+    onFilesSelect?.([])
+    if (inputRef.current) inputRef.current.value = ""
+  }
+
+  return (
+    <div className={cn("space-y-4", className)}>
+      <div
+        className={cn(
+          "flex min-h-[160px] cursor-pointer flex-col items-center justify-center gap-2 rounded-lg border-2 border-dashed p-6 transition-colors",
+          isDragging ? "border-primary bg-muted/50" : "border-muted-foreground/25 hover:border-muted-foreground/50"
+        )}
+        onDragOver={(e) => {
+          e.preventDefault()
+          setIsDragging(true)
+        }}
+        onDragLeave={() => setIsDragging(false)}
+        onDrop={handleDrop}
+        onClick={() => inputRef.current?.click()}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault()
+            inputRef.current?.click()
+          }
+        }}
+        tabIndex={0}
+        role="button"
+        aria-label="Upload images"
+      >
+        <input
+          ref={inputRef}
+          type="file"
+          accept="image/*"
+          multiple
+          onChange={(e) => e.target.files && handleFiles(e.target.files)}
+          className="sr-only"
+        />
+
+        <div className="flex size-12 items-center justify-center rounded-full bg-muted">
+          <Upload className="size-6 text-muted-foreground" />
+        </div>
+        <div className="text-center">
+          <p className="text-sm font-medium">Drop images here or click to upload</p>
+          <p className="text-xs text-muted-foreground">
+            PNG, JPG, GIF up to {Math.round(maxSize / 1024 / 1024)}MB
+          </p>
+        </div>
+      </div>
+
+      {files.length > 0 && (
+        <div className="space-y-3">
+          <div className="flex items-center justify-between">
+            <p className="text-sm text-muted-foreground">
+              {files.length} of {maxFiles} images
+            </p>
+            <Button variant="ghost" size="sm" onClick={clearAll} className="text-muted-foreground">
+              Clear all
+            </Button>
+          </div>
+
+          <div className="grid grid-cols-3 gap-3">
+            {files.map((file) => (
+              <div key={file.id} className="group relative aspect-square overflow-hidden rounded-md border bg-muted">
+                <img src={file.preview} alt="" className="size-full object-cover" />
+                <button
+                  onClick={() => removeFile(file.id)}
+                  className="absolute right-1 top-1 flex size-6 items-center justify-center rounded-full bg-background/80 opacity-0 shadow-sm transition-opacity group-hover:opacity-100"
+                  aria-label="Remove image"
+                >
+                  <X className="size-3" />
+                </button>
+              </div>
+            ))}
+
+            {files.length < maxFiles && (
+              <button
+                onClick={() => inputRef.current?.click()}
+                className="flex aspect-square flex-col items-center justify-center gap-1 rounded-md border-2 border-dashed border-muted-foreground/25 text-muted-foreground transition-colors hover:border-muted-foreground/50 hover:bg-muted/50"
+              >
+                <ImageIcon className="size-5" />
+                <span className="text-xs">Add</span>
+              </button>
+            )}
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'dropzones',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'dropzones',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'gallery-dropzone-sortable-cards',
+                'type' => 'registry:ui',
+                'title' => 'Gallery Dropzone Sortable Cards',
+                'description' => 'A beautiful component for your application.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                    '@dnd-kit/react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                    'button',
+                    'card',
+                    'badge',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/dropzones/gallery-dropzone-sortable-cards.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '"use client"
+
+import * as React from "react"
+import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { Upload, X, GripVertical, Star, Trash2 } from "lucide-react"
+import { DragDropProvider } from "@dnd-kit/react"
+import { useSortable, isSortable } from "@dnd-kit/react/sortable"
+
+interface FileWithPreview {
+  file: File
+  preview: string
+  id: string
+}
+
+interface SortableCardProps {
+  image: FileWithPreview
+  index: number
+  onRemove: (id: string) => void
+  onSetPrimary?: (id: string) => void
+  isPrimary: boolean
+  showHandle?: boolean
+}
+
+function SortableCard({
+  image,
+  index,
+  onRemove,
+  onSetPrimary,
+  isPrimary,
+  showHandle,
+}: SortableCardProps) {
+  const { ref, handleRef, isDragging } = useSortable({
+    id: image.id,
+    index,
+  })
+
+  return (
+    <Card
+      ref={ref}
+      className={cn(
+        "group overflow-hidden transition-all",
+        isDragging && "z-10 scale-[1.02] shadow-lg ring-2 ring-primary",
+        isPrimary && "ring-2 ring-primary"
+      )}
+    >
+      <div className="relative aspect-[4/3] overflow-hidden bg-muted">
+        <img
+          src={image.preview}
+          alt=""
+          className="size-full object-cover transition-transform group-hover:scale-105"
+          draggable={false}
+        />
+
+        {isPrimary && (
+          <Badge className="absolute left-2 top-2 gap-1 bg-primary text-primary-foreground">
+            <Star className="size-3 fill-current" />
+            Primary
+          </Badge>
+        )}
+
+        <div className="absolute inset-x-0 bottom-0 flex items-center justify-between bg-gradient-to-t from-black/60 to-transparent p-2 opacity-0 transition-opacity group-hover:opacity-100">
+          {showHandle && (
+            <button
+              ref={handleRef}
+              className="flex size-7 cursor-grab items-center justify-center rounded bg-white/20 text-white backdrop-blur-sm active:cursor-grabbing"
+              aria-label="Drag to reorder"
+            >
+              <GripVertical className="size-4" />
+            </button>
+          )}
+
+          <div className={cn("flex gap-1", !showHandle && "ml-auto")}>
+            {!isPrimary && onSetPrimary && (
+              <Button
+                variant="secondary"
+                size="sm"
+                onClick={() => onSetPrimary(image.id)}
+                className="h-7 gap-1 text-xs"
+              >
+                <Star className="size-3" />
+                Set Primary
+              </Button>
+            )}
+            <Button
+              variant="destructive"
+              size="sm"
+              onClick={() => onRemove(image.id)}
+              className="size-7 p-0"
+            >
+              <X className="size-4" />
+            </Button>
+          </div>
+        </div>
+      </div>
+
+      <CardContent className="p-2">
+        <p className="truncate text-xs text-muted-foreground">
+          {image.file.name}
+        </p>
+      </CardContent>
+    </Card>
+  )
+}
+
+interface GalleryDropzoneSortableCardsProps {
+  onFilesSelect?: (files: File[]) => void
+  onReorder?: (files: File[]) => void
+  onPrimaryChange?: (file: File) => void
+  maxFiles?: number
+  maxSize?: number
+  className?: string
+  enableReorder?: boolean
+}
+
+export function GalleryDropzoneSortableCards({
+  onFilesSelect,
+  onReorder,
+  onPrimaryChange,
+  maxFiles = 8,
+  maxSize = 10 * 1024 * 1024,
+  className,
+  enableReorder = true,
+}: GalleryDropzoneSortableCardsProps) {
+  const [files, setFiles] = React.useState<FileWithPreview[]>([])
+  const [primaryId, setPrimaryId] = React.useState<string | null>(null)
+  const [isDragging, setIsDragging] = React.useState(false)
+  const inputRef = React.useRef<HTMLInputElement>(null)
+
+  const handleFiles = React.useCallback(
+    (newFiles: FileList) => {
+      const validFiles = Array.from(newFiles)
+        .filter((file) => file.type.startsWith("image/") && file.size <= maxSize)
+        .slice(0, maxFiles - files.length)
+
+      const newFileObjects = validFiles.map((file) => ({
+        file,
+        preview: URL.createObjectURL(file),
+        id: Math.random().toString(36).slice(2),
+      }))
+
+      const updated = [...files, ...newFileObjects].slice(0, maxFiles)
+      setFiles(updated)
+
+      if (!primaryId && updated.length > 0) {
+        setPrimaryId(updated[0].id)
+        onPrimaryChange?.(updated[0].file)
+      }
+
+      onFilesSelect?.(updated.map((f) => f.file))
+    },
+    [files, maxFiles, maxSize, onFilesSelect, primaryId, onPrimaryChange]
+  )
+
+  const handleDrop = React.useCallback(
+    (e: React.DragEvent) => {
+      e.preventDefault()
+      setIsDragging(false)
+      if (e.dataTransfer.files.length) handleFiles(e.dataTransfer.files)
+    },
+    [handleFiles]
+  )
+
+  const removeFile = (id: string) => {
+    const updated = files.filter((f) => f.id !== id)
+    setFiles(updated)
+    if (primaryId === id && updated.length > 0) {
+      setPrimaryId(updated[0].id)
+      onPrimaryChange?.(updated[0].file)
+    } else if (updated.length === 0) {
+      setPrimaryId(null)
+    }
+    onFilesSelect?.(updated.map((f) => f.file))
+  }
+
+  const setPrimary = (id: string) => {
+    setPrimaryId(id)
+    const file = files.find((f) => f.id === id)
+    if (file) onPrimaryChange?.(file.file)
+  }
+
+  const clearAll = () => {
+    setFiles([])
+    setPrimaryId(null)
+    onFilesSelect?.([])
+    if (inputRef.current) inputRef.current.value = ""
+  }
+
+  const handleDragEnd = React.useCallback(
+    (event: { canceled: boolean; operation: { source: unknown } }) => {
+      if (event.canceled) return
+
+      const source = event.operation.source as any
+
+      if (isSortable(source)) {
+        const { initialIndex, index } = source
+
+        if (initialIndex !== index) {
+          setFiles((prev) => {
+            const newFiles = [...prev]
+            const [removed] = newFiles.splice(initialIndex, 1)
+            newFiles.splice(index, 0, removed)
+            onReorder?.(newFiles.map((f) => f.file))
+            return newFiles
+          })
+        }
+      }
+    },
+    [onReorder]
+  )
+
+  const cardsContent = (
+    <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
+      {files.map((file, index) => (
+        <SortableCard
+          key={file.id}
+          image={file}
+          index={index}
+          onRemove={removeFile}
+          onSetPrimary={setPrimary}
+          isPrimary={file.id === primaryId}
+          showHandle={enableReorder}
+        />
+      ))}
+    </div>
+  )
+
+  return (
+    <div className={cn("space-y-4", className)}>
+      <div
+        className={cn(
+          "flex min-h-[120px] cursor-pointer flex-col items-center justify-center gap-2 rounded-lg border-2 border-dashed p-4 transition-colors",
+          isDragging
+            ? "border-primary bg-primary/5"
+            : "border-muted-foreground/25 hover:border-muted-foreground/50"
+        )}
+        onDragOver={(e) => {
+          e.preventDefault()
+          setIsDragging(true)
+        }}
+        onDragLeave={() => setIsDragging(false)}
+        onDrop={handleDrop}
+        onClick={() => inputRef.current?.click()}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault()
+            inputRef.current?.click()
+          }
+        }}
+        tabIndex={0}
+        role="button"
+        aria-label="Upload images"
+      >
+        <Upload className="size-8 text-muted-foreground" />
+        <div className="text-center">
+          <p className="text-sm font-medium">Click or drag images to upload</p>
+          <p className="text-xs text-muted-foreground">
+            {files.length} of {maxFiles} images
+          </p>
+        </div>
+      </div>
+
+      <input
+        ref={inputRef}
+        type="file"
+        accept="image/*"
+        multiple
+        onChange={(e) => e.target.files && handleFiles(e.target.files)}
+        className="sr-only"
+      />
+
+      {files.length > 0 && (
+        <>
+          <div className="flex items-center justify-between">
+            <p className="text-sm text-muted-foreground">
+              {enableReorder
+                ? "Drag cards to reorder. First image is primary."
+                : "Click star to set primary image."}
+            </p>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={clearAll}
+              className="gap-1"
+            >
+              <Trash2 className="size-3" />
+              Clear All
+            </Button>
+          </div>
+
+          {enableReorder ? (
+            <DragDropProvider onDragEnd={handleDragEnd}>
+              {cardsContent}
+            </DragDropProvider>
+          ) : (
+            cardsContent
+          )}
+        </>
+      )}
+    </div>
+  )
+}
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'dropzones',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'dropzones',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'gallery-dropzone-sortable-grid',
+                'type' => 'registry:ui',
+                'title' => 'Gallery Dropzone Sortable Grid',
+                'description' => 'A beautiful component for your application.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                    '@dnd-kit/react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                    'button',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/dropzones/gallery-dropzone-sortable-grid.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '"use client"
+
+import * as React from "react"
+import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
+import { Upload, X, ImageIcon, GripVertical } from "lucide-react"
+import { DragDropProvider } from "@dnd-kit/react"
+import { useSortable, isSortable } from "@dnd-kit/react/sortable"
+
+interface FileWithPreview {
+  file: File
+  preview: string
+  id: string
+}
+
+interface SortableImageProps {
+  image: FileWithPreview
+  index: number
+  onRemove: (id: string) => void
+  showHandle?: boolean
+}
+
+function SortableImage({ image, index, onRemove, showHandle }: SortableImageProps) {
+  const { ref, handleRef, isDragging } = useSortable({
+    id: image.id,
+    index,
+  })
+
+  return (
+    <div
+      ref={ref}
+      className={cn(
+        "group relative aspect-square overflow-hidden rounded-md border bg-muted transition-all",
+        isDragging && "z-10 scale-105 shadow-lg ring-2 ring-primary"
+      )}
+    >
+      <img
+        src={image.preview}
+        alt=""
+        className="size-full object-cover"
+        draggable={false}
+      />
+      
+      {showHandle && (
+        <button
+          ref={handleRef}
+          className="absolute left-1 top-1 flex size-6 cursor-grab items-center justify-center rounded bg-background/80 opacity-0 shadow-sm transition-opacity group-hover:opacity-100 active:cursor-grabbing"
+          aria-label="Drag to reorder"
+        >
+          <GripVertical className="size-3" />
+        </button>
+      )}
+      
+      <button
+        onClick={() => onRemove(image.id)}
+        className="absolute right-1 top-1 flex size-6 items-center justify-center rounded-full bg-background/80 opacity-0 shadow-sm transition-opacity group-hover:opacity-100"
+        aria-label="Remove image"
+      >
+        <X className="size-3" />
+      </button>
+      
+      <div className="absolute bottom-1 left-1 flex size-5 items-center justify-center rounded bg-foreground/70 text-xs font-medium text-background">
+        {index + 1}
+      </div>
+    </div>
+  )
+}
+
+interface GalleryDropzoneSortableGridProps {
+  onFilesSelect?: (files: File[]) => void
+  onReorder?: (files: File[]) => void
+  maxFiles?: number
+  maxSize?: number
+  className?: string
+  enableReorder?: boolean
+}
+
+export function GalleryDropzoneSortableGrid({
+  onFilesSelect,
+  onReorder,
+  maxFiles = 9,
+  maxSize = 10 * 1024 * 1024,
+  className,
+  enableReorder = true,
+}: GalleryDropzoneSortableGridProps) {
+  const [files, setFiles] = React.useState<FileWithPreview[]>([])
+  const [isDragging, setIsDragging] = React.useState(false)
+  const inputRef = React.useRef<HTMLInputElement>(null)
+
+  const handleFiles = React.useCallback(
+    (newFiles: FileList) => {
+      const validFiles = Array.from(newFiles)
+        .filter((file) => file.type.startsWith("image/") && file.size <= maxSize)
+        .slice(0, maxFiles - files.length)
+
+      const newFileObjects = validFiles.map((file) => ({
+        file,
+        preview: URL.createObjectURL(file),
+        id: Math.random().toString(36).slice(2),
+      }))
+
+      const updated = [...files, ...newFileObjects].slice(0, maxFiles)
+      setFiles(updated)
+      onFilesSelect?.(updated.map((f) => f.file))
+    },
+    [files, maxFiles, maxSize, onFilesSelect]
+  )
+
+  const handleDrop = React.useCallback(
+    (e: React.DragEvent) => {
+      e.preventDefault()
+      setIsDragging(false)
+      if (e.dataTransfer.files.length) handleFiles(e.dataTransfer.files)
+    },
+    [handleFiles]
+  )
+
+  const removeFile = (id: string) => {
+    const updated = files.filter((f) => f.id !== id)
+    setFiles(updated)
+    onFilesSelect?.(updated.map((f) => f.file))
+  }
+
+  const clearAll = () => {
+    setFiles([])
+    onFilesSelect?.([])
+    if (inputRef.current) inputRef.current.value = ""
+  }
+
+  const handleDragEnd = React.useCallback(
+    (event: { canceled: boolean; operation: { source: unknown } }) => {
+      if (event.canceled) return
+
+      const source = event.operation.source as any
+
+      if (isSortable(source)) {
+        const { initialIndex, index } = source
+
+        if (initialIndex !== index) {
+          setFiles((prev) => {
+            const newFiles = [...prev]
+            const [removed] = newFiles.splice(initialIndex, 1)
+            newFiles.splice(index, 0, removed)
+            onReorder?.(newFiles.map((f) => f.file))
+            return newFiles
+          })
+        }
+      }
+    },
+    [onReorder]
+  )
+
+  const gridContent = (
+    <div className="grid grid-cols-3 gap-3">
+      {files.map((file, index) => (
+        <SortableImage
+          key={file.id}
+          image={file}
+          index={index}
+          onRemove={removeFile}
+          showHandle={enableReorder}
+        />
+      ))}
+
+      {files.length < maxFiles && (
+        <button
+          onClick={() => inputRef.current?.click()}
+          className="flex aspect-square flex-col items-center justify-center gap-1 rounded-md border-2 border-dashed border-muted-foreground/25 text-muted-foreground transition-colors hover:border-muted-foreground/50 hover:bg-muted/50"
+        >
+          <ImageIcon className="size-5" />
+          <span className="text-xs">Add</span>
+        </button>
+      )}
+    </div>
+  )
+
+  return (
+    <div className={cn("space-y-4", className)}>
+      {files.length === 0 && (
+        <div
+          className={cn(
+            "flex min-h-[160px] cursor-pointer flex-col items-center justify-center gap-2 rounded-lg border-2 border-dashed p-6 transition-colors",
+            isDragging
+              ? "border-primary bg-primary/5"
+              : "border-muted-foreground/25 hover:border-muted-foreground/50"
+          )}
+          onDragOver={(e) => {
+            e.preventDefault()
+            setIsDragging(true)
+          }}
+          onDragLeave={() => setIsDragging(false)}
+          onDrop={handleDrop}
+          onClick={() => inputRef.current?.click()}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault()
+              inputRef.current?.click()
+            }
+          }}
+          tabIndex={0}
+          role="button"
+          aria-label="Upload images"
+        >
+          <div className="flex size-12 items-center justify-center rounded-full bg-muted">
+            <Upload className="size-6 text-muted-foreground" />
+          </div>
+          <div className="text-center">
+            <p className="text-sm font-medium">
+              Drop images here or click to upload
+            </p>
+            <p className="text-xs text-muted-foreground">
+              PNG, JPG, GIF up to {Math.round(maxSize / 1024 / 1024)}MB
+            </p>
+          </div>
+        </div>
+      )}
+
+      <input
+        ref={inputRef}
+        type="file"
+        accept="image/*"
+        multiple
+        onChange={(e) => e.target.files && handleFiles(e.target.files)}
+        className="sr-only"
+      />
+
+      {files.length > 0 && (
+        <div className="space-y-3">
+          <div className="flex items-center justify-between">
+            <p className="text-sm text-muted-foreground">
+              {files.length} of {maxFiles} images
+              {enableReorder && (
+                <span className="ml-2 text-xs">(drag to reorder)</span>
+              )}
+            </p>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={clearAll}
+              className="text-muted-foreground"
+            >
+              Clear all
+            </Button>
+          </div>
+
+          {enableReorder ? (
+            <DragDropProvider onDragEnd={handleDragEnd}>
+              {gridContent}
+            </DragDropProvider>
+          ) : (
+            gridContent
+          )}
+        </div>
+      )}
+    </div>
+  )
+}
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'dropzones',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'dropzones',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'gallery-dropzone-sortable-list',
+                'type' => 'registry:ui',
+                'title' => 'Gallery Dropzone Sortable List',
+                'description' => 'A beautiful component for your application.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                    '@dnd-kit/react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                    'button',
+                    'badge',
+                    'separator',
+                    'scroll-area',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/dropzones/gallery-dropzone-sortable-list.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '"use client"
+
+import * as React from "react"
+import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
+import { Badge } from "@/components/ui/badge"
+import { Separator } from "@/components/ui/separator"
+import { ScrollArea } from "@/components/ui/scroll-area"
+import { ImageIcon, Upload, X, GripVertical, Check, AlertCircle } from "lucide-react"
+import { DragDropProvider } from "@dnd-kit/react"
+import { useSortable, isSortable } from "@dnd-kit/react/sortable"
+
+interface ImageFile {
+  id: string
+  file: File
+  preview: string
+  status: "ready" | "uploading" | "success" | "error"
+}
+
+interface SortableListItemProps {
+  image: ImageFile
+  index: number
+  onRemove: (id: string) => void
+  showHandle?: boolean
+}
+
+function SortableListItem({ image, index, onRemove, showHandle }: SortableListItemProps) {
+  const { ref, handleRef, isDragging } = useSortable({
+    id: image.id,
+    index,
+  })
+
+  const formatSize = (bytes: number) => {
+    if (bytes < 1024) return bytes + " B"
+    if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + " KB"
+    return (bytes / (1024 * 1024)).toFixed(1) + " MB"
+  }
+
+  return (
+    <div
+      ref={ref}
+      className={cn(
+        "flex items-center gap-3 rounded-md p-2 transition-all",
+        isDragging && "z-10 bg-muted shadow-md ring-1 ring-border"
+      )}
+    >
+      {showHandle && (
+        <button
+          ref={handleRef}
+          className="flex size-8 shrink-0 cursor-grab items-center justify-center rounded text-muted-foreground hover:bg-muted active:cursor-grabbing"
+          aria-label="Drag to reorder"
+        >
+          <GripVertical className="size-4" />
+        </button>
+      )}
+
+      <div className="size-10 shrink-0 overflow-hidden rounded border bg-muted">
+        {image.preview ? (
+          <img src={image.preview} alt="" className="size-full object-cover" />
+        ) : (
+          <div className="flex size-full items-center justify-center">
+            <ImageIcon className="size-4 text-muted-foreground" />
+          </div>
+        )}
+      </div>
+
+      <div className="flex min-w-0 flex-1 flex-col">
+        <span className="truncate text-sm font-medium">{image.file.name}</span>
+        <span className="text-xs text-muted-foreground">
+          {formatSize(image.file.size)}
+        </span>
+      </div>
+
+      <div className="flex items-center gap-2">
+        {image.status === "success" && (
+          <Badge variant="secondary" className="gap-1 text-success">
+            <Check className="size-3" />
+            Done
+          </Badge>
+        )}
+        {image.status === "error" && (
+          <Badge variant="destructive" className="gap-1">
+            <AlertCircle className="size-3" />
+            Error
+          </Badge>
+        )}
+        
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={() => onRemove(image.id)}
+          className="size-8 p-0 text-muted-foreground hover:text-destructive"
+        >
+          <X className="size-4" />
+        </Button>
+      </div>
+    </div>
+  )
+}
+
+interface GalleryDropzoneSortableListProps {
+  className?: string
+  onFilesChange?: (files: File[]) => void
+  onReorder?: (files: File[]) => void
+  maxFiles?: number
+  maxSize?: number
+  enableReorder?: boolean
+}
+
+export function GalleryDropzoneSortableList({
+  className,
+  onFilesChange,
+  onReorder,
+  maxFiles = 10,
+  maxSize = 10,
+  enableReorder = true,
+}: GalleryDropzoneSortableListProps) {
+  const [isDragOver, setIsDragOver] = React.useState(false)
+  const [images, setImages] = React.useState<ImageFile[]>([])
+  const inputRef = React.useRef<HTMLInputElement>(null)
+
+  const processFiles = React.useCallback(
+    (files: FileList | File[]) => {
+      const fileArray = Array.from(files)
+      const remainingSlots = maxFiles - images.length
+      const filesToProcess = fileArray.slice(0, remainingSlots)
+
+      const newImages: ImageFile[] = filesToProcess
+        .filter(
+          (file) =>
+            file.type.startsWith("image/") &&
+            file.size <= maxSize * 1024 * 1024
+        )
+        .map((file) => {
+          const id = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`
+          const preview = URL.createObjectURL(file)
+          return { id, file, preview, status: "ready" as const }
+        })
+
+      const updated = [...images, ...newImages]
+      setImages(updated)
+      onFilesChange?.(updated.map((i) => i.file))
+    },
+    [images, maxFiles, maxSize, onFilesChange]
+  )
+
+  const handleDrop = React.useCallback(
+    (e: React.DragEvent) => {
+      e.preventDefault()
+      setIsDragOver(false)
+      processFiles(e.dataTransfer.files)
+    },
+    [processFiles]
+  )
+
+  const handleRemove = React.useCallback(
+    (id: string) => {
+      setImages((prev) => {
+        const updated = prev.filter((img) => img.id !== id)
+        onFilesChange?.(updated.map((i) => i.file))
+        return updated
+      })
+    },
+    [onFilesChange]
+  )
+
+  const handleDragEnd = React.useCallback(
+    (event: { canceled: boolean; operation: { source: unknown } }) => {
+      if (event.canceled) return
+
+      const source = event.operation.source as any
+
+      if (isSortable(source)) {
+        const { initialIndex, index } = source
+
+        if (initialIndex !== index) {
+          setImages((prev) => {
+            const newImages = [...prev]
+            const [removed] = newImages.splice(initialIndex, 1)
+            newImages.splice(index, 0, removed)
+            onReorder?.(newImages.map((f) => f.file))
+            return newImages
+          })
+        }
+      }
+    },
+    [onReorder]
+  )
+
+  const listContent = (
+    <div className="space-y-1">
+      {images.map((image, idx) => (
+        <React.Fragment key={image.id}>
+          <SortableListItem
+            image={image}
+            index={idx}
+            onRemove={handleRemove}
+            showHandle={enableReorder}
+          />
+          {idx < images.length - 1 && <Separator />}
+        </React.Fragment>
+      ))}
+    </div>
+  )
+
+  return (
+    <div
+      className={cn("flex flex-col gap-4 rounded-lg border p-4", className)}
+    >
+      <div
+        role="button"
+        tabIndex={0}
+        aria-label="Upload images"
+        onClick={() => inputRef.current?.click()}
+        onKeyDown={(e) =>
+          (e.key === "Enter" || e.key === " ") && inputRef.current?.click()
+        }
+        onDrop={handleDrop}
+        onDragOver={(e) => {
+          e.preventDefault()
+          setIsDragOver(true)
+        }}
+        onDragLeave={(e) => {
+          e.preventDefault()
+          setIsDragOver(false)
+        }}
+        className={cn(
+          "flex cursor-pointer flex-col items-center gap-3 rounded-md border-2 border-dashed p-6 transition-colors",
+          isDragOver
+            ? "border-primary bg-primary/5"
+            : "border-muted hover:border-muted-foreground/50"
+        )}
+      >
+        <div className="rounded-full bg-muted p-3">
+          <Upload className="size-5 text-muted-foreground" />
+        </div>
+        <div className="text-center">
+          <p className="text-sm font-medium">
+            Drop files here or click to browse
+          </p>
+          <p className="text-xs text-muted-foreground">
+            Max {maxFiles} files, {maxSize}MB each
+          </p>
+        </div>
+      </div>
+
+      <input
+        ref={inputRef}
+        type="file"
+        accept="image/*"
+        multiple
+        onChange={(e) => e.target.files && processFiles(e.target.files)}
+        className="sr-only"
+      />
+
+      {images.length > 0 && (
+        <>
+          <div className="flex items-center justify-between">
+            <span className="text-sm font-medium">
+              {images.length} file{images.length > 1 ? "s" : ""}
+              {enableReorder && (
+                <span className="ml-2 text-xs text-muted-foreground">
+                  (drag to reorder)
+                </span>
+              )}
+            </span>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => {
+                setImages([])
+                onFilesChange?.([])
+              }}
+              className="h-7 text-xs text-muted-foreground hover:text-destructive"
+            >
+              Clear all
+            </Button>
+          </div>
+
+          <ScrollArea className="max-h-[280px]">
+            {enableReorder ? (
+              <DragDropProvider onDragEnd={handleDragEnd}>
+                {listContent}
+              </DragDropProvider>
+            ) : (
+              listContent
+            )}
+          </ScrollArea>
+        </>
+      )}
+    </div>
+  )
+}
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'dropzones',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'dropzones',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'gallery-dropzone-table',
+                'type' => 'registry:ui',
+                'title' => 'Gallery Dropzone Table',
+                'description' => 'A beautiful component for your application.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                    'button',
+                    'progress',
+                    'table',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/dropzones/gallery-dropzone-table.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '"use client"
+
+import { useState, useCallback, useRef } from "react"
+import { Upload, X, File, Check, Loader2 } from "lucide-react"
+import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
+import { Progress } from "@/components/ui/progress"
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table"
+
+interface FileWithProgress {
+  file: File
+  preview: string
+  id: string
+  progress: number
+  status: "uploading" | "complete" | "error"
+}
+
+interface GalleryDropzoneTableProps {
+  onFilesSelect?: (files: File[]) => void
+  maxFiles?: number
+  maxSize?: number
+  className?: string
+}
+
+export function GalleryDropzoneTable({
+  onFilesSelect,
+  maxFiles = 10,
+  maxSize = 10 * 1024 * 1024,
+  className,
+}: GalleryDropzoneTableProps) {
+  const [files, setFiles] = useState<FileWithProgress[]>([])
+  const [isDragging, setIsDragging] = useState(false)
+  const inputRef = useRef<HTMLInputElement>(null)
+
+  const handleFiles = useCallback(
+    (newFiles: FileList) => {
+      const validFiles = Array.from(newFiles)
+        .filter((file) => file.type.startsWith("image/") && file.size <= maxSize)
+        .slice(0, maxFiles - files.length)
+
+      const newFileObjects = validFiles.map((file) => ({
+        file,
+        preview: URL.createObjectURL(file),
+        id: Math.random().toString(36).slice(2),
+        progress: 0,
+        status: "uploading" as const,
+      }))
+
+      const updated = [...files, ...newFileObjects].slice(0, maxFiles)
+      setFiles(updated)
+
+      // Simulate upload progress
+      newFileObjects.forEach((fileObj) => {
+        let progress = 0
+        const interval = setInterval(() => {
+          progress += Math.random() * 30
+          if (progress >= 100) {
+            progress = 100
+            clearInterval(interval)
+            setFiles((prev) =>
+              prev.map((f) => (f.id === fileObj.id ? { ...f, progress: 100, status: "complete" } : f))
+            )
+          } else {
+            setFiles((prev) => prev.map((f) => (f.id === fileObj.id ? { ...f, progress } : f)))
+          }
+        }, 200)
+      })
+
+      onFilesSelect?.(updated.map((f) => f.file))
+    },
+    [files, maxFiles, maxSize, onFilesSelect]
+  )
+
+  const handleDrop = useCallback(
+    (e: React.DragEvent) => {
+      e.preventDefault()
+      setIsDragging(false)
+      if (e.dataTransfer.files.length) handleFiles(e.dataTransfer.files)
+    },
+    [handleFiles]
+  )
+
+  const removeFile = (id: string) => {
+    const updated = files.filter((f) => f.id !== id)
+    setFiles(updated)
+    onFilesSelect?.(updated.map((f) => f.file))
+  }
+
+  const formatSize = (bytes: number) => {
+    if (bytes < 1024) return `${bytes} B`
+    if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`
+    return `${(bytes / 1024 / 1024).toFixed(1)} MB`
+  }
+
+  return (
+    <div className={cn("space-y-4", className)}>
+      <div
+        className={cn(
+          "flex cursor-pointer items-center justify-center gap-3 rounded-lg border-2 border-dashed p-4 transition-colors",
+          isDragging ? "border-primary bg-muted/50" : "border-muted-foreground/25 hover:border-muted-foreground/50"
+        )}
+        onDragOver={(e) => {
+          e.preventDefault()
+          setIsDragging(true)
+        }}
+        onDragLeave={() => setIsDragging(false)}
+        onDrop={handleDrop}
+        onClick={() => inputRef.current?.click()}
+        tabIndex={0}
+        role="button"
+        aria-label="Upload images"
+      >
+        <input
+          ref={inputRef}
+          type="file"
+          accept="image/*"
+          multiple
+          onChange={(e) => e.target.files && handleFiles(e.target.files)}
+          className="sr-only"
+        />
+
+        <Upload className="size-5 text-muted-foreground" />
+        <span className="text-sm">Drop files here or click to browse</span>
+      </div>
+
+      {files.length > 0 && (
+        <div className="rounded-md border">
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead className="w-12"></TableHead>
+                <TableHead>Name</TableHead>
+                <TableHead className="w-24">Size</TableHead>
+                <TableHead className="w-32">Status</TableHead>
+                <TableHead className="w-12"></TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {files.map((file) => (
+                <TableRow key={file.id}>
+                  <TableCell>
+                    <div className="size-10 overflow-hidden rounded border bg-muted">
+                      <img src={file.preview} alt="" className="size-full object-cover" />
+                    </div>
+                  </TableCell>
+                  <TableCell className="font-medium">
+                    <span className="line-clamp-1">{file.file.name}</span>
+                  </TableCell>
+                  <TableCell className="text-muted-foreground">{formatSize(file.file.size)}</TableCell>
+                  <TableCell>
+                    {file.status === "uploading" ? (
+                      <div className="flex items-center gap-2">
+                        <Progress value={file.progress} className="h-2 w-16" />
+                        <span className="text-xs text-muted-foreground">{Math.round(file.progress)}%</span>
+                      </div>
+                    ) : (
+                      <div className="flex items-center gap-1 text-sm text-muted-foreground">
+                        <Check className="size-4" />
+                        Complete
+                      </div>
+                    )}
+                  </TableCell>
+                  <TableCell>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="size-8"
+                      onClick={() => removeFile(file.id)}
+                    >
+                      <X className="size-4" />
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
+      )}
+    </div>
+  )
+}
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'dropzones',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'dropzones',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
                 'name' => 'back-light',
                 'type' => 'registry:ui',
                 'title' => 'Back Light',
@@ -20041,6 +28119,121 @@ export {
     MultiSelectGroup,
     MultiSelectItem,
 };
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'inputs',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'inputs',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'rainbow-border-input',
+                'type' => 'registry:ui',
+                'title' => 'Rainbow Border Input',
+                'description' => 'A beautiful component for your application.',
+                'author' => 'designbycode',
+                'dependencies' => [
+
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                    'input',
+                    'https://ui.test/r/rainbow-border.json',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/inputs/rainbow-border-input.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '\'use client\';
+
+import * as React from \'react\';
+import { cn } from \'@/lib/utils\';
+import { Input } from \'@/components/ui/input\';
+import { RainbowBorder } from \'@/registry/new-york/components/ui/borders/rainbow-border\';
+
+export interface RainbowBorderInputProps extends React.ComponentProps<typeof Input> {
+    borderWidth?: string;
+    animationDuration?: string;
+    colors?: string[];
+    rounded?: \'none\' | \'xs\' | \'sm\' | \'md\' | \'lg\' | \'full\';
+    glow?: boolean;
+    glowBlur?: string;
+    glowOpacity?: number;
+    wrapperClassName?: string;
+}
+
+export const RainbowBorderInput = React.forwardRef<HTMLInputElement, RainbowBorderInputProps>(
+    (
+        {
+            className,
+            borderWidth = \'1.5px\',
+            animationDuration = \'3s\',
+            colors,
+            rounded = \'md\',
+            glow = true,
+            glowBlur = \'20px\',
+            glowOpacity = 30,
+            wrapperClassName,
+            ...props
+        },
+        ref,
+    ) => {
+        const roundedInputClass = 
+            rounded === \'none\' ? \'rounded-none\' :
+            rounded === \'xs\' ? \'rounded-xs\' :
+            rounded === \'sm\' ? \'rounded-sm\' :
+            rounded === \'md\' ? \'rounded-md\' :
+            rounded === \'lg\' ? \'rounded-lg\' : \'rounded-full\';
+
+        return (
+            <RainbowBorder
+                borderWidth={borderWidth}
+                animationDuration={animationDuration}
+                colors={colors}
+                rounded={rounded}
+                glow={glow}
+                glowBlur={glowBlur}
+                glowOpacity={glowOpacity}
+                className={cn(\'p-[1px] w-full\', wrapperClassName)}
+            >
+                <Input
+                    ref={ref}
+                    className={cn(
+                        \'bg-background text-foreground border-0 shadow-xs focus-visible:ring-0 focus-visible:ring-offset-0 w-full\',
+                        roundedInputClass,
+                        className,
+                    )}
+                    {...props}
+                />
+            </RainbowBorder>
+        );
+    },
+);
+
+RainbowBorderInput.displayName = \'RainbowBorderInput\';
+
+export default RainbowBorderInput;
 ',
                     ],
                 ],
