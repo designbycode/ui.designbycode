@@ -148,13 +148,20 @@ trait HasTheme
             'devDependencies' => $this->devDependencies ?? [],
             'registryDependencies' => $this->registryDependencies ?? [],
             'files' => $this->files ?? [],
-            'css' => $this->css ?? [],
             'tailwind' => $this->tailwind,
-            'cssVars' => $this->buildCssVars(),
             'meta' => $this->meta,
             'docs' => $this->docs,
             'tags' => $this->tags->pluck('name')->toArray(),
         ];
+
+        if (! empty($this->css)) {
+            $registry['css'] = $this->css;
+        }
+
+        $cssVars = $this->buildCssVars();
+        if (! empty($cssVars)) {
+            $registry['cssVars'] = $cssVars;
+        }
 
         if ($this->type === 'registry:style') {
             $registry['extends'] = $this->extends;

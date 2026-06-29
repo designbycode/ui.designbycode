@@ -1,9 +1,8 @@
 import { Head, Link, useForm } from '@inertiajs/react';
 import { ArrowLeft, Plus, Trash2, Save, FileCode } from 'lucide-react';
-import React, { useState } from 'react';
 import { toast } from 'sonner';
+import InputError from '@/components/input-error';
 import { Button } from '@/components/ui/button';
-import { useFileHandling } from '@/hooks/use-file-handling';
 import {
     Card,
     CardContent,
@@ -14,16 +13,17 @@ import {
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
-import InputError from '@/components/input-error';
-import { index, update } from '@/routes/dashboard/components';
+import { useFileHandling } from '@/hooks/use-file-handling';
 import { dashboard } from '@/routes';
-import MainEditorBlock from '@/layouts/main/theme/main-editor-block';
+import { index, update } from '@/routes/dashboard/components';
 
 const getLanguageFromPath = (path: string) => {
     if (!path) {
         return 'typescript';
     }
+
     const ext = path.split('.').pop()?.toLowerCase();
+
     switch (ext) {
         case 'css':
             return 'css';
@@ -280,7 +280,9 @@ export default function EditComponent({
                                         {existingCategories.join(', ')}
                                     </p>
                                 )}
-                                <InputError message={(errors as any).categories} />
+                                <InputError
+                                    message={(errors as any).categories}
+                                />
                             </div>
 
                             <div className="grid gap-4 sm:grid-cols-2">
@@ -299,7 +301,9 @@ export default function EditComponent({
                                             )
                                         }
                                     />
-                                    <InputError message={(errors as any).dependencies} />
+                                    <InputError
+                                        message={(errors as any).dependencies}
+                                    />
                                 </div>
                                 <div className="space-y-1">
                                     <Label htmlFor="registryDependencies">
@@ -317,7 +321,9 @@ export default function EditComponent({
                                         }
                                     />
                                     <InputError
-                                        message={(errors as any).registryDependencies}
+                                        message={
+                                            (errors as any).registryDependencies
+                                        }
                                     />
                                 </div>
                             </div>
@@ -414,7 +420,8 @@ export default function EditComponent({
                                             Code Content
                                         </Label>
                                         <div className="overflow-hidden rounded-md border border-border/80 bg-background">
-                                            <MainEditorBlock
+                                            <MainEdit
+                                                orBlock
                                                 value={file.content}
                                                 onChange={(val) =>
                                                     handleFileChange(
