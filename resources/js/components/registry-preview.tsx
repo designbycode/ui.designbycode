@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import { Sparkles, Shield, Globe, Heart, Award, Terminal } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 // Import all registry components
 import { MusicPlayer } from '@/registry/new-york/components/blocks/music-player/music-player';
@@ -35,6 +36,7 @@ import { AnimatedTabs } from '@/registry/new-york/components/ui/tabs/animated-ta
 import { InteractiveRating } from '@/registry/new-york/components/ui/rating/interactive-rating';
 import { ProgressCircle } from '@/registry/new-york/components/ui/progress/progress-circle';
 import WavesThree from '@/registry/new-york/components/ui/threejs/waves-three';
+import { BlackHole } from '@/registry/new-york/components/ui/threejs/black-hole';
 import { CarouselBasic } from '@/registry/new-york/components/ui/carousels/carousel-basic';
 import { CarouselFade } from '@/registry/new-york/components/ui/carousels/carousel-fade';
 import { Carousel3d } from '@/registry/new-york/components/ui/carousels/carousel-3d';
@@ -115,6 +117,10 @@ import { ExpandableCard } from '@/registry/new-york/components/ui/cards/expandab
 import { ParallaxImageCard } from '@/registry/new-york/components/ui/cards/parallax-image-card';
 import { MagneticCard } from '@/registry/new-york/components/ui/cards/magnetic-card';
 import { MetricSparkCard } from '@/registry/new-york/components/ui/cards/metric-spark-card';
+import { MetricProgressCard } from '@/registry/new-york/components/ui/cards/metric-progress-card';
+import { MetricComparisonCard } from '@/registry/new-york/components/ui/cards/metric-comparison-card';
+import { MetricBreakdownCard } from '@/registry/new-york/components/ui/cards/metric-breakdown-card';
+import { MetricRadialCard } from '@/registry/new-york/components/ui/cards/metric-radial-card';
 import { SplitPreviewCard } from '@/registry/new-york/components/ui/cards/split-preview-card';
 import { GrainyNoiseCard } from '@/registry/new-york/components/ui/cards/grainy-noise-card';
 import { ScratchCard } from '@/registry/new-york/components/ui/cards/scratch-card';
@@ -704,6 +710,21 @@ export default function RegistryPreview({ name }: { name: string }) {
                         WebGL Waves Background
                     </h3>
                     <p className="text-sm text-zinc-400">Powered by Three.js</p>
+                </div>
+            </div>
+        );
+    }
+
+    // Black Hole
+    if (name === 'black-hole') {
+        return (
+            <div className="relative grid h-[400px] w-full place-items-center overflow-hidden rounded-xl border border-border/50 bg-black">
+                <BlackHole className="absolute inset-0 opacity-95" />
+                <div className="pointer-events-none relative z-10 text-center text-white select-none">
+                    <h3 className="font-bebas-neue! text-2xl font-bold tracking-wide">
+                        WebGL Black Hole
+                    </h3>
+                    <p className="text-sm text-zinc-400">Interactive 3D simulation powered by Three.js</p>
                 </div>
             </div>
         );
@@ -2221,6 +2242,83 @@ export default function RegistryPreview({ name }: { name: string }) {
                     trend="+18.4%"
                     trendType="positive"
                     dataPoints={[20, 24, 22, 28, 26, 32, 38, 48]}
+                    className="w-full max-w-sm"
+                />
+            </div>
+        );
+    }
+
+    // Metric Progress Card
+    if (name === 'metric-progress-card') {
+        return (
+            <div className="grid min-h-[300px] w-full place-items-center rounded-xl border border-border/50 bg-background p-6">
+                <MetricProgressCard
+                    title="QUARTERLY SALES TARGET"
+                    value="$143,850.00"
+                    progress={78.5}
+                    targetLabel="Q2 Target"
+                    targetValue="$180,000.00"
+                    trend="+12.3% vs Target"
+                    trendType="positive"
+                    className="w-full max-w-sm"
+                />
+            </div>
+        );
+    }
+
+    // Metric Comparison Card
+    if (name === 'metric-comparison-card') {
+        return (
+            <div className="grid min-h-[300px] w-full place-items-center rounded-xl border border-border/50 bg-background p-6">
+                <MetricComparisonCard
+                    title="MONTHLY ACTIVE CONVERSIONS"
+                    currentValue="4,829"
+                    currentLabel="Current Month"
+                    comparisonValue="3,412"
+                    comparisonLabel="Previous Month"
+                    ratio={4829 / 6000}
+                    trend="+41.5%"
+                    trendType="positive"
+                    className="w-full max-w-sm"
+                />
+            </div>
+        );
+    }
+
+    // Metric Breakdown Card
+    if (name === 'metric-breakdown-card') {
+        const breakdownItems = [
+            { label: 'Organic Search', value: '45,829', percentage: 54, color: 'var(--color-primary)' },
+            { label: 'Direct Traffic', value: '25,102', percentage: 30, color: 'var(--color-chart-1)' },
+            { label: 'Referral Links', value: '13,382', percentage: 16, color: 'var(--color-chart-2)' },
+        ];
+        return (
+            <div className="grid min-h-[300px] w-full place-items-center rounded-xl border border-border/50 bg-background p-6">
+                <MetricBreakdownCard
+                    title="TRAFFIC ACQUISITION"
+                    value="84,313 Visits"
+                    trend="+24.1% MoM"
+                    trendType="positive"
+                    items={breakdownItems}
+                    className="w-full max-w-lg"
+                />
+            </div>
+        );
+    }
+
+    // Metric Radial Card
+    if (name === 'metric-radial-card') {
+        const radialItems = [
+            { label: 'Completed Tasks', value: '84 / 100', percentage: 84, color: 'var(--color-primary)' },
+            { label: 'Core Operations', value: '62 / 100', percentage: 62, color: 'var(--color-chart-1)' },
+            { label: 'System Health', value: '95 / 100', percentage: 95, color: 'var(--color-chart-2)' },
+        ];
+        return (
+            <div className="grid min-h-[300px] w-full place-items-center rounded-xl border border-border/50 bg-background p-6">
+                <MetricRadialCard
+                    title="DAILY WORKLOAD INTEGRITY"
+                    value="Active Status"
+                    items={radialItems}
                     className="w-full max-w-sm"
                 />
             </div>

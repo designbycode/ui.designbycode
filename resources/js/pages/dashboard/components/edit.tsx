@@ -14,6 +14,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { useFileHandling } from '@/hooks/use-file-handling';
+import MainEditorBlock from '@/layouts/main/theme/main-editor-block';
 import { dashboard } from '@/routes';
 import { index, update } from '@/routes/dashboard/components';
 
@@ -420,8 +421,7 @@ export default function EditComponent({
                                             Code Content
                                         </Label>
                                         <div className="overflow-hidden rounded-md border border-border/80 bg-background">
-                                            <MainEdit
-                                                orBlock
+                                            <MainEditorBlock
                                                 value={file.content}
                                                 onChange={(val) =>
                                                     handleFileChange(

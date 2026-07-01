@@ -85,4 +85,40 @@ test('registry build command scans files and generates database items and seeder
         ->and($pixelCanvas->registryDependencies)->toContain('utils')
         ->and($pixelCanvas->registryDependencies)->toContain(url('r/use-pixel-canvas.json'));
 
+    // 7. Assert that the new black-hole component is registered and dependencies are extracted
+    $blackHole = Registry::where('name', 'black-hole')->first();
+    expect($blackHole)->not->toBeNull()
+        ->and($blackHole->type)->toBe('registry:ui')
+        ->and($blackHole->dependencies)->toContain('three')
+        ->and($blackHole->registryDependencies)->toContain('utils')
+        ->and($blackHole->files)->toBeArray()
+        ->and(count($blackHole->files))->toBe(1);
+
+    // 8. Assert that the new metric-progress-card is registered
+    $progressCard = Registry::where('name', 'metric-progress-card')->first();
+    expect($progressCard)->not->toBeNull()
+        ->and($progressCard->type)->toBe('registry:ui')
+        ->and($progressCard->registryDependencies)->toContain('utils')
+        ->and(count($progressCard->files))->toBe(1);
+
+    // 9. Assert that the new metric-comparison-card is registered
+    $comparisonCard = Registry::where('name', 'metric-comparison-card')->first();
+    expect($comparisonCard)->not->toBeNull()
+        ->and($comparisonCard->type)->toBe('registry:ui')
+        ->and($comparisonCard->registryDependencies)->toContain('utils')
+        ->and(count($comparisonCard->files))->toBe(1);
+
+    // 10. Assert that the new metric-breakdown-card is registered
+    $breakdownCard = Registry::where('name', 'metric-breakdown-card')->first();
+    expect($breakdownCard)->not->toBeNull()
+        ->and($breakdownCard->type)->toBe('registry:ui')
+        ->and($breakdownCard->registryDependencies)->toContain('utils')
+        ->and(count($breakdownCard->files))->toBe(1);
+
+    // 11. Assert that the new metric-radial-card is registered
+    $radialCard = Registry::where('name', 'metric-radial-card')->first();
+    expect($radialCard)->not->toBeNull()
+        ->and($radialCard->type)->toBe('registry:ui')
+        ->and($radialCard->registryDependencies)->toContain('utils')
+        ->and(count($radialCard->files))->toBe(1);
 });
