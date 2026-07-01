@@ -121,4 +121,11 @@ test('registry build command scans files and generates database items and seeder
         ->and($radialCard->type)->toBe('registry:ui')
         ->and($radialCard->registryDependencies)->toContain('utils')
         ->and(count($radialCard->files))->toBe(1);
+
+    // 12. Assert that the new feedback-star shader is registered
+    $feedbackStar = Registry::where('name', 'feedback-star')->first();
+    expect($feedbackStar)->not->toBeNull()
+        ->and($feedbackStar->type)->toBe('registry:ui')
+        ->and($feedbackStar->dependencies)->toContain('three')
+        ->and(count($feedbackStar->files))->toBe(1);
 });

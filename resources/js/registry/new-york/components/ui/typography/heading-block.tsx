@@ -1,11 +1,11 @@
 'use client';
 
-import * as React from 'react';
 import type { LucideIcon } from 'lucide-react';
+import * as React from 'react';
+import { cn } from '@/lib/utils';
 import BadgeIndicator from '@/registry/new-york/components/ui/typography/badge-indicator';
 import { Heading } from '@/registry/new-york/components/ui/typography/heading';
 import { Paragraph } from '@/registry/new-york/components/ui/typography/paragraph';
-import { cn } from '@/lib/utils';
 
 type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6;
 
@@ -16,7 +16,7 @@ export interface HeadingBlockProps {
         icon?: LucideIcon;
         className?: string;
     };
-    heading?: string;
+    heading?: React.ReactNode;
     headingLevel?: HeadingLevel;
     headClassName?: string;
     description?: React.ReactNode;

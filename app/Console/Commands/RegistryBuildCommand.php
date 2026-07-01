@@ -280,6 +280,7 @@ class RegistryBuildCommand extends Command
             'animated-tabs' => 'A tab selection bar showcasing smooth fluid sliding indicator animations.',
             'waves-three' => 'A responsive WebGL 3D waves animation powered by Three.js.',
             'black-hole' => 'An interactive 3D WebGL Black Hole simulation with an accretion disk and gravitational lensing glow effects powered by Three.js.',
+            'feedback-star' => 'A dynamic reaction-diffusion WebGL noise star shader simulation utilizing a double buffered feedback loop.',
             'use-dark-mode' => 'A React hook detecting and toggling light/dark system color schemes.',
             'use-headroom' => 'A React scroll hook enabling/disabling visibility of nav headers based on scroll direction.',
             'use-hover' => 'A ref-bound React hover hook managing mouse entrance and exit event states.',

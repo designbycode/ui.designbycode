@@ -37,6 +37,7 @@ import { InteractiveRating } from '@/registry/new-york/components/ui/rating/inte
 import { ProgressCircle } from '@/registry/new-york/components/ui/progress/progress-circle';
 import WavesThree from '@/registry/new-york/components/ui/threejs/waves-three';
 import { BlackHole } from '@/registry/new-york/components/ui/threejs/black-hole';
+import { FeedbackStar } from '@/registry/new-york/components/ui/threejs/feedback-star';
 import { CarouselBasic } from '@/registry/new-york/components/ui/carousels/carousel-basic';
 import { CarouselFade } from '@/registry/new-york/components/ui/carousels/carousel-fade';
 import { Carousel3d } from '@/registry/new-york/components/ui/carousels/carousel-3d';
@@ -725,6 +726,21 @@ export default function RegistryPreview({ name }: { name: string }) {
                         WebGL Black Hole
                     </h3>
                     <p className="text-sm text-zinc-400">Interactive 3D simulation powered by Three.js</p>
+                </div>
+            </div>
+        );
+    }
+
+    // Feedback Star
+    if (name === 'feedback-star') {
+        return (
+            <div className="relative grid h-[400px] w-full place-items-center overflow-hidden rounded-xl border border-border/50 bg-black">
+                <FeedbackStar className="absolute inset-0" />
+                <div className="pointer-events-none relative z-10 text-center text-white select-none">
+                    <h3 className="font-bebas-neue! text-2xl font-bold tracking-wide">
+                        WebGL Feedback Noise Star
+                    </h3>
+                    <p className="text-sm text-zinc-400">Dynamic reaction-diffusion noise shader simulation</p>
                 </div>
             </div>
         );
