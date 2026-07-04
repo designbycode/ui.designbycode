@@ -13,12 +13,7 @@ function Home() {
             </Head>
             <MainWrapper as={`section`}>
                 <Hero />
-                <BlackHole lineWidth={1} ringDensity={50} />
                 <NewsletterSection />
-
-                <div className="my-6 grid grid-cols-4">
-                    <MusicPlayer />
-                </div>
             </MainWrapper>
         </div>
     );

@@ -1,0 +1,60 @@
+'use client';
+
+import React from 'react';
+import { User, Heart, MessageSquare } from 'lucide-react';
+import { Card, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+
+export function UserProfileCard() {
+    return (
+        <Card className="w-full max-w-sm mx-auto border-border/50 bg-card/30 backdrop-blur-xs overflow-hidden relative">
+            {/* Cover photo placeholder */}
+            <div className="h-20 w-full bg-linear-to-r from-primary/30 to-accent/30 relative" />
+            
+            <CardContent className="pt-0 text-center pb-6">
+                {/* Profile Photo */}
+                <div className="size-16 rounded-full bg-background border-2 border-border/80 text-primary flex items-center justify-center font-bold text-lg mx-auto -mt-8 relative shadow-sm">
+                    <User className="size-8" />
+                </div>
+                
+                <div className="mt-2.5">
+                    <h4 className="text-sm font-bold text-foreground">Sarah Jenkins</h4>
+                    <p className="text-[10px] text-muted-foreground">Product Designer @ Peak</p>
+                </div>
+
+                <p className="text-[10px] text-muted-foreground/90 mt-3 max-w-xs mx-auto leading-relaxed">
+                    UX/UI enthusiast. Currently designing fluid responsive developer workspaces and styling libraries.
+                </p>
+
+                {/* Profile metrics */}
+                <div className="grid grid-cols-3 gap-2 mt-4 border-y border-border/20 py-2.5">
+                    <div>
+                        <div className="text-xs font-black text-foreground">4.8k</div>
+                        <div className="text-[8px] text-muted-foreground uppercase font-bold mt-0.5">Followers</div>
+                    </div>
+                    <div>
+                        <div className="text-xs font-black text-foreground">124</div>
+                        <div className="text-[8px] text-muted-foreground uppercase font-bold mt-0.5">Projects</div>
+                    </div>
+                    <div>
+                        <div className="text-xs font-black text-foreground">12</div>
+                        <div className="text-[8px] text-muted-foreground uppercase font-bold mt-0.5">Awards</div>
+                    </div>
+                </div>
+
+                <div className="flex gap-2 justify-center mt-4">
+                    <Button size="sm" className="h-8 text-xs font-bold px-3.5 gap-1.5">
+                        <Heart className="size-3.5" />
+                        Follow
+                    </Button>
+                    <Button size="sm" variant="outline" className="h-8 text-xs font-bold px-3.5 gap-1.5 border-border/60">
+                        <MessageSquare className="size-3.5" />
+                        Message
+                    </Button>
+                </div>
+            </CardContent>
+        </Card>
+    );
+}
+
+export default UserProfileCard;

@@ -17,6 +17,93 @@ class RegistrySeeder extends Seeder
 
         $items = [
             [
+                'name' => 'activity-feed',
+                'type' => 'registry:block',
+                'title' => 'Activity Feed',
+                'description' => 'A beautiful component for your application.',
+                'author' => 'designbycode',
+                'dependencies' => [
+
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'card',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/blocks/activity-feed/activity-feed.tsx',
+                        'type' => 'registry:block',
+                        'content' => '\'use client\';
+
+import React from \'react\';
+import { Card, CardHeader, CardTitle, CardContent } from \'@/components/ui/card\';
+
+interface EventItem {
+    time: string;
+    title: string;
+    details: string;
+    color: string;
+}
+
+const events: EventItem[] = [
+    { time: \'Just Now\', title: \'Version 2.0.4 Released\', details: \'Added 10 new blocks to the global registry seeder index.\', color: \'bg-primary\' },
+    { time: \'10m ago\', title: \'Database Migration Complete\', details: \'Successfully seeded 159 component manifest files.\', color: \'bg-emerald-500\' },
+    { time: \'2h ago\', title: \'Theme Variables Injected\', details: \'CSS global variables synced with theme-slate values.\', color: \'bg-amber-500\' },
+];
+
+export function ActivityFeed() {
+    return (
+        <Card className="w-full max-w-md mx-auto border-border/50 bg-card/30 backdrop-blur-xs">
+            <CardHeader className="pb-3">
+                <CardTitle className="text-base font-bold">Activity Feed</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+                {events.map((event, idx) => (
+                    <div key={idx} className="flex gap-3 items-start relative pl-4 before:absolute before:left-1 before:top-2 before:bottom-0 before:w-[1px] before:bg-border/30 last:before:hidden">
+                        <div className={`size-2.5 rounded-full ${event.color} shrink-0 mt-1 relative -left-[17px] ring-4 ring-background`} />
+                        <div className="min-w-0">
+                            <div className="flex justify-between items-baseline gap-2">
+                                <h4 className="text-xs font-bold text-foreground truncate">{event.title}</h4>
+                                <span className="text-[9px] text-muted-foreground shrink-0">{event.time}</span>
+                            </div>
+                            <p className="text-[10px] text-muted-foreground mt-0.5 leading-relaxed">{event.details}</p>
+                        </div>
+                    </div>
+                ))}
+            </CardContent>
+        </Card>
+    );
+}
+
+export default ActivityFeed;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'activity-feed',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'activity-feed',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
                 'name' => 'analytics-dashboard',
                 'type' => 'registry:block',
                 'title' => 'Analytics Dashboard',
@@ -1076,6 +1163,86 @@ export default ButtonsGallery;
                 'theme' => null,
             ],
             [
+                'name' => 'call-to-action-box',
+                'type' => 'registry:block',
+                'title' => 'Call To Action Box',
+                'description' => 'A beautiful component for your application.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'card',
+                    'button',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/blocks/call-to-action-box/call-to-action-box.tsx',
+                        'type' => 'registry:block',
+                        'content' => '\'use client\';
+
+import React from \'react\';
+import { Sparkles } from \'lucide-react\';
+import { Card, CardContent } from \'@/components/ui/card\';
+import { Button } from \'@/components/ui/button\';
+
+export function CallToActionBox() {
+    return (
+        <Card className="w-full border-border/50 bg-linear-to-br from-primary/10 via-card/30 to-muted/20 backdrop-blur-xs relative overflow-hidden p-8 text-center">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-2xl" />
+            <CardContent className="p-0 space-y-4 max-w-lg mx-auto">
+                <div className="size-8 rounded-full bg-primary/20 text-primary flex items-center justify-center mx-auto mb-2 animate-pulse">
+                    <Sparkles className="size-4" />
+                </div>
+                <h3 className="text-xl md:text-2xl font-black tracking-tight text-foreground">
+                    Ready to build styled components?
+                </h3>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                    Install registry hooks and items instantly in your project. No manual files copy-pasting required.
+                </p>
+                <div className="flex flex-wrap gap-2.5 justify-center pt-2">
+                    <Button size="sm" className="h-9 px-4 text-xs font-bold">
+                        Get Started
+                    </Button>
+                    <Button size="sm" variant="outline" className="h-9 px-4 text-xs font-bold border-border/60">
+                        View Documentation
+                    </Button>
+                </div>
+            </CardContent>
+        </Card>
+    );
+}
+
+export default CallToActionBox;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'call-to-action-box',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'call-to-action-box',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
                 'name' => 'canvas-gallery',
                 'type' => 'registry:block',
                 'title' => 'Canvas Gallery',
@@ -1578,6 +1745,320 @@ export function StatCard({
                 'theme' => null,
             ],
             [
+                'name' => 'contact-form',
+                'type' => 'registry:block',
+                'title' => 'Contact Form',
+                'description' => 'A beautiful component for your application.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'card',
+                    'button',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/blocks/contact-form/contact-form.tsx',
+                        'type' => 'registry:block',
+                        'content' => '\'use client\';
+
+import React, { useState } from \'react\';
+import { Send, CheckCircle2 } from \'lucide-react\';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from \'@/components/ui/card\';
+import { Button } from \'@/components/ui/button\';
+
+export function ContactForm() {
+    const [submitted, setSubmitted] = useState(false);
+
+    const handleSend = (e: React.FormEvent) => {
+        e.preventDefault();
+        setSubmitted(true);
+    };
+
+    return (
+        <Card className="w-full max-w-md mx-auto border-border/50 bg-card/30 backdrop-blur-xs">
+            <CardHeader className="pb-3">
+                <CardTitle className="text-base font-bold">Send a Message</CardTitle>
+                <CardDescription className="text-xs">
+                    We will get back to you within 24 hours.
+                </CardDescription>
+            </CardHeader>
+            <CardContent className="pt-0">
+                {submitted ? (
+                    <div className="p-6 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-center space-y-2">
+                        <CheckCircle2 className="size-6 text-emerald-500 mx-auto" />
+                        <h4 className="text-xs font-bold text-foreground">Message Sent!</h4>
+                        <p className="text-[10px] text-muted-foreground">Thank you. Your message has been received.</p>
+                    </div>
+                ) : (
+                    <form onSubmit={handleSend} className="space-y-3.5">
+                        <div className="grid grid-cols-2 gap-3">
+                            <div className="space-y-1">
+                                <label className="text-[9px] font-bold text-muted-foreground uppercase">Name</label>
+                                <input type="text" required className="w-full h-8 px-2 rounded-[var(--radius)] text-xs bg-muted/40 border border-border/60 text-foreground" />
+                            </div>
+                            <div className="space-y-1">
+                                <label className="text-[9px] font-bold text-muted-foreground uppercase">Email</label>
+                                <input type="email" required className="w-full h-8 px-2 rounded-[var(--radius)] text-xs bg-muted/40 border border-border/60 text-foreground" />
+                            </div>
+                        </div>
+                        <div className="space-y-1">
+                            <label className="text-[9px] font-bold text-muted-foreground uppercase">Message</label>
+                            <textarea rows={3} required className="w-full p-2 rounded-[var(--radius)] text-xs bg-muted/40 border border-border/60 text-foreground" />
+                        </div>
+                        <Button type="submit" size="sm" className="w-full h-8 text-xs font-bold gap-1.5">
+                            <Send className="size-3" />
+                            Send Message
+                        </Button>
+                    </form>
+                )}
+            </CardContent>
+        </Card>
+    );
+}
+
+export default ContactForm;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'contact-form',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'contact-form',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'cookie-banner',
+                'type' => 'registry:block',
+                'title' => 'Cookie Banner',
+                'description' => 'A beautiful component for your application.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'card',
+                    'button',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/blocks/cookie-banner/cookie-banner.tsx',
+                        'type' => 'registry:block',
+                        'content' => '\'use client\';
+
+import React, { useState } from \'react\';
+import { ShieldAlert } from \'lucide-react\';
+import { Card, CardContent } from \'@/components/ui/card\';
+import { Button } from \'@/components/ui/button\';
+
+export function CookieBanner() {
+    const [visible, setVisible] = useState(true);
+
+    if (!visible) return null;
+
+    return (
+        <Card className="w-full border-border/50 bg-card/40 backdrop-blur-xs p-4 shadow-lg rounded-[var(--radius)]">
+            <CardContent className="p-0 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div className="flex items-start gap-3">
+                    <div className="size-8 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0 mt-0.5">
+                        <ShieldAlert className="size-4.5" />
+                    </div>
+                    <div className="min-w-0">
+                        <h4 className="text-xs font-bold text-foreground">We value your privacy</h4>
+                        <p className="text-[10px] text-muted-foreground mt-0.5 leading-normal max-w-xl">
+                            We use cookies to analyze user traffic, personalize experience, and optimize performance. By clicking "Accept All", you consent to our use of cookies.
+                        </p>
+                    </div>
+                </div>
+                <div className="flex gap-2 shrink-0">
+                    <Button size="sm" onClick={() => setVisible(false)} className="h-8 text-[10px] font-bold px-3">
+                        Accept All
+                    </Button>
+                    <Button size="sm" variant="outline" onClick={() => setVisible(false)} className="h-8 text-[10px] font-bold px-3 border-border/60">
+                        Decline
+                    </Button>
+                </div>
+            </CardContent>
+        </Card>
+    );
+}
+
+export default CookieBanner;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'cookie-banner',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'cookie-banner',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'faq-section',
+                'type' => 'registry:block',
+                'title' => 'Faq Section',
+                'description' => 'A beautiful component for your application.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                    'card',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/blocks/faq-section/faq-section.tsx',
+                        'type' => 'registry:block',
+                        'content' => '\'use client\';
+
+import React, { useState } from \'react\';
+import { ChevronDown, HelpCircle } from \'lucide-react\';
+import { cn } from \'@/lib/utils\';
+import { Card, CardHeader, CardTitle, CardContent } from \'@/components/ui/card\';
+
+interface FAQItem {
+    question: string;
+    answer: string;
+}
+
+const faqs: FAQItem[] = [
+    {
+        question: \'How do I install registry themes in my application?\',
+        answer: \'You can install themes directly using the shadcn CLI commands shown on the theme details page. Choose your package manager (npm, pnpm, yarn, bun) and copy-paste the installer route command into your terminal.\',
+    },
+    {
+        question: \'Can I customize the colors and fonts after installing?\',
+        answer: \'Yes! Themes generate standard Tailwind CSS variables inside your global CSS file. You can adjust the HSL codes or change the font-family properties manually at any time to match your brand requirements.\',
+    },
+    {
+        question: \'Are there any external dependencies required?\',
+        answer: \'Most components and blocks are built natively using standard Radix UI primitives and Tailwind CSS. If a block requires a library (like recharts for graphs), it will be automatically handled or declared in the dependency manifest.\',
+    },
+];
+
+export function FAQSection() {
+    const [openIdx, setOpenIdx] = useState<number | null>(null);
+
+    const toggle = (idx: number) => {
+        setOpenIdx(openIdx === idx ? null : idx);
+    };
+
+    return (
+        <div className="w-full max-w-3xl mx-auto space-y-4">
+            {faqs.map((faq, idx) => {
+                const isOpen = openIdx === idx;
+                return (
+                    <Card 
+                        key={idx} 
+                        className={cn(
+                            "border-border/50 bg-card/30 backdrop-blur-xs transition-all duration-300 overflow-hidden",
+                            isOpen && "border-primary/20 bg-muted/10"
+                        )}
+                    >
+                        <button
+                            onClick={() => toggle(idx)}
+                            className="w-full flex items-center justify-between p-4 text-left font-bold text-xs select-none hover:text-primary transition-colors cursor-pointer"
+                        >
+                            <span className="flex items-center gap-2">
+                                <HelpCircle className={cn("size-4 shrink-0 transition-colors", isOpen ? "text-primary" : "text-muted-foreground")} />
+                                {faq.question}
+                            </span>
+                            <ChevronDown 
+                                className={cn(
+                                    "size-4 shrink-0 text-muted-foreground transition-transform duration-350",
+                                    isOpen && "rotate-180 text-primary"
+                                )} 
+                            />
+                        </button>
+                        <div 
+                            className={cn(
+                                "grid transition-all duration-350 ease-in-out",
+                                isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                            )}
+                        >
+                            <div className="overflow-hidden">
+                                <CardContent className="p-4 pt-0 text-xs leading-relaxed text-muted-foreground">
+                                    {faq.answer}
+                                </CardContent>
+                            </div>
+                        </div>
+                    </Card>
+                );
+            })}
+        </div>
+    );
+}
+
+export default FAQSection;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'faq-section',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'faq-section',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
                 'name' => 'feature-grid',
                 'type' => 'registry:block',
                 'title' => 'Feature Grid',
@@ -1590,16 +2071,15 @@ export function StatCard({
 
                 ],
                 'registryDependencies' => [
-                    'utils',
                     'badge',
                     'card',
+                    'utils',
                 ],
                 'files' => [
                     [
                         'path' => 'resources/js/registry/new-york/components/blocks/feature-grid/feature-grid.tsx',
                         'type' => 'registry:block',
-                        'content' => 'import React from \'react\';
-import {
+                        'content' => 'import {
     Zap,
     Shield,
     Sparkles,
@@ -1607,7 +2087,6 @@ import {
     BarChart2,
     Layers,
 } from \'lucide-react\';
-import { cn } from \'@/lib/utils\';
 import { Badge } from \'@/components/ui/badge\';
 import {
     Card,
@@ -1616,6 +2095,7 @@ import {
     CardHeader,
     CardTitle,
 } from \'@/components/ui/card\';
+import { cn } from \'@/lib/utils\';
 
 export interface FeatureItem {
     title: string;
@@ -1632,14 +2112,14 @@ const features: FeatureItem[] = [
             \'Sub-millisecond query execution speeds via edge-cached memory nodes scattered globally.\',
         icon: <Zap className="size-5" />,
         badge: \'New\',
-        color: \'from-amber-500 to-orange-600\',
+        color: \'from-chart-4 to-chart-5\',
     },
     {
         title: \'Bank-Grade Cryptography\',
         description:
             \'Complete end-to-end data encryption in transit and at rest with isolated keys managed by KMS.\',
         icon: <Shield className="size-5" />,
-        color: \'from-blue-500 to-indigo-600\',
+        color: \'from-chart-3 to-chart-1\',
     },
     {
         title: \'Predictive Insights\',
@@ -1704,13 +2184,13 @@ export function FeatureGrid() {
                         className="group relative flex flex-col justify-between overflow-hidden border-border/40 bg-card/25 backdrop-blur-xs transition-all duration-300 hover:border-primary/20 hover:shadow-lg"
                     >
                         {/* Dynamic backdrop linear glow matching the category theme */}
-                        <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-primary/3 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                        <div className="pointer-events-none absolute inset-0 bg-linear-to-tr from-primary/3 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
                         <CardHeader className="space-y-4">
                             <div className="flex items-center justify-between">
                                 <div
                                     className={cn(
-                                        \'flex size-10 items-center justify-center rounded-xl bg-gradient-to-tr text-white shadow-md\',
+                                        \'flex size-10 items-center justify-center rounded-xl bg-linear-to-tr text-white shadow-md\',
                                         feature.color,
                                     )}
                                 >
@@ -1761,6 +2241,91 @@ export default FeatureGrid;
                 'docs' => null,
                 'categories' => [
                     'feature-grid',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'feature-list',
+                'type' => 'registry:block',
+                'title' => 'Feature List',
+                'description' => 'A beautiful component for your application.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'card',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/blocks/feature-list/feature-list.tsx',
+                        'type' => 'registry:block',
+                        'content' => '\'use client\';
+
+import React from \'react\';
+import { Check } from \'lucide-react\';
+import { Card, CardHeader, CardTitle, CardContent } from \'@/components/ui/card\';
+
+interface FeatureDoc {
+    title: string;
+    details: string;
+}
+
+const listItems: FeatureDoc[] = [
+    { title: \'Dynamic CSS Variables Mapping\', details: \'Inject HSL variable values directly to the DOM tree root.\' },
+    { title: \'Tailwind CSS V4 Containers Support\', details: \'Apply container queries to size children items responsively.\' },
+    { title: \'Interactive WebGL Canvas Shaders\', details: \'Render analog post-processed glitch visual assets.\' },
+];
+
+export function FeatureList() {
+    return (
+        <Card className="w-full max-w-xl mx-auto border-border/50 bg-card/30 backdrop-blur-xs">
+            <CardHeader className="pb-3">
+                <CardTitle className="text-base font-bold">Capabilities Checklist</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-3.5">
+                {listItems.map((item, idx) => (
+                    <div key={idx} className="flex gap-3 items-start">
+                        <div className="size-5 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0 mt-0.5">
+                            <Check className="size-3.5" />
+                        </div>
+                        <div className="min-w-0">
+                            <h4 className="text-xs font-bold text-foreground">{item.title}</h4>
+                            <p className="text-[10px] text-muted-foreground mt-0.5 leading-relaxed">{item.details}</p>
+                        </div>
+                    </div>
+                ))}
+            </CardContent>
+        </Card>
+    );
+}
+
+export default FeatureList;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'feature-list',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'feature-list',
                 ],
                 'extends' => null,
                 'style' => null,
@@ -3325,6 +3890,110 @@ export function HeroSplit() {
 }
 
 export default HeroSplit;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'hero-sections',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'hero-sections',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'hero-simple-split',
+                'type' => 'registry:block',
+                'title' => 'Hero Simple Split',
+                'description' => 'A beautiful component for your application.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'card',
+                    'button',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/blocks/hero-simple-split/hero-simple-split.tsx',
+                        'type' => 'registry:block',
+                        'content' => '\'use client\';
+
+import React from \'react\';
+import { Sparkles, Terminal } from \'lucide-react\';
+import { Card, CardContent } from \'@/components/ui/card\';
+import { Button } from \'@/components/ui/button\';
+
+export function HeroSimpleSplit() {
+    return (
+        <div className="w-full py-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                {/* Left text options */}
+                <div className="space-y-4 text-left">
+                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-[10px] font-bold text-primary uppercase">
+                        <Sparkles className="size-3" />
+                        Next-Gen Registry Blocks
+                    </div>
+                    <h2 className="text-2xl md:text-3xl font-black tracking-tight text-foreground leading-tight">
+                        Modular Building Blocks for Developer Interfaces
+                    </h2>
+                    <p className="text-xs text-muted-foreground leading-relaxed max-w-md">
+                        Drop high-quality visual widgets, charts, and form layouts into your code structure seamlessly using custom shadcn directives.
+                    </p>
+                    <div className="flex gap-2">
+                        <Button size="sm" className="h-9 px-4 text-xs font-bold gap-1.5">
+                            <Terminal className="size-3.5" />
+                            Explore Components
+                        </Button>
+                        <Button size="sm" variant="outline" className="h-9 px-4 text-xs font-bold border-border/60">
+                            Learn More
+                        </Button>
+                    </div>
+                </div>
+
+                {/* Right mockup card */}
+                <Card className="border-border/50 bg-card/40 backdrop-blur-xs overflow-hidden relative p-6">
+                    <div className="size-full flex flex-col gap-3">
+                        <div className="flex items-center gap-1.5 border-b border-border/30 pb-3">
+                            <div className="size-2.5 rounded-full bg-red-500/80" />
+                            <div className="size-2.5 rounded-full bg-yellow-500/80" />
+                            <div className="size-2.5 rounded-full bg-emerald-500/80" />
+                            <span className="text-[9px] font-mono text-muted-foreground ml-2">sandbox-editor.tsx</span>
+                        </div>
+                        <div className="font-mono text-[10px] text-muted-foreground space-y-1">
+                            <p><span className="text-primary">import</span> &#123; Button &#125; <span className="text-primary">from</span> <span className="text-emerald-500">"@/components/ui/button"</span>;</p>
+                            <p className="opacity-70"><span className="text-primary">export default function</span> <span className="text-blue-500">Page</span>() &#123;</p>
+                            <p className="opacity-70 pl-4"><span className="text-primary">return</span> (</p>
+                            <p className="pl-8 text-primary">&lt;Button&gt;<span className="text-foreground">Click Me</span>&lt;/Button&gt;</p>
+                            <p className="opacity-70 pl-4">);</p>
+                            <p className="opacity-70">&#125;</p>
+                        </div>
+                    </div>
+                </Card>
+            </div>
+        </div>
+    );
+}
+
+export default HeroSimpleSplit;
 ',
                     ],
                 ],
@@ -5996,6 +6665,111 @@ export function VolumeControl({ volume, onVolumeChange }: VolumeControlProps) {
                 'theme' => null,
             ],
             [
+                'name' => 'newsletter-box',
+                'type' => 'registry:block',
+                'title' => 'Newsletter Box',
+                'description' => 'A beautiful component for your application.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'card',
+                    'button',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/blocks/newsletter-box/newsletter-box.tsx',
+                        'type' => 'registry:block',
+                        'content' => '\'use client\';
+
+import React, { useState } from \'react\';
+import { Mail, CheckCircle } from \'lucide-react\';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from \'@/components/ui/card\';
+import { Button } from \'@/components/ui/button\';
+
+export function NewsletterBox() {
+    const [email, setEmail] = useState(\'\');
+    const [submitted, setSubmitted] = useState(false);
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        if (email) {
+            setSubmitted(true);
+        }
+    };
+
+    return (
+        <Card className="w-full max-w-md mx-auto border-border/50 bg-card/30 backdrop-blur-xs">
+            <CardHeader className="text-center pb-2">
+                <div className="size-10 rounded-full bg-primary/10 text-primary flex items-center justify-center mx-auto mb-2">
+                    <Mail className="size-5" />
+                </div>
+                <CardTitle className="text-base font-bold">Subscribe to Newsletter</CardTitle>
+                <CardDescription className="text-xs">
+                    Get the latest registry updates and components direct to your inbox.
+                </CardDescription>
+            </CardHeader>
+            <CardContent className="pt-2">
+                {submitted ? (
+                    <div className="p-4 rounded-lg bg-primary/10 border border-primary/20 text-center space-y-2">
+                        <CheckCircle className="size-5 text-primary mx-auto" />
+                        <h4 className="text-xs font-bold text-foreground">Subscription Confirmed!</h4>
+                        <p className="text-[10px] text-muted-foreground">Thank you for subscribing. We will keep you updated.</p>
+                    </div>
+                ) : (
+                    <form onSubmit={handleSubmit} className="space-y-3">
+                        <input 
+                            type="email" 
+                            required
+                            placeholder="Enter your email address" 
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            className="w-full h-9 px-3 rounded-[var(--radius)] text-xs bg-muted/40 border border-border/60 text-foreground focus:outline-hidden focus:ring-1 focus:ring-primary"
+                        />
+                        <Button type="submit" size="sm" className="w-full h-9 text-xs font-bold">
+                            Subscribe
+                        </Button>
+                        <p className="text-[9px] text-muted-foreground/80 text-center">
+                            We value your privacy. Unsubscribe at any time.
+                        </p>
+                    </form>
+                )}
+            </CardContent>
+        </Card>
+    );
+}
+
+export default NewsletterBox;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'newsletter-box',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'newsletter-box',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
                 'name' => 'pricing-comparison',
                 'type' => 'registry:block',
                 'title' => 'Pricing Comparison',
@@ -7278,6 +8052,109 @@ export default PricingSection;
                 'theme' => null,
             ],
             [
+                'name' => 'pricing-table',
+                'type' => 'registry:block',
+                'title' => 'Pricing Table',
+                'description' => 'A beautiful component for your application.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'card',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/blocks/pricing-table/pricing-table.tsx',
+                        'type' => 'registry:block',
+                        'content' => '\'use client\';
+
+import React from \'react\';
+import { Check, X } from \'lucide-react\';
+import { Card, CardHeader, CardTitle, CardContent } from \'@/components/ui/card\';
+
+interface FeatureRow {
+    feature: string;
+    free: boolean;
+    pro: boolean;
+}
+
+const rows: FeatureRow[] = [
+    { feature: \'Core Component Files\', free: true, pro: true },
+    { feature: \'Registry CLI installer\', free: true, pro: true },
+    { feature: \'Advanced Glitch shaders\', free: false, pro: true },
+    { feature: \'Unlimited workspaces\', free: false, pro: true },
+    { feature: \'Priority Help SLA\', free: false, pro: true },
+];
+
+export function PricingTable() {
+    return (
+        <Card className="w-full border-border/50 bg-card/30 backdrop-blur-xs overflow-hidden">
+            <CardHeader className="pb-2">
+                <CardTitle className="text-sm font-bold uppercase tracking-wider text-muted-foreground">
+                    Feature Comparison
+                </CardTitle>
+            </CardHeader>
+            <CardContent className="p-0">
+                <div className="overflow-x-auto">
+                    <table className="w-full text-xs text-left border-collapse">
+                        <thead>
+                            <tr className="border-b border-border/30 bg-muted/20">
+                                <th className="p-3 font-bold text-muted-foreground">Feature</th>
+                                <th className="p-3 font-bold text-center w-24">Free</th>
+                                <th className="p-3 font-bold text-center w-24 text-primary">Pro</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {rows.map((row, idx) => (
+                                <tr key={idx} className="border-b border-border/20 last:border-0 hover:bg-muted/10">
+                                    <td className="p-3 font-semibold text-foreground">{row.feature}</td>
+                                    <td className="p-3 text-center">
+                                        {row.free ? <Check className="size-4 text-emerald-500 mx-auto" /> : <X className="size-4 text-muted-foreground/30 mx-auto" />}
+                                    </td>
+                                    <td className="p-3 text-center">
+                                        {row.pro ? <Check className="size-4 text-primary mx-auto" /> : <X className="size-4 text-muted-foreground/30 mx-auto" />}
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            </CardContent>
+        </Card>
+    );
+}
+
+export default PricingTable;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'pricing',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'pricing',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
                 'name' => 'property-detail',
                 'type' => 'registry:block',
                 'title' => 'Property Detail',
@@ -8309,6 +9186,316 @@ export default ReviewsSlider;
                 'docs' => null,
                 'categories' => [
                     'reviews',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'stats-grid',
+                'type' => 'registry:block',
+                'title' => 'Stats Grid',
+                'description' => 'A beautiful component for your application.',
+                'author' => 'designbycode',
+                'dependencies' => [
+
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'card',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/blocks/stats-grid/stats-grid.tsx',
+                        'type' => 'registry:block',
+                        'content' => '\'use client\';
+
+import React from \'react\';
+import { Card, CardContent } from \'@/components/ui/card\';
+
+interface StatItem {
+    value: string;
+    label: string;
+    description: string;
+}
+
+const stats: StatItem[] = [
+    { value: \'99.99%\', label: \'System Uptime\', description: \'Guaranteed by SLA\' },
+    { value: \'150M+\', label: \'Monthly Queries\', description: \'Processed globally\' },
+    { value: \'10k+\', label: \'Active Devs\', description: \'Building workspaces\' },
+    { value: \'24/7\', label: \'Support SLA\', description: \'Always online\' },
+];
+
+export function StatsGrid() {
+    return (
+        <div className="w-full">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                {stats.map((stat, idx) => (
+                    <Card key={idx} className="border-border/50 bg-card/30 backdrop-blur-xs text-center p-4">
+                        <CardContent className="p-0">
+                            <div className="text-2xl md:text-3xl font-black tracking-tight text-primary font-mono">
+                                {stat.value}
+                            </div>
+                            <div className="text-xs font-bold text-foreground mt-1">
+                                {stat.label}
+                            </div>
+                            <div className="text-[10px] text-muted-foreground mt-0.5">
+                                {stat.description}
+                            </div>
+                        </CardContent>
+                    </Card>
+                ))}
+            </div>
+        </div>
+    );
+}
+
+export default StatsGrid;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'stats-grid',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'stats-grid',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'testimonials-grid',
+                'type' => 'registry:block',
+                'title' => 'Testimonials Grid',
+                'description' => 'A beautiful component for your application.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'card',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/blocks/testimonials-grid/testimonials-grid.tsx',
+                        'type' => 'registry:block',
+                        'content' => '\'use client\';
+
+import React from \'react\';
+import { Star, Quote } from \'lucide-react\';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from \'@/components/ui/card\';
+
+interface Testimonial {
+    name: string;
+    role: string;
+    avatarText: string;
+    content: string;
+    rating: number;
+}
+
+const testimonials: Testimonial[] = [
+    {
+        name: \'Alex Rivera\',
+        role: \'Founder at DevFlow\',
+        avatarText: \'AR\',
+        content: \'This styling registry has completely transformed how our team develops dashboards. The ease of switching theme variables saved us weeks of design time.\',
+        rating: 5,
+    },
+    {
+        name: \'Sarah Chen\',
+        role: \'Lead Frontend Architect\',
+        avatarText: \'SC\',
+        content: \'The component curation is incredible. Everything is built natively with shadcn guidelines and is highly responsive using tailwind container queries.\',
+        rating: 5,
+    },
+    {
+        name: \'Marcus Brody\',
+        role: \'Product Designer at Peak\',
+        avatarText: \'MB\',
+        content: \'I love how clean the markup is. No redundant nesting, pure Tailwind CSS variables, and instant installation commands that work out of the box.\',
+        rating: 5,
+    },
+];
+
+export function TestimonialsGrid() {
+    return (
+        <div className="w-full">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {testimonials.map((item, idx) => (
+                    <Card key={idx} className="border-border/50 bg-card/30 backdrop-blur-xs relative overflow-hidden group transition-all duration-300 hover:border-primary/30">
+                        <Quote className="absolute right-4 top-4 size-10 opacity-[0.03] text-foreground pointer-events-none" />
+                        <CardHeader className="pb-3">
+                            <div className="flex items-center gap-1.5 mb-2 text-amber-500">
+                                {Array.from({ length: item.rating }).map((_, i) => (
+                                    <Star key={i} className="size-3.5 fill-current" />
+                                ))}
+                            </div>
+                            <div className="flex items-center gap-3">
+                                <div className="size-8 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold text-xs select-none">
+                                    {item.avatarText}
+                                </div>
+                                <div className="min-w-0">
+                                    <CardTitle className="text-xs font-bold text-foreground truncate">{item.name}</CardTitle>
+                                    <CardDescription className="text-[9px] truncate">{item.role}</CardDescription>
+                                </div>
+                            </div>
+                        </CardHeader>
+                        <CardContent>
+                            <p className="text-xs leading-relaxed text-muted-foreground">
+                                "{item.content}"
+                            </p>
+                        </CardContent>
+                    </Card>
+                ))}
+            </div>
+        </div>
+    );
+}
+
+export default TestimonialsGrid;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'testimonials-grid',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'testimonials-grid',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'user-profile-card',
+                'type' => 'registry:block',
+                'title' => 'User Profile Card',
+                'description' => 'A beautiful component for your application.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'lucide-react',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'card',
+                    'button',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/blocks/user-profile-card/user-profile-card.tsx',
+                        'type' => 'registry:block',
+                        'content' => '\'use client\';
+
+import React from \'react\';
+import { User, Heart, MessageSquare } from \'lucide-react\';
+import { Card, CardContent } from \'@/components/ui/card\';
+import { Button } from \'@/components/ui/button\';
+
+export function UserProfileCard() {
+    return (
+        <Card className="w-full max-w-sm mx-auto border-border/50 bg-card/30 backdrop-blur-xs overflow-hidden relative">
+            {/* Cover photo placeholder */}
+            <div className="h-20 w-full bg-linear-to-r from-primary/30 to-accent/30 relative" />
+            
+            <CardContent className="pt-0 text-center pb-6">
+                {/* Profile Photo */}
+                <div className="size-16 rounded-full bg-background border-2 border-border/80 text-primary flex items-center justify-center font-bold text-lg mx-auto -mt-8 relative shadow-sm">
+                    <User className="size-8" />
+                </div>
+                
+                <div className="mt-2.5">
+                    <h4 className="text-sm font-bold text-foreground">Sarah Jenkins</h4>
+                    <p className="text-[10px] text-muted-foreground">Product Designer @ Peak</p>
+                </div>
+
+                <p className="text-[10px] text-muted-foreground/90 mt-3 max-w-xs mx-auto leading-relaxed">
+                    UX/UI enthusiast. Currently designing fluid responsive developer workspaces and styling libraries.
+                </p>
+
+                {/* Profile metrics */}
+                <div className="grid grid-cols-3 gap-2 mt-4 border-y border-border/20 py-2.5">
+                    <div>
+                        <div className="text-xs font-black text-foreground">4.8k</div>
+                        <div className="text-[8px] text-muted-foreground uppercase font-bold mt-0.5">Followers</div>
+                    </div>
+                    <div>
+                        <div className="text-xs font-black text-foreground">124</div>
+                        <div className="text-[8px] text-muted-foreground uppercase font-bold mt-0.5">Projects</div>
+                    </div>
+                    <div>
+                        <div className="text-xs font-black text-foreground">12</div>
+                        <div className="text-[8px] text-muted-foreground uppercase font-bold mt-0.5">Awards</div>
+                    </div>
+                </div>
+
+                <div className="flex gap-2 justify-center mt-4">
+                    <Button size="sm" className="h-8 text-xs font-bold px-3.5 gap-1.5">
+                        <Heart className="size-3.5" />
+                        Follow
+                    </Button>
+                    <Button size="sm" variant="outline" className="h-8 text-xs font-bold px-3.5 gap-1.5 border-border/60">
+                        <MessageSquare className="size-3.5" />
+                        Message
+                    </Button>
+                </div>
+            </CardContent>
+        </Card>
+    );
+}
+
+export default UserProfileCard;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'user-profile-card',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'user-profile-card',
                 ],
                 'extends' => null,
                 'style' => null,

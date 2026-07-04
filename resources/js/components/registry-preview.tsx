@@ -1,10 +1,30 @@
+import { Sparkles, Shield, Globe, Heart, Award, Terminal } from 'lucide-react';
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
-import { Sparkles, Shield, Globe, Heart, Award, Terminal } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 // Import all registry components
+import ActivityFeed from '@/registry/new-york/components/blocks/activity-feed/activity-feed';
+import AnalyticsDashboard from '@/registry/new-york/components/blocks/analytics-dashboard/analytics-dashboard';
+import BookingForm from '@/registry/new-york/components/blocks/booking-form/booking-form';
+import ButtonsGallery from '@/registry/new-york/components/blocks/buttons-gallery/buttons-gallery';
+import CallToActionBox from '@/registry/new-york/components/blocks/call-to-action-box/call-to-action-box';
+import CanvasGallery from '@/registry/new-york/components/blocks/canvas-gallery/canvas-gallery';
+import { CardsStats } from '@/registry/new-york/components/blocks/cards-stats/cards-stats';
+import ContactForm from '@/registry/new-york/components/blocks/contact-form/contact-form';
+import CookieBanner from '@/registry/new-york/components/blocks/cookie-banner/cookie-banner';
+import FAQSection from '@/registry/new-york/components/blocks/faq-section/faq-section';
+import FeatureGrid from '@/registry/new-york/components/blocks/feature-grid/feature-grid';
+import FeatureList from '@/registry/new-york/components/blocks/feature-list/feature-list';
+import { HeroConicGlow } from '@/registry/new-york/components/blocks/hero-conic-glow/hero-conic-glow';
+import { HeroFeaturesGrid } from '@/registry/new-york/components/blocks/hero-features-grid/hero-features-grid';
+import { HeroFullscreenImage } from '@/registry/new-york/components/blocks/hero-fullscreen-image/hero-fullscreen-image';
+import { HeroFullscreenVideo } from '@/registry/new-york/components/blocks/hero-fullscreen-video/hero-fullscreen-video';
+import { HeroGlowingCards } from '@/registry/new-york/components/blocks/hero-glowing-cards/hero-glowing-cards';
+import { HeroHighEnergyImpact } from '@/registry/new-york/components/blocks/hero-high-energy/hero-high-energy';
+import { HeroMinimalCentered } from '@/registry/new-york/components/blocks/hero-minimal-centered/hero-minimal-centered';
+import { HeroGradient } from '@/registry/new-york/components/blocks/hero-section/hero-gradient';
 import { MusicPlayer } from '@/registry/new-york/components/blocks/music-player/music-player';
 import GSAPMarquee from '@/registry/new-york/components/ui/animations/gsap-marquee';
 import Marquee from '@/registry/new-york/components/ui/animations/marquee';
@@ -69,18 +89,16 @@ import { ReviewMarquee } from '@/registry/new-york/components/ui/reviews/review-
 import { ReviewMasonry } from '@/registry/new-york/components/ui/reviews/review-masonry';
 import { ReviewHero } from '@/registry/new-york/components/ui/reviews/review-hero';
 import { ReviewCarousel } from '@/registry/new-york/components/ui/reviews/review-carousel';
-import { CardsStats } from '@/registry/new-york/components/blocks/cards-stats/cards-stats';
 import PricingSection from '@/registry/new-york/components/blocks/pricing-section/pricing-section';
 import { PricingGlowing } from '@/registry/new-york/components/blocks/pricing-glowing/pricing-glowing';
 import { PricingComparison } from '@/registry/new-york/components/blocks/pricing-comparison/pricing-comparison';
 import { PricingResources } from '@/registry/new-york/components/blocks/pricing-resources/pricing-resources';
 import { PricingModernCards } from '@/registry/new-york/components/blocks/pricing-modern-cards/pricing-modern-cards';
-import FeatureGrid from '@/registry/new-york/components/blocks/feature-grid/feature-grid';
 
-import { Heading } from '@/registry/new-york/components/ui/typography/heading';
-import { Paragraph } from '@/registry/new-york/components/ui/typography/paragraph';
 import { BadgeIndicator } from '@/registry/new-york/components/ui/typography/badge-indicator';
+import { Heading } from '@/registry/new-york/components/ui/typography/heading';
 import { HeadingBlock } from '@/registry/new-york/components/ui/typography/heading-block';
+import { Paragraph } from '@/registry/new-york/components/ui/typography/paragraph';
 import { InputNumberStepper } from '@/registry/new-york/components/ui/inputs/input-number-stepper';
 import { ButtonNeon } from '@/registry/new-york/components/ui/buttons/button-neon';
 import { ButtonPulse } from '@/registry/new-york/components/ui/buttons/button-pulse';
@@ -89,27 +107,20 @@ import { ButtonGradient } from '@/registry/new-york/components/ui/buttons/button
 import { ButtonRipple } from '@/registry/new-york/components/ui/buttons/button-ripple';
 import { ButtonArrow } from '@/registry/new-york/components/ui/buttons/button-arrow';
 import { ButtonGlowingAura } from '@/registry/new-york/components/ui/buttons/button-glowing-aura';
-import { HeroGradient } from '@/registry/new-york/components/blocks/hero-section/hero-gradient';
 import { HeroSplit } from '@/registry/new-york/components/blocks/hero-section/hero-split';
-import { HeroMinimalCentered } from '@/registry/new-york/components/blocks/hero-minimal-centered/hero-minimal-centered';
 import { HeroPhoneMockup } from '@/registry/new-york/components/blocks/hero-phone-mockup/hero-phone-mockup';
-import { HeroFeaturesGrid } from '@/registry/new-york/components/blocks/hero-features-grid/hero-features-grid';
 import { HeroVideoDialog } from '@/registry/new-york/components/blocks/hero-video-dialog/hero-video-dialog';
 import { HeroParticles } from '@/registry/new-york/components/blocks/hero-particles/hero-particles';
-import { HeroConicGlow } from '@/registry/new-york/components/blocks/hero-conic-glow/hero-conic-glow';
 import { HeroWaitlist } from '@/registry/new-york/components/blocks/hero-waitlist/hero-waitlist';
 import { HeroTrustedBy } from '@/registry/new-york/components/blocks/hero-trusted-by/hero-trusted-by';
 import { HeroTabsShowcase } from '@/registry/new-york/components/blocks/hero-tabs-showcase/hero-tabs-showcase';
 import { HeroWaves } from '@/registry/new-york/components/blocks/hero-waves/hero-waves';
-import { HeroFullscreenImage } from '@/registry/new-york/components/blocks/hero-fullscreen-image/hero-fullscreen-image';
-import { HeroFullscreenVideo } from '@/registry/new-york/components/blocks/hero-fullscreen-video/hero-fullscreen-video';
 import { PhoneMockup } from '@/registry/new-york/components/ui/mockups/phone-mockup';
 import { CodeWindow } from '@/registry/new-york/components/ui/mockups/code-window';
 import { BrowserMockup } from '@/registry/new-york/components/ui/mockups/browser-mockup';
 import { ParticlesBackdrop } from '@/registry/new-york/components/ui/animations/particles-backdrop';
 import { LogoCloud } from '@/registry/new-york/components/ui/misc/logo-cloud';
 import { GlowingCard } from '@/registry/new-york/components/ui/cards/glowing-card';
-import { HeroGlowingCards } from '@/registry/new-york/components/blocks/hero-glowing-cards/hero-glowing-cards';
 import { TiltCard } from '@/registry/new-york/components/ui/cards/tilt-card';
 import { RevealCard } from '@/registry/new-york/components/ui/cards/reveal-card';
 import { NeonBorderCard } from '@/registry/new-york/components/ui/cards/neon-border-card';
@@ -125,7 +136,6 @@ import { MetricRadialCard } from '@/registry/new-york/components/ui/cards/metric
 import { SplitPreviewCard } from '@/registry/new-york/components/ui/cards/split-preview-card';
 import { GrainyNoiseCard } from '@/registry/new-york/components/ui/cards/grainy-noise-card';
 import { ScratchCard } from '@/registry/new-york/components/ui/cards/scratch-card';
-import { HeroHighEnergyImpact } from '@/registry/new-york/components/blocks/hero-high-energy/hero-high-energy';
 import { RainbowBorder } from '@/registry/new-york/components/ui/borders/rainbow-border';
 import { GradientButton } from '@/registry/new-york/components/ui/buttons/rainbow-button';
 import { RainbowBorderButton } from '@/registry/new-york/components/ui/buttons/rainbow-border-button';
@@ -157,20 +167,425 @@ import { GalleryDropzoneTable } from '@/registry/new-york/components/ui/dropzone
 
 import ButtonMagnetic from '@/registry/new-york/components/ui/buttons/button-magnetic';
 import ButtonShine from '@/registry/new-york/components/ui/buttons/button-shine';
-import AnalyticsDashboard from '@/registry/new-york/components/blocks/analytics-dashboard/analytics-dashboard';
-import ButtonsGallery from '@/registry/new-york/components/blocks/buttons-gallery/buttons-gallery';
 import InputsGallery from '@/registry/new-york/components/blocks/inputs-gallery/inputs-gallery';
-import CanvasGallery from '@/registry/new-york/components/blocks/canvas-gallery/canvas-gallery';
-import BookingForm from '@/registry/new-york/components/blocks/booking-form/booking-form';
 import RentalListings from '@/registry/new-york/components/blocks/rental-listings/rental-listings';
 import PropertyDetail from '@/registry/new-york/components/blocks/property-detail/property-detail';
 import ReviewsSlider from '@/registry/new-york/components/blocks/reviews-slider/reviews-slider';
 import HeroSection from '@/registry/new-york/components/blocks/hero-section/hero-section';
+import TestimonialsGrid from '@/registry/new-york/components/blocks/testimonials-grid/testimonials-grid';
+import NewsletterBox from '@/registry/new-york/components/blocks/newsletter-box/newsletter-box';
+import StatsGrid from '@/registry/new-york/components/blocks/stats-grid/stats-grid';
+import PricingTable from '@/registry/new-york/components/blocks/pricing-table/pricing-table';
+import UserProfileCard from '@/registry/new-york/components/blocks/user-profile-card/user-profile-card';
+import HeroSimpleSplit from '@/registry/new-york/components/blocks/hero-simple-split/hero-simple-split';
 
 // Import hooks for interactive demo
 import useDarkMode from '@/registry/new-york/hooks/use-dark-mode';
 import useHeadroom from '@/registry/new-york/hooks/use-headroom';
 import { useHover } from '@/registry/new-york/hooks/use-hover';
+
+
+function InputSlugPreview() {
+    const [value, setValue] = useState('');
+
+    return (
+        <div className="mx-auto w-full max-w-md space-y-4 rounded-xl border border-border/50 bg-card p-6">
+            <div className="space-y-1">
+                <label className="text-xs font-semibold text-muted-foreground">
+                    Title to Slug Input
+                </label>
+                <InputSlug
+                    value={value}
+                    onValueChange={setValue}
+                    placeholder="Type something to auto-slugify..."
+                    className="w-full"
+                />
+            </div>
+            <div className="rounded bg-muted/50 p-3 font-mono text-xs break-all text-muted-foreground">
+                slug:{' '}
+                <span className="font-bold text-primary">
+                    {value || 'None'}
+                </span>
+            </div>
+        </div>
+    );
+}
+
+function InputPhonePreview() {
+    const [value, setValue] = useState('');
+
+    return (
+        <div className="mx-auto w-full max-w-md space-y-4 rounded-xl border border-border/50 bg-card p-6">
+            <div className="space-y-1">
+                <label className="text-xs font-semibold text-muted-foreground">
+                    Phone Number Input
+                </label>
+                <InputPhone
+                    value={value}
+                    onValueChange={setValue}
+                    placeholder="(555) 000-0000"
+                    className="w-full"
+                />
+            </div>
+            <div className="rounded bg-muted/50 p-3 font-mono text-xs break-all text-muted-foreground">
+                digits:{' '}
+                <span className="font-bold text-primary">
+                    {value || 'None'}
+                </span>
+            </div>
+        </div>
+    );
+}
+
+function InputCurrencyPreview() {
+    const [value, setValue] = useState<number | undefined>(1000);
+
+    return (
+        <div className="mx-auto w-full max-w-md space-y-4 rounded-xl border border-border/50 bg-card p-6">
+            <div className="space-y-1">
+                <label className="text-xs font-semibold text-muted-foreground">
+                    Currency Input (USD)
+                </label>
+                <InputCurrency
+                    value={value}
+                    onValueChange={setValue}
+                    placeholder="0.00"
+                    className="w-full"
+                />
+            </div>
+            <div className="rounded bg-muted/50 p-3 font-mono text-xs break-all text-muted-foreground">
+                number:{' '}
+                <span className="font-bold text-primary">
+                    {value !== undefined ? value : 'None'}
+                </span>
+            </div>
+        </div>
+    );
+}
+
+function InputNumberPreview() {
+    const [value, setValue] = useState<number | undefined>(10);
+
+    return (
+        <div className="mx-auto w-full max-w-md space-y-4 rounded-xl border border-border/50 bg-card p-6">
+            <div className="space-y-1">
+                <label className="text-xs font-semibold text-muted-foreground">
+                    Numeric Spinner (step: 0.5, max: 20)
+                </label>
+                <InputNumber
+                    value={value}
+                    onValueChange={setValue}
+                    step={0.5}
+                    max={20}
+                    min={0}
+                    suffix="px"
+                    placeholder="0.0"
+                    className="w-full"
+                />
+            </div>
+            <div className="rounded bg-muted/50 p-3 font-mono text-xs break-all text-muted-foreground">
+                number:{' '}
+                <span className="font-bold text-primary">
+                    {value !== undefined ? value : 'None'}
+                </span>
+            </div>
+        </div>
+    );
+}
+
+function InputPasswordPreview() {
+    const [value, setValue] = useState('');
+
+    return (
+        <div className="mx-auto w-full max-w-md space-y-4 rounded-xl border border-border/50 bg-card p-6">
+            <div className="space-y-1">
+                <label className="text-xs font-semibold text-muted-foreground">
+                    Password Input
+                </label>
+                <InputPassword
+                    value={value}
+                    onChange={(e) => setValue(e.target.value)}
+                    placeholder="••••••••"
+                    className="w-full"
+                />
+            </div>
+            <div className="rounded bg-muted/50 p-3 font-mono text-xs break-all text-muted-foreground">
+                Value:{' '}
+                <span className="font-bold text-primary">
+                    {value || 'None'}
+                </span>
+            </div>
+        </div>
+    );
+}
+
+function MultiSelectPreview() {
+    const [selected, setSelected] = useState<string[]>([]);
+    const options = [
+        { label: 'React', value: 'react' },
+        { label: 'TypeScript', value: 'ts' },
+        { label: 'Tailwind CSS', value: 'tailwind' },
+        { label: 'Laravel', value: 'laravel' },
+        { label: 'InertiaJS', value: 'inertia' },
+    ];
+
+    return (
+        <div className="mx-auto min-h-[250px] w-full max-w-sm space-y-4 rounded-xl border border-border/50 bg-card p-6">
+            <div className="space-y-1">
+                <label className="text-xs font-semibold text-muted-foreground">
+                    Multi-Select Dropdown
+                </label>
+                <MultiSelect value={selected} onValueChange={setSelected}>
+                    <MultiSelectTrigger className="w-full">
+                        <MultiSelectValue placeholder="Select technologies..." />
+                    </MultiSelectTrigger>
+                    <MultiSelectContent>
+                        {options.map((opt) => (
+                            <MultiSelectItem
+                                key={opt.value}
+                                value={opt.value}
+                            >
+                                {opt.label}
+                            </MultiSelectItem>
+                        ))}
+                    </MultiSelectContent>
+                </MultiSelect>
+            </div>
+            <div className="text-xs text-muted-foreground">
+                Selected:{' '}
+                <span className="font-mono text-primary">
+                    {selected.join(', ') || 'none'}
+                </span>
+            </div>
+        </div>
+    );
+}
+
+function AnimatedTabsPreview() {
+    const [active, setActive] = useState('home');
+    const tabList = [
+        { id: 'home', label: 'Home' },
+        { id: 'profile', label: 'Profile' },
+        { id: 'billing', label: 'Billing' },
+        { id: 'settings', label: 'Settings' },
+    ];
+
+    return (
+        <div className="mx-auto flex min-h-[150px] w-full max-w-md flex-col items-center justify-center rounded-xl border border-border/50 bg-card p-6">
+            <AnimatedTabs
+                tabs={tabList}
+                value={active}
+                onChange={setActive}
+            />
+            <div className="mt-4 text-xs text-muted-foreground">
+                Active tab:{' '}
+                <span className="font-mono font-bold text-primary">
+                    {active}
+                </span>
+            </div>
+        </div>
+    );
+}
+
+function InteractiveRatingPreview() {
+    const [rating, setRating] = useState(3);
+
+    return (
+        <div className="mx-auto flex min-h-[150px] w-full max-w-md flex-col items-center justify-center gap-4 rounded-xl border border-border/50 bg-card p-6">
+            <div className="space-y-1 text-center">
+                <span className="text-xs font-semibold text-muted-foreground">
+                    Interactive Rating
+                </span>
+                <InteractiveRating
+                    defaultRating={rating}
+                    onChange={setRating}
+                    maxRating={5}
+                />
+            </div>
+            <div className="text-xs text-muted-foreground">
+                Rating value:{' '}
+                <span className="font-mono font-bold text-primary">
+                    {rating} / 5
+                </span>
+            </div>
+        </div>
+    );
+}
+
+function ProgressCirclePreview() {
+    const [value, setValue] = useState(65);
+
+    return (
+        <div className="mx-auto flex min-h-[200px] w-full max-w-md flex-col items-center justify-center gap-6 rounded-xl border border-border/50 bg-card p-6">
+            <div className="flex items-center gap-8">
+                <ProgressCircle
+                    value={value}
+                    size={100}
+                    strokeWidth={8}
+                    label="Loading"
+                />
+                <ProgressCircle
+                    value={value}
+                    size={80}
+                    strokeWidth={6}
+                    label="Speed"
+                    className="text-chart-2"
+                />
+                <ProgressCircle
+                    value={value}
+                    size={60}
+                    strokeWidth={4}
+                    showValue={false}
+                    className="text-destructive"
+                />
+            </div>
+            <div className="flex w-full flex-col gap-2">
+                <div className="flex items-center justify-between text-xs text-muted-foreground">
+                    <span>Progress Value</span>
+                    <span className="font-mono font-bold text-primary">
+                        {value}%
+                    </span>
+                </div>
+                <input
+                    type="range"
+                    min="0"
+                    max="100"
+                    value={value}
+                    onChange={(e) => setValue(parseInt(e.target.value, 10))}
+                    className="h-1.5 w-full cursor-pointer appearance-none rounded-lg bg-muted accent-primary"
+                />
+            </div>
+        </div>
+    );
+}
+
+function InputNumberStepperPreview() {
+    const [value1, setValue1] = useState<number | undefined>(5);
+    const [value2, setValue2] = useState<number | undefined>(10);
+    const [value3, setValue3] = useState<number | undefined>(1.5);
+    const [value4, setValue4] = useState<number | undefined>(20);
+
+    return (
+        <div className="mx-auto w-full max-w-md space-y-6 rounded-xl border border-border/50 bg-card p-6">
+            <div className="space-y-2">
+                <span className="text-xs font-semibold text-muted-foreground">
+                    Split Layout (Default)
+                </span>
+                <InputNumberStepper
+                    value={value1}
+                    onValueChange={setValue1}
+                    min={0}
+                    max={10}
+                />
+            </div>
+            <div className="space-y-2">
+                <span className="text-xs font-semibold text-muted-foreground">
+                    Compact Layout
+                </span>
+                <InputNumberStepper
+                    value={value2}
+                    onValueChange={setValue2}
+                    variant="inline"
+                    min={0}
+                    max={20}
+                />
+            </div>
+            <div className="space-y-2">
+                <span className="text-xs font-semibold text-muted-foreground">
+                    Decimals Support (step: 0.1)
+                </span>
+                <InputNumberStepper
+                    value={value3}
+                    onValueChange={setValue3}
+                    step={0.1}
+                    min={0}
+                    max={5}
+                />
+            </div>
+            <div className="space-y-2">
+                <span className="text-xs font-semibold text-muted-foreground">
+                    Disabled State
+                </span>
+                <InputNumberStepper
+                    value={value4}
+                    onValueChange={setValue4}
+                    disabled
+                />
+            </div>
+        </div>
+    );
+}
+
+function UseHoverPreview() {
+    const { isHovered, hoverRef } = useHover();
+
+    return (
+        <div className="grid min-h-[200px] w-full place-items-center rounded-xl border border-border/50 bg-card p-6">
+            <div
+                ref={hoverRef}
+                className={`flex h-32 w-64 cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed transition-all duration-300 ${
+                    isHovered
+                        ? 'border-primary bg-primary/10 text-primary'
+                        : 'border-muted-foreground/30 bg-muted/20 text-muted-foreground'
+                }`}
+            >
+                <span className="font-medium">
+                    {isHovered ? 'Hovering!' : 'Hover me'}
+                </span>
+            </div>
+        </div>
+    );
+}
+
+function UseDarkModePreview() {
+    const isDark = useDarkMode();
+    const toggle = () => {
+        document.documentElement.classList.toggle('dark');
+    };
+
+    return (
+        <div className="grid min-h-[200px] w-full place-items-center rounded-xl border border-border/50 bg-card p-6">
+            <div className="space-y-3 text-center">
+                <p className="text-sm">
+                    Current theme state:{' '}
+                    <span className="font-mono font-bold text-primary">
+                        {isDark ? 'Dark' : 'Light'}
+                    </span>
+                </p>
+                <Button onClick={toggle} variant="outline">
+                    Toggle Theme Mode
+                </Button>
+            </div>
+        </div>
+    );
+}
+
+function UseHeadroomPreview() {
+    const { pinned } = useHeadroom({
+        enabled: true,
+        offset: 10,
+    });
+
+    return (
+        <div className="w-full space-y-4 rounded-xl border border-border/50 bg-card p-6">
+            <div className="mb-2 text-xs text-muted-foreground">
+                Scroll the page downwards and upwards to see useHeadroom header pin state.
+            </div>
+            <div
+                className={`sticky top-0 z-50 flex h-12 w-full items-center justify-between rounded-lg border px-4 transition-all duration-300 ${
+                    pinned
+                        ? 'translate-y-0 border-border bg-card/90 shadow-md backdrop-blur-md'
+                        : '-translate-y-16 border-transparent bg-transparent'
+                }`}
+            >
+                <span className="font-bold text-xs">Pinned Header Demo</span>
+                <span className="font-mono text-[10px] text-primary">
+                    {pinned ? 'PINNED' : 'UNPINNED'}
+                </span>
+            </div>
+        </div>
+    );
+}
 
 export default function RegistryPreview({ name }: { name: string }) {
     // 1. Music Player
@@ -429,276 +844,47 @@ export default function RegistryPreview({ name }: { name: string }) {
 
     // 11. Input Slug
     if (name === 'input-slug') {
-        const [value, setValue] = useState('');
-        return (
-            <div className="mx-auto w-full max-w-md space-y-4 rounded-xl border border-border/50 bg-card p-6">
-                <div className="space-y-1">
-                    <label className="text-xs font-semibold text-muted-foreground">
-                        Title to Slug Input
-                    </label>
-                    <InputSlug
-                        value={value}
-                        onValueChange={setValue}
-                        placeholder="Type something to auto-slugify..."
-                        className="w-full"
-                    />
-                </div>
-                <div className="rounded bg-muted/50 p-3 font-mono text-xs break-all text-muted-foreground">
-                    slug:{' '}
-                    <span className="font-bold text-primary">
-                        {value || 'None'}
-                    </span>
-                </div>
-            </div>
-        );
+        return <InputSlugPreview />;
     }
 
     // 11b. Input Phone
     if (name === 'input-phone') {
-        const [value, setValue] = useState('');
-        return (
-            <div className="mx-auto w-full max-w-md space-y-4 rounded-xl border border-border/50 bg-card p-6">
-                <div className="space-y-1">
-                    <label className="text-xs font-semibold text-muted-foreground">
-                        Phone Number Input
-                    </label>
-                    <InputPhone
-                        value={value}
-                        onValueChange={setValue}
-                        placeholder="(555) 000-0000"
-                        className="w-full"
-                    />
-                </div>
-                <div className="rounded bg-muted/50 p-3 font-mono text-xs break-all text-muted-foreground">
-                    digits:{' '}
-                    <span className="font-bold text-primary">
-                        {value || 'None'}
-                    </span>
-                </div>
-            </div>
-        );
+        return <InputPhonePreview />;
     }
 
     // 11c. Input Currency
     if (name === 'input-currency') {
-        const [value, setValue] = useState<number | undefined>(1000);
-        return (
-            <div className="mx-auto w-full max-w-md space-y-4 rounded-xl border border-border/50 bg-card p-6">
-                <div className="space-y-1">
-                    <label className="text-xs font-semibold text-muted-foreground">
-                        Currency Input (USD)
-                    </label>
-                    <InputCurrency
-                        value={value}
-                        onValueChange={setValue}
-                        placeholder="0.00"
-                        className="w-full"
-                    />
-                </div>
-                <div className="rounded bg-muted/50 p-3 font-mono text-xs break-all text-muted-foreground">
-                    number:{' '}
-                    <span className="font-bold text-primary">
-                        {value !== undefined ? value : 'None'}
-                    </span>
-                </div>
-            </div>
-        );
+        return <InputCurrencyPreview />;
     }
 
     // 11d. Input Number
     if (name === 'input-number') {
-        const [value, setValue] = useState<number | undefined>(10);
-        return (
-            <div className="mx-auto w-full max-w-md space-y-4 rounded-xl border border-border/50 bg-card p-6">
-                <div className="space-y-1">
-                    <label className="text-xs font-semibold text-muted-foreground">
-                        Numeric Spinner (step: 0.5, max: 20)
-                    </label>
-                    <InputNumber
-                        value={value}
-                        onValueChange={setValue}
-                        step={0.5}
-                        max={20}
-                        min={0}
-                        suffix="px"
-                        placeholder="0.0"
-                        className="w-full"
-                    />
-                </div>
-                <div className="rounded bg-muted/50 p-3 font-mono text-xs break-all text-muted-foreground">
-                    number:{' '}
-                    <span className="font-bold text-primary">
-                        {value !== undefined ? value : 'None'}
-                    </span>
-                </div>
-            </div>
-        );
+        return <InputNumberPreview />;
     }
 
     // 11e. Input Password
     if (name === 'input-password') {
-        const [value, setValue] = useState('');
-        return (
-            <div className="mx-auto w-full max-w-md space-y-4 rounded-xl border border-border/50 bg-card p-6">
-                <div className="space-y-1">
-                    <label className="text-xs font-semibold text-muted-foreground">
-                        Password Input
-                    </label>
-                    <InputPassword
-                        value={value}
-                        onChange={(e) => setValue(e.target.value)}
-                        placeholder="••••••••"
-                        className="w-full"
-                    />
-                </div>
-                <div className="rounded bg-muted/50 p-3 font-mono text-xs break-all text-muted-foreground">
-                    Value:{' '}
-                    <span className="font-bold text-primary">
-                        {value || 'None'}
-                    </span>
-                </div>
-            </div>
-        );
+        return <InputPasswordPreview />;
     }
 
     // 12. Multi Select
     if (name === 'multi-select') {
-        const [selected, setSelected] = useState<string[]>([]);
-        const options = [
-            { label: 'React', value: 'react' },
-            { label: 'TypeScript', value: 'ts' },
-            { label: 'Tailwind CSS', value: 'tailwind' },
-            { label: 'Laravel', value: 'laravel' },
-            { label: 'InertiaJS', value: 'inertia' },
-        ];
-        return (
-            <div className="mx-auto min-h-[250px] w-full max-w-sm space-y-4 rounded-xl border border-border/50 bg-card p-6">
-                <div className="space-y-1">
-                    <label className="text-xs font-semibold text-muted-foreground">
-                        Multi-Select Dropdown
-                    </label>
-                    <MultiSelect value={selected} onValueChange={setSelected}>
-                        <MultiSelectTrigger className="w-full">
-                            <MultiSelectValue placeholder="Select technologies..." />
-                        </MultiSelectTrigger>
-                        <MultiSelectContent>
-                            {options.map((opt) => (
-                                <MultiSelectItem
-                                    key={opt.value}
-                                    value={opt.value}
-                                >
-                                    {opt.label}
-                                </MultiSelectItem>
-                            ))}
-                        </MultiSelectContent>
-                    </MultiSelect>
-                </div>
-                <div className="text-xs text-muted-foreground">
-                    Selected:{' '}
-                    <span className="font-mono text-primary">
-                        {selected.join(', ') || 'none'}
-                    </span>
-                </div>
-            </div>
-        );
+        return <MultiSelectPreview />;
     }
 
     // 13. Animated Tabs
     if (name === 'animated-tabs') {
-        const [active, setActive] = useState('home');
-        const tabList = [
-            { id: 'home', label: 'Home' },
-            { id: 'profile', label: 'Profile' },
-            { id: 'billing', label: 'Billing' },
-            { id: 'settings', label: 'Settings' },
-        ];
-        return (
-            <div className="mx-auto flex min-h-[150px] w-full max-w-md flex-col items-center justify-center rounded-xl border border-border/50 bg-card p-6">
-                <AnimatedTabs
-                    tabs={tabList}
-                    value={active}
-                    onChange={setActive}
-                />
-                <div className="mt-4 text-xs text-muted-foreground">
-                    Active tab:{' '}
-                    <span className="font-mono font-bold text-primary">
-                        {active}
-                    </span>
-                </div>
-            </div>
-        );
+        return <AnimatedTabsPreview />;
     }
 
     // 13b. Interactive Rating
     if (name === 'interactive-rating') {
-        const [rating, setRating] = useState(3);
-        return (
-            <div className="mx-auto flex min-h-[150px] w-full max-w-md flex-col items-center justify-center gap-4 rounded-xl border border-border/50 bg-card p-6">
-                <div className="space-y-1 text-center">
-                    <span className="text-xs font-semibold text-muted-foreground">
-                        Interactive Rating
-                    </span>
-                    <InteractiveRating
-                        defaultRating={rating}
-                        onChange={setRating}
-                        maxRating={5}
-                    />
-                </div>
-                <div className="text-xs text-muted-foreground">
-                    Rating value:{' '}
-                    <span className="font-mono font-bold text-primary">
-                        {rating} / 5
-                    </span>
-                </div>
-            </div>
-        );
+        return <InteractiveRatingPreview />;
     }
 
     // 13c. Progress Circle
     if (name === 'progress-circle') {
-        const [value, setValue] = useState(65);
-        return (
-            <div className="mx-auto flex min-h-[200px] w-full max-w-md flex-col items-center justify-center gap-6 rounded-xl border border-border/50 bg-card p-6">
-                <div className="flex items-center gap-8">
-                    <ProgressCircle
-                        value={value}
-                        size={100}
-                        strokeWidth={8}
-                        label="Loading"
-                    />
-                    <ProgressCircle
-                        value={value}
-                        size={80}
-                        strokeWidth={6}
-                        label="Speed"
-                        className="text-chart-2"
-                    />
-                    <ProgressCircle
-                        value={value}
-                        size={60}
-                        strokeWidth={4}
-                        showValue={false}
-                        className="text-destructive"
-                    />
-                </div>
-                <div className="flex w-full flex-col gap-2">
-                    <div className="flex items-center justify-between text-xs text-muted-foreground">
-                        <span>Progress Value</span>
-                        <span className="font-mono font-bold text-primary">
-                            {value}%
-                        </span>
-                    </div>
-                    <input
-                        type="range"
-                        min="0"
-                        max="100"
-                        value={value}
-                        onChange={(e) => setValue(parseInt(e.target.value, 10))}
-                        className="h-1.5 w-full cursor-pointer appearance-none rounded-lg bg-muted accent-primary"
-                    />
-                </div>
-            </div>
-        );
+        return <ProgressCirclePreview />;
     }
 
     // 14. Waves Three
@@ -835,6 +1021,7 @@ export default function RegistryPreview({ name }: { name: string }) {
                 className="h-10 w-full bg-linear-to-tr from-purple-500 to-violet-500"
             />,
         ];
+
         return (
             <div className="w-full max-w-md py-4">
                 <CarouselThumbs
@@ -908,6 +1095,7 @@ export default function RegistryPreview({ name }: { name: string }) {
                 Inertia
             </div>,
         ];
+
         return (
             <div className="w-full py-4">
                 <CarouselAutoScroll
@@ -1219,6 +1407,7 @@ export default function RegistryPreview({ name }: { name: string }) {
                 onActionClick: () => alert('Loading security report...'),
             },
         ];
+
         return (
             <div className="w-full overflow-hidden rounded-xl border bg-muted/10 py-4">
                 <BannerSliding messages={mockSlidingMessages} />
@@ -1248,6 +1437,7 @@ export default function RegistryPreview({ name }: { name: string }) {
                 </ul>
             </div>
         );
+
         return (
             <div className="w-full overflow-hidden rounded-xl border bg-muted/10 py-4">
                 <BannerExpandable
@@ -1390,77 +1580,17 @@ export default function RegistryPreview({ name }: { name: string }) {
 
     // 15. use-hover hook
     if (name === 'use-hover') {
-        const { isHovered, hoverRef } = useHover();
-        return (
-            <div className="grid min-h-[200px] w-full place-items-center rounded-xl border border-border/50 bg-card p-6">
-                <div
-                    ref={hoverRef}
-                    className={`flex h-32 w-64 cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed transition-all duration-300 ${
-                        isHovered
-                            ? 'border-primary bg-primary/10 text-primary'
-                            : 'border-muted-foreground/30 bg-muted/20 text-muted-foreground'
-                    }`}
-                >
-                    <span className="font-medium">
-                        {isHovered ? 'HOVERED!' : 'Hover over me'}
-                    </span>
-                    <span className="mt-1 font-mono text-[10px]">
-                        ref-bound state hook
-                    </span>
-                </div>
-            </div>
-        );
+        return <UseHoverPreview />;
     }
 
     // 16. use-dark-mode hook
     if (name === 'use-dark-mode') {
-        const isDark = useDarkMode();
-        const toggle = () => {
-            document.documentElement.classList.toggle('dark');
-        };
-        return (
-            <div className="grid min-h-[200px] w-full place-items-center rounded-xl border border-border/50 bg-card p-6">
-                <div className="space-y-3 text-center">
-                    <p className="text-sm">
-                        Current theme state:{' '}
-                        <span className="font-mono font-bold text-primary">
-                            {isDark ? 'Dark' : 'Light'}
-                        </span>
-                    </p>
-                    <Button onClick={toggle} variant="outline">
-                        Toggle Theme Mode
-                    </Button>
-                </div>
-            </div>
-        );
+        return <UseDarkModePreview />;
     }
 
     // 17. use-headroom hook
     if (name === 'use-headroom') {
-        const { pinned } = useHeadroom({
-            enabled: true,
-            offset: 10,
-        });
-        return (
-            <div className="w-full space-y-4 rounded-xl border border-border/50 bg-card p-6">
-                <div className="mb-2 text-xs text-muted-foreground">
-                    Scroll the page downwards and upwards to see useHeadroom
-                    trigger in navigation.
-                </div>
-                <div className="flex justify-between rounded border bg-muted/30 p-4 font-mono text-xs">
-                    <span>Headroom State:</span>
-                    <span
-                        className={
-                            pinned
-                                ? 'font-bold text-green-500'
-                                : 'text-amber-500'
-                        }
-                    >
-                        {pinned ? 'PINNED (Visible)' : 'UNPINNED (Hidden)'}
-                    </span>
-                </div>
-            </div>
-        );
+        return <UseHeadroomPreview />;
     }
 
     // 18. Cards Stats
@@ -1730,63 +1860,7 @@ export default function RegistryPreview({ name }: { name: string }) {
 
     // Input Number Stepper
     if (name === 'input-number-stepper') {
-        const [value1, setValue1] = useState<number | undefined>(5);
-        const [value2, setValue2] = useState<number | undefined>(10);
-        const [value3, setValue3] = useState<number | undefined>(1.5);
-        const [value4, setValue4] = useState<number | undefined>(20);
-        return (
-            <div className="mx-auto w-full max-w-md space-y-6 rounded-xl border border-border/50 bg-card p-6">
-                <div className="space-y-2">
-                    <span className="text-xs font-semibold text-muted-foreground">
-                        Split Layout (Default)
-                    </span>
-                    <InputNumberStepper
-                        value={value1}
-                        onValueChange={setValue1}
-                        min={0}
-                        max={10}
-                    />
-                </div>
-                <div className="space-y-2">
-                    <span className="text-xs font-semibold text-muted-foreground">
-                        Left Controls Layout
-                    </span>
-                    <InputNumberStepper
-                        value={value2}
-                        onValueChange={setValue2}
-                        variant="left"
-                        min={0}
-                        max={100}
-                        step={5}
-                    />
-                </div>
-                <div className="space-y-2">
-                    <span className="text-xs font-semibold text-muted-foreground">
-                        Right Controls Layout (Decimal step: 0.1)
-                    </span>
-                    <InputNumberStepper
-                        value={value3}
-                        onValueChange={setValue3}
-                        variant="right"
-                        min={0}
-                        max={5}
-                        step={0.1}
-                    />
-                </div>
-                <div className="space-y-2">
-                    <span className="text-xs font-semibold text-muted-foreground">
-                        Inline Overlay Layout
-                    </span>
-                    <InputNumberStepper
-                        value={value4}
-                        onValueChange={setValue4}
-                        variant="inline"
-                        min={10}
-                        max={50}
-                    />
-                </div>
-            </div>
-        );
+        return <InputNumberStepperPreview />;
     }
 
     // Button Neon
@@ -2050,6 +2124,7 @@ export default function RegistryPreview({ name }: { name: string }) {
             { icon: Award, name: 'Github' },
             { icon: Terminal, name: 'Supabase' },
         ];
+
         return (
             <div className="grid min-h-[150px] w-full place-items-center rounded-xl border border-border/50 bg-card p-6">
                 <LogoCloud title="PARTNERS" items={brands} />
@@ -2308,6 +2383,7 @@ export default function RegistryPreview({ name }: { name: string }) {
             { label: 'Direct Traffic', value: '25,102', percentage: 30, color: 'var(--color-chart-1)' },
             { label: 'Referral Links', value: '13,382', percentage: 16, color: 'var(--color-chart-2)' },
         ];
+
         return (
             <div className="grid min-h-[300px] w-full place-items-center rounded-xl border border-border/50 bg-background p-6">
                 <MetricBreakdownCard
@@ -2329,6 +2405,7 @@ export default function RegistryPreview({ name }: { name: string }) {
             { label: 'Core Operations', value: '62 / 100', percentage: 62, color: 'var(--color-chart-1)' },
             { label: 'System Health', value: '95 / 100', percentage: 95, color: 'var(--color-chart-2)' },
         ];
+
         return (
             <div className="grid min-h-[300px] w-full place-items-center rounded-xl border border-border/50 bg-background p-6">
                 <MetricRadialCard
@@ -2366,6 +2443,7 @@ export default function RegistryPreview({ name }: { name: string }) {
                 icon: <Globe className="size-6" />,
             },
         ];
+
         return (
             <div className="w-full max-w-xl py-4">
                 <SplitPreviewCard items={items} />
@@ -2466,6 +2544,7 @@ export default function RegistryPreview({ name }: { name: string }) {
             </div>
         );
     }
+
     if (name === 'avatar-dropzone-card') {
         return (
             <div className="mx-auto w-full max-w-md py-4">
@@ -2473,6 +2552,7 @@ export default function RegistryPreview({ name }: { name: string }) {
             </div>
         );
     }
+
     if (name === 'avatar-dropzone-field') {
         return (
             <div className="mx-auto w-full max-w-md py-4">
@@ -2480,6 +2560,7 @@ export default function RegistryPreview({ name }: { name: string }) {
             </div>
         );
     }
+
     if (name === 'avatar-dropzone-ghost') {
         return (
             <div className="grid min-h-[200px] w-full place-items-center rounded-xl border border-border/50 bg-card p-6">
@@ -2487,6 +2568,7 @@ export default function RegistryPreview({ name }: { name: string }) {
             </div>
         );
     }
+
     if (name === 'avatar-dropzone-inline') {
         return (
             <div className="mx-auto w-full max-w-md py-4">
@@ -2494,6 +2576,7 @@ export default function RegistryPreview({ name }: { name: string }) {
             </div>
         );
     }
+
     if (name === 'avatar-dropzone-minimal') {
         return (
             <div className="grid min-h-[200px] w-full place-items-center rounded-xl border border-border/50 bg-card p-6">
@@ -2501,6 +2584,7 @@ export default function RegistryPreview({ name }: { name: string }) {
             </div>
         );
     }
+
     if (name === 'avatar-dropzone-outlined') {
         return (
             <div className="grid min-h-[200px] w-full place-items-center rounded-xl border border-border/50 bg-card p-6">
@@ -2508,6 +2592,7 @@ export default function RegistryPreview({ name }: { name: string }) {
             </div>
         );
     }
+
     if (name === 'avatar-dropzone-sortable-row') {
         return (
             <div className="mx-auto w-full max-w-md py-4">
@@ -2515,6 +2600,7 @@ export default function RegistryPreview({ name }: { name: string }) {
             </div>
         );
     }
+
     if (name === 'avatar-dropzone-sortable-stack') {
         return (
             <div className="mx-auto w-full max-w-md py-4">
@@ -2522,6 +2608,7 @@ export default function RegistryPreview({ name }: { name: string }) {
             </div>
         );
     }
+
     if (name === 'avatar-dropzone-square') {
         return (
             <div className="grid min-h-[200px] w-full place-items-center rounded-xl border border-border/50 bg-card p-6">
@@ -2529,6 +2616,7 @@ export default function RegistryPreview({ name }: { name: string }) {
             </div>
         );
     }
+
     if (name === 'gallery-dropzone-carousel') {
         return (
             <div className="mx-auto w-full max-w-xl py-4">
@@ -2536,6 +2624,7 @@ export default function RegistryPreview({ name }: { name: string }) {
             </div>
         );
     }
+
     if (name === 'gallery-dropzone-compact') {
         return (
             <div className="mx-auto w-full max-w-md py-4">
@@ -2543,6 +2632,7 @@ export default function RegistryPreview({ name }: { name: string }) {
             </div>
         );
     }
+
     if (name === 'gallery-dropzone-dialog') {
         return (
             <div className="mx-auto w-full max-w-md py-4">
@@ -2550,6 +2640,7 @@ export default function RegistryPreview({ name }: { name: string }) {
             </div>
         );
     }
+
     if (name === 'gallery-dropzone-list') {
         return (
             <div className="mx-auto w-full max-w-md py-4">
@@ -2557,6 +2648,7 @@ export default function RegistryPreview({ name }: { name: string }) {
             </div>
         );
     }
+
     if (name === 'gallery-dropzone-masonry') {
         return (
             <div className="mx-auto w-full max-w-2xl py-4">
@@ -2564,6 +2656,7 @@ export default function RegistryPreview({ name }: { name: string }) {
             </div>
         );
     }
+
     if (name === 'gallery-dropzone-pills') {
         return (
             <div className="mx-auto w-full max-w-md py-4">
@@ -2571,6 +2664,7 @@ export default function RegistryPreview({ name }: { name: string }) {
             </div>
         );
     }
+
     if (name === 'gallery-dropzone-simple') {
         return (
             <div className="mx-auto w-full max-w-md py-4">
@@ -2578,6 +2672,7 @@ export default function RegistryPreview({ name }: { name: string }) {
             </div>
         );
     }
+
     if (name === 'gallery-dropzone-sortable-cards') {
         return (
             <div className="mx-auto w-full max-w-xl py-4">
@@ -2585,6 +2680,7 @@ export default function RegistryPreview({ name }: { name: string }) {
             </div>
         );
     }
+
     if (name === 'gallery-dropzone-sortable-grid') {
         return (
             <div className="mx-auto w-full max-w-xl py-4">
@@ -2592,6 +2688,7 @@ export default function RegistryPreview({ name }: { name: string }) {
             </div>
         );
     }
+
     if (name === 'gallery-dropzone-sortable-list') {
         return (
             <div className="mx-auto w-full max-w-md py-4">
@@ -2599,10 +2696,107 @@ export default function RegistryPreview({ name }: { name: string }) {
             </div>
         );
     }
+
     if (name === 'gallery-dropzone-table') {
         return (
             <div className="mx-auto w-full max-w-2xl py-4">
                 <GalleryDropzoneTable />
+            </div>
+        );
+    }
+
+    if (name === 'faq-section') {
+        return (
+            <div className="mx-auto w-full py-4">
+                <FAQSection />
+            </div>
+        );
+    }
+
+    if (name === 'testimonials-grid') {
+        return (
+            <div className="mx-auto w-full py-4">
+                <TestimonialsGrid />
+            </div>
+        );
+    }
+
+    if (name === 'newsletter-box') {
+        return (
+            <div className="mx-auto w-full max-w-md py-4">
+                <NewsletterBox />
+            </div>
+        );
+    }
+
+    if (name === 'stats-grid') {
+        return (
+            <div className="mx-auto w-full py-4">
+                <StatsGrid />
+            </div>
+        );
+    }
+
+    if (name === 'feature-list') {
+        return (
+            <div className="mx-auto w-full max-w-xl py-4">
+                <FeatureList />
+            </div>
+        );
+    }
+
+    if (name === 'call-to-action-box') {
+        return (
+            <div className="mx-auto w-full py-4">
+                <CallToActionBox />
+            </div>
+        );
+    }
+
+    if (name === 'pricing-table') {
+        return (
+            <div className="mx-auto w-full max-w-3xl py-4">
+                <PricingTable />
+            </div>
+        );
+    }
+
+    if (name === 'user-profile-card') {
+        return (
+            <div className="mx-auto w-full max-w-sm py-4">
+                <UserProfileCard />
+            </div>
+        );
+    }
+
+    if (name === 'activity-feed') {
+        return (
+            <div className="mx-auto w-full max-w-md py-4">
+                <ActivityFeed />
+            </div>
+        );
+    }
+
+    if (name === 'contact-form') {
+        return (
+            <div className="mx-auto w-full max-w-md py-4">
+                <ContactForm />
+            </div>
+        );
+    }
+
+    if (name === 'cookie-banner') {
+        return (
+            <div className="mx-auto w-full max-w-4xl py-4">
+                <CookieBanner />
+            </div>
+        );
+    }
+
+    if (name === 'hero-simple-split') {
+        return (
+            <div className="mx-auto w-full py-4">
+                <HeroSimpleSplit />
             </div>
         );
     }

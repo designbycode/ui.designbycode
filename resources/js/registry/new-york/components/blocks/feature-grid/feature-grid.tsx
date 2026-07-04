@@ -1,4 +1,3 @@
-import React from 'react';
 import {
     Zap,
     Shield,
@@ -7,7 +6,6 @@ import {
     BarChart2,
     Layers,
 } from 'lucide-react';
-import { cn } from '@/lib/utils';
 import { Badge } from '@/components/ui/badge';
 import {
     Card,
@@ -16,6 +14,7 @@ import {
     CardHeader,
     CardTitle,
 } from '@/components/ui/card';
+import { cn } from '@/lib/utils';
 
 export interface FeatureItem {
     title: string;
@@ -32,14 +31,14 @@ const features: FeatureItem[] = [
             'Sub-millisecond query execution speeds via edge-cached memory nodes scattered globally.',
         icon: <Zap className="size-5" />,
         badge: 'New',
-        color: 'from-amber-500 to-orange-600',
+        color: 'from-chart-4 to-chart-5',
     },
     {
         title: 'Bank-Grade Cryptography',
         description:
             'Complete end-to-end data encryption in transit and at rest with isolated keys managed by KMS.',
         icon: <Shield className="size-5" />,
-        color: 'from-blue-500 to-indigo-600',
+        color: 'from-chart-3 to-chart-1',
     },
     {
         title: 'Predictive Insights',
@@ -104,13 +103,13 @@ export function FeatureGrid() {
                         className="group relative flex flex-col justify-between overflow-hidden border-border/40 bg-card/25 backdrop-blur-xs transition-all duration-300 hover:border-primary/20 hover:shadow-lg"
                     >
                         {/* Dynamic backdrop linear glow matching the category theme */}
-                        <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-primary/3 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                        <div className="pointer-events-none absolute inset-0 bg-linear-to-tr from-primary/3 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
                         <CardHeader className="space-y-4">
                             <div className="flex items-center justify-between">
                                 <div
                                     className={cn(
-                                        'flex size-10 items-center justify-center rounded-xl bg-gradient-to-tr text-white shadow-md',
+                                        'flex size-10 items-center justify-center rounded-xl bg-linear-to-tr text-white shadow-md',
                                         feature.color,
                                     )}
                                 >
