@@ -2079,7 +2079,8 @@ export default FAQSection;
                     [
                         'path' => 'resources/js/registry/new-york/components/blocks/feature-grid/feature-grid.tsx',
                         'type' => 'registry:block',
-                        'content' => 'import {
+                        'content' => 'import React from \'react\';
+import {
     Zap,
     Shield,
     Sparkles,
