@@ -1,9 +1,9 @@
 'use client';
 
-import React, { useState } from 'react';
 import { Sparkles, Zap, Sliders, Layers, ArrowRight } from 'lucide-react';
-import HeadingBlock from '@/registry/new-york/components/ui/typography/heading-block';
+import React, { useState } from 'react';
 import Wrapper from '@/registry/new-york/components/ui/misc/wrapper';
+import HeadingBlock from '@/registry/new-york/components/ui/typography/heading-block';
 
 const HIGHLIGHT_IMAGES = [
     {

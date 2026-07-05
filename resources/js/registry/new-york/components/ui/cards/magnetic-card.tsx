@@ -1,8 +1,8 @@
 'use client';
 
 import * as React from 'react';
-import { cn } from '@/lib/utils';
 import { Card } from '@/components/ui/card';
+import { cn } from '@/lib/utils';
 
 export interface MagneticCardProps extends React.ComponentProps<typeof Card> {
     strength?: number;
@@ -17,7 +17,10 @@ const MagneticCard = React.forwardRef<HTMLDivElement, MagneticCardProps>(
 
         const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
             const card = resolvedRef.current;
-            if (!card) return;
+
+            if (!card) {
+return;
+}
 
             const rect = card.getBoundingClientRect();
             const mouseX = e.clientX - rect.left - rect.width / 2;

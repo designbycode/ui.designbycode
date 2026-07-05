@@ -1,9 +1,9 @@
 'use client';
 
-import { useState, useCallback, useRef } from 'react';
 import { Upload, X, Check, AlertCircle, Loader2 } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { useState, useCallback, useRef } from 'react';
 import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 
 interface AvatarDropzoneOutlinedProps {
     onFileSelect?: (file: File | null) => void;
@@ -31,6 +31,7 @@ export function AvatarDropzoneOutlined({
             if (!file.type.startsWith('image/')) {
                 setError('Please upload an image file');
                 setStatus('error');
+
                 return;
             }
 
@@ -39,6 +40,7 @@ export function AvatarDropzoneOutlined({
                     `File must be less than ${Math.round(maxSize / 1024 / 1024)}MB`,
                 );
                 setStatus('error');
+
                 return;
             }
 
@@ -62,7 +64,10 @@ export function AvatarDropzoneOutlined({
             e.preventDefault();
             setIsDragging(false);
             const file = e.dataTransfer.files[0];
-            if (file) handleFile(file);
+
+            if (file) {
+handleFile(file);
+}
         },
         [handleFile],
     );
@@ -70,7 +75,10 @@ export function AvatarDropzoneOutlined({
     const handleChange = useCallback(
         (e: React.ChangeEvent<HTMLInputElement>) => {
             const file = e.target.files?.[0];
-            if (file) handleFile(file);
+
+            if (file) {
+handleFile(file);
+}
         },
         [handleFile],
     );
@@ -80,7 +88,10 @@ export function AvatarDropzoneOutlined({
         setStatus('idle');
         setError(null);
         onFileSelect?.(null);
-        if (inputRef.current) inputRef.current.value = '';
+
+        if (inputRef.current) {
+inputRef.current.value = '';
+}
     };
 
     return (

@@ -1,8 +1,8 @@
 'use client';
 
 import * as React from 'react';
-import { cn } from '@/lib/utils';
 import { Card } from '@/components/ui/card';
+import { cn } from '@/lib/utils';
 
 import { useHover } from '@/registry/new-york/hooks/use-hover';
 
@@ -35,6 +35,7 @@ const MetricSparkCard = React.forwardRef<HTMLDivElement, MetricSparkCardProps>(
         const combinedRef = React.useCallback(
             (node: HTMLDivElement | null) => {
                 hoverRef(node);
+
                 if (typeof ref === 'function') {
                     ref(node);
                 } else if (ref) {
@@ -58,6 +59,7 @@ const MetricSparkCard = React.forwardRef<HTMLDivElement, MetricSparkCardProps>(
                 const x = (idx / (dataPoints.length - 1)) * svgWidth;
                 const y =
                     svgHeight - 4 - ((val - minVal) / range) * (svgHeight - 8);
+
                 return `${x},${y}`;
             })
             .join(' ');

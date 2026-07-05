@@ -1,6 +1,6 @@
-import * as React from 'react';
-import { motion, AnimatePresence } from 'motion/react';
 import { X, ChevronDown } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
+import * as React from 'react';
 import { cn } from '@/lib/utils';
 import Wrapper from '@/registry/new-york/components/ui/misc/wrapper';
 
@@ -22,7 +22,9 @@ export function BannerExpandable({
     const [isExpanded, setIsExpanded] = React.useState(false);
     const [isVisible, setIsVisible] = React.useState(true);
 
-    if (!isVisible) return null;
+    if (!isVisible) {
+return null;
+}
 
     return (
         <div
@@ -63,7 +65,10 @@ export function BannerExpandable({
                     <button
                         onClick={() => {
                             setIsVisible(false);
-                            if (onClose) onClose();
+
+                            if (onClose) {
+onClose();
+}
                         }}
                         className="shrink-0 cursor-pointer rounded-lg p-1 text-muted-foreground/70 transition-all hover:bg-muted hover:text-foreground"
                     >

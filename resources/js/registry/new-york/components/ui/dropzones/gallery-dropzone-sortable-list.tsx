@@ -1,11 +1,7 @@
 'use client';
 
-import * as React from 'react';
-import { cn } from '@/lib/utils';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { Separator } from '@/components/ui/separator';
-import { ScrollArea } from '@/components/ui/scroll-area';
+import { DragDropProvider } from '@dnd-kit/react';
+import { useSortable, isSortable } from '@dnd-kit/react/sortable';
 import {
     ImageIcon,
     Upload,
@@ -14,8 +10,12 @@ import {
     Check,
     AlertCircle,
 } from 'lucide-react';
-import { DragDropProvider } from '@dnd-kit/react';
-import { useSortable, isSortable } from '@dnd-kit/react/sortable';
+import * as React from 'react';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { ScrollArea } from '@/components/ui/scroll-area';
+import { Separator } from '@/components/ui/separator';
+import { cn } from '@/lib/utils';
 
 interface ImageFile {
     id: string;
@@ -43,8 +43,14 @@ function SortableListItem({
     });
 
     const formatSize = (bytes: number) => {
-        if (bytes < 1024) return bytes + ' B';
-        if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+        if (bytes < 1024) {
+return bytes + ' B';
+}
+
+        if (bytes < 1024 * 1024) {
+return (bytes / 1024).toFixed(1) + ' KB';
+}
+
         return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
     };
 
@@ -152,6 +158,7 @@ export function GalleryDropzoneSortableList({
                 .map((file) => {
                     const id = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
                     const preview = URL.createObjectURL(file);
+
                     return { id, file, preview, status: 'ready' as const };
                 });
 
@@ -176,6 +183,7 @@ export function GalleryDropzoneSortableList({
             setImages((prev) => {
                 const updated = prev.filter((img) => img.id !== id);
                 onFilesChange?.(updated.map((i) => i.file));
+
                 return updated;
             });
         },
@@ -184,7 +192,9 @@ export function GalleryDropzoneSortableList({
 
     const handleDragEnd = React.useCallback(
         (event: { canceled: boolean; operation: { source: unknown } }) => {
-            if (event.canceled) return;
+            if (event.canceled) {
+return;
+}
 
             const source = event.operation.source as any;
 
@@ -197,6 +207,7 @@ export function GalleryDropzoneSortableList({
                         const [removed] = newImages.splice(initialIndex, 1);
                         newImages.splice(index, 0, removed);
                         onReorder?.(newImages.map((f) => f.file));
+
                         return newImages;
                     });
                 }

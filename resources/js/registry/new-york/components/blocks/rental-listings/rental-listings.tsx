@@ -1,4 +1,3 @@
-import React, { useState, useMemo } from 'react';
 import {
     Search,
     Star,
@@ -9,6 +8,7 @@ import {
     Heart,
     Eye,
 } from 'lucide-react';
+import React, { useState, useMemo } from 'react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import {
@@ -258,11 +258,11 @@ export function RentalListings() {
                     {filteredListings.map((listing) => (
                         <Card
                             key={listing.id}
-                            className="group relative flex flex-col overflow-hidden border border-border/40 bg-card/15 backdrop-blur-xs transition-all duration-300 hover:border-border/70 hover:shadow-xl"
+                            className="group relative flex flex-col overflow-hidden border border-border/40 bg-card/15 py-0 backdrop-blur-xs transition-all duration-300 hover:border-border/70 hover:shadow-xl"
                         >
                             {/* Graphic Vector Representation (Abstract Gradient Image) */}
                             <div
-                                className={`h-48 w-full bg-gradient-to-br ${listing.gradient} relative flex items-center justify-center overflow-hidden transition-all duration-500 group-hover:scale-[1.02]`}
+                                className={`h-48 w-full bg-linear-to-br ${listing.gradient} relative flex items-center justify-center overflow-hidden transition-all duration-500 group-hover:scale-[1.02]`}
                             >
                                 <div className="absolute inset-0 bg-black/10 transition-opacity group-hover:bg-black/20" />
 
@@ -279,14 +279,14 @@ export function RentalListings() {
                                     className="absolute top-3 right-3 flex size-8 cursor-pointer items-center justify-center rounded-full bg-black/35 text-white backdrop-blur-md transition-colors select-none hover:bg-black/55"
                                 >
                                     <Heart
-                                        className={`size-4 ${favorites.includes(listing.id) ? 'fill-red-500 text-red-500' : 'text-white'}`}
+                                        className={`size-4 ${favorites.includes(listing.id) ? 'fill-destructive text-destructive' : 'text-white'}`}
                                     />
                                 </button>
 
                                 {/* Location Banner overlay */}
                                 <div className="absolute right-3 bottom-3 left-3 z-10 flex items-center justify-between text-white">
                                     <span className="flex items-center gap-1 rounded bg-black/45 px-2 py-1 text-[10px] font-semibold backdrop-blur-xs">
-                                        <MapPin className="size-3 text-sky-400" />
+                                        <MapPin className="size-3 text-chart-2" />
                                         {listing.location}
                                     </span>
                                     <span className="rounded-full bg-primary px-2.5 py-1 text-xs font-extrabold text-primary-foreground">
@@ -311,7 +311,7 @@ export function RentalListings() {
                                         {listing.category}
                                     </Badge>
                                     <div className="flex items-center gap-1 text-xs">
-                                        <Star className="size-3.5 fill-amber-500 text-amber-500" />
+                                        <Star className="size-3.5 fill-chart-4 text-chart-4" />
                                         <span className="font-bold text-foreground">
                                             {listing.rating}
                                         </span>
@@ -363,7 +363,7 @@ export function RentalListings() {
                                 </div>
                                 <Button
                                     size="sm"
-                                    className="h-8 shrink-0 cursor-pointer gap-1 rounded bg-primary text-xs font-bold text-primary-foreground hover:bg-primary/95"
+                                    className="h-8 shrink-0 cursor-pointer gap-1 text-xs font-bold"
                                 >
                                     <Eye className="size-3.5" />
                                     Details

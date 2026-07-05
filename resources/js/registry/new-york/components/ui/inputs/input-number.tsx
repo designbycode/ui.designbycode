@@ -1,7 +1,7 @@
 'use client';
 
-import * as React from 'react';
 import { ChevronUp, ChevronDown } from 'lucide-react';
+import * as React from 'react';
 import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
 
@@ -82,9 +82,16 @@ const InputNumber = React.forwardRef<HTMLInputElement, InputNumberProps>(
 
         // Auto-detect precision from step if not provided
         const resolvedPrecision = React.useMemo(() => {
-            if (precision !== undefined) return precision;
+            if (precision !== undefined) {
+return precision;
+}
+
             const stepStr = String(step);
-            if (stepStr.indexOf('.') === -1) return 0;
+
+            if (stepStr.indexOf('.') === -1) {
+return 0;
+}
+
             return stepStr.length - stepStr.indexOf('.') - 1;
         }, [step, precision]);
 
@@ -103,8 +110,15 @@ const InputNumber = React.forwardRef<HTMLInputElement, InputNumberProps>(
         const clamp = React.useCallback(
             (val: number): number => {
                 let clamped = val;
-                if (min !== undefined && clamped < min) clamped = min;
-                if (max !== undefined && clamped > max) clamped = max;
+
+                if (min !== undefined && clamped < min) {
+clamped = min;
+}
+
+                if (max !== undefined && clamped > max) {
+clamped = max;
+}
+
                 return parseFloat(clamped.toFixed(resolvedPrecision));
             },
             [min, max, resolvedPrecision],
@@ -113,6 +127,7 @@ const InputNumber = React.forwardRef<HTMLInputElement, InputNumberProps>(
         const updateValue = React.useCallback(
             (newVal: number | undefined) => {
                 let finalVal = newVal;
+
                 if (finalVal !== undefined) {
                     finalVal = clamp(finalVal);
                 }
@@ -122,19 +137,26 @@ const InputNumber = React.forwardRef<HTMLInputElement, InputNumberProps>(
                         finalVal !== undefined ? String(finalVal) : '',
                     );
                 }
+
                 onValueChange?.(finalVal);
             },
             [isControlled, clamp, onValueChange],
         );
 
         const handleIncrement = React.useCallback(() => {
-            if (disabled) return;
+            if (disabled) {
+return;
+}
+
             const current = activeValue ?? min ?? 0;
             updateValue(current + step);
         }, [activeValue, min, step, updateValue, disabled]);
 
         const handleDecrement = React.useCallback(() => {
-            if (disabled) return;
+            if (disabled) {
+return;
+}
+
             const current = activeValue ?? min ?? 0;
             updateValue(current - step);
         }, [activeValue, min, step, updateValue, disabled]);
@@ -148,12 +170,20 @@ const InputNumber = React.forwardRef<HTMLInputElement, InputNumberProps>(
         );
 
         const clearTimers = React.useCallback(() => {
-            if (timerRef.current) clearTimeout(timerRef.current);
-            if (intervalRef.current) clearInterval(intervalRef.current);
+            if (timerRef.current) {
+clearTimeout(timerRef.current);
+}
+
+            if (intervalRef.current) {
+clearInterval(intervalRef.current);
+}
         }, []);
 
         const startStepper = (action: () => void) => {
-            if (disabled) return;
+            if (disabled) {
+return;
+}
+
             action();
             clearTimers();
             timerRef.current = setTimeout(() => {
@@ -177,14 +207,17 @@ const InputNumber = React.forwardRef<HTMLInputElement, InputNumberProps>(
 
         const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
             const raw = e.target.value;
+
             // Allow typing numbers, decimals, minus sign
             if (raw === '' || raw === '-') {
                 setLocalValue(raw);
                 onValueChange?.(undefined);
+
                 return;
             }
 
             const parsed = parseFloat(raw);
+
             if (!isNaN(parsed)) {
                 setLocalValue(raw);
                 onValueChange?.(parsed);
@@ -197,6 +230,7 @@ const InputNumber = React.forwardRef<HTMLInputElement, InputNumberProps>(
                 updateValue(undefined);
             } else {
                 const parsed = parseFloat(activeValueStr);
+
                 if (!isNaN(parsed)) {
                     updateValue(parsed);
                 } else {

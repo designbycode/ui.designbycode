@@ -47,11 +47,13 @@ export const WaveGridCanvas = React.forwardRef<
         React.useEffect(() => {
             const canvas = canvasRef.current;
             const container = containerRef.current;
+
             if (!canvas || !container) {
                 return;
             }
 
             const ctx = canvas.getContext('2d');
+
             if (!ctx) {
                 return;
             }
@@ -70,7 +72,10 @@ export const WaveGridCanvas = React.forwardRef<
             resizeObserver.observe(container);
 
             const handleMouseMove = (e: MouseEvent) => {
-                if (!interactive) return;
+                if (!interactive) {
+return;
+}
+
                 const rect = canvas.getBoundingClientRect();
                 mouseRef.current = {
                     x: e.clientX - rect.left,
@@ -88,23 +93,30 @@ export const WaveGridCanvas = React.forwardRef<
             }
 
             const resolveColor = (colorStr: string, defaultVal: string) => {
-                if (!colorStr) return defaultVal;
+                if (!colorStr) {
+return defaultVal;
+}
+
                 let targetColor = colorStr;
+
                 if (colorStr.startsWith('--')) {
                     targetColor = `var(${colorStr})`;
                 }
+
                 if (
                     !targetColor.includes('var(') &&
                     !targetColor.includes('--')
                 ) {
                     return targetColor;
                 }
+
                 try {
                     const temp = document.createElement('div');
                     temp.style.color = targetColor;
                     container.appendChild(temp);
                     const resolved = window.getComputedStyle(temp).color;
                     container.removeChild(temp);
+
                     return resolved || defaultVal;
                 } catch (e) {
                     return defaultVal;
@@ -201,6 +213,7 @@ export const WaveGridCanvas = React.forwardRef<
             return () => {
                 cancelAnimationFrame(animationId);
                 resizeObserver.disconnect();
+
                 if (interactive) {
                     container.removeEventListener('mousemove', handleMouseMove);
                     container.removeEventListener(

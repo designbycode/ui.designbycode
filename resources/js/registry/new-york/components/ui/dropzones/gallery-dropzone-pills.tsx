@@ -1,9 +1,9 @@
 'use client';
 
-import { useState, useCallback, useRef } from 'react';
 import { Plus, X, Loader2, Check } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { useState, useCallback, useRef } from 'react';
 import { Badge } from '@/components/ui/badge';
+import { cn } from '@/lib/utils';
 
 interface FileWithStatus {
     file: File;
@@ -73,7 +73,10 @@ export function GalleryDropzonePills({
         (e: React.DragEvent) => {
             e.preventDefault();
             setIsDragging(false);
-            if (e.dataTransfer.files.length) handleFiles(e.dataTransfer.files);
+
+            if (e.dataTransfer.files.length) {
+handleFiles(e.dataTransfer.files);
+}
         },
         [handleFiles],
     );

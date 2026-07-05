@@ -1,7 +1,7 @@
 'use client';
 
-import * as React from 'react';
 import { Phone } from 'lucide-react';
+import * as React from 'react';
 import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
 
@@ -38,6 +38,7 @@ function formatPhone(digits: string, mask: string): string {
 
     for (let i = 0; i < mask.length; i++) {
         const maskChar = mask[i];
+
         if (digitIdx >= digits.length) {
             break;
         }
@@ -49,6 +50,7 @@ function formatPhone(digits: string, mask: string): string {
             formatted += maskChar;
         }
     }
+
     return formatted;
 }
 
@@ -87,6 +89,7 @@ const InputPhone = React.forwardRef<HTMLInputElement, InputPhoneProps>(
             if (!isControlled) {
                 setLocalValue(rawDigits);
             }
+
             onValueChange?.(rawDigits);
         };
 

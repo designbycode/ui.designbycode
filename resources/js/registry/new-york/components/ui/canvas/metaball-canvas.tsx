@@ -54,11 +54,13 @@ export const MetaballCanvas = React.forwardRef<
         React.useEffect(() => {
             const canvas = canvasRef.current;
             const container = containerRef.current;
+
             if (!canvas || !container) {
                 return;
             }
 
             const ctx = canvas.getContext('2d');
+
             if (!ctx) {
                 return;
             }
@@ -72,6 +74,7 @@ export const MetaballCanvas = React.forwardRef<
             // Initialize blobs
             const initBlobs = () => {
                 blobs.length = 0;
+
                 for (let i = 0; i < blobCount; i++) {
                     const radius =
                         Math.random() * (maxRadius - minRadius) + minRadius;
@@ -99,7 +102,10 @@ export const MetaballCanvas = React.forwardRef<
 
             // Mouse coordinate updates
             const handleMouseMove = (e: MouseEvent) => {
-                if (!interactive) return;
+                if (!interactive) {
+return;
+}
+
                 const rect = canvas.getBoundingClientRect();
                 mouseRef.current = {
                     x: e.clientX - rect.left,
@@ -117,16 +123,21 @@ export const MetaballCanvas = React.forwardRef<
             }
 
             const resolveColor = (colorStr: string) => {
-                if (!colorStr) return 'rgb(16, 185, 129)';
+                if (!colorStr) {
+return 'rgb(16, 185, 129)';
+}
+
                 if (!colorStr.includes('var(') && !colorStr.includes('--')) {
                     return colorStr;
                 }
+
                 try {
                     const temp = document.createElement('div');
                     temp.style.color = colorStr;
                     container.appendChild(temp);
                     const resolved = window.getComputedStyle(temp).color;
                     container.removeChild(temp);
+
                     return resolved || 'rgb(16, 185, 129)';
                 } catch (e) {
                     return 'rgb(16, 185, 129)';
@@ -218,6 +229,7 @@ export const MetaballCanvas = React.forwardRef<
             return () => {
                 cancelAnimationFrame(animationId);
                 resizeObserver.disconnect();
+
                 if (interactive) {
                     container.removeEventListener('mousemove', handleMouseMove);
                     container.removeEventListener(

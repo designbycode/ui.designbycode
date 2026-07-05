@@ -1,10 +1,9 @@
 'use client';
 
-import React, { useState } from 'react';
 import { Check, Shield, Zap, Target, Star } from 'lucide-react';
-import { cn } from '@/lib/utils';
-import { Button } from '@/components/ui/button';
+import React, { useState } from 'react';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import {
     Card,
     CardContent,
@@ -14,6 +13,7 @@ import {
     CardTitle,
 } from '@/components/ui/card';
 import { Switch } from '@/components/ui/switch';
+import { cn } from '@/lib/utils';
 
 interface TierData {
     name: string;

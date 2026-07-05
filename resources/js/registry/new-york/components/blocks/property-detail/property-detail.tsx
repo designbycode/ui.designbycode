@@ -1,4 +1,3 @@
-import React from 'react';
 import {
     Star,
     MapPin,
@@ -13,6 +12,7 @@ import {
     Check,
     ChevronRight,
 } from 'lucide-react';
+import React from 'react';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { BookingForm } from '../booking-form/booking-form';
@@ -77,7 +77,7 @@ export function PropertyDetail() {
                         The Azure Wave Villa
                     </h2>
                     <div className="flex shrink-0 items-center gap-1.5 text-sm">
-                        <Star className="size-4 fill-amber-500 text-amber-500" />
+                        <Star className="size-4 fill-chart-4 text-chart-4" />
                         <span className="font-extrabold">4.98</span>
                         <span className="text-muted-foreground">
                             (86 reviews)
@@ -148,7 +148,7 @@ export function PropertyDetail() {
                             </p>
                         </div>
                         <div className="relative">
-                            <div className="flex size-12 items-center justify-center rounded-full border border-white/20 bg-gradient-to-tr from-sky-400 to-indigo-500 font-extrabold text-white shadow-inner">
+                            <div className="flex size-12 items-center justify-center rounded-full border border-white/20 bg-gradient-to-tr from-chart-2 to-chart-3 font-extrabold text-white shadow-inner">
                                 S
                             </div>
                             <div className="absolute -right-1 -bottom-1 flex size-5 items-center justify-center rounded-full border-2 border-background bg-chart-2 text-primary-foreground">
@@ -168,7 +168,7 @@ export function PropertyDetail() {
                                     key={i}
                                     className="flex items-start gap-2.5 text-xs leading-relaxed text-muted-foreground"
                                 >
-                                    <Sparkles className="mt-0.5 size-4.5 shrink-0 text-amber-500" />
+                                    <Sparkles className="mt-0.5 size-4.5 shrink-0 text-chart-4" />
                                     <span>{h}</span>
                                 </div>
                             ))}

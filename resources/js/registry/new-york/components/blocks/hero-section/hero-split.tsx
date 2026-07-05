@@ -1,11 +1,11 @@
 'use client';
 
-import * as React from 'react';
 import { Shield, Sparkles, CheckCircle2 } from 'lucide-react';
-import HeadingBlock from '@/registry/new-york/components/ui/typography/heading-block';
-import { ButtonPulse } from '@/registry/new-york/components/ui/buttons/button-pulse';
+import * as React from 'react';
 import { ButtonDraw } from '@/registry/new-york/components/ui/buttons/button-draw';
+import { ButtonPulse } from '@/registry/new-york/components/ui/buttons/button-pulse';
 import { PixelCanvas } from '@/registry/new-york/components/ui/canvas/pixel-canvas';
+import HeadingBlock from '@/registry/new-york/components/ui/typography/heading-block';
 
 export function HeroSplit() {
     return (

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
 import { Star } from 'lucide-react';
+import React, { useState } from 'react';
 import { cn } from '@/lib/utils';
 
 export interface InteractiveRatingProps {
@@ -20,6 +20,7 @@ export function InteractiveRating({
 
     const handleSelect = (val: number) => {
         setRating(val);
+
         if (onChange) {
             onChange(val);
         }
@@ -33,6 +34,7 @@ export function InteractiveRating({
                     hoverRating !== null
                         ? starVal <= hoverRating
                         : starVal <= rating;
+
                 return (
                     <button
                         key={i}
@@ -46,7 +48,7 @@ export function InteractiveRating({
                             className={cn(
                                 'size-5 transition-colors duration-150',
                                 isActive
-                                    ? 'fill-amber-500 text-amber-500'
+                                    ? 'fill-chart-4 text-chart-4'
                                     : 'text-muted-foreground/35 hover:text-muted-foreground/60',
                             )}
                         />

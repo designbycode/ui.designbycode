@@ -1,8 +1,8 @@
 'use client';
 
 import * as React from 'react';
-import { cn } from '@/lib/utils';
 import { Card } from '@/components/ui/card';
+import { cn } from '@/lib/utils';
 
 export interface NeonBorderCardProps extends React.HTMLAttributes<HTMLDivElement> {
     duration?: number;

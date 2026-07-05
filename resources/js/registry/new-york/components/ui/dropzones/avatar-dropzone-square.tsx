@@ -1,11 +1,11 @@
 'use client';
 
+import { User, Upload, RotateCcw, Check, X } from 'lucide-react';
 import * as React from 'react';
-import { cn } from '@/lib/utils';
+import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
-import { Badge } from '@/components/ui/badge';
-import { User, Upload, RotateCcw, Check, X } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 interface AvatarDropzoneSquareProps {
     className?: string;
@@ -38,8 +38,10 @@ export function AvatarDropzoneSquare({
                 if (prev >= 100) {
                     clearInterval(interval);
                     setStatus('success');
+
                     return 100;
                 }
+
                 return prev + 10;
             });
         }, 100);
@@ -52,6 +54,7 @@ export function AvatarDropzoneSquare({
                 file.size > maxSize * 1024 * 1024
             ) {
                 setStatus('error');
+
                 return;
             }
 
@@ -71,7 +74,10 @@ export function AvatarDropzoneSquare({
             e.preventDefault();
             setIsDragOver(false);
             const file = e.dataTransfer.files[0];
-            if (file) handleFile(file);
+
+            if (file) {
+handleFile(file);
+}
         },
         [handleFile],
     );

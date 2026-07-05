@@ -1,13 +1,13 @@
 'use client';
 
+import { ImageIcon, Upload, X, Check, FileWarning, Trash2 } from 'lucide-react';
 import * as React from 'react';
-import { cn } from '@/lib/utils';
+import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
-import { Badge } from '@/components/ui/badge';
-import { Separator } from '@/components/ui/separator';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { ImageIcon, Upload, X, Check, FileWarning, Trash2 } from 'lucide-react';
+import { Separator } from '@/components/ui/separator';
+import { cn } from '@/lib/utils';
 
 interface ImageFile {
     id: string;
@@ -39,11 +39,16 @@ export function GalleryDropzoneList({
         const interval = setInterval(() => {
             setImages((prev) =>
                 prev.map((img) => {
-                    if (img.id !== imageId) return img;
+                    if (img.id !== imageId) {
+return img;
+}
+
                     if (img.progress >= 100) {
                         clearInterval(interval);
+
                         return { ...img, progress: 100, status: 'success' };
                     }
+
                     return {
                         ...img,
                         progress: img.progress + Math.random() * 20 + 10,
@@ -72,6 +77,7 @@ export function GalleryDropzoneList({
                         error: 'Not an image',
                     };
                 }
+
                 if (file.size > maxSize * 1024 * 1024) {
                     return {
                         id,
@@ -109,8 +115,9 @@ export function GalleryDropzoneList({
 
             setImages((prev) => [...prev, ...newImages]);
             newImages.forEach((img) => {
-                if (img.status !== 'error')
-                    setTimeout(() => simulateUpload(img.id), 50);
+                if (img.status !== 'error') {
+setTimeout(() => simulateUpload(img.id), 50);
+}
             });
 
             onFilesChange?.(
@@ -140,6 +147,7 @@ export function GalleryDropzoneList({
                         .filter((i) => i.status !== 'error')
                         .map((i) => i.file),
                 );
+
                 return updated;
             });
         },
@@ -147,8 +155,14 @@ export function GalleryDropzoneList({
     );
 
     const formatSize = (bytes: number) => {
-        if (bytes < 1024) return bytes + ' B';
-        if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+        if (bytes < 1024) {
+return bytes + ' B';
+}
+
+        if (bytes < 1024 * 1024) {
+return (bytes / 1024).toFixed(1) + ' KB';
+}
+
         return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
     };
 

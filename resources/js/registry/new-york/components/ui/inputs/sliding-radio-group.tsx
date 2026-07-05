@@ -1,7 +1,7 @@
 'use client';
 
-import * as React from 'react';
 import { LayoutGroup, motion } from 'motion/react';
+import * as React from 'react';
 import { cn } from '@/lib/utils';
 
 export interface SlidingRadioOption {
@@ -53,10 +53,14 @@ export function SlidingRadioGroup({
     const selectedValue = isControlled ? value : localValue;
 
     const handleSelect = (val: string) => {
-        if (disabled) return;
+        if (disabled) {
+return;
+}
+
         if (!isControlled) {
             setLocalValue(val);
         }
+
         onChange?.(val);
     };
 
@@ -64,6 +68,7 @@ export function SlidingRadioGroup({
     React.useEffect(() => {
         if (!selectedValue && options.length > 0) {
             const firstEnabled = options.find((opt) => !opt.disabled);
+
             if (firstEnabled) {
                 handleSelect(firstEnabled.value);
             }

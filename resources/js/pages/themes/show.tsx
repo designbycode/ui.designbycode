@@ -1,6 +1,6 @@
 'use client';
 
-import { usePage } from '@inertiajs/react';
+import { Head, usePage } from '@inertiajs/react';
 import { CheckCircle } from 'lucide-react';
 import MainWrapper from '@/layouts/main/main-wrapper';
 import { PackageManagerCode } from '@/layouts/main/theme/main-package-manager-code';
@@ -26,6 +26,63 @@ import UserProfileCard from '@/registry/new-york/components/blocks/user-profile-
 import HeadingBlock from '@/registry/new-york/components/ui/typography/heading-block';
 import type { Registry } from '@/types';
 
+const fontMapping: Record<string, string> = {
+    'font-inter': 'Inter',
+    'font-nerko-one': 'Nerko One',
+    'font-great-vibes': 'Great Vibes',
+    'font-poppins': 'Poppins',
+    'font-dm-serif-display': 'DM Serif Display',
+    'font-fira-mono': 'Fira Mono',
+    'font-bebas-neue': 'Bebas Neue',
+    'font-playfair-display': 'Playfair Display',
+    'font-caveat': 'Caveat',
+    'font-pixelify-sans': 'Pixelify Sans',
+    'font-orbitron': 'Orbitron',
+    'font-ibm-plex-sans': 'IBM Plex Sans',
+    'font-ibm-plex-mono': 'IBM Plex Mono',
+    'font-roboto-slab': 'Roboto Slab',
+    'font-roboto': 'Roboto',
+    'font-work-sans': 'Work Sans',
+    'font-space-grotesk': 'Space Grotesk',
+    'font-jetbrains-mono': 'JetBrains Mono',
+    'font-fira-code': 'Fira Code',
+    'font-nunito': 'Nunito',
+    'font-cormorant-garamond': 'Cormorant Garamond',
+    'font-merriweather': 'Merriweather',
+    'font-cinzel': 'Cinzel',
+    'font-source-sans-3': 'Source Sans 3',
+    'font-oswald': 'Oswald',
+    'font-roboto-mono': 'Roboto Mono',
+    'font-patrick-hand': 'Patrick Hand',
+    'font-instrument-sans': 'Instrument Sans',
+    'font-geist': 'Geist',
+};
+
+const multiWeightFonts = new Set([
+    'Inter',
+    'Geist',
+    'JetBrains Mono',
+    'Roboto',
+    'Roboto Mono',
+    'IBM Plex Sans',
+    'IBM Plex Mono',
+    'Work Sans',
+    'Space Grotesk',
+    'Instrument Sans',
+    'Poppins',
+    'Oswald',
+    'Nunito',
+    'Merriweather',
+]);
+
+const cleanFontName = (name: string) => {
+    return name
+        .split(',')[0]
+        .replace(/['"]/g, '')
+        .replace(/\s+Variable$/i, '')
+        .trim();
+};
+
 interface ThemesShowProps {
     theme: Registry;
 }
@@ -41,13 +98,68 @@ export function ThemeShow({ theme }: ThemesShowProps) {
         yarn: `yarn dlx shadcn@latest add ${installerCode}`,
     };
 
+    const fontsToLoad = new Set<string>();
+
+    if (theme.registryDependencies) {
+        theme.registryDependencies.forEach((dep) => {
+            const depName = dep.split('/').pop()?.replace('.json', '');
+
+            if (depName && fontMapping[depName]) {
+                fontsToLoad.add(fontMapping[depName]);
+            }
+        });
+    }
+
+    if (theme.font_family) {
+        fontsToLoad.add(cleanFontName(theme.font_family));
+    }
+
+    if (theme.font_mono) {
+        fontsToLoad.add(cleanFontName(theme.font_mono));
+    }
+
+    if (theme.font_serif) {
+        fontsToLoad.add(cleanFontName(theme.font_serif));
+    }
+
+    const fontParams = Array.from(fontsToLoad).map((font) => {
+        const formattedName = font.replace(/\s+/g, '+');
+
+        if (multiWeightFonts.has(font)) {
+            return `family=${formattedName}:wght@100..900`;
+        }
+
+        return `family=${formattedName}`;
+    });
+
+    const googleFontsUrl =
+        fontParams.length > 0
+            ? `https://fonts.googleapis.com/css2?${fontParams.join('&')}&display=swap`
+            : '';
+
     return (
-        <div className="relative min-h-screen bg-background pb-32 text-foreground">
+        <div className="relative isolate min-h-screen bg-background pb-32 text-foreground">
+            {googleFontsUrl && (
+                <Head>
+                    <link
+                        rel="preconnect"
+                        href="https://fonts.googleapis.com"
+                    />
+                    <link
+                        rel="preconnect"
+                        href="https://fonts.gstatic.com"
+                        crossOrigin="anonymous"
+                    />
+                    <link rel="stylesheet" href={googleFontsUrl} />
+                </Head>
+            )}
             {/* The unaltered #hero block */}
             <div
                 id={`hero`}
-                className={`flex min-h-[600px] items-center bg-background text-foreground`}
+                className={`relative isolate flex min-h-[600px] items-center text-foreground`}
             >
+                <div className="from absolute inset-x-0 top-0 -z-10 h-1/2 bg-radial-[125%_125%_at_50%_90%] from-transparent from-40% to-primary to-100%" />
+
                 <MainWrapper
                     className={`grid grid-cols-1 gap-6 md:grid-cols-3`}
                 >

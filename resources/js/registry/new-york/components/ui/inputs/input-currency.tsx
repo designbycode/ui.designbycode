@@ -74,7 +74,9 @@ function formatCurrencyString(
     decimalsLimit: number,
     allowNegative: boolean,
 ): string {
-    if (!value) return '';
+    if (!value) {
+return '';
+}
 
     // Check if it's negative
     const isNegative = allowNegative && value.startsWith('-');
@@ -84,6 +86,7 @@ function formatCurrencyString(
 
     // Make sure we only have one decimal point
     const dotIdx = clean.indexOf('.');
+
     if (dotIdx !== -1) {
         clean =
             clean.substring(0, dotIdx + 1) +
@@ -96,6 +99,7 @@ function formatCurrencyString(
 
     if (integerPart) {
         const number = parseInt(integerPart, 10);
+
         if (!isNaN(number)) {
             integerPart = new Intl.NumberFormat(locale, {
                 useGrouping: true,
@@ -105,6 +109,7 @@ function formatCurrencyString(
 
     if (allowDecimals && decimalPart !== undefined) {
         decimalPart = decimalPart.slice(0, decimalsLimit);
+
         return `${isNegative ? '-' : ''}${integerPart}.${decimalPart}`;
     }
 
@@ -218,6 +223,7 @@ const InputCurrency = React.forwardRef<HTMLInputElement, InputCurrencyProps>(
             if (allowDecimals && localValue) {
                 const numericString = localValue.replace(/[^\d.-]/g, '');
                 const number = parseFloat(numericString);
+
                 if (!isNaN(number)) {
                     finalValue = new Intl.NumberFormat(locale, {
                         useGrouping: true,

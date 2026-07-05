@@ -1,7 +1,7 @@
-import * as React from 'react';
 import { motion } from 'motion/react';
+import * as React from 'react';
 import { cn } from '@/lib/utils';
-import { TimelineItem } from './timeline-vertical';
+import type { TimelineItem } from './timeline-vertical';
 
 interface TimelineMotionProps extends React.HTMLAttributes<HTMLDivElement> {
     items: TimelineItem[];

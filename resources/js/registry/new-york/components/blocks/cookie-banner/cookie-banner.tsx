@@ -1,14 +1,16 @@
 'use client';
 
-import React, { useState } from 'react';
 import { ShieldAlert } from 'lucide-react';
-import { Card, CardContent } from '@/components/ui/card';
+import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
 
 export function CookieBanner() {
     const [visible, setVisible] = useState(true);
 
-    if (!visible) return null;
+    if (!visible) {
+return null;
+}
 
     return (
         <Card className="w-full rounded-[var(--radius)] border-border/50 bg-card/40 p-4 shadow-lg backdrop-blur-xs">

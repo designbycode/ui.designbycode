@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import {
     Star,
     CheckCircle,
@@ -7,11 +6,12 @@ import {
     Calendar,
     Sparkles,
 } from 'lucide-react';
-import { Card, CardContent } from '@/components/ui/card';
+import React, { useState } from 'react';
+import type { Swiper as SwiperClass } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import type { Swiper as SwiperClass } from 'swiper';
+import { Card, CardContent } from '@/components/ui/card';
 
 // Import Swiper styles
 import 'swiper/css';
@@ -89,7 +89,7 @@ export function ReviewsSlider() {
 
     const getPriorityBadge = (rating: number) => {
         return (
-            <div className="flex items-center gap-0.5 text-amber-500">
+            <div className="flex items-center gap-0.5 text-chart-4">
                 {[...Array(5)].map((_, i) => (
                     <Star
                         key={i}
@@ -119,7 +119,7 @@ export function ReviewsSlider() {
                             4.92
                         </span>
                         <div className="flex flex-col text-left">
-                            <div className="flex items-center text-amber-500">
+                            <div className="flex items-center text-chart-4">
                                 {[...Array(5)].map((_, i) => (
                                     <Star
                                         key={i}

@@ -1,8 +1,8 @@
 'use client';
 
+import type { File} from 'lucide-react';
+import { Upload, X, Check, Loader2 } from 'lucide-react';
 import { useState, useCallback, useRef } from 'react';
-import { Upload, X, File, Check, Loader2 } from 'lucide-react';
-import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import {
@@ -13,6 +13,7 @@ import {
     TableHeader,
     TableRow,
 } from '@/components/ui/table';
+import { cn } from '@/lib/utils';
 
 interface FileWithProgress {
     file: File;
@@ -64,6 +65,7 @@ export function GalleryDropzoneTable({
                 let progress = 0;
                 const interval = setInterval(() => {
                     progress += Math.random() * 30;
+
                     if (progress >= 100) {
                         progress = 100;
                         clearInterval(interval);
@@ -97,7 +99,10 @@ export function GalleryDropzoneTable({
         (e: React.DragEvent) => {
             e.preventDefault();
             setIsDragging(false);
-            if (e.dataTransfer.files.length) handleFiles(e.dataTransfer.files);
+
+            if (e.dataTransfer.files.length) {
+handleFiles(e.dataTransfer.files);
+}
         },
         [handleFiles],
     );
@@ -109,8 +114,14 @@ export function GalleryDropzoneTable({
     };
 
     const formatSize = (bytes: number) => {
-        if (bytes < 1024) return `${bytes} B`;
-        if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
+        if (bytes < 1024) {
+return `${bytes} B`;
+}
+
+        if (bytes < 1024 * 1024) {
+return `${(bytes / 1024).toFixed(1)} KB`;
+}
+
         return `${(bytes / 1024 / 1024).toFixed(1)} MB`;
     };
 

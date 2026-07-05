@@ -1,11 +1,11 @@
 'use client';
 
-import * as React from 'react';
 import { Code, Server, Database, ArrowRight } from 'lucide-react';
-import HeadingBlock from '@/registry/new-york/components/ui/typography/heading-block';
+import * as React from 'react';
 import { ButtonNeon } from '@/registry/new-york/components/ui/buttons/button-neon';
-import { AnimatedTabs } from '@/registry/new-york/components/ui/tabs/animated-tabs';
 import { CodeWindow } from '@/registry/new-york/components/ui/mockups/code-window';
+import { AnimatedTabs } from '@/registry/new-york/components/ui/tabs/animated-tabs';
+import HeadingBlock from '@/registry/new-york/components/ui/typography/heading-block';
 
 export function HeroTabsShowcase() {
     const [activeTab, setActiveTab] = React.useState('frontend');

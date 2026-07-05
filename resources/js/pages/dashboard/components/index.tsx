@@ -12,6 +12,7 @@ import {
 } from 'lucide-react';
 import React, { useState, useMemo } from 'react';
 import { toast } from 'sonner';
+import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import {
     Card,
@@ -21,9 +22,8 @@ import {
     CardTitle,
 } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { Badge } from '@/components/ui/badge';
-import { index, create, edit, destroy } from '@/routes/dashboard/components';
 import { dashboard } from '@/routes';
+import { index, create, edit, destroy } from '@/routes/dashboard/components';
 
 interface ComponentItem {
     id: number;

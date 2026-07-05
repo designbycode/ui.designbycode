@@ -1,7 +1,7 @@
 'use client';
 
-import React from 'react';
 import { Star, Quote } from 'lucide-react';
+import React from 'react';
 import {
     Card,
     CardContent,
@@ -56,7 +56,7 @@ export function TestimonialsGrid() {
                     >
                         <Quote className="pointer-events-none absolute top-4 right-4 size-10 text-foreground opacity-[0.03]" />
                         <CardHeader className="pb-3">
-                            <div className="mb-2 flex items-center gap-1.5 text-amber-500">
+                            <div className="mb-2 flex items-center gap-1.5 text-chart-4">
                                 {Array.from({ length: item.rating }).map(
                                     (_, i) => (
                                         <Star

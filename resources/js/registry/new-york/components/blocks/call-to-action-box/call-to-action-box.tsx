@@ -1,9 +1,9 @@
 'use client';
 
-import React from 'react';
 import { Sparkles } from 'lucide-react';
-import { Card, CardContent } from '@/components/ui/card';
+import React from 'react';
 import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
 
 export function CallToActionBox() {
     return (

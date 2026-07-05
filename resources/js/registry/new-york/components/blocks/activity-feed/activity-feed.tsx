@@ -21,13 +21,13 @@ const events: EventItem[] = [
         time: '10m ago',
         title: 'Database Migration Complete',
         details: 'Successfully seeded 159 component manifest files.',
-        color: 'bg-emerald-500',
+        color: 'bg-chart-2',
     },
     {
         time: '2h ago',
         title: 'Theme Variables Injected',
         details: 'CSS global variables synced with theme-slate values.',
-        color: 'bg-amber-500',
+        color: 'bg-chart-4',
     },
 ];
 

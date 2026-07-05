@@ -1,11 +1,11 @@
 'use client';
 
-import * as React from 'react';
 import { Smartphone, Zap, Sparkles } from 'lucide-react';
-import HeadingBlock from '@/registry/new-york/components/ui/typography/heading-block';
-import { ButtonNeon } from '@/registry/new-york/components/ui/buttons/button-neon';
+import * as React from 'react';
 import { ButtonDraw } from '@/registry/new-york/components/ui/buttons/button-draw';
+import { ButtonNeon } from '@/registry/new-york/components/ui/buttons/button-neon';
 import { PhoneMockup } from '@/registry/new-york/components/ui/mockups/phone-mockup';
+import HeadingBlock from '@/registry/new-york/components/ui/typography/heading-block';
 
 export function HeroPhoneMockup() {
     return (

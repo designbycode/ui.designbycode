@@ -1,9 +1,9 @@
 'use client';
 
-import React, { useState } from 'react';
 import { ChevronDown, HelpCircle } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import React, { useState } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import { cn } from '@/lib/utils';
 
 interface FAQItem {
     question: string;
@@ -36,6 +36,7 @@ export function FAQSection() {
         <div className="mx-auto w-full max-w-3xl space-y-4">
             {faqs.map((faq, idx) => {
                 const isOpen = openIdx === idx;
+
                 return (
                     <Card
                         key={idx}

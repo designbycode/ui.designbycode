@@ -1,8 +1,8 @@
-import * as React from 'react';
-import { motion, AnimatePresence } from 'motion/react';
 import { X } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { motion, AnimatePresence } from 'motion/react';
+import * as React from 'react';
 import { Card } from '@/components/ui/card';
+import { cn } from '@/lib/utils';
 
 const MotionCard = motion(Card);
 
@@ -34,6 +34,7 @@ export function BannerFloating({
 
     const handleDismiss = () => {
         setIsVisible(false);
+
         if (onClose) {
             onClose();
         }

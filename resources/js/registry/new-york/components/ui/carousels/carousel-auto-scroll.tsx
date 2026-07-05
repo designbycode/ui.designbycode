@@ -1,8 +1,8 @@
 'use client';
 
 import * as React from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import { cn } from '@/lib/utils';
 
 import 'swiper/css';

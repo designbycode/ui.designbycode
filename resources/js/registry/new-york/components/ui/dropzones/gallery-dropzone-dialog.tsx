@@ -1,10 +1,9 @@
 'use client';
 
+import { ImageIcon, Upload, X, Check, Plus, Images } from 'lucide-react';
 import * as React from 'react';
-import { cn } from '@/lib/utils';
-import { Button } from '@/components/ui/button';
-import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import {
     Dialog,
     DialogContent,
@@ -14,7 +13,8 @@ import {
     DialogTrigger,
     DialogFooter,
 } from '@/components/ui/dialog';
-import { ImageIcon, Upload, X, Check, Plus, Images } from 'lucide-react';
+import { Progress } from '@/components/ui/progress';
+import { cn } from '@/lib/utils';
 
 interface ImageFile {
     id: string;
@@ -46,11 +46,16 @@ export function GalleryDropzoneDialog({
         const interval = setInterval(() => {
             setImages((prev) =>
                 prev.map((img) => {
-                    if (img.id !== imageId) return img;
+                    if (img.id !== imageId) {
+return img;
+}
+
                     if (img.progress >= 100) {
                         clearInterval(interval);
+
                         return { ...img, progress: 100, status: 'success' };
                     }
+
                     return { ...img, progress: img.progress + 12 };
                 }),
             );
@@ -105,8 +110,9 @@ export function GalleryDropzoneDialog({
 
             setImages((prev) => [...prev, ...newImages]);
             newImages.forEach((img) => {
-                if (img.status !== 'error')
-                    setTimeout(() => simulateUpload(img.id), 50);
+                if (img.status !== 'error') {
+setTimeout(() => simulateUpload(img.id), 50);
+}
             });
         },
         [images.length, maxFiles, maxSize, simulateUpload],

@@ -1,10 +1,11 @@
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import * as React from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
 import type { Swiper as SwiperClass } from 'swiper';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import { cn } from '@/lib/utils';
-import { ReviewItem, ReviewCard } from './review-card';
+import type { ReviewItem} from './review-card';
+import { ReviewCard } from './review-card';
 
 // Import Swiper styles
 import 'swiper/css';
@@ -44,9 +45,11 @@ export function ReviewCarousel({
     };
 
     const modules = [];
+
     if (autoplay) {
         modules.push(Autoplay);
     }
+
     modules.push(Pagination, Navigation);
 
     return (

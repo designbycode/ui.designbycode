@@ -26,6 +26,7 @@ export function ProgressCircle({
         const timer = setTimeout(() => {
             setCurrentValue(Math.min(Math.max(value, 0), 100));
         }, 100);
+
         return () => clearTimeout(timer);
     }, [value]);
 

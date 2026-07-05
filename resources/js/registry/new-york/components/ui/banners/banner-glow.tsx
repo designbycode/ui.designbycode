@@ -1,5 +1,5 @@
-import * as React from 'react';
 import { X, Sparkles } from 'lucide-react';
+import * as React from 'react';
 import { cn } from '@/lib/utils';
 
 interface BannerGlowProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -19,7 +19,9 @@ export function BannerGlow({
 }: BannerGlowProps) {
     const [isVisible, setIsVisible] = React.useState(true);
 
-    if (!isVisible) return null;
+    if (!isVisible) {
+return null;
+}
 
     return (
         <div
@@ -53,7 +55,10 @@ export function BannerGlow({
             <button
                 onClick={() => {
                     setIsVisible(false);
-                    if (onClose) onClose();
+
+                    if (onClose) {
+onClose();
+}
                 }}
                 className="relative z-10 shrink-0 cursor-pointer rounded-lg p-1 text-muted-foreground/70 transition-all hover:bg-muted hover:text-foreground"
             >

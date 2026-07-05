@@ -1,9 +1,9 @@
 'use client';
 
-import * as React from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { cn } from '@/lib/utils';
+import * as React from 'react';
 import { Card } from '@/components/ui/card';
+import { cn } from '@/lib/utils';
 
 export interface SplitPreviewItem {
     id: string;

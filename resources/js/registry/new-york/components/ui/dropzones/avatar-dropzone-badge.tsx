@@ -1,7 +1,7 @@
 'use client';
 
+import { User, Camera, Check, AlertCircle, Loader2 } from 'lucide-react';
 import * as React from 'react';
-import { cn } from '@/lib/utils';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
@@ -10,7 +10,7 @@ import {
     TooltipContent,
     TooltipTrigger,
 } from '@/components/ui/tooltip';
-import { User, Camera, Check, AlertCircle, Loader2 } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 interface AvatarDropzoneBadgeProps {
     className?: string;
@@ -55,8 +55,10 @@ export function AvatarDropzoneBadge({
                 if (prev >= 100) {
                     clearInterval(interval);
                     setStatus('success');
+
                     return 100;
                 }
+
                 return prev + 15;
             });
         }, 120);
@@ -65,14 +67,18 @@ export function AvatarDropzoneBadge({
     const handleFile = React.useCallback(
         (file: File) => {
             setError(null);
+
             if (!file.type.startsWith('image/')) {
                 setError('Invalid file type');
                 setStatus('error');
+
                 return;
             }
+
             if (file.size > maxSize * 1024 * 1024) {
                 setError(`Max size is ${maxSize}MB`);
                 setStatus('error');
+
                 return;
             }
 
@@ -92,7 +98,10 @@ export function AvatarDropzoneBadge({
             e.preventDefault();
             setIsDragOver(false);
             const file = e.dataTransfer.files[0];
-            if (file) handleFile(file);
+
+            if (file) {
+handleFile(file);
+}
         },
         [handleFile],
     );
@@ -107,6 +116,7 @@ export function AvatarDropzoneBadge({
                 </Badge>
             );
         }
+
         if (status === 'success') {
             return (
                 <Badge
@@ -116,6 +126,7 @@ export function AvatarDropzoneBadge({
                 </Badge>
             );
         }
+
         if (status === 'error') {
             return (
                 <Tooltip>
@@ -133,6 +144,7 @@ export function AvatarDropzoneBadge({
                 </Tooltip>
             );
         }
+
         return null;
     };
 

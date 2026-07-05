@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { cn } from '@/lib/utils';
-import { TimelineItem } from './timeline-vertical';
+import type { TimelineItem } from './timeline-vertical';
 
 interface TimelineHorizontalProps extends React.HTMLAttributes<HTMLDivElement> {
     items: TimelineItem[];

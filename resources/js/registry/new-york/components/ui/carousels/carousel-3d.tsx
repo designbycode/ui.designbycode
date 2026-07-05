@@ -1,10 +1,10 @@
 'use client';
 
-import * as React from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import * as React from 'react';
 import type { Swiper as SwiperClass } from 'swiper';
 import { Autoplay, EffectCoverflow } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 

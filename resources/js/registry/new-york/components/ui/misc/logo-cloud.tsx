@@ -35,6 +35,7 @@ export function LogoCloud({
             <div className="mt-2 flex flex-wrap items-center justify-center gap-8 md:gap-12">
                 {items.map((item, i) => {
                     const Icon = item.icon;
+
                     return (
                         <div
                             key={i}

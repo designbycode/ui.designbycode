@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 
 export interface ButtonMagneticProps extends React.ComponentProps<
     typeof Button
@@ -23,6 +23,7 @@ export function ButtonMagnetic({
 
     useEffect(() => {
         const trigger = triggerRef.current;
+
         if (!trigger) {
             return;
         }

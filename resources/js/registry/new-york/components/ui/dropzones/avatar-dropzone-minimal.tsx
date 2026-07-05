@@ -1,10 +1,10 @@
 'use client';
 
+import { Camera, X } from 'lucide-react';
 import * as React from 'react';
-import { cn } from '@/lib/utils';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { Spinner } from '@/components/ui/spinner';
-import { Camera, X } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 interface AvatarDropzoneMinimalProps {
     className?: string;
@@ -31,8 +31,9 @@ export function AvatarDropzoneMinimal({
             if (
                 !file.type.startsWith('image/') ||
                 file.size > maxSize * 1024 * 1024
-            )
-                return;
+            ) {
+return;
+}
 
             setIsUploading(true);
             const reader = new FileReader();
@@ -53,7 +54,10 @@ export function AvatarDropzoneMinimal({
             e.preventDefault();
             setIsDragOver(false);
             const file = e.dataTransfer.files[0];
-            if (file) handleFile(file);
+
+            if (file) {
+handleFile(file);
+}
         },
         [handleFile],
     );

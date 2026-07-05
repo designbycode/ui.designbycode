@@ -1,8 +1,8 @@
 'use client';
 
 import * as React from 'react';
-import { cn } from '@/lib/utils';
 import { Card } from '@/components/ui/card';
+import { cn } from '@/lib/utils';
 
 export interface TiltCardProps extends React.ComponentProps<typeof Card> {
     maxTilt?: number;
@@ -34,7 +34,10 @@ const TiltCard = React.forwardRef<HTMLDivElement, TiltCardProps>(
 
         const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
             const card = resolvedRef.current;
-            if (!card) return;
+
+            if (!card) {
+return;
+}
 
             const rect = card.getBoundingClientRect();
             const width = rect.width;

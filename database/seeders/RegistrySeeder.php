@@ -58,13 +58,13 @@ const events: EventItem[] = [
         time: \'10m ago\',
         title: \'Database Migration Complete\',
         details: \'Successfully seeded 159 component manifest files.\',
-        color: \'bg-emerald-500\',
+        color: \'bg-chart-2\',
     },
     {
         time: \'2h ago\',
         title: \'Theme Variables Injected\',
         details: \'CSS global variables synced with theme-slate values.\',
-        color: \'bg-amber-500\',
+        color: \'bg-chart-4\',
     },
 ];
 
@@ -964,7 +964,7 @@ export function BookingForm({
             </CardContent>
 
             <CardFooter className="relative z-10 flex items-center justify-center gap-1.5 border-t border-border/20 bg-muted/15 px-6 py-3 text-[10px] text-muted-foreground">
-                <Sparkles className="size-3.5 text-amber-500" />
+                <Sparkles className="size-3.5 text-chart-4" />
                 <span>Free cancellation up to 48 hours before check-in</span>
             </CardFooter>
         </Card>
@@ -1342,7 +1342,7 @@ export function CanvasGallery() {
             {/* Split layout */}
             <div className="grid w-full items-stretch gap-6 md:grid-cols-2">
                 {/* 1. WebGL Waves (Three.js) */}
-                <Card className="relative flex min-h-[380px] flex-col justify-between overflow-hidden border border-border/40 bg-zinc-950 text-white">
+                <Card className="relative flex min-h-[380px] flex-col justify-between overflow-hidden border border-border/40 bg-card text-card-foreground">
                     {/* Live Waves background */}
                     {playWaves && (
                         <div
@@ -1354,17 +1354,17 @@ export function CanvasGallery() {
                     )}
 
                     {/* Glass Control Box */}
-                    <div className="relative z-10 flex h-full flex-col justify-between bg-zinc-950/60 p-6 backdrop-blur-xs">
+                    <div className="relative z-10 flex h-full flex-col justify-between bg-card/60 p-6 backdrop-blur-xs">
                         <div>
                             <div className="flex items-center justify-between">
                                 <Badge
                                     variant="secondary"
-                                    className="rounded-full border border-sky-500/20 bg-sky-500/10 px-2 py-0.5 text-[10px] font-bold text-sky-400"
+                                    className="rounded-full border border-chart-2/20 bg-chart-2/10 px-2 py-0.5 text-[10px] font-bold text-chart-2"
                                 >
                                     WebGL / ThreeJS
                                 </Badge>
                                 <div
-                                    className="cursor-pointer text-zinc-500 transition-colors hover:text-white"
+                                    className="cursor-pointer text-muted-foreground transition-colors hover:text-card-foreground"
                                     onClick={() => setPlayWaves(!playWaves)}
                                 >
                                     {playWaves ? (
@@ -1377,7 +1377,7 @@ export function CanvasGallery() {
                             <h3 className="mt-4 font-bebas-neue! text-lg font-bold tracking-wide">
                                 WebGL Waves Background
                             </h3>
-                            <p className="mt-1 text-[11px] leading-relaxed text-zinc-400">
+                            <p className="mt-1 text-[11px] leading-relaxed text-muted-foreground">
                                 A high-performance mathematical point grid
                                 oscillating in three-dimensional space. Great
                                 for homepage banners and premium section
@@ -1386,9 +1386,9 @@ export function CanvasGallery() {
                         </div>
 
                         {/* Control Panel */}
-                        <div className="space-y-4 border-t border-zinc-800/50 pt-6">
+                        <div className="space-y-4 border-t border-border/50 pt-6">
                             <div className="space-y-1.5">
-                                <div className="flex items-center justify-between font-mono text-[10px] text-zinc-400">
+                                <div className="flex items-center justify-between font-mono text-[10px] text-muted-foreground">
                                     <span>Wave Opacity</span>
                                     <span>{opacity[0]}%</span>
                                 </div>
@@ -1405,19 +1405,19 @@ export function CanvasGallery() {
                 </Card>
 
                 {/* 2. Interactive Pixel Canvas */}
-                <Card className="relative flex min-h-[380px] flex-col justify-between overflow-hidden border border-border/40 bg-zinc-950 text-white">
+                <Card className="relative flex min-h-[380px] flex-col justify-between overflow-hidden border border-border/40 bg-card text-card-foreground">
                     {/* Live Pixel canvas */}
                     <PixelCanvas
                         className={`absolute inset-0 transition-opacity duration-300 ${interactivePixel ? \'opacity-40\' : \'pointer-events-none opacity-0\'}`}
                     />
 
                     {/* Glass Control Box */}
-                    <div className="relative z-10 flex h-full flex-col justify-between bg-zinc-950/60 p-6 backdrop-blur-xs">
+                    <div className="relative z-10 flex h-full flex-col justify-between bg-card/60 p-6 backdrop-blur-xs">
                         <div>
                             <div className="flex items-center justify-between">
                                 <Badge
                                     variant="secondary"
-                                    className="rounded-full border border-purple-500/20 bg-purple-500/10 px-2 py-0.5 text-[10px] font-bold text-purple-400"
+                                    className="rounded-full border border-chart-3/20 bg-chart-3/10 px-2 py-0.5 text-[10px] font-bold text-chart-3"
                                 >
                                     HTML5 Canvas
                                 </Badge>
@@ -1425,13 +1425,13 @@ export function CanvasGallery() {
                                     id="pixel-state"
                                     checked={interactivePixel}
                                     onCheckedChange={setInteractivePixel}
-                                    className="data-[state=checked]:bg-purple-500"
+                                    className="data-[state=checked]:bg-primary"
                                 />
                             </div>
                             <h3 className="mt-4 font-bebas-neue! text-lg font-bold tracking-wide">
                                 Interactive Pixel Grid
                             </h3>
-                            <p className="mt-1 text-[11px] leading-relaxed text-zinc-400">
+                            <p className="mt-1 text-[11px] leading-relaxed text-muted-foreground">
                                 An HTML5 canvas grid where individual pixels
                                 light up, float, and react dynamically to mouse
                                 coordinates. Move your mouse across this card to
@@ -1440,10 +1440,10 @@ export function CanvasGallery() {
                         </div>
 
                         {/* Status readout */}
-                        <div className="flex items-center justify-between rounded border border-zinc-800 bg-zinc-900/50 p-3 font-mono text-[10px] text-zinc-400">
+                        <div className="flex items-center justify-between rounded border border-border bg-muted/50 p-3 font-mono text-[10px] text-muted-foreground">
                             <span className="flex items-center gap-1.5">
                                 <span
-                                    className={`size-1.5 rounded-full ${interactivePixel ? \'animate-pulse bg-purple-500\' : \'bg-zinc-600\'}`}
+                                    className={`size-1.5 rounded-full ${interactivePixel ? \'animate-pulse bg-primary\' : \'bg-muted\'}`}
                                 />
                                 Status:{\' \'}
                                 {interactivePixel
@@ -1830,8 +1830,8 @@ export function ContactForm() {
             </CardHeader>
             <CardContent className="pt-0">
                 {submitted ? (
-                    <div className="space-y-2 rounded-lg border border-emerald-500/20 bg-emerald-500/10 p-6 text-center">
-                        <CheckCircle2 className="mx-auto size-6 text-emerald-500" />
+                    <div className="space-y-2 rounded-lg border border-chart-2/20 bg-chart-2/10 p-6 text-center">
+                        <CheckCircle2 className="mx-auto size-6 text-chart-2" />
                         <h4 className="text-xs font-bold text-foreground">
                             Message Sent!
                         </h4>
@@ -2604,7 +2604,9 @@ export function HeroFeaturesGrid() {
     ];
 
     return (
-        <section className="relative flex w-full flex-col items-center justify-center overflow-hidden rounded-2xl border border-border/30 bg-background px-6 py-16 text-center select-none">
+        <section className="relative isolate flex w-full flex-col items-center justify-center overflow-hidden rounded-2xl border border-border/30 bg-background px-6 py-16 text-center select-none">
+            <div className="from absolute inset-0 z-0 bg-radial-[125%_125%_at_50%_90%] from-transparent from-40% to-primary to-100%" />
+
             <div className="relative z-10 mb-12 flex max-w-2xl flex-col items-center">
                 <HeadingBlock
                     badge={{
@@ -3746,7 +3748,7 @@ export function HeroSection() {
         <section className="relative flex w-full flex-col items-center gap-12 overflow-hidden rounded-2xl border border-border/30 bg-background/50 p-6 shadow-xl select-none md:p-12 lg:flex-row lg:p-16">
             {/* Ambient Background Glows */}
             <div className="pointer-events-none absolute -top-40 -left-40 size-96 rounded-full bg-primary/10 blur-3xl" />
-            <div className="pointer-events-none absolute -right-40 -bottom-40 size-96 rounded-full bg-sky-500/10 blur-3xl" />
+            <div className="pointer-events-none absolute -right-40 -bottom-40 size-96 rounded-full bg-chart-2/10 blur-3xl" />
 
             {/* Left Content Column */}
             <div className="relative z-10 flex-1 space-y-6 text-left">
@@ -3760,7 +3762,7 @@ export function HeroSection() {
 
                 <h1 className="text-4xl leading-tight font-extrabold tracking-tight sm:text-5xl">
                     Luxury Stays &{\' \'}
-                    <span className="bg-gradient-to-r from-primary to-sky-500 bg-clip-text text-transparent">
+                    <span className="bg-gradient-to-r from-primary to-chart-2 bg-clip-text text-transparent">
                         Creative Spaces
                     </span>
                 </h1>
@@ -4049,9 +4051,9 @@ export function HeroSimpleSplit() {
                 <Card className="relative overflow-hidden border-border/50 bg-card/40 p-6 backdrop-blur-xs">
                     <div className="flex size-full flex-col gap-3">
                         <div className="flex items-center gap-1.5 border-b border-border/30 pb-3">
-                            <div className="size-2.5 rounded-full bg-red-500/80" />
-                            <div className="size-2.5 rounded-full bg-yellow-500/80" />
-                            <div className="size-2.5 rounded-full bg-emerald-500/80" />
+                            <div className="size-2.5 rounded-full bg-destructive/80" />
+                            <div className="size-2.5 rounded-full bg-chart-4/80" />
+                            <div className="size-2.5 rounded-full bg-chart-2/80" />
                             <span className="ml-2 font-mono text-[9px] text-muted-foreground">
                                 sandbox-editor.tsx
                             </span>
@@ -4061,7 +4063,7 @@ export function HeroSimpleSplit() {
                                 <span className="text-primary">import</span>{\' \'}
                                 &#123; Button &#125;{\' \'}
                                 <span className="text-primary">from</span>{\' \'}
-                                <span className="text-emerald-500">
+                                <span className="text-chart-2">
                                     "@/components/ui/button"
                                 </span>
                                 ;
@@ -4070,7 +4072,7 @@ export function HeroSimpleSplit() {
                                 <span className="text-primary">
                                     export default function
                                 </span>{\' \'}
-                                <span className="text-blue-500">Page</span>()
+                                <span className="text-chart-3">Page</span>()
                                 &#123;
                             </p>
                             <p className="pl-4 opacity-70">
@@ -8546,7 +8548,7 @@ export function PricingTable() {
                                     </td>
                                     <td className="p-3 text-center">
                                         {row.free ? (
-                                            <Check className="mx-auto size-4 text-emerald-500" />
+                                            <Check className="mx-auto size-4 text-chart-2" />
                                         ) : (
                                             <X className="mx-auto size-4 text-muted-foreground/30" />
                                         )}
@@ -8693,7 +8695,7 @@ export function PropertyDetail() {
                         The Azure Wave Villa
                     </h2>
                     <div className="flex shrink-0 items-center gap-1.5 text-sm">
-                        <Star className="size-4 fill-amber-500 text-amber-500" />
+                        <Star className="size-4 fill-chart-4 text-chart-4" />
                         <span className="font-extrabold">4.98</span>
                         <span className="text-muted-foreground">
                             (86 reviews)
@@ -8764,7 +8766,7 @@ export function PropertyDetail() {
                             </p>
                         </div>
                         <div className="relative">
-                            <div className="flex size-12 items-center justify-center rounded-full border border-white/20 bg-gradient-to-tr from-sky-400 to-indigo-500 font-extrabold text-white shadow-inner">
+                            <div className="flex size-12 items-center justify-center rounded-full border border-white/20 bg-gradient-to-tr from-chart-2 to-chart-3 font-extrabold text-white shadow-inner">
                                 S
                             </div>
                             <div className="absolute -right-1 -bottom-1 flex size-5 items-center justify-center rounded-full border-2 border-background bg-chart-2 text-primary-foreground">
@@ -8784,7 +8786,7 @@ export function PropertyDetail() {
                                     key={i}
                                     className="flex items-start gap-2.5 text-xs leading-relaxed text-muted-foreground"
                                 >
-                                    <Sparkles className="mt-0.5 size-4.5 shrink-0 text-amber-500" />
+                                    <Sparkles className="mt-0.5 size-4.5 shrink-0 text-chart-4" />
                                     <span>{h}</span>
                                 </div>
                             ))}
@@ -9165,11 +9167,11 @@ export function RentalListings() {
                     {filteredListings.map((listing) => (
                         <Card
                             key={listing.id}
-                            className="group relative flex flex-col overflow-hidden border border-border/40 bg-card/15 backdrop-blur-xs transition-all duration-300 hover:border-border/70 hover:shadow-xl"
+                            className="group relative flex flex-col overflow-hidden border border-border/40 bg-card/15 py-0 backdrop-blur-xs transition-all duration-300 hover:border-border/70 hover:shadow-xl"
                         >
                             {/* Graphic Vector Representation (Abstract Gradient Image) */}
                             <div
-                                className={`h-48 w-full bg-gradient-to-br ${listing.gradient} relative flex items-center justify-center overflow-hidden transition-all duration-500 group-hover:scale-[1.02]`}
+                                className={`h-48 w-full bg-linear-to-br ${listing.gradient} relative flex items-center justify-center overflow-hidden transition-all duration-500 group-hover:scale-[1.02]`}
                             >
                                 <div className="absolute inset-0 bg-black/10 transition-opacity group-hover:bg-black/20" />
 
@@ -9186,14 +9188,14 @@ export function RentalListings() {
                                     className="absolute top-3 right-3 flex size-8 cursor-pointer items-center justify-center rounded-full bg-black/35 text-white backdrop-blur-md transition-colors select-none hover:bg-black/55"
                                 >
                                     <Heart
-                                        className={`size-4 ${favorites.includes(listing.id) ? \'fill-red-500 text-red-500\' : \'text-white\'}`}
+                                        className={`size-4 ${favorites.includes(listing.id) ? \'fill-destructive text-destructive\' : \'text-white\'}`}
                                     />
                                 </button>
 
                                 {/* Location Banner overlay */}
                                 <div className="absolute right-3 bottom-3 left-3 z-10 flex items-center justify-between text-white">
                                     <span className="flex items-center gap-1 rounded bg-black/45 px-2 py-1 text-[10px] font-semibold backdrop-blur-xs">
-                                        <MapPin className="size-3 text-sky-400" />
+                                        <MapPin className="size-3 text-chart-2" />
                                         {listing.location}
                                     </span>
                                     <span className="rounded-full bg-primary px-2.5 py-1 text-xs font-extrabold text-primary-foreground">
@@ -9218,7 +9220,7 @@ export function RentalListings() {
                                         {listing.category}
                                     </Badge>
                                     <div className="flex items-center gap-1 text-xs">
-                                        <Star className="size-3.5 fill-amber-500 text-amber-500" />
+                                        <Star className="size-3.5 fill-chart-4 text-chart-4" />
                                         <span className="font-bold text-foreground">
                                             {listing.rating}
                                         </span>
@@ -9270,7 +9272,7 @@ export function RentalListings() {
                                 </div>
                                 <Button
                                     size="sm"
-                                    className="h-8 shrink-0 cursor-pointer gap-1 rounded bg-primary text-xs font-bold text-primary-foreground hover:bg-primary/95"
+                                    className="h-8 shrink-0 cursor-pointer gap-1 text-xs font-bold"
                                 >
                                     <Eye className="size-3.5" />
                                     Details
@@ -9423,7 +9425,7 @@ export function ReviewsSlider() {
 
     const getPriorityBadge = (rating: number) => {
         return (
-            <div className="flex items-center gap-0.5 text-amber-500">
+            <div className="flex items-center gap-0.5 text-chart-4">
                 {[...Array(5)].map((_, i) => (
                     <Star
                         key={i}
@@ -9453,7 +9455,7 @@ export function ReviewsSlider() {
                             4.92
                         </span>
                         <div className="flex flex-col text-left">
-                            <div className="flex items-center text-amber-500">
+                            <div className="flex items-center text-chart-4">
                                 {[...Array(5)].map((_, i) => (
                                     <Star
                                         key={i}
@@ -9808,7 +9810,7 @@ export function TestimonialsGrid() {
                     >
                         <Quote className="pointer-events-none absolute top-4 right-4 size-10 text-foreground opacity-[0.03]" />
                         <CardHeader className="pb-3">
-                            <div className="mb-2 flex items-center gap-1.5 text-amber-500">
+                            <div className="mb-2 flex items-center gap-1.5 text-chart-4">
                                 {Array.from({ length: item.rating }).map(
                                     (_, i) => (
                                         <Star
@@ -9899,13 +9901,13 @@ import { Button } from \'@/components/ui/button\';
 
 export function UserProfileCard() {
     return (
-        <Card className="relative mx-auto w-full max-w-sm overflow-hidden border-border/50 bg-card/30 backdrop-blur-xs">
+        <Card className="relative mx-auto w-full max-w-sm overflow-hidden border-border/50 bg-card/30 py-0 backdrop-blur-xs">
             {/* Cover photo placeholder */}
-            <div className="relative h-20 w-full bg-linear-to-r from-primary/30 to-accent/30" />
+            <div className="relative h-32 w-full bg-linear-to-r from-primary/30 to-accent/30" />
 
             <CardContent className="pt-0 pb-6 text-center">
                 {/* Profile Photo */}
-                <div className="relative mx-auto -mt-8 flex size-16 items-center justify-center rounded-full border-2 border-border/80 bg-background text-lg font-bold text-primary shadow-sm">
+                <div className="relative mx-auto -mt-14 flex size-16 items-center justify-center rounded-full border-2 border-border/80 bg-background text-lg font-bold text-primary shadow-sm">
                     <User className="size-8" />
                 </div>
 
@@ -14053,7 +14055,7 @@ export function TextCircleLoader({
             {/* Rotating / Animating Ring backdrops */}
             {variant === \'neon-ring\' && (
                 <div
-                    className="animate-neon-ring-rotate absolute inset-0 z-0 rounded-full bg-transparent"
+                    className="absolute inset-0 z-0 animate-neon-ring-rotate rounded-full bg-transparent"
                     style={{
                         [\'--animate-neon-ring-rotate-duration\' as any]: `${ringDuration}s`,
                     }}
@@ -14084,7 +14086,7 @@ export function TextCircleLoader({
 
             {variant === \'liquid-blob\' && (
                 <div
-                    className="animate-liquid-blob-rotate absolute inset-0 z-0 bg-transparent"
+                    className="absolute inset-0 z-0 animate-liquid-blob-rotate bg-transparent"
                     style={{
                         [\'--animate-liquid-blob-rotate-duration\' as any]: `${ringDuration * 1.6}s`,
                     }}
@@ -32714,7 +32716,7 @@ export function InteractiveRating({
                             className={cn(
                                 \'size-5 transition-colors duration-150\',
                                 isActive
-                                    ? \'fill-amber-500 text-amber-500\'
+                                    ? \'fill-chart-4 text-chart-4\'
                                     : \'text-muted-foreground/35 hover:text-muted-foreground/60\',
                             )}
                         />
@@ -32805,7 +32807,7 @@ export function ReviewCard({
     const renderStars = (rating: number) => {
         const floor = Math.floor(rating);
         return (
-            <div className="flex items-center gap-0.5 text-amber-500">
+            <div className="flex items-center gap-0.5 text-chart-4">
                 {[...Array(5)].map((_, i) => (
                     <Star
                         key={i}
@@ -32840,7 +32842,7 @@ export function ReviewCard({
                 <div className="flex items-center justify-between gap-4">
                     {renderStars(review.rating)}
                     {review.verified && (
-                        <span className="inline-flex items-center gap-1 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-2 py-0.5 text-[9px] font-semibold text-emerald-600">
+                        <span className="inline-flex items-center gap-1 rounded-full border border-chart-2/20 bg-chart-2/10 px-2 py-0.5 text-[9px] font-semibold text-chart-2">
                             <CheckCircle className="size-2.5 fill-current" />
                             Verified
                         </span>
@@ -33241,7 +33243,7 @@ export function ReviewHero({ review, className, ...props }: ReviewHeroProps) {
     const renderStars = (rating: number) => {
         const floor = Math.floor(rating);
         return (
-            <div className="flex items-center gap-1 text-amber-500">
+            <div className="flex items-center gap-1 text-chart-4">
                 {[...Array(5)].map((_, i) => (
                     <Star
                         key={i}
@@ -33278,7 +33280,7 @@ export function ReviewHero({ review, className, ...props }: ReviewHeroProps) {
                 <div className="flex items-center gap-4">
                     {renderStars(review.rating)}
                     {review.verified && (
-                        <span className="inline-flex items-center gap-1 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-0.5 text-[10px] font-semibold text-emerald-600">
+                        <span className="inline-flex items-center gap-1 rounded-full border border-chart-2/20 bg-chart-2/10 px-3 py-0.5 text-[10px] font-semibold text-chart-2">
                             <CheckCircle className="size-3 fill-current" />
                             Verified Customer Feedback
                         </span>
@@ -36221,7 +36223,7 @@ export function TimelineCollapsible({
                             return {
                                 ring: \'border-primary bg-primary text-primary-foreground\',
                                 labelBg:
-                                    \'bg-emerald-500/10 text-emerald-600 border-emerald-500/20\',
+                                    \'bg-chart-2/10 text-chart-2 border-chart-2/20\',
                                 labelText: item.statusLabel || \'Completed\',
                                 icon: <CheckCircle2 className="size-4" />,
                             };
@@ -36379,7 +36381,7 @@ export function TimelineCollapsible({
                                                                             className="flex items-center gap-2.5 text-xs text-muted-foreground"
                                                                         >
                                                                             {task.completed ? (
-                                                                                <Check className="size-4 shrink-0 rounded-sm border border-emerald-500/20 bg-emerald-500/10 p-0.5 text-emerald-500" />
+                                                                                <Check className="size-4 shrink-0 rounded-sm border border-chart-2/20 bg-chart-2/10 p-0.5 text-chart-2" />
                                                                             ) : (
                                                                                 <Circle className="size-4 shrink-0 text-muted-foreground/40" />
                                                                             )}

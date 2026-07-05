@@ -1,11 +1,11 @@
 'use client';
 
+import { User, Pencil, X } from 'lucide-react';
 import * as React from 'react';
-import { cn } from '@/lib/utils';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
-import { User, Pencil, X } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 interface AvatarDropzoneInlineProps {
     className?: string;
@@ -35,8 +35,9 @@ export function AvatarDropzoneInline({
             if (
                 !file.type.startsWith('image/') ||
                 file.size > maxSize * 1024 * 1024
-            )
-                return;
+            ) {
+return;
+}
 
             setIsUploading(true);
             const reader = new FileReader();

@@ -77,6 +77,7 @@ export default function ComponentShow({
 
     const handleResizeStart = (e: React.MouseEvent) => {
         e.preventDefault();
+
         if (!previewRef.current || !containerRef.current) {
             return;
         }
@@ -114,9 +115,11 @@ export default function ComponentShow({
                 item.categories && item.categories.length > 0
                     ? item.categories[0]
                     : 'other';
+
             if (!groups[cat]) {
                 groups[cat] = [];
             }
+
             groups[cat].push(item);
         });
 
@@ -239,6 +242,7 @@ export default function ComponentShow({
         const mainFile =
             component.files.find((f) => f.path.includes(component.name)) ||
             component.files[0];
+
         if (!mainFile || !mainFile.content) {
             return '';
         }
@@ -246,6 +250,7 @@ export default function ComponentShow({
         // Get import path
         let importPath = mainFile.path;
         const prefix = 'resources/js/registry/new-york/';
+
         if (importPath.startsWith(prefix)) {
             importPath = importPath.substring(prefix.length);
         }
@@ -269,8 +274,10 @@ export default function ComponentShow({
             /export\s+(?:default\s+)?(?:const|function|class)\s+([a-zA-Z0-9_]+)/g;
         const exports: string[] = [];
         let match;
+
         while ((match = exportRegex.exec(mainFile.content)) !== null) {
             const name = match[1];
+
             if (
                 name &&
                 !name.endsWith('Props') &&
@@ -287,6 +294,7 @@ export default function ComponentShow({
         if (exports.length === 0) {
             const defaultExportRegex = /export\s+default\s+([a-zA-Z0-9_]+)/;
             const defMatch = defaultExportRegex.exec(mainFile.content);
+
             if (defMatch && defMatch[1]) {
                 exports.push(defMatch[1]);
             }
@@ -315,6 +323,7 @@ export default function ComponentShow({
             'Heading',
             'Paragraph',
         ].some((p) => primarySymbol.includes(p));
+
         if (needsChildren) {
             return `import { ${primarySymbol} } from '${importPath}';\n\nexport default function Demo() {\n    return (\n        <${primarySymbol}>\n            Get Started\n        </${primarySymbol}>\n    );\n}`;
         }

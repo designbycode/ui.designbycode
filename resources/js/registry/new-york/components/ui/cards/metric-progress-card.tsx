@@ -1,8 +1,8 @@
 'use client';
 
 import * as React from 'react';
-import { cn } from '@/lib/utils';
 import { Card } from '@/components/ui/card';
+import { cn } from '@/lib/utils';
 import { useHover } from '@/registry/new-york/hooks/use-hover';
 
 export interface MetricProgressCardProps extends React.ComponentProps<
@@ -43,6 +43,7 @@ const MetricProgressCard = React.forwardRef<
         const combinedRef = React.useCallback(
             (node: HTMLDivElement | null) => {
                 hoverRef(node);
+
                 if (typeof ref === 'function') {
                     ref(node);
                 } else if (ref) {

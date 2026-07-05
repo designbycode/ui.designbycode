@@ -1,5 +1,3 @@
-import * as React from 'react';
-import { motion, AnimatePresence } from 'motion/react';
 import {
     ChevronDown,
     Check,
@@ -8,9 +6,11 @@ import {
     PlayCircle,
     HelpCircle,
 } from 'lucide-react';
-import { cn } from '@/lib/utils';
-import { TimelineItem } from './timeline-vertical';
+import { motion, AnimatePresence } from 'motion/react';
+import * as React from 'react';
 import { Card } from '@/components/ui/card';
+import { cn } from '@/lib/utils';
+import type { TimelineItem } from './timeline-vertical';
 
 interface TimelineCollapsibleProps extends React.HTMLAttributes<HTMLDivElement> {
     items: TimelineItem[];
@@ -32,6 +32,7 @@ export function TimelineCollapsible({
         defaultExpandedIds.forEach((id) => {
             initial[id] = true;
         });
+
         return initial;
     });
 
@@ -42,9 +43,11 @@ export function TimelineCollapsible({
             } else {
                 const isCurrentlyExpanded = prev[id];
                 const next: Record<string | number, boolean> = {};
+
                 if (!isCurrentlyExpanded) {
                     next[id] = true;
                 }
+
                 return next;
             }
         });
@@ -70,11 +73,12 @@ export function TimelineCollapsible({
                             return {
                                 ring: 'border-primary bg-primary text-primary-foreground',
                                 labelBg:
-                                    'bg-emerald-500/10 text-emerald-600 border-emerald-500/20',
+                                    'bg-chart-2/10 text-chart-2 border-chart-2/20',
                                 labelText: item.statusLabel || 'Completed',
                                 icon: <CheckCircle2 className="size-4" />,
                             };
                         }
+
                         if (isCurrent) {
                             return {
                                 ring: 'border-primary ring-4 ring-primary/20',
@@ -86,6 +90,7 @@ export function TimelineCollapsible({
                                 ),
                             };
                         }
+
                         return {
                             ring: 'border-muted-foreground/30 text-muted-foreground bg-muted/40',
                             labelBg:
@@ -228,7 +233,7 @@ export function TimelineCollapsible({
                                                                             className="flex items-center gap-2.5 text-xs text-muted-foreground"
                                                                         >
                                                                             {task.completed ? (
-                                                                                <Check className="size-4 shrink-0 rounded-sm border border-emerald-500/20 bg-emerald-500/10 p-0.5 text-emerald-500" />
+                                                                                <Check className="size-4 shrink-0 rounded-sm border border-chart-2/20 bg-chart-2/10 p-0.5 text-chart-2" />
                                                                             ) : (
                                                                                 <Circle className="size-4 shrink-0 text-muted-foreground/40" />
                                                                             )}

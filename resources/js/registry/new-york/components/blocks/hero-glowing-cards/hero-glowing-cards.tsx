@@ -1,10 +1,10 @@
 'use client';
 
-import * as React from 'react';
 import { Target, Zap, Layout, Shield } from 'lucide-react';
-import HeadingBlock from '@/registry/new-york/components/ui/typography/heading-block';
+import * as React from 'react';
 import { ButtonPulse } from '@/registry/new-york/components/ui/buttons/button-pulse';
 import { GlowingCard } from '@/registry/new-york/components/ui/cards/glowing-card';
+import HeadingBlock from '@/registry/new-york/components/ui/typography/heading-block';
 
 export function HeroGlowingCards() {
     const cards = [
@@ -58,6 +58,7 @@ export function HeroGlowingCards() {
             <div className="relative z-10 grid w-full max-w-4xl grid-cols-1 gap-6 md:grid-cols-3">
                 {cards.map((card, i) => {
                     const Icon = card.icon;
+
                     return (
                         <GlowingCard
                             key={i}

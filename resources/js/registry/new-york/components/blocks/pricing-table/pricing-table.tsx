@@ -1,7 +1,7 @@
 'use client';
 
-import React from 'react';
 import { Check, X } from 'lucide-react';
+import React from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 
 interface FeatureRow {
@@ -53,7 +53,7 @@ export function PricingTable() {
                                     </td>
                                     <td className="p-3 text-center">
                                         {row.free ? (
-                                            <Check className="mx-auto size-4 text-emerald-500" />
+                                            <Check className="mx-auto size-4 text-chart-2" />
                                         ) : (
                                             <X className="mx-auto size-4 text-muted-foreground/30" />
                                         )}

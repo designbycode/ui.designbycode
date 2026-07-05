@@ -575,6 +575,22 @@ class FontSeeder extends Seeder
                 'font_selector' => null,
                 'font_dependency' => '@fontsource-variable/instrument-sans',
             ],
+            [
+                'name' => 'font-geist',
+                'title' => 'Geist',
+                'type' => 'registry:font',
+                'author' => 'designbycode',
+                'meta' => ['category' => 'fonts', 'version' => '1.0.0'],
+                'registryDependencies' => [],
+                'font_family' => "'Geist Variable', sans-serif",
+                'font_provider' => 'google',
+                'font_import' => 'Geist',
+                'font_variable' => '--font-geist',
+                'font_weight' => [],
+                'font_subsets' => ['latin'],
+                'font_selector' => null,
+                'font_dependency' => '@fontsource-variable/geist',
+            ],
         ];
     }
 }

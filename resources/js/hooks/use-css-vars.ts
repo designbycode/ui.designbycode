@@ -7,10 +7,14 @@ type CSSVarsSource = Theme | Registry;
 
 function useCSSVars(registry: CSSVarsSource) {
     const { resolvedAppearance } = useAppearance();
-    const vars =
+
+    const themeVars = registry.cssVars?.app ?? registry.vars_theme ?? {};
+    const modeVars =
         resolvedAppearance === 'dark'
             ? (registry.cssVars?.dark ?? registry.vars_dark ?? {})
             : (registry.cssVars?.light ?? registry.vars_light ?? {});
+
+    const vars = { ...themeVars, ...modeVars };
 
     return {
         vars,

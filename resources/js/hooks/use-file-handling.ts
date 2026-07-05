@@ -16,6 +16,7 @@ export function useFileHandling<
     const removeFile = (index: number) => {
         if (data.files.length === 1) {
             toast.warning('A component must have at least one file.');
+
             return;
         }
 

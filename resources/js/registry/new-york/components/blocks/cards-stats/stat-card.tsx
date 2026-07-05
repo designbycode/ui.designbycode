@@ -1,8 +1,8 @@
-import React from 'react';
-import { cn } from '@/lib/utils';
-import { ResponsiveContainer, AreaChart, Area, BarChart, Bar } from 'recharts';
 import { ArrowUpRight, ArrowDownRight } from 'lucide-react';
+import React from 'react';
+import { ResponsiveContainer, AreaChart, Area, BarChart, Bar } from 'recharts';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { cn } from '@/lib/utils';
 
 export interface StatCardProps extends React.HTMLAttributes<HTMLDivElement> {
     title: string;

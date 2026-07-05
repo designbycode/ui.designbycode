@@ -1,5 +1,5 @@
-import * as React from 'react';
 import { ChevronsLeftRight } from 'lucide-react';
+import * as React from 'react';
 import { cn } from '@/lib/utils';
 
 interface ComparisonSliderDiagonalProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -28,7 +28,10 @@ export function ComparisonSliderDiagonal({
     const containerRef = React.useRef<HTMLDivElement>(null);
 
     const handleMove = (clientX: number) => {
-        if (!containerRef.current) return;
+        if (!containerRef.current) {
+return;
+}
+
         const rect = containerRef.current.getBoundingClientRect();
         const x = clientX - rect.left;
         const position = Math.max(0, Math.min(100, (x / rect.width) * 100));
@@ -36,12 +39,18 @@ export function ComparisonSliderDiagonal({
     };
 
     const handleTouchMove = (e: TouchEvent) => {
-        if (!isDragging) return;
+        if (!isDragging) {
+return;
+}
+
         handleMove(e.touches[0].clientX);
     };
 
     const handleMouseMove = (e: MouseEvent) => {
-        if (!isDragging) return;
+        if (!isDragging) {
+return;
+}
+
         handleMove(e.clientX);
     };
 
@@ -68,6 +77,7 @@ export function ComparisonSliderDiagonal({
     const handleMouseDown = (e: React.MouseEvent) => {
         e.preventDefault();
         setIsDragging(true);
+
         if (containerRef.current) {
             const rect = containerRef.current.getBoundingClientRect();
             const x = e.clientX - rect.left;
@@ -79,6 +89,7 @@ export function ComparisonSliderDiagonal({
 
     const handleTouchStart = (e: React.TouchEvent) => {
         setIsDragging(true);
+
         if (containerRef.current) {
             const rect = containerRef.current.getBoundingClientRect();
             const x = e.touches[0].clientX - rect.left;

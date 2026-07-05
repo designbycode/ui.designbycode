@@ -1,8 +1,8 @@
 'use client';
 
-import * as React from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { motion } from 'motion/react';
+import * as React from 'react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
@@ -17,7 +17,10 @@ export function CarouselMotion({ items, className }: CarouselMotionProps) {
     const [position, setPosition] = React.useState(0);
 
     React.useEffect(() => {
-        if (!containerRef.current) return;
+        if (!containerRef.current) {
+return;
+}
+
         const updateWidth = () => {
             setWidth(
                 containerRef.current!.scrollWidth -
@@ -26,6 +29,7 @@ export function CarouselMotion({ items, className }: CarouselMotionProps) {
         };
         updateWidth();
         window.addEventListener('resize', updateWidth);
+
         return () => window.removeEventListener('resize', updateWidth);
     }, [items]);
 

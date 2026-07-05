@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import {
     Tag,
     Search,
@@ -12,20 +11,8 @@ import {
     Sparkles,
     Layers,
 } from 'lucide-react';
-import { InputSlug } from '@/registry/new-york/components/ui/inputs/input-slug';
-import { InputPhone } from '@/registry/new-york/components/ui/inputs/input-phone';
-import { InputCurrency } from '@/registry/new-york/components/ui/inputs/input-currency';
-import { InputNumber } from '@/registry/new-york/components/ui/inputs/input-number';
-import { InputPassword } from '@/registry/new-york/components/ui/inputs/input-password';
-import { SlidingRadioGroup } from '@/registry/new-york/components/ui/inputs/sliding-radio-group';
-import {
-    MultiSelect,
-    MultiSelectTrigger,
-    MultiSelectValue,
-    MultiSelectContent,
-    MultiSelectItem,
-} from '@/registry/new-york/components/ui/inputs/multi-select';
-import { Input } from '@/components/ui/input';
+import React, { useState } from 'react';
+import { Badge } from '@/components/ui/badge';
 import {
     Card,
     CardContent,
@@ -33,7 +20,20 @@ import {
     CardHeader,
     CardTitle,
 } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
+import { Input } from '@/components/ui/input';
+import { InputCurrency } from '@/registry/new-york/components/ui/inputs/input-currency';
+import { InputNumber } from '@/registry/new-york/components/ui/inputs/input-number';
+import { InputPassword } from '@/registry/new-york/components/ui/inputs/input-password';
+import { InputPhone } from '@/registry/new-york/components/ui/inputs/input-phone';
+import { InputSlug } from '@/registry/new-york/components/ui/inputs/input-slug';
+import {
+    MultiSelect,
+    MultiSelectTrigger,
+    MultiSelectValue,
+    MultiSelectContent,
+    MultiSelectItem,
+} from '@/registry/new-york/components/ui/inputs/multi-select';
+import { SlidingRadioGroup } from '@/registry/new-york/components/ui/inputs/sliding-radio-group';
 
 export function InputsGallery() {
     // Original states

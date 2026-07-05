@@ -1,9 +1,9 @@
 'use client';
 
 import * as React from 'react';
+import { cn } from '@/lib/utils';
 import TextAnimator from '@/registry/new-york/components/ui/animations/text-animator';
 import type { AnimationType } from '@/registry/new-york/components/ui/animations/text-animator';
-import { cn } from '@/lib/utils';
 
 export interface TextCircleLoaderProps extends React.HTMLAttributes<HTMLDivElement> {
     /**
@@ -79,7 +79,7 @@ export function TextCircleLoader({
             {/* Rotating / Animating Ring backdrops */}
             {variant === 'neon-ring' && (
                 <div
-                    className="animate-neon-ring-rotate absolute inset-0 z-0 rounded-full bg-transparent"
+                    className="absolute inset-0 z-0 animate-neon-ring-rotate rounded-full bg-transparent"
                     style={{
                         ['--animate-neon-ring-rotate-duration' as any]: `${ringDuration}s`,
                     }}
@@ -110,7 +110,7 @@ export function TextCircleLoader({
 
             {variant === 'liquid-blob' && (
                 <div
-                    className="animate-liquid-blob-rotate absolute inset-0 z-0 bg-transparent"
+                    className="absolute inset-0 z-0 animate-liquid-blob-rotate bg-transparent"
                     style={{
                         ['--animate-liquid-blob-rotate-duration' as any]: `${ringDuration * 1.6}s`,
                     }}

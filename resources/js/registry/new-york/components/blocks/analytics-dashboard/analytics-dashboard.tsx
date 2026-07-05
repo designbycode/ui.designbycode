@@ -1,16 +1,4 @@
 'use client';
-import React, { useState, useEffect } from 'react';
-import {
-    ResponsiveContainer,
-    AreaChart,
-    Area,
-    XAxis,
-    YAxis,
-    Tooltip as ChartTooltip,
-    CartesianGrid,
-    BarChart,
-    Bar,
-} from 'recharts';
 import {
     Users,
     MousePointerClick,
@@ -23,6 +11,19 @@ import {
     Globe,
     Search as SearchIcon,
 } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import {
+    ResponsiveContainer,
+    AreaChart,
+    Area,
+    XAxis,
+    YAxis,
+    Tooltip as ChartTooltip,
+    CartesianGrid,
+    BarChart,
+    Bar,
+} from 'recharts';
+import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import {
     Card,
@@ -31,7 +32,6 @@ import {
     CardHeader,
     CardTitle,
 } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
 
 // Mock trend history

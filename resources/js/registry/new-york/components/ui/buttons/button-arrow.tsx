@@ -1,8 +1,8 @@
 'use client';
-import * as React from 'react';
 import { ArrowRight } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import * as React from 'react';
 import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 
 export interface ButtonArrowProps extends React.ComponentPropsWithRef<
     typeof Button

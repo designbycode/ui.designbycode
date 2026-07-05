@@ -1,10 +1,10 @@
 'use client';
 
-import * as React from 'react';
 import { Play, Pause, Monitor, Sparkles } from 'lucide-react';
-import HeadingBlock from '@/registry/new-york/components/ui/typography/heading-block';
+import * as React from 'react';
 import { ButtonNeon } from '@/registry/new-york/components/ui/buttons/button-neon';
 import { BrowserMockup } from '@/registry/new-york/components/ui/mockups/browser-mockup';
+import HeadingBlock from '@/registry/new-york/components/ui/typography/heading-block';
 
 export function HeroVideoDialog() {
     const [isPlaying, setIsPlaying] = React.useState(false);

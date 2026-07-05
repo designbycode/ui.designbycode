@@ -1,9 +1,9 @@
 'use client';
 
-import React from 'react';
 import { Sparkles, Terminal } from 'lucide-react';
-import { Card, CardContent } from '@/components/ui/card';
+import React from 'react';
 import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
 
 export function HeroSimpleSplit() {
     return (
@@ -45,9 +45,9 @@ export function HeroSimpleSplit() {
                 <Card className="relative overflow-hidden border-border/50 bg-card/40 p-6 backdrop-blur-xs">
                     <div className="flex size-full flex-col gap-3">
                         <div className="flex items-center gap-1.5 border-b border-border/30 pb-3">
-                            <div className="size-2.5 rounded-full bg-red-500/80" />
-                            <div className="size-2.5 rounded-full bg-yellow-500/80" />
-                            <div className="size-2.5 rounded-full bg-emerald-500/80" />
+                            <div className="size-2.5 rounded-full bg-destructive/80" />
+                            <div className="size-2.5 rounded-full bg-chart-4/80" />
+                            <div className="size-2.5 rounded-full bg-chart-2/80" />
                             <span className="ml-2 font-mono text-[9px] text-muted-foreground">
                                 sandbox-editor.tsx
                             </span>
@@ -57,7 +57,7 @@ export function HeroSimpleSplit() {
                                 <span className="text-primary">import</span>{' '}
                                 &#123; Button &#125;{' '}
                                 <span className="text-primary">from</span>{' '}
-                                <span className="text-emerald-500">
+                                <span className="text-chart-2">
                                     "@/components/ui/button"
                                 </span>
                                 ;
@@ -66,7 +66,7 @@ export function HeroSimpleSplit() {
                                 <span className="text-primary">
                                     export default function
                                 </span>{' '}
-                                <span className="text-blue-500">Page</span>()
+                                <span className="text-chart-3">Page</span>()
                                 &#123;
                             </p>
                             <p className="pl-4 opacity-70">

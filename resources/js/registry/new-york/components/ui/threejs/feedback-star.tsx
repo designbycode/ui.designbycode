@@ -44,7 +44,9 @@ export function FeedbackStar({
     const [size, setSize] = useState({ width: 0, height: 0 });
 
     useEffect(() => {
-        if (!containerRef.current) return;
+        if (!containerRef.current) {
+return;
+}
 
         const updateSize = () => {
             if (containerRef.current) {
@@ -66,8 +68,9 @@ export function FeedbackStar({
     }, []);
 
     useEffect(() => {
-        if (size.width === 0 || size.height === 0 || !containerRef.current)
-            return;
+        if (size.width === 0 || size.height === 0 || !containerRef.current) {
+return;
+}
 
         const el = containerRef.current;
         const width = size.width;
@@ -112,6 +115,7 @@ export function FeedbackStar({
 
         // Add 3D Mesh
         let geometry: THREE.BufferGeometry;
+
         if (geometryType === 'sphere') {
             geometry = new THREE.SphereGeometry(8, 64, 64);
         } else if (geometryType === 'icosahedron') {
@@ -137,6 +141,7 @@ export function FeedbackStar({
 
         // 5. Orbit Controls for 3D camera
         let controls: OrbitControls | null = null;
+
         if (enableOrbitControls) {
             controls = new OrbitControls(camera3d, renderer.domElement);
             controls.enableDamping = true;
@@ -265,7 +270,10 @@ export function FeedbackStar({
         };
 
         const handleTouchMove = (e: TouchEvent) => {
-            if (e.touches.length === 0) return;
+            if (e.touches.length === 0) {
+return;
+}
+
             const rect = el.getBoundingClientRect();
             const x = (e.touches[0].clientX - rect.left) * pixelRatio;
             const y = (rect.bottom - e.touches[0].clientY) * pixelRatio;
@@ -292,6 +300,7 @@ export function FeedbackStar({
             }
 
             renderer.dispose();
+
             if (el.contains(renderer.domElement)) {
                 el.removeChild(renderer.domElement);
             }

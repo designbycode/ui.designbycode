@@ -1,9 +1,9 @@
 'use client';
 
-import { useState, useCallback, useRef } from 'react';
 import { Camera, X, Loader2 } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { useState, useCallback, useRef } from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { cn } from '@/lib/utils';
 
 interface AvatarDropzoneGhostProps {
     onFileSelect?: (file: File | null) => void;
@@ -27,7 +27,9 @@ export function AvatarDropzoneGhost({
 
     const handleFile = useCallback(
         (file: File) => {
-            if (!file.type.startsWith('image/') || file.size > maxSize) return;
+            if (!file.type.startsWith('image/') || file.size > maxSize) {
+return;
+}
 
             const reader = new FileReader();
             reader.onload = (e) => {
@@ -49,7 +51,10 @@ export function AvatarDropzoneGhost({
             e.preventDefault();
             setIsHovered(false);
             const file = e.dataTransfer.files[0];
-            if (file) handleFile(file);
+
+            if (file) {
+handleFile(file);
+}
         },
         [handleFile],
     );
@@ -58,7 +63,10 @@ export function AvatarDropzoneGhost({
         e.stopPropagation();
         setPreview(defaultImage || null);
         onFileSelect?.(null);
-        if (inputRef.current) inputRef.current.value = '';
+
+        if (inputRef.current) {
+inputRef.current.value = '';
+}
     };
 
     return (
@@ -89,7 +97,10 @@ export function AvatarDropzoneGhost({
                 accept="image/*"
                 onChange={(e) => {
                     const file = e.target.files?.[0];
-                    if (file) handleFile(file);
+
+                    if (file) {
+handleFile(file);
+}
                 }}
                 className="sr-only"
             />

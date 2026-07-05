@@ -1,7 +1,8 @@
 'use client';
 
-import React, { useState } from 'react';
 import { Send, CheckCircle2 } from 'lucide-react';
+import React, { useState } from 'react';
+import { Button } from '@/components/ui/button';
 import {
     Card,
     CardHeader,
@@ -9,7 +10,6 @@ import {
     CardDescription,
     CardContent,
 } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
 
 export function ContactForm() {
     const [submitted, setSubmitted] = useState(false);
@@ -31,8 +31,8 @@ export function ContactForm() {
             </CardHeader>
             <CardContent className="pt-0">
                 {submitted ? (
-                    <div className="space-y-2 rounded-lg border border-emerald-500/20 bg-emerald-500/10 p-6 text-center">
-                        <CheckCircle2 className="mx-auto size-6 text-emerald-500" />
+                    <div className="space-y-2 rounded-lg border border-chart-2/20 bg-chart-2/10 p-6 text-center">
+                        <CheckCircle2 className="mx-auto size-6 text-chart-2" />
                         <h4 className="text-xs font-bold text-foreground">
                             Message Sent!
                         </h4>

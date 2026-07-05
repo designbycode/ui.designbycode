@@ -1,11 +1,11 @@
 'use client';
 
-import * as React from 'react';
 import { Layers, ArrowRight } from 'lucide-react';
-import HeadingBlock from '@/registry/new-york/components/ui/typography/heading-block';
-import { ButtonPulse } from '@/registry/new-york/components/ui/buttons/button-pulse';
+import * as React from 'react';
 import { ButtonGradient } from '@/registry/new-york/components/ui/buttons/button-gradient';
+import { ButtonPulse } from '@/registry/new-york/components/ui/buttons/button-pulse';
 import GlowConic from '@/registry/new-york/components/ui/glow/glow-conic';
+import HeadingBlock from '@/registry/new-york/components/ui/typography/heading-block';
 
 export function HeroConicGlow() {
     return (

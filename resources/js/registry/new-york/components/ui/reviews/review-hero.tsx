@@ -1,10 +1,10 @@
 'use client';
 
-import * as React from 'react';
 import { Star, CheckCircle } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import * as React from 'react';
 import { Card } from '@/components/ui/card';
-import { ReviewItem } from './review-card';
+import { cn } from '@/lib/utils';
+import type { ReviewItem } from './review-card';
 
 interface ReviewHeroProps extends React.ComponentProps<typeof Card> {
     review: ReviewItem;
@@ -13,8 +13,9 @@ interface ReviewHeroProps extends React.ComponentProps<typeof Card> {
 export function ReviewHero({ review, className, ...props }: ReviewHeroProps) {
     const renderStars = (rating: number) => {
         const floor = Math.floor(rating);
+
         return (
-            <div className="flex items-center gap-1 text-amber-500">
+            <div className="flex items-center gap-1 text-chart-4">
                 {[...Array(5)].map((_, i) => (
                     <Star
                         key={i}
@@ -51,7 +52,7 @@ export function ReviewHero({ review, className, ...props }: ReviewHeroProps) {
                 <div className="flex items-center gap-4">
                     {renderStars(review.rating)}
                     {review.verified && (
-                        <span className="inline-flex items-center gap-1 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-0.5 text-[10px] font-semibold text-emerald-600">
+                        <span className="inline-flex items-center gap-1 rounded-full border border-chart-2/20 bg-chart-2/10 px-3 py-0.5 text-[10px] font-semibold text-chart-2">
                             <CheckCircle className="size-3 fill-current" />
                             Verified Customer Feedback
                         </span>

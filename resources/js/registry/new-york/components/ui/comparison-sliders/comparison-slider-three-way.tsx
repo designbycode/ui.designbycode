@@ -1,5 +1,5 @@
-import * as React from 'react';
 import { ChevronsLeftRight } from 'lucide-react';
+import * as React from 'react';
 import { cn } from '@/lib/utils';
 
 interface ComparisonSliderThreeWayProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -37,7 +37,10 @@ export function ComparisonSliderThreeWay({
     const containerRef = React.useRef<HTMLDivElement>(null);
 
     const handleMove = (clientX: number) => {
-        if (!containerRef.current || !activeHandle) return;
+        if (!containerRef.current || !activeHandle) {
+return;
+}
+
         const rect = containerRef.current.getBoundingClientRect();
         const x = clientX - rect.left;
         const percentage = Math.max(0, Math.min(100, (x / rect.width) * 100));
@@ -54,12 +57,18 @@ export function ComparisonSliderThreeWay({
     };
 
     const handleTouchMove = (e: TouchEvent) => {
-        if (!activeHandle) return;
+        if (!activeHandle) {
+return;
+}
+
         handleMove(e.touches[0].clientX);
     };
 
     const handleMouseMove = (e: MouseEvent) => {
-        if (!activeHandle) return;
+        if (!activeHandle) {
+return;
+}
+
         handleMove(e.clientX);
     };
 

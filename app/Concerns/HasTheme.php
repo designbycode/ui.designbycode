@@ -2,6 +2,7 @@
 
 namespace App\Concerns;
 
+use App\Models\Font;
 use InvalidArgumentException;
 
 trait HasTheme
@@ -137,6 +138,22 @@ trait HasTheme
 
     public function toRegistry(): array
     {
+        $dependencies = $this->dependencies ?? [];
+        foreach ($this->registryDependencies ?? [] as $regDep) {
+            $depName = basename($regDep, '.json');
+            if (str_starts_with($depName, 'font-')) {
+                try {
+                    $font = Font::where('name', $depName)->first();
+                    if ($font && $font->font_dependency) {
+                        $dependencies[] = $font->font_dependency;
+                    }
+                } catch (\Exception $e) {
+                    // Fallback if table doesn't exist during migrations/seeding
+                }
+            }
+        }
+        $dependencies = array_values(array_unique($dependencies));
+
         $registry = [
             '$schema' => 'https://ui.shadcn.com/schema/registry-item.json',
             'name' => $this->name,
@@ -144,7 +161,7 @@ trait HasTheme
             'title' => $this->title,
             'description' => $this->description,
             'author' => $this->author,
-            'dependencies' => $this->dependencies ?? [],
+            'dependencies' => $dependencies,
             'devDependencies' => $this->devDependencies ?? [],
             'registryDependencies' => $this->registryDependencies ?? [],
             'files' => $this->files ?? [],

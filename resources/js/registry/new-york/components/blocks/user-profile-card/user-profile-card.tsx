@@ -1,19 +1,19 @@
 'use client';
 
-import React from 'react';
 import { User, Heart, MessageSquare } from 'lucide-react';
-import { Card, CardContent } from '@/components/ui/card';
+import React from 'react';
 import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
 
 export function UserProfileCard() {
     return (
-        <Card className="relative mx-auto w-full max-w-sm overflow-hidden border-border/50 bg-card/30 backdrop-blur-xs">
+        <Card className="relative mx-auto w-full max-w-sm overflow-hidden border-border/50 bg-card/30 py-0 backdrop-blur-xs">
             {/* Cover photo placeholder */}
-            <div className="relative h-20 w-full bg-linear-to-r from-primary/30 to-accent/30" />
+            <div className="relative h-32 w-full bg-linear-to-r from-primary/30 to-accent/30" />
 
             <CardContent className="pt-0 pb-6 text-center">
                 {/* Profile Photo */}
-                <div className="relative mx-auto -mt-8 flex size-16 items-center justify-center rounded-full border-2 border-border/80 bg-background text-lg font-bold text-primary shadow-sm">
+                <div className="relative mx-auto -mt-14 flex size-16 items-center justify-center rounded-full border-2 border-border/80 bg-background text-lg font-bold text-primary shadow-sm">
                     <User className="size-8" />
                 </div>
 

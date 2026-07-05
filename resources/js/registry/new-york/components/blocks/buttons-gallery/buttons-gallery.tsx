@@ -1,9 +1,6 @@
-import React from 'react';
 import { Play, Sparkles, Move, Sun, Compass } from 'lucide-react';
-import { ButtonParticles } from '@/registry/new-york/components/ui/buttons/button-particles';
-import { ButtonMagnetic } from '@/registry/new-york/components/ui/buttons/button-magnetic';
-import { ButtonShine } from '@/registry/new-york/components/ui/buttons/button-shine';
-import GlowConic from '@/registry/new-york/components/ui/glow/glow-conic';
+import React from 'react';
+import { Badge } from '@/components/ui/badge';
 import {
     Card,
     CardContent,
@@ -11,7 +8,10 @@ import {
     CardHeader,
     CardTitle,
 } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
+import { ButtonMagnetic } from '@/registry/new-york/components/ui/buttons/button-magnetic';
+import { ButtonParticles } from '@/registry/new-york/components/ui/buttons/button-particles';
+import { ButtonShine } from '@/registry/new-york/components/ui/buttons/button-shine';
+import GlowConic from '@/registry/new-york/components/ui/glow/glow-conic';
 
 export function ButtonsGallery() {
     return (

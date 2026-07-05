@@ -1,9 +1,9 @@
 'use client';
 
-import * as React from 'react';
 import { Plus, Minus } from 'lucide-react';
-import { Input } from '@/components/ui/input';
+import * as React from 'react';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
 
 interface InputNumberStepperProps extends Omit<
@@ -65,9 +65,16 @@ const InputNumberStepper = React.forwardRef<
             activeValueStr !== '' ? parseFloat(activeValueStr) : undefined;
 
         const resolvedPrecision = React.useMemo(() => {
-            if (precision !== undefined) return precision;
+            if (precision !== undefined) {
+return precision;
+}
+
             const stepStr = String(step);
-            if (stepStr.indexOf('.') === -1) return 0;
+
+            if (stepStr.indexOf('.') === -1) {
+return 0;
+}
+
             return stepStr.length - stepStr.indexOf('.') - 1;
         }, [step, precision]);
 
@@ -84,8 +91,15 @@ const InputNumberStepper = React.forwardRef<
         const clamp = React.useCallback(
             (val: number): number => {
                 let clamped = val;
-                if (min !== undefined && clamped < min) clamped = min;
-                if (max !== undefined && clamped > max) clamped = max;
+
+                if (min !== undefined && clamped < min) {
+clamped = min;
+}
+
+                if (max !== undefined && clamped > max) {
+clamped = max;
+}
+
                 return parseFloat(clamped.toFixed(resolvedPrecision));
             },
             [min, max, resolvedPrecision],
@@ -94,6 +108,7 @@ const InputNumberStepper = React.forwardRef<
         const updateValue = React.useCallback(
             (newVal: number | undefined) => {
                 let finalVal = newVal;
+
                 if (finalVal !== undefined) {
                     finalVal = clamp(finalVal);
                 }
@@ -103,32 +118,42 @@ const InputNumberStepper = React.forwardRef<
                         finalVal !== undefined ? String(finalVal) : '',
                     );
                 }
+
                 onValueChange?.(finalVal);
             },
             [isControlled, clamp, onValueChange],
         );
 
         const handleIncrement = () => {
-            if (disabled) return;
+            if (disabled) {
+return;
+}
+
             const current = activeValue ?? min ?? 0;
             updateValue(current + step);
         };
 
         const handleDecrement = () => {
-            if (disabled) return;
+            if (disabled) {
+return;
+}
+
             const current = activeValue ?? min ?? 0;
             updateValue(current - step);
         };
 
         const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
             const raw = e.target.value;
+
             if (raw === '' || raw === '-') {
                 setLocalValue(raw);
                 onValueChange?.(undefined);
+
                 return;
             }
 
             const parsed = parseFloat(raw);
+
             if (!isNaN(parsed)) {
                 setLocalValue(raw);
                 onValueChange?.(parsed);

@@ -1,6 +1,6 @@
-import * as React from 'react';
-import { motion, AnimatePresence } from 'motion/react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
+import * as React from 'react';
 import { cn } from '@/lib/utils';
 
 interface SlidingMessage {
@@ -27,14 +27,20 @@ export function BannerSliding({
     const [isHovered, setIsHovered] = React.useState(false);
 
     React.useEffect(() => {
-        if (isHovered || messages.length <= 1) return;
+        if (isHovered || messages.length <= 1) {
+return;
+}
+
         const timer = setInterval(() => {
             setIndex((prev) => (prev + 1) % messages.length);
         }, interval);
+
         return () => clearInterval(timer);
     }, [isHovered, messages.length, interval]);
 
-    if (messages.length === 0) return null;
+    if (messages.length === 0) {
+return null;
+}
 
     const currentMessage = messages[index];
 

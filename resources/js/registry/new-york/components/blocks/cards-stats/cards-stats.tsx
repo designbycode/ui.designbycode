@@ -1,5 +1,5 @@
-import React from 'react';
 import { Activity, CreditCard, DollarSign, Users } from 'lucide-react';
+import React from 'react';
 import { StatCard } from './stat-card';
 
 // Mock chart data for sparklines

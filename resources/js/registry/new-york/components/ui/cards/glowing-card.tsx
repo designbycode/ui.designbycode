@@ -1,8 +1,8 @@
 'use client';
 
 import * as React from 'react';
-import { cn } from '@/lib/utils';
 import { Card } from '@/components/ui/card';
+import { cn } from '@/lib/utils';
 
 import { useHover } from '@/registry/new-york/hooks/use-hover';
 
@@ -27,6 +27,7 @@ const GlowingCard = React.forwardRef<HTMLDivElement, GlowingCardProps>(
         const combinedRef = React.useCallback(
             (node: HTMLDivElement | null) => {
                 hoverRef(node);
+
                 if (typeof ref === 'function') {
                     ref(node);
                 } else if (ref) {
@@ -34,6 +35,7 @@ const GlowingCard = React.forwardRef<HTMLDivElement, GlowingCardProps>(
                         ref as React.MutableRefObject<HTMLDivElement | null>
                     ).current = node;
                 }
+
                 (
                     localRef as React.MutableRefObject<HTMLDivElement | null>
                 ).current = node;
@@ -42,7 +44,10 @@ const GlowingCard = React.forwardRef<HTMLDivElement, GlowingCardProps>(
         );
 
         const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-            if (!localRef.current) return;
+            if (!localRef.current) {
+return;
+}
+
             const rect = localRef.current.getBoundingClientRect();
             setCoords({
                 x: e.clientX - rect.left,

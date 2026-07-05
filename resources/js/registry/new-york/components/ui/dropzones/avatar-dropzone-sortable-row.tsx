@@ -1,7 +1,11 @@
 'use client';
 
+import { DragDropProvider } from '@dnd-kit/react';
+import { useSortable, isSortable } from '@dnd-kit/react/sortable';
+import { Plus, X, GripVertical, User, Upload, Trash2 } from 'lucide-react';
 import * as React from 'react';
-import { cn } from '@/lib/utils';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import {
     Card,
@@ -10,11 +14,7 @@ import {
     CardTitle,
     CardDescription,
 } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Plus, X, GripVertical, User, Upload, Trash2 } from 'lucide-react';
-import { DragDropProvider } from '@dnd-kit/react';
-import { useSortable, isSortable } from '@dnd-kit/react/sortable';
+import { cn } from '@/lib/utils';
 
 interface AvatarFile {
     file: File;
@@ -144,7 +144,10 @@ export function AvatarDropzoneSortableRow({
         (e: React.DragEvent) => {
             e.preventDefault();
             setIsDragging(false);
-            if (e.dataTransfer.files.length) handleFiles(e.dataTransfer.files);
+
+            if (e.dataTransfer.files.length) {
+handleFiles(e.dataTransfer.files);
+}
         },
         [handleFiles],
     );
@@ -158,12 +161,17 @@ export function AvatarDropzoneSortableRow({
     const clearAll = () => {
         setAvatars([]);
         onFilesSelect?.([]);
-        if (inputRef.current) inputRef.current.value = '';
+
+        if (inputRef.current) {
+inputRef.current.value = '';
+}
     };
 
     const handleDragEnd = React.useCallback(
         (event: { canceled: boolean; operation: { source: unknown } }) => {
-            if (event.canceled) return;
+            if (event.canceled) {
+return;
+}
 
             const source = event.operation.source as any;
 
@@ -176,6 +184,7 @@ export function AvatarDropzoneSortableRow({
                         const [removed] = newAvatars.splice(initialIndex, 1);
                         newAvatars.splice(index, 0, removed);
                         onReorder?.(newAvatars.map((a) => a.file));
+
                         return newAvatars;
                     });
                 }

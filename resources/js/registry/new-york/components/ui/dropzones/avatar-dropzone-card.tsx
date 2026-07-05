@@ -1,13 +1,13 @@
 'use client';
 
+import { User, Upload, Trash2, CheckCircle2 } from 'lucide-react';
 import * as React from 'react';
-import { cn } from '@/lib/utils';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
+import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
-import { Badge } from '@/components/ui/badge';
-import { User, Upload, Trash2, CheckCircle2 } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 interface AvatarDropzoneCardProps {
     className?: string;
@@ -41,8 +41,10 @@ export function AvatarDropzoneCard({
                 if (prev >= 100) {
                     clearInterval(interval);
                     setStatus('success');
+
                     return 100;
                 }
+
                 return prev + 12;
             });
         }, 100);
@@ -55,6 +57,7 @@ export function AvatarDropzoneCard({
                 file.size > maxSize * 1024 * 1024
             ) {
                 setStatus('error');
+
                 return;
             }
 
@@ -75,7 +78,10 @@ export function AvatarDropzoneCard({
             e.preventDefault();
             setIsDragOver(false);
             const file = e.dataTransfer.files[0];
-            if (file) handleFile(file);
+
+            if (file) {
+handleFile(file);
+}
         },
         [handleFile],
     );

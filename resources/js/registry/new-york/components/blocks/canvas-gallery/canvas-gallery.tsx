@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
 import { Play, Pause, Layers, Sliders, Monitor } from 'lucide-react';
-import { PixelCanvas } from '@/registry/new-york/components/ui/canvas/pixel-canvas';
-import WavesThree from '@/registry/new-york/components/ui/threejs/waves-three';
+import React, { useState } from 'react';
+import { Badge } from '@/components/ui/badge';
 import {
     Card,
     CardContent,
@@ -9,10 +8,11 @@ import {
     CardHeader,
     CardTitle,
 } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
+import { Label } from '@/components/ui/label';
 import { Slider } from '@/components/ui/slider';
 import { Switch } from '@/components/ui/switch';
-import { Label } from '@/components/ui/label';
+import { PixelCanvas } from '@/registry/new-york/components/ui/canvas/pixel-canvas';
+import WavesThree from '@/registry/new-york/components/ui/threejs/waves-three';
 
 export function CanvasGallery() {
     const [opacity, setOpacity] = useState([50]);
@@ -40,7 +40,7 @@ export function CanvasGallery() {
             {/* Split layout */}
             <div className="grid w-full items-stretch gap-6 md:grid-cols-2">
                 {/* 1. WebGL Waves (Three.js) */}
-                <Card className="relative flex min-h-[380px] flex-col justify-between overflow-hidden border border-border/40 bg-zinc-950 text-white">
+                <Card className="relative flex min-h-[380px] flex-col justify-between overflow-hidden border border-border/40 bg-card text-card-foreground">
                     {/* Live Waves background */}
                     {playWaves && (
                         <div
@@ -52,17 +52,17 @@ export function CanvasGallery() {
                     )}
 
                     {/* Glass Control Box */}
-                    <div className="relative z-10 flex h-full flex-col justify-between bg-zinc-950/60 p-6 backdrop-blur-xs">
+                    <div className="relative z-10 flex h-full flex-col justify-between bg-card/60 p-6 backdrop-blur-xs">
                         <div>
                             <div className="flex items-center justify-between">
                                 <Badge
                                     variant="secondary"
-                                    className="rounded-full border border-sky-500/20 bg-sky-500/10 px-2 py-0.5 text-[10px] font-bold text-sky-400"
+                                    className="rounded-full border border-chart-2/20 bg-chart-2/10 px-2 py-0.5 text-[10px] font-bold text-chart-2"
                                 >
                                     WebGL / ThreeJS
                                 </Badge>
                                 <div
-                                    className="cursor-pointer text-zinc-500 transition-colors hover:text-white"
+                                    className="cursor-pointer text-muted-foreground transition-colors hover:text-card-foreground"
                                     onClick={() => setPlayWaves(!playWaves)}
                                 >
                                     {playWaves ? (
@@ -75,7 +75,7 @@ export function CanvasGallery() {
                             <h3 className="mt-4 font-bebas-neue! text-lg font-bold tracking-wide">
                                 WebGL Waves Background
                             </h3>
-                            <p className="mt-1 text-[11px] leading-relaxed text-zinc-400">
+                            <p className="mt-1 text-[11px] leading-relaxed text-muted-foreground">
                                 A high-performance mathematical point grid
                                 oscillating in three-dimensional space. Great
                                 for homepage banners and premium section
@@ -84,9 +84,9 @@ export function CanvasGallery() {
                         </div>
 
                         {/* Control Panel */}
-                        <div className="space-y-4 border-t border-zinc-800/50 pt-6">
+                        <div className="space-y-4 border-t border-border/50 pt-6">
                             <div className="space-y-1.5">
-                                <div className="flex items-center justify-between font-mono text-[10px] text-zinc-400">
+                                <div className="flex items-center justify-between font-mono text-[10px] text-muted-foreground">
                                     <span>Wave Opacity</span>
                                     <span>{opacity[0]}%</span>
                                 </div>
@@ -103,19 +103,19 @@ export function CanvasGallery() {
                 </Card>
 
                 {/* 2. Interactive Pixel Canvas */}
-                <Card className="relative flex min-h-[380px] flex-col justify-between overflow-hidden border border-border/40 bg-zinc-950 text-white">
+                <Card className="relative flex min-h-[380px] flex-col justify-between overflow-hidden border border-border/40 bg-card text-card-foreground">
                     {/* Live Pixel canvas */}
                     <PixelCanvas
                         className={`absolute inset-0 transition-opacity duration-300 ${interactivePixel ? 'opacity-40' : 'pointer-events-none opacity-0'}`}
                     />
 
                     {/* Glass Control Box */}
-                    <div className="relative z-10 flex h-full flex-col justify-between bg-zinc-950/60 p-6 backdrop-blur-xs">
+                    <div className="relative z-10 flex h-full flex-col justify-between bg-card/60 p-6 backdrop-blur-xs">
                         <div>
                             <div className="flex items-center justify-between">
                                 <Badge
                                     variant="secondary"
-                                    className="rounded-full border border-purple-500/20 bg-purple-500/10 px-2 py-0.5 text-[10px] font-bold text-purple-400"
+                                    className="rounded-full border border-chart-3/20 bg-chart-3/10 px-2 py-0.5 text-[10px] font-bold text-chart-3"
                                 >
                                     HTML5 Canvas
                                 </Badge>
@@ -123,13 +123,13 @@ export function CanvasGallery() {
                                     id="pixel-state"
                                     checked={interactivePixel}
                                     onCheckedChange={setInteractivePixel}
-                                    className="data-[state=checked]:bg-purple-500"
+                                    className="data-[state=checked]:bg-primary"
                                 />
                             </div>
                             <h3 className="mt-4 font-bebas-neue! text-lg font-bold tracking-wide">
                                 Interactive Pixel Grid
                             </h3>
-                            <p className="mt-1 text-[11px] leading-relaxed text-zinc-400">
+                            <p className="mt-1 text-[11px] leading-relaxed text-muted-foreground">
                                 An HTML5 canvas grid where individual pixels
                                 light up, float, and react dynamically to mouse
                                 coordinates. Move your mouse across this card to
@@ -138,10 +138,10 @@ export function CanvasGallery() {
                         </div>
 
                         {/* Status readout */}
-                        <div className="flex items-center justify-between rounded border border-zinc-800 bg-zinc-900/50 p-3 font-mono text-[10px] text-zinc-400">
+                        <div className="flex items-center justify-between rounded border border-border bg-muted/50 p-3 font-mono text-[10px] text-muted-foreground">
                             <span className="flex items-center gap-1.5">
                                 <span
-                                    className={`size-1.5 rounded-full ${interactivePixel ? 'animate-pulse bg-purple-500' : 'bg-zinc-600'}`}
+                                    className={`size-1.5 rounded-full ${interactivePixel ? 'animate-pulse bg-primary' : 'bg-muted'}`}
                                 />
                                 Status:{' '}
                                 {interactivePixel

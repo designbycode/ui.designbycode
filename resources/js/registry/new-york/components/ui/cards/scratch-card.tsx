@@ -1,8 +1,8 @@
 'use client';
 
 import * as React from 'react';
-import { cn } from '@/lib/utils';
 import { Card } from '@/components/ui/card';
+import { cn } from '@/lib/utils';
 
 export interface ScratchCardProps extends React.ComponentProps<typeof Card> {
     width?: number;
@@ -36,14 +36,20 @@ const ScratchCard = React.forwardRef<HTMLDivElement, ScratchCardProps>(
         React.useEffect(() => {
             const canvas = canvasRef.current;
             const container = resolvedRef.current;
-            if (!canvas || !container) return;
+
+            if (!canvas || !container) {
+return;
+}
 
             const rect = container.getBoundingClientRect();
             canvas.width = rect.width;
             canvas.height = rect.height;
 
             const ctx = canvas.getContext('2d');
-            if (!ctx) return;
+
+            if (!ctx) {
+return;
+}
 
             // Fill canvas with overlay color
             ctx.fillStyle = overlayColor;
@@ -63,7 +69,11 @@ const ScratchCard = React.forwardRef<HTMLDivElement, ScratchCardProps>(
 
         const getMousePos = (e: React.MouseEvent | React.TouchEvent) => {
             const canvas = canvasRef.current;
-            if (!canvas) return { x: 0, y: 0 };
+
+            if (!canvas) {
+return { x: 0, y: 0 };
+}
+
             const rect = canvas.getBoundingClientRect();
 
             // Handle touch events vs mouse events
@@ -78,10 +88,16 @@ const ScratchCard = React.forwardRef<HTMLDivElement, ScratchCardProps>(
 
         const scratch = (e: React.MouseEvent | React.TouchEvent) => {
             const canvas = canvasRef.current;
-            if (!canvas || !isScratching || isFinished) return;
+
+            if (!canvas || !isScratching || isFinished) {
+return;
+}
 
             const ctx = canvas.getContext('2d');
-            if (!ctx) return;
+
+            if (!ctx) {
+return;
+}
 
             const { x, y } = getMousePos(e);
 
@@ -95,10 +111,16 @@ const ScratchCard = React.forwardRef<HTMLDivElement, ScratchCardProps>(
 
         const checkRevealPercentage = () => {
             const canvas = canvasRef.current;
-            if (!canvas) return;
+
+            if (!canvas) {
+return;
+}
 
             const ctx = canvas.getContext('2d');
-            if (!ctx) return;
+
+            if (!ctx) {
+return;
+}
 
             const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
             const pixels = imgData.data;
@@ -111,11 +133,15 @@ const ScratchCard = React.forwardRef<HTMLDivElement, ScratchCardProps>(
             }
 
             const percentage = (transparentPixels / (pixels.length / 4)) * 100;
+
             if (percentage >= percentToReveal && !isFinished) {
                 setIsFinished(true);
                 // Clear the whole canvas
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
-                if (onComplete) onComplete();
+
+                if (onComplete) {
+onComplete();
+}
             }
         };
 

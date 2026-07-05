@@ -1,13 +1,13 @@
 'use client';
 
-import * as React from 'react';
-import { cn } from '@/lib/utils';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Upload, X, GripVertical, Star, Trash2 } from 'lucide-react';
 import { DragDropProvider } from '@dnd-kit/react';
 import { useSortable, isSortable } from '@dnd-kit/react/sortable';
+import { Upload, X, GripVertical, Star, Trash2 } from 'lucide-react';
+import * as React from 'react';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
+import { cn } from '@/lib/utils';
 
 interface FileWithPreview {
     file: File;
@@ -161,7 +161,10 @@ export function GalleryDropzoneSortableCards({
         (e: React.DragEvent) => {
             e.preventDefault();
             setIsDragging(false);
-            if (e.dataTransfer.files.length) handleFiles(e.dataTransfer.files);
+
+            if (e.dataTransfer.files.length) {
+handleFiles(e.dataTransfer.files);
+}
         },
         [handleFiles],
     );
@@ -169,31 +172,41 @@ export function GalleryDropzoneSortableCards({
     const removeFile = (id: string) => {
         const updated = files.filter((f) => f.id !== id);
         setFiles(updated);
+
         if (primaryId === id && updated.length > 0) {
             setPrimaryId(updated[0].id);
             onPrimaryChange?.(updated[0].file);
         } else if (updated.length === 0) {
             setPrimaryId(null);
         }
+
         onFilesSelect?.(updated.map((f) => f.file));
     };
 
     const setPrimary = (id: string) => {
         setPrimaryId(id);
         const file = files.find((f) => f.id === id);
-        if (file) onPrimaryChange?.(file.file);
+
+        if (file) {
+onPrimaryChange?.(file.file);
+}
     };
 
     const clearAll = () => {
         setFiles([]);
         setPrimaryId(null);
         onFilesSelect?.([]);
-        if (inputRef.current) inputRef.current.value = '';
+
+        if (inputRef.current) {
+inputRef.current.value = '';
+}
     };
 
     const handleDragEnd = React.useCallback(
         (event: { canceled: boolean; operation: { source: unknown } }) => {
-            if (event.canceled) return;
+            if (event.canceled) {
+return;
+}
 
             const source = event.operation.source as any;
 
@@ -206,6 +219,7 @@ export function GalleryDropzoneSortableCards({
                         const [removed] = newFiles.splice(initialIndex, 1);
                         newFiles.splice(index, 0, removed);
                         onReorder?.(newFiles.map((f) => f.file));
+
                         return newFiles;
                     });
                 }

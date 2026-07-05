@@ -1,11 +1,11 @@
 'use client';
 
-import { useState, useCallback, useRef } from 'react';
 import { Upload, Trash2, RefreshCw, Loader2 } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { useState, useCallback, useRef } from 'react';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { cn } from '@/lib/utils';
 
 interface AvatarDropzoneFieldProps {
     label?: string;
@@ -33,7 +33,9 @@ export function AvatarDropzoneField({
 
     const handleFile = useCallback(
         (file: File) => {
-            if (!file.type.startsWith('image/') || file.size > maxSize) return;
+            if (!file.type.startsWith('image/') || file.size > maxSize) {
+return;
+}
 
             const reader = new FileReader();
             reader.onload = (e) => {
@@ -55,7 +57,10 @@ export function AvatarDropzoneField({
             e.preventDefault();
             setIsDragging(false);
             const file = e.dataTransfer.files[0];
-            if (file) handleFile(file);
+
+            if (file) {
+handleFile(file);
+}
         },
         [handleFile],
     );
@@ -63,7 +68,10 @@ export function AvatarDropzoneField({
     const handleRemove = () => {
         setPreview(defaultImage || null);
         onFileSelect?.(null);
-        if (inputRef.current) inputRef.current.value = '';
+
+        if (inputRef.current) {
+inputRef.current.value = '';
+}
     };
 
     return (
@@ -88,7 +96,10 @@ export function AvatarDropzoneField({
                     accept="image/*"
                     onChange={(e) => {
                         const file = e.target.files?.[0];
-                        if (file) handleFile(file);
+
+                        if (file) {
+handleFile(file);
+}
                     }}
                     className="sr-only"
                 />

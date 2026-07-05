@@ -1,11 +1,11 @@
 'use client';
 
-import * as React from 'react';
 import { Star, ArrowRight } from 'lucide-react';
-import HeadingBlock from '@/registry/new-york/components/ui/typography/heading-block';
-import { ButtonNeon } from '@/registry/new-york/components/ui/buttons/button-neon';
-import { ButtonDraw } from '@/registry/new-york/components/ui/buttons/button-draw';
+import * as React from 'react';
 import { ParticlesBackdrop } from '@/registry/new-york/components/ui/animations/particles-backdrop';
+import { ButtonDraw } from '@/registry/new-york/components/ui/buttons/button-draw';
+import { ButtonNeon } from '@/registry/new-york/components/ui/buttons/button-neon';
+import HeadingBlock from '@/registry/new-york/components/ui/typography/heading-block';
 
 export function HeroParticles() {
     return (

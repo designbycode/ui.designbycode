@@ -51,6 +51,7 @@ function ThemesIndex({
             </div>
 
             <InfiniteScroll
+                key={JSON.stringify(filters)}
                 data="themes"
                 loading={() => (
                     <div className="flex justify-center py-12">

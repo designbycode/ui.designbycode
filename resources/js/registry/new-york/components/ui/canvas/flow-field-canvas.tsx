@@ -61,11 +61,13 @@ export const FlowFieldCanvas = React.forwardRef<
         React.useEffect(() => {
             const canvas = canvasRef.current;
             const container = containerRef.current;
+
             if (!canvas || !container) {
                 return;
             }
 
             const ctx = canvas.getContext('2d', { willReadFrequently: false });
+
             if (!ctx) {
                 return;
             }
@@ -80,6 +82,7 @@ export const FlowFieldCanvas = React.forwardRef<
             const createParticle = (): FlowParticle => {
                 const rx = Math.random() * width;
                 const ry = Math.random() * height;
+
                 return {
                     x: rx,
                     y: ry,
@@ -94,9 +97,11 @@ export const FlowFieldCanvas = React.forwardRef<
 
             const initParticles = () => {
                 particles.length = 0;
+
                 for (let i = 0; i < particleCount; i++) {
                     particles.push(createParticle());
                 }
+
                 ctx.clearRect(0, 0, width, height);
             };
 
@@ -114,7 +119,10 @@ export const FlowFieldCanvas = React.forwardRef<
 
             // Mouse coordinates
             const handleMouseMove = (e: MouseEvent) => {
-                if (!interactive) return;
+                if (!interactive) {
+return;
+}
+
                 const rect = canvas.getBoundingClientRect();
                 mouseRef.current = {
                     x: e.clientX - rect.left,
@@ -132,23 +140,30 @@ export const FlowFieldCanvas = React.forwardRef<
             }
 
             const resolveColor = (colorStr: string, defaultVal: string) => {
-                if (!colorStr) return defaultVal;
+                if (!colorStr) {
+return defaultVal;
+}
+
                 let targetColor = colorStr;
+
                 if (colorStr.startsWith('--')) {
                     targetColor = `var(${colorStr})`;
                 }
+
                 if (
                     !targetColor.includes('var(') &&
                     !targetColor.includes('--')
                 ) {
                     return targetColor;
                 }
+
                 try {
                     const temp = document.createElement('div');
                     temp.style.color = targetColor;
                     container.appendChild(temp);
                     const resolved = window.getComputedStyle(temp).color;
                     container.removeChild(temp);
+
                     return resolved || defaultVal;
                 } catch (e) {
                     return defaultVal;
@@ -206,6 +221,7 @@ export const FlowFieldCanvas = React.forwardRef<
                         const dx = mouseRef.current.x - p.x;
                         const dy = mouseRef.current.y - p.y;
                         const dist = Math.sqrt(dx * dx + dy * dy);
+
                         if (dist < 150) {
                             const mouseAngle = Math.atan2(dy, dx);
                             // Blend angle towards mouse direction
@@ -244,6 +260,7 @@ export const FlowFieldCanvas = React.forwardRef<
             return () => {
                 cancelAnimationFrame(animationId);
                 resizeObserver.disconnect();
+
                 if (interactive) {
                     container.removeEventListener('mousemove', handleMouseMove);
                     container.removeEventListener(

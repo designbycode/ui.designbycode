@@ -2,7 +2,6 @@ import { Head, Link, useForm } from '@inertiajs/react';
 import { ArrowLeft, Plus, Trash2, Save, FileCode } from 'lucide-react';
 import { toast } from 'sonner';
 import InputError from '@/components/input-error';
-import { useFileHandling } from '@/hooks/use-file-handling';
 import { Button } from '@/components/ui/button';
 import {
     Card,
@@ -14,6 +13,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
+import { useFileHandling } from '@/hooks/use-file-handling';
 import MainEditorBlock from '@/layouts/main/theme/main-editor-block';
 import { dashboard } from '@/routes';
 import { index, create, store } from '@/routes/dashboard/components';

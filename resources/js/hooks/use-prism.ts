@@ -1,7 +1,7 @@
 'use client';
 
-import Prism from '@/lib/prism-loader';
 import { useCallback, useMemo } from 'react';
+import Prism from '@/lib/prism-loader';
 import 'prismjs/components/prism-markup';
 import 'prismjs/components/prism-css';
 import 'prismjs/components/prism-javascript';

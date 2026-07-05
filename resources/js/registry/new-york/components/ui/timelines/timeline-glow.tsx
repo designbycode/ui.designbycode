@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { cn } from '@/lib/utils';
-import { TimelineItem } from './timeline-vertical';
 import { Card } from '@/components/ui/card';
+import { cn } from '@/lib/utils';
+import type { TimelineItem } from './timeline-vertical';
 
 interface TimelineGlowProps extends React.HTMLAttributes<HTMLDivElement> {
     items: TimelineItem[];

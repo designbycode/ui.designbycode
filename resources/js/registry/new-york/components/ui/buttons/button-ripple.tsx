@@ -1,7 +1,7 @@
 'use client';
 import * as React from 'react';
-import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 
 export interface ButtonRippleProps extends React.ComponentPropsWithRef<
     typeof Button
@@ -15,6 +15,7 @@ function injectRippleStyles() {
     ) {
         return;
     }
+
     const style = document.createElement('style');
     style.id = RIPPLE_STYLE_ID;
     style.textContent = `
@@ -66,6 +67,7 @@ export const ButtonRipple = React.forwardRef<
             const timer = setTimeout(() => {
                 setRipples([]);
             }, 600);
+
             return () => clearTimeout(timer);
         }
     }, [ripples]);

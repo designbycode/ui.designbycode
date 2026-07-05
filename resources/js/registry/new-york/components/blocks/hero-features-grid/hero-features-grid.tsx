@@ -1,10 +1,10 @@
 'use client';
 
-import * as React from 'react';
 import { Layers, Activity, Terminal, Shield, ArrowRight } from 'lucide-react';
-import HeadingBlock from '@/registry/new-york/components/ui/typography/heading-block';
-import { ButtonGradient } from '@/registry/new-york/components/ui/buttons/button-gradient';
+import * as React from 'react';
 import { ButtonDraw } from '@/registry/new-york/components/ui/buttons/button-draw';
+import { ButtonGradient } from '@/registry/new-york/components/ui/buttons/button-gradient';
+import HeadingBlock from '@/registry/new-york/components/ui/typography/heading-block';
 
 export function HeroFeaturesGrid() {
     const features = [
@@ -29,7 +29,9 @@ export function HeroFeaturesGrid() {
     ];
 
     return (
-        <section className="relative flex w-full flex-col items-center justify-center overflow-hidden rounded-2xl border border-border/30 bg-background px-6 py-16 text-center select-none">
+        <section className="relative isolate flex w-full flex-col items-center justify-center overflow-hidden rounded-2xl border border-border/30 bg-background px-6 py-16 text-center select-none">
+            <div className="from absolute inset-0 z-0 bg-radial-[125%_125%_at_50%_90%] from-transparent from-40% to-primary to-100%" />
+
             <div className="relative z-10 mb-12 flex max-w-2xl flex-col items-center">
                 <HeadingBlock
                     badge={{
@@ -57,6 +59,7 @@ export function HeroFeaturesGrid() {
             <div className="relative z-10 grid w-full max-w-4xl grid-cols-1 gap-6 md:grid-cols-3">
                 {features.map((feature, i) => {
                     const Icon = feature.icon;
+
                     return (
                         <div
                             key={i}

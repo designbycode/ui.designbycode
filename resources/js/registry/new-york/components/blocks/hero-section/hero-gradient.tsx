@@ -1,10 +1,10 @@
 'use client';
 
-import * as React from 'react';
 import { Sparkles, ArrowRight, Zap } from 'lucide-react';
-import HeadingBlock from '@/registry/new-york/components/ui/typography/heading-block';
-import { ButtonNeon } from '@/registry/new-york/components/ui/buttons/button-neon';
+import * as React from 'react';
 import { ButtonGradient } from '@/registry/new-york/components/ui/buttons/button-gradient';
+import { ButtonNeon } from '@/registry/new-york/components/ui/buttons/button-neon';
+import HeadingBlock from '@/registry/new-york/components/ui/typography/heading-block';
 
 export function HeroGradient() {
     return (

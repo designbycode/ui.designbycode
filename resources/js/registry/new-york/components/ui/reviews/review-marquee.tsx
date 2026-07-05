@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { cn } from '@/lib/utils';
-import { ReviewItem, ReviewCard } from './review-card';
+import type { ReviewItem} from './review-card';
+import { ReviewCard } from './review-card';
 
 interface ReviewMarqueeProps extends React.HTMLAttributes<HTMLDivElement> {
     reviews: ReviewItem[];

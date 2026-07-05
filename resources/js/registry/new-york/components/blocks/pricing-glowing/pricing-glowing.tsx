@@ -1,10 +1,9 @@
 'use client';
 
-import React, { useState } from 'react';
 import { Check, Sparkles } from 'lucide-react';
-import { cn } from '@/lib/utils';
-import { Button } from '@/components/ui/button';
+import React, { useState } from 'react';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import {
     Card,
     CardContent,
@@ -13,9 +12,10 @@ import {
     CardHeader,
     CardTitle,
 } from '@/components/ui/card';
+import { Label } from '@/components/ui/label';
 import { Slider } from '@/components/ui/slider';
 import { Switch } from '@/components/ui/switch';
-import { Label } from '@/components/ui/label';
+import { cn } from '@/lib/utils';
 
 export function PricingGlowing() {
     const [isYearly, setIsYearly] = useState(false);
@@ -25,6 +25,7 @@ export function PricingGlowing() {
         const multiplier = isYearly ? 0.8 : 1; // 20% discount
         const seats = userCount[0];
         const seatPrice = Math.max(0, (seats - 5) * 4); // Extra $4 per seat above 5 seats
+
         return Math.round((basePrice + seatPrice) * multiplier);
     };
 

@@ -1,8 +1,8 @@
 'use client';
 
 import * as React from 'react';
-import { cn } from '@/lib/utils';
 import { Card } from '@/components/ui/card';
+import { cn } from '@/lib/utils';
 
 export interface ParallaxImageCardProps extends React.ComponentProps<
     typeof Card
@@ -36,7 +36,10 @@ const ParallaxImageCard = React.forwardRef<
 
         const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
             const card = resolvedRef.current;
-            if (!card) return;
+
+            if (!card) {
+return;
+}
 
             const rect = card.getBoundingClientRect();
             const mouseX = e.clientX - rect.left;

@@ -1,4 +1,3 @@
-import React from 'react';
 import {
     Zap,
     Shield,
@@ -7,6 +6,7 @@ import {
     BarChart2,
     Layers,
 } from 'lucide-react';
+import React from 'react';
 import { Badge } from '@/components/ui/badge';
 import {
     Card,

@@ -1,3 +1,11 @@
+const cleanFontName = (name: string) => {
+    return name
+        .split(',')[0]
+        .replace(/['"]/g, '')
+        .replace(/\s+Variable$/i, '')
+        .trim();
+};
+
 function buildCSSVars(vars: Record<string, string>): React.CSSProperties {
     const result: Record<string, string> = {};
 
@@ -40,10 +48,26 @@ function buildCSSVars(vars: Record<string, string>): React.CSSProperties {
     for (const [key, value] of Object.entries(vars)) {
         // Normalize key to --* format
         const baseVar = key.startsWith('--') ? key : `--${key}`;
-        result[baseVar] = value;
 
         // Get the key without -- prefix
         const normalizedKey = baseVar.slice(2);
+
+        let finalValue = value;
+
+        if (normalizedKey.startsWith('font-') && value.includes('Variable')) {
+            const clean = cleanFontName(value);
+
+            if (
+                clean &&
+                !value.includes(`'${clean}'`) &&
+                !value.includes(`"${clean}"`) &&
+                !value.includes(clean)
+            ) {
+                finalValue = `'${clean}', ${value}`;
+            }
+        }
+
+        result[baseVar] = finalValue;
 
         // Directly set --color-* variable to bypass var() indirection
         if (colorMap[normalizedKey]) {

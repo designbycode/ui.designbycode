@@ -1,7 +1,8 @@
 'use client';
 
+import { ImageIcon, Upload, X, Check, Images, Trash2 } from 'lucide-react';
 import * as React from 'react';
-import { cn } from '@/lib/utils';
+import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import {
     Card,
@@ -11,8 +12,7 @@ import {
     CardDescription,
 } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
-import { Badge } from '@/components/ui/badge';
-import { ImageIcon, Upload, X, Check, Images, Trash2 } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 interface ImageFile {
     id: string;
@@ -44,11 +44,16 @@ export function GalleryDropzoneMasonry({
         const interval = setInterval(() => {
             setImages((prev) =>
                 prev.map((img) => {
-                    if (img.id !== imageId) return img;
+                    if (img.id !== imageId) {
+return img;
+}
+
                     if (img.progress >= 100) {
                         clearInterval(interval);
+
                         return { ...img, progress: 100, status: 'success' };
                     }
+
                     return { ...img, progress: img.progress + 15 };
                 }),
             );
@@ -65,8 +70,9 @@ export function GalleryDropzoneMasonry({
                 if (
                     !file.type.startsWith('image/') ||
                     file.size > maxSize * 1024 * 1024
-                )
-                    return;
+                ) {
+return;
+}
 
                 const id = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
                 const reader = new FileReader();

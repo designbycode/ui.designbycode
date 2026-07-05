@@ -1,10 +1,10 @@
 'use client';
 
-import * as React from 'react';
 import { Sparkles, ArrowRight } from 'lucide-react';
-import HeadingBlock from '@/registry/new-york/components/ui/typography/heading-block';
-import { ButtonPulse } from '@/registry/new-york/components/ui/buttons/button-pulse';
+import * as React from 'react';
 import { ButtonDraw } from '@/registry/new-york/components/ui/buttons/button-draw';
+import { ButtonPulse } from '@/registry/new-york/components/ui/buttons/button-pulse';
+import HeadingBlock from '@/registry/new-york/components/ui/typography/heading-block';
 
 export function HeroMinimalCentered() {
     return (

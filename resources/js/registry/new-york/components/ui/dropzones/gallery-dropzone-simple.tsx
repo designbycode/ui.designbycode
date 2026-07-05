@@ -1,9 +1,9 @@
 'use client';
 
-import { useState, useCallback, useRef } from 'react';
 import { Upload, X, ImageIcon } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { useState, useCallback, useRef } from 'react';
 import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 
 interface FileWithPreview {
     file: File;
@@ -54,7 +54,10 @@ export function GalleryDropzoneSimple({
         (e: React.DragEvent) => {
             e.preventDefault();
             setIsDragging(false);
-            if (e.dataTransfer.files.length) handleFiles(e.dataTransfer.files);
+
+            if (e.dataTransfer.files.length) {
+handleFiles(e.dataTransfer.files);
+}
         },
         [handleFiles],
     );
@@ -68,7 +71,10 @@ export function GalleryDropzoneSimple({
     const clearAll = () => {
         setFiles([]);
         onFilesSelect?.([]);
-        if (inputRef.current) inputRef.current.value = '';
+
+        if (inputRef.current) {
+inputRef.current.value = '';
+}
     };
 
     return (

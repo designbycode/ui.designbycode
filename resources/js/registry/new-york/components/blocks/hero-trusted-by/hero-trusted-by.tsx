@@ -1,11 +1,11 @@
 'use client';
 
-import * as React from 'react';
 import { Award, Globe, Heart, Sparkles, Terminal } from 'lucide-react';
-import HeadingBlock from '@/registry/new-york/components/ui/typography/heading-block';
-import { ButtonNeon } from '@/registry/new-york/components/ui/buttons/button-neon';
+import * as React from 'react';
 import { ButtonDraw } from '@/registry/new-york/components/ui/buttons/button-draw';
+import { ButtonNeon } from '@/registry/new-york/components/ui/buttons/button-neon';
 import { LogoCloud } from '@/registry/new-york/components/ui/misc/logo-cloud';
+import HeadingBlock from '@/registry/new-york/components/ui/typography/heading-block';
 
 export function HeroTrustedBy() {
     const brands = [

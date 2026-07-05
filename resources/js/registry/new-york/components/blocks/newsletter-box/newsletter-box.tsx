@@ -1,7 +1,8 @@
 'use client';
 
-import React, { useState } from 'react';
 import { Mail, CheckCircle } from 'lucide-react';
+import React, { useState } from 'react';
+import { Button } from '@/components/ui/button';
 import {
     Card,
     CardHeader,
@@ -9,7 +10,6 @@ import {
     CardDescription,
     CardContent,
 } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
 
 export function NewsletterBox() {
     const [email, setEmail] = useState('');
@@ -17,6 +17,7 @@ export function NewsletterBox() {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
+
         if (email) {
             setSubmitted(true);
         }

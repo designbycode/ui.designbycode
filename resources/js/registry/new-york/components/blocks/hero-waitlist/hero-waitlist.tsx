@@ -1,11 +1,11 @@
 'use client';
 
-import * as React from 'react';
 import { Mail, CheckCircle2, Sparkles } from 'lucide-react';
-import HeadingBlock from '@/registry/new-york/components/ui/typography/heading-block';
+import * as React from 'react';
+import { Input } from '@/components/ui/input';
 import { ButtonNeon } from '@/registry/new-york/components/ui/buttons/button-neon';
 import { InputNumberStepper } from '@/registry/new-york/components/ui/inputs/input-number-stepper';
-import { Input } from '@/components/ui/input';
+import HeadingBlock from '@/registry/new-york/components/ui/typography/heading-block';
 
 export function HeroWaitlist() {
     const [email, setEmail] = React.useState('');
@@ -14,6 +14,7 @@ export function HeroWaitlist() {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
+
         if (email.trim()) {
             setIsSubmitted(true);
         }

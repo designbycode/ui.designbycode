@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
 import { ArrowRight, Sparkles, Shield, Trophy, Users } from 'lucide-react';
-import { cn } from '@/lib/utils';
-import { Button } from '@/components/ui/button';
+import React, { useState } from 'react';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import { cn } from '@/lib/utils';
 import { ButtonMagnetic } from '@/registry/new-york/components/ui/buttons/button-magnetic';
 import { ButtonShine } from '@/registry/new-york/components/ui/buttons/button-shine';
 import { ProgressCircle } from '@/registry/new-york/components/ui/progress/progress-circle';
@@ -23,7 +23,7 @@ export function HeroSection() {
         <section className="relative flex w-full flex-col items-center gap-12 overflow-hidden rounded-2xl border border-border/30 bg-background/50 p-6 shadow-xl select-none md:p-12 lg:flex-row lg:p-16">
             {/* Ambient Background Glows */}
             <div className="pointer-events-none absolute -top-40 -left-40 size-96 rounded-full bg-primary/10 blur-3xl" />
-            <div className="pointer-events-none absolute -right-40 -bottom-40 size-96 rounded-full bg-sky-500/10 blur-3xl" />
+            <div className="pointer-events-none absolute -right-40 -bottom-40 size-96 rounded-full bg-chart-2/10 blur-3xl" />
 
             {/* Left Content Column */}
             <div className="relative z-10 flex-1 space-y-6 text-left">
@@ -37,7 +37,7 @@ export function HeroSection() {
 
                 <h1 className="text-4xl leading-tight font-extrabold tracking-tight sm:text-5xl">
                     Luxury Stays &{' '}
-                    <span className="bg-gradient-to-r from-primary to-sky-500 bg-clip-text text-transparent">
+                    <span className="bg-gradient-to-r from-primary to-chart-2 bg-clip-text text-transparent">
                         Creative Spaces
                     </span>
                 </h1>

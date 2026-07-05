@@ -25,6 +25,11 @@ function MainThemeSearch({
     const filtersRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
+        setSearchInput(filters?.search ?? '');
+        setSelectedTags(filters?.tags ?? []);
+    }, [filters?.search, JSON.stringify(filters?.tags)]);
+
+    useEffect(() => {
         if (!hasMounted.current) {
             hasMounted.current = true;
 

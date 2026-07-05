@@ -1,7 +1,7 @@
 'use client';
 import * as React from 'react';
-import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 
 import { useHover } from '@/registry/new-york/hooks/use-hover';
 
@@ -18,6 +18,7 @@ export const ButtonGradient = React.forwardRef<
     const combinedRef = React.useCallback(
         (node: HTMLButtonElement | null) => {
             hoverRef(node);
+
             if (typeof ref === 'function') {
                 ref(node);
             } else if (ref) {

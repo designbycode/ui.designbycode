@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
 import { Check, HelpCircle } from 'lucide-react';
-import { cn } from '@/lib/utils';
-import { Button } from '@/components/ui/button';
+import React, { useState } from 'react';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import {
     Card,
     CardContent,
@@ -11,8 +10,9 @@ import {
     CardHeader,
     CardTitle,
 } from '@/components/ui/card';
-import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
+import { Switch } from '@/components/ui/switch';
+import { cn } from '@/lib/utils';
 
 export interface PricingTier {
     name: string;
@@ -139,6 +139,7 @@ export function PricingSection() {
                     const price = isYearly
                         ? tier.yearlyPrice
                         : tier.monthlyPrice;
+
                     return (
                         <Card
                             key={tier.name}

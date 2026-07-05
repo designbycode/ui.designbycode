@@ -1,9 +1,9 @@
 'use client';
 
-import * as React from 'react';
 import { Star, CheckCircle } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import * as React from 'react';
 import { Card } from '@/components/ui/card';
+import { cn } from '@/lib/utils';
 
 export interface ReviewItem {
     id: string | number;
@@ -31,8 +31,9 @@ export function ReviewCard({
 }: ReviewCardProps) {
     const renderStars = (rating: number) => {
         const floor = Math.floor(rating);
+
         return (
-            <div className="flex items-center gap-0.5 text-amber-500">
+            <div className="flex items-center gap-0.5 text-chart-4">
                 {[...Array(5)].map((_, i) => (
                     <Star
                         key={i}
@@ -67,7 +68,7 @@ export function ReviewCard({
                 <div className="flex items-center justify-between gap-4">
                     {renderStars(review.rating)}
                     {review.verified && (
-                        <span className="inline-flex items-center gap-1 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-2 py-0.5 text-[9px] font-semibold text-emerald-600">
+                        <span className="inline-flex items-center gap-1 rounded-full border border-chart-2/20 bg-chart-2/10 px-2 py-0.5 text-[9px] font-semibold text-chart-2">
                             <CheckCircle className="size-2.5 fill-current" />
                             Verified
                         </span>

@@ -19,7 +19,7 @@ function ThemeLayout({ children }: ThemeLayoutProps) {
 
     return (
         <GlowStack
-            className="relative bg-background"
+            className="relative bg-background font-sans"
             style={cssVars as React.CSSProperties}
         >
             <div

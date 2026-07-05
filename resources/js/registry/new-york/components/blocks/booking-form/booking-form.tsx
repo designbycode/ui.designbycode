@@ -284,7 +284,7 @@ export function BookingForm({
             </CardContent>
 
             <CardFooter className="relative z-10 flex items-center justify-center gap-1.5 border-t border-border/20 bg-muted/15 px-6 py-3 text-[10px] text-muted-foreground">
-                <Sparkles className="size-3.5 text-amber-500" />
+                <Sparkles className="size-3.5 text-chart-4" />
                 <span>Free cancellation up to 48 hours before check-in</span>
             </CardFooter>
         </Card>

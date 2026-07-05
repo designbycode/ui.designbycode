@@ -1,5 +1,5 @@
-import * as React from 'react';
 import { ChevronsUpDown } from 'lucide-react';
+import * as React from 'react';
 import { cn } from '@/lib/utils';
 
 interface ComparisonSliderVerticalProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -26,7 +26,10 @@ export function ComparisonSliderVertical({
     const containerRef = React.useRef<HTMLDivElement>(null);
 
     const handleMove = (clientY: number) => {
-        if (!containerRef.current) return;
+        if (!containerRef.current) {
+return;
+}
+
         const rect = containerRef.current.getBoundingClientRect();
         const y = clientY - rect.top;
         const position = Math.max(0, Math.min(100, (y / rect.height) * 100));
@@ -34,12 +37,18 @@ export function ComparisonSliderVertical({
     };
 
     const handleTouchMove = (e: TouchEvent) => {
-        if (!isDragging) return;
+        if (!isDragging) {
+return;
+}
+
         handleMove(e.touches[0].clientY);
     };
 
     const handleMouseMove = (e: MouseEvent) => {
-        if (!isDragging) return;
+        if (!isDragging) {
+return;
+}
+
         handleMove(e.clientY);
     };
 
@@ -66,6 +75,7 @@ export function ComparisonSliderVertical({
     const handleMouseDown = (e: React.MouseEvent) => {
         e.preventDefault();
         setIsDragging(true);
+
         if (containerRef.current) {
             const rect = containerRef.current.getBoundingClientRect();
             const y = e.clientY - rect.top;
@@ -77,6 +87,7 @@ export function ComparisonSliderVertical({
 
     const handleTouchStart = (e: React.TouchEvent) => {
         setIsDragging(true);
+
         if (containerRef.current) {
             const rect = containerRef.current.getBoundingClientRect();
             const y = e.touches[0].clientY - rect.top;

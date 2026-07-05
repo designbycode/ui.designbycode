@@ -1,5 +1,5 @@
-import * as React from 'react';
 import { X, ArrowRight } from 'lucide-react';
+import * as React from 'react';
 import { cn } from '@/lib/utils';
 
 interface BannerStickyProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -21,7 +21,9 @@ export function BannerSticky({
 }: BannerStickyProps) {
     const [isVisible, setIsVisible] = React.useState(true);
 
-    if (!isVisible) return null;
+    if (!isVisible) {
+return null;
+}
 
     return (
         <div
@@ -50,7 +52,10 @@ export function BannerSticky({
             <button
                 onClick={() => {
                     setIsVisible(false);
-                    if (onClose) onClose();
+
+                    if (onClose) {
+onClose();
+}
                 }}
                 className="shrink-0 cursor-pointer rounded-lg p-1 text-muted-foreground/70 transition-all hover:bg-muted hover:text-foreground"
             >

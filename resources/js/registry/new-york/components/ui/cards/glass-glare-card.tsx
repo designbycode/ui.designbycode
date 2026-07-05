@@ -1,8 +1,8 @@
 'use client';
 
 import * as React from 'react';
-import { cn } from '@/lib/utils';
 import { Card } from '@/components/ui/card';
+import { cn } from '@/lib/utils';
 
 import { useHover } from '@/registry/new-york/hooks/use-hover';
 
@@ -29,6 +29,7 @@ const GlassGlareCard = React.forwardRef<HTMLDivElement, GlassGlareCardProps>(
         const combinedRef = React.useCallback(
             (node: HTMLDivElement | null) => {
                 hoverRef(node);
+
                 if (typeof ref === 'function') {
                     ref(node);
                 } else if (ref) {
@@ -36,6 +37,7 @@ const GlassGlareCard = React.forwardRef<HTMLDivElement, GlassGlareCardProps>(
                         ref as React.MutableRefObject<HTMLDivElement | null>
                     ).current = node;
                 }
+
                 (
                     localRef as React.MutableRefObject<HTMLDivElement | null>
                 ).current = node;
@@ -45,7 +47,11 @@ const GlassGlareCard = React.forwardRef<HTMLDivElement, GlassGlareCardProps>(
 
         const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
             const card = localRef.current;
-            if (!card) return;
+
+            if (!card) {
+return;
+}
+
             const rect = card.getBoundingClientRect();
             const x = ((e.clientX - rect.left) / rect.width) * 100;
             const y = ((e.clientY - rect.top) / rect.height) * 100;

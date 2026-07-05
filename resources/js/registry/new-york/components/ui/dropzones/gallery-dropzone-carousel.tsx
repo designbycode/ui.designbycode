@@ -1,11 +1,5 @@
 'use client';
 
-import * as React from 'react';
-import { cn } from '@/lib/utils';
-import { Button } from '@/components/ui/button';
-import { Progress } from '@/components/ui/progress';
-import { Badge } from '@/components/ui/badge';
-import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import {
     ImageIcon,
     Upload,
@@ -15,6 +9,12 @@ import {
     ChevronRight,
     Plus,
 } from 'lucide-react';
+import * as React from 'react';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Progress } from '@/components/ui/progress';
+import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
+import { cn } from '@/lib/utils';
 
 interface ImageFile {
     id: string;
@@ -47,11 +47,16 @@ export function GalleryDropzoneCarousel({
         const interval = setInterval(() => {
             setImages((prev) =>
                 prev.map((img) => {
-                    if (img.id !== imageId) return img;
+                    if (img.id !== imageId) {
+return img;
+}
+
                     if (img.progress >= 100) {
                         clearInterval(interval);
+
                         return { ...img, progress: 100, status: 'success' };
                     }
+
                     return { ...img, progress: img.progress + 18 };
                 }),
             );
@@ -106,8 +111,9 @@ export function GalleryDropzoneCarousel({
 
             setImages((prev) => [...prev, ...newImages]);
             newImages.forEach((img) => {
-                if (img.status !== 'error')
-                    setTimeout(() => simulateUpload(img.id), 50);
+                if (img.status !== 'error') {
+setTimeout(() => simulateUpload(img.id), 50);
+}
             });
 
             onFilesChange?.(
@@ -137,8 +143,11 @@ export function GalleryDropzoneCarousel({
                         .filter((i) => i.status !== 'error')
                         .map((i) => i.file),
                 );
-                if (activeIndex >= updated.length)
-                    setActiveIndex(Math.max(0, updated.length - 1));
+
+                if (activeIndex >= updated.length) {
+setActiveIndex(Math.max(0, updated.length - 1));
+}
+
                 return updated;
             });
         },

@@ -1,10 +1,9 @@
 'use client';
 
-import React, { useState } from 'react';
 import { Cpu, HardDrive, Check, Sparkles } from 'lucide-react';
-import { cn } from '@/lib/utils';
-import { Button } from '@/components/ui/button';
+import React, { useState } from 'react';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import {
     Card,
     CardContent,
@@ -13,9 +12,10 @@ import {
     CardHeader,
     CardTitle,
 } from '@/components/ui/card';
+import { Label } from '@/components/ui/label';
 import { Slider } from '@/components/ui/slider';
 import { Switch } from '@/components/ui/switch';
-import { Label } from '@/components/ui/label';
+import { cn } from '@/lib/utils';
 
 export function PricingResources() {
     const [isYearly, setIsYearly] = useState(false);
@@ -29,6 +29,7 @@ export function PricingResources() {
         const storageCost = storage[0] * 0.15; // $0.15 per GB storage
         const total = cpuCost + ramCost + storageCost;
         const discountMultiplier = isYearly ? 0.8 : 1; // 20% discount
+
         return Math.round(total * discountMultiplier);
     };
 

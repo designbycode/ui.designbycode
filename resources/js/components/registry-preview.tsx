@@ -31,8 +31,28 @@ import { HeroFullscreenVideo } from '@/registry/new-york/components/blocks/hero-
 import { HeroGlowingCards } from '@/registry/new-york/components/blocks/hero-glowing-cards/hero-glowing-cards';
 import { HeroHighEnergyImpact } from '@/registry/new-york/components/blocks/hero-high-energy/hero-high-energy';
 import { HeroMinimalCentered } from '@/registry/new-york/components/blocks/hero-minimal-centered/hero-minimal-centered';
+import { HeroParticles } from '@/registry/new-york/components/blocks/hero-particles/hero-particles';
+import { HeroPhoneMockup } from '@/registry/new-york/components/blocks/hero-phone-mockup/hero-phone-mockup';
 import { HeroGradient } from '@/registry/new-york/components/blocks/hero-section/hero-gradient';
+import HeroSection from '@/registry/new-york/components/blocks/hero-section/hero-section';
+import { HeroSplit } from '@/registry/new-york/components/blocks/hero-section/hero-split';
+import HeroSimpleSplit from '@/registry/new-york/components/blocks/hero-simple-split/hero-simple-split';
+import { HeroTabsShowcase } from '@/registry/new-york/components/blocks/hero-tabs-showcase/hero-tabs-showcase';
+import { HeroTrustedBy } from '@/registry/new-york/components/blocks/hero-trusted-by/hero-trusted-by';
+import { HeroVideoDialog } from '@/registry/new-york/components/blocks/hero-video-dialog/hero-video-dialog';
+import { HeroWaitlist } from '@/registry/new-york/components/blocks/hero-waitlist/hero-waitlist';
+import { HeroWaves } from '@/registry/new-york/components/blocks/hero-waves/hero-waves';
+import InputsGallery from '@/registry/new-york/components/blocks/inputs-gallery/inputs-gallery';
 import { MusicPlayer } from '@/registry/new-york/components/blocks/music-player/music-player';
+import NewsletterBox from '@/registry/new-york/components/blocks/newsletter-box/newsletter-box';
+import { PricingComparison } from '@/registry/new-york/components/blocks/pricing-comparison/pricing-comparison';
+import { PricingGlowing } from '@/registry/new-york/components/blocks/pricing-glowing/pricing-glowing';
+import { PricingModernCards } from '@/registry/new-york/components/blocks/pricing-modern-cards/pricing-modern-cards';
+import { PricingResources } from '@/registry/new-york/components/blocks/pricing-resources/pricing-resources';
+import PricingSection from '@/registry/new-york/components/blocks/pricing-section/pricing-section';
+import PricingTable from '@/registry/new-york/components/blocks/pricing-table/pricing-table';
+import PropertyDetail from '@/registry/new-york/components/blocks/property-detail/property-detail';
+import RentalListings from '@/registry/new-york/components/blocks/rental-listings/rental-listings';
 import GSAPMarquee from '@/registry/new-york/components/ui/animations/gsap-marquee';
 import Marquee from '@/registry/new-york/components/ui/animations/marquee';
 import TextAnimator from '@/registry/new-york/components/ui/animations/text-animator';
@@ -98,11 +118,6 @@ import { ReviewMarquee } from '@/registry/new-york/components/ui/reviews/review-
 import { ReviewMasonry } from '@/registry/new-york/components/ui/reviews/review-masonry';
 import { ReviewHero } from '@/registry/new-york/components/ui/reviews/review-hero';
 import { ReviewCarousel } from '@/registry/new-york/components/ui/reviews/review-carousel';
-import PricingSection from '@/registry/new-york/components/blocks/pricing-section/pricing-section';
-import { PricingGlowing } from '@/registry/new-york/components/blocks/pricing-glowing/pricing-glowing';
-import { PricingComparison } from '@/registry/new-york/components/blocks/pricing-comparison/pricing-comparison';
-import { PricingResources } from '@/registry/new-york/components/blocks/pricing-resources/pricing-resources';
-import { PricingModernCards } from '@/registry/new-york/components/blocks/pricing-modern-cards/pricing-modern-cards';
 
 import { BadgeIndicator } from '@/registry/new-york/components/ui/typography/badge-indicator';
 import { Heading } from '@/registry/new-york/components/ui/typography/heading';
@@ -116,14 +131,6 @@ import { ButtonGradient } from '@/registry/new-york/components/ui/buttons/button
 import { ButtonRipple } from '@/registry/new-york/components/ui/buttons/button-ripple';
 import { ButtonArrow } from '@/registry/new-york/components/ui/buttons/button-arrow';
 import { ButtonGlowingAura } from '@/registry/new-york/components/ui/buttons/button-glowing-aura';
-import { HeroSplit } from '@/registry/new-york/components/blocks/hero-section/hero-split';
-import { HeroPhoneMockup } from '@/registry/new-york/components/blocks/hero-phone-mockup/hero-phone-mockup';
-import { HeroVideoDialog } from '@/registry/new-york/components/blocks/hero-video-dialog/hero-video-dialog';
-import { HeroParticles } from '@/registry/new-york/components/blocks/hero-particles/hero-particles';
-import { HeroWaitlist } from '@/registry/new-york/components/blocks/hero-waitlist/hero-waitlist';
-import { HeroTrustedBy } from '@/registry/new-york/components/blocks/hero-trusted-by/hero-trusted-by';
-import { HeroTabsShowcase } from '@/registry/new-york/components/blocks/hero-tabs-showcase/hero-tabs-showcase';
-import { HeroWaves } from '@/registry/new-york/components/blocks/hero-waves/hero-waves';
 import { PhoneMockup } from '@/registry/new-york/components/ui/mockups/phone-mockup';
 import { CodeWindow } from '@/registry/new-york/components/ui/mockups/code-window';
 import { BrowserMockup } from '@/registry/new-york/components/ui/mockups/browser-mockup';
@@ -176,17 +183,10 @@ import { GalleryDropzoneTable } from '@/registry/new-york/components/ui/dropzone
 
 import ButtonMagnetic from '@/registry/new-york/components/ui/buttons/button-magnetic';
 import ButtonShine from '@/registry/new-york/components/ui/buttons/button-shine';
-import InputsGallery from '@/registry/new-york/components/blocks/inputs-gallery/inputs-gallery';
-import RentalListings from '@/registry/new-york/components/blocks/rental-listings/rental-listings';
-import PropertyDetail from '@/registry/new-york/components/blocks/property-detail/property-detail';
 import ReviewsSlider from '@/registry/new-york/components/blocks/reviews-slider/reviews-slider';
-import HeroSection from '@/registry/new-york/components/blocks/hero-section/hero-section';
 import TestimonialsGrid from '@/registry/new-york/components/blocks/testimonials-grid/testimonials-grid';
-import NewsletterBox from '@/registry/new-york/components/blocks/newsletter-box/newsletter-box';
 import StatsGrid from '@/registry/new-york/components/blocks/stats-grid/stats-grid';
-import PricingTable from '@/registry/new-york/components/blocks/pricing-table/pricing-table';
 import UserProfileCard from '@/registry/new-york/components/blocks/user-profile-card/user-profile-card';
-import HeroSimpleSplit from '@/registry/new-york/components/blocks/hero-simple-split/hero-simple-split';
 
 // Import hooks for interactive demo
 import useDarkMode from '@/registry/new-york/hooks/use-dark-mode';

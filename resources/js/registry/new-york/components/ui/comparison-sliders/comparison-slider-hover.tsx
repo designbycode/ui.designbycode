@@ -1,5 +1,5 @@
-import * as React from 'react';
 import { Lock, Unlock } from 'lucide-react';
+import * as React from 'react';
 import { cn } from '@/lib/utils';
 
 interface ComparisonSliderHoverProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -28,7 +28,10 @@ export function ComparisonSliderHover({
     const containerRef = React.useRef<HTMLDivElement>(null);
 
     const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-        if (isLocked || !containerRef.current) return;
+        if (isLocked || !containerRef.current) {
+return;
+}
+
         const rect = containerRef.current.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const position = Math.max(0, Math.min(100, (x / rect.width) * 100));
@@ -36,7 +39,10 @@ export function ComparisonSliderHover({
     };
 
     const handleMouseLeave = () => {
-        if (isLocked || !resetOnLeave) return;
+        if (isLocked || !resetOnLeave) {
+return;
+}
+
         setSliderPosition(defaultPosition);
     };
 
