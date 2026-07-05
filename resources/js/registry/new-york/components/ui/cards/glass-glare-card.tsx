@@ -32,11 +32,15 @@ const GlassGlareCard = React.forwardRef<HTMLDivElement, GlassGlareCardProps>(
                 if (typeof ref === 'function') {
                     ref(node);
                 } else if (ref) {
-                    (ref as React.MutableRefObject<HTMLDivElement | null>).current = node;
+                    (
+                        ref as React.MutableRefObject<HTMLDivElement | null>
+                    ).current = node;
                 }
-                (localRef as React.MutableRefObject<HTMLDivElement | null>).current = node;
+                (
+                    localRef as React.MutableRefObject<HTMLDivElement | null>
+                ).current = node;
             },
-            [ref, hoverRef]
+            [ref, hoverRef],
         );
 
         const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {

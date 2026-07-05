@@ -33,36 +33,45 @@ export function FAQSection() {
     };
 
     return (
-        <div className="w-full max-w-3xl mx-auto space-y-4">
+        <div className="mx-auto w-full max-w-3xl space-y-4">
             {faqs.map((faq, idx) => {
                 const isOpen = openIdx === idx;
                 return (
-                    <Card 
-                        key={idx} 
+                    <Card
+                        key={idx}
                         className={cn(
-                            "border-border/50 bg-card/30 backdrop-blur-xs transition-all duration-300 overflow-hidden",
-                            isOpen && "border-primary/20 bg-muted/10"
+                            'overflow-hidden border-border/50 bg-card/30 backdrop-blur-xs transition-all duration-300',
+                            isOpen && 'border-primary/20 bg-muted/10',
                         )}
                     >
                         <button
                             onClick={() => toggle(idx)}
-                            className="w-full flex items-center justify-between p-4 text-left font-bold text-xs select-none hover:text-primary transition-colors cursor-pointer"
+                            className="flex w-full cursor-pointer items-center justify-between p-4 text-left text-xs font-bold transition-colors select-none hover:text-primary"
                         >
                             <span className="flex items-center gap-2">
-                                <HelpCircle className={cn("size-4 shrink-0 transition-colors", isOpen ? "text-primary" : "text-muted-foreground")} />
+                                <HelpCircle
+                                    className={cn(
+                                        'size-4 shrink-0 transition-colors',
+                                        isOpen
+                                            ? 'text-primary'
+                                            : 'text-muted-foreground',
+                                    )}
+                                />
                                 {faq.question}
                             </span>
-                            <ChevronDown 
+                            <ChevronDown
                                 className={cn(
-                                    "size-4 shrink-0 text-muted-foreground transition-transform duration-350",
-                                    isOpen && "rotate-180 text-primary"
-                                )} 
+                                    'size-4 shrink-0 text-muted-foreground transition-transform duration-350',
+                                    isOpen && 'rotate-180 text-primary',
+                                )}
                             />
                         </button>
-                        <div 
+                        <div
                             className={cn(
-                                "grid transition-all duration-350 ease-in-out",
-                                isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                                'grid transition-all duration-350 ease-in-out',
+                                isOpen
+                                    ? 'grid-rows-[1fr] opacity-100'
+                                    : 'grid-rows-[0fr] opacity-0',
                             )}
                         >
                             <div className="overflow-hidden">

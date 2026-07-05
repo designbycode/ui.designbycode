@@ -2,7 +2,9 @@ import React, { useRef, useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 
-export interface ButtonMagneticProps extends React.ComponentProps<typeof Button> {
+export interface ButtonMagneticProps extends React.ComponentProps<
+    typeof Button
+> {
     range?: number; // Distance from center where magnetism activates
     actionStrength?: number; // How strongly the button pulls toward the mouse (0.1 to 1.0)
 }
@@ -75,10 +77,7 @@ export function ButtonMagnetic({
     return (
         <div ref={triggerRef} className="inline-block">
             <Button
-                className={cn(
-                    'select-none active:scale-95',
-                    className,
-                )}
+                className={cn('select-none active:scale-95', className)}
                 style={{
                     transform: `translate3d(${position.x}px, ${position.y}px, 0)`,
                     // Use a smooth, fast bezier transition when tracking to eliminate jumps, and a springy transition on snap-back

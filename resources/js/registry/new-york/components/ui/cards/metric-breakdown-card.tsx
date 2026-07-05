@@ -22,7 +22,10 @@ export interface MetricBreakdownCardProps extends React.ComponentProps<
     items: BreakdownItem[];
 }
 
-const MetricBreakdownCard = React.forwardRef<HTMLDivElement, MetricBreakdownCardProps>(
+const MetricBreakdownCard = React.forwardRef<
+    HTMLDivElement,
+    MetricBreakdownCardProps
+>(
     (
         {
             className,
@@ -44,10 +47,12 @@ const MetricBreakdownCard = React.forwardRef<HTMLDivElement, MetricBreakdownCard
                 if (typeof ref === 'function') {
                     ref(node);
                 } else if (ref) {
-                    (ref as React.MutableRefObject<HTMLDivElement | null>).current = node;
+                    (
+                        ref as React.MutableRefObject<HTMLDivElement | null>
+                    ).current = node;
                 }
             },
-            [ref, hoverRef]
+            [ref, hoverRef],
         );
 
         return (
@@ -91,25 +96,37 @@ const MetricBreakdownCard = React.forwardRef<HTMLDivElement, MetricBreakdownCard
                 <div className="mt-6 border-t border-border/50 pt-4">
                     <div className="grid grid-cols-1 gap-4 @md:grid-cols-2 @lg:grid-cols-3">
                         {items.map((item, idx) => (
-                            <div key={idx} className="space-y-2 rounded-lg border border-border/30 bg-muted/10 p-3">
+                            <div
+                                key={idx}
+                                className="space-y-2 rounded-lg border border-border/30 bg-muted/10 p-3"
+                            >
                                 <div className="flex items-center justify-between text-xs">
-                                    <span className="font-semibold text-muted-foreground">{item.label}</span>
-                                    <span className="font-mono font-bold text-foreground">{item.value}</span>
+                                    <span className="font-semibold text-muted-foreground">
+                                        {item.label}
+                                    </span>
+                                    <span className="font-mono font-bold text-foreground">
+                                        {item.value}
+                                    </span>
                                 </div>
-                                
+
                                 <div className="relative h-1.5 w-full overflow-hidden rounded-full bg-muted/40">
                                     <div
                                         className="h-full rounded-full transition-all duration-700 ease-out"
                                         style={{
-                                            width: isHovered ? `${item.percentage}%` : '0%',
-                                            backgroundColor: item.color || 'var(--color-primary)',
-                                            boxShadow: isHovered && !item.color
-                                                ? '0 0 4px var(--color-primary)'
-                                                : 'none',
+                                            width: isHovered
+                                                ? `${item.percentage}%`
+                                                : '0%',
+                                            backgroundColor:
+                                                item.color ||
+                                                'var(--color-primary)',
+                                            boxShadow:
+                                                isHovered && !item.color
+                                                    ? '0 0 4px var(--color-primary)'
+                                                    : 'none',
                                         }}
                                     />
                                 </div>
-                                
+
                                 <div className="text-right font-mono text-[9px] text-muted-foreground">
                                     {item.percentage}% of total
                                 </div>

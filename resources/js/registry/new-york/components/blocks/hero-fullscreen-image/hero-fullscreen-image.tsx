@@ -34,12 +34,8 @@ export function HeroFullscreenImage() {
                 />
 
                 <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-                    <ButtonPulse>
-                        Explore Gallery
-                    </ButtonPulse>
-                    <ButtonGradient
-                        className="flex items-center gap-1.5"
-                    >
+                    <ButtonPulse>Explore Gallery</ButtonPulse>
+                    <ButtonGradient className="flex items-center gap-1.5">
                         View Case Study
                         <ArrowRight className="size-4" />
                     </ButtonGradient>

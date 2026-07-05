@@ -236,7 +236,9 @@ export default function ComponentShow({
     }, [component.files]);
 
     const usageSnippet = useMemo(() => {
-        const mainFile = component.files.find(f => f.path.includes(component.name)) || component.files[0];
+        const mainFile =
+            component.files.find((f) => f.path.includes(component.name)) ||
+            component.files[0];
         if (!mainFile || !mainFile.content) {
             return '';
         }
@@ -247,7 +249,7 @@ export default function ComponentShow({
         if (importPath.startsWith(prefix)) {
             importPath = importPath.substring(prefix.length);
         }
-        
+
         if (importPath.startsWith('components/')) {
             importPath = importPath.replace('components/', '@/components/');
         } else if (importPath.startsWith('hooks/')) {
@@ -259,11 +261,12 @@ export default function ComponentShow({
         } else {
             importPath = '@/' + importPath;
         }
-        
+
         importPath = importPath.replace(/\.(tsx|ts|jsx|js)$/, '');
 
         // Extract exported symbols (functions, consts, classes)
-        const exportRegex = /export\s+(?:default\s+)?(?:const|function|class)\s+([a-zA-Z0-9_]+)/g;
+        const exportRegex =
+            /export\s+(?:default\s+)?(?:const|function|class)\s+([a-zA-Z0-9_]+)/g;
         const exports: string[] = [];
         let match;
         while ((match = exportRegex.exec(mainFile.content)) !== null) {
@@ -292,7 +295,7 @@ export default function ComponentShow({
         if (exports.length === 0) {
             const camelCaseName = component.name
                 .split('-')
-                .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
                 .join('');
             exports.push(camelCaseName);
         }
@@ -304,7 +307,14 @@ export default function ComponentShow({
             return `import { ${primarySymbol} } from '${importPath}';\n\nexport default function Demo() {\n    const [ref, value] = ${primarySymbol}();\n\n    return (\n        <div ref={ref}>\n            {value ? 'Active' : 'Inactive'}\n        </div>\n    );\n}`;
         }
 
-        const needsChildren = ['Button', 'Card', 'Badge', 'Alert', 'Heading', 'Paragraph'].some(p => primarySymbol.includes(p));
+        const needsChildren = [
+            'Button',
+            'Card',
+            'Badge',
+            'Alert',
+            'Heading',
+            'Paragraph',
+        ].some((p) => primarySymbol.includes(p));
         if (needsChildren) {
             return `import { ${primarySymbol} } from '${importPath}';\n\nexport default function Demo() {\n    return (\n        <${primarySymbol}>\n            Get Started\n        </${primarySymbol}>\n    );\n}`;
         }
@@ -637,7 +647,8 @@ export default function ComponentShow({
                                             How to Use
                                         </CardTitle>
                                         <CardDescription>
-                                            Import and render this component in your project.
+                                            Import and render this component in
+                                            your project.
                                         </CardDescription>
                                     </CardHeader>
                                     <CardContent>

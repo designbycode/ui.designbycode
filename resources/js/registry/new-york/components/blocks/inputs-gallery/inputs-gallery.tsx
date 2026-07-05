@@ -9,12 +9,15 @@ import {
     Coins,
     Binary,
     Sliders,
+    Sparkles,
+    Layers,
 } from 'lucide-react';
 import { InputSlug } from '@/registry/new-york/components/ui/inputs/input-slug';
 import { InputPhone } from '@/registry/new-york/components/ui/inputs/input-phone';
 import { InputCurrency } from '@/registry/new-york/components/ui/inputs/input-currency';
 import { InputNumber } from '@/registry/new-york/components/ui/inputs/input-number';
 import { InputPassword } from '@/registry/new-york/components/ui/inputs/input-password';
+import { SlidingRadioGroup } from '@/registry/new-york/components/ui/inputs/sliding-radio-group';
 import {
     MultiSelect,
     MultiSelectTrigger,
@@ -35,6 +38,9 @@ import { Badge } from '@/components/ui/badge';
 export function InputsGallery() {
     // Original states
     const [slugValue, setSlugValue] = useState('');
+    const [glassVal, setGlassVal] = useState('gold');
+    const [neonVal, setNeonVal] = useState('monthly');
+    const [bouncyVal, setBouncyVal] = useState('all');
     const [selectedTags, setSelectedTags] = useState<string[]>([]);
     const [searchFocused, setSearchFocused] = useState(false);
     const [searchValue, setSearchValue] = useState('');
@@ -358,6 +364,125 @@ export function InputsGallery() {
                             Value:{' '}
                             <span className="font-bold text-primary">
                                 {passwordValue || 'none'}
+                            </span>
+                        </div>
+                    </CardContent>
+                </Card>
+
+                {/* 10. Sliding Radio Group (Glass) */}
+                <Card className="flex flex-col justify-between border border-border/40 bg-card/25 backdrop-blur-xs">
+                    <CardHeader className="pb-3">
+                        <CardTitle className="flex items-center gap-2 text-sm font-bold">
+                            <Sparkles className="size-4 text-chart-4" />
+                            Sliding Radio (Glass Plan)
+                        </CardTitle>
+                        <CardDescription className="text-xs">
+                            Translucent glassmorphism style with custom
+                            per-option colored gliders.
+                        </CardDescription>
+                    </CardHeader>
+                    <CardContent className="flex flex-1 flex-col justify-center space-y-3 pb-6">
+                        <div className="flex w-full justify-center">
+                            <SlidingRadioGroup
+                                variant="glass"
+                                size="md"
+                                value={glassVal}
+                                onChange={setGlassVal}
+                                options={[
+                                    {
+                                        label: 'Silver',
+                                        value: 'silver',
+                                        gliderClassName:
+                                            'bg-muted border border-border/60 shadow-[0_0_8px_var(--color-border)] text-foreground',
+                                    },
+                                    {
+                                        label: 'Gold',
+                                        value: 'gold',
+                                        gliderClassName:
+                                            'bg-chart-4/20 border border-chart-4/40 shadow-[0_0_12px_rgba(245,158,11,0.25)] text-chart-4 font-bold',
+                                    },
+                                    {
+                                        label: 'Platinum',
+                                        value: 'platinum',
+                                        gliderClassName:
+                                            'bg-chart-2/20 border border-chart-2/40 shadow-[0_0_12px_rgba(34,211,238,0.25)] text-chart-2 font-bold',
+                                    },
+                                ]}
+                            />
+                        </div>
+                        <div className="truncate rounded border border-border/20 bg-muted/30 p-2.5 font-mono text-[10px] text-muted-foreground">
+                            Plan:{' '}
+                            <span className="font-bold text-primary capitalize">
+                                {glassVal}
+                            </span>
+                        </div>
+                    </CardContent>
+                </Card>
+
+                {/* 11. Sliding Radio Group (Neon) */}
+                <Card className="flex flex-col justify-between border border-border/40 bg-card/25 backdrop-blur-xs">
+                    <CardHeader className="pb-3">
+                        <CardTitle className="flex items-center gap-2 text-sm font-bold">
+                            <Layers className="size-4 text-chart-1" />
+                            Sliding Radio (Neon)
+                        </CardTitle>
+                        <CardDescription className="text-xs">
+                            Modern neon design with soft glowing glider backing.
+                        </CardDescription>
+                    </CardHeader>
+                    <CardContent className="flex flex-1 flex-col justify-center space-y-3 pb-6">
+                        <div className="flex w-full justify-center">
+                            <SlidingRadioGroup
+                                variant="neon"
+                                size="sm"
+                                value={neonVal}
+                                onChange={setNeonVal}
+                                options={[
+                                    { label: 'Monthly', value: 'monthly' },
+                                    { label: 'Quarterly', value: 'quarterly' },
+                                    { label: 'Annually', value: 'annually' },
+                                ]}
+                            />
+                        </div>
+                        <div className="truncate rounded border border-border/20 bg-muted/30 p-2.5 font-mono text-[10px] text-muted-foreground">
+                            Cycle:{' '}
+                            <span className="font-bold text-primary capitalize">
+                                {neonVal}
+                            </span>
+                        </div>
+                    </CardContent>
+                </Card>
+
+                {/* 12. Sliding Radio Group (Bouncy) */}
+                <Card className="flex flex-col justify-between border border-border/40 bg-card/25 backdrop-blur-xs">
+                    <CardHeader className="pb-3">
+                        <CardTitle className="flex items-center gap-2 text-sm font-bold">
+                            <Sliders className="size-4 text-chart-2" />
+                            Sliding Radio (Bouncy)
+                        </CardTitle>
+                        <CardDescription className="text-xs">
+                            Minimalist pill layout featuring a high elasticity
+                            spring glider.
+                        </CardDescription>
+                    </CardHeader>
+                    <CardContent className="flex flex-1 flex-col justify-center space-y-3 pb-6">
+                        <div className="flex w-full justify-center">
+                            <SlidingRadioGroup
+                                variant="bouncy"
+                                size="md"
+                                value={bouncyVal}
+                                onChange={setBouncyVal}
+                                options={[
+                                    { label: 'All', value: 'all' },
+                                    { label: 'Active', value: 'active' },
+                                    { label: 'Completed', value: 'completed' },
+                                ]}
+                            />
+                        </div>
+                        <div className="truncate rounded border border-border/20 bg-muted/30 p-2.5 font-mono text-[10px] text-muted-foreground">
+                            Filter:{' '}
+                            <span className="font-bold text-primary capitalize">
+                                {bouncyVal}
                             </span>
                         </div>
                     </CardContent>

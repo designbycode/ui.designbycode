@@ -41,12 +41,8 @@ export function HeroSplit() {
                 </ul>
 
                 <div className="flex flex-wrap items-center gap-4 pt-4">
-                    <ButtonPulse>
-                        Setup Shield
-                    </ButtonPulse>
-                    <ButtonDraw>
-                        Read Whitepaper
-                    </ButtonDraw>
+                    <ButtonPulse>Setup Shield</ButtonPulse>
+                    <ButtonDraw>Read Whitepaper</ButtonDraw>
                 </div>
             </div>
 

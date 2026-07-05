@@ -1,7 +1,14 @@
 import { Sparkles, Shield, Globe, Heart, Award, Terminal } from 'lucide-react';
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
+import {
+    Card,
+    CardHeader,
+    CardTitle,
+    CardDescription,
+    CardContent,
+    CardFooter,
+} from '@/components/ui/card';
 import { cn } from '@/lib/utils';
 
 // Import all registry components
@@ -29,6 +36,7 @@ import { MusicPlayer } from '@/registry/new-york/components/blocks/music-player/
 import GSAPMarquee from '@/registry/new-york/components/ui/animations/gsap-marquee';
 import Marquee from '@/registry/new-york/components/ui/animations/marquee';
 import TextAnimator from '@/registry/new-york/components/ui/animations/text-animator';
+import { TextCircleLoader } from '@/registry/new-york/components/ui/animations/text-circle-loader';
 import { ButtonParticles } from '@/registry/new-york/components/ui/buttons/button-particles';
 import { PixelCanvas } from '@/registry/new-york/components/ui/canvas/pixel-canvas';
 import { ConstellationCanvas } from '@/registry/new-york/components/ui/canvas/constellation-canvas';
@@ -45,6 +53,7 @@ import { InputPhone } from '@/registry/new-york/components/ui/inputs/input-phone
 import { InputCurrency } from '@/registry/new-york/components/ui/inputs/input-currency';
 import { InputNumber } from '@/registry/new-york/components/ui/inputs/input-number';
 import { InputPassword } from '@/registry/new-york/components/ui/inputs/input-password';
+import { SlidingRadioGroup } from '@/registry/new-york/components/ui/inputs/sliding-radio-group';
 import {
     MultiSelect,
     MultiSelectTrigger,
@@ -184,7 +193,6 @@ import useDarkMode from '@/registry/new-york/hooks/use-dark-mode';
 import useHeadroom from '@/registry/new-york/hooks/use-headroom';
 import { useHover } from '@/registry/new-york/hooks/use-hover';
 
-
 function InputSlugPreview() {
     const [value, setValue] = useState('');
 
@@ -319,6 +327,115 @@ function InputPasswordPreview() {
     );
 }
 
+function SlidingRadioGroupPreview() {
+    const [glassVal, setGlassVal] = useState('gold');
+    const [neonVal, setNeonVal] = useState('monthly');
+    const [bouncyVal, setBouncyVal] = useState('all');
+
+    return (
+        <div className="mx-auto w-full max-w-md space-y-8 rounded-xl border border-border/50 bg-card p-6">
+            {/* Glass Style */}
+            <div className="space-y-2">
+                <label className="block text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
+                    Glass Variant (Plans)
+                </label>
+                <div className="flex flex-col gap-2.5">
+                    <div className="flex w-full justify-center">
+                        <SlidingRadioGroup
+                            variant="glass"
+                            size="md"
+                            value={glassVal}
+                            onChange={setGlassVal}
+                            options={[
+                                {
+                                    label: 'Silver',
+                                    value: 'silver',
+                                    gliderClassName:
+                                        'bg-muted border border-border/60 shadow-[0_0_8px_var(--color-border)] text-foreground',
+                                },
+                                {
+                                    label: 'Gold',
+                                    value: 'gold',
+                                    gliderClassName:
+                                        'bg-chart-4/20 border border-chart-4/40 shadow-[0_0_12px_rgba(245,158,11,0.25)] text-chart-4 font-bold',
+                                },
+                                {
+                                    label: 'Platinum',
+                                    value: 'platinum',
+                                    gliderClassName:
+                                        'bg-chart-2/20 border border-chart-2/40 shadow-[0_0_12px_rgba(34,211,238,0.25)] text-chart-2 font-bold',
+                                },
+                            ]}
+                        />
+                    </div>
+                    <div className="rounded bg-muted/40 p-2 text-center font-mono text-[10px] text-muted-foreground">
+                        Selected:{' '}
+                        <span className="font-bold text-primary capitalize">
+                            {glassVal}
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            {/* Neon Style */}
+            <div className="space-y-2">
+                <label className="block text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
+                    Neon Variant (Billing Cycle)
+                </label>
+                <div className="flex flex-col gap-2.5">
+                    <div className="flex w-full justify-center">
+                        <SlidingRadioGroup
+                            variant="neon"
+                            size="sm"
+                            value={neonVal}
+                            onChange={setNeonVal}
+                            options={[
+                                { label: 'Monthly', value: 'monthly' },
+                                { label: 'Quarterly', value: 'quarterly' },
+                                { label: 'Annually', value: 'annually' },
+                            ]}
+                        />
+                    </div>
+                    <div className="rounded bg-muted/40 p-2 text-center font-mono text-[10px] text-muted-foreground">
+                        Selected:{' '}
+                        <span className="font-bold text-primary capitalize">
+                            {neonVal}
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            {/* Bouncy Style */}
+            <div className="space-y-2">
+                <label className="block text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
+                    Bouncy Variant (Filters)
+                </label>
+                <div className="flex flex-col gap-2.5">
+                    <div className="flex w-full justify-center">
+                        <SlidingRadioGroup
+                            variant="bouncy"
+                            size="md"
+                            value={bouncyVal}
+                            onChange={setBouncyVal}
+                            options={[
+                                { label: 'All', value: 'all' },
+                                { label: 'Active', value: 'active' },
+                                { label: 'Completed', value: 'completed' },
+                            ]}
+                        />
+                    </div>
+                    <div className="rounded bg-muted/40 p-2 text-center font-mono text-[10px] text-muted-foreground">
+                        Selected:{' '}
+                        <span className="font-bold text-primary capitalize">
+                            {bouncyVal}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
 function MultiSelectPreview() {
     const [selected, setSelected] = useState<string[]>([]);
     const options = [
@@ -341,10 +458,7 @@ function MultiSelectPreview() {
                     </MultiSelectTrigger>
                     <MultiSelectContent>
                         {options.map((opt) => (
-                            <MultiSelectItem
-                                key={opt.value}
-                                value={opt.value}
-                            >
+                            <MultiSelectItem key={opt.value} value={opt.value}>
                                 {opt.label}
                             </MultiSelectItem>
                         ))}
@@ -372,11 +486,7 @@ function AnimatedTabsPreview() {
 
     return (
         <div className="mx-auto flex min-h-[150px] w-full max-w-md flex-col items-center justify-center rounded-xl border border-border/50 bg-card p-6">
-            <AnimatedTabs
-                tabs={tabList}
-                value={active}
-                onChange={setActive}
-            />
+            <AnimatedTabs tabs={tabList} value={active} onChange={setActive} />
             <div className="mt-4 text-xs text-muted-foreground">
                 Active tab:{' '}
                 <span className="font-mono font-bold text-primary">
@@ -569,7 +679,8 @@ function UseHeadroomPreview() {
     return (
         <div className="w-full space-y-4 rounded-xl border border-border/50 bg-card p-6">
             <div className="mb-2 text-xs text-muted-foreground">
-                Scroll the page downwards and upwards to see useHeadroom header pin state.
+                Scroll the page downwards and upwards to see useHeadroom header
+                pin state.
             </div>
             <div
                 className={`sticky top-0 z-50 flex h-12 w-full items-center justify-between rounded-lg border px-4 transition-all duration-300 ${
@@ -578,7 +689,7 @@ function UseHeadroomPreview() {
                         : '-translate-y-16 border-transparent bg-transparent'
                 }`}
             >
-                <span className="font-bold text-xs">Pinned Header Demo</span>
+                <span className="text-xs font-bold">Pinned Header Demo</span>
                 <span className="font-mono text-[10px] text-primary">
                     {pinned ? 'PINNED' : 'UNPINNED'}
                 </span>
@@ -636,6 +747,48 @@ export default function RegistryPreview({ name }: { name: string }) {
         );
     }
 
+    // Text Circle Loader
+    if (name === 'text-circle-loader') {
+        return (
+            <div className="flex min-h-[300px] w-full flex-wrap items-center justify-center gap-8 rounded-xl border border-border/50 bg-card/45 p-8">
+                <div className="flex flex-col items-center gap-3">
+                    <span className="text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
+                        Neon Ring
+                    </span>
+                    <TextCircleLoader
+                        variant="neon-ring"
+                        text="Loading"
+                        size="sm"
+                        textAnimation="wave"
+                    />
+                </div>
+                <div className="flex flex-col items-center gap-3">
+                    <span className="text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
+                        Gradient Dash
+                    </span>
+                    <TextCircleLoader
+                        variant="gradient-dash"
+                        text="Parsing"
+                        size="md"
+                        textAnimation="pop"
+                        ringDuration={3}
+                    />
+                </div>
+                <div className="flex flex-col items-center gap-3">
+                    <span className="text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
+                        Liquid Blob
+                    </span>
+                    <TextCircleLoader
+                        variant="liquid-blob"
+                        text="Synthesizing"
+                        size="lg"
+                        textAnimation="pulse"
+                    />
+                </div>
+            </div>
+        );
+    }
+
     // 5. Button Particles
     if (name === 'button-particles') {
         return (
@@ -671,7 +824,7 @@ export default function RegistryPreview({ name }: { name: string }) {
     if (name === 'constellation-canvas') {
         return (
             <div className="relative grid h-[250px] w-full place-items-center overflow-hidden rounded-xl border border-border/50 bg-card">
-                <ConstellationCanvas className="absolute inset-0 opacity-40 text-primary" />
+                <ConstellationCanvas className="absolute inset-0 text-primary opacity-40" />
                 <div className="pointer-events-none relative z-10 text-center">
                     <h3 className="text-xl font-bold text-foreground">
                         Constellation Canvas
@@ -688,7 +841,7 @@ export default function RegistryPreview({ name }: { name: string }) {
     if (name === 'flow-field-canvas') {
         return (
             <div className="relative grid h-[250px] w-full place-items-center overflow-hidden rounded-xl border border-border/50 bg-card">
-                <FlowFieldCanvas className="absolute inset-0 opacity-30 text-primary" />
+                <FlowFieldCanvas className="absolute inset-0 text-primary opacity-30" />
                 <div className="pointer-events-none relative z-10 text-center">
                     <h3 className="text-xl font-bold text-foreground">
                         Flow Field Canvas
@@ -705,7 +858,10 @@ export default function RegistryPreview({ name }: { name: string }) {
     if (name === 'metaball-canvas') {
         return (
             <div className="relative grid h-[250px] w-full place-items-center overflow-hidden rounded-xl border border-border/50 bg-card">
-                <MetaballCanvas className="absolute inset-0 opacity-50" color="var(--color-primary)" />
+                <MetaballCanvas
+                    className="absolute inset-0 opacity-50"
+                    color="var(--color-primary)"
+                />
                 <div className="pointer-events-none relative z-10 text-center">
                     <h3 className="text-xl font-bold text-foreground">
                         Metaball Canvas
@@ -739,7 +895,7 @@ export default function RegistryPreview({ name }: { name: string }) {
     if (name === 'wave-grid-canvas') {
         return (
             <div className="relative grid h-[250px] w-full place-items-center overflow-hidden rounded-xl border border-border/50 bg-card">
-                <WaveGridCanvas className="absolute inset-0 opacity-60 text-primary" />
+                <WaveGridCanvas className="absolute inset-0 text-primary opacity-60" />
                 <div className="pointer-events-none relative z-10 text-center">
                     <h3 className="text-xl font-bold text-foreground">
                         Wave Grid Canvas
@@ -867,6 +1023,11 @@ export default function RegistryPreview({ name }: { name: string }) {
         return <InputPasswordPreview />;
     }
 
+    // Sliding Radio Group
+    if (name === 'sliding-radio-group') {
+        return <SlidingRadioGroupPreview />;
+    }
+
     // 12. Multi Select
     if (name === 'multi-select') {
         return <MultiSelectPreview />;
@@ -911,7 +1072,9 @@ export default function RegistryPreview({ name }: { name: string }) {
                     <h3 className="font-bebas-neue! text-2xl font-bold tracking-wide">
                         WebGL Black Hole
                     </h3>
-                    <p className="text-sm text-zinc-400">Interactive 3D simulation powered by Three.js</p>
+                    <p className="text-sm text-zinc-400">
+                        Interactive 3D simulation powered by Three.js
+                    </p>
                 </div>
             </div>
         );
@@ -926,7 +1089,9 @@ export default function RegistryPreview({ name }: { name: string }) {
                     <h3 className="font-bebas-neue! text-2xl font-bold tracking-wide">
                         WebGL Feedback Noise Star
                     </h3>
-                    <p className="text-sm text-zinc-400">Dynamic reaction-diffusion noise shader simulation</p>
+                    <p className="text-sm text-zinc-400">
+                        Dynamic reaction-diffusion noise shader simulation
+                    </p>
                 </div>
             </div>
         );
@@ -1656,9 +1821,7 @@ export default function RegistryPreview({ name }: { name: string }) {
     if (name === 'button-magnetic') {
         return (
             <div className="grid min-h-[150px] w-full place-items-center rounded-xl border border-border/50 bg-card p-6">
-                <ButtonMagnetic>
-                    Hover Me (Magnetic!)
-                </ButtonMagnetic>
+                <ButtonMagnetic>Hover Me (Magnetic!)</ButtonMagnetic>
             </div>
         );
     }
@@ -1667,9 +1830,7 @@ export default function RegistryPreview({ name }: { name: string }) {
     if (name === 'button-shine') {
         return (
             <div className="grid min-h-[150px] w-full place-items-center rounded-xl border border-border/50 bg-card p-6">
-                <ButtonShine>
-                    Hover for Shine Shimmer
-                </ButtonShine>
+                <ButtonShine>Hover for Shine Shimmer</ButtonShine>
             </div>
         );
     }
@@ -1921,7 +2082,9 @@ export default function RegistryPreview({ name }: { name: string }) {
     if (name === 'button-glowing-aura') {
         return (
             <div className="flex min-h-[150px] w-full items-center justify-center rounded-xl border border-border/50 bg-card p-6">
-                <ButtonGlowingAura auraColor="var(--color-chart-2)">Glowing Backlight</ButtonGlowingAura>
+                <ButtonGlowingAura auraColor="var(--color-chart-2)">
+                    Glowing Backlight
+                </ButtonGlowingAura>
             </div>
         );
     }
@@ -2379,9 +2542,24 @@ export default function RegistryPreview({ name }: { name: string }) {
     // Metric Breakdown Card
     if (name === 'metric-breakdown-card') {
         const breakdownItems = [
-            { label: 'Organic Search', value: '45,829', percentage: 54, color: 'var(--color-primary)' },
-            { label: 'Direct Traffic', value: '25,102', percentage: 30, color: 'var(--color-chart-1)' },
-            { label: 'Referral Links', value: '13,382', percentage: 16, color: 'var(--color-chart-2)' },
+            {
+                label: 'Organic Search',
+                value: '45,829',
+                percentage: 54,
+                color: 'var(--color-primary)',
+            },
+            {
+                label: 'Direct Traffic',
+                value: '25,102',
+                percentage: 30,
+                color: 'var(--color-chart-1)',
+            },
+            {
+                label: 'Referral Links',
+                value: '13,382',
+                percentage: 16,
+                color: 'var(--color-chart-2)',
+            },
         ];
 
         return (
@@ -2401,9 +2579,24 @@ export default function RegistryPreview({ name }: { name: string }) {
     // Metric Radial Card
     if (name === 'metric-radial-card') {
         const radialItems = [
-            { label: 'Completed Tasks', value: '84 / 100', percentage: 84, color: 'var(--color-primary)' },
-            { label: 'Core Operations', value: '62 / 100', percentage: 62, color: 'var(--color-chart-1)' },
-            { label: 'System Health', value: '95 / 100', percentage: 95, color: 'var(--color-chart-2)' },
+            {
+                label: 'Completed Tasks',
+                value: '84 / 100',
+                percentage: 84,
+                color: 'var(--color-primary)',
+            },
+            {
+                label: 'Core Operations',
+                value: '62 / 100',
+                percentage: 62,
+                color: 'var(--color-chart-1)',
+            },
+            {
+                label: 'System Health',
+                value: '95 / 100',
+                percentage: 95,
+                color: 'var(--color-chart-2)',
+            },
         ];
 
         return (
@@ -2521,15 +2714,17 @@ export default function RegistryPreview({ name }: { name: string }) {
     if (name === 'wrapper') {
         return (
             <div className="w-full py-4">
-                <Wrapper className="border border-dashed border-primary/40 bg-muted/20 p-6 text-center rounded-xl">
+                <Wrapper className="rounded-xl border border-dashed border-primary/40 bg-muted/20 p-6 text-center">
                     <span className="font-mono text-xs text-muted-foreground">
-                        [Wrapper Container Boundary (max-w-7xl, centered, padded)]
+                        [Wrapper Container Boundary (max-w-7xl, centered,
+                        padded)]
                     </span>
                     <h4 className="mt-2 text-sm font-bold text-foreground">
                         Container Wrapper
                     </h4>
                     <p className="mx-auto mt-1 max-w-xs text-xs text-muted-foreground">
-                        This layout component enforces unified gutters and maximum width limits across screen breakpoints.
+                        This layout component enforces unified gutters and
+                        maximum width limits across screen breakpoints.
                     </p>
                 </Wrapper>
             </div>
@@ -2805,7 +3000,7 @@ export default function RegistryPreview({ name }: { name: string }) {
         return (
             <div className="grid min-h-[200px] w-full place-items-center rounded-xl border border-border/50 bg-card p-6">
                 <RainbowBorder rounded="lg" glow={true} className="p-[2px]">
-                    <div className="bg-background text-foreground px-6 py-3 rounded-[7px] text-sm font-semibold shadow-sm">
+                    <div className="rounded-[7px] bg-background px-6 py-3 text-sm font-semibold text-foreground shadow-sm">
                         Rainbow Border Content
                     </div>
                 </RainbowBorder>
@@ -2816,7 +3011,7 @@ export default function RegistryPreview({ name }: { name: string }) {
     if (name === 'rainbow-button') {
         return (
             <div className="grid min-h-[200px] w-full place-items-center rounded-xl border border-border/50 bg-card p-6">
-                <GradientButton className="h-10 px-6 rounded-md">
+                <GradientButton className="h-10 rounded-md px-6">
                     Rainbow Button
                 </GradientButton>
             </div>
@@ -2839,10 +3034,15 @@ export default function RegistryPreview({ name }: { name: string }) {
                 <RainbowBorderCard rounded="lg" glow={true}>
                     <CardHeader>
                         <CardTitle className="text-lg">Rainbow Card</CardTitle>
-                        <CardDescription>A standard Card component wrapped in a customizable scrolling glow border.</CardDescription>
+                        <CardDescription>
+                            A standard Card component wrapped in a customizable
+                            scrolling glow border.
+                        </CardDescription>
                     </CardHeader>
                     <CardContent className="text-xs">
-                        This card container is fully styled to match the dark/light mode configurations while showcasing a colorful border glow.
+                        This card container is fully styled to match the
+                        dark/light mode configurations while showcasing a
+                        colorful border glow.
                     </CardContent>
                 </RainbowBorderCard>
             </div>

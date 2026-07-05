@@ -25,15 +25,11 @@ export function HeroPhoneMockup() {
                 />
 
                 <div className="flex flex-wrap items-center gap-4 pt-2">
-                    <ButtonNeon
-                        className="flex items-center gap-2"
-                    >
+                    <ButtonNeon className="flex items-center gap-2">
                         <Zap className="size-4" />
                         Download App
                     </ButtonNeon>
-                    <ButtonDraw>
-                        View Demo
-                    </ButtonDraw>
+                    <ButtonDraw>View Demo</ButtonDraw>
                 </div>
             </div>
 

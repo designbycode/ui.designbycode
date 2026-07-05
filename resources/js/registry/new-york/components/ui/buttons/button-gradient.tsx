@@ -5,45 +5,50 @@ import { Button } from '@/components/ui/button';
 
 import { useHover } from '@/registry/new-york/hooks/use-hover';
 
-export interface ButtonGradientProps extends React.ComponentPropsWithRef<typeof Button> {}
+export interface ButtonGradientProps extends React.ComponentPropsWithRef<
+    typeof Button
+> {}
 
-export const ButtonGradient = React.forwardRef<HTMLButtonElement, ButtonGradientProps>(
-    ({ className, children, ...props }, ref) => {
-        const { isHovered, hoverRef } = useHover();
+export const ButtonGradient = React.forwardRef<
+    HTMLButtonElement,
+    ButtonGradientProps
+>(({ className, children, ...props }, ref) => {
+    const { isHovered, hoverRef } = useHover();
 
-        const combinedRef = React.useCallback(
-            (node: HTMLButtonElement | null) => {
-                hoverRef(node);
-                if (typeof ref === 'function') {
-                    ref(node);
-                } else if (ref) {
-                    (ref as React.MutableRefObject<HTMLButtonElement | null>).current = node;
-                }
-            },
-            [ref, hoverRef]
-        );
+    const combinedRef = React.useCallback(
+        (node: HTMLButtonElement | null) => {
+            hoverRef(node);
+            if (typeof ref === 'function') {
+                ref(node);
+            } else if (ref) {
+                (
+                    ref as React.MutableRefObject<HTMLButtonElement | null>
+                ).current = node;
+            }
+        },
+        [ref, hoverRef],
+    );
 
-        return (
-            <Button
-                ref={combinedRef}
-                className={cn(
-                    'relative select-none active:scale-95 border border-transparent text-foreground',
-                    className,
-                )}
-                style={{
-                    backgroundImage: isHovered
-                        ? 'linear-gradient(var(--background), var(--background)), linear-gradient(to right, var(--color-chart-3), var(--color-chart-1), var(--color-chart-5))'
-                        : 'linear-gradient(var(--background), var(--background)), linear-gradient(to right, var(--color-chart-1), var(--color-chart-5), var(--color-chart-3))',
-                    backgroundOrigin: 'border-box',
-                    backgroundClip: 'padding-box, border-box',
-                }}
-                {...props}
-            >
-                {children}
-            </Button>
-        );
-    },
-);
+    return (
+        <Button
+            ref={combinedRef}
+            className={cn(
+                'relative border border-transparent text-foreground select-none active:scale-95',
+                className,
+            )}
+            style={{
+                backgroundImage: isHovered
+                    ? 'linear-gradient(var(--background), var(--background)), linear-gradient(to right, var(--color-chart-3), var(--color-chart-1), var(--color-chart-5))'
+                    : 'linear-gradient(var(--background), var(--background)), linear-gradient(to right, var(--color-chart-1), var(--color-chart-5), var(--color-chart-3))',
+                backgroundOrigin: 'border-box',
+                backgroundClip: 'padding-box, border-box',
+            }}
+            {...props}
+        >
+            {children}
+        </Button>
+    );
+});
 
 ButtonGradient.displayName = 'ButtonGradient';
 

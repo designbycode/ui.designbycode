@@ -126,12 +126,7 @@ const DEFAULT_COLORS = [
 ];
 
 export type ParticleType =
-    | 'burst'
-    | 'sparkle'
-    | 'confetti'
-    | 'vburst'
-    | 'hburst'
-    | 'spiral';
+    'burst' | 'sparkle' | 'confetti' | 'vburst' | 'hburst' | 'spiral';
 
 interface ButtonParticlesProps extends React.ComponentProps<typeof Button> {
     particle?: ParticleType;

@@ -33,27 +33,28 @@ export function PricingResources() {
     };
 
     return (
-        <div className="mx-auto flex w-full max-w-5xl flex-col items-center gap-10 px-4 py-12 @container">
+        <div className="@container mx-auto flex w-full max-w-5xl flex-col items-center gap-10 px-4 py-12">
             {/* Header */}
             <div className="max-w-2xl space-y-4 text-center">
                 <Badge
                     variant="outline"
                     className="border-primary/30 bg-primary/5 px-3 py-1 font-mono text-xs tracking-widest text-primary uppercase"
                 >
-                    <Sparkles className="mr-1.5 size-3.5 inline-block text-primary animate-pulse" />
+                    <Sparkles className="mr-1.5 inline-block size-3.5 animate-pulse text-primary" />
                     Custom Calculator
                 </Badge>
                 <h2 className="text-4xl font-extrabold tracking-tight sm:text-5xl">
                     Configure Your Resources
                 </h2>
-                <p className="text-sm text-muted-foreground max-w-lg mx-auto">
-                    Design a custom server container suited for your deployment. Move the sliders to scale CPU, RAM, and Storage.
+                <p className="mx-auto max-w-lg text-sm text-muted-foreground">
+                    Design a custom server container suited for your deployment.
+                    Move the sliders to scale CPU, RAM, and Storage.
                 </p>
             </div>
 
-            <div className="grid w-full grid-cols-1 gap-8 @4xl:grid-cols-12 items-stretch">
+            <div className="grid w-full grid-cols-1 items-stretch gap-8 @4xl:grid-cols-12">
                 {/* Sliders Card */}
-                <Card className="col-span-1 @4xl:col-span-7 border bg-card/65 backdrop-blur-xs p-6 shadow-md space-y-8 flex flex-col justify-between">
+                <Card className="col-span-1 flex flex-col justify-between space-y-8 border bg-card/65 p-6 shadow-md backdrop-blur-xs @4xl:col-span-7">
                     {/* CPU Sliders */}
                     <div className="space-y-4">
                         <div className="flex items-center justify-between">
@@ -73,7 +74,7 @@ export function PricingResources() {
                             step={1}
                             className="py-1"
                         />
-                        <div className="flex justify-between text-[10px] text-muted-foreground font-mono">
+                        <div className="flex justify-between font-mono text-[10px] text-muted-foreground">
                             <span>1 Core</span>
                             <span>8 Cores</span>
                             <span>16 Cores</span>
@@ -84,7 +85,7 @@ export function PricingResources() {
                     <div className="space-y-4">
                         <div className="flex items-center justify-between">
                             <Label className="flex items-center gap-2 text-sm font-semibold text-foreground">
-                                <Cpu className="size-4 text-primary animate-pulse" />
+                                <Cpu className="size-4 animate-pulse text-primary" />
                                 Memory (RAM)
                             </Label>
                             <span className="font-mono text-base font-bold text-foreground">
@@ -99,7 +100,7 @@ export function PricingResources() {
                             step={2}
                             className="py-1"
                         />
-                        <div className="flex justify-between text-[10px] text-muted-foreground font-mono">
+                        <div className="flex justify-between font-mono text-[10px] text-muted-foreground">
                             <span>2 GB</span>
                             <span>32 GB</span>
                             <span>64 GB</span>
@@ -125,7 +126,7 @@ export function PricingResources() {
                             step={10}
                             className="py-1"
                         />
-                        <div className="flex justify-between text-[10px] text-muted-foreground font-mono">
+                        <div className="flex justify-between font-mono text-[10px] text-muted-foreground">
                             <span>10 GB</span>
                             <span>500 GB</span>
                             <span>1TB (1000 GB)</span>
@@ -134,25 +135,39 @@ export function PricingResources() {
                 </Card>
 
                 {/* Estimate & Checkout Card */}
-                <Card className="col-span-1 @4xl:col-span-5 border border-primary bg-card/90 shadow-xl p-6 flex flex-col justify-between min-h-[380px]">
+                <Card className="col-span-1 flex min-h-[380px] flex-col justify-between border border-primary bg-card/90 p-6 shadow-xl @4xl:col-span-5">
                     <div className="space-y-6">
                         <CardHeader className="p-0">
-                            <CardTitle className="text-xl font-bold">Estimated Cost</CardTitle>
-                            <CardDescription className="text-xs">Based on your selected vCPU, RAM, and Storage layout.</CardDescription>
+                            <CardTitle className="text-xl font-bold">
+                                Estimated Cost
+                            </CardTitle>
+                            <CardDescription className="text-xs">
+                                Based on your selected vCPU, RAM, and Storage
+                                layout.
+                            </CardDescription>
                         </CardHeader>
 
                         {/* Price Display */}
-                        <div className="py-4 border-y space-y-2">
+                        <div className="space-y-2 border-y py-4">
                             <div className="flex items-baseline justify-center">
-                                <span className="text-5xl font-black font-mono tracking-tight text-primary animate-pulse">
+                                <span className="animate-pulse font-mono text-5xl font-black tracking-tight text-primary">
                                     ${calculateMonthlyPrice()}
                                 </span>
-                                <span className="text-sm text-muted-foreground ml-1">/month</span>
+                                <span className="ml-1 text-sm text-muted-foreground">
+                                    /month
+                                </span>
                             </div>
 
                             {/* Billing Switch */}
                             <div className="flex items-center justify-center gap-3 pt-3">
-                                <span className={cn('text-xs font-semibold', !isYearly ? 'text-foreground' : 'text-muted-foreground')}>
+                                <span
+                                    className={cn(
+                                        'text-xs font-semibold',
+                                        !isYearly
+                                            ? 'text-foreground'
+                                            : 'text-muted-foreground',
+                                    )}
+                                >
                                     Monthly
                                 </span>
                                 <Switch
@@ -160,9 +175,19 @@ export function PricingResources() {
                                     onCheckedChange={setIsYearly}
                                     className="scale-90"
                                 />
-                                <span className={cn('text-xs font-semibold flex items-center gap-1', isYearly ? 'text-foreground' : 'text-muted-foreground')}>
+                                <span
+                                    className={cn(
+                                        'flex items-center gap-1 text-xs font-semibold',
+                                        isYearly
+                                            ? 'text-foreground'
+                                            : 'text-muted-foreground',
+                                    )}
+                                >
                                     Yearly
-                                    <Badge variant="secondary" className="bg-primary/15 text-primary text-[9px] py-0 px-1 border-0">
+                                    <Badge
+                                        variant="secondary"
+                                        className="border-0 bg-primary/15 px-1 py-0 text-[9px] text-primary"
+                                    >
                                         -20%
                                     </Badge>
                                 </span>
@@ -185,13 +210,15 @@ export function PricingResources() {
                             </li>
                             <li className="flex items-center gap-2">
                                 <Check className="size-4 shrink-0 text-primary" />
-                                <span>Unlimited incoming/outgoing bandwidth</span>
+                                <span>
+                                    Unlimited incoming/outgoing bandwidth
+                                </span>
                             </li>
                         </ul>
                     </div>
 
                     <CardFooter className="p-0 pt-6">
-                        <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90 shadow-md">
+                        <Button className="w-full bg-primary text-primary-foreground shadow-md hover:bg-primary/90">
                             Deploy Server Now
                         </Button>
                     </CardFooter>

@@ -5,7 +5,9 @@ import { cn } from '@/lib/utils';
 import { Input } from '@/components/ui/input';
 import { RainbowBorder } from '@/registry/new-york/components/ui/borders/rainbow-border';
 
-export interface RainbowBorderInputProps extends React.ComponentProps<typeof Input> {
+export interface RainbowBorderInputProps extends React.ComponentProps<
+    typeof Input
+> {
     borderWidth?: string;
     animationDuration?: string;
     colors?: string[];
@@ -16,7 +18,10 @@ export interface RainbowBorderInputProps extends React.ComponentProps<typeof Inp
     wrapperClassName?: string;
 }
 
-export const RainbowBorderInput = React.forwardRef<HTMLInputElement, RainbowBorderInputProps>(
+export const RainbowBorderInput = React.forwardRef<
+    HTMLInputElement,
+    RainbowBorderInputProps
+>(
     (
         {
             className,
@@ -32,12 +37,18 @@ export const RainbowBorderInput = React.forwardRef<HTMLInputElement, RainbowBord
         },
         ref,
     ) => {
-        const roundedInputClass = 
-            rounded === 'none' ? 'rounded-none' :
-            rounded === 'xs' ? 'rounded-xs' :
-            rounded === 'sm' ? 'rounded-sm' :
-            rounded === 'md' ? 'rounded-md' :
-            rounded === 'lg' ? 'rounded-lg' : 'rounded-full';
+        const roundedInputClass =
+            rounded === 'none'
+                ? 'rounded-none'
+                : rounded === 'xs'
+                  ? 'rounded-xs'
+                  : rounded === 'sm'
+                    ? 'rounded-sm'
+                    : rounded === 'md'
+                      ? 'rounded-md'
+                      : rounded === 'lg'
+                        ? 'rounded-lg'
+                        : 'rounded-full';
 
         return (
             <RainbowBorder
@@ -48,12 +59,12 @@ export const RainbowBorderInput = React.forwardRef<HTMLInputElement, RainbowBord
                 glow={glow}
                 glowBlur={glowBlur}
                 glowOpacity={glowOpacity}
-                className={cn('p-[1px] w-full', wrapperClassName)}
+                className={cn('w-full p-[1px]', wrapperClassName)}
             >
                 <Input
                     ref={ref}
                     className={cn(
-                        'bg-background text-foreground border-0 shadow-xs focus-visible:ring-0 focus-visible:ring-offset-0 w-full',
+                        'w-full border-0 bg-background text-foreground shadow-xs focus-visible:ring-0 focus-visible:ring-offset-0',
                         roundedInputClass,
                         className,
                     )}

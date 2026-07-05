@@ -45,12 +45,8 @@ export function HeroFeaturesGrid() {
                 />
 
                 <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
-                    <ButtonGradient>
-                        Get Started
-                    </ButtonGradient>
-                    <ButtonDraw
-                        className="flex items-center gap-1.5"
-                    >
+                    <ButtonGradient>Get Started</ButtonGradient>
+                    <ButtonDraw className="flex items-center gap-1.5">
                         Read System Docs
                         <ArrowRight className="size-4" />
                     </ButtonDraw>

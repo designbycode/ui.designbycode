@@ -1,11 +1,7 @@
 export type PixelShape = 'square' | 'circle' | 'diamond' | 'star' | 'hexagon';
 
 export type AnimationType =
-    | 'radial'
-    | 'wave'
-    | 'random'
-    | 'diagonal'
-    | 'spiral';
+    'radial' | 'wave' | 'random' | 'diagonal' | 'spiral';
 
 export type AnimationDirection = 'appear' | 'disappear';
 

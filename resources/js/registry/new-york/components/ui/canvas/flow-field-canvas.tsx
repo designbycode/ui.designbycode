@@ -31,7 +31,10 @@ interface FlowParticle {
     maxLife: number;
 }
 
-export const FlowFieldCanvas = React.forwardRef<HTMLDivElement, FlowFieldCanvasProps>(
+export const FlowFieldCanvas = React.forwardRef<
+    HTMLDivElement,
+    FlowFieldCanvasProps
+>(
     (
         {
             className,
@@ -44,13 +47,16 @@ export const FlowFieldCanvas = React.forwardRef<HTMLDivElement, FlowFieldCanvasP
             interactive = true,
             ...props
         },
-        ref
+        ref,
     ) => {
         const containerRef = React.useRef<HTMLDivElement>(null);
         const canvasRef = React.useRef<HTMLCanvasElement>(null);
         const mouseRef = React.useRef<{ x: number; y: number } | null>(null);
 
-        React.useImperativeHandle(ref, () => containerRef.current as HTMLDivElement);
+        React.useImperativeHandle(
+            ref,
+            () => containerRef.current as HTMLDivElement,
+        );
 
         React.useEffect(() => {
             const canvas = canvasRef.current;
@@ -131,7 +137,10 @@ export const FlowFieldCanvas = React.forwardRef<HTMLDivElement, FlowFieldCanvasP
                 if (colorStr.startsWith('--')) {
                     targetColor = `var(${colorStr})`;
                 }
-                if (!targetColor.includes('var(') && !targetColor.includes('--')) {
+                if (
+                    !targetColor.includes('var(') &&
+                    !targetColor.includes('--')
+                ) {
                     return targetColor;
                 }
                 try {
@@ -150,21 +159,25 @@ export const FlowFieldCanvas = React.forwardRef<HTMLDivElement, FlowFieldCanvasP
             const draw = () => {
                 // Apply trail fade effect
                 ctx.fillStyle = `rgba(0, 0, 0, ${fadeRate})`;
-                
+
                 // If trail fade is not 1, we fill with translucent black/card background to fade trails
                 // We fetch the theme background color to make trail fade work on light/dark modes
-                const bgStyle = window.getComputedStyle(container).backgroundColor;
-                const isDark = bgStyle.includes('rgba(0, 0, 0') || bgStyle.includes('rgb(0, 0, 0') || bgStyle.includes('rgb(9, 9, 11');
-                
-                ctx.fillStyle = isDark 
-                    ? `rgba(9, 9, 11, ${fadeRate})` 
+                const bgStyle =
+                    window.getComputedStyle(container).backgroundColor;
+                const isDark =
+                    bgStyle.includes('rgba(0, 0, 0') ||
+                    bgStyle.includes('rgb(0, 0, 0') ||
+                    bgStyle.includes('rgb(9, 9, 11');
+
+                ctx.fillStyle = isDark
+                    ? `rgba(9, 9, 11, ${fadeRate})`
                     : `rgba(255, 255, 255, ${fadeRate})`;
-                
+
                 ctx.fillRect(0, 0, width, height);
 
                 const activeColor = resolveColor(
                     color || window.getComputedStyle(container).color,
-                    'rgba(16, 185, 129, 0.8)'
+                    'rgba(16, 185, 129, 0.8)',
                 );
 
                 time += 0.003;
@@ -173,7 +186,13 @@ export const FlowFieldCanvas = React.forwardRef<HTMLDivElement, FlowFieldCanvasP
                     p.life++;
 
                     // Respawn dead particles or boundary checks
-                    if (p.life > p.maxLife || p.x < 0 || p.x > width || p.y < 0 || p.y > height) {
+                    if (
+                        p.life > p.maxLife ||
+                        p.x < 0 ||
+                        p.x > width ||
+                        p.y < 0 ||
+                        p.y > height
+                    ) {
                         Object.assign(p, createParticle());
                     }
 
@@ -191,7 +210,9 @@ export const FlowFieldCanvas = React.forwardRef<HTMLDivElement, FlowFieldCanvasP
                             const mouseAngle = Math.atan2(dy, dx);
                             // Blend angle towards mouse direction
                             const blendStrength = (1 - dist / 150) * 0.45;
-                            angle = angle * (1 - blendStrength) + mouseAngle * blendStrength;
+                            angle =
+                                angle * (1 - blendStrength) +
+                                mouseAngle * blendStrength;
                         }
                     }
 
@@ -225,15 +246,29 @@ export const FlowFieldCanvas = React.forwardRef<HTMLDivElement, FlowFieldCanvasP
                 resizeObserver.disconnect();
                 if (interactive) {
                     container.removeEventListener('mousemove', handleMouseMove);
-                    container.removeEventListener('mouseleave', handleMouseLeave);
+                    container.removeEventListener(
+                        'mouseleave',
+                        handleMouseLeave,
+                    );
                 }
             };
-        }, [particleCount, speed, fieldScale, lineWidth, fadeRate, color, interactive]);
+        }, [
+            particleCount,
+            speed,
+            fieldScale,
+            lineWidth,
+            fadeRate,
+            color,
+            interactive,
+        ]);
 
         return (
             <div
                 ref={containerRef}
-                className={cn('relative w-full h-full overflow-hidden select-none', className)}
+                className={cn(
+                    'relative h-full w-full overflow-hidden select-none',
+                    className,
+                )}
                 {...props}
             >
                 <canvas
@@ -243,7 +278,7 @@ export const FlowFieldCanvas = React.forwardRef<HTMLDivElement, FlowFieldCanvasP
                 />
             </div>
         );
-    }
+    },
 );
 
 FlowFieldCanvas.displayName = 'FlowFieldCanvas';

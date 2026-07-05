@@ -204,6 +204,10 @@ class RegistryBuildCommand extends Command
                     $resolvedRegDeps[] = $dep;
                 }
             }
+            if ($name === 'text-circle-loader') {
+                $resolvedRegDeps[] = url('r/animate-css/animate-neon-ring-rotate.json');
+                $resolvedRegDeps[] = url('r/animate-css/animate-liquid-blob-rotate.json');
+            }
             $item['registryDependencies'] = $resolvedRegDeps;
         }
         unset($item);
@@ -256,6 +260,7 @@ class RegistryBuildCommand extends Command
             'gsap-marquee' => 'A high-performance GSAP-powered horizontal scrolling marquee component.',
             'marquee' => 'A lightweight CSS-based horizontal text/elements scrolling marquee.',
             'text-animator' => 'An elegant text animator rendering typography with premium transitions.',
+            'text-circle-loader' => 'A circular rotating loader featuring character animation powered by TextAnimator and custom radial keyframe effects.',
             'button-magnetic' => 'A premium magnetic button pull effect that snaps to the cursor position on hover.',
             'button-particles' => 'A vibrant button trigger releasing interactive confetti/particle explosions on click.',
             'button-shine' => 'A sleek button design showcasing a subtle glowing reflective shine transition.',
@@ -275,6 +280,7 @@ class RegistryBuildCommand extends Command
             'input-password' => 'A password input field with a toggleable eye icon to show/hide the password text.',
             'input-slug' => 'A reactive field transforming raw keystrokes into clean URL-safe slug strings.',
             'multi-select' => 'A dropdown selector allowing search, selection, and creation of multiple tags.',
+            'sliding-radio-group' => 'An interactive sliding radio group with smooth spring animations and multiple design variants.',
             'progress-circle' => 'A clean SVG circular progress meter displaying animated percentage levels.',
             'interactive-rating' => 'A star-based rating component supporting interactive hover feedback and selections.',
             'animated-tabs' => 'A tab selection bar showcasing smooth fluid sliding indicator animations.',

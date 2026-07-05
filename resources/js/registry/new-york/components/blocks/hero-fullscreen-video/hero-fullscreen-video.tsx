@@ -41,12 +41,8 @@ export function HeroFullscreenVideo() {
                 />
 
                 <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-                    <ButtonPulse>
-                        Launch Demo
-                    </ButtonPulse>
-                    <ButtonDraw
-                        className="flex items-center gap-1.5"
-                    >
+                    <ButtonPulse>Launch Demo</ButtonPulse>
+                    <ButtonDraw className="flex items-center gap-1.5">
                         View Whitepaper
                         <ArrowRight className="size-4" />
                     </ButtonDraw>

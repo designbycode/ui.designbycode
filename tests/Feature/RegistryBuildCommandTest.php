@@ -53,6 +53,13 @@ test('registry build command scans files and generates database items and seeder
         ->and(count($textAnimator->files))->toBe(1)
         ->and($textAnimator->files[0]['content'])->toContain('export type AnimationType');
 
+    $textCircleLoader = Registry::where('name', 'text-circle-loader')->first();
+    expect($textCircleLoader)->not->toBeNull()
+        ->and($textCircleLoader->type)->toBe('registry:ui')
+        ->and($textCircleLoader->registryDependencies)->toContain(url('r/text-animator.json'))
+        ->and($textCircleLoader->registryDependencies)->toContain(url('r/animate-css/animate-neon-ring-rotate.json'))
+        ->and($textCircleLoader->registryDependencies)->toContain(url('r/animate-css/animate-liquid-blob-rotate.json'));
+
     // 4b. Assert the newly added numeric / formatted inputs are parsed correctly
     $inputPhone = Registry::where('name', 'input-phone')->first();
     expect($inputPhone)->not->toBeNull()
@@ -70,6 +77,12 @@ test('registry build command scans files and generates database items and seeder
         ->and($inputNumber->type)->toBe('registry:ui')
         ->and($inputNumber->dependencies)->toContain('lucide-react')
         ->and($inputNumber->registryDependencies)->toContain('input');
+
+    $slidingRadio = Registry::where('name', 'sliding-radio-group')->first();
+    expect($slidingRadio)->not->toBeNull()
+        ->and($slidingRadio->type)->toBe('registry:ui')
+        ->and($slidingRadio->dependencies)->toContain('motion')
+        ->and($slidingRadio->registryDependencies)->toContain('utils');
 
     // 5. Assert a specific multi-file block component exists and was parsed correctly
     $musicPlayer = Registry::where('name', 'music-player')->first();

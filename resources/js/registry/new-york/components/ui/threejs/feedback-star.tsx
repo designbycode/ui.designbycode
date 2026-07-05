@@ -66,14 +66,18 @@ export function FeedbackStar({
     }, []);
 
     useEffect(() => {
-        if (size.width === 0 || size.height === 0 || !containerRef.current) return;
+        if (size.width === 0 || size.height === 0 || !containerRef.current)
+            return;
 
         const el = containerRef.current;
         const width = size.width;
         const height = size.height;
 
         // 1. Renderer Setup
-        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
+        const renderer = new THREE.WebGLRenderer({
+            antialias: true,
+            alpha: false,
+        });
         const pixelRatio = Math.min(window.devicePixelRatio, 2);
         renderer.setPixelRatio(pixelRatio);
         renderer.setSize(width, height);
@@ -83,7 +87,7 @@ export function FeedbackStar({
         // 2. Render Target for Post-Processing
         const rtWidth = Math.floor(width * pixelRatio);
         const rtHeight = Math.floor(height * pixelRatio);
-        
+
         const renderTarget = new THREE.WebGLRenderTarget(rtWidth, rtHeight, {
             minFilter: THREE.LinearFilter,
             magFilter: THREE.LinearFilter,
@@ -92,7 +96,12 @@ export function FeedbackStar({
 
         // 3. 3D Scene (Gets rendered to texture)
         const scene3d = new THREE.Scene();
-        const camera3d = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
+        const camera3d = new THREE.PerspectiveCamera(
+            45,
+            width / height,
+            0.1,
+            1000,
+        );
         camera3d.position.z = 30;
 
         // Add Lights
@@ -140,7 +149,9 @@ export function FeedbackStar({
             u_time: { value: 0.0 },
             u_frame: { value: 0.0 },
             u_resolution: { value: new THREE.Vector2(rtWidth, rtHeight) },
-            u_mouse: { value: new THREE.Vector2(rtWidth * 0.5, rtHeight * 0.5) },
+            u_mouse: {
+                value: new THREE.Vector2(rtWidth * 0.5, rtHeight * 0.5),
+            },
             u_texture: { value: renderTarget.texture as any },
         };
 
@@ -285,12 +296,22 @@ export function FeedbackStar({
                 el.removeChild(renderer.domElement);
             }
         };
-    }, [size.width, size.height, geometryType, meshColor, speed, enableOrbitControls]);
+    }, [
+        size.width,
+        size.height,
+        geometryType,
+        meshColor,
+        speed,
+        enableOrbitControls,
+    ]);
 
     return (
         <div
             ref={containerRef}
-            className={cn('relative w-full h-full min-h-[350px] overflow-hidden select-none', className)}
+            className={cn(
+                'relative h-full min-h-[350px] w-full overflow-hidden select-none',
+                className,
+            )}
             aria-hidden="true"
         />
     );

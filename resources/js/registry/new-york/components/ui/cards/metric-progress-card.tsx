@@ -18,7 +18,10 @@ export interface MetricProgressCardProps extends React.ComponentProps<
     accentColor?: string; // CSS color string or custom variable
 }
 
-const MetricProgressCard = React.forwardRef<HTMLDivElement, MetricProgressCardProps>(
+const MetricProgressCard = React.forwardRef<
+    HTMLDivElement,
+    MetricProgressCardProps
+>(
     (
         {
             className,
@@ -43,16 +46,20 @@ const MetricProgressCard = React.forwardRef<HTMLDivElement, MetricProgressCardPr
                 if (typeof ref === 'function') {
                     ref(node);
                 } else if (ref) {
-                    (ref as React.MutableRefObject<HTMLDivElement | null>).current = node;
+                    (
+                        ref as React.MutableRefObject<HTMLDivElement | null>
+                    ).current = node;
                 }
             },
-            [ref, hoverRef]
+            [ref, hoverRef],
         );
 
         // Circular SVG configuration
         const radius = 24;
         const circumference = 2 * Math.PI * radius;
-        const fillOffset = circumference - (Math.min(Math.max(progress, 0), 100) / 100) * circumference;
+        const fillOffset =
+            circumference -
+            (Math.min(Math.max(progress, 0), 100) / 100) * circumference;
 
         return (
             <Card
@@ -73,7 +80,7 @@ const MetricProgressCard = React.forwardRef<HTMLDivElement, MetricProgressCardPr
                         </div>
                     </div>
 
-                    <div className="relative flex items-center justify-center size-14 select-none">
+                    <div className="relative flex size-14 items-center justify-center select-none">
                         <svg className="size-full -rotate-90">
                             {/* Track Circle */}
                             <circle
@@ -94,7 +101,9 @@ const MetricProgressCard = React.forwardRef<HTMLDivElement, MetricProgressCardPr
                                 stroke={accentColor}
                                 strokeWidth="4.5"
                                 strokeDasharray={circumference}
-                                strokeDashoffset={isHovered ? fillOffset - 5 : fillOffset}
+                                strokeDashoffset={
+                                    isHovered ? fillOffset - 5 : fillOffset
+                                }
                                 strokeLinecap="round"
                                 className="transition-all duration-700 ease-out"
                                 style={{

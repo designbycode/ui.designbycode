@@ -3368,6 +3368,80 @@ class AnimateSeeder extends Seeder
                 'registryDependencies' => null,
             ],
             [
+                'name' => 'animate-neon-ring-rotate',
+                'title' => 'Animate Neon Ring Rotate',
+                'description' => 'Rotates the circular loader with glowing variable neon gradient box shadows.',
+                'type' => 'registry:style',
+                'user_id' => 1,
+                'author' => 'designbycode',
+                'meta' => [
+                    'category' => 'animations',
+                    'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-neon-ring-rotate' => 'neon-ring-rotate var(--animate-neon-ring-rotate-duration, 2.5s) linear infinite',
+                ],
+                'css' => [
+                    '@layer utilities' => [
+                        '@keyframes neon-ring-rotate' => [
+                            '0%' => [
+                                'transform' => 'rotate(0deg)',
+                                'box-shadow' => '0 10px 20px 0 var(--background) inset, 0 20px 35px 0 var(--primary) inset, 0 60px 60px 0 var(--chart-3) inset',
+                            ],
+                            '50%' => [
+                                'transform' => 'rotate(180deg)',
+                                'box-shadow' => '0 10px 20px 0 var(--background) inset, 0 20px 25px 0 var(--destructive) inset, 0 40px 60px 0 var(--chart-2) inset',
+                            ],
+                            '100%' => [
+                                'transform' => 'rotate(360deg)',
+                                'box-shadow' => '0 10px 20px 0 var(--background) inset, 0 20px 35px 0 var(--primary) inset, 0 60px 60px 0 var(--chart-3) inset',
+                            ],
+                        ],
+                    ],
+                ],
+                'registryDependencies' => null,
+            ],
+            [
+                'name' => 'animate-liquid-blob-rotate',
+                'title' => 'Animate Liquid Blob Rotate',
+                'description' => 'A morphing organic fluid blob animation with smooth border-radius transitions and glowing box shadows.',
+                'type' => 'registry:style',
+                'user_id' => 1,
+                'author' => 'designbycode',
+                'meta' => [
+                    'category' => 'animations',
+                    'version' => '1.0.0',
+                ],
+                'css_vars' => [
+                    '--animate-liquid-blob-rotate' => 'liquid-blob-rotate var(--animate-liquid-blob-rotate-duration, 4s) ease-in-out infinite',
+                ],
+                'css' => [
+                    '@layer utilities' => [
+                        '@keyframes liquid-blob-rotate' => [
+                            '0%' => [
+                                'transform' => 'rotate(0deg)',
+                                'border-radius' => '42% 58% 70% 30% / 45% 45% 55% 55%',
+                                'box-shadow' => '0 10px 20px 0 var(--background) inset, 0 20px 30px 0 var(--chart-1) inset, 0 50px 50px 0 var(--chart-4) inset',
+                            ],
+                            '33%' => [
+                                'border-radius' => '70% 30% 52% 48% / 60% 40% 60% 40%',
+                                'box-shadow' => '0 10px 20px 0 var(--background) inset, 0 20px 30px 0 var(--chart-2) inset, 0 50px 50px 0 var(--chart-5) inset',
+                            ],
+                            '66%' => [
+                                'border-radius' => '50% 50% 30% 70% / 40% 60% 40% 60%',
+                                'box-shadow' => '0 10px 20px 0 var(--background) inset, 0 20px 30px 0 var(--chart-3) inset, 0 50px 50px 0 var(--primary) inset',
+                            ],
+                            '100%' => [
+                                'transform' => 'rotate(360deg)',
+                                'border-radius' => '42% 58% 70% 30% / 45% 45% 55% 55%',
+                                'box-shadow' => '0 10px 20px 0 var(--background) inset, 0 20px 30px 0 var(--primary) inset, 0 50px 50px 0 var(--chart-3) inset',
+                            ],
+                        ],
+                    ],
+                ],
+                'registryDependencies' => null,
+            ],
+            [
                 'name' => 'animate-all',
                 'title' => 'Animate All',
                 'description' => 'Meta-animation that bundles all available animation effects as registry dependencies without adding any CSS itself, allowing consumers to load the complete animation library through a single dependency reference.',
@@ -3484,6 +3558,8 @@ class AnimateSeeder extends Seeder
                     'https://ui.designbycode.co.za/r/animate-css/animate-ring.json',
                     'https://ui.designbycode.co.za/r/animate-css/animate-alarm.json',
                     'https://ui.designbycode.co.za/r/animate-css/animate-bell.json',
+                    'https://ui.designbycode.co.za/r/animate-css/animate-neon-ring-rotate.json',
+                    'https://ui.designbycode.co.za/r/animate-css/animate-liquid-blob-rotate.json',
                 ],
             ],
         ];

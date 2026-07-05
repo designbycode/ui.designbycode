@@ -32,12 +32,8 @@ export function HeroTrustedBy() {
                 />
 
                 <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
-                    <ButtonNeon>
-                        Book a Demo
-                    </ButtonNeon>
-                    <ButtonDraw>
-                        Contact Sales
-                    </ButtonDraw>
+                    <ButtonNeon>Book a Demo</ButtonNeon>
+                    <ButtonDraw>Contact Sales</ButtonDraw>
                 </div>
             </div>
 

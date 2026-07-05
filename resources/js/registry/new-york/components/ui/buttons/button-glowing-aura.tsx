@@ -3,14 +3,22 @@ import * as React from 'react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 
-export interface ButtonGlowingAuraProps extends React.ComponentPropsWithRef<typeof Button> {
+export interface ButtonGlowingAuraProps extends React.ComponentPropsWithRef<
+    typeof Button
+> {
     auraColor?: string;
 }
 
-export const ButtonGlowingAura = React.forwardRef<HTMLButtonElement, ButtonGlowingAuraProps>(
-    ({ className, children, auraColor = 'var(--color-primary)', ...props }, ref) => {
+export const ButtonGlowingAura = React.forwardRef<
+    HTMLButtonElement,
+    ButtonGlowingAuraProps
+>(
+    (
+        { className, children, auraColor = 'var(--color-primary)', ...props },
+        ref,
+    ) => {
         return (
-            <div className="relative group inline-block">
+            <div className="group relative inline-block">
                 {/* Glowing backlight aura */}
                 <div
                     className="absolute -inset-1 -z-10 rounded-lg opacity-40 blur-md transition duration-500 group-hover:opacity-75 group-hover:blur-lg"
@@ -20,7 +28,10 @@ export const ButtonGlowingAura = React.forwardRef<HTMLButtonElement, ButtonGlowi
                 />
                 <Button
                     ref={ref}
-                    className={cn('relative select-none active:scale-95 shadow-lg border border-primary/20', className)}
+                    className={cn(
+                        'relative border border-primary/20 shadow-lg select-none active:scale-95',
+                        className,
+                    )}
                     {...props}
                 >
                     {children}

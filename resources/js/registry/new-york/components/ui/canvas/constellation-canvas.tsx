@@ -28,7 +28,10 @@ interface Particle {
     radius: number;
 }
 
-export const ConstellationCanvas = React.forwardRef<HTMLDivElement, ConstellationCanvasProps>(
+export const ConstellationCanvas = React.forwardRef<
+    HTMLDivElement,
+    ConstellationCanvasProps
+>(
     (
         {
             className,
@@ -41,13 +44,16 @@ export const ConstellationCanvas = React.forwardRef<HTMLDivElement, Constellatio
             particleSize = 2,
             ...props
         },
-        ref
+        ref,
     ) => {
         const containerRef = React.useRef<HTMLDivElement>(null);
         const canvasRef = React.useRef<HTMLCanvasElement>(null);
         const mouseRef = React.useRef<{ x: number; y: number } | null>(null);
 
-        React.useImperativeHandle(ref, () => containerRef.current as HTMLDivElement);
+        React.useImperativeHandle(
+            ref,
+            () => containerRef.current as HTMLDivElement,
+        );
 
         React.useEffect(() => {
             const canvas = canvasRef.current;
@@ -120,7 +126,10 @@ export const ConstellationCanvas = React.forwardRef<HTMLDivElement, Constellatio
                 if (colorStr.startsWith('--')) {
                     targetColor = `var(${colorStr})`;
                 }
-                if (!targetColor.includes('var(') && !targetColor.includes('--')) {
+                if (
+                    !targetColor.includes('var(') &&
+                    !targetColor.includes('--')
+                ) {
                     return targetColor;
                 }
                 try {
@@ -142,11 +151,11 @@ export const ConstellationCanvas = React.forwardRef<HTMLDivElement, Constellatio
                 // Fetch colors inside loop to support reactive color scheme swaps
                 const activeParticleColor = resolveColor(
                     particleColor || getComputedStyle(container).color,
-                    'rgba(16, 185, 129, 0.8)'
+                    'rgba(16, 185, 129, 0.8)',
                 );
                 const activeLinkColor = resolveColor(
                     linkColor || `var(--border)`,
-                    'rgba(226, 232, 240, 0.4)'
+                    'rgba(226, 232, 240, 0.4)',
                 );
 
                 // Update and draw particles
@@ -168,7 +177,7 @@ export const ConstellationCanvas = React.forwardRef<HTMLDivElement, Constellatio
                 // Connect particles
                 for (let i = 0; i < particles.length; i++) {
                     const pi = particles[i];
-                    
+
                     // Connect to mouse if active
                     if (mouseRef.current) {
                         const dx = mouseRef.current.x - pi.x;
@@ -179,9 +188,13 @@ export const ConstellationCanvas = React.forwardRef<HTMLDivElement, Constellatio
                             ctx.beginPath();
                             ctx.moveTo(pi.x, pi.y);
                             ctx.lineTo(mouseRef.current.x, mouseRef.current.y);
-                            const alpha = (1 - dist / (maxDistance * 1.5)) * 0.45;
+                            const alpha =
+                                (1 - dist / (maxDistance * 1.5)) * 0.45;
                             ctx.strokeStyle = activeLinkColor.includes('rgba')
-                                ? activeLinkColor.replace(/[\d.]+\)$/, `${alpha})`)
+                                ? activeLinkColor.replace(
+                                      /[\d.]+\)$/,
+                                      `${alpha})`,
+                                  )
                                 : `rgba(16, 185, 129, ${alpha})`;
                             ctx.lineWidth = 1;
                             ctx.stroke();
@@ -200,7 +213,10 @@ export const ConstellationCanvas = React.forwardRef<HTMLDivElement, Constellatio
                             ctx.lineTo(pj.x, pj.y);
                             const alpha = (1 - dist / maxDistance) * 0.25;
                             ctx.strokeStyle = activeLinkColor.includes('rgba')
-                                ? activeLinkColor.replace(/[\d.]+\)$/, `${alpha})`)
+                                ? activeLinkColor.replace(
+                                      /[\d.]+\)$/,
+                                      `${alpha})`,
+                                  )
                                 : `rgba(16, 185, 129, ${alpha})`;
                             ctx.lineWidth = 0.5;
                             ctx.stroke();
@@ -218,15 +234,29 @@ export const ConstellationCanvas = React.forwardRef<HTMLDivElement, Constellatio
                 resizeObserver.disconnect();
                 if (interactive) {
                     container.removeEventListener('mousemove', handleMouseMove);
-                    container.removeEventListener('mouseleave', handleMouseLeave);
+                    container.removeEventListener(
+                        'mouseleave',
+                        handleMouseLeave,
+                    );
                 }
             };
-        }, [particleCount, maxDistance, speed, particleColor, linkColor, interactive, particleSize]);
+        }, [
+            particleCount,
+            maxDistance,
+            speed,
+            particleColor,
+            linkColor,
+            interactive,
+            particleSize,
+        ]);
 
         return (
             <div
                 ref={containerRef}
-                className={cn('relative w-full h-full overflow-hidden select-none', className)}
+                className={cn(
+                    'relative h-full w-full overflow-hidden select-none',
+                    className,
+                )}
                 {...props}
             >
                 <canvas
@@ -236,7 +266,7 @@ export const ConstellationCanvas = React.forwardRef<HTMLDivElement, Constellatio
                 />
             </div>
         );
-    }
+    },
 );
 
 ConstellationCanvas.displayName = 'ConstellationCanvas';

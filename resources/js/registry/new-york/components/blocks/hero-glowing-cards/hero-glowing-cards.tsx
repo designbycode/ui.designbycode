@@ -50,9 +50,7 @@ export function HeroGlowingCards() {
                 />
 
                 <div className="mt-4 flex justify-center">
-                    <ButtonPulse>
-                        Launch Sandbox
-                    </ButtonPulse>
+                    <ButtonPulse>Launch Sandbox</ButtonPulse>
                 </div>
             </div>
 

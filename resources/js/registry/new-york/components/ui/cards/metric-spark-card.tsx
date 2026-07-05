@@ -38,10 +38,12 @@ const MetricSparkCard = React.forwardRef<HTMLDivElement, MetricSparkCardProps>(
                 if (typeof ref === 'function') {
                     ref(node);
                 } else if (ref) {
-                    (ref as React.MutableRefObject<HTMLDivElement | null>).current = node;
+                    (
+                        ref as React.MutableRefObject<HTMLDivElement | null>
+                    ).current = node;
                 }
             },
-            [ref, hoverRef]
+            [ref, hoverRef],
         );
 
         // SVG Sparkline path generation

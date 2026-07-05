@@ -25,7 +25,10 @@ interface Blob {
     radius: number;
 }
 
-export const MetaballCanvas = React.forwardRef<HTMLDivElement, MetaballCanvasProps>(
+export const MetaballCanvas = React.forwardRef<
+    HTMLDivElement,
+    MetaballCanvasProps
+>(
     (
         {
             className,
@@ -37,13 +40,16 @@ export const MetaballCanvas = React.forwardRef<HTMLDivElement, MetaballCanvasPro
             interactive = true,
             ...props
         },
-        ref
+        ref,
     ) => {
         const containerRef = React.useRef<HTMLDivElement>(null);
         const canvasRef = React.useRef<HTMLCanvasElement>(null);
         const mouseRef = React.useRef<{ x: number; y: number } | null>(null);
 
-        React.useImperativeHandle(ref, () => containerRef.current as HTMLDivElement);
+        React.useImperativeHandle(
+            ref,
+            () => containerRef.current as HTMLDivElement,
+        );
 
         React.useEffect(() => {
             const canvas = canvasRef.current;
@@ -67,7 +73,8 @@ export const MetaballCanvas = React.forwardRef<HTMLDivElement, MetaballCanvasPro
             const initBlobs = () => {
                 blobs.length = 0;
                 for (let i = 0; i < blobCount; i++) {
-                    const radius = Math.random() * (maxRadius - minRadius) + minRadius;
+                    const radius =
+                        Math.random() * (maxRadius - minRadius) + minRadius;
                     blobs.push({
                         x: Math.random() * (width - radius * 2) + radius,
                         y: Math.random() * (height - radius * 2) + radius,
@@ -133,8 +140,8 @@ export const MetaballCanvas = React.forwardRef<HTMLDivElement, MetaballCanvasPro
 
                 const activeColor = resolveColor(
                     color ||
-                    window.getComputedStyle(container).color ||
-                    '#10b981'
+                        window.getComputedStyle(container).color ||
+                        '#10b981',
                 );
 
                 // Draw standard blobs
@@ -160,7 +167,14 @@ export const MetaballCanvas = React.forwardRef<HTMLDivElement, MetaballCanvasPro
                     }
 
                     // Render blob with soft radial edge that contrast filter will solidify
-                    const grad = ctx.createRadialGradient(b.x, b.y, b.radius * 0.1, b.x, b.y, b.radius);
+                    const grad = ctx.createRadialGradient(
+                        b.x,
+                        b.y,
+                        b.radius * 0.1,
+                        b.x,
+                        b.y,
+                        b.radius,
+                    );
                     grad.addColorStop(0, activeColor);
                     grad.addColorStop(1, 'rgba(0, 0, 0, 0)');
 
@@ -179,13 +193,19 @@ export const MetaballCanvas = React.forwardRef<HTMLDivElement, MetaballCanvasPro
                         mouseRadius * 0.1,
                         mouseRef.current.x,
                         mouseRef.current.y,
-                        mouseRadius
+                        mouseRadius,
                     );
                     grad.addColorStop(0, activeColor);
                     grad.addColorStop(1, 'rgba(0, 0, 0, 0)');
 
                     ctx.beginPath();
-                    ctx.arc(mouseRef.current.x, mouseRef.current.y, mouseRadius, 0, Math.PI * 2);
+                    ctx.arc(
+                        mouseRef.current.x,
+                        mouseRef.current.y,
+                        mouseRadius,
+                        0,
+                        Math.PI * 2,
+                    );
                     ctx.fillStyle = grad;
                     ctx.fill();
                 }
@@ -200,7 +220,10 @@ export const MetaballCanvas = React.forwardRef<HTMLDivElement, MetaballCanvasPro
                 resizeObserver.disconnect();
                 if (interactive) {
                     container.removeEventListener('mousemove', handleMouseMove);
-                    container.removeEventListener('mouseleave', handleMouseLeave);
+                    container.removeEventListener(
+                        'mouseleave',
+                        handleMouseLeave,
+                    );
                 }
             };
         }, [blobCount, minRadius, maxRadius, speed, color, interactive]);
@@ -208,21 +231,24 @@ export const MetaballCanvas = React.forwardRef<HTMLDivElement, MetaballCanvasPro
         return (
             <div
                 ref={containerRef}
-                className={cn('relative w-full h-full overflow-hidden select-none bg-background', className)}
+                className={cn(
+                    'relative h-full w-full overflow-hidden bg-background select-none',
+                    className,
+                )}
                 {...props}
             >
                 {/* The CSS filter properties create the gooey metaball fusion effect */}
                 <canvas
                     ref={canvasRef}
                     className="absolute inset-0 size-full"
-                    style={{ 
+                    style={{
                         pointerEvents: 'none',
                         filter: 'blur(14px) contrast(20) hue-rotate(0deg)',
                     }}
                 />
             </div>
         );
-    }
+    },
 );
 
 MetaballCanvas.displayName = 'MetaballCanvas';

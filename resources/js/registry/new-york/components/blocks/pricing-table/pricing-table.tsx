@@ -20,31 +20,50 @@ const rows: FeatureRow[] = [
 
 export function PricingTable() {
     return (
-        <Card className="w-full border-border/50 bg-card/30 backdrop-blur-xs overflow-hidden">
+        <Card className="w-full overflow-hidden border-border/50 bg-card/30 backdrop-blur-xs">
             <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-bold uppercase tracking-wider text-muted-foreground">
+                <CardTitle className="text-sm font-bold tracking-wider text-muted-foreground uppercase">
                     Feature Comparison
                 </CardTitle>
             </CardHeader>
             <CardContent className="p-0">
                 <div className="overflow-x-auto">
-                    <table className="w-full text-xs text-left border-collapse">
+                    <table className="w-full border-collapse text-left text-xs">
                         <thead>
                             <tr className="border-b border-border/30 bg-muted/20">
-                                <th className="p-3 font-bold text-muted-foreground">Feature</th>
-                                <th className="p-3 font-bold text-center w-24">Free</th>
-                                <th className="p-3 font-bold text-center w-24 text-primary">Pro</th>
+                                <th className="p-3 font-bold text-muted-foreground">
+                                    Feature
+                                </th>
+                                <th className="w-24 p-3 text-center font-bold">
+                                    Free
+                                </th>
+                                <th className="w-24 p-3 text-center font-bold text-primary">
+                                    Pro
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
                             {rows.map((row, idx) => (
-                                <tr key={idx} className="border-b border-border/20 last:border-0 hover:bg-muted/10">
-                                    <td className="p-3 font-semibold text-foreground">{row.feature}</td>
-                                    <td className="p-3 text-center">
-                                        {row.free ? <Check className="size-4 text-emerald-500 mx-auto" /> : <X className="size-4 text-muted-foreground/30 mx-auto" />}
+                                <tr
+                                    key={idx}
+                                    className="border-b border-border/20 last:border-0 hover:bg-muted/10"
+                                >
+                                    <td className="p-3 font-semibold text-foreground">
+                                        {row.feature}
                                     </td>
                                     <td className="p-3 text-center">
-                                        {row.pro ? <Check className="size-4 text-primary mx-auto" /> : <X className="size-4 text-muted-foreground/30 mx-auto" />}
+                                        {row.free ? (
+                                            <Check className="mx-auto size-4 text-emerald-500" />
+                                        ) : (
+                                            <X className="mx-auto size-4 text-muted-foreground/30" />
+                                        )}
+                                    </td>
+                                    <td className="p-3 text-center">
+                                        {row.pro ? (
+                                            <Check className="mx-auto size-4 text-primary" />
+                                        ) : (
+                                            <X className="mx-auto size-4 text-muted-foreground/30" />
+                                        )}
                                     </td>
                                 </tr>
                             ))}

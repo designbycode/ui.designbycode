@@ -54,9 +54,7 @@ export function HeroTabsShowcase() {
                 />
 
                 <div className="mt-4 flex flex-wrap items-center justify-center gap-4">
-                    <ButtonNeon
-                        className="flex items-center gap-1.5"
-                    >
+                    <ButtonNeon className="flex items-center gap-1.5">
                         Start Building
                         <ArrowRight className="size-4" />
                     </ButtonNeon>

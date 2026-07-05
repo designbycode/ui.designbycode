@@ -18,7 +18,10 @@ export interface MetricComparisonCardProps extends React.ComponentProps<
     trendType?: 'positive' | 'negative' | 'neutral';
 }
 
-const MetricComparisonCard = React.forwardRef<HTMLDivElement, MetricComparisonCardProps>(
+const MetricComparisonCard = React.forwardRef<
+    HTMLDivElement,
+    MetricComparisonCardProps
+>(
     (
         {
             className,
@@ -43,10 +46,12 @@ const MetricComparisonCard = React.forwardRef<HTMLDivElement, MetricComparisonCa
                 if (typeof ref === 'function') {
                     ref(node);
                 } else if (ref) {
-                    (ref as React.MutableRefObject<HTMLDivElement | null>).current = node;
+                    (
+                        ref as React.MutableRefObject<HTMLDivElement | null>
+                    ).current = node;
                 }
             },
-            [ref, hoverRef]
+            [ref, hoverRef],
         );
 
         const currentPercentage = Math.min(Math.max(ratio * 100, 0), 100);
@@ -97,13 +102,17 @@ const MetricComparisonCard = React.forwardRef<HTMLDivElement, MetricComparisonCa
                     <div className="space-y-1.5">
                         <div className="flex items-center justify-between text-[10px] font-bold text-muted-foreground uppercase">
                             <span>{currentLabel}</span>
-                            <span className="font-mono text-foreground">{currentPercentage.toFixed(0)}%</span>
+                            <span className="font-mono text-foreground">
+                                {currentPercentage.toFixed(0)}%
+                            </span>
                         </div>
                         <div className="h-2 w-full overflow-hidden rounded-full bg-muted/40">
                             <div
                                 className="h-full rounded-full bg-primary transition-all duration-700 ease-out"
                                 style={{
-                                    width: isHovered ? `${currentPercentage}%` : '0%',
+                                    width: isHovered
+                                        ? `${currentPercentage}%`
+                                        : '0%',
                                     boxShadow: isHovered
                                         ? '0 0 6px var(--color-primary)'
                                         : 'none',
@@ -115,7 +124,9 @@ const MetricComparisonCard = React.forwardRef<HTMLDivElement, MetricComparisonCa
                     <div className="space-y-1.5">
                         <div className="flex items-center justify-between text-[10px] font-bold text-muted-foreground uppercase">
                             <span>{comparisonLabel}</span>
-                            <span className="font-mono text-foreground">100%</span>
+                            <span className="font-mono text-foreground">
+                                100%
+                            </span>
                         </div>
                         <div className="h-2 w-full overflow-hidden rounded-full bg-muted/40">
                             <div

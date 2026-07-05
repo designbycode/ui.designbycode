@@ -48,27 +48,55 @@ interface EventItem {
 }
 
 const events: EventItem[] = [
-    { time: \'Just Now\', title: \'Version 2.0.4 Released\', details: \'Added 10 new blocks to the global registry seeder index.\', color: \'bg-primary\' },
-    { time: \'10m ago\', title: \'Database Migration Complete\', details: \'Successfully seeded 159 component manifest files.\', color: \'bg-emerald-500\' },
-    { time: \'2h ago\', title: \'Theme Variables Injected\', details: \'CSS global variables synced with theme-slate values.\', color: \'bg-amber-500\' },
+    {
+        time: \'Just Now\',
+        title: \'Version 2.0.4 Released\',
+        details: \'Added 10 new blocks to the global registry seeder index.\',
+        color: \'bg-primary\',
+    },
+    {
+        time: \'10m ago\',
+        title: \'Database Migration Complete\',
+        details: \'Successfully seeded 159 component manifest files.\',
+        color: \'bg-emerald-500\',
+    },
+    {
+        time: \'2h ago\',
+        title: \'Theme Variables Injected\',
+        details: \'CSS global variables synced with theme-slate values.\',
+        color: \'bg-amber-500\',
+    },
 ];
 
 export function ActivityFeed() {
     return (
-        <Card className="w-full max-w-md mx-auto border-border/50 bg-card/30 backdrop-blur-xs">
+        <Card className="mx-auto w-full max-w-md border-border/50 bg-card/30 backdrop-blur-xs">
             <CardHeader className="pb-3">
-                <CardTitle className="text-base font-bold">Activity Feed</CardTitle>
+                <CardTitle className="text-base font-bold">
+                    Activity Feed
+                </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
                 {events.map((event, idx) => (
-                    <div key={idx} className="flex gap-3 items-start relative pl-4 before:absolute before:left-1 before:top-2 before:bottom-0 before:w-[1px] before:bg-border/30 last:before:hidden">
-                        <div className={`size-2.5 rounded-full ${event.color} shrink-0 mt-1 relative -left-[17px] ring-4 ring-background`} />
+                    <div
+                        key={idx}
+                        className="relative flex items-start gap-3 pl-4 before:absolute before:top-2 before:bottom-0 before:left-1 before:w-[1px] before:bg-border/30 last:before:hidden"
+                    >
+                        <div
+                            className={`size-2.5 rounded-full ${event.color} relative -left-[17px] mt-1 shrink-0 ring-4 ring-background`}
+                        />
                         <div className="min-w-0">
-                            <div className="flex justify-between items-baseline gap-2">
-                                <h4 className="text-xs font-bold text-foreground truncate">{event.title}</h4>
-                                <span className="text-[9px] text-muted-foreground shrink-0">{event.time}</span>
+                            <div className="flex items-baseline justify-between gap-2">
+                                <h4 className="truncate text-xs font-bold text-foreground">
+                                    {event.title}
+                                </h4>
+                                <span className="shrink-0 text-[9px] text-muted-foreground">
+                                    {event.time}
+                                </span>
                             </div>
-                            <p className="text-[10px] text-muted-foreground mt-0.5 leading-relaxed">{event.details}</p>
+                            <p className="mt-0.5 text-[10px] leading-relaxed text-muted-foreground">
+                                {event.details}
+                            </p>
                         </div>
                     </div>
                 ))}
@@ -1191,23 +1219,28 @@ import { Button } from \'@/components/ui/button\';
 
 export function CallToActionBox() {
     return (
-        <Card className="w-full border-border/50 bg-linear-to-br from-primary/10 via-card/30 to-muted/20 backdrop-blur-xs relative overflow-hidden p-8 text-center">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-2xl" />
-            <CardContent className="p-0 space-y-4 max-w-lg mx-auto">
-                <div className="size-8 rounded-full bg-primary/20 text-primary flex items-center justify-center mx-auto mb-2 animate-pulse">
+        <Card className="relative w-full overflow-hidden border-border/50 bg-linear-to-br from-primary/10 via-card/30 to-muted/20 p-8 text-center backdrop-blur-xs">
+            <div className="absolute top-0 right-0 h-32 w-32 rounded-full bg-primary/5 blur-2xl" />
+            <CardContent className="mx-auto max-w-lg space-y-4 p-0">
+                <div className="mx-auto mb-2 flex size-8 animate-pulse items-center justify-center rounded-full bg-primary/20 text-primary">
                     <Sparkles className="size-4" />
                 </div>
-                <h3 className="text-xl md:text-2xl font-black tracking-tight text-foreground">
+                <h3 className="text-xl font-black tracking-tight text-foreground md:text-2xl">
                     Ready to build styled components?
                 </h3>
-                <p className="text-xs text-muted-foreground leading-relaxed">
-                    Install registry hooks and items instantly in your project. No manual files copy-pasting required.
+                <p className="text-xs leading-relaxed text-muted-foreground">
+                    Install registry hooks and items instantly in your project.
+                    No manual files copy-pasting required.
                 </p>
-                <div className="flex flex-wrap gap-2.5 justify-center pt-2">
+                <div className="flex flex-wrap justify-center gap-2.5 pt-2">
                     <Button size="sm" className="h-9 px-4 text-xs font-bold">
                         Get Started
                     </Button>
-                    <Button size="sm" variant="outline" className="h-9 px-4 text-xs font-bold border-border/60">
+                    <Button
+                        size="sm"
+                        variant="outline"
+                        className="h-9 border-border/60 px-4 text-xs font-bold"
+                    >
                         View Documentation
                     </Button>
                 </div>
@@ -1768,7 +1801,13 @@ export function StatCard({
 
 import React, { useState } from \'react\';
 import { Send, CheckCircle2 } from \'lucide-react\';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from \'@/components/ui/card\';
+import {
+    Card,
+    CardHeader,
+    CardTitle,
+    CardDescription,
+    CardContent,
+} from \'@/components/ui/card\';
 import { Button } from \'@/components/ui/button\';
 
 export function ContactForm() {
@@ -1780,37 +1819,65 @@ export function ContactForm() {
     };
 
     return (
-        <Card className="w-full max-w-md mx-auto border-border/50 bg-card/30 backdrop-blur-xs">
+        <Card className="mx-auto w-full max-w-md border-border/50 bg-card/30 backdrop-blur-xs">
             <CardHeader className="pb-3">
-                <CardTitle className="text-base font-bold">Send a Message</CardTitle>
+                <CardTitle className="text-base font-bold">
+                    Send a Message
+                </CardTitle>
                 <CardDescription className="text-xs">
                     We will get back to you within 24 hours.
                 </CardDescription>
             </CardHeader>
             <CardContent className="pt-0">
                 {submitted ? (
-                    <div className="p-6 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-center space-y-2">
-                        <CheckCircle2 className="size-6 text-emerald-500 mx-auto" />
-                        <h4 className="text-xs font-bold text-foreground">Message Sent!</h4>
-                        <p className="text-[10px] text-muted-foreground">Thank you. Your message has been received.</p>
+                    <div className="space-y-2 rounded-lg border border-emerald-500/20 bg-emerald-500/10 p-6 text-center">
+                        <CheckCircle2 className="mx-auto size-6 text-emerald-500" />
+                        <h4 className="text-xs font-bold text-foreground">
+                            Message Sent!
+                        </h4>
+                        <p className="text-[10px] text-muted-foreground">
+                            Thank you. Your message has been received.
+                        </p>
                     </div>
                 ) : (
                     <form onSubmit={handleSend} className="space-y-3.5">
                         <div className="grid grid-cols-2 gap-3">
                             <div className="space-y-1">
-                                <label className="text-[9px] font-bold text-muted-foreground uppercase">Name</label>
-                                <input type="text" required className="w-full h-8 px-2 rounded-[var(--radius)] text-xs bg-muted/40 border border-border/60 text-foreground" />
+                                <label className="text-[9px] font-bold text-muted-foreground uppercase">
+                                    Name
+                                </label>
+                                <input
+                                    type="text"
+                                    required
+                                    className="h-8 w-full rounded-[var(--radius)] border border-border/60 bg-muted/40 px-2 text-xs text-foreground"
+                                />
                             </div>
                             <div className="space-y-1">
-                                <label className="text-[9px] font-bold text-muted-foreground uppercase">Email</label>
-                                <input type="email" required className="w-full h-8 px-2 rounded-[var(--radius)] text-xs bg-muted/40 border border-border/60 text-foreground" />
+                                <label className="text-[9px] font-bold text-muted-foreground uppercase">
+                                    Email
+                                </label>
+                                <input
+                                    type="email"
+                                    required
+                                    className="h-8 w-full rounded-[var(--radius)] border border-border/60 bg-muted/40 px-2 text-xs text-foreground"
+                                />
                             </div>
                         </div>
                         <div className="space-y-1">
-                            <label className="text-[9px] font-bold text-muted-foreground uppercase">Message</label>
-                            <textarea rows={3} required className="w-full p-2 rounded-[var(--radius)] text-xs bg-muted/40 border border-border/60 text-foreground" />
+                            <label className="text-[9px] font-bold text-muted-foreground uppercase">
+                                Message
+                            </label>
+                            <textarea
+                                rows={3}
+                                required
+                                className="w-full rounded-[var(--radius)] border border-border/60 bg-muted/40 p-2 text-xs text-foreground"
+                            />
                         </div>
-                        <Button type="submit" size="sm" className="w-full h-8 text-xs font-bold gap-1.5">
+                        <Button
+                            type="submit"
+                            size="sm"
+                            className="h-8 w-full gap-1.5 text-xs font-bold"
+                        >
                             <Send className="size-3" />
                             Send Message
                         </Button>
@@ -1880,24 +1947,37 @@ export function CookieBanner() {
     if (!visible) return null;
 
     return (
-        <Card className="w-full border-border/50 bg-card/40 backdrop-blur-xs p-4 shadow-lg rounded-[var(--radius)]">
-            <CardContent className="p-0 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <Card className="w-full rounded-[var(--radius)] border-border/50 bg-card/40 p-4 shadow-lg backdrop-blur-xs">
+            <CardContent className="flex flex-col items-center justify-between gap-4 p-0 sm:flex-row">
                 <div className="flex items-start gap-3">
-                    <div className="size-8 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0 mt-0.5">
+                    <div className="mt-0.5 flex size-8 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
                         <ShieldAlert className="size-4.5" />
                     </div>
                     <div className="min-w-0">
-                        <h4 className="text-xs font-bold text-foreground">We value your privacy</h4>
-                        <p className="text-[10px] text-muted-foreground mt-0.5 leading-normal max-w-xl">
-                            We use cookies to analyze user traffic, personalize experience, and optimize performance. By clicking "Accept All", you consent to our use of cookies.
+                        <h4 className="text-xs font-bold text-foreground">
+                            We value your privacy
+                        </h4>
+                        <p className="mt-0.5 max-w-xl text-[10px] leading-normal text-muted-foreground">
+                            We use cookies to analyze user traffic, personalize
+                            experience, and optimize performance. By clicking
+                            "Accept All", you consent to our use of cookies.
                         </p>
                     </div>
                 </div>
-                <div className="flex gap-2 shrink-0">
-                    <Button size="sm" onClick={() => setVisible(false)} className="h-8 text-[10px] font-bold px-3">
+                <div className="flex shrink-0 gap-2">
+                    <Button
+                        size="sm"
+                        onClick={() => setVisible(false)}
+                        className="h-8 px-3 text-[10px] font-bold"
+                    >
                         Accept All
                     </Button>
-                    <Button size="sm" variant="outline" onClick={() => setVisible(false)} className="h-8 text-[10px] font-bold px-3 border-border/60">
+                    <Button
+                        size="sm"
+                        variant="outline"
+                        onClick={() => setVisible(false)}
+                        className="h-8 border-border/60 px-3 text-[10px] font-bold"
+                    >
                         Decline
                     </Button>
                 </div>
@@ -1987,36 +2067,45 @@ export function FAQSection() {
     };
 
     return (
-        <div className="w-full max-w-3xl mx-auto space-y-4">
+        <div className="mx-auto w-full max-w-3xl space-y-4">
             {faqs.map((faq, idx) => {
                 const isOpen = openIdx === idx;
                 return (
-                    <Card 
-                        key={idx} 
+                    <Card
+                        key={idx}
                         className={cn(
-                            "border-border/50 bg-card/30 backdrop-blur-xs transition-all duration-300 overflow-hidden",
-                            isOpen && "border-primary/20 bg-muted/10"
+                            \'overflow-hidden border-border/50 bg-card/30 backdrop-blur-xs transition-all duration-300\',
+                            isOpen && \'border-primary/20 bg-muted/10\',
                         )}
                     >
                         <button
                             onClick={() => toggle(idx)}
-                            className="w-full flex items-center justify-between p-4 text-left font-bold text-xs select-none hover:text-primary transition-colors cursor-pointer"
+                            className="flex w-full cursor-pointer items-center justify-between p-4 text-left text-xs font-bold transition-colors select-none hover:text-primary"
                         >
                             <span className="flex items-center gap-2">
-                                <HelpCircle className={cn("size-4 shrink-0 transition-colors", isOpen ? "text-primary" : "text-muted-foreground")} />
+                                <HelpCircle
+                                    className={cn(
+                                        \'size-4 shrink-0 transition-colors\',
+                                        isOpen
+                                            ? \'text-primary\'
+                                            : \'text-muted-foreground\',
+                                    )}
+                                />
                                 {faq.question}
                             </span>
-                            <ChevronDown 
+                            <ChevronDown
                                 className={cn(
-                                    "size-4 shrink-0 text-muted-foreground transition-transform duration-350",
-                                    isOpen && "rotate-180 text-primary"
-                                )} 
+                                    \'size-4 shrink-0 text-muted-foreground transition-transform duration-350\',
+                                    isOpen && \'rotate-180 text-primary\',
+                                )}
                             />
                         </button>
-                        <div 
+                        <div
                             className={cn(
-                                "grid transition-all duration-350 ease-in-out",
-                                isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                                \'grid transition-all duration-350 ease-in-out\',
+                                isOpen
+                                    ? \'grid-rows-[1fr] opacity-100\'
+                                    : \'grid-rows-[0fr] opacity-0\',
                             )}
                         >
                             <div className="overflow-hidden">
@@ -2280,26 +2369,41 @@ interface FeatureDoc {
 }
 
 const listItems: FeatureDoc[] = [
-    { title: \'Dynamic CSS Variables Mapping\', details: \'Inject HSL variable values directly to the DOM tree root.\' },
-    { title: \'Tailwind CSS V4 Containers Support\', details: \'Apply container queries to size children items responsively.\' },
-    { title: \'Interactive WebGL Canvas Shaders\', details: \'Render analog post-processed glitch visual assets.\' },
+    {
+        title: \'Dynamic CSS Variables Mapping\',
+        details: \'Inject HSL variable values directly to the DOM tree root.\',
+    },
+    {
+        title: \'Tailwind CSS V4 Containers Support\',
+        details: \'Apply container queries to size children items responsively.\',
+    },
+    {
+        title: \'Interactive WebGL Canvas Shaders\',
+        details: \'Render analog post-processed glitch visual assets.\',
+    },
 ];
 
 export function FeatureList() {
     return (
-        <Card className="w-full max-w-xl mx-auto border-border/50 bg-card/30 backdrop-blur-xs">
+        <Card className="mx-auto w-full max-w-xl border-border/50 bg-card/30 backdrop-blur-xs">
             <CardHeader className="pb-3">
-                <CardTitle className="text-base font-bold">Capabilities Checklist</CardTitle>
+                <CardTitle className="text-base font-bold">
+                    Capabilities Checklist
+                </CardTitle>
             </CardHeader>
             <CardContent className="space-y-3.5">
                 {listItems.map((item, idx) => (
-                    <div key={idx} className="flex gap-3 items-start">
-                        <div className="size-5 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0 mt-0.5">
+                    <div key={idx} className="flex items-start gap-3">
+                        <div className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
                             <Check className="size-3.5" />
                         </div>
                         <div className="min-w-0">
-                            <h4 className="text-xs font-bold text-foreground">{item.title}</h4>
-                            <p className="text-[10px] text-muted-foreground mt-0.5 leading-relaxed">{item.details}</p>
+                            <h4 className="text-xs font-bold text-foreground">
+                                {item.title}
+                            </h4>
+                            <p className="mt-0.5 text-[10px] leading-relaxed text-muted-foreground">
+                                {item.details}
+                            </p>
                         </div>
                     </div>
                 ))}
@@ -2383,12 +2487,8 @@ export function HeroConicGlow() {
                 />
 
                 <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
-                    <ButtonPulse>
-                        Get Started
-                    </ButtonPulse>
-                    <ButtonGradient
-                        className="flex items-center gap-1.5"
-                    >
+                    <ButtonPulse>Get Started</ButtonPulse>
+                    <ButtonGradient className="flex items-center gap-1.5">
                         Documentation
                         <ArrowRight className="size-4" />
                     </ButtonGradient>
@@ -2520,12 +2620,8 @@ export function HeroFeaturesGrid() {
                 />
 
                 <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
-                    <ButtonGradient>
-                        Get Started
-                    </ButtonGradient>
-                    <ButtonDraw
-                        className="flex items-center gap-1.5"
-                    >
+                    <ButtonGradient>Get Started</ButtonGradient>
+                    <ButtonDraw className="flex items-center gap-1.5">
                         Read System Docs
                         <ArrowRight className="size-4" />
                     </ButtonDraw>
@@ -2641,12 +2737,8 @@ export function HeroFullscreenImage() {
                 />
 
                 <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-                    <ButtonPulse>
-                        Explore Gallery
-                    </ButtonPulse>
-                    <ButtonGradient
-                        className="flex items-center gap-1.5"
-                    >
+                    <ButtonPulse>Explore Gallery</ButtonPulse>
+                    <ButtonGradient className="flex items-center gap-1.5">
                         View Case Study
                         <ArrowRight className="size-4" />
                     </ButtonGradient>
@@ -2746,12 +2838,8 @@ export function HeroFullscreenVideo() {
                 />
 
                 <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-                    <ButtonPulse>
-                        Launch Demo
-                    </ButtonPulse>
-                    <ButtonDraw
-                        className="flex items-center gap-1.5"
-                    >
+                    <ButtonPulse>Launch Demo</ButtonPulse>
+                    <ButtonDraw className="flex items-center gap-1.5">
                         View Whitepaper
                         <ArrowRight className="size-4" />
                     </ButtonDraw>
@@ -2860,9 +2948,7 @@ export function HeroGlowingCards() {
                 />
 
                 <div className="mt-4 flex justify-center">
-                    <ButtonPulse>
-                        Launch Sandbox
-                    </ButtonPulse>
+                    <ButtonPulse>Launch Sandbox</ButtonPulse>
                 </div>
             </div>
 
@@ -3290,12 +3376,8 @@ export function HeroMinimalCentered() {
                 />
 
                 <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
-                    <ButtonPulse>
-                        Start Deploying
-                    </ButtonPulse>
-                    <ButtonDraw
-                        className="flex items-center gap-1.5"
-                    >
+                    <ButtonPulse>Start Deploying</ButtonPulse>
+                    <ButtonDraw className="flex items-center gap-1.5">
                         Learn More
                         <ArrowRight className="size-4" />
                     </ButtonDraw>
@@ -3386,15 +3468,11 @@ export function HeroParticles() {
                 />
 
                 <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
-                    <ButtonNeon
-                        className="flex items-center gap-2"
-                    >
+                    <ButtonNeon className="flex items-center gap-2">
                         Get Started
                         <ArrowRight className="size-4" />
                     </ButtonNeon>
-                    <ButtonDraw>
-                        View Storybook
-                    </ButtonDraw>
+                    <ButtonDraw>View Storybook</ButtonDraw>
                 </div>
             </div>
         </section>
@@ -3476,15 +3554,11 @@ export function HeroPhoneMockup() {
                 />
 
                 <div className="flex flex-wrap items-center gap-4 pt-2">
-                    <ButtonNeon
-                        className="flex items-center gap-2"
-                    >
+                    <ButtonNeon className="flex items-center gap-2">
                         <Zap className="size-4" />
                         Download App
                     </ButtonNeon>
-                    <ButtonDraw>
-                        View Demo
-                    </ButtonDraw>
+                    <ButtonDraw>View Demo</ButtonDraw>
                 </div>
             </div>
 
@@ -3627,15 +3701,11 @@ export function HeroGradient() {
                 />
 
                 <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-                    <ButtonNeon
-                        className="flex items-center gap-2"
-                    >
+                    <ButtonNeon className="flex items-center gap-2">
                         Get Started
                         <ArrowRight className="size-4" />
                     </ButtonNeon>
-                    <ButtonGradient
-                        className="flex items-center gap-2"
-                    >
+                    <ButtonGradient className="flex items-center gap-2">
                         <Zap className="size-4 text-primary" />
                         Explore Components
                     </ButtonGradient>
@@ -3863,12 +3933,8 @@ export function HeroSplit() {
                 </ul>
 
                 <div className="flex flex-wrap items-center gap-4 pt-4">
-                    <ButtonPulse>
-                        Setup Shield
-                    </ButtonPulse>
-                    <ButtonDraw>
-                        Read Whitepaper
-                    </ButtonDraw>
+                    <ButtonPulse>Setup Shield</ButtonPulse>
+                    <ButtonDraw>Read Whitepaper</ButtonDraw>
                 </div>
             </div>
 
@@ -3946,45 +4012,78 @@ import { Button } from \'@/components/ui/button\';
 export function HeroSimpleSplit() {
     return (
         <div className="w-full py-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div className="grid grid-cols-1 items-center gap-8 md:grid-cols-2">
                 {/* Left text options */}
                 <div className="space-y-4 text-left">
-                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-[10px] font-bold text-primary uppercase">
+                    <div className="inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-[10px] font-bold text-primary uppercase">
                         <Sparkles className="size-3" />
                         Next-Gen Registry Blocks
                     </div>
-                    <h2 className="text-2xl md:text-3xl font-black tracking-tight text-foreground leading-tight">
+                    <h2 className="text-2xl leading-tight font-black tracking-tight text-foreground md:text-3xl">
                         Modular Building Blocks for Developer Interfaces
                     </h2>
-                    <p className="text-xs text-muted-foreground leading-relaxed max-w-md">
-                        Drop high-quality visual widgets, charts, and form layouts into your code structure seamlessly using custom shadcn directives.
+                    <p className="max-w-md text-xs leading-relaxed text-muted-foreground">
+                        Drop high-quality visual widgets, charts, and form
+                        layouts into your code structure seamlessly using custom
+                        shadcn directives.
                     </p>
                     <div className="flex gap-2">
-                        <Button size="sm" className="h-9 px-4 text-xs font-bold gap-1.5">
+                        <Button
+                            size="sm"
+                            className="h-9 gap-1.5 px-4 text-xs font-bold"
+                        >
                             <Terminal className="size-3.5" />
                             Explore Components
                         </Button>
-                        <Button size="sm" variant="outline" className="h-9 px-4 text-xs font-bold border-border/60">
+                        <Button
+                            size="sm"
+                            variant="outline"
+                            className="h-9 border-border/60 px-4 text-xs font-bold"
+                        >
                             Learn More
                         </Button>
                     </div>
                 </div>
 
                 {/* Right mockup card */}
-                <Card className="border-border/50 bg-card/40 backdrop-blur-xs overflow-hidden relative p-6">
-                    <div className="size-full flex flex-col gap-3">
+                <Card className="relative overflow-hidden border-border/50 bg-card/40 p-6 backdrop-blur-xs">
+                    <div className="flex size-full flex-col gap-3">
                         <div className="flex items-center gap-1.5 border-b border-border/30 pb-3">
                             <div className="size-2.5 rounded-full bg-red-500/80" />
                             <div className="size-2.5 rounded-full bg-yellow-500/80" />
                             <div className="size-2.5 rounded-full bg-emerald-500/80" />
-                            <span className="text-[9px] font-mono text-muted-foreground ml-2">sandbox-editor.tsx</span>
+                            <span className="ml-2 font-mono text-[9px] text-muted-foreground">
+                                sandbox-editor.tsx
+                            </span>
                         </div>
-                        <div className="font-mono text-[10px] text-muted-foreground space-y-1">
-                            <p><span className="text-primary">import</span> &#123; Button &#125; <span className="text-primary">from</span> <span className="text-emerald-500">"@/components/ui/button"</span>;</p>
-                            <p className="opacity-70"><span className="text-primary">export default function</span> <span className="text-blue-500">Page</span>() &#123;</p>
-                            <p className="opacity-70 pl-4"><span className="text-primary">return</span> (</p>
-                            <p className="pl-8 text-primary">&lt;Button&gt;<span className="text-foreground">Click Me</span>&lt;/Button&gt;</p>
-                            <p className="opacity-70 pl-4">);</p>
+                        <div className="space-y-1 font-mono text-[10px] text-muted-foreground">
+                            <p>
+                                <span className="text-primary">import</span>{\' \'}
+                                &#123; Button &#125;{\' \'}
+                                <span className="text-primary">from</span>{\' \'}
+                                <span className="text-emerald-500">
+                                    "@/components/ui/button"
+                                </span>
+                                ;
+                            </p>
+                            <p className="opacity-70">
+                                <span className="text-primary">
+                                    export default function
+                                </span>{\' \'}
+                                <span className="text-blue-500">Page</span>()
+                                &#123;
+                            </p>
+                            <p className="pl-4 opacity-70">
+                                <span className="text-primary">return</span> (
+                            </p>
+                            <p className="pl-8 text-primary">
+                                &lt;Button&gt;
+                                <span className="text-foreground">
+                                    Click Me
+                                </span>
+                                &lt;/Button&gt;
+                            </p>
+                            <p className="pl-4 opacity-70">);</p>
                             <p className="opacity-70">&#125;</p>
                         </div>
                     </div>
@@ -4100,9 +4199,7 @@ export function HeroTabsShowcase() {
                 />
 
                 <div className="mt-4 flex flex-wrap items-center justify-center gap-4">
-                    <ButtonNeon
-                        className="flex items-center gap-1.5"
-                    >
+                    <ButtonNeon className="flex items-center gap-1.5">
                         Start Building
                         <ArrowRight className="size-4" />
                     </ButtonNeon>
@@ -4211,12 +4308,8 @@ export function HeroTrustedBy() {
                 />
 
                 <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
-                    <ButtonNeon>
-                        Book a Demo
-                    </ButtonNeon>
-                    <ButtonDraw>
-                        Contact Sales
-                    </ButtonDraw>
+                    <ButtonNeon>Book a Demo</ButtonNeon>
+                    <ButtonDraw>Contact Sales</ButtonDraw>
                 </div>
             </div>
 
@@ -4610,15 +4703,11 @@ export function HeroWaves() {
                 />
 
                 <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
-                    <ButtonNeon
-                        className="flex items-center gap-2"
-                    >
+                    <ButtonNeon className="flex items-center gap-2">
                         Get Started
                         <ArrowRight className="size-4" />
                     </ButtonNeon>
-                    <ButtonDraw>
-                        API Documentation
-                    </ButtonDraw>
+                    <ButtonDraw>API Documentation</ButtonDraw>
                 </div>
             </div>
         </section>
@@ -4669,6 +4758,7 @@ export default HeroWaves;
                     'https://ui.test/r/input-currency.json',
                     'https://ui.test/r/input-number.json',
                     'https://ui.test/r/input-password.json',
+                    'https://ui.test/r/sliding-radio-group.json',
                     'https://ui.test/r/multi-select.json',
                     'input',
                     'card',
@@ -4689,12 +4779,15 @@ import {
     Coins,
     Binary,
     Sliders,
+    Sparkles,
+    Layers,
 } from \'lucide-react\';
 import { InputSlug } from \'@/registry/new-york/components/ui/inputs/input-slug\';
 import { InputPhone } from \'@/registry/new-york/components/ui/inputs/input-phone\';
 import { InputCurrency } from \'@/registry/new-york/components/ui/inputs/input-currency\';
 import { InputNumber } from \'@/registry/new-york/components/ui/inputs/input-number\';
 import { InputPassword } from \'@/registry/new-york/components/ui/inputs/input-password\';
+import { SlidingRadioGroup } from \'@/registry/new-york/components/ui/inputs/sliding-radio-group\';
 import {
     MultiSelect,
     MultiSelectTrigger,
@@ -4715,6 +4808,9 @@ import { Badge } from \'@/components/ui/badge\';
 export function InputsGallery() {
     // Original states
     const [slugValue, setSlugValue] = useState(\'\');
+    const [glassVal, setGlassVal] = useState(\'gold\');
+    const [neonVal, setNeonVal] = useState(\'monthly\');
+    const [bouncyVal, setBouncyVal] = useState(\'all\');
     const [selectedTags, setSelectedTags] = useState<string[]>([]);
     const [searchFocused, setSearchFocused] = useState(false);
     const [searchValue, setSearchValue] = useState(\'\');
@@ -5038,6 +5134,125 @@ export function InputsGallery() {
                             Value:{\' \'}
                             <span className="font-bold text-primary">
                                 {passwordValue || \'none\'}
+                            </span>
+                        </div>
+                    </CardContent>
+                </Card>
+
+                {/* 10. Sliding Radio Group (Glass) */}
+                <Card className="flex flex-col justify-between border border-border/40 bg-card/25 backdrop-blur-xs">
+                    <CardHeader className="pb-3">
+                        <CardTitle className="flex items-center gap-2 text-sm font-bold">
+                            <Sparkles className="size-4 text-chart-4" />
+                            Sliding Radio (Glass Plan)
+                        </CardTitle>
+                        <CardDescription className="text-xs">
+                            Translucent glassmorphism style with custom
+                            per-option colored gliders.
+                        </CardDescription>
+                    </CardHeader>
+                    <CardContent className="flex flex-1 flex-col justify-center space-y-3 pb-6">
+                        <div className="flex w-full justify-center">
+                            <SlidingRadioGroup
+                                variant="glass"
+                                size="md"
+                                value={glassVal}
+                                onChange={setGlassVal}
+                                options={[
+                                    {
+                                        label: \'Silver\',
+                                        value: \'silver\',
+                                        gliderClassName:
+                                            \'bg-muted border border-border/60 shadow-[0_0_8px_var(--color-border)] text-foreground\',
+                                    },
+                                    {
+                                        label: \'Gold\',
+                                        value: \'gold\',
+                                        gliderClassName:
+                                            \'bg-chart-4/20 border border-chart-4/40 shadow-[0_0_12px_rgba(245,158,11,0.25)] text-chart-4 font-bold\',
+                                    },
+                                    {
+                                        label: \'Platinum\',
+                                        value: \'platinum\',
+                                        gliderClassName:
+                                            \'bg-chart-2/20 border border-chart-2/40 shadow-[0_0_12px_rgba(34,211,238,0.25)] text-chart-2 font-bold\',
+                                    },
+                                ]}
+                            />
+                        </div>
+                        <div className="truncate rounded border border-border/20 bg-muted/30 p-2.5 font-mono text-[10px] text-muted-foreground">
+                            Plan:{\' \'}
+                            <span className="font-bold text-primary capitalize">
+                                {glassVal}
+                            </span>
+                        </div>
+                    </CardContent>
+                </Card>
+
+                {/* 11. Sliding Radio Group (Neon) */}
+                <Card className="flex flex-col justify-between border border-border/40 bg-card/25 backdrop-blur-xs">
+                    <CardHeader className="pb-3">
+                        <CardTitle className="flex items-center gap-2 text-sm font-bold">
+                            <Layers className="size-4 text-chart-1" />
+                            Sliding Radio (Neon)
+                        </CardTitle>
+                        <CardDescription className="text-xs">
+                            Modern neon design with soft glowing glider backing.
+                        </CardDescription>
+                    </CardHeader>
+                    <CardContent className="flex flex-1 flex-col justify-center space-y-3 pb-6">
+                        <div className="flex w-full justify-center">
+                            <SlidingRadioGroup
+                                variant="neon"
+                                size="sm"
+                                value={neonVal}
+                                onChange={setNeonVal}
+                                options={[
+                                    { label: \'Monthly\', value: \'monthly\' },
+                                    { label: \'Quarterly\', value: \'quarterly\' },
+                                    { label: \'Annually\', value: \'annually\' },
+                                ]}
+                            />
+                        </div>
+                        <div className="truncate rounded border border-border/20 bg-muted/30 p-2.5 font-mono text-[10px] text-muted-foreground">
+                            Cycle:{\' \'}
+                            <span className="font-bold text-primary capitalize">
+                                {neonVal}
+                            </span>
+                        </div>
+                    </CardContent>
+                </Card>
+
+                {/* 12. Sliding Radio Group (Bouncy) */}
+                <Card className="flex flex-col justify-between border border-border/40 bg-card/25 backdrop-blur-xs">
+                    <CardHeader className="pb-3">
+                        <CardTitle className="flex items-center gap-2 text-sm font-bold">
+                            <Sliders className="size-4 text-chart-2" />
+                            Sliding Radio (Bouncy)
+                        </CardTitle>
+                        <CardDescription className="text-xs">
+                            Minimalist pill layout featuring a high elasticity
+                            spring glider.
+                        </CardDescription>
+                    </CardHeader>
+                    <CardContent className="flex flex-1 flex-col justify-center space-y-3 pb-6">
+                        <div className="flex w-full justify-center">
+                            <SlidingRadioGroup
+                                variant="bouncy"
+                                size="md"
+                                value={bouncyVal}
+                                onChange={setBouncyVal}
+                                options={[
+                                    { label: \'All\', value: \'all\' },
+                                    { label: \'Active\', value: \'active\' },
+                                    { label: \'Completed\', value: \'completed\' },
+                                ]}
+                            />
+                        </div>
+                        <div className="truncate rounded border border-border/20 bg-muted/30 p-2.5 font-mono text-[10px] text-muted-foreground">
+                            Filter:{\' \'}
+                            <span className="font-bold text-primary capitalize">
+                                {bouncyVal}
                             </span>
                         </div>
                     </CardContent>
@@ -6689,7 +6904,13 @@ export function VolumeControl({ volume, onVolumeChange }: VolumeControlProps) {
 
 import React, { useState } from \'react\';
 import { Mail, CheckCircle } from \'lucide-react\';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from \'@/components/ui/card\';
+import {
+    Card,
+    CardHeader,
+    CardTitle,
+    CardDescription,
+    CardContent,
+} from \'@/components/ui/card\';
 import { Button } from \'@/components/ui/button\';
 
 export function NewsletterBox() {
@@ -6704,37 +6925,48 @@ export function NewsletterBox() {
     };
 
     return (
-        <Card className="w-full max-w-md mx-auto border-border/50 bg-card/30 backdrop-blur-xs">
-            <CardHeader className="text-center pb-2">
-                <div className="size-10 rounded-full bg-primary/10 text-primary flex items-center justify-center mx-auto mb-2">
+        <Card className="mx-auto w-full max-w-md border-border/50 bg-card/30 backdrop-blur-xs">
+            <CardHeader className="pb-2 text-center">
+                <div className="mx-auto mb-2 flex size-10 items-center justify-center rounded-full bg-primary/10 text-primary">
                     <Mail className="size-5" />
                 </div>
-                <CardTitle className="text-base font-bold">Subscribe to Newsletter</CardTitle>
+                <CardTitle className="text-base font-bold">
+                    Subscribe to Newsletter
+                </CardTitle>
                 <CardDescription className="text-xs">
-                    Get the latest registry updates and components direct to your inbox.
+                    Get the latest registry updates and components direct to
+                    your inbox.
                 </CardDescription>
             </CardHeader>
             <CardContent className="pt-2">
                 {submitted ? (
-                    <div className="p-4 rounded-lg bg-primary/10 border border-primary/20 text-center space-y-2">
-                        <CheckCircle className="size-5 text-primary mx-auto" />
-                        <h4 className="text-xs font-bold text-foreground">Subscription Confirmed!</h4>
-                        <p className="text-[10px] text-muted-foreground">Thank you for subscribing. We will keep you updated.</p>
+                    <div className="space-y-2 rounded-lg border border-primary/20 bg-primary/10 p-4 text-center">
+                        <CheckCircle className="mx-auto size-5 text-primary" />
+                        <h4 className="text-xs font-bold text-foreground">
+                            Subscription Confirmed!
+                        </h4>
+                        <p className="text-[10px] text-muted-foreground">
+                            Thank you for subscribing. We will keep you updated.
+                        </p>
                     </div>
                 ) : (
                     <form onSubmit={handleSubmit} className="space-y-3">
-                        <input 
-                            type="email" 
+                        <input
+                            type="email"
                             required
-                            placeholder="Enter your email address" 
+                            placeholder="Enter your email address"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            className="w-full h-9 px-3 rounded-[var(--radius)] text-xs bg-muted/40 border border-border/60 text-foreground focus:outline-hidden focus:ring-1 focus:ring-primary"
+                            className="h-9 w-full rounded-[var(--radius)] border border-border/60 bg-muted/40 px-3 text-xs text-foreground focus:ring-1 focus:ring-primary focus:outline-hidden"
                         />
-                        <Button type="submit" size="sm" className="w-full h-9 text-xs font-bold">
+                        <Button
+                            type="submit"
+                            size="sm"
+                            className="h-9 w-full text-xs font-bold"
+                        >
                             Subscribe
                         </Button>
-                        <p className="text-[9px] text-muted-foreground/80 text-center">
+                        <p className="text-center text-[9px] text-muted-foreground/80">
                             We value your privacy. Unsubscribe at any time.
                         </p>
                     </form>
@@ -6827,27 +7059,82 @@ const comparisonData: FeatureSection[] = [
     {
         category: \'Workspace & Projects\',
         features: [
-            { name: \'Active Projects\', hobby: \'Up to 3\', pro: \'Unlimited\', enterprise: \'Unlimited (Isolated Node)\' },
-            { name: \'Monthly bandwidth\', hobby: \'10GB\', pro: \'100GB\', enterprise: \'Unlimited\' },
-            { name: \'SSD Storage\', hobby: \'5GB\', pro: \'50GB\', enterprise: \'Custom Capacity\' },
-            { name: \'Team Collaboration Seats\', hobby: \'1 seat\', pro: \'Up to 5 seats\', enterprise: \'Infinite\' },
+            {
+                name: \'Active Projects\',
+                hobby: \'Up to 3\',
+                pro: \'Unlimited\',
+                enterprise: \'Unlimited (Isolated Node)\',
+            },
+            {
+                name: \'Monthly bandwidth\',
+                hobby: \'10GB\',
+                pro: \'100GB\',
+                enterprise: \'Unlimited\',
+            },
+            {
+                name: \'SSD Storage\',
+                hobby: \'5GB\',
+                pro: \'50GB\',
+                enterprise: \'Custom Capacity\',
+            },
+            {
+                name: \'Team Collaboration Seats\',
+                hobby: \'1 seat\',
+                pro: \'Up to 5 seats\',
+                enterprise: \'Infinite\',
+            },
         ],
     },
     {
         category: \'Metrics & Observability\',
         features: [
-            { name: \'Telemetry resolution\', hobby: \'5 mins\', pro: \'Realtime (1s)\', enterprise: \'Realtime (sub-second)\' },
-            { name: \'Log Retention\', hobby: \'7 days\', pro: \'30 days\', enterprise: \'365 days\' },
-            { name: \'Custom Alert Triggers\', hobby: <Minus className="size-4 text-muted-foreground" />, pro: <Check className="size-4 text-primary" />, enterprise: <Check className="size-4 text-primary" /> },
-            { name: \'Grafana & Datadog exports\', hobby: <X className="size-4 text-destructive" />, pro: <Check className="size-4 text-primary" />, enterprise: <Check className="size-4 text-primary" /> },
+            {
+                name: \'Telemetry resolution\',
+                hobby: \'5 mins\',
+                pro: \'Realtime (1s)\',
+                enterprise: \'Realtime (sub-second)\',
+            },
+            {
+                name: \'Log Retention\',
+                hobby: \'7 days\',
+                pro: \'30 days\',
+                enterprise: \'365 days\',
+            },
+            {
+                name: \'Custom Alert Triggers\',
+                hobby: <Minus className="size-4 text-muted-foreground" />,
+                pro: <Check className="size-4 text-primary" />,
+                enterprise: <Check className="size-4 text-primary" />,
+            },
+            {
+                name: \'Grafana & Datadog exports\',
+                hobby: <X className="size-4 text-destructive" />,
+                pro: <Check className="size-4 text-primary" />,
+                enterprise: <Check className="size-4 text-primary" />,
+            },
         ],
     },
     {
         category: \'Security & SLA\',
         features: [
-            { name: \'Weekly vulnerability scans\', hobby: <Check className="size-4 text-primary" />, pro: <Check className="size-4 text-primary" />, enterprise: <Check className="size-4 text-primary" /> },
-            { name: \'SAML / SSO Authentications\', hobby: <X className="size-4 text-destructive" />, pro: <Minus className="size-4 text-muted-foreground" />, enterprise: <Check className="size-4 text-primary" /> },
-            { name: \'Support Channels\', hobby: \'Community Forum\', pro: \'Priority Email\', enterprise: \'Dedicated Slack + 99.9% SLA\' },
+            {
+                name: \'Weekly vulnerability scans\',
+                hobby: <Check className="size-4 text-primary" />,
+                pro: <Check className="size-4 text-primary" />,
+                enterprise: <Check className="size-4 text-primary" />,
+            },
+            {
+                name: \'SAML / SSO Authentications\',
+                hobby: <X className="size-4 text-destructive" />,
+                pro: <Minus className="size-4 text-muted-foreground" />,
+                enterprise: <Check className="size-4 text-primary" />,
+            },
+            {
+                name: \'Support Channels\',
+                hobby: \'Community Forum\',
+                pro: \'Priority Email\',
+                enterprise: \'Dedicated Slack + 99.9% SLA\',
+            },
         ],
     },
 ];
@@ -6856,7 +7143,7 @@ export function PricingComparison() {
     const [isYearly, setIsYearly] = useState(false);
 
     return (
-        <div className="mx-auto flex w-full max-w-5xl flex-col items-center gap-8 px-4 py-12 @container">
+        <div className="@container mx-auto flex w-full max-w-5xl flex-col items-center gap-8 px-4 py-12">
             {/* Header */}
             <div className="max-w-2xl space-y-4 text-center">
                 <Badge
@@ -6868,23 +7155,34 @@ export function PricingComparison() {
                 <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
                     Compare Plans & Features
                 </h2>
-                <p className="text-sm text-muted-foreground max-w-md mx-auto">
-                    Deep dive into all features to choose the exact plan that suits your production and compliance requirements.
+                <p className="mx-auto max-w-md text-sm text-muted-foreground">
+                    Deep dive into all features to choose the exact plan that
+                    suits your production and compliance requirements.
                 </p>
             </div>
 
             {/* Toggle Switch */}
             <div className="flex items-center justify-center gap-4">
-                <span className={cn(\'text-sm font-medium\', !isYearly ? \'text-foreground\' : \'text-muted-foreground\')}>
+                <span
+                    className={cn(
+                        \'text-sm font-medium\',
+                        !isYearly ? \'text-foreground\' : \'text-muted-foreground\',
+                    )}
+                >
                     Monthly Billing
                 </span>
-                <Switch
-                    checked={isYearly}
-                    onCheckedChange={setIsYearly}
-                />
-                <span className={cn(\'text-sm font-medium flex items-center gap-1.5\', isYearly ? \'text-foreground\' : \'text-muted-foreground\')}>
+                <Switch checked={isYearly} onCheckedChange={setIsYearly} />
+                <span
+                    className={cn(
+                        \'flex items-center gap-1.5 text-sm font-medium\',
+                        isYearly ? \'text-foreground\' : \'text-muted-foreground\',
+                    )}
+                >
                     Yearly Billing
-                    <Badge variant="secondary" className="bg-primary/10 text-primary text-[10px] py-0 px-1.5 border-0">
+                    <Badge
+                        variant="secondary"
+                        className="border-0 bg-primary/10 px-1.5 py-0 text-[10px] text-primary"
+                    >
                         Save 20%
                     </Badge>
                 </span>
@@ -6895,42 +7193,67 @@ export function PricingComparison() {
                 <Table>
                     <TableHeader>
                         <TableRow className="hover:bg-transparent">
-                            <TableHead className="w-[30%] min-w-[200px] font-bold text-foreground">Features</TableHead>
+                            <TableHead className="w-[30%] min-w-[200px] font-bold text-foreground">
+                                Features
+                            </TableHead>
                             <TableHead className="w-[23%] text-center">
                                 <div className="space-y-1 py-2">
-                                    <h4 className="font-bold text-foreground text-sm">Hobby</h4>
+                                    <h4 className="text-sm font-bold text-foreground">
+                                        Hobby
+                                    </h4>
                                     <div className="font-mono text-base font-extrabold text-foreground">
                                         ${isYearly ? 7 : 9}
-                                        <span className="text-[10px] text-muted-foreground font-normal">/mo</span>
+                                        <span className="text-[10px] font-normal text-muted-foreground">
+                                            /mo
+                                        </span>
                                     </div>
-                                    <Button variant="outline" size="sm" className="mt-2 w-full max-w-[120px] text-xs h-7">
+                                    <Button
+                                        variant="outline"
+                                        size="sm"
+                                        className="mt-2 h-7 w-full max-w-[120px] text-xs"
+                                    >
                                         Get Started
                                     </Button>
                                 </div>
                             </TableHead>
-                            <TableHead className="w-[24%] text-center bg-primary/5">
+                            <TableHead className="w-[24%] bg-primary/5 text-center">
                                 <div className="space-y-1 py-2">
-                                    <div className="inline-block rounded-full bg-primary/10 px-2 py-0.5 text-[9px] font-bold text-primary uppercase tracking-wider">
+                                    <div className="inline-block rounded-full bg-primary/10 px-2 py-0.5 text-[9px] font-bold tracking-wider text-primary uppercase">
                                         Popular
                                     </div>
-                                    <h4 className="font-bold text-foreground text-sm">Professional</h4>
+                                    <h4 className="text-sm font-bold text-foreground">
+                                        Professional
+                                    </h4>
                                     <div className="font-mono text-base font-extrabold text-primary">
                                         ${isYearly ? 24 : 29}
-                                        <span className="text-[10px] text-muted-foreground font-normal">/mo</span>
+                                        <span className="text-[10px] font-normal text-muted-foreground">
+                                            /mo
+                                        </span>
                                     </div>
-                                    <Button size="sm" className="mt-2 w-full max-w-[120px] text-xs h-7 bg-primary text-primary-foreground hover:bg-primary/90">
+                                    <Button
+                                        size="sm"
+                                        className="mt-2 h-7 w-full max-w-[120px] bg-primary text-xs text-primary-foreground hover:bg-primary/90"
+                                    >
                                         Choose Pro
                                     </Button>
                                 </div>
                             </TableHead>
                             <TableHead className="w-[23%] text-center">
                                 <div className="space-y-1 py-2">
-                                    <h4 className="font-bold text-foreground text-sm">Enterprise</h4>
+                                    <h4 className="text-sm font-bold text-foreground">
+                                        Enterprise
+                                    </h4>
                                     <div className="font-mono text-base font-extrabold text-foreground">
                                         ${isYearly ? 79 : 99}
-                                        <span className="text-[10px] text-muted-foreground font-normal">/mo</span>
+                                        <span className="text-[10px] font-normal text-muted-foreground">
+                                            /mo
+                                        </span>
                                     </div>
-                                    <Button variant="outline" size="sm" className="mt-2 w-full max-w-[120px] text-xs h-7">
+                                    <Button
+                                        variant="outline"
+                                        size="sm"
+                                        className="mt-2 h-7 w-full max-w-[120px] text-xs"
+                                    >
                                         Contact Sales
                                     </Button>
                                 </div>
@@ -6941,36 +7264,42 @@ export function PricingComparison() {
                         {comparisonData.map((section, sIdx) => (
                             <React.Fragment key={sIdx}>
                                 {/* Category Header */}
-                                <TableRow className="bg-muted/30 hover:bg-muted/30 font-semibold text-xs tracking-wider uppercase text-muted-foreground">
-                                    <TableCell colSpan={4} className="py-2.5 pl-4 align-middle">
+                                <TableRow className="bg-muted/30 text-xs font-semibold tracking-wider text-muted-foreground uppercase hover:bg-muted/30">
+                                    <TableCell
+                                        colSpan={4}
+                                        className="py-2.5 pl-4 align-middle"
+                                    >
                                         {section.category}
                                     </TableCell>
                                 </TableRow>
 
                                 {/* Features rows */}
                                 {section.features.map((feature, fIdx) => (
-                                    <TableRow key={fIdx} className="hover:bg-muted/10 transition-colors">
-                                        <TableCell className="font-medium text-foreground py-3 pl-4">
+                                    <TableRow
+                                        key={fIdx}
+                                        className="transition-colors hover:bg-muted/10"
+                                    >
+                                        <TableCell className="py-3 pl-4 font-medium text-foreground">
                                             <div className="flex flex-col gap-0.5">
                                                 <span>{feature.name}</span>
                                                 {feature.description && (
-                                                    <span className="text-[10px] text-muted-foreground font-normal leading-normal">
+                                                    <span className="text-[10px] leading-normal font-normal text-muted-foreground">
                                                         {feature.description}
                                                     </span>
                                                 )}
                                             </div>
                                         </TableCell>
-                                        <TableCell className="text-center font-medium text-xs py-3">
+                                        <TableCell className="py-3 text-center text-xs font-medium">
                                             <div className="flex items-center justify-center">
                                                 {feature.hobby}
                                             </div>
                                         </TableCell>
-                                        <TableCell className="text-center font-semibold text-xs py-3 bg-primary/5">
+                                        <TableCell className="bg-primary/5 py-3 text-center text-xs font-semibold">
                                             <div className="flex items-center justify-center">
                                                 {feature.pro}
                                             </div>
                                         </TableCell>
-                                        <TableCell className="text-center font-medium text-xs py-3">
+                                        <TableCell className="py-3 text-center text-xs font-medium">
                                             <div className="flex items-center justify-center">
                                                 {feature.enterprise}
                                             </div>
@@ -7068,33 +7397,35 @@ export function PricingGlowing() {
     };
 
     return (
-        <div className="mx-auto flex w-full max-w-5xl flex-col items-center gap-10 px-4 py-12 @container">
+        <div className="@container mx-auto flex w-full max-w-5xl flex-col items-center gap-10 px-4 py-12">
             {/* Header */}
             <div className="max-w-2xl space-y-4 text-center">
                 <Badge
                     variant="outline"
-                    className="border-primary/30 bg-primary/5 px-3 py-1 font-mono text-xs tracking-widest text-primary uppercase animate-pulse"
+                    className="animate-pulse border-primary/30 bg-primary/5 px-3 py-1 font-mono text-xs tracking-widest text-primary uppercase"
                 >
-                    <Sparkles className="mr-1.5 size-3.5 inline-block text-primary" />
+                    <Sparkles className="mr-1.5 inline-block size-3.5 text-primary" />
                     Scale-on-Demand Pricing
                 </Badge>
-                <h2 className="text-4xl font-extrabold tracking-tight sm:text-5xl bg-gradient-to-r from-foreground via-foreground/90 to-muted-foreground bg-clip-text text-transparent">
+                <h2 className="bg-gradient-to-r from-foreground via-foreground/90 to-muted-foreground bg-clip-text text-4xl font-extrabold tracking-tight text-transparent sm:text-5xl">
                     Pay Only For What You Use
                 </h2>
-                <p className="text-sm text-muted-foreground max-w-lg mx-auto">
-                    Choose a plan built to grow with you. Adjust the seat slider below to see how our volume discounts apply.
+                <p className="mx-auto max-w-lg text-sm text-muted-foreground">
+                    Choose a plan built to grow with you. Adjust the seat slider
+                    below to see how our volume discounts apply.
                 </p>
             </div>
 
             {/* Slider Controls */}
-            <Card className="w-full max-w-xl border bg-card/65 backdrop-blur-xs p-6 shadow-md">
+            <Card className="w-full max-w-xl border bg-card/65 p-6 shadow-md backdrop-blur-xs">
                 <div className="space-y-6">
                     <div className="flex items-center justify-between">
                         <Label className="text-sm font-semibold text-foreground">
                             Number of Seats
                         </Label>
                         <span className="font-mono text-lg font-bold text-primary">
-                            {userCount[0]} {userCount[0] === 1 ? \'user\' : \'users\'}
+                            {userCount[0]}{\' \'}
+                            {userCount[0] === 1 ? \'user\' : \'users\'}
                         </span>
                     </div>
                     <Slider
@@ -7105,23 +7436,40 @@ export function PricingGlowing() {
                         step={1}
                         className="py-2"
                     />
-                    <div className="flex items-center justify-between text-xs text-muted-foreground font-mono">
+                    <div className="flex items-center justify-between font-mono text-xs text-muted-foreground">
                         <span>1 Seat</span>
                         <span>50 Seats</span>
                         <span>100 Seats</span>
                     </div>
 
-                    <div className="flex items-center justify-center gap-4 pt-4 border-t">
-                        <span className={cn(\'text-sm font-medium\', !isYearly ? \'text-foreground\' : \'text-muted-foreground\')}>
+                    <div className="flex items-center justify-center gap-4 border-t pt-4">
+                        <span
+                            className={cn(
+                                \'text-sm font-medium\',
+                                !isYearly
+                                    ? \'text-foreground\'
+                                    : \'text-muted-foreground\',
+                            )}
+                        >
                             Monthly
                         </span>
                         <Switch
                             checked={isYearly}
                             onCheckedChange={setIsYearly}
                         />
-                        <span className={cn(\'text-sm font-medium flex items-center gap-1.5\', isYearly ? \'text-foreground\' : \'text-muted-foreground\')}>
+                        <span
+                            className={cn(
+                                \'flex items-center gap-1.5 text-sm font-medium\',
+                                isYearly
+                                    ? \'text-foreground\'
+                                    : \'text-muted-foreground\',
+                            )}
+                        >
                             Yearly
-                            <Badge variant="secondary" className="bg-primary/10 text-primary text-[10px] py-0 px-1.5 border-0">
+                            <Badge
+                                variant="secondary"
+                                className="border-0 bg-primary/10 px-1.5 py-0 text-[10px] text-primary"
+                            >
                                 Save 20%
                             </Badge>
                         </span>
@@ -7132,17 +7480,23 @@ export function PricingGlowing() {
             {/* Pricing Tiers Grid */}
             <div className="grid w-full grid-cols-1 gap-8 @3xl:grid-cols-3">
                 {/* Standard / Hobby */}
-                <Card className="relative flex flex-col justify-between overflow-hidden bg-card/45 backdrop-blur-xs border transition-all duration-300 hover:scale-[1.01]">
+                <Card className="relative flex flex-col justify-between overflow-hidden border bg-card/45 backdrop-blur-xs transition-all duration-300 hover:scale-[1.01]">
                     <CardHeader className="space-y-2">
-                        <CardTitle className="text-xl font-bold">Startup</CardTitle>
-                        <CardDescription className="text-xs">Ideal for small dev teams and initial projects.</CardDescription>
+                        <CardTitle className="text-xl font-bold">
+                            Startup
+                        </CardTitle>
+                        <CardDescription className="text-xs">
+                            Ideal for small dev teams and initial projects.
+                        </CardDescription>
                     </CardHeader>
-                    <CardContent className="space-y-6 flex-grow">
+                    <CardContent className="flex-grow space-y-6">
                         <div className="flex items-baseline">
-                            <span className="text-4xl font-extrabold font-mono tracking-tight">
+                            <span className="font-mono text-4xl font-extrabold tracking-tight">
                                 ${getPrice(15)}
                             </span>
-                            <span className="text-xs text-muted-foreground ml-1">/month</span>
+                            <span className="ml-1 text-xs text-muted-foreground">
+                                /month
+                            </span>
                         </div>
                         <ul className="space-y-3 text-xs">
                             <li className="flex items-center gap-2">
@@ -7171,25 +7525,33 @@ export function PricingGlowing() {
                 </Card>
 
                 {/* Pro Tier (Glowing/Popular) */}
-                <Card className="relative flex flex-col justify-between overflow-hidden bg-card/60 backdrop-blur-xs border-primary shadow-lg ring-1 ring-primary transition-all duration-300 hover:scale-[1.02]">
-                    <div className="absolute top-0 right-0 rounded-bl-lg bg-primary px-3 py-1 font-mono text-[9px] font-bold text-primary-foreground uppercase tracking-widest">
+                <Card className="relative flex flex-col justify-between overflow-hidden border-primary bg-card/60 shadow-lg ring-1 ring-primary backdrop-blur-xs transition-all duration-300 hover:scale-[1.02]">
+                    <div className="absolute top-0 right-0 rounded-bl-lg bg-primary px-3 py-1 font-mono text-[9px] font-bold tracking-widest text-primary-foreground uppercase">
                         Popular
                     </div>
                     <CardHeader className="space-y-2">
-                        <CardTitle className="text-xl font-bold text-foreground">Pro Team</CardTitle>
-                        <CardDescription className="text-xs">For teams needing advanced scaling and metrics.</CardDescription>
+                        <CardTitle className="text-xl font-bold text-foreground">
+                            Pro Team
+                        </CardTitle>
+                        <CardDescription className="text-xs">
+                            For teams needing advanced scaling and metrics.
+                        </CardDescription>
                     </CardHeader>
-                    <CardContent className="space-y-6 flex-grow">
+                    <CardContent className="flex-grow space-y-6">
                         <div className="flex items-baseline">
-                            <span className="text-4xl font-extrabold font-mono tracking-tight text-primary">
+                            <span className="font-mono text-4xl font-extrabold tracking-tight text-primary">
                                 ${getPrice(49)}
                             </span>
-                            <span className="text-xs text-muted-foreground ml-1">/month</span>
+                            <span className="ml-1 text-xs text-muted-foreground">
+                                /month
+                            </span>
                         </div>
                         <ul className="space-y-3 text-xs">
                             <li className="flex items-center gap-2">
                                 <Check className="size-4 shrink-0 text-primary" />
-                                <span className="font-semibold text-foreground">Custom seat scaling</span>
+                                <span className="font-semibold text-foreground">
+                                    Custom seat scaling
+                                </span>
                             </li>
                             <li className="flex items-center gap-2">
                                 <Check className="size-4 shrink-0 text-primary" />
@@ -7210,24 +7572,31 @@ export function PricingGlowing() {
                         </ul>
                     </CardContent>
                     <CardFooter>
-                        <Button className="w-full shadow-md bg-primary text-primary-foreground hover:bg-primary/90">
+                        <Button className="w-full bg-primary text-primary-foreground shadow-md hover:bg-primary/90">
                             Upgrade to Pro
                         </Button>
                     </CardFooter>
                 </Card>
 
                 {/* Scale Tier */}
-                <Card className="relative flex flex-col justify-between overflow-hidden bg-card/45 backdrop-blur-xs border transition-all duration-300 hover:scale-[1.01]">
+                <Card className="relative flex flex-col justify-between overflow-hidden border bg-card/45 backdrop-blur-xs transition-all duration-300 hover:scale-[1.01]">
                     <CardHeader className="space-y-2">
-                        <CardTitle className="text-xl font-bold">Scale Plan</CardTitle>
-                        <CardDescription className="text-xs">Tailored for corporate infrastructure and strict SLA.</CardDescription>
+                        <CardTitle className="text-xl font-bold">
+                            Scale Plan
+                        </CardTitle>
+                        <CardDescription className="text-xs">
+                            Tailored for corporate infrastructure and strict
+                            SLA.
+                        </CardDescription>
                     </CardHeader>
-                    <CardContent className="space-y-6 flex-grow">
+                    <CardContent className="flex-grow space-y-6">
                         <div className="flex items-baseline">
-                            <span className="text-4xl font-extrabold font-mono tracking-tight">
+                            <span className="font-mono text-4xl font-extrabold tracking-tight">
                                 ${getPrice(149)}
                             </span>
-                            <span className="text-xs text-muted-foreground ml-1">/month</span>
+                            <span className="ml-1 text-xs text-muted-foreground">
+                                /month
+                            </span>
                         </div>
                         <ul className="space-y-3 text-xs">
                             <li className="flex items-center gap-2">
@@ -7389,7 +7758,7 @@ export function PricingModernCards() {
     const [isYearly, setIsYearly] = useState(false);
 
     return (
-        <div className="mx-auto flex w-full max-w-5xl flex-col items-center gap-10 px-4 py-12 @container">
+        <div className="@container mx-auto flex w-full max-w-5xl flex-col items-center gap-10 px-4 py-12">
             {/* Header */}
             <div className="max-w-2xl space-y-4 text-center">
                 <Badge
@@ -7398,43 +7767,56 @@ export function PricingModernCards() {
                 >
                     Predictable Plans
                 </Badge>
-                <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl bg-gradient-to-r from-foreground via-foreground/90 to-muted-foreground bg-clip-text text-transparent">
+                <h2 className="bg-gradient-to-r from-foreground via-foreground/90 to-muted-foreground bg-clip-text text-3xl font-extrabold tracking-tight text-transparent sm:text-4xl">
                     Simple pricing. No hidden fees.
                 </h2>
-                <p className="text-sm text-muted-foreground max-w-sm mx-auto">
-                    Choose the perfect subscription package for your workload. Cancel anytime.
+                <p className="mx-auto max-w-sm text-sm text-muted-foreground">
+                    Choose the perfect subscription package for your workload.
+                    Cancel anytime.
                 </p>
             </div>
 
             {/* Toggle */}
             <div className="flex items-center justify-center gap-3">
-                <span className={cn(\'text-sm font-semibold\', !isYearly ? \'text-foreground\' : \'text-muted-foreground\')}>
+                <span
+                    className={cn(
+                        \'text-sm font-semibold\',
+                        !isYearly ? \'text-foreground\' : \'text-muted-foreground\',
+                    )}
+                >
                     Monthly
                 </span>
-                <Switch
-                    checked={isYearly}
-                    onCheckedChange={setIsYearly}
-                />
-                <span className={cn(\'text-sm font-semibold flex items-center gap-1.5\', isYearly ? \'text-foreground\' : \'text-muted-foreground\')}>
+                <Switch checked={isYearly} onCheckedChange={setIsYearly} />
+                <span
+                    className={cn(
+                        \'flex items-center gap-1.5 text-sm font-semibold\',
+                        isYearly ? \'text-foreground\' : \'text-muted-foreground\',
+                    )}
+                >
                     Yearly
-                    <Badge variant="secondary" className="bg-primary/10 text-primary text-[10px] py-0 px-1.5 border-0">
+                    <Badge
+                        variant="secondary"
+                        className="border-0 bg-primary/10 px-1.5 py-0 text-[10px] text-primary"
+                    >
                         2 months free
                     </Badge>
                 </span>
             </div>
 
             {/* Grid */}
-            <div className="grid w-full grid-cols-1 gap-6 @3xl:grid-cols-3 items-stretch">
+            <div className="grid w-full grid-cols-1 items-stretch gap-6 @3xl:grid-cols-3">
                 {tiers.map((tier, idx) => (
                     <Card
                         key={idx}
                         className={cn(
-                            \'relative flex flex-col justify-between overflow-hidden bg-card/45 backdrop-blur-xs border transition-all duration-300 hover:scale-[1.01]\',
-                            tier.popular ? \'border-primary ring-1 ring-primary/45 bg-card/60 shadow-lg\' : \'shadow-sm\'
+                            \'relative flex flex-col justify-between overflow-hidden border bg-card/45 backdrop-blur-xs transition-all duration-300 hover:scale-[1.01]\',
+                            tier.popular
+                                ? \'border-primary bg-card/60 shadow-lg ring-1 ring-primary/45\'
+                                : \'shadow-sm\',
                         )}
                     >
                         {tier.popular && (
-                            <div className="absolute top-3 right-3 flex items-center gap-1 rounded-full bg-primary/10 border border-primary/20 px-2.5 py-0.5 text-[8px] font-bold text-primary uppercase tracking-wider animate-pulse">
+                            <div className="absolute top-3 right-3 flex animate-pulse items-center gap-1 rounded-full border border-primary/20 bg-primary/10 px-2.5 py-0.5 text-[8px] font-bold tracking-wider text-primary uppercase">
                                 <Star className="size-2.5 fill-current text-primary" />
                                 Recommended
                             </div>
@@ -7442,37 +7824,48 @@ export function PricingModernCards() {
 
                         <CardHeader className="space-y-3 pb-6">
                             <div className="flex items-center gap-2">
-                                <div className="p-1.5 rounded bg-muted/50 border shrink-0">
+                                <div className="shrink-0 rounded border bg-muted/50 p-1.5">
                                     {tier.icon}
                                 </div>
-                                <CardTitle className="text-lg font-bold">{tier.name}</CardTitle>
+                                <CardTitle className="text-lg font-bold">
+                                    {tier.name}
+                                </CardTitle>
                             </div>
-                            <CardDescription className="text-xs min-h-[32px] leading-relaxed">
+                            <CardDescription className="min-h-[32px] text-xs leading-relaxed">
                                 {tier.description}
                             </CardDescription>
                         </CardHeader>
 
-                        <CardContent className="space-y-6 flex-grow pb-6">
+                        <CardContent className="flex-grow space-y-6 pb-6">
                             <div className="flex items-baseline">
-                                <span className="text-4xl font-extrabold font-mono tracking-tight text-foreground">
-                                    ${isYearly ? tier.yearlyPrice : tier.monthlyPrice}
+                                <span className="font-mono text-4xl font-extrabold tracking-tight text-foreground">
+                                    $
+                                    {isYearly
+                                        ? tier.yearlyPrice
+                                        : tier.monthlyPrice}
                                 </span>
-                                <span className="text-xs text-muted-foreground ml-1">/month</span>
+                                <span className="ml-1 text-xs text-muted-foreground">
+                                    /month
+                                </span>
                             </div>
 
-                            <ul className="space-y-3 text-xs border-t pt-6">
+                            <ul className="space-y-3 border-t pt-6 text-xs">
                                 {tier.features.map((feat, fIdx) => (
                                     <li
                                         key={fIdx}
                                         className={cn(
                                             \'flex items-center gap-2\',
-                                            feat.included ? \'text-foreground\' : \'text-muted-foreground/60 line-through\'
+                                            feat.included
+                                                ? \'text-foreground\'
+                                                : \'text-muted-foreground/60 line-through\',
                                         )}
                                     >
                                         <Check
                                             className={cn(
                                                 \'size-4 shrink-0\',
-                                                feat.included ? \'text-primary\' : \'text-muted-foreground/30\'
+                                                feat.included
+                                                    ? \'text-primary\'
+                                                    : \'text-muted-foreground/30\',
                                             )}
                                         />
                                         <span>{feat.text}</span>
@@ -7483,7 +7876,7 @@ export function PricingModernCards() {
 
                         <CardFooter className="pt-0">
                             <Button
-                                className="w-full text-xs h-9"
+                                className="h-9 w-full text-xs"
                                 variant={tier.popular ? \'default\' : \'outline\'}
                             >
                                 {tier.cta}
@@ -7582,27 +7975,28 @@ export function PricingResources() {
     };
 
     return (
-        <div className="mx-auto flex w-full max-w-5xl flex-col items-center gap-10 px-4 py-12 @container">
+        <div className="@container mx-auto flex w-full max-w-5xl flex-col items-center gap-10 px-4 py-12">
             {/* Header */}
             <div className="max-w-2xl space-y-4 text-center">
                 <Badge
                     variant="outline"
                     className="border-primary/30 bg-primary/5 px-3 py-1 font-mono text-xs tracking-widest text-primary uppercase"
                 >
-                    <Sparkles className="mr-1.5 size-3.5 inline-block text-primary animate-pulse" />
+                    <Sparkles className="mr-1.5 inline-block size-3.5 animate-pulse text-primary" />
                     Custom Calculator
                 </Badge>
                 <h2 className="text-4xl font-extrabold tracking-tight sm:text-5xl">
                     Configure Your Resources
                 </h2>
-                <p className="text-sm text-muted-foreground max-w-lg mx-auto">
-                    Design a custom server container suited for your deployment. Move the sliders to scale CPU, RAM, and Storage.
+                <p className="mx-auto max-w-lg text-sm text-muted-foreground">
+                    Design a custom server container suited for your deployment.
+                    Move the sliders to scale CPU, RAM, and Storage.
                 </p>
             </div>
 
-            <div className="grid w-full grid-cols-1 gap-8 @4xl:grid-cols-12 items-stretch">
+            <div className="grid w-full grid-cols-1 items-stretch gap-8 @4xl:grid-cols-12">
                 {/* Sliders Card */}
-                <Card className="col-span-1 @4xl:col-span-7 border bg-card/65 backdrop-blur-xs p-6 shadow-md space-y-8 flex flex-col justify-between">
+                <Card className="col-span-1 flex flex-col justify-between space-y-8 border bg-card/65 p-6 shadow-md backdrop-blur-xs @4xl:col-span-7">
                     {/* CPU Sliders */}
                     <div className="space-y-4">
                         <div className="flex items-center justify-between">
@@ -7622,7 +8016,7 @@ export function PricingResources() {
                             step={1}
                             className="py-1"
                         />
-                        <div className="flex justify-between text-[10px] text-muted-foreground font-mono">
+                        <div className="flex justify-between font-mono text-[10px] text-muted-foreground">
                             <span>1 Core</span>
                             <span>8 Cores</span>
                             <span>16 Cores</span>
@@ -7633,7 +8027,7 @@ export function PricingResources() {
                     <div className="space-y-4">
                         <div className="flex items-center justify-between">
                             <Label className="flex items-center gap-2 text-sm font-semibold text-foreground">
-                                <Cpu className="size-4 text-primary animate-pulse" />
+                                <Cpu className="size-4 animate-pulse text-primary" />
                                 Memory (RAM)
                             </Label>
                             <span className="font-mono text-base font-bold text-foreground">
@@ -7648,7 +8042,7 @@ export function PricingResources() {
                             step={2}
                             className="py-1"
                         />
-                        <div className="flex justify-between text-[10px] text-muted-foreground font-mono">
+                        <div className="flex justify-between font-mono text-[10px] text-muted-foreground">
                             <span>2 GB</span>
                             <span>32 GB</span>
                             <span>64 GB</span>
@@ -7674,7 +8068,7 @@ export function PricingResources() {
                             step={10}
                             className="py-1"
                         />
-                        <div className="flex justify-between text-[10px] text-muted-foreground font-mono">
+                        <div className="flex justify-between font-mono text-[10px] text-muted-foreground">
                             <span>10 GB</span>
                             <span>500 GB</span>
                             <span>1TB (1000 GB)</span>
@@ -7683,25 +8077,39 @@ export function PricingResources() {
                 </Card>
 
                 {/* Estimate & Checkout Card */}
-                <Card className="col-span-1 @4xl:col-span-5 border border-primary bg-card/90 shadow-xl p-6 flex flex-col justify-between min-h-[380px]">
+                <Card className="col-span-1 flex min-h-[380px] flex-col justify-between border border-primary bg-card/90 p-6 shadow-xl @4xl:col-span-5">
                     <div className="space-y-6">
                         <CardHeader className="p-0">
-                            <CardTitle className="text-xl font-bold">Estimated Cost</CardTitle>
-                            <CardDescription className="text-xs">Based on your selected vCPU, RAM, and Storage layout.</CardDescription>
+                            <CardTitle className="text-xl font-bold">
+                                Estimated Cost
+                            </CardTitle>
+                            <CardDescription className="text-xs">
+                                Based on your selected vCPU, RAM, and Storage
+                                layout.
+                            </CardDescription>
                         </CardHeader>
 
                         {/* Price Display */}
-                        <div className="py-4 border-y space-y-2">
+                        <div className="space-y-2 border-y py-4">
                             <div className="flex items-baseline justify-center">
-                                <span className="text-5xl font-black font-mono tracking-tight text-primary animate-pulse">
+                                <span className="animate-pulse font-mono text-5xl font-black tracking-tight text-primary">
                                     ${calculateMonthlyPrice()}
                                 </span>
-                                <span className="text-sm text-muted-foreground ml-1">/month</span>
+                                <span className="ml-1 text-sm text-muted-foreground">
+                                    /month
+                                </span>
                             </div>
 
                             {/* Billing Switch */}
                             <div className="flex items-center justify-center gap-3 pt-3">
-                                <span className={cn(\'text-xs font-semibold\', !isYearly ? \'text-foreground\' : \'text-muted-foreground\')}>
+                                <span
+                                    className={cn(
+                                        \'text-xs font-semibold\',
+                                        !isYearly
+                                            ? \'text-foreground\'
+                                            : \'text-muted-foreground\',
+                                    )}
+                                >
                                     Monthly
                                 </span>
                                 <Switch
@@ -7709,9 +8117,19 @@ export function PricingResources() {
                                     onCheckedChange={setIsYearly}
                                     className="scale-90"
                                 />
-                                <span className={cn(\'text-xs font-semibold flex items-center gap-1\', isYearly ? \'text-foreground\' : \'text-muted-foreground\')}>
+                                <span
+                                    className={cn(
+                                        \'flex items-center gap-1 text-xs font-semibold\',
+                                        isYearly
+                                            ? \'text-foreground\'
+                                            : \'text-muted-foreground\',
+                                    )}
+                                >
                                     Yearly
-                                    <Badge variant="secondary" className="bg-primary/15 text-primary text-[9px] py-0 px-1 border-0">
+                                    <Badge
+                                        variant="secondary"
+                                        className="border-0 bg-primary/15 px-1 py-0 text-[9px] text-primary"
+                                    >
                                         -20%
                                     </Badge>
                                 </span>
@@ -7734,13 +8152,15 @@ export function PricingResources() {
                             </li>
                             <li className="flex items-center gap-2">
                                 <Check className="size-4 shrink-0 text-primary" />
-                                <span>Unlimited incoming/outgoing bandwidth</span>
+                                <span>
+                                    Unlimited incoming/outgoing bandwidth
+                                </span>
                             </li>
                         </ul>
                     </div>
 
                     <CardFooter className="p-0 pt-6">
-                        <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90 shadow-md">
+                        <Button className="w-full bg-primary text-primary-foreground shadow-md hover:bg-primary/90">
                             Deploy Server Now
                         </Button>
                     </CardFooter>
@@ -7884,7 +8304,7 @@ export function PricingSection() {
     const [isYearly, setIsYearly] = useState(false);
 
     return (
-        <div className="mx-auto flex w-full max-w-5xl flex-col items-center gap-8 px-4 py-8 @container">
+        <div className="@container mx-auto flex w-full max-w-5xl flex-col items-center gap-8 px-4 py-8">
             <div className="max-w-xl space-y-3 text-center">
                 <Badge
                     variant="outline"
@@ -7936,7 +8356,7 @@ export function PricingSection() {
             </div>
 
             {/* Pricing cards grid */}
-            <div className="grid w-full items-stretch gap-6 grid-cols-1 @3xl:grid-cols-3">
+            <div className="grid w-full grid-cols-1 items-stretch gap-6 @3xl:grid-cols-3">
                 {tiers.map((tier) => {
                     const price = isYearly
                         ? tier.yearlyPrice
@@ -8093,31 +8513,50 @@ const rows: FeatureRow[] = [
 
 export function PricingTable() {
     return (
-        <Card className="w-full border-border/50 bg-card/30 backdrop-blur-xs overflow-hidden">
+        <Card className="w-full overflow-hidden border-border/50 bg-card/30 backdrop-blur-xs">
             <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-bold uppercase tracking-wider text-muted-foreground">
+                <CardTitle className="text-sm font-bold tracking-wider text-muted-foreground uppercase">
                     Feature Comparison
                 </CardTitle>
             </CardHeader>
             <CardContent className="p-0">
                 <div className="overflow-x-auto">
-                    <table className="w-full text-xs text-left border-collapse">
+                    <table className="w-full border-collapse text-left text-xs">
                         <thead>
                             <tr className="border-b border-border/30 bg-muted/20">
-                                <th className="p-3 font-bold text-muted-foreground">Feature</th>
-                                <th className="p-3 font-bold text-center w-24">Free</th>
-                                <th className="p-3 font-bold text-center w-24 text-primary">Pro</th>
+                                <th className="p-3 font-bold text-muted-foreground">
+                                    Feature
+                                </th>
+                                <th className="w-24 p-3 text-center font-bold">
+                                    Free
+                                </th>
+                                <th className="w-24 p-3 text-center font-bold text-primary">
+                                    Pro
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
                             {rows.map((row, idx) => (
-                                <tr key={idx} className="border-b border-border/20 last:border-0 hover:bg-muted/10">
-                                    <td className="p-3 font-semibold text-foreground">{row.feature}</td>
-                                    <td className="p-3 text-center">
-                                        {row.free ? <Check className="size-4 text-emerald-500 mx-auto" /> : <X className="size-4 text-muted-foreground/30 mx-auto" />}
+                                <tr
+                                    key={idx}
+                                    className="border-b border-border/20 last:border-0 hover:bg-muted/10"
+                                >
+                                    <td className="p-3 font-semibold text-foreground">
+                                        {row.feature}
                                     </td>
                                     <td className="p-3 text-center">
-                                        {row.pro ? <Check className="size-4 text-primary mx-auto" /> : <X className="size-4 text-muted-foreground/30 mx-auto" />}
+                                        {row.free ? (
+                                            <Check className="mx-auto size-4 text-emerald-500" />
+                                        ) : (
+                                            <X className="mx-auto size-4 text-muted-foreground/30" />
+                                        )}
+                                    </td>
+                                    <td className="p-3 text-center">
+                                        {row.pro ? (
+                                            <Check className="mx-auto size-4 text-primary" />
+                                        ) : (
+                                            <X className="mx-auto size-4 text-muted-foreground/30" />
+                                        )}
                                     </td>
                                 </tr>
                             ))}
@@ -9225,8 +9664,16 @@ interface StatItem {
 }
 
 const stats: StatItem[] = [
-    { value: \'99.99%\', label: \'System Uptime\', description: \'Guaranteed by SLA\' },
-    { value: \'150M+\', label: \'Monthly Queries\', description: \'Processed globally\' },
+    {
+        value: \'99.99%\',
+        label: \'System Uptime\',
+        description: \'Guaranteed by SLA\',
+    },
+    {
+        value: \'150M+\',
+        label: \'Monthly Queries\',
+        description: \'Processed globally\',
+    },
     { value: \'10k+\', label: \'Active Devs\', description: \'Building workspaces\' },
     { value: \'24/7\', label: \'Support SLA\', description: \'Always online\' },
 ];
@@ -9234,17 +9681,20 @@ const stats: StatItem[] = [
 export function StatsGrid() {
     return (
         <div className="w-full">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
                 {stats.map((stat, idx) => (
-                    <Card key={idx} className="border-border/50 bg-card/30 backdrop-blur-xs text-center p-4">
+                    <Card
+                        key={idx}
+                        className="border-border/50 bg-card/30 p-4 text-center backdrop-blur-xs"
+                    >
                         <CardContent className="p-0">
-                            <div className="text-2xl md:text-3xl font-black tracking-tight text-primary font-mono">
+                            <div className="font-mono text-2xl font-black tracking-tight text-primary md:text-3xl">
                                 {stat.value}
                             </div>
-                            <div className="text-xs font-bold text-foreground mt-1">
+                            <div className="mt-1 text-xs font-bold text-foreground">
                                 {stat.label}
                             </div>
-                            <div className="text-[10px] text-muted-foreground mt-0.5">
+                            <div className="mt-0.5 text-[10px] text-muted-foreground">
                                 {stat.description}
                             </div>
                         </CardContent>
@@ -9304,7 +9754,13 @@ export default StatsGrid;
 
 import React from \'react\';
 import { Star, Quote } from \'lucide-react\';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from \'@/components/ui/card\';
+import {
+    Card,
+    CardContent,
+    CardHeader,
+    CardTitle,
+    CardDescription,
+} from \'@/components/ui/card\';
 
 interface Testimonial {
     name: string;
@@ -9319,21 +9775,24 @@ const testimonials: Testimonial[] = [
         name: \'Alex Rivera\',
         role: \'Founder at DevFlow\',
         avatarText: \'AR\',
-        content: \'This styling registry has completely transformed how our team develops dashboards. The ease of switching theme variables saved us weeks of design time.\',
+        content:
+            \'This styling registry has completely transformed how our team develops dashboards. The ease of switching theme variables saved us weeks of design time.\',
         rating: 5,
     },
     {
         name: \'Sarah Chen\',
         role: \'Lead Frontend Architect\',
         avatarText: \'SC\',
-        content: \'The component curation is incredible. Everything is built natively with shadcn guidelines and is highly responsive using tailwind container queries.\',
+        content:
+            \'The component curation is incredible. Everything is built natively with shadcn guidelines and is highly responsive using tailwind container queries.\',
         rating: 5,
     },
     {
         name: \'Marcus Brody\',
         role: \'Product Designer at Peak\',
         avatarText: \'MB\',
-        content: \'I love how clean the markup is. No redundant nesting, pure Tailwind CSS variables, and instant installation commands that work out of the box.\',
+        content:
+            \'I love how clean the markup is. No redundant nesting, pure Tailwind CSS variables, and instant installation commands that work out of the box.\',
         rating: 5,
     },
 ];
@@ -9341,23 +9800,35 @@ const testimonials: Testimonial[] = [
 export function TestimonialsGrid() {
     return (
         <div className="w-full">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
                 {testimonials.map((item, idx) => (
-                    <Card key={idx} className="border-border/50 bg-card/30 backdrop-blur-xs relative overflow-hidden group transition-all duration-300 hover:border-primary/30">
-                        <Quote className="absolute right-4 top-4 size-10 opacity-[0.03] text-foreground pointer-events-none" />
+                    <Card
+                        key={idx}
+                        className="group relative overflow-hidden border-border/50 bg-card/30 backdrop-blur-xs transition-all duration-300 hover:border-primary/30"
+                    >
+                        <Quote className="pointer-events-none absolute top-4 right-4 size-10 text-foreground opacity-[0.03]" />
                         <CardHeader className="pb-3">
-                            <div className="flex items-center gap-1.5 mb-2 text-amber-500">
-                                {Array.from({ length: item.rating }).map((_, i) => (
-                                    <Star key={i} className="size-3.5 fill-current" />
-                                ))}
+                            <div className="mb-2 flex items-center gap-1.5 text-amber-500">
+                                {Array.from({ length: item.rating }).map(
+                                    (_, i) => (
+                                        <Star
+                                            key={i}
+                                            className="size-3.5 fill-current"
+                                        />
+                                    ),
+                                )}
                             </div>
                             <div className="flex items-center gap-3">
-                                <div className="size-8 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold text-xs select-none">
+                                <div className="flex size-8 items-center justify-center rounded-full bg-primary/10 text-xs font-bold text-primary select-none">
                                     {item.avatarText}
                                 </div>
                                 <div className="min-w-0">
-                                    <CardTitle className="text-xs font-bold text-foreground truncate">{item.name}</CardTitle>
-                                    <CardDescription className="text-[9px] truncate">{item.role}</CardDescription>
+                                    <CardTitle className="truncate text-xs font-bold text-foreground">
+                                        {item.name}
+                                    </CardTitle>
+                                    <CardDescription className="truncate text-[9px]">
+                                        {item.role}
+                                    </CardDescription>
                                 </div>
                             </div>
                         </CardHeader>
@@ -9428,47 +9899,71 @@ import { Button } from \'@/components/ui/button\';
 
 export function UserProfileCard() {
     return (
-        <Card className="w-full max-w-sm mx-auto border-border/50 bg-card/30 backdrop-blur-xs overflow-hidden relative">
+        <Card className="relative mx-auto w-full max-w-sm overflow-hidden border-border/50 bg-card/30 backdrop-blur-xs">
             {/* Cover photo placeholder */}
-            <div className="h-20 w-full bg-linear-to-r from-primary/30 to-accent/30 relative" />
-            
-            <CardContent className="pt-0 text-center pb-6">
+            <div className="relative h-20 w-full bg-linear-to-r from-primary/30 to-accent/30" />
+
+            <CardContent className="pt-0 pb-6 text-center">
                 {/* Profile Photo */}
-                <div className="size-16 rounded-full bg-background border-2 border-border/80 text-primary flex items-center justify-center font-bold text-lg mx-auto -mt-8 relative shadow-sm">
+                <div className="relative mx-auto -mt-8 flex size-16 items-center justify-center rounded-full border-2 border-border/80 bg-background text-lg font-bold text-primary shadow-sm">
                     <User className="size-8" />
                 </div>
-                
+
                 <div className="mt-2.5">
-                    <h4 className="text-sm font-bold text-foreground">Sarah Jenkins</h4>
-                    <p className="text-[10px] text-muted-foreground">Product Designer @ Peak</p>
+                    <h4 className="text-sm font-bold text-foreground">
+                        Sarah Jenkins
+                    </h4>
+                    <p className="text-[10px] text-muted-foreground">
+                        Product Designer @ Peak
+                    </p>
                 </div>
 
-                <p className="text-[10px] text-muted-foreground/90 mt-3 max-w-xs mx-auto leading-relaxed">
-                    UX/UI enthusiast. Currently designing fluid responsive developer workspaces and styling libraries.
+                <p className="mx-auto mt-3 max-w-xs text-[10px] leading-relaxed text-muted-foreground/90">
+                    UX/UI enthusiast. Currently designing fluid responsive
+                    developer workspaces and styling libraries.
                 </p>
 
                 {/* Profile metrics */}
-                <div className="grid grid-cols-3 gap-2 mt-4 border-y border-border/20 py-2.5">
+                <div className="mt-4 grid grid-cols-3 gap-2 border-y border-border/20 py-2.5">
                     <div>
-                        <div className="text-xs font-black text-foreground">4.8k</div>
-                        <div className="text-[8px] text-muted-foreground uppercase font-bold mt-0.5">Followers</div>
+                        <div className="text-xs font-black text-foreground">
+                            4.8k
+                        </div>
+                        <div className="mt-0.5 text-[8px] font-bold text-muted-foreground uppercase">
+                            Followers
+                        </div>
                     </div>
                     <div>
-                        <div className="text-xs font-black text-foreground">124</div>
-                        <div className="text-[8px] text-muted-foreground uppercase font-bold mt-0.5">Projects</div>
+                        <div className="text-xs font-black text-foreground">
+                            124
+                        </div>
+                        <div className="mt-0.5 text-[8px] font-bold text-muted-foreground uppercase">
+                            Projects
+                        </div>
                     </div>
                     <div>
-                        <div className="text-xs font-black text-foreground">12</div>
-                        <div className="text-[8px] text-muted-foreground uppercase font-bold mt-0.5">Awards</div>
+                        <div className="text-xs font-black text-foreground">
+                            12
+                        </div>
+                        <div className="mt-0.5 text-[8px] font-bold text-muted-foreground uppercase">
+                            Awards
+                        </div>
                     </div>
                 </div>
 
-                <div className="flex gap-2 justify-center mt-4">
-                    <Button size="sm" className="h-8 text-xs font-bold px-3.5 gap-1.5">
+                <div className="mt-4 flex justify-center gap-2">
+                    <Button
+                        size="sm"
+                        className="h-8 gap-1.5 px-3.5 text-xs font-bold"
+                    >
                         <Heart className="size-3.5" />
                         Follow
                     </Button>
-                    <Button size="sm" variant="outline" className="h-8 text-xs font-bold px-3.5 gap-1.5 border-border/60">
+                    <Button
+                        size="sm"
+                        variant="outline"
+                        className="h-8 gap-1.5 border-border/60 px-3.5 text-xs font-bold"
+                    >
                         <MessageSquare className="size-3.5" />
                         Message
                     </Button>
@@ -13456,6 +13951,190 @@ export { ANIMATIONS };
                 'theme' => null,
             ],
             [
+                'name' => 'text-circle-loader',
+                'type' => 'registry:ui',
+                'title' => 'Text Circle Loader',
+                'description' => 'A circular rotating loader featuring character animation powered by TextAnimator and custom radial keyframe effects.',
+                'author' => 'designbycode',
+                'dependencies' => [
+
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'https://ui.test/r/text-animator.json',
+                    'utils',
+                    'https://ui.test/r/animate-css/animate-neon-ring-rotate.json',
+                    'https://ui.test/r/animate-css/animate-liquid-blob-rotate.json',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/animations/text-circle-loader.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '\'use client\';
+
+import * as React from \'react\';
+import TextAnimator from \'@/registry/new-york/components/ui/animations/text-animator\';
+import type { AnimationType } from \'@/registry/new-york/components/ui/animations/text-animator\';
+import { cn } from \'@/lib/utils\';
+
+export interface TextCircleLoaderProps extends React.HTMLAttributes<HTMLDivElement> {
+    /**
+     * Text to display and animate inside the circle loader.
+     * Default: "Generating..."
+     */
+    text?: string;
+    /**
+     * Pre-defined aesthetic variants
+     * - `neon-ring`: Solid spinning ring with deep inset glow shadows mapping to primary and chart colors
+     * - `gradient-dash`: Concentric dashed borders rotating in opposite directions for a techy HUD feel
+     * - `liquid-blob`: A rotating organic blob that morphs shape fluidly using keyframed border-radius transitions
+     */
+    variant?: \'neon-ring\' | \'gradient-dash\' | \'liquid-blob\';
+    /**
+     * Sizing of the loader
+     * - `sm`: 140px
+     * - `md`: 180px
+     * - `lg`: 220px
+     * Or pass a number (in pixels) for custom sizes.
+     */
+    size?: \'sm\' | \'md\' | \'lg\' | number;
+    /**
+     * GSAP text animation type from TextAnimator component.
+     * Default: "wave"
+     */
+    textAnimation?: AnimationType;
+    /**
+     * Duration of the text animation loop in seconds.
+     * Default: 1.5
+     */
+    textDuration?: number;
+    /**
+     * Stagger delay between characters.
+     * Default: 0.06
+     */
+    textStagger?: number;
+    /**
+     * Rotation / morphing speed of the ring in seconds.
+     * Default: 2.5
+     */
+    ringDuration?: number;
+}
+
+export function TextCircleLoader({
+    text = \'Generating\',
+    variant = \'neon-ring\',
+    size = \'md\',
+    textAnimation = \'wave\',
+    textDuration = 1.5,
+    textStagger = 0.06,
+    ringDuration = 2.5,
+    className,
+    style,
+    ...props
+}: TextCircleLoaderProps) {
+    const sizePx =
+        typeof size === \'number\' ? size : { sm: 140, md: 180, lg: 220 }[size];
+
+    return (
+        <div
+            className={cn(
+                \'relative flex items-center justify-center rounded-full border border-border/10 bg-transparent select-none\',
+                className,
+            )}
+            style={{
+                width: sizePx,
+                height: sizePx,
+                ...style,
+            }}
+            {...props}
+        >
+            {/* Rotating / Animating Ring backdrops */}
+            {variant === \'neon-ring\' && (
+                <div
+                    className="animate-neon-ring-rotate absolute inset-0 z-0 rounded-full bg-transparent"
+                    style={{
+                        [\'--animate-neon-ring-rotate-duration\' as any]: `${ringDuration}s`,
+                    }}
+                />
+            )}
+
+            {variant === \'gradient-dash\' && (
+                <>
+                    {/* Outer Dashed Ring */}
+                    <div
+                        className="absolute inset-0 z-0 animate-spin rounded-full border-2 border-dashed border-primary/50"
+                        style={{
+                            animationDuration: `${ringDuration}s`,
+                        }}
+                    />
+                    {/* Inner Dotted Ring - Counter Rotating */}
+                    <div
+                        className="absolute inset-3 z-0 animate-spin rounded-full border border-dotted border-chart-2/60"
+                        style={{
+                            animationDuration: `${ringDuration * 1.5}s`,
+                            animationDirection: \'reverse\',
+                        }}
+                    />
+                    {/* Secondary Accent Ring */}
+                    <div className="absolute inset-6 z-0 animate-[pulse_2s_ease-in-out_infinite] rounded-full border border-primary/10" />
+                </>
+            )}
+
+            {variant === \'liquid-blob\' && (
+                <div
+                    className="animate-liquid-blob-rotate absolute inset-0 z-0 bg-transparent"
+                    style={{
+                        [\'--animate-liquid-blob-rotate-duration\' as any]: `${ringDuration * 1.6}s`,
+                    }}
+                />
+            )}
+
+            {/* Text Animator Component for letters */}
+            <div className="relative z-10 font-medium tracking-wide text-foreground">
+                <TextAnimator
+                    text={text}
+                    animation={textAnimation}
+                    duration={textDuration}
+                    stagger={textStagger}
+                    repeat={-1}
+                    yoyo={true}
+                    fontSize={sizePx * 0.09}
+                    className="font-semibold text-foreground/90 drop-shadow-sm select-none"
+                />
+            </div>
+        </div>
+    );
+}
+
+TextCircleLoader.displayName = \'TextCircleLoader\';
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'animations',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'animations',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
                 'name' => 'banner-expandable',
                 'type' => 'registry:ui',
                 'title' => 'Banner Expandable',
@@ -14258,7 +14937,7 @@ function RainbowBorder({
                     --rainbow-7: #a855f7;
                 }
             `}</style>
-            
+
             <div
                 aria-hidden="true"
                 className={cn(
@@ -14276,7 +14955,7 @@ function RainbowBorder({
             <div
                 aria-hidden="true"
                 className={cn(
-                    \'pointer-events-none absolute blur-lg inset-0 z-20 bg-repeat-x\',
+                    \'pointer-events-none absolute inset-0 z-20 bg-repeat-x blur-lg\',
                     roundedClass,
                 )}
                 style={{
@@ -14358,27 +15037,30 @@ import { ArrowRight } from \'lucide-react\';
 import { cn } from \'@/lib/utils\';
 import { Button } from \'@/components/ui/button\';
 
-export interface ButtonArrowProps extends React.ComponentPropsWithRef<typeof Button> {}
+export interface ButtonArrowProps extends React.ComponentPropsWithRef<
+    typeof Button
+> {}
 
-export const ButtonArrow = React.forwardRef<HTMLButtonElement, ButtonArrowProps>(
-    ({ className, children, ...props }, ref) => {
-        return (
-            <Button
-                ref={ref}
-                className={cn(
-                    \'group relative overflow-hidden pr-10 select-none active:scale-95 transition-all duration-300\',
-                    className,
-                )}
-                {...props}
-            >
-                <span>{children}</span>
-                <span className="absolute right-4 flex items-center justify-center transition-transform duration-300 group-hover:translate-x-1 group-hover:scale-110">
-                    <ArrowRight className="size-4 shrink-0" />
-                </span>
-            </Button>
-        );
-    },
-);
+export const ButtonArrow = React.forwardRef<
+    HTMLButtonElement,
+    ButtonArrowProps
+>(({ className, children, ...props }, ref) => {
+    return (
+        <Button
+            ref={ref}
+            className={cn(
+                \'group relative overflow-hidden pr-10 transition-all duration-300 select-none active:scale-95\',
+                className,
+            )}
+            {...props}
+        >
+            <span>{children}</span>
+            <span className="absolute right-4 flex items-center justify-center transition-transform duration-300 group-hover:translate-x-1 group-hover:scale-110">
+                <ArrowRight className="size-4 shrink-0" />
+            </span>
+        </Button>
+    );
+});
 
 ButtonArrow.displayName = \'ButtonArrow\';
 
@@ -14433,7 +15115,9 @@ import * as React from \'react\';
 import { cn } from \'@/lib/utils\';
 import { Button } from \'@/components/ui/button\';
 
-export interface ButtonDrawProps extends React.ComponentPropsWithRef<typeof Button> {}
+export interface ButtonDrawProps extends React.ComponentPropsWithRef<
+    typeof Button
+> {}
 
 export const ButtonDraw = React.forwardRef<HTMLButtonElement, ButtonDrawProps>(
     ({ className, children, ...props }, ref) => {
@@ -14441,7 +15125,7 @@ export const ButtonDraw = React.forwardRef<HTMLButtonElement, ButtonDrawProps>(
             <Button
                 ref={ref}
                 className={cn(
-                    \'relative select-none active:scale-95 overflow-hidden border border-border bg-transparent text-foreground after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-primary after:transition-transform after:duration-300 hover:bg-muted/30 hover:after:scale-x-100\',
+                    \'relative overflow-hidden border border-border bg-transparent text-foreground select-none after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-primary after:transition-transform after:duration-300 hover:bg-muted/30 hover:after:scale-x-100 active:scale-95\',
                     className,
                 )}
                 {...props}
@@ -14505,14 +15189,22 @@ import * as React from \'react\';
 import { cn } from \'@/lib/utils\';
 import { Button } from \'@/components/ui/button\';
 
-export interface ButtonGlowingAuraProps extends React.ComponentPropsWithRef<typeof Button> {
+export interface ButtonGlowingAuraProps extends React.ComponentPropsWithRef<
+    typeof Button
+> {
     auraColor?: string;
 }
 
-export const ButtonGlowingAura = React.forwardRef<HTMLButtonElement, ButtonGlowingAuraProps>(
-    ({ className, children, auraColor = \'var(--color-primary)\', ...props }, ref) => {
+export const ButtonGlowingAura = React.forwardRef<
+    HTMLButtonElement,
+    ButtonGlowingAuraProps
+>(
+    (
+        { className, children, auraColor = \'var(--color-primary)\', ...props },
+        ref,
+    ) => {
         return (
-            <div className="relative group inline-block">
+            <div className="group relative inline-block">
                 {/* Glowing backlight aura */}
                 <div
                     className="absolute -inset-1 -z-10 rounded-lg opacity-40 blur-md transition duration-500 group-hover:opacity-75 group-hover:blur-lg"
@@ -14522,7 +15214,10 @@ export const ButtonGlowingAura = React.forwardRef<HTMLButtonElement, ButtonGlowi
                 />
                 <Button
                     ref={ref}
-                    className={cn(\'relative select-none active:scale-95 shadow-lg border border-primary/20\', className)}
+                    className={cn(
+                        \'relative border border-primary/20 shadow-lg select-none active:scale-95\',
+                        className,
+                    )}
                     {...props}
                 >
                     {children}
@@ -14588,45 +15283,50 @@ import { Button } from \'@/components/ui/button\';
 
 import { useHover } from \'@/registry/new-york/hooks/use-hover\';
 
-export interface ButtonGradientProps extends React.ComponentPropsWithRef<typeof Button> {}
+export interface ButtonGradientProps extends React.ComponentPropsWithRef<
+    typeof Button
+> {}
 
-export const ButtonGradient = React.forwardRef<HTMLButtonElement, ButtonGradientProps>(
-    ({ className, children, ...props }, ref) => {
-        const { isHovered, hoverRef } = useHover();
+export const ButtonGradient = React.forwardRef<
+    HTMLButtonElement,
+    ButtonGradientProps
+>(({ className, children, ...props }, ref) => {
+    const { isHovered, hoverRef } = useHover();
 
-        const combinedRef = React.useCallback(
-            (node: HTMLButtonElement | null) => {
-                hoverRef(node);
-                if (typeof ref === \'function\') {
-                    ref(node);
-                } else if (ref) {
-                    (ref as React.MutableRefObject<HTMLButtonElement | null>).current = node;
-                }
-            },
-            [ref, hoverRef]
-        );
+    const combinedRef = React.useCallback(
+        (node: HTMLButtonElement | null) => {
+            hoverRef(node);
+            if (typeof ref === \'function\') {
+                ref(node);
+            } else if (ref) {
+                (
+                    ref as React.MutableRefObject<HTMLButtonElement | null>
+                ).current = node;
+            }
+        },
+        [ref, hoverRef],
+    );
 
-        return (
-            <Button
-                ref={combinedRef}
-                className={cn(
-                    \'relative select-none active:scale-95 border border-transparent text-foreground\',
-                    className,
-                )}
-                style={{
-                    backgroundImage: isHovered
-                        ? \'linear-gradient(var(--background), var(--background)), linear-gradient(to right, var(--color-chart-3), var(--color-chart-1), var(--color-chart-5))\'
-                        : \'linear-gradient(var(--background), var(--background)), linear-gradient(to right, var(--color-chart-1), var(--color-chart-5), var(--color-chart-3))\',
-                    backgroundOrigin: \'border-box\',
-                    backgroundClip: \'padding-box, border-box\',
-                }}
-                {...props}
-            >
-                {children}
-            </Button>
-        );
-    },
-);
+    return (
+        <Button
+            ref={combinedRef}
+            className={cn(
+                \'relative border border-transparent text-foreground select-none active:scale-95\',
+                className,
+            )}
+            style={{
+                backgroundImage: isHovered
+                    ? \'linear-gradient(var(--background), var(--background)), linear-gradient(to right, var(--color-chart-3), var(--color-chart-1), var(--color-chart-5))\'
+                    : \'linear-gradient(var(--background), var(--background)), linear-gradient(to right, var(--color-chart-1), var(--color-chart-5), var(--color-chart-3))\',
+                backgroundOrigin: \'border-box\',
+                backgroundClip: \'padding-box, border-box\',
+            }}
+            {...props}
+        >
+            {children}
+        </Button>
+    );
+});
 
 ButtonGradient.displayName = \'ButtonGradient\';
 
@@ -14680,7 +15380,9 @@ export default ButtonGradient;
 import { cn } from \'@/lib/utils\';
 import { Button } from \'@/components/ui/button\';
 
-export interface ButtonMagneticProps extends React.ComponentProps<typeof Button> {
+export interface ButtonMagneticProps extends React.ComponentProps<
+    typeof Button
+> {
     range?: number; // Distance from center where magnetism activates
     actionStrength?: number; // How strongly the button pulls toward the mouse (0.1 to 1.0)
 }
@@ -14753,10 +15455,7 @@ export function ButtonMagnetic({
     return (
         <div ref={triggerRef} className="inline-block">
             <Button
-                className={cn(
-                    \'select-none active:scale-95\',
-                    className,
-                )}
+                className={cn(\'select-none active:scale-95\', className)}
                 style={{
                     transform: `translate3d(${position.x}px, ${position.y}px, 0)`,
                     // Use a smooth, fast bezier transition when tracking to eliminate jumps, and a springy transition on snap-back
@@ -15024,12 +15723,7 @@ const DEFAULT_COLORS = [
 ];
 
 export type ParticleType =
-    | \'burst\'
-    | \'sparkle\'
-    | \'confetti\'
-    | \'vburst\'
-    | \'hburst\'
-    | \'spiral\';
+    \'burst\' | \'sparkle\' | \'confetti\' | \'vburst\' | \'hburst\' | \'spiral\';
 
 interface ButtonParticlesProps extends React.ComponentProps<typeof Button> {
     particle?: ParticleType;
@@ -15296,24 +15990,27 @@ import * as React from \'react\';
 import { cn } from \'@/lib/utils\';
 import { Button } from \'@/components/ui/button\';
 
-export interface ButtonPulseProps extends React.ComponentPropsWithRef<typeof Button> {}
+export interface ButtonPulseProps extends React.ComponentPropsWithRef<
+    typeof Button
+> {}
 
-export const ButtonPulse = React.forwardRef<HTMLButtonElement, ButtonPulseProps>(
-    ({ className, children, ...props }, ref) => {
-        return (
-            <Button
-                ref={ref}
-                className={cn(
-                    \'relative select-none active:scale-95 bg-primary text-primary-foreground shadow-lg shadow-primary/20 before:absolute before:inset-0 before:animate-ping before:rounded-md before:bg-primary before:opacity-10 before:duration-1000 hover:shadow-primary/30 hover:brightness-105\',
-                    className,
-                )}
-                {...props}
-            >
-                {children}
-            </Button>
-        );
-    },
-);
+export const ButtonPulse = React.forwardRef<
+    HTMLButtonElement,
+    ButtonPulseProps
+>(({ className, children, ...props }, ref) => {
+    return (
+        <Button
+            ref={ref}
+            className={cn(
+                \'relative bg-primary text-primary-foreground shadow-lg shadow-primary/20 select-none before:absolute before:inset-0 before:animate-ping before:rounded-md before:bg-primary before:opacity-10 before:duration-1000 hover:shadow-primary/30 hover:brightness-105 active:scale-95\',
+                className,
+            )}
+            {...props}
+        >
+            {children}
+        </Button>
+    );
+});
 
 ButtonPulse.displayName = \'ButtonPulse\';
 
@@ -15368,11 +16065,16 @@ import * as React from \'react\';
 import { cn } from \'@/lib/utils\';
 import { Button } from \'@/components/ui/button\';
 
-export interface ButtonRippleProps extends React.ComponentPropsWithRef<typeof Button> {}
+export interface ButtonRippleProps extends React.ComponentPropsWithRef<
+    typeof Button
+> {}
 
 const RIPPLE_STYLE_ID = \'button-ripple-styles\';
 function injectRippleStyles() {
-    if (typeof document === \'undefined\' || document.getElementById(RIPPLE_STYLE_ID)) {
+    if (
+        typeof document === \'undefined\' ||
+        document.getElementById(RIPPLE_STYLE_ID)
+    ) {
         return;
     }
     const style = document.createElement(\'style\');
@@ -15396,58 +16098,64 @@ function injectRippleStyles() {
     document.head.appendChild(style);
 }
 
-export const ButtonRipple = React.forwardRef<HTMLButtonElement, ButtonRippleProps>(
-    ({ className, children, onClick, ...props }, ref) => {
-        const [ripples, setRipples] = React.useState<Array<{ id: number; x: number; y: number }>>([]);
-        const nextId = React.useRef(0);
+export const ButtonRipple = React.forwardRef<
+    HTMLButtonElement,
+    ButtonRippleProps
+>(({ className, children, onClick, ...props }, ref) => {
+    const [ripples, setRipples] = React.useState<
+        Array<{ id: number; x: number; y: number }>
+    >([]);
+    const nextId = React.useRef(0);
 
-        React.useEffect(() => {
-            injectRippleStyles();
-        }, []);
+    React.useEffect(() => {
+        injectRippleStyles();
+    }, []);
 
-        const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-            const button = e.currentTarget;
-            const rect = button.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
+    const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+        const button = e.currentTarget;
+        const rect = button.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
 
-            const id = nextId.current++;
-            setRipples((prev) => [...prev, { id, x, y }]);
+        const id = nextId.current++;
+        setRipples((prev) => [...prev, { id, x, y }]);
 
-            onClick?.(e);
-        };
+        onClick?.(e);
+    };
 
-        React.useEffect(() => {
-            if (ripples.length > 0) {
-                const timer = setTimeout(() => {
-                    setRipples([]);
-                }, 600);
-                return () => clearTimeout(timer);
-            }
-        }, [ripples]);
+    React.useEffect(() => {
+        if (ripples.length > 0) {
+            const timer = setTimeout(() => {
+                setRipples([]);
+            }, 600);
+            return () => clearTimeout(timer);
+        }
+    }, [ripples]);
 
-        return (
-            <Button
-                ref={ref}
-                onClick={handleClick}
-                className={cn(\'relative overflow-hidden select-none active:scale-95 isolate\', className)}
-                {...props}
-            >
-                <span className="relative z-10">{children}</span>
-                {ripples.map((ripple) => (
-                    <span
-                        key={ripple.id}
-                        className="bp-ripple"
-                        style={{
-                            left: ripple.x,
-                            top: ripple.y,
-                        }}
-                    />
-                ))}
-            </Button>
-        );
-    },
-);
+    return (
+        <Button
+            ref={ref}
+            onClick={handleClick}
+            className={cn(
+                \'relative isolate overflow-hidden select-none active:scale-95\',
+                className,
+            )}
+            {...props}
+        >
+            <span className="relative z-10">{children}</span>
+            {ripples.map((ripple) => (
+                <span
+                    key={ripple.id}
+                    className="bp-ripple"
+                    style={{
+                        left: ripple.x,
+                        top: ripple.y,
+                    }}
+                />
+            ))}
+        </Button>
+    );
+});
 
 ButtonRipple.displayName = \'ButtonRipple\';
 
@@ -15588,7 +16296,9 @@ import { cn } from \'@/lib/utils\';
 import { Button } from \'@/components/ui/button\';
 import { RainbowBorder } from \'@/registry/new-york/components/ui/borders/rainbow-border\';
 
-export interface RainbowBorderButtonProps extends React.ComponentProps<typeof Button> {
+export interface RainbowBorderButtonProps extends React.ComponentProps<
+    typeof Button
+> {
     borderWidth?: string;
     animationDuration?: string;
     colors?: string[];
@@ -15598,7 +16308,10 @@ export interface RainbowBorderButtonProps extends React.ComponentProps<typeof Bu
     glowOpacity?: number;
 }
 
-export const RainbowBorderButton = React.forwardRef<HTMLButtonElement, RainbowBorderButtonProps>(
+export const RainbowBorderButton = React.forwardRef<
+    HTMLButtonElement,
+    RainbowBorderButtonProps
+>(
     (
         {
             className,
@@ -15614,12 +16327,18 @@ export const RainbowBorderButton = React.forwardRef<HTMLButtonElement, RainbowBo
         },
         ref,
     ) => {
-        const roundedButtonClass = 
-            rounded === \'none\' ? \'rounded-none\' :
-            rounded === \'xs\' ? \'rounded-xs\' :
-            rounded === \'sm\' ? \'rounded-sm\' :
-            rounded === \'md\' ? \'rounded-md\' :
-            rounded === \'lg\' ? \'rounded-lg\' : \'rounded-full\';
+        const roundedButtonClass =
+            rounded === \'none\'
+                ? \'rounded-none\'
+                : rounded === \'xs\'
+                  ? \'rounded-xs\'
+                  : rounded === \'sm\'
+                    ? \'rounded-sm\'
+                    : rounded === \'md\'
+                      ? \'rounded-md\'
+                      : rounded === \'lg\'
+                        ? \'rounded-lg\'
+                        : \'rounded-full\';
 
         return (
             <RainbowBorder
@@ -15635,7 +16354,7 @@ export const RainbowBorderButton = React.forwardRef<HTMLButtonElement, RainbowBo
                 <Button
                     ref={ref}
                     className={cn(
-                        \'bg-background text-foreground hover:bg-background/95 transition-all select-none active:scale-95 border-0 h-9 px-4 text-xs font-semibold\',
+                        \'h-9 border-0 bg-background px-4 text-xs font-semibold text-foreground transition-all select-none hover:bg-background/95 active:scale-95\',
                         roundedButtonClass,
                         className,
                     )}
@@ -15831,13 +16550,16 @@ export const AuroraCanvas = React.forwardRef<HTMLDivElement, AuroraCanvasProps>(
             interactive = true,
             ...props
         },
-        ref
+        ref,
     ) => {
         const containerRef = React.useRef<HTMLDivElement>(null);
         const canvasRef = React.useRef<HTMLCanvasElement>(null);
         const mouseRef = React.useRef<{ x: number; y: number } | null>(null);
 
-        React.useImperativeHandle(ref, () => containerRef.current as HTMLDivElement);
+        React.useImperativeHandle(
+            ref,
+            () => containerRef.current as HTMLDivElement,
+        );
 
         React.useEffect(() => {
             const canvas = canvasRef.current;
@@ -15888,7 +16610,10 @@ export const AuroraCanvas = React.forwardRef<HTMLDivElement, AuroraCanvasProps>(
                 if (colorStr.startsWith(\'--\')) {
                     targetColor = `var(${colorStr})`;
                 }
-                if (!targetColor.includes(\'var(\') && !targetColor.includes(\'--\')) {
+                if (
+                    !targetColor.includes(\'var(\') &&
+                    !targetColor.includes(\'--\')
+                ) {
                     return targetColor;
                 }
                 try {
@@ -15921,21 +16646,33 @@ export const AuroraCanvas = React.forwardRef<HTMLDivElement, AuroraCanvasProps>(
                     const offset = i * (Math.PI / bandCount);
 
                     // Dynamic wave points
-                    const y1 = height * 0.5 + Math.sin(time + offset) * amplitude;
-                    const y2 = height * 0.5 + Math.cos(time + offset * 1.5) * amplitude;
-                    
+                    const y1 =
+                        height * 0.5 + Math.sin(time + offset) * amplitude;
+                    const y2 =
+                        height * 0.5 +
+                        Math.cos(time + offset * 1.5) * amplitude;
+
                     // Mouse influence
                     let mouseInfluenceX = 0;
                     let mouseInfluenceY = 0;
                     if (mouseRef.current) {
-                        mouseInfluenceX = (mouseRef.current.x - width * 0.5) * 0.05;
-                        mouseInfluenceY = (mouseRef.current.y - height * 0.5) * 0.15;
+                        mouseInfluenceX =
+                            (mouseRef.current.x - width * 0.5) * 0.05;
+                        mouseInfluenceY =
+                            (mouseRef.current.y - height * 0.5) * 0.15;
                     }
 
                     const cp1x = width * 0.25 + mouseInfluenceX;
-                    const cp1y = height * 0.5 + Math.sin(time * 1.2 + offset * 2) * (amplitude * 2) + mouseInfluenceY;
+                    const cp1y =
+                        height * 0.5 +
+                        Math.sin(time * 1.2 + offset * 2) * (amplitude * 2) +
+                        mouseInfluenceY;
                     const cp2x = width * 0.75 - mouseInfluenceX;
-                    const cp2y = height * 0.5 + Math.cos(time * 0.8 + offset * 2.5) * (amplitude * 2.5) + mouseInfluenceY;
+                    const cp2y =
+                        height * 0.5 +
+                        Math.cos(time * 0.8 + offset * 2.5) *
+                            (amplitude * 2.5) +
+                        mouseInfluenceY;
 
                     // Setup linear gradient for glowing transparency along the path
                     const grad = ctx.createLinearGradient(0, 0, width, 0);
@@ -15955,7 +16692,7 @@ export const AuroraCanvas = React.forwardRef<HTMLDivElement, AuroraCanvasProps>(
                     ctx.lineCap = \'round\';
                     ctx.shadowColor = activeBaseColor;
                     ctx.shadowBlur = 45;
-                    ctx.globalAlpha = 0.22 - (i * 0.03); // Overlay layers nicely
+                    ctx.globalAlpha = 0.22 - i * 0.03; // Overlay layers nicely
                     ctx.stroke();
                 }
 
@@ -15970,7 +16707,10 @@ export const AuroraCanvas = React.forwardRef<HTMLDivElement, AuroraCanvasProps>(
                 resizeObserver.disconnect();
                 if (interactive) {
                     container.removeEventListener(\'mousemove\', handleMouseMove);
-                    container.removeEventListener(\'mouseleave\', handleMouseLeave);
+                    container.removeEventListener(
+                        \'mouseleave\',
+                        handleMouseLeave,
+                    );
                 }
             };
         }, [bandCount, speed, amplitude, colors, blendMode, interactive]);
@@ -15978,7 +16718,10 @@ export const AuroraCanvas = React.forwardRef<HTMLDivElement, AuroraCanvasProps>(
         return (
             <div
                 ref={containerRef}
-                className={cn(\'relative w-full h-full overflow-hidden select-none bg-background/55\', className)}
+                className={cn(
+                    \'relative h-full w-full overflow-hidden bg-background/55 select-none\',
+                    className,
+                )}
                 {...props}
             >
                 <canvas
@@ -15988,7 +16731,7 @@ export const AuroraCanvas = React.forwardRef<HTMLDivElement, AuroraCanvasProps>(
                 />
             </div>
         );
-    }
+    },
 );
 
 AuroraCanvas.displayName = \'AuroraCanvas\';
@@ -16068,7 +16811,10 @@ interface Particle {
     radius: number;
 }
 
-export const ConstellationCanvas = React.forwardRef<HTMLDivElement, ConstellationCanvasProps>(
+export const ConstellationCanvas = React.forwardRef<
+    HTMLDivElement,
+    ConstellationCanvasProps
+>(
     (
         {
             className,
@@ -16081,13 +16827,16 @@ export const ConstellationCanvas = React.forwardRef<HTMLDivElement, Constellatio
             particleSize = 2,
             ...props
         },
-        ref
+        ref,
     ) => {
         const containerRef = React.useRef<HTMLDivElement>(null);
         const canvasRef = React.useRef<HTMLCanvasElement>(null);
         const mouseRef = React.useRef<{ x: number; y: number } | null>(null);
 
-        React.useImperativeHandle(ref, () => containerRef.current as HTMLDivElement);
+        React.useImperativeHandle(
+            ref,
+            () => containerRef.current as HTMLDivElement,
+        );
 
         React.useEffect(() => {
             const canvas = canvasRef.current;
@@ -16160,7 +16909,10 @@ export const ConstellationCanvas = React.forwardRef<HTMLDivElement, Constellatio
                 if (colorStr.startsWith(\'--\')) {
                     targetColor = `var(${colorStr})`;
                 }
-                if (!targetColor.includes(\'var(\') && !targetColor.includes(\'--\')) {
+                if (
+                    !targetColor.includes(\'var(\') &&
+                    !targetColor.includes(\'--\')
+                ) {
                     return targetColor;
                 }
                 try {
@@ -16182,11 +16934,11 @@ export const ConstellationCanvas = React.forwardRef<HTMLDivElement, Constellatio
                 // Fetch colors inside loop to support reactive color scheme swaps
                 const activeParticleColor = resolveColor(
                     particleColor || getComputedStyle(container).color,
-                    \'rgba(16, 185, 129, 0.8)\'
+                    \'rgba(16, 185, 129, 0.8)\',
                 );
                 const activeLinkColor = resolveColor(
                     linkColor || `var(--border)`,
-                    \'rgba(226, 232, 240, 0.4)\'
+                    \'rgba(226, 232, 240, 0.4)\',
                 );
 
                 // Update and draw particles
@@ -16208,7 +16960,7 @@ export const ConstellationCanvas = React.forwardRef<HTMLDivElement, Constellatio
                 // Connect particles
                 for (let i = 0; i < particles.length; i++) {
                     const pi = particles[i];
-                    
+
                     // Connect to mouse if active
                     if (mouseRef.current) {
                         const dx = mouseRef.current.x - pi.x;
@@ -16219,9 +16971,13 @@ export const ConstellationCanvas = React.forwardRef<HTMLDivElement, Constellatio
                             ctx.beginPath();
                             ctx.moveTo(pi.x, pi.y);
                             ctx.lineTo(mouseRef.current.x, mouseRef.current.y);
-                            const alpha = (1 - dist / (maxDistance * 1.5)) * 0.45;
+                            const alpha =
+                                (1 - dist / (maxDistance * 1.5)) * 0.45;
                             ctx.strokeStyle = activeLinkColor.includes(\'rgba\')
-                                ? activeLinkColor.replace(/[\\d.]+\\)$/, `${alpha})`)
+                                ? activeLinkColor.replace(
+                                      /[\\d.]+\\)$/,
+                                      `${alpha})`,
+                                  )
                                 : `rgba(16, 185, 129, ${alpha})`;
                             ctx.lineWidth = 1;
                             ctx.stroke();
@@ -16240,7 +16996,10 @@ export const ConstellationCanvas = React.forwardRef<HTMLDivElement, Constellatio
                             ctx.lineTo(pj.x, pj.y);
                             const alpha = (1 - dist / maxDistance) * 0.25;
                             ctx.strokeStyle = activeLinkColor.includes(\'rgba\')
-                                ? activeLinkColor.replace(/[\\d.]+\\)$/, `${alpha})`)
+                                ? activeLinkColor.replace(
+                                      /[\\d.]+\\)$/,
+                                      `${alpha})`,
+                                  )
                                 : `rgba(16, 185, 129, ${alpha})`;
                             ctx.lineWidth = 0.5;
                             ctx.stroke();
@@ -16258,15 +17017,29 @@ export const ConstellationCanvas = React.forwardRef<HTMLDivElement, Constellatio
                 resizeObserver.disconnect();
                 if (interactive) {
                     container.removeEventListener(\'mousemove\', handleMouseMove);
-                    container.removeEventListener(\'mouseleave\', handleMouseLeave);
+                    container.removeEventListener(
+                        \'mouseleave\',
+                        handleMouseLeave,
+                    );
                 }
             };
-        }, [particleCount, maxDistance, speed, particleColor, linkColor, interactive, particleSize]);
+        }, [
+            particleCount,
+            maxDistance,
+            speed,
+            particleColor,
+            linkColor,
+            interactive,
+            particleSize,
+        ]);
 
         return (
             <div
                 ref={containerRef}
-                className={cn(\'relative w-full h-full overflow-hidden select-none\', className)}
+                className={cn(
+                    \'relative h-full w-full overflow-hidden select-none\',
+                    className,
+                )}
                 {...props}
             >
                 <canvas
@@ -16276,7 +17049,7 @@ export const ConstellationCanvas = React.forwardRef<HTMLDivElement, Constellatio
                 />
             </div>
         );
-    }
+    },
 );
 
 ConstellationCanvas.displayName = \'ConstellationCanvas\';
@@ -16359,7 +17132,10 @@ interface FlowParticle {
     maxLife: number;
 }
 
-export const FlowFieldCanvas = React.forwardRef<HTMLDivElement, FlowFieldCanvasProps>(
+export const FlowFieldCanvas = React.forwardRef<
+    HTMLDivElement,
+    FlowFieldCanvasProps
+>(
     (
         {
             className,
@@ -16372,13 +17148,16 @@ export const FlowFieldCanvas = React.forwardRef<HTMLDivElement, FlowFieldCanvasP
             interactive = true,
             ...props
         },
-        ref
+        ref,
     ) => {
         const containerRef = React.useRef<HTMLDivElement>(null);
         const canvasRef = React.useRef<HTMLCanvasElement>(null);
         const mouseRef = React.useRef<{ x: number; y: number } | null>(null);
 
-        React.useImperativeHandle(ref, () => containerRef.current as HTMLDivElement);
+        React.useImperativeHandle(
+            ref,
+            () => containerRef.current as HTMLDivElement,
+        );
 
         React.useEffect(() => {
             const canvas = canvasRef.current;
@@ -16459,7 +17238,10 @@ export const FlowFieldCanvas = React.forwardRef<HTMLDivElement, FlowFieldCanvasP
                 if (colorStr.startsWith(\'--\')) {
                     targetColor = `var(${colorStr})`;
                 }
-                if (!targetColor.includes(\'var(\') && !targetColor.includes(\'--\')) {
+                if (
+                    !targetColor.includes(\'var(\') &&
+                    !targetColor.includes(\'--\')
+                ) {
                     return targetColor;
                 }
                 try {
@@ -16478,21 +17260,25 @@ export const FlowFieldCanvas = React.forwardRef<HTMLDivElement, FlowFieldCanvasP
             const draw = () => {
                 // Apply trail fade effect
                 ctx.fillStyle = `rgba(0, 0, 0, ${fadeRate})`;
-                
+
                 // If trail fade is not 1, we fill with translucent black/card background to fade trails
                 // We fetch the theme background color to make trail fade work on light/dark modes
-                const bgStyle = window.getComputedStyle(container).backgroundColor;
-                const isDark = bgStyle.includes(\'rgba(0, 0, 0\') || bgStyle.includes(\'rgb(0, 0, 0\') || bgStyle.includes(\'rgb(9, 9, 11\');
-                
-                ctx.fillStyle = isDark 
-                    ? `rgba(9, 9, 11, ${fadeRate})` 
+                const bgStyle =
+                    window.getComputedStyle(container).backgroundColor;
+                const isDark =
+                    bgStyle.includes(\'rgba(0, 0, 0\') ||
+                    bgStyle.includes(\'rgb(0, 0, 0\') ||
+                    bgStyle.includes(\'rgb(9, 9, 11\');
+
+                ctx.fillStyle = isDark
+                    ? `rgba(9, 9, 11, ${fadeRate})`
                     : `rgba(255, 255, 255, ${fadeRate})`;
-                
+
                 ctx.fillRect(0, 0, width, height);
 
                 const activeColor = resolveColor(
                     color || window.getComputedStyle(container).color,
-                    \'rgba(16, 185, 129, 0.8)\'
+                    \'rgba(16, 185, 129, 0.8)\',
                 );
 
                 time += 0.003;
@@ -16501,7 +17287,13 @@ export const FlowFieldCanvas = React.forwardRef<HTMLDivElement, FlowFieldCanvasP
                     p.life++;
 
                     // Respawn dead particles or boundary checks
-                    if (p.life > p.maxLife || p.x < 0 || p.x > width || p.y < 0 || p.y > height) {
+                    if (
+                        p.life > p.maxLife ||
+                        p.x < 0 ||
+                        p.x > width ||
+                        p.y < 0 ||
+                        p.y > height
+                    ) {
                         Object.assign(p, createParticle());
                     }
 
@@ -16519,7 +17311,9 @@ export const FlowFieldCanvas = React.forwardRef<HTMLDivElement, FlowFieldCanvasP
                             const mouseAngle = Math.atan2(dy, dx);
                             // Blend angle towards mouse direction
                             const blendStrength = (1 - dist / 150) * 0.45;
-                            angle = angle * (1 - blendStrength) + mouseAngle * blendStrength;
+                            angle =
+                                angle * (1 - blendStrength) +
+                                mouseAngle * blendStrength;
                         }
                     }
 
@@ -16553,15 +17347,29 @@ export const FlowFieldCanvas = React.forwardRef<HTMLDivElement, FlowFieldCanvasP
                 resizeObserver.disconnect();
                 if (interactive) {
                     container.removeEventListener(\'mousemove\', handleMouseMove);
-                    container.removeEventListener(\'mouseleave\', handleMouseLeave);
+                    container.removeEventListener(
+                        \'mouseleave\',
+                        handleMouseLeave,
+                    );
                 }
             };
-        }, [particleCount, speed, fieldScale, lineWidth, fadeRate, color, interactive]);
+        }, [
+            particleCount,
+            speed,
+            fieldScale,
+            lineWidth,
+            fadeRate,
+            color,
+            interactive,
+        ]);
 
         return (
             <div
                 ref={containerRef}
-                className={cn(\'relative w-full h-full overflow-hidden select-none\', className)}
+                className={cn(
+                    \'relative h-full w-full overflow-hidden select-none\',
+                    className,
+                )}
                 {...props}
             >
                 <canvas
@@ -16571,7 +17379,7 @@ export const FlowFieldCanvas = React.forwardRef<HTMLDivElement, FlowFieldCanvasP
                 />
             </div>
         );
-    }
+    },
 );
 
 FlowFieldCanvas.displayName = \'FlowFieldCanvas\';
@@ -16648,7 +17456,10 @@ interface Blob {
     radius: number;
 }
 
-export const MetaballCanvas = React.forwardRef<HTMLDivElement, MetaballCanvasProps>(
+export const MetaballCanvas = React.forwardRef<
+    HTMLDivElement,
+    MetaballCanvasProps
+>(
     (
         {
             className,
@@ -16660,13 +17471,16 @@ export const MetaballCanvas = React.forwardRef<HTMLDivElement, MetaballCanvasPro
             interactive = true,
             ...props
         },
-        ref
+        ref,
     ) => {
         const containerRef = React.useRef<HTMLDivElement>(null);
         const canvasRef = React.useRef<HTMLCanvasElement>(null);
         const mouseRef = React.useRef<{ x: number; y: number } | null>(null);
 
-        React.useImperativeHandle(ref, () => containerRef.current as HTMLDivElement);
+        React.useImperativeHandle(
+            ref,
+            () => containerRef.current as HTMLDivElement,
+        );
 
         React.useEffect(() => {
             const canvas = canvasRef.current;
@@ -16690,7 +17504,8 @@ export const MetaballCanvas = React.forwardRef<HTMLDivElement, MetaballCanvasPro
             const initBlobs = () => {
                 blobs.length = 0;
                 for (let i = 0; i < blobCount; i++) {
-                    const radius = Math.random() * (maxRadius - minRadius) + minRadius;
+                    const radius =
+                        Math.random() * (maxRadius - minRadius) + minRadius;
                     blobs.push({
                         x: Math.random() * (width - radius * 2) + radius,
                         y: Math.random() * (height - radius * 2) + radius,
@@ -16756,8 +17571,8 @@ export const MetaballCanvas = React.forwardRef<HTMLDivElement, MetaballCanvasPro
 
                 const activeColor = resolveColor(
                     color ||
-                    window.getComputedStyle(container).color ||
-                    \'#10b981\'
+                        window.getComputedStyle(container).color ||
+                        \'#10b981\',
                 );
 
                 // Draw standard blobs
@@ -16783,7 +17598,14 @@ export const MetaballCanvas = React.forwardRef<HTMLDivElement, MetaballCanvasPro
                     }
 
                     // Render blob with soft radial edge that contrast filter will solidify
-                    const grad = ctx.createRadialGradient(b.x, b.y, b.radius * 0.1, b.x, b.y, b.radius);
+                    const grad = ctx.createRadialGradient(
+                        b.x,
+                        b.y,
+                        b.radius * 0.1,
+                        b.x,
+                        b.y,
+                        b.radius,
+                    );
                     grad.addColorStop(0, activeColor);
                     grad.addColorStop(1, \'rgba(0, 0, 0, 0)\');
 
@@ -16802,13 +17624,19 @@ export const MetaballCanvas = React.forwardRef<HTMLDivElement, MetaballCanvasPro
                         mouseRadius * 0.1,
                         mouseRef.current.x,
                         mouseRef.current.y,
-                        mouseRadius
+                        mouseRadius,
                     );
                     grad.addColorStop(0, activeColor);
                     grad.addColorStop(1, \'rgba(0, 0, 0, 0)\');
 
                     ctx.beginPath();
-                    ctx.arc(mouseRef.current.x, mouseRef.current.y, mouseRadius, 0, Math.PI * 2);
+                    ctx.arc(
+                        mouseRef.current.x,
+                        mouseRef.current.y,
+                        mouseRadius,
+                        0,
+                        Math.PI * 2,
+                    );
                     ctx.fillStyle = grad;
                     ctx.fill();
                 }
@@ -16823,7 +17651,10 @@ export const MetaballCanvas = React.forwardRef<HTMLDivElement, MetaballCanvasPro
                 resizeObserver.disconnect();
                 if (interactive) {
                     container.removeEventListener(\'mousemove\', handleMouseMove);
-                    container.removeEventListener(\'mouseleave\', handleMouseLeave);
+                    container.removeEventListener(
+                        \'mouseleave\',
+                        handleMouseLeave,
+                    );
                 }
             };
         }, [blobCount, minRadius, maxRadius, speed, color, interactive]);
@@ -16831,21 +17662,24 @@ export const MetaballCanvas = React.forwardRef<HTMLDivElement, MetaballCanvasPro
         return (
             <div
                 ref={containerRef}
-                className={cn(\'relative w-full h-full overflow-hidden select-none bg-background\', className)}
+                className={cn(
+                    \'relative h-full w-full overflow-hidden bg-background select-none\',
+                    className,
+                )}
                 {...props}
             >
                 {/* The CSS filter properties create the gooey metaball fusion effect */}
                 <canvas
                     ref={canvasRef}
                     className="absolute inset-0 size-full"
-                    style={{ 
+                    style={{
                         pointerEvents: \'none\',
                         filter: \'blur(14px) contrast(20) hue-rotate(0deg)\',
                     }}
                 />
             </div>
         );
-    }
+    },
 );
 
 MetaballCanvas.displayName = \'MetaballCanvas\';
@@ -17155,7 +17989,10 @@ export interface WaveGridCanvasProps extends React.HTMLAttributes<HTMLDivElement
     interactive?: boolean;
 }
 
-export const WaveGridCanvas = React.forwardRef<HTMLDivElement, WaveGridCanvasProps>(
+export const WaveGridCanvas = React.forwardRef<
+    HTMLDivElement,
+    WaveGridCanvasProps
+>(
     (
         {
             className,
@@ -17167,13 +18004,16 @@ export const WaveGridCanvas = React.forwardRef<HTMLDivElement, WaveGridCanvasPro
             interactive = true,
             ...props
         },
-        ref
+        ref,
     ) => {
         const containerRef = React.useRef<HTMLDivElement>(null);
         const canvasRef = React.useRef<HTMLCanvasElement>(null);
         const mouseRef = React.useRef<{ x: number; y: number } | null>(null);
 
-        React.useImperativeHandle(ref, () => containerRef.current as HTMLDivElement);
+        React.useImperativeHandle(
+            ref,
+            () => containerRef.current as HTMLDivElement,
+        );
 
         React.useEffect(() => {
             const canvas = canvasRef.current;
@@ -17224,7 +18064,10 @@ export const WaveGridCanvas = React.forwardRef<HTMLDivElement, WaveGridCanvasPro
                 if (colorStr.startsWith(\'--\')) {
                     targetColor = `var(${colorStr})`;
                 }
-                if (!targetColor.includes(\'var(\') && !targetColor.includes(\'--\')) {
+                if (
+                    !targetColor.includes(\'var(\') &&
+                    !targetColor.includes(\'--\')
+                ) {
                     return targetColor;
                 }
                 try {
@@ -17245,7 +18088,7 @@ export const WaveGridCanvas = React.forwardRef<HTMLDivElement, WaveGridCanvasPro
 
                 const activeColor = resolveColor(
                     color || window.getComputedStyle(container).color,
-                    \'rgba(16, 185, 129, 0.4)\'
+                    \'rgba(16, 185, 129, 0.4)\',
                 );
 
                 time += speed * 0.05;
@@ -17268,22 +18111,25 @@ export const WaveGridCanvas = React.forwardRef<HTMLDivElement, WaveGridCanvasPro
                             const dx = mouseRef.current.x - x;
                             const dy = mouseRef.current.y - y;
                             dist = Math.sqrt(dx * dx + dy * dy);
-                            
+
                             // Proximity influence within 200px of mouse
                             if (dist < 220) {
-                                influence = (1 - dist / 220);
+                                influence = 1 - dist / 220;
                             }
                         } else {
                             // Subtle default pulsing wave in the center if no mouse
-                            const dx = (width * 0.5) - x;
-                            const dy = (height * 0.5) - y;
+                            const dx = width * 0.5 - x;
+                            const dy = height * 0.5 - y;
                             dist = Math.sqrt(dx * dx + dy * dy);
-                            influence = Math.sin(dist * 0.02 - time * 0.3) * 0.5 + 0.5;
+                            influence =
+                                Math.sin(dist * 0.02 - time * 0.3) * 0.5 + 0.5;
                         }
 
                         // Calculate scale & opacity based on influence and sine ripples
-                        const waveFactor = Math.sin(dist * 0.04 - time) * 0.5 + 0.5;
-                        const scale = 1.0 + (maxScale - 1.0) * influence * waveFactor;
+                        const waveFactor =
+                            Math.sin(dist * 0.04 - time) * 0.5 + 0.5;
+                        const scale =
+                            1.0 + (maxScale - 1.0) * influence * waveFactor;
                         const opacity = 0.15 + 0.65 * influence * waveFactor;
 
                         ctx.save();
@@ -17328,7 +18174,10 @@ export const WaveGridCanvas = React.forwardRef<HTMLDivElement, WaveGridCanvasPro
                 resizeObserver.disconnect();
                 if (interactive) {
                     container.removeEventListener(\'mousemove\', handleMouseMove);
-                    container.removeEventListener(\'mouseleave\', handleMouseLeave);
+                    container.removeEventListener(
+                        \'mouseleave\',
+                        handleMouseLeave,
+                    );
                 }
             };
         }, [gridSpacing, shape, maxScale, speed, color, interactive]);
@@ -17336,7 +18185,10 @@ export const WaveGridCanvas = React.forwardRef<HTMLDivElement, WaveGridCanvasPro
         return (
             <div
                 ref={containerRef}
-                className={cn(\'relative w-full h-full overflow-hidden select-none bg-background\', className)}
+                className={cn(
+                    \'relative h-full w-full overflow-hidden bg-background select-none\',
+                    className,
+                )}
                 {...props}
             >
                 <canvas
@@ -17346,7 +18198,7 @@ export const WaveGridCanvas = React.forwardRef<HTMLDivElement, WaveGridCanvasPro
                 />
             </div>
         );
-    }
+    },
 );
 
 WaveGridCanvas.displayName = \'WaveGridCanvas\';
@@ -17591,11 +18443,15 @@ const GlassGlareCard = React.forwardRef<HTMLDivElement, GlassGlareCardProps>(
                 if (typeof ref === \'function\') {
                     ref(node);
                 } else if (ref) {
-                    (ref as React.MutableRefObject<HTMLDivElement | null>).current = node;
+                    (
+                        ref as React.MutableRefObject<HTMLDivElement | null>
+                    ).current = node;
                 }
-                (localRef as React.MutableRefObject<HTMLDivElement | null>).current = node;
+                (
+                    localRef as React.MutableRefObject<HTMLDivElement | null>
+                ).current = node;
             },
-            [ref, hoverRef]
+            [ref, hoverRef],
         );
 
         const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -17723,11 +18579,15 @@ const GlowingCard = React.forwardRef<HTMLDivElement, GlowingCardProps>(
                 if (typeof ref === \'function\') {
                     ref(node);
                 } else if (ref) {
-                    (ref as React.MutableRefObject<HTMLDivElement | null>).current = node;
+                    (
+                        ref as React.MutableRefObject<HTMLDivElement | null>
+                    ).current = node;
                 }
-                (localRef as React.MutableRefObject<HTMLDivElement | null>).current = node;
+                (
+                    localRef as React.MutableRefObject<HTMLDivElement | null>
+                ).current = node;
             },
-            [ref, hoverRef]
+            [ref, hoverRef],
         );
 
         const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -17847,10 +18707,12 @@ const GrainyNoiseCard = React.forwardRef<HTMLDivElement, GrainyNoiseCardProps>(
                 if (typeof ref === \'function\') {
                     ref(node);
                 } else if (ref) {
-                    (ref as React.MutableRefObject<HTMLDivElement | null>).current = node;
+                    (
+                        ref as React.MutableRefObject<HTMLDivElement | null>
+                    ).current = node;
                 }
             },
-            [ref, hoverRef]
+            [ref, hoverRef],
         );
 
         return (
@@ -18072,7 +18934,10 @@ export interface MetricBreakdownCardProps extends React.ComponentProps<
     items: BreakdownItem[];
 }
 
-const MetricBreakdownCard = React.forwardRef<HTMLDivElement, MetricBreakdownCardProps>(
+const MetricBreakdownCard = React.forwardRef<
+    HTMLDivElement,
+    MetricBreakdownCardProps
+>(
     (
         {
             className,
@@ -18094,10 +18959,12 @@ const MetricBreakdownCard = React.forwardRef<HTMLDivElement, MetricBreakdownCard
                 if (typeof ref === \'function\') {
                     ref(node);
                 } else if (ref) {
-                    (ref as React.MutableRefObject<HTMLDivElement | null>).current = node;
+                    (
+                        ref as React.MutableRefObject<HTMLDivElement | null>
+                    ).current = node;
                 }
             },
-            [ref, hoverRef]
+            [ref, hoverRef],
         );
 
         return (
@@ -18141,25 +19008,37 @@ const MetricBreakdownCard = React.forwardRef<HTMLDivElement, MetricBreakdownCard
                 <div className="mt-6 border-t border-border/50 pt-4">
                     <div className="grid grid-cols-1 gap-4 @md:grid-cols-2 @lg:grid-cols-3">
                         {items.map((item, idx) => (
-                            <div key={idx} className="space-y-2 rounded-lg border border-border/30 bg-muted/10 p-3">
+                            <div
+                                key={idx}
+                                className="space-y-2 rounded-lg border border-border/30 bg-muted/10 p-3"
+                            >
                                 <div className="flex items-center justify-between text-xs">
-                                    <span className="font-semibold text-muted-foreground">{item.label}</span>
-                                    <span className="font-mono font-bold text-foreground">{item.value}</span>
+                                    <span className="font-semibold text-muted-foreground">
+                                        {item.label}
+                                    </span>
+                                    <span className="font-mono font-bold text-foreground">
+                                        {item.value}
+                                    </span>
                                 </div>
-                                
+
                                 <div className="relative h-1.5 w-full overflow-hidden rounded-full bg-muted/40">
                                     <div
                                         className="h-full rounded-full transition-all duration-700 ease-out"
                                         style={{
-                                            width: isHovered ? `${item.percentage}%` : \'0%\',
-                                            backgroundColor: item.color || \'var(--color-primary)\',
-                                            boxShadow: isHovered && !item.color
-                                                ? \'0 0 4px var(--color-primary)\'
-                                                : \'none\',
+                                            width: isHovered
+                                                ? `${item.percentage}%`
+                                                : \'0%\',
+                                            backgroundColor:
+                                                item.color ||
+                                                \'var(--color-primary)\',
+                                            boxShadow:
+                                                isHovered && !item.color
+                                                    ? \'0 0 4px var(--color-primary)\'
+                                                    : \'none\',
                                         }}
                                     />
                                 </div>
-                                
+
                                 <div className="text-right font-mono text-[9px] text-muted-foreground">
                                     {item.percentage}% of total
                                 </div>
@@ -18244,7 +19123,10 @@ export interface MetricComparisonCardProps extends React.ComponentProps<
     trendType?: \'positive\' | \'negative\' | \'neutral\';
 }
 
-const MetricComparisonCard = React.forwardRef<HTMLDivElement, MetricComparisonCardProps>(
+const MetricComparisonCard = React.forwardRef<
+    HTMLDivElement,
+    MetricComparisonCardProps
+>(
     (
         {
             className,
@@ -18269,10 +19151,12 @@ const MetricComparisonCard = React.forwardRef<HTMLDivElement, MetricComparisonCa
                 if (typeof ref === \'function\') {
                     ref(node);
                 } else if (ref) {
-                    (ref as React.MutableRefObject<HTMLDivElement | null>).current = node;
+                    (
+                        ref as React.MutableRefObject<HTMLDivElement | null>
+                    ).current = node;
                 }
             },
-            [ref, hoverRef]
+            [ref, hoverRef],
         );
 
         const currentPercentage = Math.min(Math.max(ratio * 100, 0), 100);
@@ -18323,13 +19207,17 @@ const MetricComparisonCard = React.forwardRef<HTMLDivElement, MetricComparisonCa
                     <div className="space-y-1.5">
                         <div className="flex items-center justify-between text-[10px] font-bold text-muted-foreground uppercase">
                             <span>{currentLabel}</span>
-                            <span className="font-mono text-foreground">{currentPercentage.toFixed(0)}%</span>
+                            <span className="font-mono text-foreground">
+                                {currentPercentage.toFixed(0)}%
+                            </span>
                         </div>
                         <div className="h-2 w-full overflow-hidden rounded-full bg-muted/40">
                             <div
                                 className="h-full rounded-full bg-primary transition-all duration-700 ease-out"
                                 style={{
-                                    width: isHovered ? `${currentPercentage}%` : \'0%\',
+                                    width: isHovered
+                                        ? `${currentPercentage}%`
+                                        : \'0%\',
                                     boxShadow: isHovered
                                         ? \'0 0 6px var(--color-primary)\'
                                         : \'none\',
@@ -18341,7 +19229,9 @@ const MetricComparisonCard = React.forwardRef<HTMLDivElement, MetricComparisonCa
                     <div className="space-y-1.5">
                         <div className="flex items-center justify-between text-[10px] font-bold text-muted-foreground uppercase">
                             <span>{comparisonLabel}</span>
-                            <span className="font-mono text-foreground">100%</span>
+                            <span className="font-mono text-foreground">
+                                100%
+                            </span>
                         </div>
                         <div className="h-2 w-full overflow-hidden rounded-full bg-muted/40">
                             <div
@@ -18430,7 +19320,10 @@ export interface MetricProgressCardProps extends React.ComponentProps<
     accentColor?: string; // CSS color string or custom variable
 }
 
-const MetricProgressCard = React.forwardRef<HTMLDivElement, MetricProgressCardProps>(
+const MetricProgressCard = React.forwardRef<
+    HTMLDivElement,
+    MetricProgressCardProps
+>(
     (
         {
             className,
@@ -18455,16 +19348,20 @@ const MetricProgressCard = React.forwardRef<HTMLDivElement, MetricProgressCardPr
                 if (typeof ref === \'function\') {
                     ref(node);
                 } else if (ref) {
-                    (ref as React.MutableRefObject<HTMLDivElement | null>).current = node;
+                    (
+                        ref as React.MutableRefObject<HTMLDivElement | null>
+                    ).current = node;
                 }
             },
-            [ref, hoverRef]
+            [ref, hoverRef],
         );
 
         // Circular SVG configuration
         const radius = 24;
         const circumference = 2 * Math.PI * radius;
-        const fillOffset = circumference - (Math.min(Math.max(progress, 0), 100) / 100) * circumference;
+        const fillOffset =
+            circumference -
+            (Math.min(Math.max(progress, 0), 100) / 100) * circumference;
 
         return (
             <Card
@@ -18485,7 +19382,7 @@ const MetricProgressCard = React.forwardRef<HTMLDivElement, MetricProgressCardPr
                         </div>
                     </div>
 
-                    <div className="relative flex items-center justify-center size-14 select-none">
+                    <div className="relative flex size-14 items-center justify-center select-none">
                         <svg className="size-full -rotate-90">
                             {/* Track Circle */}
                             <circle
@@ -18506,7 +19403,9 @@ const MetricProgressCard = React.forwardRef<HTMLDivElement, MetricProgressCardPr
                                 stroke={accentColor}
                                 strokeWidth="4.5"
                                 strokeDasharray={circumference}
-                                strokeDashoffset={isHovered ? fillOffset - 5 : fillOffset}
+                                strokeDashoffset={
+                                    isHovered ? fillOffset - 5 : fillOffset
+                                }
                                 strokeLinecap="round"
                                 className="transition-all duration-700 ease-out"
                                 style={{
@@ -18629,136 +19528,145 @@ export interface MetricRadialCardProps extends React.ComponentProps<
     items: RadialMetricItem[]; // Exactly 3 items recommended
 }
 
-const MetricRadialCard = React.forwardRef<HTMLDivElement, MetricRadialCardProps>(
-    (
-        {
-            className,
-            title,
-            value,
-            items = [],
-            children,
-            ...props
+const MetricRadialCard = React.forwardRef<
+    HTMLDivElement,
+    MetricRadialCardProps
+>(({ className, title, value, items = [], children, ...props }, ref) => {
+    const { isHovered, hoverRef } = useHover();
+
+    const combinedRef = React.useCallback(
+        (node: HTMLDivElement | null) => {
+            hoverRef(node);
+            if (typeof ref === \'function\') {
+                ref(node);
+            } else if (ref) {
+                (ref as React.MutableRefObject<HTMLDivElement | null>).current =
+                    node;
+            }
         },
-        ref,
-    ) => {
-        const { isHovered, hoverRef } = useHover();
+        [ref, hoverRef],
+    );
 
-        const combinedRef = React.useCallback(
-            (node: HTMLDivElement | null) => {
-                hoverRef(node);
-                if (typeof ref === \'function\') {
-                    ref(node);
-                } else if (ref) {
-                    (ref as React.MutableRefObject<HTMLDivElement | null>).current = node;
-                }
-            },
-            [ref, hoverRef]
-        );
+    // Nested rings configuration
+    const svgSize = 120;
+    const center = svgSize / 2;
 
-        // Nested rings configuration
-        const svgSize = 120;
-        const center = svgSize / 2;
-        
-        // Setup ring geometries with varying radii
-        const ringConfigs = [
-            { radius: 44, strokeWidth: 8 },
-            { radius: 32, strokeWidth: 8 },
-            { radius: 20, strokeWidth: 8 },
-        ];
+    // Setup ring geometries with varying radii
+    const ringConfigs = [
+        { radius: 44, strokeWidth: 8 },
+        { radius: 32, strokeWidth: 8 },
+        { radius: 20, strokeWidth: 8 },
+    ];
 
-        return (
-            <Card
-                ref={combinedRef}
-                className={cn(
-                    \'@container relative overflow-hidden p-6 shadow-md transition-all hover:shadow-lg\',
-                    className,
-                )}
-                {...props}
-            >
-                <div className="space-y-1">
-                    <span className="text-xs font-semibold tracking-wider text-muted-foreground uppercase">
-                        {title}
-                    </span>
-                    <div className="font-mono text-2xl font-black tracking-tight text-foreground">
-                        {value}
-                    </div>
+    return (
+        <Card
+            ref={combinedRef}
+            className={cn(
+                \'@container relative overflow-hidden p-6 shadow-md transition-all hover:shadow-lg\',
+                className,
+            )}
+            {...props}
+        >
+            <div className="space-y-1">
+                <span className="text-xs font-semibold tracking-wider text-muted-foreground uppercase">
+                    {title}
+                </span>
+                <div className="font-mono text-2xl font-black tracking-tight text-foreground">
+                    {value}
                 </div>
+            </div>
 
-                {/* Responsive container layout splitting into side-by-side at container-width >= 380px */}
-                <div className="mt-6 flex flex-col gap-6 items-center @sm:flex-row @sm:items-center @sm:justify-between">
-                    
-                    {/* SVG Nested Rings */}
-                    <div className="relative flex items-center justify-center shrink-0 size-32 select-none">
-                        <svg width={svgSize} height={svgSize} className="-rotate-90">
-                            {items.slice(0, 3).map((item, idx) => {
-                                const config = ringConfigs[idx] || ringConfigs[0];
-                                const circumference = 2 * Math.PI * config.radius;
-                                const fillOffset = circumference - (Math.min(Math.max(item.percentage, 0), 100) / 100) * circumference;
+            {/* Responsive container layout splitting into side-by-side at container-width >= 380px */}
+            <div className="mt-6 flex flex-col items-center gap-6 @sm:flex-row @sm:items-center @sm:justify-between">
+                {/* SVG Nested Rings */}
+                <div className="relative flex size-32 shrink-0 items-center justify-center select-none">
+                    <svg
+                        width={svgSize}
+                        height={svgSize}
+                        className="-rotate-90"
+                    >
+                        {items.slice(0, 3).map((item, idx) => {
+                            const config = ringConfigs[idx] || ringConfigs[0];
+                            const circumference = 2 * Math.PI * config.radius;
+                            const fillOffset =
+                                circumference -
+                                (Math.min(Math.max(item.percentage, 0), 100) /
+                                    100) *
+                                    circumference;
 
-                                return (
-                                    <g key={idx}>
-                                        {/* Background Track */}
-                                        <circle
-                                            cx={center}
-                                            cy={center}
-                                            r={config.radius}
-                                            fill="transparent"
-                                            stroke="var(--color-muted)"
-                                            strokeWidth={config.strokeWidth}
-                                            className="opacity-20"
-                                        />
-                                        {/* Active Progress Ring */}
-                                        <circle
-                                            cx={center}
-                                            cy={center}
-                                            r={config.radius}
-                                            fill="transparent"
-                                            stroke={item.color}
-                                            strokeWidth={config.strokeWidth}
-                                            strokeDasharray={circumference}
-                                            strokeDashoffset={isHovered ? fillOffset - 4 : fillOffset}
-                                            strokeLinecap="round"
-                                            className="transition-all duration-1000 ease-out"
-                                            style={{
-                                                filter: isHovered
-                                                    ? `drop-shadow(0 0 2.5px ${item.color})`
-                                                    : \'none\',
-                                            }}
-                                        />
-                                    </g>
-                                );
-                            })}
-                        </svg>
-                    </div>
-
-                    {/* Breakdown labels grid */}
-                    <div className="w-full space-y-3.5">
-                        {items.slice(0, 3).map((item, idx) => (
-                            <div key={idx} className="flex items-center justify-between gap-3 text-xs">
-                                <div className="flex items-center gap-2 min-w-0">
-                                    <span
-                                        className="size-2 rounded-full shrink-0"
-                                        style={{ backgroundColor: item.color }}
+                            return (
+                                <g key={idx}>
+                                    {/* Background Track */}
+                                    <circle
+                                        cx={center}
+                                        cy={center}
+                                        r={config.radius}
+                                        fill="transparent"
+                                        stroke="var(--color-muted)"
+                                        strokeWidth={config.strokeWidth}
+                                        className="opacity-20"
                                     />
-                                    <span className="truncate font-semibold text-muted-foreground">
-                                        {item.label}
-                                    </span>
-                                </div>
-                                <div className="flex items-center gap-1.5 font-mono shrink-0">
-                                    <span className="font-bold text-foreground">{item.value}</span>
-                                    <span className="text-[10px] text-muted-foreground">({Math.round(item.percentage)}%)</span>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-
+                                    {/* Active Progress Ring */}
+                                    <circle
+                                        cx={center}
+                                        cy={center}
+                                        r={config.radius}
+                                        fill="transparent"
+                                        stroke={item.color}
+                                        strokeWidth={config.strokeWidth}
+                                        strokeDasharray={circumference}
+                                        strokeDashoffset={
+                                            isHovered
+                                                ? fillOffset - 4
+                                                : fillOffset
+                                        }
+                                        strokeLinecap="round"
+                                        className="transition-all duration-1000 ease-out"
+                                        style={{
+                                            filter: isHovered
+                                                ? `drop-shadow(0 0 2.5px ${item.color})`
+                                                : \'none\',
+                                        }}
+                                    />
+                                </g>
+                            );
+                        })}
+                    </svg>
                 </div>
 
-                {children && <div className="mt-4 text-xs">{children}</div>}
-            </Card>
-        );
-    },
-);
+                {/* Breakdown labels grid */}
+                <div className="w-full space-y-3.5">
+                    {items.slice(0, 3).map((item, idx) => (
+                        <div
+                            key={idx}
+                            className="flex items-center justify-between gap-3 text-xs"
+                        >
+                            <div className="flex min-w-0 items-center gap-2">
+                                <span
+                                    className="size-2 shrink-0 rounded-full"
+                                    style={{ backgroundColor: item.color }}
+                                />
+                                <span className="truncate font-semibold text-muted-foreground">
+                                    {item.label}
+                                </span>
+                            </div>
+                            <div className="flex shrink-0 items-center gap-1.5 font-mono">
+                                <span className="font-bold text-foreground">
+                                    {item.value}
+                                </span>
+                                <span className="text-[10px] text-muted-foreground">
+                                    ({Math.round(item.percentage)}%)
+                                </span>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            {children && <div className="mt-4 text-xs">{children}</div>}
+        </Card>
+    );
+});
 
 MetricRadialCard.displayName = \'MetricRadialCard\';
 
@@ -18850,10 +19758,12 @@ const MetricSparkCard = React.forwardRef<HTMLDivElement, MetricSparkCardProps>(
                 if (typeof ref === \'function\') {
                     ref(node);
                 } else if (ref) {
-                    (ref as React.MutableRefObject<HTMLDivElement | null>).current = node;
+                    (
+                        ref as React.MutableRefObject<HTMLDivElement | null>
+                    ).current = node;
                 }
             },
-            [ref, hoverRef]
+            [ref, hoverRef],
         );
 
         // SVG Sparkline path generation
@@ -19269,7 +20179,9 @@ import {
 } from \'@/components/ui/card\';
 import { RainbowBorder } from \'@/registry/new-york/components/ui/borders/rainbow-border\';
 
-export interface RainbowBorderCardProps extends React.ComponentProps<typeof Card> {
+export interface RainbowBorderCardProps extends React.ComponentProps<
+    typeof Card
+> {
     borderWidth?: string;
     animationDuration?: string;
     colors?: string[];
@@ -19279,7 +20191,10 @@ export interface RainbowBorderCardProps extends React.ComponentProps<typeof Card
     glowOpacity?: number;
 }
 
-export const RainbowBorderCard = React.forwardRef<HTMLDivElement, RainbowBorderCardProps>(
+export const RainbowBorderCard = React.forwardRef<
+    HTMLDivElement,
+    RainbowBorderCardProps
+>(
     (
         {
             className,
@@ -19295,12 +20210,18 @@ export const RainbowBorderCard = React.forwardRef<HTMLDivElement, RainbowBorderC
         },
         ref,
     ) => {
-        const roundedCardClass = 
-            rounded === \'none\' ? \'rounded-none\' :
-            rounded === \'xs\' ? \'rounded-xs\' :
-            rounded === \'sm\' ? \'rounded-sm\' :
-            rounded === \'md\' ? \'rounded-md\' :
-            rounded === \'lg\' ? \'rounded-lg\' : \'rounded-full\';
+        const roundedCardClass =
+            rounded === \'none\'
+                ? \'rounded-none\'
+                : rounded === \'xs\'
+                  ? \'rounded-xs\'
+                  : rounded === \'sm\'
+                    ? \'rounded-sm\'
+                    : rounded === \'md\'
+                      ? \'rounded-md\'
+                      : rounded === \'lg\'
+                        ? \'rounded-lg\'
+                        : \'rounded-full\';
 
         return (
             <RainbowBorder
@@ -19311,12 +20232,12 @@ export const RainbowBorderCard = React.forwardRef<HTMLDivElement, RainbowBorderC
                 glow={glow}
                 glowBlur={glowBlur}
                 glowOpacity={glowOpacity}
-                className="p-[1px] w-full"
+                className="w-full p-[1px]"
             >
                 <Card
                     ref={ref}
                     className={cn(
-                        \'bg-card text-card-foreground border-0 shadow-sm w-full\',
+                        \'w-full border-0 bg-card text-card-foreground shadow-sm\',
                         roundedCardClass,
                         className,
                     )}
@@ -19414,11 +20335,15 @@ const RevealCard = React.forwardRef<HTMLDivElement, RevealCardProps>(
                 if (typeof ref === \'function\') {
                     ref(node);
                 } else if (ref) {
-                    (ref as React.MutableRefObject<HTMLDivElement | null>).current = node;
+                    (
+                        ref as React.MutableRefObject<HTMLDivElement | null>
+                    ).current = node;
                 }
-                (localRef as React.MutableRefObject<HTMLDivElement | null>).current = node;
+                (
+                    localRef as React.MutableRefObject<HTMLDivElement | null>
+                ).current = node;
             },
-            [ref, hoverRef]
+            [ref, hoverRef],
         );
 
         const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -22637,184 +23562,225 @@ export function ComparisonSliderVertical({
                     [
                         'path' => 'resources/js/registry/new-york/components/ui/dropzones/avatar-dropzone-badge.tsx',
                         'type' => 'registry:ui',
-                        'content' => '"use client"
+                        'content' => '\'use client\';
 
-import * as React from "react"
-import { cn } from "@/lib/utils"
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
-import { Badge } from "@/components/ui/badge"
-import { Progress } from "@/components/ui/progress"
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
-import { User, Camera, Check, AlertCircle, Loader2 } from "lucide-react"
+import * as React from \'react\';
+import { cn } from \'@/lib/utils\';
+import { Avatar, AvatarImage, AvatarFallback } from \'@/components/ui/avatar\';
+import { Badge } from \'@/components/ui/badge\';
+import { Progress } from \'@/components/ui/progress\';
+import {
+    Tooltip,
+    TooltipContent,
+    TooltipTrigger,
+} from \'@/components/ui/tooltip\';
+import { User, Camera, Check, AlertCircle, Loader2 } from \'lucide-react\';
 
 interface AvatarDropzoneBadgeProps {
-  className?: string
-  onFileSelect?: (file: File | null) => void
-  maxSize?: number
-  defaultImage?: string
-  size?: "sm" | "md" | "lg"
+    className?: string;
+    onFileSelect?: (file: File | null) => void;
+    maxSize?: number;
+    defaultImage?: string;
+    size?: \'sm\' | \'md\' | \'lg\';
 }
 
-type Status = "idle" | "uploading" | "success" | "error"
+type Status = \'idle\' | \'uploading\' | \'success\' | \'error\';
 
 const sizeMap = {
-  sm: { avatar: "size-12", icon: "size-4", badge: "size-4" },
-  md: { avatar: "size-20", icon: "size-6", badge: "size-6" },
-  lg: { avatar: "size-28", icon: "size-8", badge: "size-8" },
-}
+    sm: { avatar: \'size-12\', icon: \'size-4\', badge: \'size-4\' },
+    md: { avatar: \'size-20\', icon: \'size-6\', badge: \'size-6\' },
+    lg: { avatar: \'size-28\', icon: \'size-8\', badge: \'size-8\' },
+};
 
 export function AvatarDropzoneBadge({
-  className,
-  onFileSelect,
-  maxSize = 5,
-  defaultImage,
-  size = "md",
+    className,
+    onFileSelect,
+    maxSize = 5,
+    defaultImage,
+    size = \'md\',
 }: AvatarDropzoneBadgeProps) {
-  const [isDragOver, setIsDragOver] = React.useState(false)
-  const [preview, setPreview] = React.useState<string | null>(defaultImage || null)
-  const [status, setStatus] = React.useState<Status>("idle")
-  const [progress, setProgress] = React.useState(0)
-  const [error, setError] = React.useState<string | null>(null)
-  const inputRef = React.useRef<HTMLInputElement>(null)
+    const [isDragOver, setIsDragOver] = React.useState(false);
+    const [preview, setPreview] = React.useState<string | null>(
+        defaultImage || null,
+    );
+    const [status, setStatus] = React.useState<Status>(\'idle\');
+    const [progress, setProgress] = React.useState(0);
+    const [error, setError] = React.useState<string | null>(null);
+    const inputRef = React.useRef<HTMLInputElement>(null);
 
-  const sizes = sizeMap[size]
+    const sizes = sizeMap[size];
 
-  const simulateUpload = React.useCallback(() => {
-    setStatus("uploading")
-    setProgress(0)
-    setError(null)
-    const interval = setInterval(() => {
-      setProgress((prev) => {
-        if (prev >= 100) {
-          clearInterval(interval)
-          setStatus("success")
-          return 100
+    const simulateUpload = React.useCallback(() => {
+        setStatus(\'uploading\');
+        setProgress(0);
+        setError(null);
+        const interval = setInterval(() => {
+            setProgress((prev) => {
+                if (prev >= 100) {
+                    clearInterval(interval);
+                    setStatus(\'success\');
+                    return 100;
+                }
+                return prev + 15;
+            });
+        }, 120);
+    }, []);
+
+    const handleFile = React.useCallback(
+        (file: File) => {
+            setError(null);
+            if (!file.type.startsWith(\'image/\')) {
+                setError(\'Invalid file type\');
+                setStatus(\'error\');
+                return;
+            }
+            if (file.size > maxSize * 1024 * 1024) {
+                setError(`Max size is ${maxSize}MB`);
+                setStatus(\'error\');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                setPreview(e.target?.result as string);
+                simulateUpload();
+                onFileSelect?.(file);
+            };
+            reader.readAsDataURL(file);
+        },
+        [maxSize, onFileSelect, simulateUpload],
+    );
+
+    const handleDrop = React.useCallback(
+        (e: React.DragEvent) => {
+            e.preventDefault();
+            setIsDragOver(false);
+            const file = e.dataTransfer.files[0];
+            if (file) handleFile(file);
+        },
+        [handleFile],
+    );
+
+    const statusBadge = () => {
+        if (status === \'uploading\') {
+            return (
+                <Badge
+                    className={cn(sizes.badge, \'rounded-full bg-primary p-0\')}
+                >
+                    <Loader2 className="size-3 animate-spin text-primary-foreground" />
+                </Badge>
+            );
         }
-        return prev + 15
-      })
-    }, 120)
-  }, [])
+        if (status === \'success\') {
+            return (
+                <Badge
+                    className={cn(sizes.badge, \'bg-success rounded-full p-0\')}
+                >
+                    <Check className="text-success-foreground size-3" />
+                </Badge>
+            );
+        }
+        if (status === \'error\') {
+            return (
+                <Tooltip>
+                    <TooltipTrigger asChild>
+                        <Badge
+                            className={cn(
+                                sizes.badge,
+                                \'cursor-help rounded-full bg-destructive p-0\',
+                            )}
+                        >
+                            <AlertCircle className="size-3 text-white" />
+                        </Badge>
+                    </TooltipTrigger>
+                    <TooltipContent>{error || \'Upload failed\'}</TooltipContent>
+                </Tooltip>
+            );
+        }
+        return null;
+    };
 
-  const handleFile = React.useCallback(
-    (file: File) => {
-      setError(null)
-      if (!file.type.startsWith("image/")) {
-        setError("Invalid file type")
-        setStatus("error")
-        return
-      }
-      if (file.size > maxSize * 1024 * 1024) {
-        setError(`Max size is ${maxSize}MB`)
-        setStatus("error")
-        return
-      }
+    return (
+        <div className={cn(\'flex flex-col items-center gap-3\', className)}>
+            <Tooltip>
+                <TooltipTrigger asChild>
+                    <div
+                        role="button"
+                        tabIndex={0}
+                        aria-label="Upload avatar"
+                        onClick={() => inputRef.current?.click()}
+                        onKeyDown={(e) =>
+                            (e.key === \'Enter\' || e.key === \' \') &&
+                            inputRef.current?.click()
+                        }
+                        onDrop={handleDrop}
+                        onDragOver={(e) => {
+                            e.preventDefault();
+                            setIsDragOver(true);
+                        }}
+                        onDragLeave={(e) => {
+                            e.preventDefault();
+                            setIsDragOver(false);
+                        }}
+                        className={cn(
+                            \'group relative cursor-pointer rounded-full transition-all\',
+                            isDragOver &&
+                                \'ring-2 ring-primary ring-offset-2 ring-offset-background\',
+                        )}
+                    >
+                        <Avatar
+                            className={cn(
+                                sizes.avatar,
+                                \'border-2 border-border transition-all group-hover:border-primary\',
+                            )}
+                        >
+                            {preview ? (
+                                <AvatarImage
+                                    src={preview}
+                                    alt="Avatar"
+                                    className="object-cover"
+                                />
+                            ) : (
+                                <AvatarFallback className="bg-muted">
+                                    <User
+                                        className={cn(
+                                            sizes.icon,
+                                            \'text-muted-foreground\',
+                                        )}
+                                    />
+                                </AvatarFallback>
+                            )}
+                        </Avatar>
 
-      const reader = new FileReader()
-      reader.onload = (e) => {
-        setPreview(e.target?.result as string)
-        simulateUpload()
-        onFileSelect?.(file)
-      }
-      reader.readAsDataURL(file)
-    },
-    [maxSize, onFileSelect, simulateUpload]
-  )
+                        {/* Camera overlay on hover */}
+                        <div className="absolute inset-0 flex items-center justify-center rounded-full bg-foreground/50 opacity-0 transition-opacity group-hover:opacity-100">
+                            <Camera className="size-5 text-background" />
+                        </div>
 
-  const handleDrop = React.useCallback(
-    (e: React.DragEvent) => {
-      e.preventDefault()
-      setIsDragOver(false)
-      const file = e.dataTransfer.files[0]
-      if (file) handleFile(file)
-    },
-    [handleFile]
-  )
+                        {/* Status badge */}
+                        <div className="absolute -right-1 -bottom-1">
+                            {statusBadge()}
+                        </div>
+                    </div>
+                </TooltipTrigger>
+                <TooltipContent>Click to upload photo</TooltipContent>
+            </Tooltip>
 
-  const statusBadge = () => {
-    if (status === "uploading") {
-      return (
-        <Badge className={cn(sizes.badge, "rounded-full p-0 bg-primary")}>
-          <Loader2 className="size-3 animate-spin text-primary-foreground" />
-        </Badge>
-      )
-    }
-    if (status === "success") {
-      return (
-        <Badge className={cn(sizes.badge, "rounded-full p-0 bg-success")}>
-          <Check className="size-3 text-success-foreground" />
-        </Badge>
-      )
-    }
-    if (status === "error") {
-      return (
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Badge className={cn(sizes.badge, "rounded-full p-0 bg-destructive cursor-help")}>
-              <AlertCircle className="size-3 text-white" />
-            </Badge>
-          </TooltipTrigger>
-          <TooltipContent>{error || "Upload failed"}</TooltipContent>
-        </Tooltip>
-      )
-    }
-    return null
-  }
-
-  return (
-    <div className={cn("flex flex-col items-center gap-3", className)}>
-      <Tooltip>
-        <TooltipTrigger asChild>
-          <div
-            role="button"
-            tabIndex={0}
-            aria-label="Upload avatar"
-            onClick={() => inputRef.current?.click()}
-            onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && inputRef.current?.click()}
-            onDrop={handleDrop}
-            onDragOver={(e) => { e.preventDefault(); setIsDragOver(true) }}
-            onDragLeave={(e) => { e.preventDefault(); setIsDragOver(false) }}
-            className={cn(
-              "group relative cursor-pointer rounded-full transition-all",
-              isDragOver && "ring-2 ring-primary ring-offset-2 ring-offset-background"
+            {status === \'uploading\' && (
+                <Progress value={progress} className="h-1 w-20" />
             )}
-          >
-            <Avatar className={cn(sizes.avatar, "border-2 border-border transition-all group-hover:border-primary")}>
-              {preview ? (
-                <AvatarImage src={preview} alt="Avatar" className="object-cover" />
-              ) : (
-                <AvatarFallback className="bg-muted">
-                  <User className={cn(sizes.icon, "text-muted-foreground")} />
-                </AvatarFallback>
-              )}
-            </Avatar>
 
-            {/* Camera overlay on hover */}
-            <div className="absolute inset-0 flex items-center justify-center rounded-full bg-foreground/50 opacity-0 transition-opacity group-hover:opacity-100">
-              <Camera className="size-5 text-background" />
-            </div>
-
-            {/* Status badge */}
-            <div className="absolute -bottom-1 -right-1">
-              {statusBadge()}
-            </div>
-          </div>
-        </TooltipTrigger>
-        <TooltipContent>Click to upload photo</TooltipContent>
-      </Tooltip>
-
-      {status === "uploading" && (
-        <Progress value={progress} className="h-1 w-20" />
-      )}
-
-      <input
-        ref={inputRef}
-        type="file"
-        accept="image/*"
-        onChange={(e) => e.target.files?.[0] && handleFile(e.target.files[0])}
-        className="sr-only"
-      />
-    </div>
-  )
+            <input
+                ref={inputRef}
+                type="file"
+                accept="image/*"
+                onChange={(e) =>
+                    e.target.files?.[0] && handleFile(e.target.files[0])
+                }
+                className="sr-only"
+            />
+        </div>
+    );
 }
 ',
                     ],
@@ -22865,175 +23831,206 @@ export function AvatarDropzoneBadge({
                     [
                         'path' => 'resources/js/registry/new-york/components/ui/dropzones/avatar-dropzone-card.tsx',
                         'type' => 'registry:ui',
-                        'content' => '"use client"
+                        'content' => '\'use client\';
 
-import * as React from "react"
-import { cn } from "@/lib/utils"
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Progress } from "@/components/ui/progress"
-import { Badge } from "@/components/ui/badge"
-import { User, Upload, Trash2, CheckCircle2 } from "lucide-react"
+import * as React from \'react\';
+import { cn } from \'@/lib/utils\';
+import { Avatar, AvatarImage, AvatarFallback } from \'@/components/ui/avatar\';
+import { Button } from \'@/components/ui/button\';
+import { Card, CardContent } from \'@/components/ui/card\';
+import { Progress } from \'@/components/ui/progress\';
+import { Badge } from \'@/components/ui/badge\';
+import { User, Upload, Trash2, CheckCircle2 } from \'lucide-react\';
 
 interface AvatarDropzoneCardProps {
-  className?: string
-  onFileSelect?: (file: File | null) => void
-  maxSize?: number
-  defaultImage?: string
+    className?: string;
+    onFileSelect?: (file: File | null) => void;
+    maxSize?: number;
+    defaultImage?: string;
 }
 
-type Status = "idle" | "uploading" | "success" | "error"
+type Status = \'idle\' | \'uploading\' | \'success\' | \'error\';
 
 export function AvatarDropzoneCard({
-  className,
-  onFileSelect,
-  maxSize = 5,
-  defaultImage,
+    className,
+    onFileSelect,
+    maxSize = 5,
+    defaultImage,
 }: AvatarDropzoneCardProps) {
-  const [isDragOver, setIsDragOver] = React.useState(false)
-  const [preview, setPreview] = React.useState<string | null>(defaultImage || null)
-  const [status, setStatus] = React.useState<Status>("idle")
-  const [progress, setProgress] = React.useState(0)
-  const [fileName, setFileName] = React.useState<string | null>(null)
-  const inputRef = React.useRef<HTMLInputElement>(null)
+    const [isDragOver, setIsDragOver] = React.useState(false);
+    const [preview, setPreview] = React.useState<string | null>(
+        defaultImage || null,
+    );
+    const [status, setStatus] = React.useState<Status>(\'idle\');
+    const [progress, setProgress] = React.useState(0);
+    const [fileName, setFileName] = React.useState<string | null>(null);
+    const inputRef = React.useRef<HTMLInputElement>(null);
 
-  const simulateUpload = React.useCallback(() => {
-    setStatus("uploading")
-    setProgress(0)
-    const interval = setInterval(() => {
-      setProgress((prev) => {
-        if (prev >= 100) {
-          clearInterval(interval)
-          setStatus("success")
-          return 100
-        }
-        return prev + 12
-      })
-    }, 100)
-  }, [])
+    const simulateUpload = React.useCallback(() => {
+        setStatus(\'uploading\');
+        setProgress(0);
+        const interval = setInterval(() => {
+            setProgress((prev) => {
+                if (prev >= 100) {
+                    clearInterval(interval);
+                    setStatus(\'success\');
+                    return 100;
+                }
+                return prev + 12;
+            });
+        }, 100);
+    }, []);
 
-  const handleFile = React.useCallback(
-    (file: File) => {
-      if (!file.type.startsWith("image/") || file.size > maxSize * 1024 * 1024) {
-        setStatus("error")
-        return
-      }
+    const handleFile = React.useCallback(
+        (file: File) => {
+            if (
+                !file.type.startsWith(\'image/\') ||
+                file.size > maxSize * 1024 * 1024
+            ) {
+                setStatus(\'error\');
+                return;
+            }
 
-      setFileName(file.name)
-      const reader = new FileReader()
-      reader.onload = (e) => {
-        setPreview(e.target?.result as string)
-        simulateUpload()
-        onFileSelect?.(file)
-      }
-      reader.readAsDataURL(file)
-    },
-    [maxSize, onFileSelect, simulateUpload]
-  )
+            setFileName(file.name);
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                setPreview(e.target?.result as string);
+                simulateUpload();
+                onFileSelect?.(file);
+            };
+            reader.readAsDataURL(file);
+        },
+        [maxSize, onFileSelect, simulateUpload],
+    );
 
-  const handleDrop = React.useCallback(
-    (e: React.DragEvent) => {
-      e.preventDefault()
-      setIsDragOver(false)
-      const file = e.dataTransfer.files[0]
-      if (file) handleFile(file)
-    },
-    [handleFile]
-  )
+    const handleDrop = React.useCallback(
+        (e: React.DragEvent) => {
+            e.preventDefault();
+            setIsDragOver(false);
+            const file = e.dataTransfer.files[0];
+            if (file) handleFile(file);
+        },
+        [handleFile],
+    );
 
-  const handleRemove = () => {
-    setPreview(null)
-    setStatus("idle")
-    setProgress(0)
-    setFileName(null)
-    onFileSelect?.(null)
-  }
+    const handleRemove = () => {
+        setPreview(null);
+        setStatus(\'idle\');
+        setProgress(0);
+        setFileName(null);
+        onFileSelect?.(null);
+    };
 
-  return (
-    <Card className={cn("w-full max-w-xs", className)}>
-      <CardContent className="flex items-center gap-4 p-4">
-        <div
-          role="button"
-          tabIndex={0}
-          aria-label="Upload avatar"
-          onClick={() => inputRef.current?.click()}
-          onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && inputRef.current?.click()}
-          onDrop={handleDrop}
-          onDragOver={(e) => { e.preventDefault(); setIsDragOver(true) }}
-          onDragLeave={(e) => { e.preventDefault(); setIsDragOver(false) }}
-          className={cn(
-            "shrink-0 cursor-pointer rounded-full ring-2 ring-offset-2 ring-offset-background transition-all",
-            isDragOver ? "ring-primary scale-105" : "ring-transparent hover:ring-muted-foreground/30"
-          )}
-        >
-          <Avatar className="size-16">
-            {preview ? (
-              <AvatarImage src={preview} alt="Avatar" className="object-cover" />
-            ) : (
-              <AvatarFallback className="bg-muted">
-                <User className="size-6 text-muted-foreground" />
-              </AvatarFallback>
-            )}
-          </Avatar>
-        </div>
+    return (
+        <Card className={cn(\'w-full max-w-xs\', className)}>
+            <CardContent className="flex items-center gap-4 p-4">
+                <div
+                    role="button"
+                    tabIndex={0}
+                    aria-label="Upload avatar"
+                    onClick={() => inputRef.current?.click()}
+                    onKeyDown={(e) =>
+                        (e.key === \'Enter\' || e.key === \' \') &&
+                        inputRef.current?.click()
+                    }
+                    onDrop={handleDrop}
+                    onDragOver={(e) => {
+                        e.preventDefault();
+                        setIsDragOver(true);
+                    }}
+                    onDragLeave={(e) => {
+                        e.preventDefault();
+                        setIsDragOver(false);
+                    }}
+                    className={cn(
+                        \'shrink-0 cursor-pointer rounded-full ring-2 ring-offset-2 ring-offset-background transition-all\',
+                        isDragOver
+                            ? \'scale-105 ring-primary\'
+                            : \'ring-transparent hover:ring-muted-foreground/30\',
+                    )}
+                >
+                    <Avatar className="size-16">
+                        {preview ? (
+                            <AvatarImage
+                                src={preview}
+                                alt="Avatar"
+                                className="object-cover"
+                            />
+                        ) : (
+                            <AvatarFallback className="bg-muted">
+                                <User className="size-6 text-muted-foreground" />
+                            </AvatarFallback>
+                        )}
+                    </Avatar>
+                </div>
 
-        <div className="flex min-w-0 flex-1 flex-col gap-2">
-          {status === "idle" && !preview && (
-            <>
-              <p className="text-sm font-medium">Profile Photo</p>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => inputRef.current?.click()}
-                className="w-fit"
-              >
-                <Upload className="mr-1.5 size-3.5" />
-                Upload
-              </Button>
-            </>
-          )}
+                <div className="flex min-w-0 flex-1 flex-col gap-2">
+                    {status === \'idle\' && !preview && (
+                        <>
+                            <p className="text-sm font-medium">Profile Photo</p>
+                            <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={() => inputRef.current?.click()}
+                                className="w-fit"
+                            >
+                                <Upload className="mr-1.5 size-3.5" />
+                                Upload
+                            </Button>
+                        </>
+                    )}
 
-          {status === "uploading" && (
-            <>
-              <p className="truncate text-sm font-medium">{fileName}</p>
-              <Progress value={progress} className="h-1.5" />
-              <span className="text-xs text-muted-foreground">{progress}% uploaded</span>
-            </>
-          )}
+                    {status === \'uploading\' && (
+                        <>
+                            <p className="truncate text-sm font-medium">
+                                {fileName}
+                            </p>
+                            <Progress value={progress} className="h-1.5" />
+                            <span className="text-xs text-muted-foreground">
+                                {progress}% uploaded
+                            </span>
+                        </>
+                    )}
 
-          {status === "success" && preview && (
-            <>
-              <div className="flex items-center gap-2">
-                <p className="truncate text-sm font-medium">{fileName}</p>
-                <Badge variant="secondary" className="shrink-0 gap-1 text-success">
-                  <CheckCircle2 className="size-3" />
-                  Done
-                </Badge>
-              </div>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={handleRemove}
-                className="w-fit text-muted-foreground hover:text-destructive"
-              >
-                <Trash2 className="mr-1.5 size-3.5" />
-                Remove
-              </Button>
-            </>
-          )}
-        </div>
+                    {status === \'success\' && preview && (
+                        <>
+                            <div className="flex items-center gap-2">
+                                <p className="truncate text-sm font-medium">
+                                    {fileName}
+                                </p>
+                                <Badge
+                                    variant="secondary"
+                                    className="text-success shrink-0 gap-1"
+                                >
+                                    <CheckCircle2 className="size-3" />
+                                    Done
+                                </Badge>
+                            </div>
+                            <Button
+                                variant="ghost"
+                                size="sm"
+                                onClick={handleRemove}
+                                className="w-fit text-muted-foreground hover:text-destructive"
+                            >
+                                <Trash2 className="mr-1.5 size-3.5" />
+                                Remove
+                            </Button>
+                        </>
+                    )}
+                </div>
 
-        <input
-          ref={inputRef}
-          type="file"
-          accept="image/*"
-          onChange={(e) => e.target.files?.[0] && handleFile(e.target.files[0])}
-          className="sr-only"
-        />
-      </CardContent>
-    </Card>
-  )
+                <input
+                    ref={inputRef}
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) =>
+                        e.target.files?.[0] && handleFile(e.target.files[0])
+                    }
+                    className="sr-only"
+                />
+            </CardContent>
+        </Card>
+    );
 }
 ',
                     ],
@@ -23082,146 +24079,157 @@ export function AvatarDropzoneCard({
                     [
                         'path' => 'resources/js/registry/new-york/components/ui/dropzones/avatar-dropzone-field.tsx',
                         'type' => 'registry:ui',
-                        'content' => '"use client"
+                        'content' => '\'use client\';
 
-import { useState, useCallback, useRef } from "react"
-import { Upload, Trash2, RefreshCw, Loader2 } from "lucide-react"
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { Label } from "@/components/ui/label"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { useState, useCallback, useRef } from \'react\';
+import { Upload, Trash2, RefreshCw, Loader2 } from \'lucide-react\';
+import { cn } from \'@/lib/utils\';
+import { Button } from \'@/components/ui/button\';
+import { Label } from \'@/components/ui/label\';
+import { Avatar, AvatarFallback, AvatarImage } from \'@/components/ui/avatar\';
 
 interface AvatarDropzoneFieldProps {
-  label?: string
-  description?: string
-  onFileSelect?: (file: File | null) => void
-  defaultImage?: string
-  initials?: string
-  maxSize?: number
-  className?: string
+    label?: string;
+    description?: string;
+    onFileSelect?: (file: File | null) => void;
+    defaultImage?: string;
+    initials?: string;
+    maxSize?: number;
+    className?: string;
 }
 
 export function AvatarDropzoneField({
-  label = "Profile photo",
-  description = "JPG, PNG or GIF. Max 5MB.",
-  onFileSelect,
-  defaultImage,
-  initials = "U",
-  maxSize = 5 * 1024 * 1024,
-  className,
+    label = \'Profile photo\',
+    description = \'JPG, PNG or GIF. Max 5MB.\',
+    onFileSelect,
+    defaultImage,
+    initials = \'U\',
+    maxSize = 5 * 1024 * 1024,
+    className,
 }: AvatarDropzoneFieldProps) {
-  const [preview, setPreview] = useState<string | null>(defaultImage || null)
-  const [isUploading, setIsUploading] = useState(false)
-  const [isDragging, setIsDragging] = useState(false)
-  const inputRef = useRef<HTMLInputElement>(null)
+    const [preview, setPreview] = useState<string | null>(defaultImage || null);
+    const [isUploading, setIsUploading] = useState(false);
+    const [isDragging, setIsDragging] = useState(false);
+    const inputRef = useRef<HTMLInputElement>(null);
 
-  const handleFile = useCallback(
-    (file: File) => {
-      if (!file.type.startsWith("image/") || file.size > maxSize) return
+    const handleFile = useCallback(
+        (file: File) => {
+            if (!file.type.startsWith(\'image/\') || file.size > maxSize) return;
 
-      const reader = new FileReader()
-      reader.onload = (e) => {
-        setPreview(e.target?.result as string)
-        setIsUploading(true)
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                setPreview(e.target?.result as string);
+                setIsUploading(true);
 
-        setTimeout(() => {
-          setIsUploading(false)
-          onFileSelect?.(file)
-        }, 1000)
-      }
-      reader.readAsDataURL(file)
-    },
-    [maxSize, onFileSelect]
-  )
+                setTimeout(() => {
+                    setIsUploading(false);
+                    onFileSelect?.(file);
+                }, 1000);
+            };
+            reader.readAsDataURL(file);
+        },
+        [maxSize, onFileSelect],
+    );
 
-  const handleDrop = useCallback(
-    (e: React.DragEvent) => {
-      e.preventDefault()
-      setIsDragging(false)
-      const file = e.dataTransfer.files[0]
-      if (file) handleFile(file)
-    },
-    [handleFile]
-  )
+    const handleDrop = useCallback(
+        (e: React.DragEvent) => {
+            e.preventDefault();
+            setIsDragging(false);
+            const file = e.dataTransfer.files[0];
+            if (file) handleFile(file);
+        },
+        [handleFile],
+    );
 
-  const handleRemove = () => {
-    setPreview(defaultImage || null)
-    onFileSelect?.(null)
-    if (inputRef.current) inputRef.current.value = ""
-  }
+    const handleRemove = () => {
+        setPreview(defaultImage || null);
+        onFileSelect?.(null);
+        if (inputRef.current) inputRef.current.value = \'\';
+    };
 
-  return (
-    <div className={cn("space-y-2", className)}>
-      {label && <Label>{label}</Label>}
+    return (
+        <div className={cn(\'space-y-2\', className)}>
+            {label && <Label>{label}</Label>}
 
-      <div
-        className={cn(
-          "flex items-center gap-4 rounded-lg border p-4 transition-colors",
-          isDragging && "border-primary bg-muted/50"
-        )}
-        onDragOver={(e) => {
-          e.preventDefault()
-          setIsDragging(true)
-        }}
-        onDragLeave={() => setIsDragging(false)}
-        onDrop={handleDrop}
-      >
-        <input
-          ref={inputRef}
-          type="file"
-          accept="image/*"
-          onChange={(e) => {
-            const file = e.target.files?.[0]
-            if (file) handleFile(file)
-          }}
-          className="sr-only"
-        />
-
-        <Avatar className="size-16">
-          <AvatarImage src={preview || undefined} alt="Avatar" />
-          <AvatarFallback className="bg-muted text-muted-foreground text-xl">{initials}</AvatarFallback>
-        </Avatar>
-
-        <div className="flex flex-1 flex-col gap-1">
-          {description && <p className="text-sm text-muted-foreground">{description}</p>}
-
-          <div className="flex items-center gap-2">
-            <Button
-              type="button"
-              variant="outline"
-              size="sm"
-              onClick={() => inputRef.current?.click()}
-              disabled={isUploading}
+            <div
+                className={cn(
+                    \'flex items-center gap-4 rounded-lg border p-4 transition-colors\',
+                    isDragging && \'border-primary bg-muted/50\',
+                )}
+                onDragOver={(e) => {
+                    e.preventDefault();
+                    setIsDragging(true);
+                }}
+                onDragLeave={() => setIsDragging(false)}
+                onDrop={handleDrop}
             >
-              {isUploading ? (
-                <>
-                  <Loader2 className="size-4 mr-2 animate-spin" />
-                  Uploading...
-                </>
-              ) : preview ? (
-                <>
-                  <RefreshCw className="size-4 mr-2" />
-                  Change
-                </>
-              ) : (
-                <>
-                  <Upload className="size-4 mr-2" />
-                  Upload
-                </>
-              )}
-            </Button>
+                <input
+                    ref={inputRef}
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => {
+                        const file = e.target.files?.[0];
+                        if (file) handleFile(file);
+                    }}
+                    className="sr-only"
+                />
 
-            {preview && !isUploading && (
-              <Button type="button" variant="ghost" size="sm" onClick={handleRemove}>
-                <Trash2 className="size-4 mr-2" />
-                Remove
-              </Button>
-            )}
-          </div>
+                <Avatar className="size-16">
+                    <AvatarImage src={preview || undefined} alt="Avatar" />
+                    <AvatarFallback className="bg-muted text-xl text-muted-foreground">
+                        {initials}
+                    </AvatarFallback>
+                </Avatar>
+
+                <div className="flex flex-1 flex-col gap-1">
+                    {description && (
+                        <p className="text-sm text-muted-foreground">
+                            {description}
+                        </p>
+                    )}
+
+                    <div className="flex items-center gap-2">
+                        <Button
+                            type="button"
+                            variant="outline"
+                            size="sm"
+                            onClick={() => inputRef.current?.click()}
+                            disabled={isUploading}
+                        >
+                            {isUploading ? (
+                                <>
+                                    <Loader2 className="mr-2 size-4 animate-spin" />
+                                    Uploading...
+                                </>
+                            ) : preview ? (
+                                <>
+                                    <RefreshCw className="mr-2 size-4" />
+                                    Change
+                                </>
+                            ) : (
+                                <>
+                                    <Upload className="mr-2 size-4" />
+                                    Upload
+                                </>
+                            )}
+                        </Button>
+
+                        {preview && !isUploading && (
+                            <Button
+                                type="button"
+                                variant="ghost"
+                                size="sm"
+                                onClick={handleRemove}
+                            >
+                                <Trash2 className="mr-2 size-4" />
+                                Remove
+                            </Button>
+                        )}
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  )
+    );
 }
 ',
                     ],
@@ -23268,137 +24276,136 @@ export function AvatarDropzoneField({
                     [
                         'path' => 'resources/js/registry/new-york/components/ui/dropzones/avatar-dropzone-ghost.tsx',
                         'type' => 'registry:ui',
-                        'content' => '"use client"
+                        'content' => '\'use client\';
 
-import { useState, useCallback, useRef } from "react"
-import { Camera, X, Loader2 } from "lucide-react"
-import { cn } from "@/lib/utils"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { useState, useCallback, useRef } from \'react\';
+import { Camera, X, Loader2 } from \'lucide-react\';
+import { cn } from \'@/lib/utils\';
+import { Avatar, AvatarFallback, AvatarImage } from \'@/components/ui/avatar\';
 
 interface AvatarDropzoneGhostProps {
-  onFileSelect?: (file: File | null) => void
-  defaultImage?: string
-  initials?: string
-  maxSize?: number
-  className?: string
+    onFileSelect?: (file: File | null) => void;
+    defaultImage?: string;
+    initials?: string;
+    maxSize?: number;
+    className?: string;
 }
 
 export function AvatarDropzoneGhost({
-  onFileSelect,
-  defaultImage,
-  initials = "?",
-  maxSize = 5 * 1024 * 1024,
-  className,
+    onFileSelect,
+    defaultImage,
+    initials = \'?\',
+    maxSize = 5 * 1024 * 1024,
+    className,
 }: AvatarDropzoneGhostProps) {
-  const [preview, setPreview] = useState<string | null>(defaultImage || null)
-  const [isUploading, setIsUploading] = useState(false)
-  const [isHovered, setIsHovered] = useState(false)
-  const inputRef = useRef<HTMLInputElement>(null)
+    const [preview, setPreview] = useState<string | null>(defaultImage || null);
+    const [isUploading, setIsUploading] = useState(false);
+    const [isHovered, setIsHovered] = useState(false);
+    const inputRef = useRef<HTMLInputElement>(null);
 
-  const handleFile = useCallback(
-    (file: File) => {
-      if (!file.type.startsWith("image/") || file.size > maxSize) return
+    const handleFile = useCallback(
+        (file: File) => {
+            if (!file.type.startsWith(\'image/\') || file.size > maxSize) return;
 
-      const reader = new FileReader()
-      reader.onload = (e) => {
-        setPreview(e.target?.result as string)
-        setIsUploading(true)
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                setPreview(e.target?.result as string);
+                setIsUploading(true);
 
-        setTimeout(() => {
-          setIsUploading(false)
-          onFileSelect?.(file)
-        }, 1200)
-      }
-      reader.readAsDataURL(file)
-    },
-    [maxSize, onFileSelect]
-  )
+                setTimeout(() => {
+                    setIsUploading(false);
+                    onFileSelect?.(file);
+                }, 1200);
+            };
+            reader.readAsDataURL(file);
+        },
+        [maxSize, onFileSelect],
+    );
 
-  const handleDrop = useCallback(
-    (e: React.DragEvent) => {
-      e.preventDefault()
-      setIsHovered(false)
-      const file = e.dataTransfer.files[0]
-      if (file) handleFile(file)
-    },
-    [handleFile]
-  )
+    const handleDrop = useCallback(
+        (e: React.DragEvent) => {
+            e.preventDefault();
+            setIsHovered(false);
+            const file = e.dataTransfer.files[0];
+            if (file) handleFile(file);
+        },
+        [handleFile],
+    );
 
-  const handleRemove = (e: React.MouseEvent) => {
-    e.stopPropagation()
-    setPreview(defaultImage || null)
-    onFileSelect?.(null)
-    if (inputRef.current) inputRef.current.value = ""
-  }
+    const handleRemove = (e: React.MouseEvent) => {
+        e.stopPropagation();
+        setPreview(defaultImage || null);
+        onFileSelect?.(null);
+        if (inputRef.current) inputRef.current.value = \'\';
+    };
 
-  return (
-    <div
-      className={cn(
-        "group relative cursor-pointer",
-        className
-      )}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      onDragOver={(e) => {
-        e.preventDefault()
-        setIsHovered(true)
-      }}
-      onDragLeave={() => setIsHovered(false)}
-      onDrop={handleDrop}
-      onClick={() => inputRef.current?.click()}
-      onKeyDown={(e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault()
-          inputRef.current?.click()
-        }
-      }}
-      tabIndex={0}
-      role="button"
-      aria-label="Upload avatar"
-    >
-      <input
-        ref={inputRef}
-        type="file"
-        accept="image/*"
-        onChange={(e) => {
-          const file = e.target.files?.[0]
-          if (file) handleFile(file)
-        }}
-        className="sr-only"
-      />
-
-      <Avatar className="size-24 ring-2 ring-transparent transition-all group-hover:ring-primary/20 group-focus-visible:ring-ring">
-        <AvatarImage src={preview || undefined} alt="Avatar" />
-        <AvatarFallback className="text-lg bg-muted">{initials}</AvatarFallback>
-      </Avatar>
-
-      <div
-        className={cn(
-          "absolute inset-0 flex items-center justify-center rounded-full bg-black/50 transition-opacity",
-          isHovered || isUploading ? "opacity-100" : "opacity-0"
-        )}
-      >
-        {isUploading ? (
-          <Loader2 className="size-6 animate-spin text-white" />
-        ) : (
-          <Camera className="size-6 text-white" />
-        )}
-      </div>
-
-      {preview && preview !== defaultImage && !isUploading && (
-        <button
-          onClick={handleRemove}
-          className={cn(
-            "absolute -right-1 -top-1 flex size-6 items-center justify-center rounded-full bg-muted text-muted-foreground shadow-sm transition-all hover:bg-destructive hover:text-white",
-            isHovered ? "opacity-100" : "opacity-0"
-          )}
-          aria-label="Remove avatar"
+    return (
+        <div
+            className={cn(\'group relative cursor-pointer\', className)}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            onDragOver={(e) => {
+                e.preventDefault();
+                setIsHovered(true);
+            }}
+            onDragLeave={() => setIsHovered(false)}
+            onDrop={handleDrop}
+            onClick={() => inputRef.current?.click()}
+            onKeyDown={(e) => {
+                if (e.key === \'Enter\' || e.key === \' \') {
+                    e.preventDefault();
+                    inputRef.current?.click();
+                }
+            }}
+            tabIndex={0}
+            role="button"
+            aria-label="Upload avatar"
         >
-          <X className="size-3" />
-        </button>
-      )}
-    </div>
-  )
+            <input
+                ref={inputRef}
+                type="file"
+                accept="image/*"
+                onChange={(e) => {
+                    const file = e.target.files?.[0];
+                    if (file) handleFile(file);
+                }}
+                className="sr-only"
+            />
+
+            <Avatar className="size-24 ring-2 ring-transparent transition-all group-hover:ring-primary/20 group-focus-visible:ring-ring">
+                <AvatarImage src={preview || undefined} alt="Avatar" />
+                <AvatarFallback className="bg-muted text-lg">
+                    {initials}
+                </AvatarFallback>
+            </Avatar>
+
+            <div
+                className={cn(
+                    \'absolute inset-0 flex items-center justify-center rounded-full bg-black/50 transition-opacity\',
+                    isHovered || isUploading ? \'opacity-100\' : \'opacity-0\',
+                )}
+            >
+                {isUploading ? (
+                    <Loader2 className="size-6 animate-spin text-white" />
+                ) : (
+                    <Camera className="size-6 text-white" />
+                )}
+            </div>
+
+            {preview && preview !== defaultImage && !isUploading && (
+                <button
+                    onClick={handleRemove}
+                    className={cn(
+                        \'absolute -top-1 -right-1 flex size-6 items-center justify-center rounded-full bg-muted text-muted-foreground shadow-sm transition-all hover:bg-destructive hover:text-white\',
+                        isHovered ? \'opacity-100\' : \'opacity-0\',
+                    )}
+                    aria-label="Remove avatar"
+                >
+                    <X className="size-3" />
+                </button>
+            )}
+        </div>
+    );
 }
 ',
                     ],
@@ -23447,112 +24454,124 @@ export function AvatarDropzoneGhost({
                     [
                         'path' => 'resources/js/registry/new-york/components/ui/dropzones/avatar-dropzone-inline.tsx',
                         'type' => 'registry:ui',
-                        'content' => '"use client"
+                        'content' => '\'use client\';
 
-import * as React from "react"
-import { cn } from "@/lib/utils"
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
-import { Button } from "@/components/ui/button"
-import { Skeleton } from "@/components/ui/skeleton"
-import { User, Pencil, X } from "lucide-react"
+import * as React from \'react\';
+import { cn } from \'@/lib/utils\';
+import { Avatar, AvatarImage, AvatarFallback } from \'@/components/ui/avatar\';
+import { Button } from \'@/components/ui/button\';
+import { Skeleton } from \'@/components/ui/skeleton\';
+import { User, Pencil, X } from \'lucide-react\';
 
 interface AvatarDropzoneInlineProps {
-  className?: string
-  onFileSelect?: (file: File | null) => void
-  maxSize?: number
-  defaultImage?: string
-  label?: string
-  description?: string
+    className?: string;
+    onFileSelect?: (file: File | null) => void;
+    maxSize?: number;
+    defaultImage?: string;
+    label?: string;
+    description?: string;
 }
 
 export function AvatarDropzoneInline({
-  className,
-  onFileSelect,
-  maxSize = 5,
-  defaultImage,
-  label = "Profile picture",
-  description = "JPG, PNG or GIF. Max 5MB.",
+    className,
+    onFileSelect,
+    maxSize = 5,
+    defaultImage,
+    label = \'Profile picture\',
+    description = \'JPG, PNG or GIF. Max 5MB.\',
 }: AvatarDropzoneInlineProps) {
-  const [preview, setPreview] = React.useState<string | null>(defaultImage || null)
-  const [isUploading, setIsUploading] = React.useState(false)
-  const inputRef = React.useRef<HTMLInputElement>(null)
+    const [preview, setPreview] = React.useState<string | null>(
+        defaultImage || null,
+    );
+    const [isUploading, setIsUploading] = React.useState(false);
+    const inputRef = React.useRef<HTMLInputElement>(null);
 
-  const handleFile = React.useCallback(
-    (file: File) => {
-      if (!file.type.startsWith("image/") || file.size > maxSize * 1024 * 1024) return
+    const handleFile = React.useCallback(
+        (file: File) => {
+            if (
+                !file.type.startsWith(\'image/\') ||
+                file.size > maxSize * 1024 * 1024
+            )
+                return;
 
-      setIsUploading(true)
-      const reader = new FileReader()
-      reader.onload = (e) => {
-        setTimeout(() => {
-          setPreview(e.target?.result as string)
-          setIsUploading(false)
-          onFileSelect?.(file)
-        }, 800)
-      }
-      reader.readAsDataURL(file)
-    },
-    [maxSize, onFileSelect]
-  )
+            setIsUploading(true);
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                setTimeout(() => {
+                    setPreview(e.target?.result as string);
+                    setIsUploading(false);
+                    onFileSelect?.(file);
+                }, 800);
+            };
+            reader.readAsDataURL(file);
+        },
+        [maxSize, onFileSelect],
+    );
 
-  return (
-    <div className={cn("flex items-center gap-4", className)}>
-      <div className="relative">
-        {isUploading ? (
-          <Skeleton className="size-14 rounded-full" />
-        ) : (
-          <Avatar className="size-14 border border-border">
-            {preview ? (
-              <AvatarImage src={preview} alt="Avatar" className="object-cover" />
-            ) : (
-              <AvatarFallback className="bg-muted">
-                <User className="size-6 text-muted-foreground" />
-              </AvatarFallback>
-            )}
-          </Avatar>
-        )}
+    return (
+        <div className={cn(\'flex items-center gap-4\', className)}>
+            <div className="relative">
+                {isUploading ? (
+                    <Skeleton className="size-14 rounded-full" />
+                ) : (
+                    <Avatar className="size-14 border border-border">
+                        {preview ? (
+                            <AvatarImage
+                                src={preview}
+                                alt="Avatar"
+                                className="object-cover"
+                            />
+                        ) : (
+                            <AvatarFallback className="bg-muted">
+                                <User className="size-6 text-muted-foreground" />
+                            </AvatarFallback>
+                        )}
+                    </Avatar>
+                )}
 
-        {preview && !isUploading && (
-          <button
-            type="button"
-            onClick={() => {
-              setPreview(null)
-              onFileSelect?.(null)
-            }}
-            className="absolute -right-1 -top-1 flex size-5 items-center justify-center rounded-full border border-border bg-background shadow-sm hover:bg-destructive hover:text-white hover:border-destructive transition-colors"
-            aria-label="Remove photo"
-          >
-            <X className="size-3" />
-          </button>
-        )}
-      </div>
+                {preview && !isUploading && (
+                    <button
+                        type="button"
+                        onClick={() => {
+                            setPreview(null);
+                            onFileSelect?.(null);
+                        }}
+                        className="absolute -top-1 -right-1 flex size-5 items-center justify-center rounded-full border border-border bg-background shadow-sm transition-colors hover:border-destructive hover:bg-destructive hover:text-white"
+                        aria-label="Remove photo"
+                    >
+                        <X className="size-3" />
+                    </button>
+                )}
+            </div>
 
-      <div className="flex flex-col gap-1">
-        <p className="text-sm font-medium text-foreground">{label}</p>
-        <p className="text-xs text-muted-foreground">{description}</p>
-        <div className="mt-1 flex gap-2">
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => inputRef.current?.click()}
-            disabled={isUploading}
-            className="h-7 text-xs"
-          >
-            <Pencil className="mr-1 size-3" />
-            {preview ? "Change" : "Upload"}
-          </Button>
+            <div className="flex flex-col gap-1">
+                <p className="text-sm font-medium text-foreground">{label}</p>
+                <p className="text-xs text-muted-foreground">{description}</p>
+                <div className="mt-1 flex gap-2">
+                    <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => inputRef.current?.click()}
+                        disabled={isUploading}
+                        className="h-7 text-xs"
+                    >
+                        <Pencil className="mr-1 size-3" />
+                        {preview ? \'Change\' : \'Upload\'}
+                    </Button>
+                </div>
+            </div>
+
+            <input
+                ref={inputRef}
+                type="file"
+                accept="image/*"
+                onChange={(e) =>
+                    e.target.files?.[0] && handleFile(e.target.files[0])
+                }
+                className="sr-only"
+            />
         </div>
-      </div>
-
-      <input
-        ref={inputRef}
-        type="file"
-        accept="image/*"
-        onChange={(e) => e.target.files?.[0] && handleFile(e.target.files[0])}
-        className="sr-only"
-      />
-    </div>
-  )
+    );
 }
 ',
                     ],
@@ -23600,125 +24619,148 @@ export function AvatarDropzoneInline({
                     [
                         'path' => 'resources/js/registry/new-york/components/ui/dropzones/avatar-dropzone-minimal.tsx',
                         'type' => 'registry:ui',
-                        'content' => '"use client"
+                        'content' => '\'use client\';
 
-import * as React from "react"
-import { cn } from "@/lib/utils"
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
-import { Spinner } from "@/components/ui/spinner"
-import { Camera, X } from "lucide-react"
+import * as React from \'react\';
+import { cn } from \'@/lib/utils\';
+import { Avatar, AvatarImage, AvatarFallback } from \'@/components/ui/avatar\';
+import { Spinner } from \'@/components/ui/spinner\';
+import { Camera, X } from \'lucide-react\';
 
 interface AvatarDropzoneMinimalProps {
-  className?: string
-  onFileSelect?: (file: File | null) => void
-  maxSize?: number
-  defaultImage?: string
+    className?: string;
+    onFileSelect?: (file: File | null) => void;
+    maxSize?: number;
+    defaultImage?: string;
 }
 
 export function AvatarDropzoneMinimal({
-  className,
-  onFileSelect,
-  maxSize = 5,
-  defaultImage,
+    className,
+    onFileSelect,
+    maxSize = 5,
+    defaultImage,
 }: AvatarDropzoneMinimalProps) {
-  const [isDragOver, setIsDragOver] = React.useState(false)
-  const [preview, setPreview] = React.useState<string | null>(defaultImage || null)
-  const [isUploading, setIsUploading] = React.useState(false)
-  const inputRef = React.useRef<HTMLInputElement>(null)
+    const [isDragOver, setIsDragOver] = React.useState(false);
+    const [preview, setPreview] = React.useState<string | null>(
+        defaultImage || null,
+    );
+    const [isUploading, setIsUploading] = React.useState(false);
+    const inputRef = React.useRef<HTMLInputElement>(null);
 
-  const handleFile = React.useCallback(
-    (file: File) => {
-      if (!file.type.startsWith("image/") || file.size > maxSize * 1024 * 1024) return
+    const handleFile = React.useCallback(
+        (file: File) => {
+            if (
+                !file.type.startsWith(\'image/\') ||
+                file.size > maxSize * 1024 * 1024
+            )
+                return;
 
-      setIsUploading(true)
-      const reader = new FileReader()
-      reader.onload = (e) => {
-        setPreview(e.target?.result as string)
-        setTimeout(() => {
-          setIsUploading(false)
-          onFileSelect?.(file)
-        }, 1000)
-      }
-      reader.readAsDataURL(file)
-    },
-    [maxSize, onFileSelect]
-  )
+            setIsUploading(true);
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                setPreview(e.target?.result as string);
+                setTimeout(() => {
+                    setIsUploading(false);
+                    onFileSelect?.(file);
+                }, 1000);
+            };
+            reader.readAsDataURL(file);
+        },
+        [maxSize, onFileSelect],
+    );
 
-  const handleDrop = React.useCallback(
-    (e: React.DragEvent) => {
-      e.preventDefault()
-      setIsDragOver(false)
-      const file = e.dataTransfer.files[0]
-      if (file) handleFile(file)
-    },
-    [handleFile]
-  )
+    const handleDrop = React.useCallback(
+        (e: React.DragEvent) => {
+            e.preventDefault();
+            setIsDragOver(false);
+            const file = e.dataTransfer.files[0];
+            if (file) handleFile(file);
+        },
+        [handleFile],
+    );
 
-  return (
-    <div className={cn("flex flex-col items-center gap-2", className)}>
-      <div
-        role="button"
-        tabIndex={0}
-        aria-label="Upload avatar"
-        onClick={() => inputRef.current?.click()}
-        onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && inputRef.current?.click()}
-        onDrop={handleDrop}
-        onDragOver={(e) => { e.preventDefault(); setIsDragOver(true) }}
-        onDragLeave={(e) => { e.preventDefault(); setIsDragOver(false) }}
-        className={cn(
-          "group relative size-16 cursor-pointer transition-transform hover:scale-105",
-          isDragOver && "scale-110"
-        )}
-      >
-        <Avatar className="size-full border-2 border-border">
-          {preview ? (
-            <AvatarImage src={preview} alt="Avatar" className="object-cover" />
-          ) : (
-            <AvatarFallback className="bg-muted text-muted-foreground">
-              <Camera className="size-5" />
-            </AvatarFallback>
-          )}
-        </Avatar>
+    return (
+        <div className={cn(\'flex flex-col items-center gap-2\', className)}>
+            <div
+                role="button"
+                tabIndex={0}
+                aria-label="Upload avatar"
+                onClick={() => inputRef.current?.click()}
+                onKeyDown={(e) =>
+                    (e.key === \'Enter\' || e.key === \' \') &&
+                    inputRef.current?.click()
+                }
+                onDrop={handleDrop}
+                onDragOver={(e) => {
+                    e.preventDefault();
+                    setIsDragOver(true);
+                }}
+                onDragLeave={(e) => {
+                    e.preventDefault();
+                    setIsDragOver(false);
+                }}
+                className={cn(
+                    \'group relative size-16 cursor-pointer transition-transform hover:scale-105\',
+                    isDragOver && \'scale-110\',
+                )}
+            >
+                <Avatar className="size-full border-2 border-border">
+                    {preview ? (
+                        <AvatarImage
+                            src={preview}
+                            alt="Avatar"
+                            className="object-cover"
+                        />
+                    ) : (
+                        <AvatarFallback className="bg-muted text-muted-foreground">
+                            <Camera className="size-5" />
+                        </AvatarFallback>
+                    )}
+                </Avatar>
 
-        {isUploading && (
-          <div className="absolute inset-0 flex items-center justify-center rounded-full bg-background/80">
-            <Spinner className="size-5 text-primary" />
-          </div>
-        )}
+                {isUploading && (
+                    <div className="absolute inset-0 flex items-center justify-center rounded-full bg-background/80">
+                        <Spinner className="size-5 text-primary" />
+                    </div>
+                )}
 
-        {!isUploading && (
-          <div className="absolute inset-0 flex items-center justify-center rounded-full bg-foreground/60 opacity-0 transition-opacity group-hover:opacity-100">
-            <Camera className="size-4 text-background" />
-          </div>
-        )}
+                {!isUploading && (
+                    <div className="absolute inset-0 flex items-center justify-center rounded-full bg-foreground/60 opacity-0 transition-opacity group-hover:opacity-100">
+                        <Camera className="size-4 text-background" />
+                    </div>
+                )}
 
-        {preview && !isUploading && (
-          <button
-            type="button"
-            onClick={(e) => {
-              e.stopPropagation()
-              setPreview(null)
-              onFileSelect?.(null)
-            }}
-            className="absolute -right-1 -top-1 flex size-5 items-center justify-center rounded-full bg-destructive text-white"
-            aria-label="Remove"
-          >
-            <X className="size-3" />
-          </button>
-        )}
-      </div>
+                {preview && !isUploading && (
+                    <button
+                        type="button"
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            setPreview(null);
+                            onFileSelect?.(null);
+                        }}
+                        className="absolute -top-1 -right-1 flex size-5 items-center justify-center rounded-full bg-destructive text-white"
+                        aria-label="Remove"
+                    >
+                        <X className="size-3" />
+                    </button>
+                )}
+            </div>
 
-      <input
-        ref={inputRef}
-        type="file"
-        accept="image/*"
-        onChange={(e) => e.target.files?.[0] && handleFile(e.target.files[0])}
-        className="sr-only"
-      />
+            <input
+                ref={inputRef}
+                type="file"
+                accept="image/*"
+                onChange={(e) =>
+                    e.target.files?.[0] && handleFile(e.target.files[0])
+                }
+                className="sr-only"
+            />
 
-      <span className="text-xs text-muted-foreground">Click to upload</span>
-    </div>
-  )
+            <span className="text-xs text-muted-foreground">
+                Click to upload
+            </span>
+        </div>
+    );
 }
 ',
                     ],
@@ -23765,155 +24807,166 @@ export function AvatarDropzoneMinimal({
                     [
                         'path' => 'resources/js/registry/new-york/components/ui/dropzones/avatar-dropzone-outlined.tsx',
                         'type' => 'registry:ui',
-                        'content' => '"use client"
+                        'content' => '\'use client\';
 
-import { useState, useCallback, useRef } from "react"
-import { Upload, X, Check, AlertCircle, Loader2 } from "lucide-react"
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
+import { useState, useCallback, useRef } from \'react\';
+import { Upload, X, Check, AlertCircle, Loader2 } from \'lucide-react\';
+import { cn } from \'@/lib/utils\';
+import { Button } from \'@/components/ui/button\';
 
 interface AvatarDropzoneOutlinedProps {
-  onFileSelect?: (file: File | null) => void
-  maxSize?: number
-  className?: string
+    onFileSelect?: (file: File | null) => void;
+    maxSize?: number;
+    className?: string;
 }
 
 export function AvatarDropzoneOutlined({
-  onFileSelect,
-  maxSize = 5 * 1024 * 1024,
-  className,
+    onFileSelect,
+    maxSize = 5 * 1024 * 1024,
+    className,
 }: AvatarDropzoneOutlinedProps) {
-  const [preview, setPreview] = useState<string | null>(null)
-  const [isDragging, setIsDragging] = useState(false)
-  const [status, setStatus] = useState<"idle" | "uploading" | "success" | "error">("idle")
-  const [error, setError] = useState<string | null>(null)
-  const inputRef = useRef<HTMLInputElement>(null)
+    const [preview, setPreview] = useState<string | null>(null);
+    const [isDragging, setIsDragging] = useState(false);
+    const [status, setStatus] = useState<
+        \'idle\' | \'uploading\' | \'success\' | \'error\'
+    >(\'idle\');
+    const [error, setError] = useState<string | null>(null);
+    const inputRef = useRef<HTMLInputElement>(null);
 
-  const handleFile = useCallback(
-    (file: File) => {
-      setError(null)
+    const handleFile = useCallback(
+        (file: File) => {
+            setError(null);
 
-      if (!file.type.startsWith("image/")) {
-        setError("Please upload an image file")
-        setStatus("error")
-        return
-      }
+            if (!file.type.startsWith(\'image/\')) {
+                setError(\'Please upload an image file\');
+                setStatus(\'error\');
+                return;
+            }
 
-      if (file.size > maxSize) {
-        setError(`File must be less than ${Math.round(maxSize / 1024 / 1024)}MB`)
-        setStatus("error")
-        return
-      }
+            if (file.size > maxSize) {
+                setError(
+                    `File must be less than ${Math.round(maxSize / 1024 / 1024)}MB`,
+                );
+                setStatus(\'error\');
+                return;
+            }
 
-      const reader = new FileReader()
-      reader.onload = (e) => {
-        setPreview(e.target?.result as string)
-        setStatus("uploading")
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                setPreview(e.target?.result as string);
+                setStatus(\'uploading\');
 
-        setTimeout(() => {
-          setStatus("success")
-          onFileSelect?.(file)
-        }, 1500)
-      }
-      reader.readAsDataURL(file)
-    },
-    [maxSize, onFileSelect]
-  )
+                setTimeout(() => {
+                    setStatus(\'success\');
+                    onFileSelect?.(file);
+                }, 1500);
+            };
+            reader.readAsDataURL(file);
+        },
+        [maxSize, onFileSelect],
+    );
 
-  const handleDrop = useCallback(
-    (e: React.DragEvent) => {
-      e.preventDefault()
-      setIsDragging(false)
-      const file = e.dataTransfer.files[0]
-      if (file) handleFile(file)
-    },
-    [handleFile]
-  )
+    const handleDrop = useCallback(
+        (e: React.DragEvent) => {
+            e.preventDefault();
+            setIsDragging(false);
+            const file = e.dataTransfer.files[0];
+            if (file) handleFile(file);
+        },
+        [handleFile],
+    );
 
-  const handleChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      const file = e.target.files?.[0]
-      if (file) handleFile(file)
-    },
-    [handleFile]
-  )
+    const handleChange = useCallback(
+        (e: React.ChangeEvent<HTMLInputElement>) => {
+            const file = e.target.files?.[0];
+            if (file) handleFile(file);
+        },
+        [handleFile],
+    );
 
-  const handleRemove = () => {
-    setPreview(null)
-    setStatus("idle")
-    setError(null)
-    onFileSelect?.(null)
-    if (inputRef.current) inputRef.current.value = ""
-  }
+    const handleRemove = () => {
+        setPreview(null);
+        setStatus(\'idle\');
+        setError(null);
+        onFileSelect?.(null);
+        if (inputRef.current) inputRef.current.value = \'\';
+    };
 
-  return (
-    <div className={cn("flex flex-col items-center gap-3", className)}>
-      <div
-        className={cn(
-          "relative size-28 rounded-full border-2 border-dashed transition-all duration-200",
-          isDragging && "border-primary bg-primary/5 scale-105",
-          status === "error" && "border-destructive",
-          status === "success" && "border-primary",
-          !preview && status === "idle" && "border-muted-foreground/25 hover:border-muted-foreground/50"
-        )}
-        onDragOver={(e) => {
-          e.preventDefault()
-          setIsDragging(true)
-        }}
-        onDragLeave={() => setIsDragging(false)}
-        onDrop={handleDrop}
-      >
-        <input
-          ref={inputRef}
-          type="file"
-          accept="image/*"
-          onChange={handleChange}
-          className="absolute inset-0 cursor-pointer opacity-0 rounded-full"
-          aria-label="Upload avatar image"
-        />
+    return (
+        <div className={cn(\'flex flex-col items-center gap-3\', className)}>
+            <div
+                className={cn(
+                    \'relative size-28 rounded-full border-2 border-dashed transition-all duration-200\',
+                    isDragging && \'scale-105 border-primary bg-primary/5\',
+                    status === \'error\' && \'border-destructive\',
+                    status === \'success\' && \'border-primary\',
+                    !preview &&
+                        status === \'idle\' &&
+                        \'border-muted-foreground/25 hover:border-muted-foreground/50\',
+                )}
+                onDragOver={(e) => {
+                    e.preventDefault();
+                    setIsDragging(true);
+                }}
+                onDragLeave={() => setIsDragging(false)}
+                onDrop={handleDrop}
+            >
+                <input
+                    ref={inputRef}
+                    type="file"
+                    accept="image/*"
+                    onChange={handleChange}
+                    className="absolute inset-0 cursor-pointer rounded-full opacity-0"
+                    aria-label="Upload avatar image"
+                />
 
-        {preview ? (
-          <img
-            src={preview}
-            alt="Avatar preview"
-            className="size-full rounded-full object-cover"
-          />
-        ) : (
-          <div className="absolute inset-0 flex flex-col items-center justify-center text-muted-foreground">
-            <Upload className="size-6 mb-1" />
-            <span className="text-xs">Upload</span>
-          </div>
-        )}
+                {preview ? (
+                    <img
+                        src={preview}
+                        alt="Avatar preview"
+                        className="size-full rounded-full object-cover"
+                    />
+                ) : (
+                    <div className="absolute inset-0 flex flex-col items-center justify-center text-muted-foreground">
+                        <Upload className="mb-1 size-6" />
+                        <span className="text-xs">Upload</span>
+                    </div>
+                )}
 
-        {status === "uploading" && (
-          <div className="absolute inset-0 flex items-center justify-center rounded-full bg-background/80">
-            <Loader2 className="size-6 animate-spin text-primary" />
-          </div>
-        )}
+                {status === \'uploading\' && (
+                    <div className="absolute inset-0 flex items-center justify-center rounded-full bg-background/80">
+                        <Loader2 className="size-6 animate-spin text-primary" />
+                    </div>
+                )}
 
-        {status === "success" && preview && (
-          <div className="absolute -bottom-1 -right-1 flex size-7 items-center justify-center rounded-full border-2 border-background bg-primary text-primary-foreground">
-            <Check className="size-4" />
-          </div>
-        )}
+                {status === \'success\' && preview && (
+                    <div className="absolute -right-1 -bottom-1 flex size-7 items-center justify-center rounded-full border-2 border-background bg-primary text-primary-foreground">
+                        <Check className="size-4" />
+                    </div>
+                )}
 
-        {status === "error" && (
-          <div className="absolute -bottom-1 -right-1 flex size-7 items-center justify-center rounded-full border-2 border-background bg-destructive text-white">
-            <AlertCircle className="size-4" />
-          </div>
-        )}
-      </div>
+                {status === \'error\' && (
+                    <div className="absolute -right-1 -bottom-1 flex size-7 items-center justify-center rounded-full border-2 border-background bg-destructive text-white">
+                        <AlertCircle className="size-4" />
+                    </div>
+                )}
+            </div>
 
-      {preview && status !== "uploading" && (
-        <Button variant="ghost" size="sm" onClick={handleRemove} className="text-muted-foreground">
-          <X className="size-4 mr-1" />
-          Remove
-        </Button>
-      )}
+            {preview && status !== \'uploading\' && (
+                <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={handleRemove}
+                    className="text-muted-foreground"
+                >
+                    <X className="mr-1 size-4" />
+                    Remove
+                </Button>
+            )}
 
-      {error && <p className="text-xs text-destructive">{error}</p>}
-    </div>
-  )
+            {error && <p className="text-xs text-destructive">{error}</p>}
+        </div>
+    );
 }
 ',
                     ],
@@ -23964,286 +25017,304 @@ export function AvatarDropzoneOutlined({
                     [
                         'path' => 'resources/js/registry/new-york/components/ui/dropzones/avatar-dropzone-sortable-row.tsx',
                         'type' => 'registry:ui',
-                        'content' => '"use client"
+                        'content' => '\'use client\';
 
-import * as React from "react"
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Plus, X, GripVertical, User, Upload, Trash2 } from "lucide-react"
-import { DragDropProvider } from "@dnd-kit/react"
-import { useSortable, isSortable } from "@dnd-kit/react/sortable"
+import * as React from \'react\';
+import { cn } from \'@/lib/utils\';
+import { Button } from \'@/components/ui/button\';
+import {
+    Card,
+    CardContent,
+    CardHeader,
+    CardTitle,
+    CardDescription,
+} from \'@/components/ui/card\';
+import { Badge } from \'@/components/ui/badge\';
+import { Avatar, AvatarFallback, AvatarImage } from \'@/components/ui/avatar\';
+import { Plus, X, GripVertical, User, Upload, Trash2 } from \'lucide-react\';
+import { DragDropProvider } from \'@dnd-kit/react\';
+import { useSortable, isSortable } from \'@dnd-kit/react/sortable\';
 
 interface AvatarFile {
-  file: File
-  preview: string
-  id: string
+    file: File;
+    preview: string;
+    id: string;
 }
 
 interface SortableAvatarRowItemProps {
-  avatar: AvatarFile
-  index: number
-  onRemove: (id: string) => void
-  showHandle?: boolean
+    avatar: AvatarFile;
+    index: number;
+    onRemove: (id: string) => void;
+    showHandle?: boolean;
 }
 
 function SortableAvatarRowItem({
-  avatar,
-  index,
-  onRemove,
-  showHandle,
-}: SortableAvatarRowItemProps) {
-  const { ref, handleRef, isDragging } = useSortable({
-    id: avatar.id,
+    avatar,
     index,
-  })
+    onRemove,
+    showHandle,
+}: SortableAvatarRowItemProps) {
+    const { ref, handleRef, isDragging } = useSortable({
+        id: avatar.id,
+        index,
+    });
 
-  return (
-    <div
-      ref={ref}
-      className={cn(
-        "group flex items-center gap-3 rounded-md border bg-card p-2 transition-all",
-        isDragging && "z-10 shadow-md ring-2 ring-primary"
-      )}
-    >
-      {showHandle && (
-        <button
-          ref={handleRef}
-          className="flex size-6 cursor-grab items-center justify-center rounded text-muted-foreground hover:bg-muted active:cursor-grabbing"
-          aria-label="Drag to reorder"
+    return (
+        <div
+            ref={ref}
+            className={cn(
+                \'group flex items-center gap-3 rounded-md border bg-card p-2 transition-all\',
+                isDragging && \'z-10 shadow-md ring-2 ring-primary\',
+            )}
         >
-          <GripVertical className="size-4" />
-        </button>
-      )}
+            {showHandle && (
+                <button
+                    ref={handleRef}
+                    className="flex size-6 cursor-grab items-center justify-center rounded text-muted-foreground hover:bg-muted active:cursor-grabbing"
+                    aria-label="Drag to reorder"
+                >
+                    <GripVertical className="size-4" />
+                </button>
+            )}
 
-      <Avatar className="size-10 border">
-        <AvatarImage src={avatar.preview} alt="" />
-        <AvatarFallback>
-          <User className="size-5 text-muted-foreground" />
-        </AvatarFallback>
-      </Avatar>
+            <Avatar className="size-10 border">
+                <AvatarImage src={avatar.preview} alt="" />
+                <AvatarFallback>
+                    <User className="size-5 text-muted-foreground" />
+                </AvatarFallback>
+            </Avatar>
 
-      <div className="flex min-w-0 flex-1 flex-col">
-        <span className="truncate text-sm font-medium">{avatar.file.name}</span>
-        <span className="text-xs text-muted-foreground">
-          {(avatar.file.size / 1024).toFixed(1)} KB
-        </span>
-      </div>
+            <div className="flex min-w-0 flex-1 flex-col">
+                <span className="truncate text-sm font-medium">
+                    {avatar.file.name}
+                </span>
+                <span className="text-xs text-muted-foreground">
+                    {(avatar.file.size / 1024).toFixed(1)} KB
+                </span>
+            </div>
 
-      <Badge variant="secondary" className="shrink-0">
-        #{index + 1}
-      </Badge>
+            <Badge variant="secondary" className="shrink-0">
+                #{index + 1}
+            </Badge>
 
-      <Button
-        variant="ghost"
-        size="sm"
-        onClick={() => onRemove(avatar.id)}
-        className="size-8 shrink-0 p-0 text-muted-foreground hover:text-destructive"
-      >
-        <X className="size-4" />
-      </Button>
-    </div>
-  )
+            <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => onRemove(avatar.id)}
+                className="size-8 shrink-0 p-0 text-muted-foreground hover:text-destructive"
+            >
+                <X className="size-4" />
+            </Button>
+        </div>
+    );
 }
 
 interface AvatarDropzoneSortableRowProps {
-  onFilesSelect?: (files: File[]) => void
-  onReorder?: (files: File[]) => void
-  maxAvatars?: number
-  maxSize?: number
-  className?: string
-  enableReorder?: boolean
-  title?: string
-  description?: string
+    onFilesSelect?: (files: File[]) => void;
+    onReorder?: (files: File[]) => void;
+    maxAvatars?: number;
+    maxSize?: number;
+    className?: string;
+    enableReorder?: boolean;
+    title?: string;
+    description?: string;
 }
 
 export function AvatarDropzoneSortableRow({
-  onFilesSelect,
-  onReorder,
-  maxAvatars = 4,
-  maxSize = 5 * 1024 * 1024,
-  className,
-  enableReorder = true,
-  title = "Team Members",
-  description = "Add and reorder team member avatars",
+    onFilesSelect,
+    onReorder,
+    maxAvatars = 4,
+    maxSize = 5 * 1024 * 1024,
+    className,
+    enableReorder = true,
+    title = \'Team Members\',
+    description = \'Add and reorder team member avatars\',
 }: AvatarDropzoneSortableRowProps) {
-  const [avatars, setAvatars] = React.useState<AvatarFile[]>([])
-  const [isDragging, setIsDragging] = React.useState(false)
-  const inputRef = React.useRef<HTMLInputElement>(null)
+    const [avatars, setAvatars] = React.useState<AvatarFile[]>([]);
+    const [isDragging, setIsDragging] = React.useState(false);
+    const inputRef = React.useRef<HTMLInputElement>(null);
 
-  const handleFiles = React.useCallback(
-    (newFiles: FileList) => {
-      const validFiles = Array.from(newFiles)
-        .filter((file) => file.type.startsWith("image/") && file.size <= maxSize)
-        .slice(0, maxAvatars - avatars.length)
+    const handleFiles = React.useCallback(
+        (newFiles: FileList) => {
+            const validFiles = Array.from(newFiles)
+                .filter(
+                    (file) =>
+                        file.type.startsWith(\'image/\') && file.size <= maxSize,
+                )
+                .slice(0, maxAvatars - avatars.length);
 
-      const newAvatarObjects = validFiles.map((file) => ({
-        file,
-        preview: URL.createObjectURL(file),
-        id: Math.random().toString(36).slice(2),
-      }))
+            const newAvatarObjects = validFiles.map((file) => ({
+                file,
+                preview: URL.createObjectURL(file),
+                id: Math.random().toString(36).slice(2),
+            }));
 
-      const updated = [...avatars, ...newAvatarObjects].slice(0, maxAvatars)
-      setAvatars(updated)
-      onFilesSelect?.(updated.map((a) => a.file))
-    },
-    [avatars, maxAvatars, maxSize, onFilesSelect]
-  )
+            const updated = [...avatars, ...newAvatarObjects].slice(
+                0,
+                maxAvatars,
+            );
+            setAvatars(updated);
+            onFilesSelect?.(updated.map((a) => a.file));
+        },
+        [avatars, maxAvatars, maxSize, onFilesSelect],
+    );
 
-  const handleDrop = React.useCallback(
-    (e: React.DragEvent) => {
-      e.preventDefault()
-      setIsDragging(false)
-      if (e.dataTransfer.files.length) handleFiles(e.dataTransfer.files)
-    },
-    [handleFiles]
-  )
+    const handleDrop = React.useCallback(
+        (e: React.DragEvent) => {
+            e.preventDefault();
+            setIsDragging(false);
+            if (e.dataTransfer.files.length) handleFiles(e.dataTransfer.files);
+        },
+        [handleFiles],
+    );
 
-  const removeAvatar = (id: string) => {
-    const updated = avatars.filter((a) => a.id !== id)
-    setAvatars(updated)
-    onFilesSelect?.(updated.map((a) => a.file))
-  }
+    const removeAvatar = (id: string) => {
+        const updated = avatars.filter((a) => a.id !== id);
+        setAvatars(updated);
+        onFilesSelect?.(updated.map((a) => a.file));
+    };
 
-  const clearAll = () => {
-    setAvatars([])
-    onFilesSelect?.([])
-    if (inputRef.current) inputRef.current.value = ""
-  }
+    const clearAll = () => {
+        setAvatars([]);
+        onFilesSelect?.([]);
+        if (inputRef.current) inputRef.current.value = \'\';
+    };
 
-  const handleDragEnd = React.useCallback(
-    (event: { canceled: boolean; operation: { source: unknown } }) => {
-      if (event.canceled) return
+    const handleDragEnd = React.useCallback(
+        (event: { canceled: boolean; operation: { source: unknown } }) => {
+            if (event.canceled) return;
 
-      const source = event.operation.source as any
+            const source = event.operation.source as any;
 
-      if (isSortable(source)) {
-        const { initialIndex, index } = source
+            if (isSortable(source)) {
+                const { initialIndex, index } = source;
 
-        if (initialIndex !== index) {
-          setAvatars((prev) => {
-            const newAvatars = [...prev]
-            const [removed] = newAvatars.splice(initialIndex, 1)
-            newAvatars.splice(index, 0, removed)
-            onReorder?.(newAvatars.map((a) => a.file))
-            return newAvatars
-          })
-        }
-      }
-    },
-    [onReorder]
-  )
+                if (initialIndex !== index) {
+                    setAvatars((prev) => {
+                        const newAvatars = [...prev];
+                        const [removed] = newAvatars.splice(initialIndex, 1);
+                        newAvatars.splice(index, 0, removed);
+                        onReorder?.(newAvatars.map((a) => a.file));
+                        return newAvatars;
+                    });
+                }
+            }
+        },
+        [onReorder],
+    );
 
-  const avatarsContent = (
-    <div className="space-y-2">
-      {avatars.map((avatar, index) => (
-        <SortableAvatarRowItem
-          key={avatar.id}
-          avatar={avatar}
-          index={index}
-          onRemove={removeAvatar}
-          showHandle={enableReorder}
-        />
-      ))}
-    </div>
-  )
-
-  return (
-    <Card className={cn(className)}>
-      <CardHeader className="pb-4">
-        <div className="flex items-center justify-between">
-          <div>
-            <CardTitle className="text-base">{title}</CardTitle>
-            <CardDescription className="text-sm">{description}</CardDescription>
-          </div>
-          {avatars.length > 0 && (
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={clearAll}
-              className="gap-1 text-muted-foreground hover:text-destructive"
-            >
-              <Trash2 className="size-3" />
-              Clear
-            </Button>
-          )}
+    const avatarsContent = (
+        <div className="space-y-2">
+            {avatars.map((avatar, index) => (
+                <SortableAvatarRowItem
+                    key={avatar.id}
+                    avatar={avatar}
+                    index={index}
+                    onRemove={removeAvatar}
+                    showHandle={enableReorder}
+                />
+            ))}
         </div>
-      </CardHeader>
+    );
 
-      <CardContent className="space-y-4">
-        <input
-          ref={inputRef}
-          type="file"
-          accept="image/*"
-          multiple
-          onChange={(e) => e.target.files && handleFiles(e.target.files)}
-          className="sr-only"
-        />
+    return (
+        <Card className={cn(className)}>
+            <CardHeader className="pb-4">
+                <div className="flex items-center justify-between">
+                    <div>
+                        <CardTitle className="text-base">{title}</CardTitle>
+                        <CardDescription className="text-sm">
+                            {description}
+                        </CardDescription>
+                    </div>
+                    {avatars.length > 0 && (
+                        <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={clearAll}
+                            className="gap-1 text-muted-foreground hover:text-destructive"
+                        >
+                            <Trash2 className="size-3" />
+                            Clear
+                        </Button>
+                    )}
+                </div>
+            </CardHeader>
 
-        {avatars.length === 0 ? (
-          <div
-            className={cn(
-              "flex cursor-pointer flex-col items-center gap-2 rounded-md border-2 border-dashed p-6 transition-colors",
-              isDragging
-                ? "border-primary bg-primary/5"
-                : "border-muted hover:border-muted-foreground/50"
-            )}
-            onDragOver={(e) => {
-              e.preventDefault()
-              setIsDragging(true)
-            }}
-            onDragLeave={() => setIsDragging(false)}
-            onDrop={handleDrop}
-            onClick={() => inputRef.current?.click()}
-            onKeyDown={(e) => {
-              if (e.key === "Enter" || e.key === " ") {
-                e.preventDefault()
-                inputRef.current?.click()
-              }
-            }}
-            tabIndex={0}
-            role="button"
-            aria-label="Upload avatars"
-          >
-            <Upload className="size-6 text-muted-foreground" />
-            <p className="text-sm text-muted-foreground">
-              Drop images or click to add team members
-            </p>
-          </div>
-        ) : (
-          <>
-            {enableReorder ? (
-              <DragDropProvider onDragEnd={handleDragEnd}>
-                {avatarsContent}
-              </DragDropProvider>
-            ) : (
-              avatarsContent
-            )}
+            <CardContent className="space-y-4">
+                <input
+                    ref={inputRef}
+                    type="file"
+                    accept="image/*"
+                    multiple
+                    onChange={(e) =>
+                        e.target.files && handleFiles(e.target.files)
+                    }
+                    className="sr-only"
+                />
 
-            {avatars.length < maxAvatars && (
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => inputRef.current?.click()}
-                className="w-full gap-1"
-              >
-                <Plus className="size-4" />
-                Add Member ({avatars.length}/{maxAvatars})
-              </Button>
-            )}
+                {avatars.length === 0 ? (
+                    <div
+                        className={cn(
+                            \'flex cursor-pointer flex-col items-center gap-2 rounded-md border-2 border-dashed p-6 transition-colors\',
+                            isDragging
+                                ? \'border-primary bg-primary/5\'
+                                : \'border-muted hover:border-muted-foreground/50\',
+                        )}
+                        onDragOver={(e) => {
+                            e.preventDefault();
+                            setIsDragging(true);
+                        }}
+                        onDragLeave={() => setIsDragging(false)}
+                        onDrop={handleDrop}
+                        onClick={() => inputRef.current?.click()}
+                        onKeyDown={(e) => {
+                            if (e.key === \'Enter\' || e.key === \' \') {
+                                e.preventDefault();
+                                inputRef.current?.click();
+                            }
+                        }}
+                        tabIndex={0}
+                        role="button"
+                        aria-label="Upload avatars"
+                    >
+                        <Upload className="size-6 text-muted-foreground" />
+                        <p className="text-sm text-muted-foreground">
+                            Drop images or click to add team members
+                        </p>
+                    </div>
+                ) : (
+                    <>
+                        {enableReorder ? (
+                            <DragDropProvider onDragEnd={handleDragEnd}>
+                                {avatarsContent}
+                            </DragDropProvider>
+                        ) : (
+                            avatarsContent
+                        )}
 
-            {enableReorder && (
-              <p className="text-center text-xs text-muted-foreground">
-                Drag items to change order
-              </p>
-            )}
-          </>
-        )}
-      </CardContent>
-    </Card>
-  )
+                        {avatars.length < maxAvatars && (
+                            <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={() => inputRef.current?.click()}
+                                className="w-full gap-1"
+                            >
+                                <Plus className="size-4" />
+                                Add Member ({avatars.length}/{maxAvatars})
+                            </Button>
+                        )}
+
+                        {enableReorder && (
+                            <p className="text-center text-xs text-muted-foreground">
+                                Drag items to change order
+                            </p>
+                        )}
+                    </>
+                )}
+            </CardContent>
+        </Card>
+    );
 }
 ',
                     ],
@@ -24293,240 +25364,250 @@ export function AvatarDropzoneSortableRow({
                     [
                         'path' => 'resources/js/registry/new-york/components/ui/dropzones/avatar-dropzone-sortable-stack.tsx',
                         'type' => 'registry:ui',
-                        'content' => '"use client"
+                        'content' => '\'use client\';
 
-import * as React from "react"
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
+import * as React from \'react\';
+import { cn } from \'@/lib/utils\';
+import { Button } from \'@/components/ui/button\';
 import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Plus, X, GripVertical, UserCircle } from "lucide-react"
-import { DragDropProvider } from "@dnd-kit/react"
-import { useSortable, isSortable } from "@dnd-kit/react/sortable"
+    Tooltip,
+    TooltipContent,
+    TooltipProvider,
+    TooltipTrigger,
+} from \'@/components/ui/tooltip\';
+import { Avatar, AvatarFallback, AvatarImage } from \'@/components/ui/avatar\';
+import { Plus, X, GripVertical, UserCircle } from \'lucide-react\';
+import { DragDropProvider } from \'@dnd-kit/react\';
+import { useSortable, isSortable } from \'@dnd-kit/react/sortable\';
 
 interface AvatarFile {
-  file: File
-  preview: string
-  id: string
+    file: File;
+    preview: string;
+    id: string;
 }
 
 interface SortableAvatarProps {
-  avatar: AvatarFile
-  index: number
-  onRemove: (id: string) => void
-  showHandle?: boolean
-  size?: "sm" | "md" | "lg"
+    avatar: AvatarFile;
+    index: number;
+    onRemove: (id: string) => void;
+    showHandle?: boolean;
+    size?: \'sm\' | \'md\' | \'lg\';
 }
 
 const sizeClasses = {
-  sm: "size-8",
-  md: "size-10",
-  lg: "size-12",
-}
+    sm: \'size-8\',
+    md: \'size-10\',
+    lg: \'size-12\',
+};
 
 function SortableAvatar({
-  avatar,
-  index,
-  onRemove,
-  showHandle,
-  size = "md",
-}: SortableAvatarProps) {
-  const { ref, handleRef, isDragging } = useSortable({
-    id: avatar.id,
+    avatar,
     index,
-  })
+    onRemove,
+    showHandle,
+    size = \'md\',
+}: SortableAvatarProps) {
+    const { ref, handleRef, isDragging } = useSortable({
+        id: avatar.id,
+        index,
+    });
 
-  return (
-    <TooltipProvider>
-      <Tooltip>
-        <TooltipTrigger asChild>
-          <div
-            ref={ref}
-            className={cn(
-              "group relative -ml-2 first:ml-0",
-              isDragging && "z-10"
-            )}
-          >
-            <Avatar
-              className={cn(
-                sizeClasses[size],
-                "border-2 border-background transition-transform",
-                isDragging && "scale-110 ring-2 ring-primary"
-              )}
-            >
-              <AvatarImage src={avatar.preview} alt="" />
-              <AvatarFallback>
-                <UserCircle className="size-full text-muted-foreground" />
-              </AvatarFallback>
-            </Avatar>
+    return (
+        <TooltipProvider>
+            <Tooltip>
+                <TooltipTrigger asChild>
+                    <div
+                        ref={ref}
+                        className={cn(
+                            \'group relative -ml-2 first:ml-0\',
+                            isDragging && \'z-10\',
+                        )}
+                    >
+                        <Avatar
+                            className={cn(
+                                sizeClasses[size],
+                                \'border-2 border-background transition-transform\',
+                                isDragging && \'scale-110 ring-2 ring-primary\',
+                            )}
+                        >
+                            <AvatarImage src={avatar.preview} alt="" />
+                            <AvatarFallback>
+                                <UserCircle className="size-full text-muted-foreground" />
+                            </AvatarFallback>
+                        </Avatar>
 
-            <div className="absolute -right-1 -top-1 flex gap-0.5 opacity-0 transition-opacity group-hover:opacity-100">
-              {showHandle && (
-                <button
-                  ref={handleRef}
-                  className="flex size-4 cursor-grab items-center justify-center rounded-full bg-muted text-muted-foreground shadow-sm active:cursor-grabbing"
-                  aria-label="Drag to reorder"
-                >
-                  <GripVertical className="size-2.5" />
-                </button>
-              )}
-              <button
-                onClick={() => onRemove(avatar.id)}
-                className="flex size-4 items-center justify-center rounded-full bg-destructive text-destructive-foreground shadow-sm"
-                aria-label="Remove"
-              >
-                <X className="size-2.5" />
-              </button>
-            </div>
-          </div>
-        </TooltipTrigger>
-        <TooltipContent>
-          <p className="text-xs">{avatar.file.name}</p>
-        </TooltipContent>
-      </Tooltip>
-    </TooltipProvider>
-  )
+                        <div className="absolute -top-1 -right-1 flex gap-0.5 opacity-0 transition-opacity group-hover:opacity-100">
+                            {showHandle && (
+                                <button
+                                    ref={handleRef}
+                                    className="flex size-4 cursor-grab items-center justify-center rounded-full bg-muted text-muted-foreground shadow-sm active:cursor-grabbing"
+                                    aria-label="Drag to reorder"
+                                >
+                                    <GripVertical className="size-2.5" />
+                                </button>
+                            )}
+                            <button
+                                onClick={() => onRemove(avatar.id)}
+                                className="flex size-4 items-center justify-center rounded-full bg-destructive text-destructive-foreground shadow-sm"
+                                aria-label="Remove"
+                            >
+                                <X className="size-2.5" />
+                            </button>
+                        </div>
+                    </div>
+                </TooltipTrigger>
+                <TooltipContent>
+                    <p className="text-xs">{avatar.file.name}</p>
+                </TooltipContent>
+            </Tooltip>
+        </TooltipProvider>
+    );
 }
 
 interface AvatarDropzoneSortableStackProps {
-  onFilesSelect?: (files: File[]) => void
-  onReorder?: (files: File[]) => void
-  maxAvatars?: number
-  maxSize?: number
-  className?: string
-  enableReorder?: boolean
-  size?: "sm" | "md" | "lg"
+    onFilesSelect?: (files: File[]) => void;
+    onReorder?: (files: File[]) => void;
+    maxAvatars?: number;
+    maxSize?: number;
+    className?: string;
+    enableReorder?: boolean;
+    size?: \'sm\' | \'md\' | \'lg\';
 }
 
 export function AvatarDropzoneSortableStack({
-  onFilesSelect,
-  onReorder,
-  maxAvatars = 5,
-  maxSize = 5 * 1024 * 1024,
-  className,
-  enableReorder = true,
-  size = "md",
+    onFilesSelect,
+    onReorder,
+    maxAvatars = 5,
+    maxSize = 5 * 1024 * 1024,
+    className,
+    enableReorder = true,
+    size = \'md\',
 }: AvatarDropzoneSortableStackProps) {
-  const [avatars, setAvatars] = React.useState<AvatarFile[]>([])
-  const inputRef = React.useRef<HTMLInputElement>(null)
+    const [avatars, setAvatars] = React.useState<AvatarFile[]>([]);
+    const inputRef = React.useRef<HTMLInputElement>(null);
 
-  const handleFiles = React.useCallback(
-    (newFiles: FileList) => {
-      const validFiles = Array.from(newFiles)
-        .filter((file) => file.type.startsWith("image/") && file.size <= maxSize)
-        .slice(0, maxAvatars - avatars.length)
+    const handleFiles = React.useCallback(
+        (newFiles: FileList) => {
+            const validFiles = Array.from(newFiles)
+                .filter(
+                    (file) =>
+                        file.type.startsWith(\'image/\') && file.size <= maxSize,
+                )
+                .slice(0, maxAvatars - avatars.length);
 
-      const newAvatarObjects = validFiles.map((file) => ({
-        file,
-        preview: URL.createObjectURL(file),
-        id: Math.random().toString(36).slice(2),
-      }))
+            const newAvatarObjects = validFiles.map((file) => ({
+                file,
+                preview: URL.createObjectURL(file),
+                id: Math.random().toString(36).slice(2),
+            }));
 
-      const updated = [...avatars, ...newAvatarObjects].slice(0, maxAvatars)
-      setAvatars(updated)
-      onFilesSelect?.(updated.map((a) => a.file))
-    },
-    [avatars, maxAvatars, maxSize, onFilesSelect]
-  )
+            const updated = [...avatars, ...newAvatarObjects].slice(
+                0,
+                maxAvatars,
+            );
+            setAvatars(updated);
+            onFilesSelect?.(updated.map((a) => a.file));
+        },
+        [avatars, maxAvatars, maxSize, onFilesSelect],
+    );
 
-  const removeAvatar = (id: string) => {
-    const updated = avatars.filter((a) => a.id !== id)
-    setAvatars(updated)
-    onFilesSelect?.(updated.map((a) => a.file))
-  }
+    const removeAvatar = (id: string) => {
+        const updated = avatars.filter((a) => a.id !== id);
+        setAvatars(updated);
+        onFilesSelect?.(updated.map((a) => a.file));
+    };
 
-  const handleDragEnd = React.useCallback(
-    (event: { canceled: boolean; operation: { source: unknown } }) => {
-      if (event.canceled) return
+    const handleDragEnd = React.useCallback(
+        (event: { canceled: boolean; operation: { source: unknown } }) => {
+            if (event.canceled) return;
 
-      const source = event.operation.source as any
+            const source = event.operation.source as any;
 
-      if (isSortable(source)) {
-        const { initialIndex, index } = source
+            if (isSortable(source)) {
+                const { initialIndex, index } = source;
 
-        if (initialIndex !== index) {
-          setAvatars((prev) => {
-            const newAvatars = [...prev]
-            const [removed] = newAvatars.splice(initialIndex, 1)
-            newAvatars.splice(index, 0, removed)
-            onReorder?.(newAvatars.map((a) => a.file))
-            return newAvatars
-          })
-        }
-      }
-    },
-    [onReorder]
-  )
+                if (initialIndex !== index) {
+                    setAvatars((prev) => {
+                        const newAvatars = [...prev];
+                        const [removed] = newAvatars.splice(initialIndex, 1);
+                        newAvatars.splice(index, 0, removed);
+                        onReorder?.(newAvatars.map((a) => a.file));
+                        return newAvatars;
+                    });
+                }
+            }
+        },
+        [onReorder],
+    );
 
-  const avatarsContent = (
-    <div className="flex items-center">
-      {avatars.map((avatar, index) => (
-        <SortableAvatar
-          key={avatar.id}
-          avatar={avatar}
-          index={index}
-          onRemove={removeAvatar}
-          showHandle={enableReorder}
-          size={size}
-        />
-      ))}
+    const avatarsContent = (
+        <div className="flex items-center">
+            {avatars.map((avatar, index) => (
+                <SortableAvatar
+                    key={avatar.id}
+                    avatar={avatar}
+                    index={index}
+                    onRemove={removeAvatar}
+                    showHandle={enableReorder}
+                    size={size}
+                />
+            ))}
 
-      {avatars.length < maxAvatars && (
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button
-                variant="outline"
-                size="icon"
-                onClick={() => inputRef.current?.click()}
-                className={cn(
-                  sizeClasses[size],
-                  "ml-2 rounded-full border-dashed"
-                )}
-              >
-                <Plus className="size-4" />
-              </Button>
-            </TooltipTrigger>
-            <TooltipContent>
-              <p>Add avatar ({avatars.length}/{maxAvatars})</p>
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
-      )}
-    </div>
-  )
+            {avatars.length < maxAvatars && (
+                <TooltipProvider>
+                    <Tooltip>
+                        <TooltipTrigger asChild>
+                            <Button
+                                variant="outline"
+                                size="icon"
+                                onClick={() => inputRef.current?.click()}
+                                className={cn(
+                                    sizeClasses[size],
+                                    \'ml-2 rounded-full border-dashed\',
+                                )}
+                            >
+                                <Plus className="size-4" />
+                            </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                            <p>
+                                Add avatar ({avatars.length}/{maxAvatars})
+                            </p>
+                        </TooltipContent>
+                    </Tooltip>
+                </TooltipProvider>
+            )}
+        </div>
+    );
 
-  return (
-    <div className={cn("flex flex-col gap-2", className)}>
-      <input
-        ref={inputRef}
-        type="file"
-        accept="image/*"
-        multiple
-        onChange={(e) => e.target.files && handleFiles(e.target.files)}
-        className="sr-only"
-      />
+    return (
+        <div className={cn(\'flex flex-col gap-2\', className)}>
+            <input
+                ref={inputRef}
+                type="file"
+                accept="image/*"
+                multiple
+                onChange={(e) => e.target.files && handleFiles(e.target.files)}
+                className="sr-only"
+            />
 
-      {enableReorder ? (
-        <DragDropProvider onDragEnd={handleDragEnd}>
-          {avatarsContent}
-        </DragDropProvider>
-      ) : (
-        avatarsContent
-      )}
+            {enableReorder ? (
+                <DragDropProvider onDragEnd={handleDragEnd}>
+                    {avatarsContent}
+                </DragDropProvider>
+            ) : (
+                avatarsContent
+            )}
 
-      {avatars.length > 0 && (
-        <p className="text-xs text-muted-foreground">
-          {enableReorder ? "Drag to reorder avatars" : `${avatars.length} avatar${avatars.length > 1 ? "s" : ""}`}
-        </p>
-      )}
-    </div>
-  )
+            {avatars.length > 0 && (
+                <p className="text-xs text-muted-foreground">
+                    {enableReorder
+                        ? \'Drag to reorder avatars\'
+                        : `${avatars.length} avatar${avatars.length > 1 ? \'s\' : \'\'}`}
+                </p>
+            )}
+        </div>
+    );
 }
 ',
                     ],
@@ -24575,172 +25656,212 @@ export function AvatarDropzoneSortableStack({
                     [
                         'path' => 'resources/js/registry/new-york/components/ui/dropzones/avatar-dropzone-square.tsx',
                         'type' => 'registry:ui',
-                        'content' => '"use client"
+                        'content' => '\'use client\';
 
-import * as React from "react"
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { Progress } from "@/components/ui/progress"
-import { Badge } from "@/components/ui/badge"
-import { User, Upload, RotateCcw, Check, X } from "lucide-react"
+import * as React from \'react\';
+import { cn } from \'@/lib/utils\';
+import { Button } from \'@/components/ui/button\';
+import { Progress } from \'@/components/ui/progress\';
+import { Badge } from \'@/components/ui/badge\';
+import { User, Upload, RotateCcw, Check, X } from \'lucide-react\';
 
 interface AvatarDropzoneSquareProps {
-  className?: string
-  onFileSelect?: (file: File | null) => void
-  maxSize?: number
-  defaultImage?: string
+    className?: string;
+    onFileSelect?: (file: File | null) => void;
+    maxSize?: number;
+    defaultImage?: string;
 }
 
-type Status = "idle" | "uploading" | "success" | "error"
+type Status = \'idle\' | \'uploading\' | \'success\' | \'error\';
 
 export function AvatarDropzoneSquare({
-  className,
-  onFileSelect,
-  maxSize = 5,
-  defaultImage,
+    className,
+    onFileSelect,
+    maxSize = 5,
+    defaultImage,
 }: AvatarDropzoneSquareProps) {
-  const [isDragOver, setIsDragOver] = React.useState(false)
-  const [preview, setPreview] = React.useState<string | null>(defaultImage || null)
-  const [status, setStatus] = React.useState<Status>("idle")
-  const [progress, setProgress] = React.useState(0)
-  const inputRef = React.useRef<HTMLInputElement>(null)
+    const [isDragOver, setIsDragOver] = React.useState(false);
+    const [preview, setPreview] = React.useState<string | null>(
+        defaultImage || null,
+    );
+    const [status, setStatus] = React.useState<Status>(\'idle\');
+    const [progress, setProgress] = React.useState(0);
+    const inputRef = React.useRef<HTMLInputElement>(null);
 
-  const simulateUpload = React.useCallback(() => {
-    setStatus("uploading")
-    setProgress(0)
-    const interval = setInterval(() => {
-      setProgress((prev) => {
-        if (prev >= 100) {
-          clearInterval(interval)
-          setStatus("success")
-          return 100
-        }
-        return prev + 10
-      })
-    }, 100)
-  }, [])
+    const simulateUpload = React.useCallback(() => {
+        setStatus(\'uploading\');
+        setProgress(0);
+        const interval = setInterval(() => {
+            setProgress((prev) => {
+                if (prev >= 100) {
+                    clearInterval(interval);
+                    setStatus(\'success\');
+                    return 100;
+                }
+                return prev + 10;
+            });
+        }, 100);
+    }, []);
 
-  const handleFile = React.useCallback(
-    (file: File) => {
-      if (!file.type.startsWith("image/") || file.size > maxSize * 1024 * 1024) {
-        setStatus("error")
-        return
-      }
+    const handleFile = React.useCallback(
+        (file: File) => {
+            if (
+                !file.type.startsWith(\'image/\') ||
+                file.size > maxSize * 1024 * 1024
+            ) {
+                setStatus(\'error\');
+                return;
+            }
 
-      const reader = new FileReader()
-      reader.onload = (e) => {
-        setPreview(e.target?.result as string)
-        simulateUpload()
-        onFileSelect?.(file)
-      }
-      reader.readAsDataURL(file)
-    },
-    [maxSize, onFileSelect, simulateUpload]
-  )
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                setPreview(e.target?.result as string);
+                simulateUpload();
+                onFileSelect?.(file);
+            };
+            reader.readAsDataURL(file);
+        },
+        [maxSize, onFileSelect, simulateUpload],
+    );
 
-  const handleDrop = React.useCallback(
-    (e: React.DragEvent) => {
-      e.preventDefault()
-      setIsDragOver(false)
-      const file = e.dataTransfer.files[0]
-      if (file) handleFile(file)
-    },
-    [handleFile]
-  )
+    const handleDrop = React.useCallback(
+        (e: React.DragEvent) => {
+            e.preventDefault();
+            setIsDragOver(false);
+            const file = e.dataTransfer.files[0];
+            if (file) handleFile(file);
+        },
+        [handleFile],
+    );
 
-  const handleRemove = () => {
-    setPreview(null)
-    setStatus("idle")
-    setProgress(0)
-    onFileSelect?.(null)
-  }
+    const handleRemove = () => {
+        setPreview(null);
+        setStatus(\'idle\');
+        setProgress(0);
+        onFileSelect?.(null);
+    };
 
-  return (
-    <div className={cn("flex flex-col items-center gap-3", className)}>
-      <div
-        role="button"
-        tabIndex={0}
-        aria-label="Upload avatar"
-        onClick={() => status !== "success" && inputRef.current?.click()}
-        onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && status !== "success" && inputRef.current?.click()}
-        onDrop={handleDrop}
-        onDragOver={(e) => { e.preventDefault(); setIsDragOver(true) }}
-        onDragLeave={(e) => { e.preventDefault(); setIsDragOver(false) }}
-        className={cn(
-          "relative size-32 overflow-hidden rounded-lg border-2 transition-all",
-          status !== "success" && "cursor-pointer",
-          isDragOver
-            ? "border-primary bg-primary/5 scale-[1.02]"
-            : status === "error"
-            ? "border-destructive"
-            : status === "success"
-            ? "border-success"
-            : "border-dashed border-border hover:border-primary/50"
-        )}
-      >
-        {preview ? (
-          <img src={preview} alt="Avatar preview" className="h-full w-full object-cover" />
-        ) : (
-          <div className="flex h-full w-full flex-col items-center justify-center gap-2 bg-muted/30">
-            <User className="size-10 text-muted-foreground/50" />
-            <span className="text-xs text-muted-foreground">No image</span>
-          </div>
-        )}
+    return (
+        <div className={cn(\'flex flex-col items-center gap-3\', className)}>
+            <div
+                role="button"
+                tabIndex={0}
+                aria-label="Upload avatar"
+                onClick={() =>
+                    status !== \'success\' && inputRef.current?.click()
+                }
+                onKeyDown={(e) =>
+                    (e.key === \'Enter\' || e.key === \' \') &&
+                    status !== \'success\' &&
+                    inputRef.current?.click()
+                }
+                onDrop={handleDrop}
+                onDragOver={(e) => {
+                    e.preventDefault();
+                    setIsDragOver(true);
+                }}
+                onDragLeave={(e) => {
+                    e.preventDefault();
+                    setIsDragOver(false);
+                }}
+                className={cn(
+                    \'relative size-32 overflow-hidden rounded-lg border-2 transition-all\',
+                    status !== \'success\' && \'cursor-pointer\',
+                    isDragOver
+                        ? \'scale-[1.02] border-primary bg-primary/5\'
+                        : status === \'error\'
+                          ? \'border-destructive\'
+                          : status === \'success\'
+                            ? \'border-success\'
+                            : \'border-dashed border-border hover:border-primary/50\',
+                )}
+            >
+                {preview ? (
+                    <img
+                        src={preview}
+                        alt="Avatar preview"
+                        className="h-full w-full object-cover"
+                    />
+                ) : (
+                    <div className="flex h-full w-full flex-col items-center justify-center gap-2 bg-muted/30">
+                        <User className="size-10 text-muted-foreground/50" />
+                        <span className="text-xs text-muted-foreground">
+                            No image
+                        </span>
+                    </div>
+                )}
 
-        {/* Upload overlay */}
-        {!preview && isDragOver && (
-          <div className="absolute inset-0 flex items-center justify-center bg-primary/10">
-            <Upload className="size-8 text-primary" />
-          </div>
-        )}
+                {/* Upload overlay */}
+                {!preview && isDragOver && (
+                    <div className="absolute inset-0 flex items-center justify-center bg-primary/10">
+                        <Upload className="size-8 text-primary" />
+                    </div>
+                )}
 
-        {/* Progress overlay */}
-        {status === "uploading" && (
-          <div className="absolute inset-0 flex flex-col items-center justify-center bg-background/80">
-            <div className="mb-2 text-lg font-bold text-foreground">{Math.round(progress)}%</div>
-            <Progress value={progress} className="h-1.5 w-24" />
-          </div>
-        )}
+                {/* Progress overlay */}
+                {status === \'uploading\' && (
+                    <div className="absolute inset-0 flex flex-col items-center justify-center bg-background/80">
+                        <div className="mb-2 text-lg font-bold text-foreground">
+                            {Math.round(progress)}%
+                        </div>
+                        <Progress value={progress} className="h-1.5 w-24" />
+                    </div>
+                )}
 
-        {/* Success badge */}
-        {status === "success" && (
-          <Badge className="absolute right-2 top-2 gap-1 bg-success text-success-foreground">
-            <Check className="size-3" />
-            Uploaded
-          </Badge>
-        )}
-      </div>
+                {/* Success badge */}
+                {status === \'success\' && (
+                    <Badge className="bg-success text-success-foreground absolute top-2 right-2 gap-1">
+                        <Check className="size-3" />
+                        Uploaded
+                    </Badge>
+                )}
+            </div>
 
-      <input
-        ref={inputRef}
-        type="file"
-        accept="image/*"
-        onChange={(e) => e.target.files?.[0] && handleFile(e.target.files[0])}
-        className="sr-only"
-      />
+            <input
+                ref={inputRef}
+                type="file"
+                accept="image/*"
+                onChange={(e) =>
+                    e.target.files?.[0] && handleFile(e.target.files[0])
+                }
+                className="sr-only"
+            />
 
-      {/* Action buttons */}
-      <div className="flex gap-2">
-        {status === "success" ? (
-          <>
-            <Button variant="outline" size="sm" onClick={() => inputRef.current?.click()}>
-              <RotateCcw className="mr-1.5 size-3.5" />
-              Replace
-            </Button>
-            <Button variant="ghost" size="sm" onClick={handleRemove} className="text-destructive hover:text-destructive">
-              <X className="mr-1.5 size-3.5" />
-              Remove
-            </Button>
-          </>
-        ) : (
-          <Button variant="outline" size="sm" onClick={() => inputRef.current?.click()}>
-            <Upload className="mr-1.5 size-3.5" />
-            Select Image
-          </Button>
-        )}
-      </div>
-    </div>
-  )
+            {/* Action buttons */}
+            <div className="flex gap-2">
+                {status === \'success\' ? (
+                    <>
+                        <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() => inputRef.current?.click()}
+                        >
+                            <RotateCcw className="mr-1.5 size-3.5" />
+                            Replace
+                        </Button>
+                        <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={handleRemove}
+                            className="text-destructive hover:text-destructive"
+                        >
+                            <X className="mr-1.5 size-3.5" />
+                            Remove
+                        </Button>
+                    </>
+                ) : (
+                    <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => inputRef.current?.click()}
+                    >
+                        <Upload className="mr-1.5 size-3.5" />
+                        Select Image
+                    </Button>
+                )}
+            </div>
+        </div>
+    );
 }
 ',
                     ],
@@ -24790,263 +25911,354 @@ export function AvatarDropzoneSquare({
                     [
                         'path' => 'resources/js/registry/new-york/components/ui/dropzones/gallery-dropzone-carousel.tsx',
                         'type' => 'registry:ui',
-                        'content' => '"use client"
+                        'content' => '\'use client\';
 
-import * as React from "react"
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { Progress } from "@/components/ui/progress"
-import { Badge } from "@/components/ui/badge"
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
-import { ImageIcon, Upload, X, Check, ChevronLeft, ChevronRight, Plus } from "lucide-react"
+import * as React from \'react\';
+import { cn } from \'@/lib/utils\';
+import { Button } from \'@/components/ui/button\';
+import { Progress } from \'@/components/ui/progress\';
+import { Badge } from \'@/components/ui/badge\';
+import { ScrollArea, ScrollBar } from \'@/components/ui/scroll-area\';
+import {
+    ImageIcon,
+    Upload,
+    X,
+    Check,
+    ChevronLeft,
+    ChevronRight,
+    Plus,
+} from \'lucide-react\';
 
 interface ImageFile {
-  id: string
-  file: File
-  preview: string
-  progress: number
-  status: "uploading" | "success" | "error"
+    id: string;
+    file: File;
+    preview: string;
+    progress: number;
+    status: \'uploading\' | \'success\' | \'error\';
 }
 
 interface GalleryDropzoneCarouselProps {
-  className?: string
-  onFilesChange?: (files: File[]) => void
-  maxFiles?: number
-  maxSize?: number
+    className?: string;
+    onFilesChange?: (files: File[]) => void;
+    maxFiles?: number;
+    maxSize?: number;
 }
 
 export function GalleryDropzoneCarousel({
-  className,
-  onFilesChange,
-  maxFiles = 10,
-  maxSize = 10,
+    className,
+    onFilesChange,
+    maxFiles = 10,
+    maxSize = 10,
 }: GalleryDropzoneCarouselProps) {
-  const [isDragOver, setIsDragOver] = React.useState(false)
-  const [images, setImages] = React.useState<ImageFile[]>([])
-  const [activeIndex, setActiveIndex] = React.useState(0)
-  const inputRef = React.useRef<HTMLInputElement>(null)
-  const scrollRef = React.useRef<HTMLDivElement>(null)
+    const [isDragOver, setIsDragOver] = React.useState(false);
+    const [images, setImages] = React.useState<ImageFile[]>([]);
+    const [activeIndex, setActiveIndex] = React.useState(0);
+    const inputRef = React.useRef<HTMLInputElement>(null);
+    const scrollRef = React.useRef<HTMLDivElement>(null);
 
-  const simulateUpload = React.useCallback((imageId: string) => {
-    const interval = setInterval(() => {
-      setImages((prev) =>
-        prev.map((img) => {
-          if (img.id !== imageId) return img
-          if (img.progress >= 100) {
-            clearInterval(interval)
-            return { ...img, progress: 100, status: "success" }
-          }
-          return { ...img, progress: img.progress + 18 }
-        })
-      )
-    }, 100)
-  }, [])
+    const simulateUpload = React.useCallback((imageId: string) => {
+        const interval = setInterval(() => {
+            setImages((prev) =>
+                prev.map((img) => {
+                    if (img.id !== imageId) return img;
+                    if (img.progress >= 100) {
+                        clearInterval(interval);
+                        return { ...img, progress: 100, status: \'success\' };
+                    }
+                    return { ...img, progress: img.progress + 18 };
+                }),
+            );
+        }, 100);
+    }, []);
 
-  const processFiles = React.useCallback(
-    (files: FileList | File[]) => {
-      const fileArray = Array.from(files)
-      const remainingSlots = maxFiles - images.length
-      const filesToProcess = fileArray.slice(0, remainingSlots)
+    const processFiles = React.useCallback(
+        (files: FileList | File[]) => {
+            const fileArray = Array.from(files);
+            const remainingSlots = maxFiles - images.length;
+            const filesToProcess = fileArray.slice(0, remainingSlots);
 
-      const newImages: ImageFile[] = filesToProcess.map((file) => {
-        const id = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`
+            const newImages: ImageFile[] = filesToProcess.map((file) => {
+                const id = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
 
-        if (!file.type.startsWith("image/") || file.size > maxSize * 1024 * 1024) {
-          return { id, file, preview: "", progress: 0, status: "error" as const }
-        }
+                if (
+                    !file.type.startsWith(\'image/\') ||
+                    file.size > maxSize * 1024 * 1024
+                ) {
+                    return {
+                        id,
+                        file,
+                        preview: \'\',
+                        progress: 0,
+                        status: \'error\' as const,
+                    };
+                }
 
-        const reader = new FileReader()
-        reader.onload = (e) => {
-          setImages((prev) =>
-            prev.map((img) => (img.id === id ? { ...img, preview: e.target?.result as string } : img))
-          )
-        }
-        reader.readAsDataURL(file)
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    setImages((prev) =>
+                        prev.map((img) =>
+                            img.id === id
+                                ? {
+                                      ...img,
+                                      preview: e.target?.result as string,
+                                  }
+                                : img,
+                        ),
+                    );
+                };
+                reader.readAsDataURL(file);
 
-        return { id, file, preview: "", progress: 0, status: "uploading" as const }
-      })
+                return {
+                    id,
+                    file,
+                    preview: \'\',
+                    progress: 0,
+                    status: \'uploading\' as const,
+                };
+            });
 
-      setImages((prev) => [...prev, ...newImages])
-      newImages.forEach((img) => {
-        if (img.status !== "error") setTimeout(() => simulateUpload(img.id), 50)
-      })
+            setImages((prev) => [...prev, ...newImages]);
+            newImages.forEach((img) => {
+                if (img.status !== \'error\')
+                    setTimeout(() => simulateUpload(img.id), 50);
+            });
 
-      onFilesChange?.([...images, ...newImages].filter((i) => i.status !== "error").map((i) => i.file))
-    },
-    [images, maxFiles, maxSize, onFilesChange, simulateUpload]
-  )
+            onFilesChange?.(
+                [...images, ...newImages]
+                    .filter((i) => i.status !== \'error\')
+                    .map((i) => i.file),
+            );
+        },
+        [images, maxFiles, maxSize, onFilesChange, simulateUpload],
+    );
 
-  const handleDrop = React.useCallback((e: React.DragEvent) => {
-    e.preventDefault()
-    setIsDragOver(false)
-    processFiles(e.dataTransfer.files)
-  }, [processFiles])
+    const handleDrop = React.useCallback(
+        (e: React.DragEvent) => {
+            e.preventDefault();
+            setIsDragOver(false);
+            processFiles(e.dataTransfer.files);
+        },
+        [processFiles],
+    );
 
-  const handleRemove = React.useCallback((id: string) => {
-    setImages((prev) => {
-      const updated = prev.filter((img) => img.id !== id)
-      onFilesChange?.(updated.filter((i) => i.status !== "error").map((i) => i.file))
-      if (activeIndex >= updated.length) setActiveIndex(Math.max(0, updated.length - 1))
-      return updated
-    })
-  }, [activeIndex, onFilesChange])
+    const handleRemove = React.useCallback(
+        (id: string) => {
+            setImages((prev) => {
+                const updated = prev.filter((img) => img.id !== id);
+                onFilesChange?.(
+                    updated
+                        .filter((i) => i.status !== \'error\')
+                        .map((i) => i.file),
+                );
+                if (activeIndex >= updated.length)
+                    setActiveIndex(Math.max(0, updated.length - 1));
+                return updated;
+            });
+        },
+        [activeIndex, onFilesChange],
+    );
 
-  const activeImage = images[activeIndex]
+    const activeImage = images[activeIndex];
 
-  return (
-    <div className={cn("flex flex-col gap-4", className)}>
-      {/* Main preview area */}
-      <div
-        role="button"
-        tabIndex={0}
-        aria-label="Upload images"
-        onClick={() => images.length === 0 && inputRef.current?.click()}
-        onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && images.length === 0 && inputRef.current?.click()}
-        onDrop={handleDrop}
-        onDragOver={(e) => { e.preventDefault(); setIsDragOver(true) }}
-        onDragLeave={(e) => { e.preventDefault(); setIsDragOver(false) }}
-        className={cn(
-          "relative aspect-[16/10] overflow-hidden rounded-lg border-2 transition-all",
-          images.length === 0 && "cursor-pointer border-dashed",
-          isDragOver ? "border-primary bg-primary/5" : "border-border"
-        )}
-      >
-        {images.length === 0 ? (
-          <div className="flex h-full flex-col items-center justify-center gap-3">
-            <div className="rounded-full bg-muted p-4">
-              <ImageIcon className="size-10 text-muted-foreground" />
-            </div>
-            <div className="text-center">
-              <p className="font-medium">Add photos to your gallery</p>
-              <p className="text-sm text-muted-foreground">Drag & drop or click to upload</p>
-            </div>
-            <Button variant="outline">
-              <Upload className="mr-2 size-4" />
-              Browse Files
-            </Button>
-          </div>
-        ) : activeImage ? (
-          <>
-            {activeImage.preview ? (
-              <img src={activeImage.preview} alt="" className="h-full w-full object-contain bg-muted" />
-            ) : (
-              <div className="flex h-full w-full items-center justify-center bg-muted">
-                <ImageIcon className="size-12 text-muted-foreground" />
-              </div>
-            )}
-
-            {activeImage.status === "uploading" && (
-              <div className="absolute inset-0 flex flex-col items-center justify-center bg-background/70">
-                <span className="mb-2 text-lg font-bold">{Math.round(activeImage.progress)}%</span>
-                <Progress value={activeImage.progress} className="h-2 w-1/2" />
-              </div>
-            )}
-
-            {activeImage.status === "success" && (
-              <Badge className="absolute right-3 top-3 gap-1 bg-success text-success-foreground">
-                <Check className="size-3.5" />
-                Uploaded
-              </Badge>
-            )}
-
-            <button
-              type="button"
-              onClick={() => handleRemove(activeImage.id)}
-              className="absolute right-3 bottom-3 flex size-8 items-center justify-center rounded-full bg-foreground/80 text-background hover:bg-destructive"
-              aria-label="Remove image"
-            >
-              <X className="size-4" />
-            </button>
-
-            {/* Navigation arrows */}
-            {images.length > 1 && (
-              <>
-                <button
-                  type="button"
-                  onClick={() => setActiveIndex((prev) => (prev - 1 + images.length) % images.length)}
-                  className="absolute left-2 top-1/2 flex size-8 -translate-y-1/2 items-center justify-center rounded-full bg-foreground/80 text-background hover:bg-foreground"
-                  aria-label="Previous image"
-                >
-                  <ChevronLeft className="size-5" />
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setActiveIndex((prev) => (prev + 1) % images.length)}
-                  className="absolute right-2 top-1/2 flex size-8 -translate-y-1/2 items-center justify-center rounded-full bg-foreground/80 text-background hover:bg-foreground"
-                  aria-label="Next image"
-                >
-                  <ChevronRight className="size-5" />
-                </button>
-              </>
-            )}
-
-            <div className="absolute bottom-3 left-3 rounded-full bg-foreground/80 px-2 py-0.5 text-xs text-background">
-              {activeIndex + 1} / {images.length}
-            </div>
-          </>
-        ) : null}
-
-        {isDragOver && (
-          <div className="absolute inset-0 flex items-center justify-center bg-primary/20">
-            <Upload className="size-12 text-primary" />
-          </div>
-        )}
-      </div>
-
-      {/* Thumbnail strip */}
-      {images.length > 0 && (
-        <ScrollArea className="w-full whitespace-nowrap">
-          <div ref={scrollRef} className="flex gap-2 pb-2">
-            {images.map((image, idx) => (
-              <button
-                key={image.id}
-                type="button"
-                onClick={() => setActiveIndex(idx)}
+    return (
+        <div className={cn(\'flex flex-col gap-4\', className)}>
+            {/* Main preview area */}
+            <div
+                role="button"
+                tabIndex={0}
+                aria-label="Upload images"
+                onClick={() => images.length === 0 && inputRef.current?.click()}
+                onKeyDown={(e) =>
+                    (e.key === \'Enter\' || e.key === \' \') &&
+                    images.length === 0 &&
+                    inputRef.current?.click()
+                }
+                onDrop={handleDrop}
+                onDragOver={(e) => {
+                    e.preventDefault();
+                    setIsDragOver(true);
+                }}
+                onDragLeave={(e) => {
+                    e.preventDefault();
+                    setIsDragOver(false);
+                }}
                 className={cn(
-                  "relative size-16 shrink-0 overflow-hidden rounded-md border-2 transition-all",
-                  idx === activeIndex ? "border-primary ring-2 ring-primary/20" : "border-transparent hover:border-muted-foreground/30"
+                    \'relative aspect-[16/10] overflow-hidden rounded-lg border-2 transition-all\',
+                    images.length === 0 && \'cursor-pointer border-dashed\',
+                    isDragOver
+                        ? \'border-primary bg-primary/5\'
+                        : \'border-border\',
                 )}
-              >
-                {image.preview ? (
-                  <img src={image.preview} alt="" className="h-full w-full object-cover" />
-                ) : (
-                  <div className="flex h-full w-full items-center justify-center bg-muted">
-                    <ImageIcon className="size-5 text-muted-foreground" />
-                  </div>
-                )}
-                {image.status === "uploading" && (
-                  <div className="absolute inset-0 flex items-center justify-center bg-background/60">
-                    <Progress value={image.progress} className="h-1 w-10" />
-                  </div>
-                )}
-              </button>
-            ))}
+            >
+                {images.length === 0 ? (
+                    <div className="flex h-full flex-col items-center justify-center gap-3">
+                        <div className="rounded-full bg-muted p-4">
+                            <ImageIcon className="size-10 text-muted-foreground" />
+                        </div>
+                        <div className="text-center">
+                            <p className="font-medium">
+                                Add photos to your gallery
+                            </p>
+                            <p className="text-sm text-muted-foreground">
+                                Drag & drop or click to upload
+                            </p>
+                        </div>
+                        <Button variant="outline">
+                            <Upload className="mr-2 size-4" />
+                            Browse Files
+                        </Button>
+                    </div>
+                ) : activeImage ? (
+                    <>
+                        {activeImage.preview ? (
+                            <img
+                                src={activeImage.preview}
+                                alt=""
+                                className="h-full w-full bg-muted object-contain"
+                            />
+                        ) : (
+                            <div className="flex h-full w-full items-center justify-center bg-muted">
+                                <ImageIcon className="size-12 text-muted-foreground" />
+                            </div>
+                        )}
 
-            {images.length < maxFiles && (
-              <button
-                type="button"
-                onClick={() => inputRef.current?.click()}
-                className="flex size-16 shrink-0 items-center justify-center rounded-md border-2 border-dashed border-muted-foreground/30 hover:border-primary/50 hover:bg-muted/30"
-                aria-label="Add more images"
-              >
-                <Plus className="size-5 text-muted-foreground" />
-              </button>
+                        {activeImage.status === \'uploading\' && (
+                            <div className="absolute inset-0 flex flex-col items-center justify-center bg-background/70">
+                                <span className="mb-2 text-lg font-bold">
+                                    {Math.round(activeImage.progress)}%
+                                </span>
+                                <Progress
+                                    value={activeImage.progress}
+                                    className="h-2 w-1/2"
+                                />
+                            </div>
+                        )}
+
+                        {activeImage.status === \'success\' && (
+                            <Badge className="bg-success text-success-foreground absolute top-3 right-3 gap-1">
+                                <Check className="size-3.5" />
+                                Uploaded
+                            </Badge>
+                        )}
+
+                        <button
+                            type="button"
+                            onClick={() => handleRemove(activeImage.id)}
+                            className="absolute right-3 bottom-3 flex size-8 items-center justify-center rounded-full bg-foreground/80 text-background hover:bg-destructive"
+                            aria-label="Remove image"
+                        >
+                            <X className="size-4" />
+                        </button>
+
+                        {/* Navigation arrows */}
+                        {images.length > 1 && (
+                            <>
+                                <button
+                                    type="button"
+                                    onClick={() =>
+                                        setActiveIndex(
+                                            (prev) =>
+                                                (prev - 1 + images.length) %
+                                                images.length,
+                                        )
+                                    }
+                                    className="absolute top-1/2 left-2 flex size-8 -translate-y-1/2 items-center justify-center rounded-full bg-foreground/80 text-background hover:bg-foreground"
+                                    aria-label="Previous image"
+                                >
+                                    <ChevronLeft className="size-5" />
+                                </button>
+                                <button
+                                    type="button"
+                                    onClick={() =>
+                                        setActiveIndex(
+                                            (prev) =>
+                                                (prev + 1) % images.length,
+                                        )
+                                    }
+                                    className="absolute top-1/2 right-2 flex size-8 -translate-y-1/2 items-center justify-center rounded-full bg-foreground/80 text-background hover:bg-foreground"
+                                    aria-label="Next image"
+                                >
+                                    <ChevronRight className="size-5" />
+                                </button>
+                            </>
+                        )}
+
+                        <div className="absolute bottom-3 left-3 rounded-full bg-foreground/80 px-2 py-0.5 text-xs text-background">
+                            {activeIndex + 1} / {images.length}
+                        </div>
+                    </>
+                ) : null}
+
+                {isDragOver && (
+                    <div className="absolute inset-0 flex items-center justify-center bg-primary/20">
+                        <Upload className="size-12 text-primary" />
+                    </div>
+                )}
+            </div>
+
+            {/* Thumbnail strip */}
+            {images.length > 0 && (
+                <ScrollArea className="w-full whitespace-nowrap">
+                    <div ref={scrollRef} className="flex gap-2 pb-2">
+                        {images.map((image, idx) => (
+                            <button
+                                key={image.id}
+                                type="button"
+                                onClick={() => setActiveIndex(idx)}
+                                className={cn(
+                                    \'relative size-16 shrink-0 overflow-hidden rounded-md border-2 transition-all\',
+                                    idx === activeIndex
+                                        ? \'border-primary ring-2 ring-primary/20\'
+                                        : \'border-transparent hover:border-muted-foreground/30\',
+                                )}
+                            >
+                                {image.preview ? (
+                                    <img
+                                        src={image.preview}
+                                        alt=""
+                                        className="h-full w-full object-cover"
+                                    />
+                                ) : (
+                                    <div className="flex h-full w-full items-center justify-center bg-muted">
+                                        <ImageIcon className="size-5 text-muted-foreground" />
+                                    </div>
+                                )}
+                                {image.status === \'uploading\' && (
+                                    <div className="absolute inset-0 flex items-center justify-center bg-background/60">
+                                        <Progress
+                                            value={image.progress}
+                                            className="h-1 w-10"
+                                        />
+                                    </div>
+                                )}
+                            </button>
+                        ))}
+
+                        {images.length < maxFiles && (
+                            <button
+                                type="button"
+                                onClick={() => inputRef.current?.click()}
+                                className="flex size-16 shrink-0 items-center justify-center rounded-md border-2 border-dashed border-muted-foreground/30 hover:border-primary/50 hover:bg-muted/30"
+                                aria-label="Add more images"
+                            >
+                                <Plus className="size-5 text-muted-foreground" />
+                            </button>
+                        )}
+                    </div>
+                    <ScrollBar orientation="horizontal" />
+                </ScrollArea>
             )}
-          </div>
-          <ScrollBar orientation="horizontal" />
-        </ScrollArea>
-      )}
 
-      <input
-        ref={inputRef}
-        type="file"
-        accept="image/*"
-        multiple
-        onChange={(e) => e.target.files && processFiles(e.target.files)}
-        className="sr-only"
-      />
-    </div>
-  )
+            <input
+                ref={inputRef}
+                type="file"
+                accept="image/*"
+                multiple
+                onChange={(e) => e.target.files && processFiles(e.target.files)}
+                className="sr-only"
+            />
+        </div>
+    );
 }
 ',
                     ],
@@ -25095,165 +26307,212 @@ export function GalleryDropzoneCarousel({
                     [
                         'path' => 'resources/js/registry/new-york/components/ui/dropzones/gallery-dropzone-compact.tsx',
                         'type' => 'registry:ui',
-                        'content' => '"use client"
+                        'content' => '\'use client\';
 
-import * as React from "react"
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { Progress } from "@/components/ui/progress"
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
-import { ImageIcon, Plus, X, Check, AlertCircle } from "lucide-react"
+import * as React from \'react\';
+import { cn } from \'@/lib/utils\';
+import { Button } from \'@/components/ui/button\';
+import { Progress } from \'@/components/ui/progress\';
+import {
+    Tooltip,
+    TooltipContent,
+    TooltipTrigger,
+} from \'@/components/ui/tooltip\';
+import { ImageIcon, Plus, X, Check, AlertCircle } from \'lucide-react\';
 
 interface ImageFile {
-  id: string
-  file: File
-  preview: string
-  progress: number
-  status: "uploading" | "success" | "error"
+    id: string;
+    file: File;
+    preview: string;
+    progress: number;
+    status: \'uploading\' | \'success\' | \'error\';
 }
 
 interface GalleryDropzoneCompactProps {
-  className?: string
-  onFilesChange?: (files: File[]) => void
-  maxFiles?: number
-  maxSize?: number
+    className?: string;
+    onFilesChange?: (files: File[]) => void;
+    maxFiles?: number;
+    maxSize?: number;
 }
 
 export function GalleryDropzoneCompact({
-  className,
-  onFilesChange,
-  maxFiles = 6,
-  maxSize = 10,
+    className,
+    onFilesChange,
+    maxFiles = 6,
+    maxSize = 10,
 }: GalleryDropzoneCompactProps) {
-  const [images, setImages] = React.useState<ImageFile[]>([])
-  const inputRef = React.useRef<HTMLInputElement>(null)
+    const [images, setImages] = React.useState<ImageFile[]>([]);
+    const inputRef = React.useRef<HTMLInputElement>(null);
 
-  const simulateUpload = React.useCallback((imageId: string) => {
-    const interval = setInterval(() => {
-      setImages((prev) =>
-        prev.map((img) => {
-          if (img.id !== imageId) return img
-          if (img.progress >= 100) {
-            clearInterval(interval)
-            return { ...img, progress: 100, status: "success" }
-          }
-          return { ...img, progress: img.progress + 20 }
-        })
-      )
-    }, 100)
-  }, [])
+    const simulateUpload = React.useCallback((imageId: string) => {
+        const interval = setInterval(() => {
+            setImages((prev) =>
+                prev.map((img) => {
+                    if (img.id !== imageId) return img;
+                    if (img.progress >= 100) {
+                        clearInterval(interval);
+                        return { ...img, progress: 100, status: \'success\' };
+                    }
+                    return { ...img, progress: img.progress + 20 };
+                }),
+            );
+        }, 100);
+    }, []);
 
-  const processFiles = React.useCallback(
-    (files: FileList | File[]) => {
-      const fileArray = Array.from(files)
-      const remainingSlots = maxFiles - images.length
-      const filesToProcess = fileArray.slice(0, remainingSlots)
+    const processFiles = React.useCallback(
+        (files: FileList | File[]) => {
+            const fileArray = Array.from(files);
+            const remainingSlots = maxFiles - images.length;
+            const filesToProcess = fileArray.slice(0, remainingSlots);
 
-      const newImages: ImageFile[] = filesToProcess.map((file) => {
-        const id = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`
+            const newImages: ImageFile[] = filesToProcess.map((file) => {
+                const id = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
 
-        if (!file.type.startsWith("image/") || file.size > maxSize * 1024 * 1024) {
-          return { id, file, preview: "", progress: 0, status: "error" as const }
-        }
+                if (
+                    !file.type.startsWith(\'image/\') ||
+                    file.size > maxSize * 1024 * 1024
+                ) {
+                    return {
+                        id,
+                        file,
+                        preview: \'\',
+                        progress: 0,
+                        status: \'error\' as const,
+                    };
+                }
 
-        const reader = new FileReader()
-        reader.onload = (e) => {
-          setImages((prev) =>
-            prev.map((img) => (img.id === id ? { ...img, preview: e.target?.result as string } : img))
-          )
-        }
-        reader.readAsDataURL(file)
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    setImages((prev) =>
+                        prev.map((img) =>
+                            img.id === id
+                                ? {
+                                      ...img,
+                                      preview: e.target?.result as string,
+                                  }
+                                : img,
+                        ),
+                    );
+                };
+                reader.readAsDataURL(file);
 
-        return { id, file, preview: "", progress: 0, status: "uploading" as const }
-      })
+                return {
+                    id,
+                    file,
+                    preview: \'\',
+                    progress: 0,
+                    status: \'uploading\' as const,
+                };
+            });
 
-      setImages((prev) => [...prev, ...newImages])
-      newImages.forEach((img) => {
-        if (img.status !== "error") setTimeout(() => simulateUpload(img.id), 50)
-      })
+            setImages((prev) => [...prev, ...newImages]);
+            newImages.forEach((img) => {
+                if (img.status !== \'error\')
+                    setTimeout(() => simulateUpload(img.id), 50);
+            });
 
-      onFilesChange?.([...images, ...newImages].filter((i) => i.status !== "error").map((i) => i.file))
-    },
-    [images, maxFiles, maxSize, onFilesChange, simulateUpload]
-  )
+            onFilesChange?.(
+                [...images, ...newImages]
+                    .filter((i) => i.status !== \'error\')
+                    .map((i) => i.file),
+            );
+        },
+        [images, maxFiles, maxSize, onFilesChange, simulateUpload],
+    );
 
-  const handleRemove = React.useCallback((id: string) => {
-    setImages((prev) => {
-      const updated = prev.filter((img) => img.id !== id)
-      onFilesChange?.(updated.filter((i) => i.status !== "error").map((i) => i.file))
-      return updated
-    })
-  }, [onFilesChange])
+    const handleRemove = React.useCallback(
+        (id: string) => {
+            setImages((prev) => {
+                const updated = prev.filter((img) => img.id !== id);
+                onFilesChange?.(
+                    updated
+                        .filter((i) => i.status !== \'error\')
+                        .map((i) => i.file),
+                );
+                return updated;
+            });
+        },
+        [onFilesChange],
+    );
 
-  return (
-    <div className={cn("flex flex-wrap items-center gap-2", className)}>
-      {images.map((image) => (
-        <Tooltip key={image.id}>
-          <TooltipTrigger asChild>
-            <div className="group relative size-14 overflow-hidden rounded-md border bg-muted">
-              {image.preview ? (
-                <img src={image.preview} alt="" className="h-full w-full object-cover" />
-              ) : (
-                <div className="flex h-full w-full items-center justify-center">
-                  <ImageIcon className="size-5 text-muted-foreground" />
-                </div>
-              )}
+    return (
+        <div className={cn(\'flex flex-wrap items-center gap-2\', className)}>
+            {images.map((image) => (
+                <Tooltip key={image.id}>
+                    <TooltipTrigger asChild>
+                        <div className="group relative size-14 overflow-hidden rounded-md border bg-muted">
+                            {image.preview ? (
+                                <img
+                                    src={image.preview}
+                                    alt=""
+                                    className="h-full w-full object-cover"
+                                />
+                            ) : (
+                                <div className="flex h-full w-full items-center justify-center">
+                                    <ImageIcon className="size-5 text-muted-foreground" />
+                                </div>
+                            )}
 
-              {/* Progress overlay */}
-              {image.status === "uploading" && (
-                <div className="absolute inset-0 flex items-center justify-center bg-background/70">
-                  <Progress value={Math.min(image.progress, 100)} className="h-1 w-10" />
-                </div>
-              )}
+                            {/* Progress overlay */}
+                            {image.status === \'uploading\' && (
+                                <div className="absolute inset-0 flex items-center justify-center bg-background/70">
+                                    <Progress
+                                        value={Math.min(image.progress, 100)}
+                                        className="h-1 w-10"
+                                    />
+                                </div>
+                            )}
 
-              {/* Status icons */}
-              {image.status === "success" && (
-                <div className="absolute bottom-0.5 right-0.5 rounded-full bg-success p-0.5">
-                  <Check className="size-2.5 text-success-foreground" />
-                </div>
-              )}
-              {image.status === "error" && (
-                <div className="absolute bottom-0.5 right-0.5 rounded-full bg-destructive p-0.5">
-                  <AlertCircle className="size-2.5 text-white" />
-                </div>
-              )}
+                            {/* Status icons */}
+                            {image.status === \'success\' && (
+                                <div className="bg-success absolute right-0.5 bottom-0.5 rounded-full p-0.5">
+                                    <Check className="text-success-foreground size-2.5" />
+                                </div>
+                            )}
+                            {image.status === \'error\' && (
+                                <div className="absolute right-0.5 bottom-0.5 rounded-full bg-destructive p-0.5">
+                                    <AlertCircle className="size-2.5 text-white" />
+                                </div>
+                            )}
 
-              {/* Remove button */}
-              <button
-                type="button"
-                onClick={() => handleRemove(image.id)}
-                className="absolute right-0.5 top-0.5 flex size-4 items-center justify-center rounded-full bg-foreground/80 text-background opacity-0 transition-opacity group-hover:opacity-100"
-                aria-label="Remove"
-              >
-                <X className="size-2.5" />
-              </button>
-            </div>
-          </TooltipTrigger>
-          <TooltipContent side="bottom" className="text-xs">{image.file.name}</TooltipContent>
-        </Tooltip>
-      ))}
+                            {/* Remove button */}
+                            <button
+                                type="button"
+                                onClick={() => handleRemove(image.id)}
+                                className="absolute top-0.5 right-0.5 flex size-4 items-center justify-center rounded-full bg-foreground/80 text-background opacity-0 transition-opacity group-hover:opacity-100"
+                                aria-label="Remove"
+                            >
+                                <X className="size-2.5" />
+                            </button>
+                        </div>
+                    </TooltipTrigger>
+                    <TooltipContent side="bottom" className="text-xs">
+                        {image.file.name}
+                    </TooltipContent>
+                </Tooltip>
+            ))}
 
-      {images.length < maxFiles && (
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={() => inputRef.current?.click()}
-          className="size-14 border-dashed"
-        >
-          <Plus className="size-5 text-muted-foreground" />
-        </Button>
-      )}
+            {images.length < maxFiles && (
+                <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => inputRef.current?.click()}
+                    className="size-14 border-dashed"
+                >
+                    <Plus className="size-5 text-muted-foreground" />
+                </Button>
+            )}
 
-      <input
-        ref={inputRef}
-        type="file"
-        accept="image/*"
-        multiple
-        onChange={(e) => e.target.files && processFiles(e.target.files)}
-        className="sr-only"
-      />
-    </div>
-  )
+            <input
+                ref={inputRef}
+                type="file"
+                accept="image/*"
+                multiple
+                onChange={(e) => e.target.files && processFiles(e.target.files)}
+                className="sr-only"
+            />
+        </div>
+    );
 }
 ',
                     ],
@@ -25303,238 +26562,307 @@ export function GalleryDropzoneCompact({
                     [
                         'path' => 'resources/js/registry/new-york/components/ui/dropzones/gallery-dropzone-dialog.tsx',
                         'type' => 'registry:ui',
-                        'content' => '"use client"
+                        'content' => '\'use client\';
 
-import * as React from "react"
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { Progress } from "@/components/ui/progress"
-import { Badge } from "@/components/ui/badge"
+import * as React from \'react\';
+import { cn } from \'@/lib/utils\';
+import { Button } from \'@/components/ui/button\';
+import { Progress } from \'@/components/ui/progress\';
+import { Badge } from \'@/components/ui/badge\';
 import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-  DialogFooter,
-} from "@/components/ui/dialog"
-import { ImageIcon, Upload, X, Check, Plus, Images } from "lucide-react"
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+    DialogFooter,
+} from \'@/components/ui/dialog\';
+import { ImageIcon, Upload, X, Check, Plus, Images } from \'lucide-react\';
 
 interface ImageFile {
-  id: string
-  file: File
-  preview: string
-  progress: number
-  status: "uploading" | "success" | "error"
+    id: string;
+    file: File;
+    preview: string;
+    progress: number;
+    status: \'uploading\' | \'success\' | \'error\';
 }
 
 interface GalleryDropzoneDialogProps {
-  className?: string
-  onFilesChange?: (files: File[]) => void
-  maxFiles?: number
-  maxSize?: number
+    className?: string;
+    onFilesChange?: (files: File[]) => void;
+    maxFiles?: number;
+    maxSize?: number;
 }
 
 export function GalleryDropzoneDialog({
-  className,
-  onFilesChange,
-  maxFiles = 12,
-  maxSize = 10,
+    className,
+    onFilesChange,
+    maxFiles = 12,
+    maxSize = 10,
 }: GalleryDropzoneDialogProps) {
-  const [isOpen, setIsOpen] = React.useState(false)
-  const [isDragOver, setIsDragOver] = React.useState(false)
-  const [images, setImages] = React.useState<ImageFile[]>([])
-  const inputRef = React.useRef<HTMLInputElement>(null)
+    const [isOpen, setIsOpen] = React.useState(false);
+    const [isDragOver, setIsDragOver] = React.useState(false);
+    const [images, setImages] = React.useState<ImageFile[]>([]);
+    const inputRef = React.useRef<HTMLInputElement>(null);
 
-  const simulateUpload = React.useCallback((imageId: string) => {
-    const interval = setInterval(() => {
-      setImages((prev) =>
-        prev.map((img) => {
-          if (img.id !== imageId) return img
-          if (img.progress >= 100) {
-            clearInterval(interval)
-            return { ...img, progress: 100, status: "success" }
-          }
-          return { ...img, progress: img.progress + 12 }
-        })
-      )
-    }, 100)
-  }, [])
+    const simulateUpload = React.useCallback((imageId: string) => {
+        const interval = setInterval(() => {
+            setImages((prev) =>
+                prev.map((img) => {
+                    if (img.id !== imageId) return img;
+                    if (img.progress >= 100) {
+                        clearInterval(interval);
+                        return { ...img, progress: 100, status: \'success\' };
+                    }
+                    return { ...img, progress: img.progress + 12 };
+                }),
+            );
+        }, 100);
+    }, []);
 
-  const processFiles = React.useCallback(
-    (files: FileList | File[]) => {
-      const fileArray = Array.from(files)
-      const remainingSlots = maxFiles - images.length
-      const filesToProcess = fileArray.slice(0, remainingSlots)
+    const processFiles = React.useCallback(
+        (files: FileList | File[]) => {
+            const fileArray = Array.from(files);
+            const remainingSlots = maxFiles - images.length;
+            const filesToProcess = fileArray.slice(0, remainingSlots);
 
-      const newImages: ImageFile[] = filesToProcess.map((file) => {
-        const id = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`
+            const newImages: ImageFile[] = filesToProcess.map((file) => {
+                const id = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
 
-        if (!file.type.startsWith("image/") || file.size > maxSize * 1024 * 1024) {
-          return { id, file, preview: "", progress: 0, status: "error" as const }
-        }
+                if (
+                    !file.type.startsWith(\'image/\') ||
+                    file.size > maxSize * 1024 * 1024
+                ) {
+                    return {
+                        id,
+                        file,
+                        preview: \'\',
+                        progress: 0,
+                        status: \'error\' as const,
+                    };
+                }
 
-        const reader = new FileReader()
-        reader.onload = (e) => {
-          setImages((prev) =>
-            prev.map((img) => (img.id === id ? { ...img, preview: e.target?.result as string } : img))
-          )
-        }
-        reader.readAsDataURL(file)
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    setImages((prev) =>
+                        prev.map((img) =>
+                            img.id === id
+                                ? {
+                                      ...img,
+                                      preview: e.target?.result as string,
+                                  }
+                                : img,
+                        ),
+                    );
+                };
+                reader.readAsDataURL(file);
 
-        return { id, file, preview: "", progress: 0, status: "uploading" as const }
-      })
+                return {
+                    id,
+                    file,
+                    preview: \'\',
+                    progress: 0,
+                    status: \'uploading\' as const,
+                };
+            });
 
-      setImages((prev) => [...prev, ...newImages])
-      newImages.forEach((img) => {
-        if (img.status !== "error") setTimeout(() => simulateUpload(img.id), 50)
-      })
-    },
-    [images.length, maxFiles, maxSize, simulateUpload]
-  )
+            setImages((prev) => [...prev, ...newImages]);
+            newImages.forEach((img) => {
+                if (img.status !== \'error\')
+                    setTimeout(() => simulateUpload(img.id), 50);
+            });
+        },
+        [images.length, maxFiles, maxSize, simulateUpload],
+    );
 
-  const handleDrop = React.useCallback((e: React.DragEvent) => {
-    e.preventDefault()
-    setIsDragOver(false)
-    processFiles(e.dataTransfer.files)
-  }, [processFiles])
+    const handleDrop = React.useCallback(
+        (e: React.DragEvent) => {
+            e.preventDefault();
+            setIsDragOver(false);
+            processFiles(e.dataTransfer.files);
+        },
+        [processFiles],
+    );
 
-  const handleRemove = (id: string) => setImages((prev) => prev.filter((img) => img.id !== id))
+    const handleRemove = (id: string) =>
+        setImages((prev) => prev.filter((img) => img.id !== id));
 
-  const handleSave = () => {
-    onFilesChange?.(images.filter((i) => i.status === "success").map((i) => i.file))
-    setIsOpen(false)
-  }
+    const handleSave = () => {
+        onFilesChange?.(
+            images.filter((i) => i.status === \'success\').map((i) => i.file),
+        );
+        setIsOpen(false);
+    };
 
-  const successCount = images.filter((i) => i.status === "success").length
+    const successCount = images.filter((i) => i.status === \'success\').length;
 
-  return (
-    <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogTrigger asChild>
-        <Button variant="outline" className={cn("gap-2", className)}>
-          <Images className="size-4" />
-          Upload Gallery
-          {successCount > 0 && (
-            <Badge variant="secondary" className="ml-1">{successCount}</Badge>
-          )}
-        </Button>
-      </DialogTrigger>
+    return (
+        <Dialog open={isOpen} onOpenChange={setIsOpen}>
+            <DialogTrigger asChild>
+                <Button variant="outline" className={cn(\'gap-2\', className)}>
+                    <Images className="size-4" />
+                    Upload Gallery
+                    {successCount > 0 && (
+                        <Badge variant="secondary" className="ml-1">
+                            {successCount}
+                        </Badge>
+                    )}
+                </Button>
+            </DialogTrigger>
 
-      <DialogContent className="max-w-2xl">
-        <DialogHeader>
-          <DialogTitle>Upload Images</DialogTitle>
-          <DialogDescription>
-            Add up to {maxFiles} images to your gallery. Max {maxSize}MB per file.
-          </DialogDescription>
-        </DialogHeader>
+            <DialogContent className="max-w-2xl">
+                <DialogHeader>
+                    <DialogTitle>Upload Images</DialogTitle>
+                    <DialogDescription>
+                        Add up to {maxFiles} images to your gallery. Max{\' \'}
+                        {maxSize}MB per file.
+                    </DialogDescription>
+                </DialogHeader>
 
-        {/* Dropzone area */}
-        <div
-          role="button"
-          tabIndex={0}
-          aria-label="Upload images"
-          onClick={() => images.length < maxFiles && inputRef.current?.click()}
-          onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && images.length < maxFiles && inputRef.current?.click()}
-          onDrop={handleDrop}
-          onDragOver={(e) => { e.preventDefault(); setIsDragOver(true) }}
-          onDragLeave={(e) => { e.preventDefault(); setIsDragOver(false) }}
-          className={cn(
-            "relative min-h-[300px] rounded-lg border-2 border-dashed p-4 transition-all",
-            images.length < maxFiles && "cursor-pointer",
-            isDragOver ? "border-primary bg-primary/5" : "border-muted hover:border-primary/40"
-          )}
-        >
-          {images.length === 0 ? (
-            <div className="flex h-full min-h-[260px] flex-col items-center justify-center gap-4">
-              <div className="rounded-full bg-muted p-5">
-                <Upload className="size-10 text-muted-foreground" />
-              </div>
-              <div className="text-center">
-                <p className="font-medium">Drag & drop your images here</p>
-                <p className="text-sm text-muted-foreground">or click anywhere to browse</p>
-              </div>
-            </div>
-          ) : (
-            <div className="grid grid-cols-3 gap-3">
-              {images.map((image) => (
+                {/* Dropzone area */}
                 <div
-                  key={image.id}
-                  className="group relative aspect-square overflow-hidden rounded-md border bg-muted"
+                    role="button"
+                    tabIndex={0}
+                    aria-label="Upload images"
+                    onClick={() =>
+                        images.length < maxFiles && inputRef.current?.click()
+                    }
+                    onKeyDown={(e) =>
+                        (e.key === \'Enter\' || e.key === \' \') &&
+                        images.length < maxFiles &&
+                        inputRef.current?.click()
+                    }
+                    onDrop={handleDrop}
+                    onDragOver={(e) => {
+                        e.preventDefault();
+                        setIsDragOver(true);
+                    }}
+                    onDragLeave={(e) => {
+                        e.preventDefault();
+                        setIsDragOver(false);
+                    }}
+                    className={cn(
+                        \'relative min-h-[300px] rounded-lg border-2 border-dashed p-4 transition-all\',
+                        images.length < maxFiles && \'cursor-pointer\',
+                        isDragOver
+                            ? \'border-primary bg-primary/5\'
+                            : \'border-muted hover:border-primary/40\',
+                    )}
                 >
-                  {image.preview ? (
-                    <img src={image.preview} alt="" className="h-full w-full object-cover" />
-                  ) : (
-                    <div className="flex h-full w-full items-center justify-center">
-                      <ImageIcon className="size-8 text-muted-foreground" />
-                    </div>
-                  )}
+                    {images.length === 0 ? (
+                        <div className="flex h-full min-h-[260px] flex-col items-center justify-center gap-4">
+                            <div className="rounded-full bg-muted p-5">
+                                <Upload className="size-10 text-muted-foreground" />
+                            </div>
+                            <div className="text-center">
+                                <p className="font-medium">
+                                    Drag & drop your images here
+                                </p>
+                                <p className="text-sm text-muted-foreground">
+                                    or click anywhere to browse
+                                </p>
+                            </div>
+                        </div>
+                    ) : (
+                        <div className="grid grid-cols-3 gap-3">
+                            {images.map((image) => (
+                                <div
+                                    key={image.id}
+                                    className="group relative aspect-square overflow-hidden rounded-md border bg-muted"
+                                >
+                                    {image.preview ? (
+                                        <img
+                                            src={image.preview}
+                                            alt=""
+                                            className="h-full w-full object-cover"
+                                        />
+                                    ) : (
+                                        <div className="flex h-full w-full items-center justify-center">
+                                            <ImageIcon className="size-8 text-muted-foreground" />
+                                        </div>
+                                    )}
 
-                  {image.status === "uploading" && (
-                    <div className="absolute inset-0 flex flex-col items-center justify-center bg-background/70">
-                      <span className="mb-1 text-sm font-medium">{Math.round(image.progress)}%</span>
-                      <Progress value={image.progress} className="h-1.5 w-3/4" />
-                    </div>
-                  )}
+                                    {image.status === \'uploading\' && (
+                                        <div className="absolute inset-0 flex flex-col items-center justify-center bg-background/70">
+                                            <span className="mb-1 text-sm font-medium">
+                                                {Math.round(image.progress)}%
+                                            </span>
+                                            <Progress
+                                                value={image.progress}
+                                                className="h-1.5 w-3/4"
+                                            />
+                                        </div>
+                                    )}
 
-                  {image.status === "success" && (
-                    <div className="absolute right-1.5 top-1.5 rounded-full bg-success p-1">
-                      <Check className="size-3 text-success-foreground" />
-                    </div>
-                  )}
+                                    {image.status === \'success\' && (
+                                        <div className="bg-success absolute top-1.5 right-1.5 rounded-full p-1">
+                                            <Check className="text-success-foreground size-3" />
+                                        </div>
+                                    )}
 
-                  <button
-                    type="button"
-                    onClick={(e) => { e.stopPropagation(); handleRemove(image.id) }}
-                    className="absolute left-1.5 top-1.5 flex size-6 items-center justify-center rounded-full bg-foreground/80 text-background opacity-0 transition-opacity group-hover:opacity-100 hover:bg-destructive"
-                    aria-label="Remove"
-                  >
-                    <X className="size-3.5" />
-                  </button>
+                                    <button
+                                        type="button"
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            handleRemove(image.id);
+                                        }}
+                                        className="absolute top-1.5 left-1.5 flex size-6 items-center justify-center rounded-full bg-foreground/80 text-background opacity-0 transition-opacity group-hover:opacity-100 hover:bg-destructive"
+                                        aria-label="Remove"
+                                    >
+                                        <X className="size-3.5" />
+                                    </button>
+                                </div>
+                            ))}
+
+                            {images.length < maxFiles && (
+                                <button
+                                    type="button"
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        inputRef.current?.click();
+                                    }}
+                                    className="flex aspect-square items-center justify-center rounded-md border-2 border-dashed border-muted-foreground/30 hover:border-primary/50"
+                                    aria-label="Add more"
+                                >
+                                    <Plus className="size-8 text-muted-foreground" />
+                                </button>
+                            )}
+                        </div>
+                    )}
+
+                    {isDragOver && (
+                        <div className="absolute inset-0 flex items-center justify-center rounded-lg bg-primary/20">
+                            <Upload className="size-12 text-primary" />
+                        </div>
+                    )}
                 </div>
-              ))}
 
-              {images.length < maxFiles && (
-                <button
-                  type="button"
-                  onClick={(e) => { e.stopPropagation(); inputRef.current?.click() }}
-                  className="flex aspect-square items-center justify-center rounded-md border-2 border-dashed border-muted-foreground/30 hover:border-primary/50"
-                  aria-label="Add more"
-                >
-                  <Plus className="size-8 text-muted-foreground" />
-                </button>
-              )}
-            </div>
-          )}
+                <input
+                    ref={inputRef}
+                    type="file"
+                    accept="image/*"
+                    multiple
+                    onChange={(e) =>
+                        e.target.files && processFiles(e.target.files)
+                    }
+                    className="sr-only"
+                />
 
-          {isDragOver && (
-            <div className="absolute inset-0 flex items-center justify-center rounded-lg bg-primary/20">
-              <Upload className="size-12 text-primary" />
-            </div>
-          )}
-        </div>
-
-        <input
-          ref={inputRef}
-          type="file"
-          accept="image/*"
-          multiple
-          onChange={(e) => e.target.files && processFiles(e.target.files)}
-          className="sr-only"
-        />
-
-        <DialogFooter className="gap-2 sm:gap-0">
-          <div className="mr-auto text-sm text-muted-foreground">
-            {images.length} of {maxFiles} images
-          </div>
-          <Button variant="outline" onClick={() => setIsOpen(false)}>Cancel</Button>
-          <Button onClick={handleSave} disabled={successCount === 0}>
-            Save {successCount > 0 && `(${successCount})`}
-          </Button>
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
-  )
+                <DialogFooter className="gap-2 sm:gap-0">
+                    <div className="mr-auto text-sm text-muted-foreground">
+                        {images.length} of {maxFiles} images
+                    </div>
+                    <Button variant="outline" onClick={() => setIsOpen(false)}>
+                        Cancel
+                    </Button>
+                    <Button onClick={handleSave} disabled={successCount === 0}>
+                        Save {successCount > 0 && `(${successCount})`}
+                    </Button>
+                </DialogFooter>
+            </DialogContent>
+        </Dialog>
+    );
 }
 ',
                     ],
@@ -25585,223 +26913,319 @@ export function GalleryDropzoneDialog({
                     [
                         'path' => 'resources/js/registry/new-york/components/ui/dropzones/gallery-dropzone-list.tsx',
                         'type' => 'registry:ui',
-                        'content' => '"use client"
+                        'content' => '\'use client\';
 
-import * as React from "react"
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { Progress } from "@/components/ui/progress"
-import { Badge } from "@/components/ui/badge"
-import { Separator } from "@/components/ui/separator"
-import { ScrollArea } from "@/components/ui/scroll-area"
-import { ImageIcon, Upload, X, Check, FileWarning, Trash2 } from "lucide-react"
+import * as React from \'react\';
+import { cn } from \'@/lib/utils\';
+import { Button } from \'@/components/ui/button\';
+import { Progress } from \'@/components/ui/progress\';
+import { Badge } from \'@/components/ui/badge\';
+import { Separator } from \'@/components/ui/separator\';
+import { ScrollArea } from \'@/components/ui/scroll-area\';
+import { ImageIcon, Upload, X, Check, FileWarning, Trash2 } from \'lucide-react\';
 
 interface ImageFile {
-  id: string
-  file: File
-  preview: string
-  progress: number
-  status: "uploading" | "success" | "error"
-  error?: string
+    id: string;
+    file: File;
+    preview: string;
+    progress: number;
+    status: \'uploading\' | \'success\' | \'error\';
+    error?: string;
 }
 
 interface GalleryDropzoneListProps {
-  className?: string
-  onFilesChange?: (files: File[]) => void
-  maxFiles?: number
-  maxSize?: number
+    className?: string;
+    onFilesChange?: (files: File[]) => void;
+    maxFiles?: number;
+    maxSize?: number;
 }
 
 export function GalleryDropzoneList({
-  className,
-  onFilesChange,
-  maxFiles = 10,
-  maxSize = 10,
+    className,
+    onFilesChange,
+    maxFiles = 10,
+    maxSize = 10,
 }: GalleryDropzoneListProps) {
-  const [isDragOver, setIsDragOver] = React.useState(false)
-  const [images, setImages] = React.useState<ImageFile[]>([])
-  const inputRef = React.useRef<HTMLInputElement>(null)
+    const [isDragOver, setIsDragOver] = React.useState(false);
+    const [images, setImages] = React.useState<ImageFile[]>([]);
+    const inputRef = React.useRef<HTMLInputElement>(null);
 
-  const simulateUpload = React.useCallback((imageId: string) => {
-    const interval = setInterval(() => {
-      setImages((prev) =>
-        prev.map((img) => {
-          if (img.id !== imageId) return img
-          if (img.progress >= 100) {
-            clearInterval(interval)
-            return { ...img, progress: 100, status: "success" }
-          }
-          return { ...img, progress: img.progress + Math.random() * 20 + 10 }
-        })
-      )
-    }, 150)
-  }, [])
+    const simulateUpload = React.useCallback((imageId: string) => {
+        const interval = setInterval(() => {
+            setImages((prev) =>
+                prev.map((img) => {
+                    if (img.id !== imageId) return img;
+                    if (img.progress >= 100) {
+                        clearInterval(interval);
+                        return { ...img, progress: 100, status: \'success\' };
+                    }
+                    return {
+                        ...img,
+                        progress: img.progress + Math.random() * 20 + 10,
+                    };
+                }),
+            );
+        }, 150);
+    }, []);
 
-  const processFiles = React.useCallback(
-    (files: FileList | File[]) => {
-      const fileArray = Array.from(files)
-      const remainingSlots = maxFiles - images.length
-      const filesToProcess = fileArray.slice(0, remainingSlots)
+    const processFiles = React.useCallback(
+        (files: FileList | File[]) => {
+            const fileArray = Array.from(files);
+            const remainingSlots = maxFiles - images.length;
+            const filesToProcess = fileArray.slice(0, remainingSlots);
 
-      const newImages: ImageFile[] = filesToProcess.map((file) => {
-        const id = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`
+            const newImages: ImageFile[] = filesToProcess.map((file) => {
+                const id = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
 
-        if (!file.type.startsWith("image/")) {
-          return { id, file, preview: "", progress: 0, status: "error" as const, error: "Not an image" }
-        }
-        if (file.size > maxSize * 1024 * 1024) {
-          return { id, file, preview: "", progress: 0, status: "error" as const, error: `Max ${maxSize}MB` }
-        }
+                if (!file.type.startsWith(\'image/\')) {
+                    return {
+                        id,
+                        file,
+                        preview: \'\',
+                        progress: 0,
+                        status: \'error\' as const,
+                        error: \'Not an image\',
+                    };
+                }
+                if (file.size > maxSize * 1024 * 1024) {
+                    return {
+                        id,
+                        file,
+                        preview: \'\',
+                        progress: 0,
+                        status: \'error\' as const,
+                        error: `Max ${maxSize}MB`,
+                    };
+                }
 
-        const reader = new FileReader()
-        reader.onload = (e) => {
-          setImages((prev) =>
-            prev.map((img) => (img.id === id ? { ...img, preview: e.target?.result as string } : img))
-          )
-        }
-        reader.readAsDataURL(file)
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    setImages((prev) =>
+                        prev.map((img) =>
+                            img.id === id
+                                ? {
+                                      ...img,
+                                      preview: e.target?.result as string,
+                                  }
+                                : img,
+                        ),
+                    );
+                };
+                reader.readAsDataURL(file);
 
-        return { id, file, preview: "", progress: 0, status: "uploading" as const }
-      })
+                return {
+                    id,
+                    file,
+                    preview: \'\',
+                    progress: 0,
+                    status: \'uploading\' as const,
+                };
+            });
 
-      setImages((prev) => [...prev, ...newImages])
-      newImages.forEach((img) => {
-        if (img.status !== "error") setTimeout(() => simulateUpload(img.id), 50)
-      })
+            setImages((prev) => [...prev, ...newImages]);
+            newImages.forEach((img) => {
+                if (img.status !== \'error\')
+                    setTimeout(() => simulateUpload(img.id), 50);
+            });
 
-      onFilesChange?.([...images, ...newImages].filter((i) => i.status !== "error").map((i) => i.file))
-    },
-    [images, maxFiles, maxSize, onFilesChange, simulateUpload]
-  )
+            onFilesChange?.(
+                [...images, ...newImages]
+                    .filter((i) => i.status !== \'error\')
+                    .map((i) => i.file),
+            );
+        },
+        [images, maxFiles, maxSize, onFilesChange, simulateUpload],
+    );
 
-  const handleDrop = React.useCallback((e: React.DragEvent) => {
-    e.preventDefault()
-    setIsDragOver(false)
-    processFiles(e.dataTransfer.files)
-  }, [processFiles])
+    const handleDrop = React.useCallback(
+        (e: React.DragEvent) => {
+            e.preventDefault();
+            setIsDragOver(false);
+            processFiles(e.dataTransfer.files);
+        },
+        [processFiles],
+    );
 
-  const handleRemove = React.useCallback((id: string) => {
-    setImages((prev) => {
-      const updated = prev.filter((img) => img.id !== id)
-      onFilesChange?.(updated.filter((i) => i.status !== "error").map((i) => i.file))
-      return updated
-    })
-  }, [onFilesChange])
+    const handleRemove = React.useCallback(
+        (id: string) => {
+            setImages((prev) => {
+                const updated = prev.filter((img) => img.id !== id);
+                onFilesChange?.(
+                    updated
+                        .filter((i) => i.status !== \'error\')
+                        .map((i) => i.file),
+                );
+                return updated;
+            });
+        },
+        [onFilesChange],
+    );
 
-  const formatSize = (bytes: number) => {
-    if (bytes < 1024) return bytes + " B"
-    if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + " KB"
-    return (bytes / (1024 * 1024)).toFixed(1) + " MB"
-  }
+    const formatSize = (bytes: number) => {
+        if (bytes < 1024) return bytes + \' B\';
+        if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + \' KB\';
+        return (bytes / (1024 * 1024)).toFixed(1) + \' MB\';
+    };
 
-  return (
-    <div className={cn("flex flex-col gap-4 rounded-lg border border-border p-4", className)}>
-      {/* Dropzone header */}
-      <div
-        role="button"
-        tabIndex={0}
-        aria-label="Upload images"
-        onClick={() => inputRef.current?.click()}
-        onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && inputRef.current?.click()}
-        onDrop={handleDrop}
-        onDragOver={(e) => { e.preventDefault(); setIsDragOver(true) }}
-        onDragLeave={(e) => { e.preventDefault(); setIsDragOver(false) }}
-        className={cn(
-          "flex cursor-pointer flex-col items-center gap-3 rounded-md border-2 border-dashed p-6 transition-colors",
-          isDragOver ? "border-primary bg-primary/5" : "border-muted hover:border-muted-foreground/50"
-        )}
-      >
-        <div className="rounded-full bg-muted p-3">
-          <Upload className="size-5 text-muted-foreground" />
-        </div>
-        <div className="text-center">
-          <p className="text-sm font-medium">Drop files here or click to browse</p>
-          <p className="text-xs text-muted-foreground">Max {maxFiles} files, {maxSize}MB each</p>
-        </div>
-      </div>
-
-      <input
-        ref={inputRef}
-        type="file"
-        accept="image/*"
-        multiple
-        onChange={(e) => e.target.files && processFiles(e.target.files)}
-        className="sr-only"
-      />
-
-      {/* File list */}
-      {images.length > 0 && (
-        <>
-          <div className="flex items-center justify-between">
-            <span className="text-sm font-medium">{images.length} file{images.length > 1 ? "s" : ""}</span>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => { setImages([]); onFilesChange?.([]) }}
-              className="h-7 text-xs text-muted-foreground hover:text-destructive"
+    return (
+        <div
+            className={cn(
+                \'flex flex-col gap-4 rounded-lg border border-border p-4\',
+                className,
+            )}
+        >
+            {/* Dropzone header */}
+            <div
+                role="button"
+                tabIndex={0}
+                aria-label="Upload images"
+                onClick={() => inputRef.current?.click()}
+                onKeyDown={(e) =>
+                    (e.key === \'Enter\' || e.key === \' \') &&
+                    inputRef.current?.click()
+                }
+                onDrop={handleDrop}
+                onDragOver={(e) => {
+                    e.preventDefault();
+                    setIsDragOver(true);
+                }}
+                onDragLeave={(e) => {
+                    e.preventDefault();
+                    setIsDragOver(false);
+                }}
+                className={cn(
+                    \'flex cursor-pointer flex-col items-center gap-3 rounded-md border-2 border-dashed p-6 transition-colors\',
+                    isDragOver
+                        ? \'border-primary bg-primary/5\'
+                        : \'border-muted hover:border-muted-foreground/50\',
+                )}
             >
-              <Trash2 className="mr-1 size-3" />
-              Clear all
-            </Button>
-          </div>
-
-          <ScrollArea className="max-h-[240px]">
-            <div className="space-y-2">
-              {images.map((image, idx) => (
-                <React.Fragment key={image.id}>
-                  <div className="flex items-center gap-3 py-2">
-                    {/* Thumbnail */}
-                    <div className="size-10 shrink-0 overflow-hidden rounded border bg-muted">
-                      {image.preview ? (
-                        <img src={image.preview} alt="" className="h-full w-full object-cover" />
-                      ) : (
-                        <div className="flex h-full w-full items-center justify-center">
-                          <ImageIcon className="size-4 text-muted-foreground" />
-                        </div>
-                      )}
-                    </div>
-
-                    {/* File info */}
-                    <div className="flex min-w-0 flex-1 flex-col gap-1">
-                      <div className="flex items-center gap-2">
-                        <span className="truncate text-sm">{image.file.name}</span>
-                        {image.status === "success" && (
-                          <Badge variant="secondary" className="shrink-0 gap-0.5 px-1.5 py-0 text-xs text-success">
-                            <Check className="size-3" /> Done
-                          </Badge>
-                        )}
-                        {image.status === "error" && (
-                          <Badge variant="destructive" className="shrink-0 gap-0.5 px-1.5 py-0 text-xs">
-                            <FileWarning className="size-3" /> {image.error}
-                          </Badge>
-                        )}
-                      </div>
-                      {image.status === "uploading" ? (
-                        <Progress value={Math.min(image.progress, 100)} className="h-1" />
-                      ) : (
-                        <span className="text-xs text-muted-foreground">{formatSize(image.file.size)}</span>
-                      )}
-                    </div>
-
-                    {/* Remove */}
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={() => handleRemove(image.id)}
-                      className="size-8 shrink-0 p-0 text-muted-foreground hover:text-destructive"
-                    >
-                      <X className="size-4" />
-                    </Button>
-                  </div>
-                  {idx < images.length - 1 && <Separator />}
-                </React.Fragment>
-              ))}
+                <div className="rounded-full bg-muted p-3">
+                    <Upload className="size-5 text-muted-foreground" />
+                </div>
+                <div className="text-center">
+                    <p className="text-sm font-medium">
+                        Drop files here or click to browse
+                    </p>
+                    <p className="text-xs text-muted-foreground">
+                        Max {maxFiles} files, {maxSize}MB each
+                    </p>
+                </div>
             </div>
-          </ScrollArea>
-        </>
-      )}
-    </div>
-  )
+
+            <input
+                ref={inputRef}
+                type="file"
+                accept="image/*"
+                multiple
+                onChange={(e) => e.target.files && processFiles(e.target.files)}
+                className="sr-only"
+            />
+
+            {/* File list */}
+            {images.length > 0 && (
+                <>
+                    <div className="flex items-center justify-between">
+                        <span className="text-sm font-medium">
+                            {images.length} file{images.length > 1 ? \'s\' : \'\'}
+                        </span>
+                        <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => {
+                                setImages([]);
+                                onFilesChange?.([]);
+                            }}
+                            className="h-7 text-xs text-muted-foreground hover:text-destructive"
+                        >
+                            <Trash2 className="mr-1 size-3" />
+                            Clear all
+                        </Button>
+                    </div>
+
+                    <ScrollArea className="max-h-[240px]">
+                        <div className="space-y-2">
+                            {images.map((image, idx) => (
+                                <React.Fragment key={image.id}>
+                                    <div className="flex items-center gap-3 py-2">
+                                        {/* Thumbnail */}
+                                        <div className="size-10 shrink-0 overflow-hidden rounded border bg-muted">
+                                            {image.preview ? (
+                                                <img
+                                                    src={image.preview}
+                                                    alt=""
+                                                    className="h-full w-full object-cover"
+                                                />
+                                            ) : (
+                                                <div className="flex h-full w-full items-center justify-center">
+                                                    <ImageIcon className="size-4 text-muted-foreground" />
+                                                </div>
+                                            )}
+                                        </div>
+
+                                        {/* File info */}
+                                        <div className="flex min-w-0 flex-1 flex-col gap-1">
+                                            <div className="flex items-center gap-2">
+                                                <span className="truncate text-sm">
+                                                    {image.file.name}
+                                                </span>
+                                                {image.status === \'success\' && (
+                                                    <Badge
+                                                        variant="secondary"
+                                                        className="text-success shrink-0 gap-0.5 px-1.5 py-0 text-xs"
+                                                    >
+                                                        <Check className="size-3" />{\' \'}
+                                                        Done
+                                                    </Badge>
+                                                )}
+                                                {image.status === \'error\' && (
+                                                    <Badge
+                                                        variant="destructive"
+                                                        className="shrink-0 gap-0.5 px-1.5 py-0 text-xs"
+                                                    >
+                                                        <FileWarning className="size-3" />{\' \'}
+                                                        {image.error}
+                                                    </Badge>
+                                                )}
+                                            </div>
+                                            {image.status === \'uploading\' ? (
+                                                <Progress
+                                                    value={Math.min(
+                                                        image.progress,
+                                                        100,
+                                                    )}
+                                                    className="h-1"
+                                                />
+                                            ) : (
+                                                <span className="text-xs text-muted-foreground">
+                                                    {formatSize(
+                                                        image.file.size,
+                                                    )}
+                                                </span>
+                                            )}
+                                        </div>
+
+                                        {/* Remove */}
+                                        <Button
+                                            variant="ghost"
+                                            size="sm"
+                                            onClick={() =>
+                                                handleRemove(image.id)
+                                            }
+                                            className="size-8 shrink-0 p-0 text-muted-foreground hover:text-destructive"
+                                        >
+                                            <X className="size-4" />
+                                        </Button>
+                                    </div>
+                                    {idx < images.length - 1 && <Separator />}
+                                </React.Fragment>
+                            ))}
+                        </div>
+                    </ScrollArea>
+                </>
+            )}
+        </div>
+    );
 }
 ',
                     ],
@@ -25851,228 +27275,289 @@ export function GalleryDropzoneList({
                     [
                         'path' => 'resources/js/registry/new-york/components/ui/dropzones/gallery-dropzone-masonry.tsx',
                         'type' => 'registry:ui',
-                        'content' => '"use client"
+                        'content' => '\'use client\';
 
-import * as React from "react"
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
-import { Progress } from "@/components/ui/progress"
-import { Badge } from "@/components/ui/badge"
-import { ImageIcon, Upload, X, Check, Images, Trash2 } from "lucide-react"
+import * as React from \'react\';
+import { cn } from \'@/lib/utils\';
+import { Button } from \'@/components/ui/button\';
+import {
+    Card,
+    CardContent,
+    CardHeader,
+    CardTitle,
+    CardDescription,
+} from \'@/components/ui/card\';
+import { Progress } from \'@/components/ui/progress\';
+import { Badge } from \'@/components/ui/badge\';
+import { ImageIcon, Upload, X, Check, Images, Trash2 } from \'lucide-react\';
 
 interface ImageFile {
-  id: string
-  file: File
-  preview: string
-  progress: number
-  status: "uploading" | "success" | "error"
-  aspectRatio: number
+    id: string;
+    file: File;
+    preview: string;
+    progress: number;
+    status: \'uploading\' | \'success\' | \'error\';
+    aspectRatio: number;
 }
 
 interface GalleryDropzoneMasonryProps {
-  className?: string
-  onFilesChange?: (files: File[]) => void
-  maxFiles?: number
-  maxSize?: number
+    className?: string;
+    onFilesChange?: (files: File[]) => void;
+    maxFiles?: number;
+    maxSize?: number;
 }
 
 export function GalleryDropzoneMasonry({
-  className,
-  onFilesChange,
-  maxFiles = 9,
-  maxSize = 10,
+    className,
+    onFilesChange,
+    maxFiles = 9,
+    maxSize = 10,
 }: GalleryDropzoneMasonryProps) {
-  const [isDragOver, setIsDragOver] = React.useState(false)
-  const [images, setImages] = React.useState<ImageFile[]>([])
-  const inputRef = React.useRef<HTMLInputElement>(null)
+    const [isDragOver, setIsDragOver] = React.useState(false);
+    const [images, setImages] = React.useState<ImageFile[]>([]);
+    const inputRef = React.useRef<HTMLInputElement>(null);
 
-  const simulateUpload = React.useCallback((imageId: string) => {
-    const interval = setInterval(() => {
-      setImages((prev) =>
-        prev.map((img) => {
-          if (img.id !== imageId) return img
-          if (img.progress >= 100) {
-            clearInterval(interval)
-            return { ...img, progress: 100, status: "success" }
-          }
-          return { ...img, progress: img.progress + 15 }
-        })
-      )
-    }, 120)
-  }, [])
+    const simulateUpload = React.useCallback((imageId: string) => {
+        const interval = setInterval(() => {
+            setImages((prev) =>
+                prev.map((img) => {
+                    if (img.id !== imageId) return img;
+                    if (img.progress >= 100) {
+                        clearInterval(interval);
+                        return { ...img, progress: 100, status: \'success\' };
+                    }
+                    return { ...img, progress: img.progress + 15 };
+                }),
+            );
+        }, 120);
+    }, []);
 
-  const processFiles = React.useCallback(
-    (files: FileList | File[]) => {
-      const fileArray = Array.from(files)
-      const remainingSlots = maxFiles - images.length
-      const filesToProcess = fileArray.slice(0, remainingSlots)
+    const processFiles = React.useCallback(
+        (files: FileList | File[]) => {
+            const fileArray = Array.from(files);
+            const remainingSlots = maxFiles - images.length;
+            const filesToProcess = fileArray.slice(0, remainingSlots);
 
-      filesToProcess.forEach((file) => {
-        if (!file.type.startsWith("image/") || file.size > maxSize * 1024 * 1024) return
+            filesToProcess.forEach((file) => {
+                if (
+                    !file.type.startsWith(\'image/\') ||
+                    file.size > maxSize * 1024 * 1024
+                )
+                    return;
 
-        const id = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`
-        const reader = new FileReader()
+                const id = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+                const reader = new FileReader();
 
-        reader.onload = (e) => {
-          const img = new Image()
-          img.crossOrigin = "anonymous"
-          img.onload = () => {
-            const aspectRatio = img.width / img.height
-            setImages((prev) => [
-              ...prev,
-              { id, file, preview: e.target?.result as string, progress: 0, status: "uploading", aspectRatio },
-            ])
-            setTimeout(() => simulateUpload(id), 50)
-          }
-          img.src = e.target?.result as string
-        }
-        reader.readAsDataURL(file)
-      })
-    },
-    [images.length, maxFiles, maxSize, simulateUpload]
-  )
+                reader.onload = (e) => {
+                    const img = new Image();
+                    img.crossOrigin = \'anonymous\';
+                    img.onload = () => {
+                        const aspectRatio = img.width / img.height;
+                        setImages((prev) => [
+                            ...prev,
+                            {
+                                id,
+                                file,
+                                preview: e.target?.result as string,
+                                progress: 0,
+                                status: \'uploading\',
+                                aspectRatio,
+                            },
+                        ]);
+                        setTimeout(() => simulateUpload(id), 50);
+                    };
+                    img.src = e.target?.result as string;
+                };
+                reader.readAsDataURL(file);
+            });
+        },
+        [images.length, maxFiles, maxSize, simulateUpload],
+    );
 
-  React.useEffect(() => {
-    onFilesChange?.(images.filter((i) => i.status === "success").map((i) => i.file))
-  }, [images, onFilesChange])
+    React.useEffect(() => {
+        onFilesChange?.(
+            images.filter((i) => i.status === \'success\').map((i) => i.file),
+        );
+    }, [images, onFilesChange]);
 
-  const handleDrop = React.useCallback((e: React.DragEvent) => {
-    e.preventDefault()
-    setIsDragOver(false)
-    processFiles(e.dataTransfer.files)
-  }, [processFiles])
+    const handleDrop = React.useCallback(
+        (e: React.DragEvent) => {
+            e.preventDefault();
+            setIsDragOver(false);
+            processFiles(e.dataTransfer.files);
+        },
+        [processFiles],
+    );
 
-  const handleRemove = (id: string) => setImages((prev) => prev.filter((img) => img.id !== id))
+    const handleRemove = (id: string) =>
+        setImages((prev) => prev.filter((img) => img.id !== id));
 
-  const successCount = images.filter((i) => i.status === "success").length
+    const successCount = images.filter((i) => i.status === \'success\').length;
 
-  // Distribute images into columns for masonry
-  const columns: ImageFile[][] = [[], [], []]
-  images.forEach((img, idx) => {
-    columns[idx % 3].push(img)
-  })
+    // Distribute images into columns for masonry
+    const columns: ImageFile[][] = [[], [], []];
+    images.forEach((img, idx) => {
+        columns[idx % 3].push(img);
+    });
 
-  return (
-    <Card className={cn("w-full", className)}>
-      <CardHeader className="pb-4">
-        <div className="flex items-start justify-between">
-          <div>
-            <CardTitle className="flex items-center gap-2">
-              <Images className="size-5" />
-              Photo Gallery
-            </CardTitle>
-            <CardDescription>
-              {images.length === 0 
-                ? `Upload up to ${maxFiles} images` 
-                : `${successCount} of ${images.length} uploaded`}
-            </CardDescription>
-          </div>
-          {images.length > 0 && (
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setImages([])}
-              className="text-muted-foreground hover:text-destructive"
-            >
-              <Trash2 className="mr-1 size-3.5" />
-              Clear
-            </Button>
-          )}
-        </div>
-      </CardHeader>
-
-      <CardContent>
-        {/* Dropzone */}
-        <div
-          role="button"
-          tabIndex={0}
-          aria-label="Upload images"
-          onClick={() => images.length < maxFiles && inputRef.current?.click()}
-          onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && images.length < maxFiles && inputRef.current?.click()}
-          onDrop={handleDrop}
-          onDragOver={(e) => { e.preventDefault(); setIsDragOver(true) }}
-          onDragLeave={(e) => { e.preventDefault(); setIsDragOver(false) }}
-          className={cn(
-            "relative min-h-[200px] rounded-lg border-2 border-dashed p-4 transition-all",
-            images.length < maxFiles && "cursor-pointer",
-            isDragOver ? "border-primary bg-primary/5" : "border-border hover:border-primary/30"
-          )}
-        >
-          {images.length === 0 ? (
-            <div className="flex h-[180px] flex-col items-center justify-center gap-3">
-              <div className="rounded-full bg-muted p-4">
-                <ImageIcon className="size-8 text-muted-foreground" />
-              </div>
-              <div className="text-center">
-                <p className="font-medium">Drop images here</p>
-                <p className="text-sm text-muted-foreground">or click to browse</p>
-              </div>
-              <Button variant="outline" size="sm">
-                <Upload className="mr-2 size-4" />
-                Select Files
-              </Button>
-            </div>
-          ) : (
-            <div className="flex gap-3">
-              {columns.map((col, colIdx) => (
-                <div key={colIdx} className="flex flex-1 flex-col gap-3">
-                  {col.map((image) => (
-                    <div
-                      key={image.id}
-                      className="group relative overflow-hidden rounded-md border bg-muted"
-                      style={{ aspectRatio: image.aspectRatio }}
-                    >
-                      <img src={image.preview} alt="" className="h-full w-full object-cover" />
-
-                      {image.status === "uploading" && (
-                        <div className="absolute inset-0 flex flex-col items-center justify-center bg-background/60">
-                          <span className="mb-1 text-sm font-medium">{Math.round(image.progress)}%</span>
-                          <Progress value={image.progress} className="h-1 w-2/3" />
-                        </div>
-                      )}
-
-                      {image.status === "success" && (
-                        <Badge className="absolute right-1.5 top-1.5 gap-1 bg-success/90 text-success-foreground">
-                          <Check className="size-3" />
-                        </Badge>
-                      )}
-
-                      <button
-                        type="button"
-                        onClick={(e) => { e.stopPropagation(); handleRemove(image.id) }}
-                        className="absolute left-1.5 top-1.5 flex size-6 items-center justify-center rounded-full bg-foreground/80 text-background opacity-0 transition-opacity group-hover:opacity-100 hover:bg-destructive"
-                        aria-label="Remove"
-                      >
-                        <X className="size-3.5" />
-                      </button>
+    return (
+        <Card className={cn(\'w-full\', className)}>
+            <CardHeader className="pb-4">
+                <div className="flex items-start justify-between">
+                    <div>
+                        <CardTitle className="flex items-center gap-2">
+                            <Images className="size-5" />
+                            Photo Gallery
+                        </CardTitle>
+                        <CardDescription>
+                            {images.length === 0
+                                ? `Upload up to ${maxFiles} images`
+                                : `${successCount} of ${images.length} uploaded`}
+                        </CardDescription>
                     </div>
-                  ))}
+                    {images.length > 0 && (
+                        <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => setImages([])}
+                            className="text-muted-foreground hover:text-destructive"
+                        >
+                            <Trash2 className="mr-1 size-3.5" />
+                            Clear
+                        </Button>
+                    )}
                 </div>
-              ))}
-            </div>
-          )}
+            </CardHeader>
 
-          {isDragOver && (
-            <div className="absolute inset-0 flex items-center justify-center rounded-lg bg-primary/10">
-              <div className="rounded-full bg-primary p-4">
-                <Upload className="size-8 text-primary-foreground" />
-              </div>
-            </div>
-          )}
-        </div>
+            <CardContent>
+                {/* Dropzone */}
+                <div
+                    role="button"
+                    tabIndex={0}
+                    aria-label="Upload images"
+                    onClick={() =>
+                        images.length < maxFiles && inputRef.current?.click()
+                    }
+                    onKeyDown={(e) =>
+                        (e.key === \'Enter\' || e.key === \' \') &&
+                        images.length < maxFiles &&
+                        inputRef.current?.click()
+                    }
+                    onDrop={handleDrop}
+                    onDragOver={(e) => {
+                        e.preventDefault();
+                        setIsDragOver(true);
+                    }}
+                    onDragLeave={(e) => {
+                        e.preventDefault();
+                        setIsDragOver(false);
+                    }}
+                    className={cn(
+                        \'relative min-h-[200px] rounded-lg border-2 border-dashed p-4 transition-all\',
+                        images.length < maxFiles && \'cursor-pointer\',
+                        isDragOver
+                            ? \'border-primary bg-primary/5\'
+                            : \'border-border hover:border-primary/30\',
+                    )}
+                >
+                    {images.length === 0 ? (
+                        <div className="flex h-[180px] flex-col items-center justify-center gap-3">
+                            <div className="rounded-full bg-muted p-4">
+                                <ImageIcon className="size-8 text-muted-foreground" />
+                            </div>
+                            <div className="text-center">
+                                <p className="font-medium">Drop images here</p>
+                                <p className="text-sm text-muted-foreground">
+                                    or click to browse
+                                </p>
+                            </div>
+                            <Button variant="outline" size="sm">
+                                <Upload className="mr-2 size-4" />
+                                Select Files
+                            </Button>
+                        </div>
+                    ) : (
+                        <div className="flex gap-3">
+                            {columns.map((col, colIdx) => (
+                                <div
+                                    key={colIdx}
+                                    className="flex flex-1 flex-col gap-3"
+                                >
+                                    {col.map((image) => (
+                                        <div
+                                            key={image.id}
+                                            className="group relative overflow-hidden rounded-md border bg-muted"
+                                            style={{
+                                                aspectRatio: image.aspectRatio,
+                                            }}
+                                        >
+                                            <img
+                                                src={image.preview}
+                                                alt=""
+                                                className="h-full w-full object-cover"
+                                            />
 
-        <input
-          ref={inputRef}
-          type="file"
-          accept="image/*"
-          multiple
-          onChange={(e) => e.target.files && processFiles(e.target.files)}
-          className="sr-only"
-        />
-      </CardContent>
-    </Card>
-  )
+                                            {image.status === \'uploading\' && (
+                                                <div className="absolute inset-0 flex flex-col items-center justify-center bg-background/60">
+                                                    <span className="mb-1 text-sm font-medium">
+                                                        {Math.round(
+                                                            image.progress,
+                                                        )}
+                                                        %
+                                                    </span>
+                                                    <Progress
+                                                        value={image.progress}
+                                                        className="h-1 w-2/3"
+                                                    />
+                                                </div>
+                                            )}
+
+                                            {image.status === \'success\' && (
+                                                <Badge className="bg-success/90 text-success-foreground absolute top-1.5 right-1.5 gap-1">
+                                                    <Check className="size-3" />
+                                                </Badge>
+                                            )}
+
+                                            <button
+                                                type="button"
+                                                onClick={(e) => {
+                                                    e.stopPropagation();
+                                                    handleRemove(image.id);
+                                                }}
+                                                className="absolute top-1.5 left-1.5 flex size-6 items-center justify-center rounded-full bg-foreground/80 text-background opacity-0 transition-opacity group-hover:opacity-100 hover:bg-destructive"
+                                                aria-label="Remove"
+                                            >
+                                                <X className="size-3.5" />
+                                            </button>
+                                        </div>
+                                    ))}
+                                </div>
+                            ))}
+                        </div>
+                    )}
+
+                    {isDragOver && (
+                        <div className="absolute inset-0 flex items-center justify-center rounded-lg bg-primary/10">
+                            <div className="rounded-full bg-primary p-4">
+                                <Upload className="size-8 text-primary-foreground" />
+                            </div>
+                        </div>
+                    )}
+                </div>
+
+                <input
+                    ref={inputRef}
+                    type="file"
+                    accept="image/*"
+                    multiple
+                    onChange={(e) =>
+                        e.target.files && processFiles(e.target.files)
+                    }
+                    className="sr-only"
+                />
+            </CardContent>
+        </Card>
+    );
 }
 ',
                     ],
@@ -26119,140 +27604,162 @@ export function GalleryDropzoneMasonry({
                     [
                         'path' => 'resources/js/registry/new-york/components/ui/dropzones/gallery-dropzone-pills.tsx',
                         'type' => 'registry:ui',
-                        'content' => '"use client"
+                        'content' => '\'use client\';
 
-import { useState, useCallback, useRef } from "react"
-import { Plus, X, Loader2, Check } from "lucide-react"
-import { cn } from "@/lib/utils"
-import { Badge } from "@/components/ui/badge"
+import { useState, useCallback, useRef } from \'react\';
+import { Plus, X, Loader2, Check } from \'lucide-react\';
+import { cn } from \'@/lib/utils\';
+import { Badge } from \'@/components/ui/badge\';
 
 interface FileWithStatus {
-  file: File
-  preview: string
-  id: string
-  status: "uploading" | "complete"
+    file: File;
+    preview: string;
+    id: string;
+    status: \'uploading\' | \'complete\';
 }
 
 interface GalleryDropzonePillsProps {
-  onFilesSelect?: (files: File[]) => void
-  maxFiles?: number
-  maxSize?: number
-  className?: string
+    onFilesSelect?: (files: File[]) => void;
+    maxFiles?: number;
+    maxSize?: number;
+    className?: string;
 }
 
 export function GalleryDropzonePills({
-  onFilesSelect,
-  maxFiles = 8,
-  maxSize = 10 * 1024 * 1024,
-  className,
+    onFilesSelect,
+    maxFiles = 8,
+    maxSize = 10 * 1024 * 1024,
+    className,
 }: GalleryDropzonePillsProps) {
-  const [files, setFiles] = useState<FileWithStatus[]>([])
-  const [isDragging, setIsDragging] = useState(false)
-  const inputRef = useRef<HTMLInputElement>(null)
+    const [files, setFiles] = useState<FileWithStatus[]>([]);
+    const [isDragging, setIsDragging] = useState(false);
+    const inputRef = useRef<HTMLInputElement>(null);
 
-  const handleFiles = useCallback(
-    (newFiles: FileList) => {
-      const validFiles = Array.from(newFiles)
-        .filter((file) => file.type.startsWith("image/") && file.size <= maxSize)
-        .slice(0, maxFiles - files.length)
+    const handleFiles = useCallback(
+        (newFiles: FileList) => {
+            const validFiles = Array.from(newFiles)
+                .filter(
+                    (file) =>
+                        file.type.startsWith(\'image/\') && file.size <= maxSize,
+                )
+                .slice(0, maxFiles - files.length);
 
-      const newFileObjects = validFiles.map((file) => ({
-        file,
-        preview: URL.createObjectURL(file),
-        id: Math.random().toString(36).slice(2),
-        status: "uploading" as const,
-      }))
+            const newFileObjects = validFiles.map((file) => ({
+                file,
+                preview: URL.createObjectURL(file),
+                id: Math.random().toString(36).slice(2),
+                status: \'uploading\' as const,
+            }));
 
-      const updated = [...files, ...newFileObjects].slice(0, maxFiles)
-      setFiles(updated)
+            const updated = [...files, ...newFileObjects].slice(0, maxFiles);
+            setFiles(updated);
 
-      // Simulate upload
-      newFileObjects.forEach((fileObj) => {
-        setTimeout(() => {
-          setFiles((prev) =>
-            prev.map((f) => (f.id === fileObj.id ? { ...f, status: "complete" } : f))
-          )
-        }, 800 + Math.random() * 800)
-      })
+            // Simulate upload
+            newFileObjects.forEach((fileObj) => {
+                setTimeout(
+                    () => {
+                        setFiles((prev) =>
+                            prev.map((f) =>
+                                f.id === fileObj.id
+                                    ? { ...f, status: \'complete\' }
+                                    : f,
+                            ),
+                        );
+                    },
+                    800 + Math.random() * 800,
+                );
+            });
 
-      onFilesSelect?.(updated.map((f) => f.file))
-    },
-    [files, maxFiles, maxSize, onFilesSelect]
-  )
+            onFilesSelect?.(updated.map((f) => f.file));
+        },
+        [files, maxFiles, maxSize, onFilesSelect],
+    );
 
-  const handleDrop = useCallback(
-    (e: React.DragEvent) => {
-      e.preventDefault()
-      setIsDragging(false)
-      if (e.dataTransfer.files.length) handleFiles(e.dataTransfer.files)
-    },
-    [handleFiles]
-  )
+    const handleDrop = useCallback(
+        (e: React.DragEvent) => {
+            e.preventDefault();
+            setIsDragging(false);
+            if (e.dataTransfer.files.length) handleFiles(e.dataTransfer.files);
+        },
+        [handleFiles],
+    );
 
-  const removeFile = (id: string) => {
-    const updated = files.filter((f) => f.id !== id)
-    setFiles(updated)
-    onFilesSelect?.(updated.map((f) => f.file))
-  }
+    const removeFile = (id: string) => {
+        const updated = files.filter((f) => f.id !== id);
+        setFiles(updated);
+        onFilesSelect?.(updated.map((f) => f.file));
+    };
 
-  return (
-    <div
-      className={cn(
-        "flex min-h-[48px] flex-wrap items-center gap-2 rounded-lg border p-3 transition-colors",
-        isDragging && "border-primary bg-muted/50",
-        className
-      )}
-      onDragOver={(e) => {
-        e.preventDefault()
-        setIsDragging(true)
-      }}
-      onDragLeave={() => setIsDragging(false)}
-      onDrop={handleDrop}
-    >
-      <input
-        ref={inputRef}
-        type="file"
-        accept="image/*"
-        multiple
-        onChange={(e) => e.target.files && handleFiles(e.target.files)}
-        className="sr-only"
-      />
-
-      {files.map((file) => (
-        <Badge key={file.id} variant="secondary" className="h-8 gap-2 pl-1 pr-1">
-          <div className="size-6 overflow-hidden rounded">
-            <img src={file.preview} alt="" className="size-full object-cover" />
-          </div>
-          <span className="max-w-[100px] truncate text-xs">{file.file.name}</span>
-          {file.status === "uploading" ? (
-            <Loader2 className="size-3 animate-spin" />
-          ) : (
-            <button
-              onClick={() => removeFile(file.id)}
-              className="flex size-4 items-center justify-center rounded-full hover:bg-muted"
-              aria-label="Remove"
-            >
-              <X className="size-3" />
-            </button>
-          )}
-        </Badge>
-      ))}
-
-      {files.length < maxFiles && (
-        <button
-          onClick={() => inputRef.current?.click()}
-          className="flex h-8 items-center gap-1 rounded-md border border-dashed px-3 text-sm text-muted-foreground transition-colors hover:border-foreground hover:text-foreground"
+    return (
+        <div
+            className={cn(
+                \'flex min-h-[48px] flex-wrap items-center gap-2 rounded-lg border p-3 transition-colors\',
+                isDragging && \'border-primary bg-muted/50\',
+                className,
+            )}
+            onDragOver={(e) => {
+                e.preventDefault();
+                setIsDragging(true);
+            }}
+            onDragLeave={() => setIsDragging(false)}
+            onDrop={handleDrop}
         >
-          <Plus className="size-4" />
-          Add images
-        </button>
-      )}
+            <input
+                ref={inputRef}
+                type="file"
+                accept="image/*"
+                multiple
+                onChange={(e) => e.target.files && handleFiles(e.target.files)}
+                className="sr-only"
+            />
 
-      {files.length === 0 && (
-        <span className="text-sm text-muted-foreground">Drop images here or click to add</span>
-      )}
-    </div>
-  )
+            {files.map((file) => (
+                <Badge
+                    key={file.id}
+                    variant="secondary"
+                    className="h-8 gap-2 pr-1 pl-1"
+                >
+                    <div className="size-6 overflow-hidden rounded">
+                        <img
+                            src={file.preview}
+                            alt=""
+                            className="size-full object-cover"
+                        />
+                    </div>
+                    <span className="max-w-[100px] truncate text-xs">
+                        {file.file.name}
+                    </span>
+                    {file.status === \'uploading\' ? (
+                        <Loader2 className="size-3 animate-spin" />
+                    ) : (
+                        <button
+                            onClick={() => removeFile(file.id)}
+                            className="flex size-4 items-center justify-center rounded-full hover:bg-muted"
+                            aria-label="Remove"
+                        >
+                            <X className="size-3" />
+                        </button>
+                    )}
+                </Badge>
+            ))}
+
+            {files.length < maxFiles && (
+                <button
+                    onClick={() => inputRef.current?.click()}
+                    className="flex h-8 items-center gap-1 rounded-md border border-dashed px-3 text-sm text-muted-foreground transition-colors hover:border-foreground hover:text-foreground"
+                >
+                    <Plus className="size-4" />
+                    Add images
+                </button>
+            )}
+
+            {files.length === 0 && (
+                <span className="text-sm text-muted-foreground">
+                    Drop images here or click to add
+                </span>
+            )}
+        </div>
+    );
 }
 ',
                     ],
@@ -26299,159 +27806,181 @@ export function GalleryDropzonePills({
                     [
                         'path' => 'resources/js/registry/new-york/components/ui/dropzones/gallery-dropzone-simple.tsx',
                         'type' => 'registry:ui',
-                        'content' => '"use client"
+                        'content' => '\'use client\';
 
-import { useState, useCallback, useRef } from "react"
-import { Upload, X, ImageIcon } from "lucide-react"
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
+import { useState, useCallback, useRef } from \'react\';
+import { Upload, X, ImageIcon } from \'lucide-react\';
+import { cn } from \'@/lib/utils\';
+import { Button } from \'@/components/ui/button\';
 
 interface FileWithPreview {
-  file: File
-  preview: string
-  id: string
+    file: File;
+    preview: string;
+    id: string;
 }
 
 interface GalleryDropzoneSimpleProps {
-  onFilesSelect?: (files: File[]) => void
-  maxFiles?: number
-  maxSize?: number
-  className?: string
+    onFilesSelect?: (files: File[]) => void;
+    maxFiles?: number;
+    maxSize?: number;
+    className?: string;
 }
 
 export function GalleryDropzoneSimple({
-  onFilesSelect,
-  maxFiles = 6,
-  maxSize = 10 * 1024 * 1024,
-  className,
+    onFilesSelect,
+    maxFiles = 6,
+    maxSize = 10 * 1024 * 1024,
+    className,
 }: GalleryDropzoneSimpleProps) {
-  const [files, setFiles] = useState<FileWithPreview[]>([])
-  const [isDragging, setIsDragging] = useState(false)
-  const inputRef = useRef<HTMLInputElement>(null)
+    const [files, setFiles] = useState<FileWithPreview[]>([]);
+    const [isDragging, setIsDragging] = useState(false);
+    const inputRef = useRef<HTMLInputElement>(null);
 
-  const handleFiles = useCallback(
-    (newFiles: FileList) => {
-      const validFiles = Array.from(newFiles)
-        .filter((file) => file.type.startsWith("image/") && file.size <= maxSize)
-        .slice(0, maxFiles - files.length)
+    const handleFiles = useCallback(
+        (newFiles: FileList) => {
+            const validFiles = Array.from(newFiles)
+                .filter(
+                    (file) =>
+                        file.type.startsWith(\'image/\') && file.size <= maxSize,
+                )
+                .slice(0, maxFiles - files.length);
 
-      const newFileObjects = validFiles.map((file) => ({
-        file,
-        preview: URL.createObjectURL(file),
-        id: Math.random().toString(36).slice(2),
-      }))
+            const newFileObjects = validFiles.map((file) => ({
+                file,
+                preview: URL.createObjectURL(file),
+                id: Math.random().toString(36).slice(2),
+            }));
 
-      const updated = [...files, ...newFileObjects].slice(0, maxFiles)
-      setFiles(updated)
-      onFilesSelect?.(updated.map((f) => f.file))
-    },
-    [files, maxFiles, maxSize, onFilesSelect]
-  )
+            const updated = [...files, ...newFileObjects].slice(0, maxFiles);
+            setFiles(updated);
+            onFilesSelect?.(updated.map((f) => f.file));
+        },
+        [files, maxFiles, maxSize, onFilesSelect],
+    );
 
-  const handleDrop = useCallback(
-    (e: React.DragEvent) => {
-      e.preventDefault()
-      setIsDragging(false)
-      if (e.dataTransfer.files.length) handleFiles(e.dataTransfer.files)
-    },
-    [handleFiles]
-  )
+    const handleDrop = useCallback(
+        (e: React.DragEvent) => {
+            e.preventDefault();
+            setIsDragging(false);
+            if (e.dataTransfer.files.length) handleFiles(e.dataTransfer.files);
+        },
+        [handleFiles],
+    );
 
-  const removeFile = (id: string) => {
-    const updated = files.filter((f) => f.id !== id)
-    setFiles(updated)
-    onFilesSelect?.(updated.map((f) => f.file))
-  }
+    const removeFile = (id: string) => {
+        const updated = files.filter((f) => f.id !== id);
+        setFiles(updated);
+        onFilesSelect?.(updated.map((f) => f.file));
+    };
 
-  const clearAll = () => {
-    setFiles([])
-    onFilesSelect?.([])
-    if (inputRef.current) inputRef.current.value = ""
-  }
+    const clearAll = () => {
+        setFiles([]);
+        onFilesSelect?.([]);
+        if (inputRef.current) inputRef.current.value = \'\';
+    };
 
-  return (
-    <div className={cn("space-y-4", className)}>
-      <div
-        className={cn(
-          "flex min-h-[160px] cursor-pointer flex-col items-center justify-center gap-2 rounded-lg border-2 border-dashed p-6 transition-colors",
-          isDragging ? "border-primary bg-muted/50" : "border-muted-foreground/25 hover:border-muted-foreground/50"
-        )}
-        onDragOver={(e) => {
-          e.preventDefault()
-          setIsDragging(true)
-        }}
-        onDragLeave={() => setIsDragging(false)}
-        onDrop={handleDrop}
-        onClick={() => inputRef.current?.click()}
-        onKeyDown={(e) => {
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault()
-            inputRef.current?.click()
-          }
-        }}
-        tabIndex={0}
-        role="button"
-        aria-label="Upload images"
-      >
-        <input
-          ref={inputRef}
-          type="file"
-          accept="image/*"
-          multiple
-          onChange={(e) => e.target.files && handleFiles(e.target.files)}
-          className="sr-only"
-        />
-
-        <div className="flex size-12 items-center justify-center rounded-full bg-muted">
-          <Upload className="size-6 text-muted-foreground" />
-        </div>
-        <div className="text-center">
-          <p className="text-sm font-medium">Drop images here or click to upload</p>
-          <p className="text-xs text-muted-foreground">
-            PNG, JPG, GIF up to {Math.round(maxSize / 1024 / 1024)}MB
-          </p>
-        </div>
-      </div>
-
-      {files.length > 0 && (
-        <div className="space-y-3">
-          <div className="flex items-center justify-between">
-            <p className="text-sm text-muted-foreground">
-              {files.length} of {maxFiles} images
-            </p>
-            <Button variant="ghost" size="sm" onClick={clearAll} className="text-muted-foreground">
-              Clear all
-            </Button>
-          </div>
-
-          <div className="grid grid-cols-3 gap-3">
-            {files.map((file) => (
-              <div key={file.id} className="group relative aspect-square overflow-hidden rounded-md border bg-muted">
-                <img src={file.preview} alt="" className="size-full object-cover" />
-                <button
-                  onClick={() => removeFile(file.id)}
-                  className="absolute right-1 top-1 flex size-6 items-center justify-center rounded-full bg-background/80 opacity-0 shadow-sm transition-opacity group-hover:opacity-100"
-                  aria-label="Remove image"
-                >
-                  <X className="size-3" />
-                </button>
-              </div>
-            ))}
-
-            {files.length < maxFiles && (
-              <button
+    return (
+        <div className={cn(\'space-y-4\', className)}>
+            <div
+                className={cn(
+                    \'flex min-h-[160px] cursor-pointer flex-col items-center justify-center gap-2 rounded-lg border-2 border-dashed p-6 transition-colors\',
+                    isDragging
+                        ? \'border-primary bg-muted/50\'
+                        : \'border-muted-foreground/25 hover:border-muted-foreground/50\',
+                )}
+                onDragOver={(e) => {
+                    e.preventDefault();
+                    setIsDragging(true);
+                }}
+                onDragLeave={() => setIsDragging(false)}
+                onDrop={handleDrop}
                 onClick={() => inputRef.current?.click()}
-                className="flex aspect-square flex-col items-center justify-center gap-1 rounded-md border-2 border-dashed border-muted-foreground/25 text-muted-foreground transition-colors hover:border-muted-foreground/50 hover:bg-muted/50"
-              >
-                <ImageIcon className="size-5" />
-                <span className="text-xs">Add</span>
-              </button>
+                onKeyDown={(e) => {
+                    if (e.key === \'Enter\' || e.key === \' \') {
+                        e.preventDefault();
+                        inputRef.current?.click();
+                    }
+                }}
+                tabIndex={0}
+                role="button"
+                aria-label="Upload images"
+            >
+                <input
+                    ref={inputRef}
+                    type="file"
+                    accept="image/*"
+                    multiple
+                    onChange={(e) =>
+                        e.target.files && handleFiles(e.target.files)
+                    }
+                    className="sr-only"
+                />
+
+                <div className="flex size-12 items-center justify-center rounded-full bg-muted">
+                    <Upload className="size-6 text-muted-foreground" />
+                </div>
+                <div className="text-center">
+                    <p className="text-sm font-medium">
+                        Drop images here or click to upload
+                    </p>
+                    <p className="text-xs text-muted-foreground">
+                        PNG, JPG, GIF up to {Math.round(maxSize / 1024 / 1024)}
+                        MB
+                    </p>
+                </div>
+            </div>
+
+            {files.length > 0 && (
+                <div className="space-y-3">
+                    <div className="flex items-center justify-between">
+                        <p className="text-sm text-muted-foreground">
+                            {files.length} of {maxFiles} images
+                        </p>
+                        <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={clearAll}
+                            className="text-muted-foreground"
+                        >
+                            Clear all
+                        </Button>
+                    </div>
+
+                    <div className="grid grid-cols-3 gap-3">
+                        {files.map((file) => (
+                            <div
+                                key={file.id}
+                                className="group relative aspect-square overflow-hidden rounded-md border bg-muted"
+                            >
+                                <img
+                                    src={file.preview}
+                                    alt=""
+                                    className="size-full object-cover"
+                                />
+                                <button
+                                    onClick={() => removeFile(file.id)}
+                                    className="absolute top-1 right-1 flex size-6 items-center justify-center rounded-full bg-background/80 opacity-0 shadow-sm transition-opacity group-hover:opacity-100"
+                                    aria-label="Remove image"
+                                >
+                                    <X className="size-3" />
+                                </button>
+                            </div>
+                        ))}
+
+                        {files.length < maxFiles && (
+                            <button
+                                onClick={() => inputRef.current?.click()}
+                                className="flex aspect-square flex-col items-center justify-center gap-1 rounded-md border-2 border-dashed border-muted-foreground/25 text-muted-foreground transition-colors hover:border-muted-foreground/50 hover:bg-muted/50"
+                            >
+                                <ImageIcon className="size-5" />
+                                <span className="text-xs">Add</span>
+                            </button>
+                        )}
+                    </div>
+                </div>
             )}
-          </div>
         </div>
-      )}
-    </div>
-  )
+    );
 }
 ',
                     ],
@@ -26501,309 +28030,314 @@ export function GalleryDropzoneSimple({
                     [
                         'path' => 'resources/js/registry/new-york/components/ui/dropzones/gallery-dropzone-sortable-cards.tsx',
                         'type' => 'registry:ui',
-                        'content' => '"use client"
+                        'content' => '\'use client\';
 
-import * as React from "react"
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Upload, X, GripVertical, Star, Trash2 } from "lucide-react"
-import { DragDropProvider } from "@dnd-kit/react"
-import { useSortable, isSortable } from "@dnd-kit/react/sortable"
+import * as React from \'react\';
+import { cn } from \'@/lib/utils\';
+import { Button } from \'@/components/ui/button\';
+import { Card, CardContent } from \'@/components/ui/card\';
+import { Badge } from \'@/components/ui/badge\';
+import { Upload, X, GripVertical, Star, Trash2 } from \'lucide-react\';
+import { DragDropProvider } from \'@dnd-kit/react\';
+import { useSortable, isSortable } from \'@dnd-kit/react/sortable\';
 
 interface FileWithPreview {
-  file: File
-  preview: string
-  id: string
+    file: File;
+    preview: string;
+    id: string;
 }
 
 interface SortableCardProps {
-  image: FileWithPreview
-  index: number
-  onRemove: (id: string) => void
-  onSetPrimary?: (id: string) => void
-  isPrimary: boolean
-  showHandle?: boolean
+    image: FileWithPreview;
+    index: number;
+    onRemove: (id: string) => void;
+    onSetPrimary?: (id: string) => void;
+    isPrimary: boolean;
+    showHandle?: boolean;
 }
 
 function SortableCard({
-  image,
-  index,
-  onRemove,
-  onSetPrimary,
-  isPrimary,
-  showHandle,
-}: SortableCardProps) {
-  const { ref, handleRef, isDragging } = useSortable({
-    id: image.id,
+    image,
     index,
-  })
+    onRemove,
+    onSetPrimary,
+    isPrimary,
+    showHandle,
+}: SortableCardProps) {
+    const { ref, handleRef, isDragging } = useSortable({
+        id: image.id,
+        index,
+    });
 
-  return (
-    <Card
-      ref={ref}
-      className={cn(
-        "group overflow-hidden transition-all",
-        isDragging && "z-10 scale-[1.02] shadow-lg ring-2 ring-primary",
-        isPrimary && "ring-2 ring-primary"
-      )}
-    >
-      <div className="relative aspect-[4/3] overflow-hidden bg-muted">
-        <img
-          src={image.preview}
-          alt=""
-          className="size-full object-cover transition-transform group-hover:scale-105"
-          draggable={false}
-        />
-
-        {isPrimary && (
-          <Badge className="absolute left-2 top-2 gap-1 bg-primary text-primary-foreground">
-            <Star className="size-3 fill-current" />
-            Primary
-          </Badge>
-        )}
-
-        <div className="absolute inset-x-0 bottom-0 flex items-center justify-between bg-gradient-to-t from-black/60 to-transparent p-2 opacity-0 transition-opacity group-hover:opacity-100">
-          {showHandle && (
-            <button
-              ref={handleRef}
-              className="flex size-7 cursor-grab items-center justify-center rounded bg-white/20 text-white backdrop-blur-sm active:cursor-grabbing"
-              aria-label="Drag to reorder"
-            >
-              <GripVertical className="size-4" />
-            </button>
-          )}
-
-          <div className={cn("flex gap-1", !showHandle && "ml-auto")}>
-            {!isPrimary && onSetPrimary && (
-              <Button
-                variant="secondary"
-                size="sm"
-                onClick={() => onSetPrimary(image.id)}
-                className="h-7 gap-1 text-xs"
-              >
-                <Star className="size-3" />
-                Set Primary
-              </Button>
+    return (
+        <Card
+            ref={ref}
+            className={cn(
+                \'group overflow-hidden transition-all\',
+                isDragging && \'z-10 scale-[1.02] shadow-lg ring-2 ring-primary\',
+                isPrimary && \'ring-2 ring-primary\',
             )}
-            <Button
-              variant="destructive"
-              size="sm"
-              onClick={() => onRemove(image.id)}
-              className="size-7 p-0"
-            >
-              <X className="size-4" />
-            </Button>
-          </div>
-        </div>
-      </div>
+        >
+            <div className="relative aspect-[4/3] overflow-hidden bg-muted">
+                <img
+                    src={image.preview}
+                    alt=""
+                    className="size-full object-cover transition-transform group-hover:scale-105"
+                    draggable={false}
+                />
 
-      <CardContent className="p-2">
-        <p className="truncate text-xs text-muted-foreground">
-          {image.file.name}
-        </p>
-      </CardContent>
-    </Card>
-  )
+                {isPrimary && (
+                    <Badge className="absolute top-2 left-2 gap-1 bg-primary text-primary-foreground">
+                        <Star className="size-3 fill-current" />
+                        Primary
+                    </Badge>
+                )}
+
+                <div className="absolute inset-x-0 bottom-0 flex items-center justify-between bg-gradient-to-t from-black/60 to-transparent p-2 opacity-0 transition-opacity group-hover:opacity-100">
+                    {showHandle && (
+                        <button
+                            ref={handleRef}
+                            className="flex size-7 cursor-grab items-center justify-center rounded bg-white/20 text-white backdrop-blur-sm active:cursor-grabbing"
+                            aria-label="Drag to reorder"
+                        >
+                            <GripVertical className="size-4" />
+                        </button>
+                    )}
+
+                    <div className={cn(\'flex gap-1\', !showHandle && \'ml-auto\')}>
+                        {!isPrimary && onSetPrimary && (
+                            <Button
+                                variant="secondary"
+                                size="sm"
+                                onClick={() => onSetPrimary(image.id)}
+                                className="h-7 gap-1 text-xs"
+                            >
+                                <Star className="size-3" />
+                                Set Primary
+                            </Button>
+                        )}
+                        <Button
+                            variant="destructive"
+                            size="sm"
+                            onClick={() => onRemove(image.id)}
+                            className="size-7 p-0"
+                        >
+                            <X className="size-4" />
+                        </Button>
+                    </div>
+                </div>
+            </div>
+
+            <CardContent className="p-2">
+                <p className="truncate text-xs text-muted-foreground">
+                    {image.file.name}
+                </p>
+            </CardContent>
+        </Card>
+    );
 }
 
 interface GalleryDropzoneSortableCardsProps {
-  onFilesSelect?: (files: File[]) => void
-  onReorder?: (files: File[]) => void
-  onPrimaryChange?: (file: File) => void
-  maxFiles?: number
-  maxSize?: number
-  className?: string
-  enableReorder?: boolean
+    onFilesSelect?: (files: File[]) => void;
+    onReorder?: (files: File[]) => void;
+    onPrimaryChange?: (file: File) => void;
+    maxFiles?: number;
+    maxSize?: number;
+    className?: string;
+    enableReorder?: boolean;
 }
 
 export function GalleryDropzoneSortableCards({
-  onFilesSelect,
-  onReorder,
-  onPrimaryChange,
-  maxFiles = 8,
-  maxSize = 10 * 1024 * 1024,
-  className,
-  enableReorder = true,
+    onFilesSelect,
+    onReorder,
+    onPrimaryChange,
+    maxFiles = 8,
+    maxSize = 10 * 1024 * 1024,
+    className,
+    enableReorder = true,
 }: GalleryDropzoneSortableCardsProps) {
-  const [files, setFiles] = React.useState<FileWithPreview[]>([])
-  const [primaryId, setPrimaryId] = React.useState<string | null>(null)
-  const [isDragging, setIsDragging] = React.useState(false)
-  const inputRef = React.useRef<HTMLInputElement>(null)
+    const [files, setFiles] = React.useState<FileWithPreview[]>([]);
+    const [primaryId, setPrimaryId] = React.useState<string | null>(null);
+    const [isDragging, setIsDragging] = React.useState(false);
+    const inputRef = React.useRef<HTMLInputElement>(null);
 
-  const handleFiles = React.useCallback(
-    (newFiles: FileList) => {
-      const validFiles = Array.from(newFiles)
-        .filter((file) => file.type.startsWith("image/") && file.size <= maxSize)
-        .slice(0, maxFiles - files.length)
+    const handleFiles = React.useCallback(
+        (newFiles: FileList) => {
+            const validFiles = Array.from(newFiles)
+                .filter(
+                    (file) =>
+                        file.type.startsWith(\'image/\') && file.size <= maxSize,
+                )
+                .slice(0, maxFiles - files.length);
 
-      const newFileObjects = validFiles.map((file) => ({
-        file,
-        preview: URL.createObjectURL(file),
-        id: Math.random().toString(36).slice(2),
-      }))
+            const newFileObjects = validFiles.map((file) => ({
+                file,
+                preview: URL.createObjectURL(file),
+                id: Math.random().toString(36).slice(2),
+            }));
 
-      const updated = [...files, ...newFileObjects].slice(0, maxFiles)
-      setFiles(updated)
+            const updated = [...files, ...newFileObjects].slice(0, maxFiles);
+            setFiles(updated);
 
-      if (!primaryId && updated.length > 0) {
-        setPrimaryId(updated[0].id)
-        onPrimaryChange?.(updated[0].file)
-      }
+            if (!primaryId && updated.length > 0) {
+                setPrimaryId(updated[0].id);
+                onPrimaryChange?.(updated[0].file);
+            }
 
-      onFilesSelect?.(updated.map((f) => f.file))
-    },
-    [files, maxFiles, maxSize, onFilesSelect, primaryId, onPrimaryChange]
-  )
+            onFilesSelect?.(updated.map((f) => f.file));
+        },
+        [files, maxFiles, maxSize, onFilesSelect, primaryId, onPrimaryChange],
+    );
 
-  const handleDrop = React.useCallback(
-    (e: React.DragEvent) => {
-      e.preventDefault()
-      setIsDragging(false)
-      if (e.dataTransfer.files.length) handleFiles(e.dataTransfer.files)
-    },
-    [handleFiles]
-  )
+    const handleDrop = React.useCallback(
+        (e: React.DragEvent) => {
+            e.preventDefault();
+            setIsDragging(false);
+            if (e.dataTransfer.files.length) handleFiles(e.dataTransfer.files);
+        },
+        [handleFiles],
+    );
 
-  const removeFile = (id: string) => {
-    const updated = files.filter((f) => f.id !== id)
-    setFiles(updated)
-    if (primaryId === id && updated.length > 0) {
-      setPrimaryId(updated[0].id)
-      onPrimaryChange?.(updated[0].file)
-    } else if (updated.length === 0) {
-      setPrimaryId(null)
-    }
-    onFilesSelect?.(updated.map((f) => f.file))
-  }
-
-  const setPrimary = (id: string) => {
-    setPrimaryId(id)
-    const file = files.find((f) => f.id === id)
-    if (file) onPrimaryChange?.(file.file)
-  }
-
-  const clearAll = () => {
-    setFiles([])
-    setPrimaryId(null)
-    onFilesSelect?.([])
-    if (inputRef.current) inputRef.current.value = ""
-  }
-
-  const handleDragEnd = React.useCallback(
-    (event: { canceled: boolean; operation: { source: unknown } }) => {
-      if (event.canceled) return
-
-      const source = event.operation.source as any
-
-      if (isSortable(source)) {
-        const { initialIndex, index } = source
-
-        if (initialIndex !== index) {
-          setFiles((prev) => {
-            const newFiles = [...prev]
-            const [removed] = newFiles.splice(initialIndex, 1)
-            newFiles.splice(index, 0, removed)
-            onReorder?.(newFiles.map((f) => f.file))
-            return newFiles
-          })
+    const removeFile = (id: string) => {
+        const updated = files.filter((f) => f.id !== id);
+        setFiles(updated);
+        if (primaryId === id && updated.length > 0) {
+            setPrimaryId(updated[0].id);
+            onPrimaryChange?.(updated[0].file);
+        } else if (updated.length === 0) {
+            setPrimaryId(null);
         }
-      }
-    },
-    [onReorder]
-  )
+        onFilesSelect?.(updated.map((f) => f.file));
+    };
 
-  const cardsContent = (
-    <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
-      {files.map((file, index) => (
-        <SortableCard
-          key={file.id}
-          image={file}
-          index={index}
-          onRemove={removeFile}
-          onSetPrimary={setPrimary}
-          isPrimary={file.id === primaryId}
-          showHandle={enableReorder}
-        />
-      ))}
-    </div>
-  )
+    const setPrimary = (id: string) => {
+        setPrimaryId(id);
+        const file = files.find((f) => f.id === id);
+        if (file) onPrimaryChange?.(file.file);
+    };
 
-  return (
-    <div className={cn("space-y-4", className)}>
-      <div
-        className={cn(
-          "flex min-h-[120px] cursor-pointer flex-col items-center justify-center gap-2 rounded-lg border-2 border-dashed p-4 transition-colors",
-          isDragging
-            ? "border-primary bg-primary/5"
-            : "border-muted-foreground/25 hover:border-muted-foreground/50"
-        )}
-        onDragOver={(e) => {
-          e.preventDefault()
-          setIsDragging(true)
-        }}
-        onDragLeave={() => setIsDragging(false)}
-        onDrop={handleDrop}
-        onClick={() => inputRef.current?.click()}
-        onKeyDown={(e) => {
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault()
-            inputRef.current?.click()
-          }
-        }}
-        tabIndex={0}
-        role="button"
-        aria-label="Upload images"
-      >
-        <Upload className="size-8 text-muted-foreground" />
-        <div className="text-center">
-          <p className="text-sm font-medium">Click or drag images to upload</p>
-          <p className="text-xs text-muted-foreground">
-            {files.length} of {maxFiles} images
-          </p>
+    const clearAll = () => {
+        setFiles([]);
+        setPrimaryId(null);
+        onFilesSelect?.([]);
+        if (inputRef.current) inputRef.current.value = \'\';
+    };
+
+    const handleDragEnd = React.useCallback(
+        (event: { canceled: boolean; operation: { source: unknown } }) => {
+            if (event.canceled) return;
+
+            const source = event.operation.source as any;
+
+            if (isSortable(source)) {
+                const { initialIndex, index } = source;
+
+                if (initialIndex !== index) {
+                    setFiles((prev) => {
+                        const newFiles = [...prev];
+                        const [removed] = newFiles.splice(initialIndex, 1);
+                        newFiles.splice(index, 0, removed);
+                        onReorder?.(newFiles.map((f) => f.file));
+                        return newFiles;
+                    });
+                }
+            }
+        },
+        [onReorder],
+    );
+
+    const cardsContent = (
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
+            {files.map((file, index) => (
+                <SortableCard
+                    key={file.id}
+                    image={file}
+                    index={index}
+                    onRemove={removeFile}
+                    onSetPrimary={setPrimary}
+                    isPrimary={file.id === primaryId}
+                    showHandle={enableReorder}
+                />
+            ))}
         </div>
-      </div>
+    );
 
-      <input
-        ref={inputRef}
-        type="file"
-        accept="image/*"
-        multiple
-        onChange={(e) => e.target.files && handleFiles(e.target.files)}
-        className="sr-only"
-      />
-
-      {files.length > 0 && (
-        <>
-          <div className="flex items-center justify-between">
-            <p className="text-sm text-muted-foreground">
-              {enableReorder
-                ? "Drag cards to reorder. First image is primary."
-                : "Click star to set primary image."}
-            </p>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={clearAll}
-              className="gap-1"
+    return (
+        <div className={cn(\'space-y-4\', className)}>
+            <div
+                className={cn(
+                    \'flex min-h-[120px] cursor-pointer flex-col items-center justify-center gap-2 rounded-lg border-2 border-dashed p-4 transition-colors\',
+                    isDragging
+                        ? \'border-primary bg-primary/5\'
+                        : \'border-muted-foreground/25 hover:border-muted-foreground/50\',
+                )}
+                onDragOver={(e) => {
+                    e.preventDefault();
+                    setIsDragging(true);
+                }}
+                onDragLeave={() => setIsDragging(false)}
+                onDrop={handleDrop}
+                onClick={() => inputRef.current?.click()}
+                onKeyDown={(e) => {
+                    if (e.key === \'Enter\' || e.key === \' \') {
+                        e.preventDefault();
+                        inputRef.current?.click();
+                    }
+                }}
+                tabIndex={0}
+                role="button"
+                aria-label="Upload images"
             >
-              <Trash2 className="size-3" />
-              Clear All
-            </Button>
-          </div>
+                <Upload className="size-8 text-muted-foreground" />
+                <div className="text-center">
+                    <p className="text-sm font-medium">
+                        Click or drag images to upload
+                    </p>
+                    <p className="text-xs text-muted-foreground">
+                        {files.length} of {maxFiles} images
+                    </p>
+                </div>
+            </div>
 
-          {enableReorder ? (
-            <DragDropProvider onDragEnd={handleDragEnd}>
-              {cardsContent}
-            </DragDropProvider>
-          ) : (
-            cardsContent
-          )}
-        </>
-      )}
-    </div>
-  )
+            <input
+                ref={inputRef}
+                type="file"
+                accept="image/*"
+                multiple
+                onChange={(e) => e.target.files && handleFiles(e.target.files)}
+                className="sr-only"
+            />
+
+            {files.length > 0 && (
+                <>
+                    <div className="flex items-center justify-between">
+                        <p className="text-sm text-muted-foreground">
+                            {enableReorder
+                                ? \'Drag cards to reorder. First image is primary.\'
+                                : \'Click star to set primary image.\'}
+                        </p>
+                        <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={clearAll}
+                            className="gap-1"
+                        >
+                            <Trash2 className="size-3" />
+                            Clear All
+                        </Button>
+                    </div>
+
+                    {enableReorder ? (
+                        <DragDropProvider onDragEnd={handleDragEnd}>
+                            {cardsContent}
+                        </DragDropProvider>
+                    ) : (
+                        cardsContent
+                    )}
+                </>
+            )}
+        </div>
+    );
 }
 ',
                     ],
@@ -26851,262 +28385,273 @@ export function GalleryDropzoneSortableCards({
                     [
                         'path' => 'resources/js/registry/new-york/components/ui/dropzones/gallery-dropzone-sortable-grid.tsx',
                         'type' => 'registry:ui',
-                        'content' => '"use client"
+                        'content' => '\'use client\';
 
-import * as React from "react"
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { Upload, X, ImageIcon, GripVertical } from "lucide-react"
-import { DragDropProvider } from "@dnd-kit/react"
-import { useSortable, isSortable } from "@dnd-kit/react/sortable"
+import * as React from \'react\';
+import { cn } from \'@/lib/utils\';
+import { Button } from \'@/components/ui/button\';
+import { Upload, X, ImageIcon, GripVertical } from \'lucide-react\';
+import { DragDropProvider } from \'@dnd-kit/react\';
+import { useSortable, isSortable } from \'@dnd-kit/react/sortable\';
 
 interface FileWithPreview {
-  file: File
-  preview: string
-  id: string
+    file: File;
+    preview: string;
+    id: string;
 }
 
 interface SortableImageProps {
-  image: FileWithPreview
-  index: number
-  onRemove: (id: string) => void
-  showHandle?: boolean
+    image: FileWithPreview;
+    index: number;
+    onRemove: (id: string) => void;
+    showHandle?: boolean;
 }
 
-function SortableImage({ image, index, onRemove, showHandle }: SortableImageProps) {
-  const { ref, handleRef, isDragging } = useSortable({
-    id: image.id,
+function SortableImage({
+    image,
     index,
-  })
+    onRemove,
+    showHandle,
+}: SortableImageProps) {
+    const { ref, handleRef, isDragging } = useSortable({
+        id: image.id,
+        index,
+    });
 
-  return (
-    <div
-      ref={ref}
-      className={cn(
-        "group relative aspect-square overflow-hidden rounded-md border bg-muted transition-all",
-        isDragging && "z-10 scale-105 shadow-lg ring-2 ring-primary"
-      )}
-    >
-      <img
-        src={image.preview}
-        alt=""
-        className="size-full object-cover"
-        draggable={false}
-      />
-      
-      {showHandle && (
-        <button
-          ref={handleRef}
-          className="absolute left-1 top-1 flex size-6 cursor-grab items-center justify-center rounded bg-background/80 opacity-0 shadow-sm transition-opacity group-hover:opacity-100 active:cursor-grabbing"
-          aria-label="Drag to reorder"
+    return (
+        <div
+            ref={ref}
+            className={cn(
+                \'group relative aspect-square overflow-hidden rounded-md border bg-muted transition-all\',
+                isDragging && \'z-10 scale-105 shadow-lg ring-2 ring-primary\',
+            )}
         >
-          <GripVertical className="size-3" />
-        </button>
-      )}
-      
-      <button
-        onClick={() => onRemove(image.id)}
-        className="absolute right-1 top-1 flex size-6 items-center justify-center rounded-full bg-background/80 opacity-0 shadow-sm transition-opacity group-hover:opacity-100"
-        aria-label="Remove image"
-      >
-        <X className="size-3" />
-      </button>
-      
-      <div className="absolute bottom-1 left-1 flex size-5 items-center justify-center rounded bg-foreground/70 text-xs font-medium text-background">
-        {index + 1}
-      </div>
-    </div>
-  )
+            <img
+                src={image.preview}
+                alt=""
+                className="size-full object-cover"
+                draggable={false}
+            />
+
+            {showHandle && (
+                <button
+                    ref={handleRef}
+                    className="absolute top-1 left-1 flex size-6 cursor-grab items-center justify-center rounded bg-background/80 opacity-0 shadow-sm transition-opacity group-hover:opacity-100 active:cursor-grabbing"
+                    aria-label="Drag to reorder"
+                >
+                    <GripVertical className="size-3" />
+                </button>
+            )}
+
+            <button
+                onClick={() => onRemove(image.id)}
+                className="absolute top-1 right-1 flex size-6 items-center justify-center rounded-full bg-background/80 opacity-0 shadow-sm transition-opacity group-hover:opacity-100"
+                aria-label="Remove image"
+            >
+                <X className="size-3" />
+            </button>
+
+            <div className="absolute bottom-1 left-1 flex size-5 items-center justify-center rounded bg-foreground/70 text-xs font-medium text-background">
+                {index + 1}
+            </div>
+        </div>
+    );
 }
 
 interface GalleryDropzoneSortableGridProps {
-  onFilesSelect?: (files: File[]) => void
-  onReorder?: (files: File[]) => void
-  maxFiles?: number
-  maxSize?: number
-  className?: string
-  enableReorder?: boolean
+    onFilesSelect?: (files: File[]) => void;
+    onReorder?: (files: File[]) => void;
+    maxFiles?: number;
+    maxSize?: number;
+    className?: string;
+    enableReorder?: boolean;
 }
 
 export function GalleryDropzoneSortableGrid({
-  onFilesSelect,
-  onReorder,
-  maxFiles = 9,
-  maxSize = 10 * 1024 * 1024,
-  className,
-  enableReorder = true,
+    onFilesSelect,
+    onReorder,
+    maxFiles = 9,
+    maxSize = 10 * 1024 * 1024,
+    className,
+    enableReorder = true,
 }: GalleryDropzoneSortableGridProps) {
-  const [files, setFiles] = React.useState<FileWithPreview[]>([])
-  const [isDragging, setIsDragging] = React.useState(false)
-  const inputRef = React.useRef<HTMLInputElement>(null)
+    const [files, setFiles] = React.useState<FileWithPreview[]>([]);
+    const [isDragging, setIsDragging] = React.useState(false);
+    const inputRef = React.useRef<HTMLInputElement>(null);
 
-  const handleFiles = React.useCallback(
-    (newFiles: FileList) => {
-      const validFiles = Array.from(newFiles)
-        .filter((file) => file.type.startsWith("image/") && file.size <= maxSize)
-        .slice(0, maxFiles - files.length)
+    const handleFiles = React.useCallback(
+        (newFiles: FileList) => {
+            const validFiles = Array.from(newFiles)
+                .filter(
+                    (file) =>
+                        file.type.startsWith(\'image/\') && file.size <= maxSize,
+                )
+                .slice(0, maxFiles - files.length);
 
-      const newFileObjects = validFiles.map((file) => ({
-        file,
-        preview: URL.createObjectURL(file),
-        id: Math.random().toString(36).slice(2),
-      }))
+            const newFileObjects = validFiles.map((file) => ({
+                file,
+                preview: URL.createObjectURL(file),
+                id: Math.random().toString(36).slice(2),
+            }));
 
-      const updated = [...files, ...newFileObjects].slice(0, maxFiles)
-      setFiles(updated)
-      onFilesSelect?.(updated.map((f) => f.file))
-    },
-    [files, maxFiles, maxSize, onFilesSelect]
-  )
+            const updated = [...files, ...newFileObjects].slice(0, maxFiles);
+            setFiles(updated);
+            onFilesSelect?.(updated.map((f) => f.file));
+        },
+        [files, maxFiles, maxSize, onFilesSelect],
+    );
 
-  const handleDrop = React.useCallback(
-    (e: React.DragEvent) => {
-      e.preventDefault()
-      setIsDragging(false)
-      if (e.dataTransfer.files.length) handleFiles(e.dataTransfer.files)
-    },
-    [handleFiles]
-  )
+    const handleDrop = React.useCallback(
+        (e: React.DragEvent) => {
+            e.preventDefault();
+            setIsDragging(false);
+            if (e.dataTransfer.files.length) handleFiles(e.dataTransfer.files);
+        },
+        [handleFiles],
+    );
 
-  const removeFile = (id: string) => {
-    const updated = files.filter((f) => f.id !== id)
-    setFiles(updated)
-    onFilesSelect?.(updated.map((f) => f.file))
-  }
+    const removeFile = (id: string) => {
+        const updated = files.filter((f) => f.id !== id);
+        setFiles(updated);
+        onFilesSelect?.(updated.map((f) => f.file));
+    };
 
-  const clearAll = () => {
-    setFiles([])
-    onFilesSelect?.([])
-    if (inputRef.current) inputRef.current.value = ""
-  }
+    const clearAll = () => {
+        setFiles([]);
+        onFilesSelect?.([]);
+        if (inputRef.current) inputRef.current.value = \'\';
+    };
 
-  const handleDragEnd = React.useCallback(
-    (event: { canceled: boolean; operation: { source: unknown } }) => {
-      if (event.canceled) return
+    const handleDragEnd = React.useCallback(
+        (event: { canceled: boolean; operation: { source: unknown } }) => {
+            if (event.canceled) return;
 
-      const source = event.operation.source as any
+            const source = event.operation.source as any;
 
-      if (isSortable(source)) {
-        const { initialIndex, index } = source
+            if (isSortable(source)) {
+                const { initialIndex, index } = source;
 
-        if (initialIndex !== index) {
-          setFiles((prev) => {
-            const newFiles = [...prev]
-            const [removed] = newFiles.splice(initialIndex, 1)
-            newFiles.splice(index, 0, removed)
-            onReorder?.(newFiles.map((f) => f.file))
-            return newFiles
-          })
-        }
-      }
-    },
-    [onReorder]
-  )
-
-  const gridContent = (
-    <div className="grid grid-cols-3 gap-3">
-      {files.map((file, index) => (
-        <SortableImage
-          key={file.id}
-          image={file}
-          index={index}
-          onRemove={removeFile}
-          showHandle={enableReorder}
-        />
-      ))}
-
-      {files.length < maxFiles && (
-        <button
-          onClick={() => inputRef.current?.click()}
-          className="flex aspect-square flex-col items-center justify-center gap-1 rounded-md border-2 border-dashed border-muted-foreground/25 text-muted-foreground transition-colors hover:border-muted-foreground/50 hover:bg-muted/50"
-        >
-          <ImageIcon className="size-5" />
-          <span className="text-xs">Add</span>
-        </button>
-      )}
-    </div>
-  )
-
-  return (
-    <div className={cn("space-y-4", className)}>
-      {files.length === 0 && (
-        <div
-          className={cn(
-            "flex min-h-[160px] cursor-pointer flex-col items-center justify-center gap-2 rounded-lg border-2 border-dashed p-6 transition-colors",
-            isDragging
-              ? "border-primary bg-primary/5"
-              : "border-muted-foreground/25 hover:border-muted-foreground/50"
-          )}
-          onDragOver={(e) => {
-            e.preventDefault()
-            setIsDragging(true)
-          }}
-          onDragLeave={() => setIsDragging(false)}
-          onDrop={handleDrop}
-          onClick={() => inputRef.current?.click()}
-          onKeyDown={(e) => {
-            if (e.key === "Enter" || e.key === " ") {
-              e.preventDefault()
-              inputRef.current?.click()
+                if (initialIndex !== index) {
+                    setFiles((prev) => {
+                        const newFiles = [...prev];
+                        const [removed] = newFiles.splice(initialIndex, 1);
+                        newFiles.splice(index, 0, removed);
+                        onReorder?.(newFiles.map((f) => f.file));
+                        return newFiles;
+                    });
+                }
             }
-          }}
-          tabIndex={0}
-          role="button"
-          aria-label="Upload images"
-        >
-          <div className="flex size-12 items-center justify-center rounded-full bg-muted">
-            <Upload className="size-6 text-muted-foreground" />
-          </div>
-          <div className="text-center">
-            <p className="text-sm font-medium">
-              Drop images here or click to upload
-            </p>
-            <p className="text-xs text-muted-foreground">
-              PNG, JPG, GIF up to {Math.round(maxSize / 1024 / 1024)}MB
-            </p>
-          </div>
+        },
+        [onReorder],
+    );
+
+    const gridContent = (
+        <div className="grid grid-cols-3 gap-3">
+            {files.map((file, index) => (
+                <SortableImage
+                    key={file.id}
+                    image={file}
+                    index={index}
+                    onRemove={removeFile}
+                    showHandle={enableReorder}
+                />
+            ))}
+
+            {files.length < maxFiles && (
+                <button
+                    onClick={() => inputRef.current?.click()}
+                    className="flex aspect-square flex-col items-center justify-center gap-1 rounded-md border-2 border-dashed border-muted-foreground/25 text-muted-foreground transition-colors hover:border-muted-foreground/50 hover:bg-muted/50"
+                >
+                    <ImageIcon className="size-5" />
+                    <span className="text-xs">Add</span>
+                </button>
+            )}
         </div>
-      )}
+    );
 
-      <input
-        ref={inputRef}
-        type="file"
-        accept="image/*"
-        multiple
-        onChange={(e) => e.target.files && handleFiles(e.target.files)}
-        className="sr-only"
-      />
+    return (
+        <div className={cn(\'space-y-4\', className)}>
+            {files.length === 0 && (
+                <div
+                    className={cn(
+                        \'flex min-h-[160px] cursor-pointer flex-col items-center justify-center gap-2 rounded-lg border-2 border-dashed p-6 transition-colors\',
+                        isDragging
+                            ? \'border-primary bg-primary/5\'
+                            : \'border-muted-foreground/25 hover:border-muted-foreground/50\',
+                    )}
+                    onDragOver={(e) => {
+                        e.preventDefault();
+                        setIsDragging(true);
+                    }}
+                    onDragLeave={() => setIsDragging(false)}
+                    onDrop={handleDrop}
+                    onClick={() => inputRef.current?.click()}
+                    onKeyDown={(e) => {
+                        if (e.key === \'Enter\' || e.key === \' \') {
+                            e.preventDefault();
+                            inputRef.current?.click();
+                        }
+                    }}
+                    tabIndex={0}
+                    role="button"
+                    aria-label="Upload images"
+                >
+                    <div className="flex size-12 items-center justify-center rounded-full bg-muted">
+                        <Upload className="size-6 text-muted-foreground" />
+                    </div>
+                    <div className="text-center">
+                        <p className="text-sm font-medium">
+                            Drop images here or click to upload
+                        </p>
+                        <p className="text-xs text-muted-foreground">
+                            PNG, JPG, GIF up to{\' \'}
+                            {Math.round(maxSize / 1024 / 1024)}MB
+                        </p>
+                    </div>
+                </div>
+            )}
 
-      {files.length > 0 && (
-        <div className="space-y-3">
-          <div className="flex items-center justify-between">
-            <p className="text-sm text-muted-foreground">
-              {files.length} of {maxFiles} images
-              {enableReorder && (
-                <span className="ml-2 text-xs">(drag to reorder)</span>
-              )}
-            </p>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={clearAll}
-              className="text-muted-foreground"
-            >
-              Clear all
-            </Button>
-          </div>
+            <input
+                ref={inputRef}
+                type="file"
+                accept="image/*"
+                multiple
+                onChange={(e) => e.target.files && handleFiles(e.target.files)}
+                className="sr-only"
+            />
 
-          {enableReorder ? (
-            <DragDropProvider onDragEnd={handleDragEnd}>
-              {gridContent}
-            </DragDropProvider>
-          ) : (
-            gridContent
-          )}
+            {files.length > 0 && (
+                <div className="space-y-3">
+                    <div className="flex items-center justify-between">
+                        <p className="text-sm text-muted-foreground">
+                            {files.length} of {maxFiles} images
+                            {enableReorder && (
+                                <span className="ml-2 text-xs">
+                                    (drag to reorder)
+                                </span>
+                            )}
+                        </p>
+                        <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={clearAll}
+                            className="text-muted-foreground"
+                        >
+                            Clear all
+                        </Button>
+                    </div>
+
+                    {enableReorder ? (
+                        <DragDropProvider onDragEnd={handleDragEnd}>
+                            {gridContent}
+                        </DragDropProvider>
+                    ) : (
+                        gridContent
+                    )}
+                </div>
+            )}
         </div>
-      )}
-    </div>
-  )
+    );
 }
 ',
                     ],
@@ -27157,298 +28702,320 @@ export function GalleryDropzoneSortableGrid({
                     [
                         'path' => 'resources/js/registry/new-york/components/ui/dropzones/gallery-dropzone-sortable-list.tsx',
                         'type' => 'registry:ui',
-                        'content' => '"use client"
+                        'content' => '\'use client\';
 
-import * as React from "react"
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Separator } from "@/components/ui/separator"
-import { ScrollArea } from "@/components/ui/scroll-area"
-import { ImageIcon, Upload, X, GripVertical, Check, AlertCircle } from "lucide-react"
-import { DragDropProvider } from "@dnd-kit/react"
-import { useSortable, isSortable } from "@dnd-kit/react/sortable"
+import * as React from \'react\';
+import { cn } from \'@/lib/utils\';
+import { Button } from \'@/components/ui/button\';
+import { Badge } from \'@/components/ui/badge\';
+import { Separator } from \'@/components/ui/separator\';
+import { ScrollArea } from \'@/components/ui/scroll-area\';
+import {
+    ImageIcon,
+    Upload,
+    X,
+    GripVertical,
+    Check,
+    AlertCircle,
+} from \'lucide-react\';
+import { DragDropProvider } from \'@dnd-kit/react\';
+import { useSortable, isSortable } from \'@dnd-kit/react/sortable\';
 
 interface ImageFile {
-  id: string
-  file: File
-  preview: string
-  status: "ready" | "uploading" | "success" | "error"
+    id: string;
+    file: File;
+    preview: string;
+    status: \'ready\' | \'uploading\' | \'success\' | \'error\';
 }
 
 interface SortableListItemProps {
-  image: ImageFile
-  index: number
-  onRemove: (id: string) => void
-  showHandle?: boolean
+    image: ImageFile;
+    index: number;
+    onRemove: (id: string) => void;
+    showHandle?: boolean;
 }
 
-function SortableListItem({ image, index, onRemove, showHandle }: SortableListItemProps) {
-  const { ref, handleRef, isDragging } = useSortable({
-    id: image.id,
+function SortableListItem({
+    image,
     index,
-  })
+    onRemove,
+    showHandle,
+}: SortableListItemProps) {
+    const { ref, handleRef, isDragging } = useSortable({
+        id: image.id,
+        index,
+    });
 
-  const formatSize = (bytes: number) => {
-    if (bytes < 1024) return bytes + " B"
-    if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + " KB"
-    return (bytes / (1024 * 1024)).toFixed(1) + " MB"
-  }
+    const formatSize = (bytes: number) => {
+        if (bytes < 1024) return bytes + \' B\';
+        if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + \' KB\';
+        return (bytes / (1024 * 1024)).toFixed(1) + \' MB\';
+    };
 
-  return (
-    <div
-      ref={ref}
-      className={cn(
-        "flex items-center gap-3 rounded-md p-2 transition-all",
-        isDragging && "z-10 bg-muted shadow-md ring-1 ring-border"
-      )}
-    >
-      {showHandle && (
-        <button
-          ref={handleRef}
-          className="flex size-8 shrink-0 cursor-grab items-center justify-center rounded text-muted-foreground hover:bg-muted active:cursor-grabbing"
-          aria-label="Drag to reorder"
+    return (
+        <div
+            ref={ref}
+            className={cn(
+                \'flex items-center gap-3 rounded-md p-2 transition-all\',
+                isDragging && \'z-10 bg-muted shadow-md ring-1 ring-border\',
+            )}
         >
-          <GripVertical className="size-4" />
-        </button>
-      )}
+            {showHandle && (
+                <button
+                    ref={handleRef}
+                    className="flex size-8 shrink-0 cursor-grab items-center justify-center rounded text-muted-foreground hover:bg-muted active:cursor-grabbing"
+                    aria-label="Drag to reorder"
+                >
+                    <GripVertical className="size-4" />
+                </button>
+            )}
 
-      <div className="size-10 shrink-0 overflow-hidden rounded border bg-muted">
-        {image.preview ? (
-          <img src={image.preview} alt="" className="size-full object-cover" />
-        ) : (
-          <div className="flex size-full items-center justify-center">
-            <ImageIcon className="size-4 text-muted-foreground" />
-          </div>
-        )}
-      </div>
+            <div className="size-10 shrink-0 overflow-hidden rounded border bg-muted">
+                {image.preview ? (
+                    <img
+                        src={image.preview}
+                        alt=""
+                        className="size-full object-cover"
+                    />
+                ) : (
+                    <div className="flex size-full items-center justify-center">
+                        <ImageIcon className="size-4 text-muted-foreground" />
+                    </div>
+                )}
+            </div>
 
-      <div className="flex min-w-0 flex-1 flex-col">
-        <span className="truncate text-sm font-medium">{image.file.name}</span>
-        <span className="text-xs text-muted-foreground">
-          {formatSize(image.file.size)}
-        </span>
-      </div>
+            <div className="flex min-w-0 flex-1 flex-col">
+                <span className="truncate text-sm font-medium">
+                    {image.file.name}
+                </span>
+                <span className="text-xs text-muted-foreground">
+                    {formatSize(image.file.size)}
+                </span>
+            </div>
 
-      <div className="flex items-center gap-2">
-        {image.status === "success" && (
-          <Badge variant="secondary" className="gap-1 text-success">
-            <Check className="size-3" />
-            Done
-          </Badge>
-        )}
-        {image.status === "error" && (
-          <Badge variant="destructive" className="gap-1">
-            <AlertCircle className="size-3" />
-            Error
-          </Badge>
-        )}
-        
-        <Button
-          variant="ghost"
-          size="sm"
-          onClick={() => onRemove(image.id)}
-          className="size-8 p-0 text-muted-foreground hover:text-destructive"
-        >
-          <X className="size-4" />
-        </Button>
-      </div>
-    </div>
-  )
+            <div className="flex items-center gap-2">
+                {image.status === \'success\' && (
+                    <Badge variant="secondary" className="text-success gap-1">
+                        <Check className="size-3" />
+                        Done
+                    </Badge>
+                )}
+                {image.status === \'error\' && (
+                    <Badge variant="destructive" className="gap-1">
+                        <AlertCircle className="size-3" />
+                        Error
+                    </Badge>
+                )}
+
+                <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => onRemove(image.id)}
+                    className="size-8 p-0 text-muted-foreground hover:text-destructive"
+                >
+                    <X className="size-4" />
+                </Button>
+            </div>
+        </div>
+    );
 }
 
 interface GalleryDropzoneSortableListProps {
-  className?: string
-  onFilesChange?: (files: File[]) => void
-  onReorder?: (files: File[]) => void
-  maxFiles?: number
-  maxSize?: number
-  enableReorder?: boolean
+    className?: string;
+    onFilesChange?: (files: File[]) => void;
+    onReorder?: (files: File[]) => void;
+    maxFiles?: number;
+    maxSize?: number;
+    enableReorder?: boolean;
 }
 
 export function GalleryDropzoneSortableList({
-  className,
-  onFilesChange,
-  onReorder,
-  maxFiles = 10,
-  maxSize = 10,
-  enableReorder = true,
+    className,
+    onFilesChange,
+    onReorder,
+    maxFiles = 10,
+    maxSize = 10,
+    enableReorder = true,
 }: GalleryDropzoneSortableListProps) {
-  const [isDragOver, setIsDragOver] = React.useState(false)
-  const [images, setImages] = React.useState<ImageFile[]>([])
-  const inputRef = React.useRef<HTMLInputElement>(null)
+    const [isDragOver, setIsDragOver] = React.useState(false);
+    const [images, setImages] = React.useState<ImageFile[]>([]);
+    const inputRef = React.useRef<HTMLInputElement>(null);
 
-  const processFiles = React.useCallback(
-    (files: FileList | File[]) => {
-      const fileArray = Array.from(files)
-      const remainingSlots = maxFiles - images.length
-      const filesToProcess = fileArray.slice(0, remainingSlots)
+    const processFiles = React.useCallback(
+        (files: FileList | File[]) => {
+            const fileArray = Array.from(files);
+            const remainingSlots = maxFiles - images.length;
+            const filesToProcess = fileArray.slice(0, remainingSlots);
 
-      const newImages: ImageFile[] = filesToProcess
-        .filter(
-          (file) =>
-            file.type.startsWith("image/") &&
-            file.size <= maxSize * 1024 * 1024
-        )
-        .map((file) => {
-          const id = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`
-          const preview = URL.createObjectURL(file)
-          return { id, file, preview, status: "ready" as const }
-        })
+            const newImages: ImageFile[] = filesToProcess
+                .filter(
+                    (file) =>
+                        file.type.startsWith(\'image/\') &&
+                        file.size <= maxSize * 1024 * 1024,
+                )
+                .map((file) => {
+                    const id = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+                    const preview = URL.createObjectURL(file);
+                    return { id, file, preview, status: \'ready\' as const };
+                });
 
-      const updated = [...images, ...newImages]
-      setImages(updated)
-      onFilesChange?.(updated.map((i) => i.file))
-    },
-    [images, maxFiles, maxSize, onFilesChange]
-  )
+            const updated = [...images, ...newImages];
+            setImages(updated);
+            onFilesChange?.(updated.map((i) => i.file));
+        },
+        [images, maxFiles, maxSize, onFilesChange],
+    );
 
-  const handleDrop = React.useCallback(
-    (e: React.DragEvent) => {
-      e.preventDefault()
-      setIsDragOver(false)
-      processFiles(e.dataTransfer.files)
-    },
-    [processFiles]
-  )
+    const handleDrop = React.useCallback(
+        (e: React.DragEvent) => {
+            e.preventDefault();
+            setIsDragOver(false);
+            processFiles(e.dataTransfer.files);
+        },
+        [processFiles],
+    );
 
-  const handleRemove = React.useCallback(
-    (id: string) => {
-      setImages((prev) => {
-        const updated = prev.filter((img) => img.id !== id)
-        onFilesChange?.(updated.map((i) => i.file))
-        return updated
-      })
-    },
-    [onFilesChange]
-  )
+    const handleRemove = React.useCallback(
+        (id: string) => {
+            setImages((prev) => {
+                const updated = prev.filter((img) => img.id !== id);
+                onFilesChange?.(updated.map((i) => i.file));
+                return updated;
+            });
+        },
+        [onFilesChange],
+    );
 
-  const handleDragEnd = React.useCallback(
-    (event: { canceled: boolean; operation: { source: unknown } }) => {
-      if (event.canceled) return
+    const handleDragEnd = React.useCallback(
+        (event: { canceled: boolean; operation: { source: unknown } }) => {
+            if (event.canceled) return;
 
-      const source = event.operation.source as any
+            const source = event.operation.source as any;
 
-      if (isSortable(source)) {
-        const { initialIndex, index } = source
+            if (isSortable(source)) {
+                const { initialIndex, index } = source;
 
-        if (initialIndex !== index) {
-          setImages((prev) => {
-            const newImages = [...prev]
-            const [removed] = newImages.splice(initialIndex, 1)
-            newImages.splice(index, 0, removed)
-            onReorder?.(newImages.map((f) => f.file))
-            return newImages
-          })
-        }
-      }
-    },
-    [onReorder]
-  )
+                if (initialIndex !== index) {
+                    setImages((prev) => {
+                        const newImages = [...prev];
+                        const [removed] = newImages.splice(initialIndex, 1);
+                        newImages.splice(index, 0, removed);
+                        onReorder?.(newImages.map((f) => f.file));
+                        return newImages;
+                    });
+                }
+            }
+        },
+        [onReorder],
+    );
 
-  const listContent = (
-    <div className="space-y-1">
-      {images.map((image, idx) => (
-        <React.Fragment key={image.id}>
-          <SortableListItem
-            image={image}
-            index={idx}
-            onRemove={handleRemove}
-            showHandle={enableReorder}
-          />
-          {idx < images.length - 1 && <Separator />}
-        </React.Fragment>
-      ))}
-    </div>
-  )
-
-  return (
-    <div
-      className={cn("flex flex-col gap-4 rounded-lg border p-4", className)}
-    >
-      <div
-        role="button"
-        tabIndex={0}
-        aria-label="Upload images"
-        onClick={() => inputRef.current?.click()}
-        onKeyDown={(e) =>
-          (e.key === "Enter" || e.key === " ") && inputRef.current?.click()
-        }
-        onDrop={handleDrop}
-        onDragOver={(e) => {
-          e.preventDefault()
-          setIsDragOver(true)
-        }}
-        onDragLeave={(e) => {
-          e.preventDefault()
-          setIsDragOver(false)
-        }}
-        className={cn(
-          "flex cursor-pointer flex-col items-center gap-3 rounded-md border-2 border-dashed p-6 transition-colors",
-          isDragOver
-            ? "border-primary bg-primary/5"
-            : "border-muted hover:border-muted-foreground/50"
-        )}
-      >
-        <div className="rounded-full bg-muted p-3">
-          <Upload className="size-5 text-muted-foreground" />
+    const listContent = (
+        <div className="space-y-1">
+            {images.map((image, idx) => (
+                <React.Fragment key={image.id}>
+                    <SortableListItem
+                        image={image}
+                        index={idx}
+                        onRemove={handleRemove}
+                        showHandle={enableReorder}
+                    />
+                    {idx < images.length - 1 && <Separator />}
+                </React.Fragment>
+            ))}
         </div>
-        <div className="text-center">
-          <p className="text-sm font-medium">
-            Drop files here or click to browse
-          </p>
-          <p className="text-xs text-muted-foreground">
-            Max {maxFiles} files, {maxSize}MB each
-          </p>
-        </div>
-      </div>
+    );
 
-      <input
-        ref={inputRef}
-        type="file"
-        accept="image/*"
-        multiple
-        onChange={(e) => e.target.files && processFiles(e.target.files)}
-        className="sr-only"
-      />
-
-      {images.length > 0 && (
-        <>
-          <div className="flex items-center justify-between">
-            <span className="text-sm font-medium">
-              {images.length} file{images.length > 1 ? "s" : ""}
-              {enableReorder && (
-                <span className="ml-2 text-xs text-muted-foreground">
-                  (drag to reorder)
-                </span>
-              )}
-            </span>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => {
-                setImages([])
-                onFilesChange?.([])
-              }}
-              className="h-7 text-xs text-muted-foreground hover:text-destructive"
-            >
-              Clear all
-            </Button>
-          </div>
-
-          <ScrollArea className="max-h-[280px]">
-            {enableReorder ? (
-              <DragDropProvider onDragEnd={handleDragEnd}>
-                {listContent}
-              </DragDropProvider>
-            ) : (
-              listContent
+    return (
+        <div
+            className={cn(
+                \'flex flex-col gap-4 rounded-lg border p-4\',
+                className,
             )}
-          </ScrollArea>
-        </>
-      )}
-    </div>
-  )
+        >
+            <div
+                role="button"
+                tabIndex={0}
+                aria-label="Upload images"
+                onClick={() => inputRef.current?.click()}
+                onKeyDown={(e) =>
+                    (e.key === \'Enter\' || e.key === \' \') &&
+                    inputRef.current?.click()
+                }
+                onDrop={handleDrop}
+                onDragOver={(e) => {
+                    e.preventDefault();
+                    setIsDragOver(true);
+                }}
+                onDragLeave={(e) => {
+                    e.preventDefault();
+                    setIsDragOver(false);
+                }}
+                className={cn(
+                    \'flex cursor-pointer flex-col items-center gap-3 rounded-md border-2 border-dashed p-6 transition-colors\',
+                    isDragOver
+                        ? \'border-primary bg-primary/5\'
+                        : \'border-muted hover:border-muted-foreground/50\',
+                )}
+            >
+                <div className="rounded-full bg-muted p-3">
+                    <Upload className="size-5 text-muted-foreground" />
+                </div>
+                <div className="text-center">
+                    <p className="text-sm font-medium">
+                        Drop files here or click to browse
+                    </p>
+                    <p className="text-xs text-muted-foreground">
+                        Max {maxFiles} files, {maxSize}MB each
+                    </p>
+                </div>
+            </div>
+
+            <input
+                ref={inputRef}
+                type="file"
+                accept="image/*"
+                multiple
+                onChange={(e) => e.target.files && processFiles(e.target.files)}
+                className="sr-only"
+            />
+
+            {images.length > 0 && (
+                <>
+                    <div className="flex items-center justify-between">
+                        <span className="text-sm font-medium">
+                            {images.length} file{images.length > 1 ? \'s\' : \'\'}
+                            {enableReorder && (
+                                <span className="ml-2 text-xs text-muted-foreground">
+                                    (drag to reorder)
+                                </span>
+                            )}
+                        </span>
+                        <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => {
+                                setImages([]);
+                                onFilesChange?.([]);
+                            }}
+                            className="h-7 text-xs text-muted-foreground hover:text-destructive"
+                        >
+                            Clear all
+                        </Button>
+                    </div>
+
+                    <ScrollArea className="max-h-[280px]">
+                        {enableReorder ? (
+                            <DragDropProvider onDragEnd={handleDragEnd}>
+                                {listContent}
+                            </DragDropProvider>
+                        ) : (
+                            listContent
+                        )}
+                    </ScrollArea>
+                </>
+            )}
+        </div>
+    );
 }
 ',
                     ],
@@ -27497,193 +29064,227 @@ export function GalleryDropzoneSortableList({
                     [
                         'path' => 'resources/js/registry/new-york/components/ui/dropzones/gallery-dropzone-table.tsx',
                         'type' => 'registry:ui',
-                        'content' => '"use client"
+                        'content' => '\'use client\';
 
-import { useState, useCallback, useRef } from "react"
-import { Upload, X, File, Check, Loader2 } from "lucide-react"
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { Progress } from "@/components/ui/progress"
+import { useState, useCallback, useRef } from \'react\';
+import { Upload, X, File, Check, Loader2 } from \'lucide-react\';
+import { cn } from \'@/lib/utils\';
+import { Button } from \'@/components/ui/button\';
+import { Progress } from \'@/components/ui/progress\';
 import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table"
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableRow,
+} from \'@/components/ui/table\';
 
 interface FileWithProgress {
-  file: File
-  preview: string
-  id: string
-  progress: number
-  status: "uploading" | "complete" | "error"
+    file: File;
+    preview: string;
+    id: string;
+    progress: number;
+    status: \'uploading\' | \'complete\' | \'error\';
 }
 
 interface GalleryDropzoneTableProps {
-  onFilesSelect?: (files: File[]) => void
-  maxFiles?: number
-  maxSize?: number
-  className?: string
+    onFilesSelect?: (files: File[]) => void;
+    maxFiles?: number;
+    maxSize?: number;
+    className?: string;
 }
 
 export function GalleryDropzoneTable({
-  onFilesSelect,
-  maxFiles = 10,
-  maxSize = 10 * 1024 * 1024,
-  className,
+    onFilesSelect,
+    maxFiles = 10,
+    maxSize = 10 * 1024 * 1024,
+    className,
 }: GalleryDropzoneTableProps) {
-  const [files, setFiles] = useState<FileWithProgress[]>([])
-  const [isDragging, setIsDragging] = useState(false)
-  const inputRef = useRef<HTMLInputElement>(null)
+    const [files, setFiles] = useState<FileWithProgress[]>([]);
+    const [isDragging, setIsDragging] = useState(false);
+    const inputRef = useRef<HTMLInputElement>(null);
 
-  const handleFiles = useCallback(
-    (newFiles: FileList) => {
-      const validFiles = Array.from(newFiles)
-        .filter((file) => file.type.startsWith("image/") && file.size <= maxSize)
-        .slice(0, maxFiles - files.length)
+    const handleFiles = useCallback(
+        (newFiles: FileList) => {
+            const validFiles = Array.from(newFiles)
+                .filter(
+                    (file) =>
+                        file.type.startsWith(\'image/\') && file.size <= maxSize,
+                )
+                .slice(0, maxFiles - files.length);
 
-      const newFileObjects = validFiles.map((file) => ({
-        file,
-        preview: URL.createObjectURL(file),
-        id: Math.random().toString(36).slice(2),
-        progress: 0,
-        status: "uploading" as const,
-      }))
+            const newFileObjects = validFiles.map((file) => ({
+                file,
+                preview: URL.createObjectURL(file),
+                id: Math.random().toString(36).slice(2),
+                progress: 0,
+                status: \'uploading\' as const,
+            }));
 
-      const updated = [...files, ...newFileObjects].slice(0, maxFiles)
-      setFiles(updated)
+            const updated = [...files, ...newFileObjects].slice(0, maxFiles);
+            setFiles(updated);
 
-      // Simulate upload progress
-      newFileObjects.forEach((fileObj) => {
-        let progress = 0
-        const interval = setInterval(() => {
-          progress += Math.random() * 30
-          if (progress >= 100) {
-            progress = 100
-            clearInterval(interval)
-            setFiles((prev) =>
-              prev.map((f) => (f.id === fileObj.id ? { ...f, progress: 100, status: "complete" } : f))
-            )
-          } else {
-            setFiles((prev) => prev.map((f) => (f.id === fileObj.id ? { ...f, progress } : f)))
-          }
-        }, 200)
-      })
+            // Simulate upload progress
+            newFileObjects.forEach((fileObj) => {
+                let progress = 0;
+                const interval = setInterval(() => {
+                    progress += Math.random() * 30;
+                    if (progress >= 100) {
+                        progress = 100;
+                        clearInterval(interval);
+                        setFiles((prev) =>
+                            prev.map((f) =>
+                                f.id === fileObj.id
+                                    ? {
+                                          ...f,
+                                          progress: 100,
+                                          status: \'complete\',
+                                      }
+                                    : f,
+                            ),
+                        );
+                    } else {
+                        setFiles((prev) =>
+                            prev.map((f) =>
+                                f.id === fileObj.id ? { ...f, progress } : f,
+                            ),
+                        );
+                    }
+                }, 200);
+            });
 
-      onFilesSelect?.(updated.map((f) => f.file))
-    },
-    [files, maxFiles, maxSize, onFilesSelect]
-  )
+            onFilesSelect?.(updated.map((f) => f.file));
+        },
+        [files, maxFiles, maxSize, onFilesSelect],
+    );
 
-  const handleDrop = useCallback(
-    (e: React.DragEvent) => {
-      e.preventDefault()
-      setIsDragging(false)
-      if (e.dataTransfer.files.length) handleFiles(e.dataTransfer.files)
-    },
-    [handleFiles]
-  )
+    const handleDrop = useCallback(
+        (e: React.DragEvent) => {
+            e.preventDefault();
+            setIsDragging(false);
+            if (e.dataTransfer.files.length) handleFiles(e.dataTransfer.files);
+        },
+        [handleFiles],
+    );
 
-  const removeFile = (id: string) => {
-    const updated = files.filter((f) => f.id !== id)
-    setFiles(updated)
-    onFilesSelect?.(updated.map((f) => f.file))
-  }
+    const removeFile = (id: string) => {
+        const updated = files.filter((f) => f.id !== id);
+        setFiles(updated);
+        onFilesSelect?.(updated.map((f) => f.file));
+    };
 
-  const formatSize = (bytes: number) => {
-    if (bytes < 1024) return `${bytes} B`
-    if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`
-    return `${(bytes / 1024 / 1024).toFixed(1)} MB`
-  }
+    const formatSize = (bytes: number) => {
+        if (bytes < 1024) return `${bytes} B`;
+        if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
+        return `${(bytes / 1024 / 1024).toFixed(1)} MB`;
+    };
 
-  return (
-    <div className={cn("space-y-4", className)}>
-      <div
-        className={cn(
-          "flex cursor-pointer items-center justify-center gap-3 rounded-lg border-2 border-dashed p-4 transition-colors",
-          isDragging ? "border-primary bg-muted/50" : "border-muted-foreground/25 hover:border-muted-foreground/50"
-        )}
-        onDragOver={(e) => {
-          e.preventDefault()
-          setIsDragging(true)
-        }}
-        onDragLeave={() => setIsDragging(false)}
-        onDrop={handleDrop}
-        onClick={() => inputRef.current?.click()}
-        tabIndex={0}
-        role="button"
-        aria-label="Upload images"
-      >
-        <input
-          ref={inputRef}
-          type="file"
-          accept="image/*"
-          multiple
-          onChange={(e) => e.target.files && handleFiles(e.target.files)}
-          className="sr-only"
-        />
+    return (
+        <div className={cn(\'space-y-4\', className)}>
+            <div
+                className={cn(
+                    \'flex cursor-pointer items-center justify-center gap-3 rounded-lg border-2 border-dashed p-4 transition-colors\',
+                    isDragging
+                        ? \'border-primary bg-muted/50\'
+                        : \'border-muted-foreground/25 hover:border-muted-foreground/50\',
+                )}
+                onDragOver={(e) => {
+                    e.preventDefault();
+                    setIsDragging(true);
+                }}
+                onDragLeave={() => setIsDragging(false)}
+                onDrop={handleDrop}
+                onClick={() => inputRef.current?.click()}
+                tabIndex={0}
+                role="button"
+                aria-label="Upload images"
+            >
+                <input
+                    ref={inputRef}
+                    type="file"
+                    accept="image/*"
+                    multiple
+                    onChange={(e) =>
+                        e.target.files && handleFiles(e.target.files)
+                    }
+                    className="sr-only"
+                />
 
-        <Upload className="size-5 text-muted-foreground" />
-        <span className="text-sm">Drop files here or click to browse</span>
-      </div>
+                <Upload className="size-5 text-muted-foreground" />
+                <span className="text-sm">
+                    Drop files here or click to browse
+                </span>
+            </div>
 
-      {files.length > 0 && (
-        <div className="rounded-md border">
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead className="w-12"></TableHead>
-                <TableHead>Name</TableHead>
-                <TableHead className="w-24">Size</TableHead>
-                <TableHead className="w-32">Status</TableHead>
-                <TableHead className="w-12"></TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {files.map((file) => (
-                <TableRow key={file.id}>
-                  <TableCell>
-                    <div className="size-10 overflow-hidden rounded border bg-muted">
-                      <img src={file.preview} alt="" className="size-full object-cover" />
-                    </div>
-                  </TableCell>
-                  <TableCell className="font-medium">
-                    <span className="line-clamp-1">{file.file.name}</span>
-                  </TableCell>
-                  <TableCell className="text-muted-foreground">{formatSize(file.file.size)}</TableCell>
-                  <TableCell>
-                    {file.status === "uploading" ? (
-                      <div className="flex items-center gap-2">
-                        <Progress value={file.progress} className="h-2 w-16" />
-                        <span className="text-xs text-muted-foreground">{Math.round(file.progress)}%</span>
-                      </div>
-                    ) : (
-                      <div className="flex items-center gap-1 text-sm text-muted-foreground">
-                        <Check className="size-4" />
-                        Complete
-                      </div>
-                    )}
-                  </TableCell>
-                  <TableCell>
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      className="size-8"
-                      onClick={() => removeFile(file.id)}
-                    >
-                      <X className="size-4" />
-                    </Button>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+            {files.length > 0 && (
+                <div className="rounded-md border">
+                    <Table>
+                        <TableHeader>
+                            <TableRow>
+                                <TableHead className="w-12"></TableHead>
+                                <TableHead>Name</TableHead>
+                                <TableHead className="w-24">Size</TableHead>
+                                <TableHead className="w-32">Status</TableHead>
+                                <TableHead className="w-12"></TableHead>
+                            </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                            {files.map((file) => (
+                                <TableRow key={file.id}>
+                                    <TableCell>
+                                        <div className="size-10 overflow-hidden rounded border bg-muted">
+                                            <img
+                                                src={file.preview}
+                                                alt=""
+                                                className="size-full object-cover"
+                                            />
+                                        </div>
+                                    </TableCell>
+                                    <TableCell className="font-medium">
+                                        <span className="line-clamp-1">
+                                            {file.file.name}
+                                        </span>
+                                    </TableCell>
+                                    <TableCell className="text-muted-foreground">
+                                        {formatSize(file.file.size)}
+                                    </TableCell>
+                                    <TableCell>
+                                        {file.status === \'uploading\' ? (
+                                            <div className="flex items-center gap-2">
+                                                <Progress
+                                                    value={file.progress}
+                                                    className="h-2 w-16"
+                                                />
+                                                <span className="text-xs text-muted-foreground">
+                                                    {Math.round(file.progress)}%
+                                                </span>
+                                            </div>
+                                        ) : (
+                                            <div className="flex items-center gap-1 text-sm text-muted-foreground">
+                                                <Check className="size-4" />
+                                                Complete
+                                            </div>
+                                        )}
+                                    </TableCell>
+                                    <TableCell>
+                                        <Button
+                                            variant="ghost"
+                                            size="icon"
+                                            className="size-8"
+                                            onClick={() => removeFile(file.id)}
+                                        >
+                                            <X className="size-4" />
+                                        </Button>
+                                    </TableCell>
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
+                </div>
+            )}
         </div>
-      )}
-    </div>
-  )
+    );
 }
 ',
                     ],
@@ -30122,7 +31723,9 @@ import { cn } from \'@/lib/utils\';
 import { Input } from \'@/components/ui/input\';
 import { RainbowBorder } from \'@/registry/new-york/components/ui/borders/rainbow-border\';
 
-export interface RainbowBorderInputProps extends React.ComponentProps<typeof Input> {
+export interface RainbowBorderInputProps extends React.ComponentProps<
+    typeof Input
+> {
     borderWidth?: string;
     animationDuration?: string;
     colors?: string[];
@@ -30133,7 +31736,10 @@ export interface RainbowBorderInputProps extends React.ComponentProps<typeof Inp
     wrapperClassName?: string;
 }
 
-export const RainbowBorderInput = React.forwardRef<HTMLInputElement, RainbowBorderInputProps>(
+export const RainbowBorderInput = React.forwardRef<
+    HTMLInputElement,
+    RainbowBorderInputProps
+>(
     (
         {
             className,
@@ -30149,12 +31755,18 @@ export const RainbowBorderInput = React.forwardRef<HTMLInputElement, RainbowBord
         },
         ref,
     ) => {
-        const roundedInputClass = 
-            rounded === \'none\' ? \'rounded-none\' :
-            rounded === \'xs\' ? \'rounded-xs\' :
-            rounded === \'sm\' ? \'rounded-sm\' :
-            rounded === \'md\' ? \'rounded-md\' :
-            rounded === \'lg\' ? \'rounded-lg\' : \'rounded-full\';
+        const roundedInputClass =
+            rounded === \'none\'
+                ? \'rounded-none\'
+                : rounded === \'xs\'
+                  ? \'rounded-xs\'
+                  : rounded === \'sm\'
+                    ? \'rounded-sm\'
+                    : rounded === \'md\'
+                      ? \'rounded-md\'
+                      : rounded === \'lg\'
+                        ? \'rounded-lg\'
+                        : \'rounded-full\';
 
         return (
             <RainbowBorder
@@ -30165,12 +31777,12 @@ export const RainbowBorderInput = React.forwardRef<HTMLInputElement, RainbowBord
                 glow={glow}
                 glowBlur={glowBlur}
                 glowOpacity={glowOpacity}
-                className={cn(\'p-[1px] w-full\', wrapperClassName)}
+                className={cn(\'w-full p-[1px]\', wrapperClassName)}
             >
                 <Input
                     ref={ref}
                     className={cn(
-                        \'bg-background text-foreground border-0 shadow-xs focus-visible:ring-0 focus-visible:ring-offset-0 w-full\',
+                        \'w-full border-0 bg-background text-foreground shadow-xs focus-visible:ring-0 focus-visible:ring-offset-0\',
                         roundedInputClass,
                         className,
                     )}
@@ -30184,6 +31796,241 @@ export const RainbowBorderInput = React.forwardRef<HTMLInputElement, RainbowBord
 RainbowBorderInput.displayName = \'RainbowBorderInput\';
 
 export default RainbowBorderInput;
+',
+                    ],
+                ],
+                'css' => null,
+                'tailwind' => null,
+                'vars_theme' => null,
+                'vars_light' => null,
+                'vars_dark' => null,
+                'font_family' => null,
+                'font_mono' => null,
+                'font_serif' => null,
+                'meta' => [
+                    'category' => 'inputs',
+                    'version' => '1.0.0',
+                ],
+                'docs' => null,
+                'categories' => [
+                    'inputs',
+                ],
+                'extends' => null,
+                'style' => null,
+                'icon_library' => null,
+                'base_color' => null,
+                'theme' => null,
+            ],
+            [
+                'name' => 'sliding-radio-group',
+                'type' => 'registry:ui',
+                'title' => 'Sliding Radio Group',
+                'description' => 'An interactive sliding radio group with smooth spring animations and multiple design variants.',
+                'author' => 'designbycode',
+                'dependencies' => [
+                    'motion',
+                ],
+                'devDependencies' => [
+
+                ],
+                'registryDependencies' => [
+                    'utils',
+                ],
+                'files' => [
+                    [
+                        'path' => 'resources/js/registry/new-york/components/ui/inputs/sliding-radio-group.tsx',
+                        'type' => 'registry:ui',
+                        'content' => '\'use client\';
+
+import * as React from \'react\';
+import { LayoutGroup, motion } from \'motion/react\';
+import { cn } from \'@/lib/utils\';
+
+export interface SlidingRadioOption {
+    label: React.ReactNode;
+    value: string;
+    disabled?: boolean;
+    /**
+     * Custom class names specifically for the active glider background and text when this option is selected.
+     * Use this to create custom per-option gradient effects or custom glow shadows.
+     */
+    gliderClassName?: string;
+}
+
+export interface SlidingRadioGroupProps {
+    options: SlidingRadioOption[];
+    value?: string;
+    defaultValue?: string;
+    onChange?: (value: string) => void;
+    name?: string;
+    /**
+     * Pre-defined aesthetic styles
+     * - `glass`: Translucent blurred background with subtle borders and glossy glider
+     * - `neon`: Dark-mode optimized card layout with a glowing accent-colored glider
+     * - `bouncy`: Minimalist, pill-shaped design with a high-elasticity glider transition
+     */
+    variant?: \'glass\' | \'neon\' | \'bouncy\';
+    size?: \'sm\' | \'md\' | \'lg\';
+    className?: string;
+    labelClassName?: string;
+    disabled?: boolean;
+}
+
+export function SlidingRadioGroup({
+    options,
+    value,
+    defaultValue,
+    onChange,
+    name,
+    variant = \'glass\',
+    size = \'md\',
+    className,
+    labelClassName,
+    disabled = false,
+}: SlidingRadioGroupProps) {
+    const uniqueId = React.useId();
+    const [localValue, setLocalValue] = React.useState(defaultValue || \'\');
+
+    const isControlled = value !== undefined;
+    const selectedValue = isControlled ? value : localValue;
+
+    const handleSelect = (val: string) => {
+        if (disabled) return;
+        if (!isControlled) {
+            setLocalValue(val);
+        }
+        onChange?.(val);
+    };
+
+    // Ensure we have a valid selection; default to first if none is selected
+    React.useEffect(() => {
+        if (!selectedValue && options.length > 0) {
+            const firstEnabled = options.find((opt) => !opt.disabled);
+            if (firstEnabled) {
+                handleSelect(firstEnabled.value);
+            }
+        }
+    }, [selectedValue, options]);
+
+    // Active option details
+    const activeOption = options.find((opt) => opt.value === selectedValue);
+
+    // Variant style maps
+    const wrapperVariants = {
+        glass: \'bg-muted/10 border border-border/40 backdrop-blur-md shadow-[inset_0_1px_2px_rgba(255,255,255,0.05),0_4px_12px_rgba(0,0,0,0.05)] rounded-xl p-1\',
+        neon: \'bg-card border border-border/60 shadow-xs rounded-lg p-1\',
+        bouncy: \'bg-muted/80 border border-border/30 rounded-full p-1\',
+    };
+
+    const labelVariants = {
+        glass: \'text-muted-foreground hover:text-foreground font-semibold\',
+        neon: \'text-muted-foreground hover:text-foreground font-medium\',
+        bouncy: \'text-muted-foreground hover:text-foreground font-medium\',
+    };
+
+    const activeLabelVariants = {
+        glass: \'text-foreground\',
+        neon: \'text-primary\',
+        bouncy: \'text-foreground font-semibold\',
+    };
+
+    const gliderDefaultVariants = {
+        glass: \'bg-linear-to-br from-primary/30 to-primary/10 border border-primary/20 shadow-xs rounded-lg\',
+        neon: \'bg-primary/10 border border-primary text-primary shadow-[0_0_12px_rgba(var(--color-primary),0.15)] rounded-md\',
+        bouncy: \'bg-background shadow-md border border-border/10 rounded-full\',
+    };
+
+    const sizeClasses = {
+        sm: {
+            wrapper: \'h-8 gap-0.5\',
+            label: \'text-xs px-3 py-1 min-w-[70px]\',
+        },
+        md: {
+            wrapper: \'h-10 gap-1\',
+            label: \'text-sm px-4 py-1.5 min-w-[90px]\',
+        },
+        lg: {
+            wrapper: \'h-12 gap-1.5\',
+            label: \'text-base px-6 py-2 min-w-[110px]\',
+        },
+    };
+
+    // Transition styles for the glider
+    const gliderTransitions = {
+        glass: { type: \'spring\', stiffness: 350, damping: 28 },
+        neon: { type: \'spring\', stiffness: 400, damping: 30 },
+        bouncy: { type: \'spring\', stiffness: 480, damping: 22 }, // High elasticity / bounce
+    };
+
+    const radioGroupName = name || `sliding-radio-${uniqueId}`;
+
+    return (
+        <LayoutGroup id={uniqueId}>
+            <div
+                role="radiogroup"
+                aria-disabled={disabled}
+                className={cn(
+                    \'relative inline-flex w-fit items-center select-none\',
+                    wrapperVariants[variant],
+                    sizeClasses[size].wrapper,
+                    disabled && \'cursor-not-allowed opacity-60\',
+                    className,
+                )}
+            >
+                {options.map((option) => {
+                    const isSelected = selectedValue === option.value;
+                    const isDisabled = disabled || option.disabled;
+
+                    return (
+                        <label
+                            key={option.value}
+                            className={cn(
+                                \'relative flex h-full cursor-pointer items-center justify-center transition-colors duration-200 ease-in-out focus-within:outline-none\',
+                                sizeClasses[size].label,
+                                isSelected
+                                    ? activeLabelVariants[variant]
+                                    : labelVariants[variant],
+                                isDisabled &&
+                                    \'pointer-events-none cursor-not-allowed opacity-40\',
+                                labelClassName,
+                            )}
+                        >
+                            <input
+                                type="radio"
+                                name={radioGroupName}
+                                value={option.value}
+                                checked={isSelected}
+                                disabled={isDisabled}
+                                onChange={() => handleSelect(option.value)}
+                                className="sr-only"
+                            />
+
+                            {/* Sliding gliders */}
+                            {isSelected && (
+                                <motion.div
+                                    layoutId="active-glider"
+                                    className={cn(
+                                        \'absolute inset-0 z-0\',
+                                        option.gliderClassName ||
+                                            gliderDefaultVariants[variant],
+                                    )}
+                                    transition={gliderTransitions[variant]}
+                                />
+                            )}
+
+                            {/* Label text */}
+                            <span className="relative z-10">
+                                {option.label}
+                            </span>
+                        </label>
+                    );
+                })}
+            </div>
+        </LayoutGroup>
+    );
+}
+
+SlidingRadioGroup.displayName = \'SlidingRadioGroup\';
 ',
                     ],
                 ],
@@ -32590,14 +34437,18 @@ export function FeedbackStar({
     }, []);
 
     useEffect(() => {
-        if (size.width === 0 || size.height === 0 || !containerRef.current) return;
+        if (size.width === 0 || size.height === 0 || !containerRef.current)
+            return;
 
         const el = containerRef.current;
         const width = size.width;
         const height = size.height;
 
         // 1. Renderer Setup
-        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
+        const renderer = new THREE.WebGLRenderer({
+            antialias: true,
+            alpha: false,
+        });
         const pixelRatio = Math.min(window.devicePixelRatio, 2);
         renderer.setPixelRatio(pixelRatio);
         renderer.setSize(width, height);
@@ -32607,7 +34458,7 @@ export function FeedbackStar({
         // 2. Render Target for Post-Processing
         const rtWidth = Math.floor(width * pixelRatio);
         const rtHeight = Math.floor(height * pixelRatio);
-        
+
         const renderTarget = new THREE.WebGLRenderTarget(rtWidth, rtHeight, {
             minFilter: THREE.LinearFilter,
             magFilter: THREE.LinearFilter,
@@ -32616,7 +34467,12 @@ export function FeedbackStar({
 
         // 3. 3D Scene (Gets rendered to texture)
         const scene3d = new THREE.Scene();
-        const camera3d = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
+        const camera3d = new THREE.PerspectiveCamera(
+            45,
+            width / height,
+            0.1,
+            1000,
+        );
         camera3d.position.z = 30;
 
         // Add Lights
@@ -32664,7 +34520,9 @@ export function FeedbackStar({
             u_time: { value: 0.0 },
             u_frame: { value: 0.0 },
             u_resolution: { value: new THREE.Vector2(rtWidth, rtHeight) },
-            u_mouse: { value: new THREE.Vector2(rtWidth * 0.5, rtHeight * 0.5) },
+            u_mouse: {
+                value: new THREE.Vector2(rtWidth * 0.5, rtHeight * 0.5),
+            },
             u_texture: { value: renderTarget.texture as any },
         };
 
@@ -32809,12 +34667,22 @@ export function FeedbackStar({
                 el.removeChild(renderer.domElement);
             }
         };
-    }, [size.width, size.height, geometryType, meshColor, speed, enableOrbitControls]);
+    }, [
+        size.width,
+        size.height,
+        geometryType,
+        meshColor,
+        speed,
+        enableOrbitControls,
+    ]);
 
     return (
         <div
             ref={containerRef}
-            className={cn(\'relative w-full h-full min-h-[350px] overflow-hidden select-none\', className)}
+            className={cn(
+                \'relative h-full min-h-[350px] w-full overflow-hidden select-none\',
+                className,
+            )}
             aria-hidden="true"
         />
     );
@@ -36636,11 +38504,7 @@ export const toElementSpace = (p: Point, rect: Rect): Point => ({
                         'content' => 'export type PixelShape = \'square\' | \'circle\' | \'diamond\' | \'star\' | \'hexagon\';
 
 export type AnimationType =
-    | \'radial\'
-    | \'wave\'
-    | \'random\'
-    | \'diagonal\'
-    | \'spiral\';
+    \'radial\' | \'wave\' | \'random\' | \'diagonal\' | \'spiral\';
 
 export type AnimationDirection = \'appear\' | \'disappear\';
 

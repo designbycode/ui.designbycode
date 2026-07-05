@@ -26,7 +26,6 @@ import UserProfileCard from '@/registry/new-york/components/blocks/user-profile-
 import HeadingBlock from '@/registry/new-york/components/ui/typography/heading-block';
 import type { Registry } from '@/types';
 
-
 interface ThemesShowProps {
     theme: Registry;
 }
@@ -43,7 +42,7 @@ export function ThemeShow({ theme }: ThemesShowProps) {
     };
 
     return (
-        <div className="min-h-screen bg-background text-foreground pb-32 relative">
+        <div className="relative min-h-screen bg-background pb-32 text-foreground">
             {/* The unaltered #hero block */}
             <div
                 id={`hero`}
@@ -78,7 +77,7 @@ export function ThemeShow({ theme }: ThemesShowProps) {
             </div>
 
             {/* Vertical Stacked SaaS Website Sections */}
-            <div className="space-y-28 mt-12">
+            <div className="mt-12 space-y-28">
                 {/* Intro Section */}
                 <MainWrapper>
                     <HeroSimpleSplit />
@@ -91,33 +90,39 @@ export function ThemeShow({ theme }: ThemesShowProps) {
 
                 {/* Section 1: Features Grid */}
                 <MainWrapper>
-                    <div className="space-y-2 text-center max-w-2xl mx-auto mb-12">
-                        <h3 className="text-3xl font-black tracking-tight">Platform Core Features</h3>
+                    <div className="mx-auto mb-12 max-w-2xl space-y-2 text-center">
+                        <h3 className="text-3xl font-black tracking-tight">
+                            Platform Core Features
+                        </h3>
                         <p className="text-sm text-muted-foreground">
-                            Built to scale your operations without performance bottlenecks or infrastructure constraints.
+                            Built to scale your operations without performance
+                            bottlenecks or infrastructure constraints.
                         </p>
                     </div>
-                    <div className="p-2 rounded-xl border border-border/40 bg-card/20 backdrop-blur-xs">
+                    <div className="rounded-xl border border-border/40 bg-card/20 p-2 backdrop-blur-xs">
                         <FeatureGrid />
                     </div>
                 </MainWrapper>
 
                 {/* Section 2: Analytics & Stats */}
                 <MainWrapper>
-                    <div className="space-y-2 text-center max-w-2xl mx-auto mb-12">
-                        <h3 className="text-3xl font-black tracking-tight">Enterprise Analytics Metrics</h3>
+                    <div className="mx-auto mb-12 max-w-2xl space-y-2 text-center">
+                        <h3 className="text-3xl font-black tracking-tight">
+                            Enterprise Analytics Metrics
+                        </h3>
                         <p className="text-sm text-muted-foreground">
-                            Observe real-time operations, active subscriptions, and page metrics with this theme active.
+                            Observe real-time operations, active subscriptions,
+                            and page metrics with this theme active.
                         </p>
                     </div>
-                    <div className="p-4 rounded-xl border border-border/40 bg-card/20 backdrop-blur-xs">
+                    <div className="rounded-xl border border-border/40 bg-card/20 p-4 backdrop-blur-xs">
                         <CardsStats />
                     </div>
                 </MainWrapper>
 
                 {/* Checklist & Activity Split Grid */}
                 <MainWrapper>
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+                    <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-2">
                         <div className="space-y-6">
                             <FeatureList />
                             <NewsletterBox />
@@ -130,35 +135,41 @@ export function ThemeShow({ theme }: ThemesShowProps) {
 
                 {/* Section 3: Subscription Pricing & Full Feature Comparison */}
                 <MainWrapper className="space-y-12">
-                    <div className="space-y-2 text-center max-w-2xl mx-auto">
-                        <h3 className="text-3xl font-black tracking-tight">Pricing Plans for Every Scale</h3>
+                    <div className="mx-auto max-w-2xl space-y-2 text-center">
+                        <h3 className="text-3xl font-black tracking-tight">
+                            Pricing Plans for Every Scale
+                        </h3>
                         <p className="text-sm text-muted-foreground">
-                            Select a pricing model that scales seamlessly with your user volume.
+                            Select a pricing model that scales seamlessly with
+                            your user volume.
                         </p>
                     </div>
-                    <div className="p-6 rounded-xl border border-border/40 bg-card/20 backdrop-blur-xs">
+                    <div className="rounded-xl border border-border/40 bg-card/20 p-6 backdrop-blur-xs">
                         <PricingModernCards />
                     </div>
-                    <div className="max-w-3xl mx-auto">
+                    <div className="mx-auto max-w-3xl">
                         <PricingTable />
                     </div>
                 </MainWrapper>
 
                 {/* Section 4: Checkout & Profile Forms */}
                 <MainWrapper className="space-y-12">
-                    <div className="space-y-2 text-center max-w-2xl mx-auto">
-                        <h3 className="text-3xl font-black tracking-tight">Secure Reservation Checkout</h3>
+                    <div className="mx-auto max-w-2xl space-y-2 text-center">
+                        <h3 className="text-3xl font-black tracking-tight">
+                            Secure Reservation Checkout
+                        </h3>
                         <p className="text-sm text-muted-foreground">
-                            Preview custom form input parameters and border radius curvatures.
+                            Preview custom form input parameters and border
+                            radius curvatures.
                         </p>
                     </div>
-                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                    <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-12">
                         <div className="lg:col-span-7">
-                            <div className="p-6 rounded-xl border border-border/40 bg-card/20 backdrop-blur-xs">
+                            <div className="rounded-xl border border-border/40 bg-card/20 p-6 backdrop-blur-xs">
                                 <BookingForm />
                             </div>
                         </div>
-                        <div className="lg:col-span-5 space-y-6">
+                        <div className="space-y-6 lg:col-span-5">
                             <UserProfileCard />
                             <ContactForm />
                         </div>
@@ -167,26 +178,32 @@ export function ThemeShow({ theme }: ThemesShowProps) {
 
                 {/* Section 5: Testimonials Grid */}
                 <MainWrapper>
-                    <div className="space-y-2 text-center max-w-2xl mx-auto mb-12">
-                        <h3 className="text-3xl font-black tracking-tight">Customer Testimonials</h3>
+                    <div className="mx-auto mb-12 max-w-2xl space-y-2 text-center">
+                        <h3 className="text-3xl font-black tracking-tight">
+                            Customer Testimonials
+                        </h3>
                         <p className="text-sm text-muted-foreground">
-                            See what lead engineers and product architects think of our styled systems.
+                            See what lead engineers and product architects think
+                            of our styled systems.
                         </p>
                     </div>
-                    <div className="p-6 rounded-xl border border-border/40 bg-card/20 backdrop-blur-xs">
+                    <div className="rounded-xl border border-border/40 bg-card/20 p-6 backdrop-blur-xs">
                         <TestimonialsGrid />
                     </div>
                 </MainWrapper>
 
                 {/* Section 6: FAQ Accordion */}
                 <MainWrapper>
-                    <div className="space-y-2 text-center max-w-2xl mx-auto mb-12">
-                        <h3 className="text-3xl font-black tracking-tight">Frequently Asked Questions</h3>
+                    <div className="mx-auto mb-12 max-w-2xl space-y-2 text-center">
+                        <h3 className="text-3xl font-black tracking-tight">
+                            Frequently Asked Questions
+                        </h3>
                         <p className="text-sm text-muted-foreground">
-                            Got questions about installing and configuring visual registry themes? We have answers.
+                            Got questions about installing and configuring
+                            visual registry themes? We have answers.
                         </p>
                     </div>
-                    <div className="p-6 rounded-xl border border-border/40 bg-card/20 backdrop-blur-xs">
+                    <div className="rounded-xl border border-border/40 bg-card/20 p-6 backdrop-blur-xs">
                         <FAQSection />
                     </div>
                 </MainWrapper>
@@ -198,7 +215,7 @@ export function ThemeShow({ theme }: ThemesShowProps) {
             </div>
 
             {/* Bottom Cookie Banner */}
-            <div className="fixed bottom-4 inset-x-4 z-50 max-w-4xl mx-auto px-4 pointer-events-auto">
+            <div className="pointer-events-auto fixed inset-x-4 bottom-4 z-50 mx-auto max-w-4xl px-4">
                 <CookieBanner />
             </div>
         </div>

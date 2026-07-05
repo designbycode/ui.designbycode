@@ -5,7 +5,9 @@ import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { RainbowBorder } from '@/registry/new-york/components/ui/borders/rainbow-border';
 
-export interface RainbowBorderButtonProps extends React.ComponentProps<typeof Button> {
+export interface RainbowBorderButtonProps extends React.ComponentProps<
+    typeof Button
+> {
     borderWidth?: string;
     animationDuration?: string;
     colors?: string[];
@@ -15,7 +17,10 @@ export interface RainbowBorderButtonProps extends React.ComponentProps<typeof Bu
     glowOpacity?: number;
 }
 
-export const RainbowBorderButton = React.forwardRef<HTMLButtonElement, RainbowBorderButtonProps>(
+export const RainbowBorderButton = React.forwardRef<
+    HTMLButtonElement,
+    RainbowBorderButtonProps
+>(
     (
         {
             className,
@@ -31,12 +36,18 @@ export const RainbowBorderButton = React.forwardRef<HTMLButtonElement, RainbowBo
         },
         ref,
     ) => {
-        const roundedButtonClass = 
-            rounded === 'none' ? 'rounded-none' :
-            rounded === 'xs' ? 'rounded-xs' :
-            rounded === 'sm' ? 'rounded-sm' :
-            rounded === 'md' ? 'rounded-md' :
-            rounded === 'lg' ? 'rounded-lg' : 'rounded-full';
+        const roundedButtonClass =
+            rounded === 'none'
+                ? 'rounded-none'
+                : rounded === 'xs'
+                  ? 'rounded-xs'
+                  : rounded === 'sm'
+                    ? 'rounded-sm'
+                    : rounded === 'md'
+                      ? 'rounded-md'
+                      : rounded === 'lg'
+                        ? 'rounded-lg'
+                        : 'rounded-full';
 
         return (
             <RainbowBorder
@@ -52,7 +63,7 @@ export const RainbowBorderButton = React.forwardRef<HTMLButtonElement, RainbowBo
                 <Button
                     ref={ref}
                     className={cn(
-                        'bg-background text-foreground hover:bg-background/95 transition-all select-none active:scale-95 border-0 h-9 px-4 text-xs font-semibold',
+                        'h-9 border-0 bg-background px-4 text-xs font-semibold text-foreground transition-all select-none hover:bg-background/95 active:scale-95',
                         roundedButtonClass,
                         className,
                     )}

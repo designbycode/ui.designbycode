@@ -12,7 +12,9 @@ import {
 } from '@/components/ui/card';
 import { RainbowBorder } from '@/registry/new-york/components/ui/borders/rainbow-border';
 
-export interface RainbowBorderCardProps extends React.ComponentProps<typeof Card> {
+export interface RainbowBorderCardProps extends React.ComponentProps<
+    typeof Card
+> {
     borderWidth?: string;
     animationDuration?: string;
     colors?: string[];
@@ -22,7 +24,10 @@ export interface RainbowBorderCardProps extends React.ComponentProps<typeof Card
     glowOpacity?: number;
 }
 
-export const RainbowBorderCard = React.forwardRef<HTMLDivElement, RainbowBorderCardProps>(
+export const RainbowBorderCard = React.forwardRef<
+    HTMLDivElement,
+    RainbowBorderCardProps
+>(
     (
         {
             className,
@@ -38,12 +43,18 @@ export const RainbowBorderCard = React.forwardRef<HTMLDivElement, RainbowBorderC
         },
         ref,
     ) => {
-        const roundedCardClass = 
-            rounded === 'none' ? 'rounded-none' :
-            rounded === 'xs' ? 'rounded-xs' :
-            rounded === 'sm' ? 'rounded-sm' :
-            rounded === 'md' ? 'rounded-md' :
-            rounded === 'lg' ? 'rounded-lg' : 'rounded-full';
+        const roundedCardClass =
+            rounded === 'none'
+                ? 'rounded-none'
+                : rounded === 'xs'
+                  ? 'rounded-xs'
+                  : rounded === 'sm'
+                    ? 'rounded-sm'
+                    : rounded === 'md'
+                      ? 'rounded-md'
+                      : rounded === 'lg'
+                        ? 'rounded-lg'
+                        : 'rounded-full';
 
         return (
             <RainbowBorder
@@ -54,12 +65,12 @@ export const RainbowBorderCard = React.forwardRef<HTMLDivElement, RainbowBorderC
                 glow={glow}
                 glowBlur={glowBlur}
                 glowOpacity={glowOpacity}
-                className="p-[1px] w-full"
+                className="w-full p-[1px]"
             >
                 <Card
                     ref={ref}
                     className={cn(
-                        'bg-card text-card-foreground border-0 shadow-sm w-full',
+                        'w-full border-0 bg-card text-card-foreground shadow-sm',
                         roundedCardClass,
                         className,
                     )}

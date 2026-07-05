@@ -27,12 +27,8 @@ export function HeroMinimalCentered() {
                 />
 
                 <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
-                    <ButtonPulse>
-                        Start Deploying
-                    </ButtonPulse>
-                    <ButtonDraw
-                        className="flex items-center gap-1.5"
-                    >
+                    <ButtonPulse>Start Deploying</ButtonPulse>
+                    <ButtonDraw className="flex items-center gap-1.5">
                         Learn More
                         <ArrowRight className="size-4" />
                     </ButtonDraw>

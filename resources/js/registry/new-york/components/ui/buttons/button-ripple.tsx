@@ -3,11 +3,16 @@ import * as React from 'react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 
-export interface ButtonRippleProps extends React.ComponentPropsWithRef<typeof Button> {}
+export interface ButtonRippleProps extends React.ComponentPropsWithRef<
+    typeof Button
+> {}
 
 const RIPPLE_STYLE_ID = 'button-ripple-styles';
 function injectRippleStyles() {
-    if (typeof document === 'undefined' || document.getElementById(RIPPLE_STYLE_ID)) {
+    if (
+        typeof document === 'undefined' ||
+        document.getElementById(RIPPLE_STYLE_ID)
+    ) {
         return;
     }
     const style = document.createElement('style');
@@ -31,58 +36,64 @@ function injectRippleStyles() {
     document.head.appendChild(style);
 }
 
-export const ButtonRipple = React.forwardRef<HTMLButtonElement, ButtonRippleProps>(
-    ({ className, children, onClick, ...props }, ref) => {
-        const [ripples, setRipples] = React.useState<Array<{ id: number; x: number; y: number }>>([]);
-        const nextId = React.useRef(0);
+export const ButtonRipple = React.forwardRef<
+    HTMLButtonElement,
+    ButtonRippleProps
+>(({ className, children, onClick, ...props }, ref) => {
+    const [ripples, setRipples] = React.useState<
+        Array<{ id: number; x: number; y: number }>
+    >([]);
+    const nextId = React.useRef(0);
 
-        React.useEffect(() => {
-            injectRippleStyles();
-        }, []);
+    React.useEffect(() => {
+        injectRippleStyles();
+    }, []);
 
-        const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-            const button = e.currentTarget;
-            const rect = button.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
+    const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+        const button = e.currentTarget;
+        const rect = button.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
 
-            const id = nextId.current++;
-            setRipples((prev) => [...prev, { id, x, y }]);
+        const id = nextId.current++;
+        setRipples((prev) => [...prev, { id, x, y }]);
 
-            onClick?.(e);
-        };
+        onClick?.(e);
+    };
 
-        React.useEffect(() => {
-            if (ripples.length > 0) {
-                const timer = setTimeout(() => {
-                    setRipples([]);
-                }, 600);
-                return () => clearTimeout(timer);
-            }
-        }, [ripples]);
+    React.useEffect(() => {
+        if (ripples.length > 0) {
+            const timer = setTimeout(() => {
+                setRipples([]);
+            }, 600);
+            return () => clearTimeout(timer);
+        }
+    }, [ripples]);
 
-        return (
-            <Button
-                ref={ref}
-                onClick={handleClick}
-                className={cn('relative overflow-hidden select-none active:scale-95 isolate', className)}
-                {...props}
-            >
-                <span className="relative z-10">{children}</span>
-                {ripples.map((ripple) => (
-                    <span
-                        key={ripple.id}
-                        className="bp-ripple"
-                        style={{
-                            left: ripple.x,
-                            top: ripple.y,
-                        }}
-                    />
-                ))}
-            </Button>
-        );
-    },
-);
+    return (
+        <Button
+            ref={ref}
+            onClick={handleClick}
+            className={cn(
+                'relative isolate overflow-hidden select-none active:scale-95',
+                className,
+            )}
+            {...props}
+        >
+            <span className="relative z-10">{children}</span>
+            {ripples.map((ripple) => (
+                <span
+                    key={ripple.id}
+                    className="bp-ripple"
+                    style={{
+                        left: ripple.x,
+                        top: ripple.y,
+                    }}
+                />
+            ))}
+        </Button>
+    );
+});
 
 ButtonRipple.displayName = 'ButtonRipple';
 

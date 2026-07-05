@@ -104,7 +104,7 @@ function RainbowBorder({
                     --rainbow-7: #a855f7;
                 }
             `}</style>
-            
+
             <div
                 aria-hidden="true"
                 className={cn(
@@ -122,7 +122,7 @@ function RainbowBorder({
             <div
                 aria-hidden="true"
                 className={cn(
-                    'pointer-events-none absolute blur-lg inset-0 z-20 bg-repeat-x',
+                    'pointer-events-none absolute inset-0 z-20 bg-repeat-x blur-lg',
                     roundedClass,
                 )}
                 style={{

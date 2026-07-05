@@ -30,13 +30,16 @@ export const AuroraCanvas = React.forwardRef<HTMLDivElement, AuroraCanvasProps>(
             interactive = true,
             ...props
         },
-        ref
+        ref,
     ) => {
         const containerRef = React.useRef<HTMLDivElement>(null);
         const canvasRef = React.useRef<HTMLCanvasElement>(null);
         const mouseRef = React.useRef<{ x: number; y: number } | null>(null);
 
-        React.useImperativeHandle(ref, () => containerRef.current as HTMLDivElement);
+        React.useImperativeHandle(
+            ref,
+            () => containerRef.current as HTMLDivElement,
+        );
 
         React.useEffect(() => {
             const canvas = canvasRef.current;
@@ -87,7 +90,10 @@ export const AuroraCanvas = React.forwardRef<HTMLDivElement, AuroraCanvasProps>(
                 if (colorStr.startsWith('--')) {
                     targetColor = `var(${colorStr})`;
                 }
-                if (!targetColor.includes('var(') && !targetColor.includes('--')) {
+                if (
+                    !targetColor.includes('var(') &&
+                    !targetColor.includes('--')
+                ) {
                     return targetColor;
                 }
                 try {
@@ -120,21 +126,33 @@ export const AuroraCanvas = React.forwardRef<HTMLDivElement, AuroraCanvasProps>(
                     const offset = i * (Math.PI / bandCount);
 
                     // Dynamic wave points
-                    const y1 = height * 0.5 + Math.sin(time + offset) * amplitude;
-                    const y2 = height * 0.5 + Math.cos(time + offset * 1.5) * amplitude;
-                    
+                    const y1 =
+                        height * 0.5 + Math.sin(time + offset) * amplitude;
+                    const y2 =
+                        height * 0.5 +
+                        Math.cos(time + offset * 1.5) * amplitude;
+
                     // Mouse influence
                     let mouseInfluenceX = 0;
                     let mouseInfluenceY = 0;
                     if (mouseRef.current) {
-                        mouseInfluenceX = (mouseRef.current.x - width * 0.5) * 0.05;
-                        mouseInfluenceY = (mouseRef.current.y - height * 0.5) * 0.15;
+                        mouseInfluenceX =
+                            (mouseRef.current.x - width * 0.5) * 0.05;
+                        mouseInfluenceY =
+                            (mouseRef.current.y - height * 0.5) * 0.15;
                     }
 
                     const cp1x = width * 0.25 + mouseInfluenceX;
-                    const cp1y = height * 0.5 + Math.sin(time * 1.2 + offset * 2) * (amplitude * 2) + mouseInfluenceY;
+                    const cp1y =
+                        height * 0.5 +
+                        Math.sin(time * 1.2 + offset * 2) * (amplitude * 2) +
+                        mouseInfluenceY;
                     const cp2x = width * 0.75 - mouseInfluenceX;
-                    const cp2y = height * 0.5 + Math.cos(time * 0.8 + offset * 2.5) * (amplitude * 2.5) + mouseInfluenceY;
+                    const cp2y =
+                        height * 0.5 +
+                        Math.cos(time * 0.8 + offset * 2.5) *
+                            (amplitude * 2.5) +
+                        mouseInfluenceY;
 
                     // Setup linear gradient for glowing transparency along the path
                     const grad = ctx.createLinearGradient(0, 0, width, 0);
@@ -154,7 +172,7 @@ export const AuroraCanvas = React.forwardRef<HTMLDivElement, AuroraCanvasProps>(
                     ctx.lineCap = 'round';
                     ctx.shadowColor = activeBaseColor;
                     ctx.shadowBlur = 45;
-                    ctx.globalAlpha = 0.22 - (i * 0.03); // Overlay layers nicely
+                    ctx.globalAlpha = 0.22 - i * 0.03; // Overlay layers nicely
                     ctx.stroke();
                 }
 
@@ -169,7 +187,10 @@ export const AuroraCanvas = React.forwardRef<HTMLDivElement, AuroraCanvasProps>(
                 resizeObserver.disconnect();
                 if (interactive) {
                     container.removeEventListener('mousemove', handleMouseMove);
-                    container.removeEventListener('mouseleave', handleMouseLeave);
+                    container.removeEventListener(
+                        'mouseleave',
+                        handleMouseLeave,
+                    );
                 }
             };
         }, [bandCount, speed, amplitude, colors, blendMode, interactive]);
@@ -177,7 +198,10 @@ export const AuroraCanvas = React.forwardRef<HTMLDivElement, AuroraCanvasProps>(
         return (
             <div
                 ref={containerRef}
-                className={cn('relative w-full h-full overflow-hidden select-none bg-background/55', className)}
+                className={cn(
+                    'relative h-full w-full overflow-hidden bg-background/55 select-none',
+                    className,
+                )}
                 {...props}
             >
                 <canvas
@@ -187,7 +211,7 @@ export const AuroraCanvas = React.forwardRef<HTMLDivElement, AuroraCanvasProps>(
                 />
             </div>
         );
-    }
+    },
 );
 
 AuroraCanvas.displayName = 'AuroraCanvas';

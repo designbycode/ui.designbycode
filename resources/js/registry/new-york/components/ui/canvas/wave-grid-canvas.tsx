@@ -18,7 +18,10 @@ export interface WaveGridCanvasProps extends React.HTMLAttributes<HTMLDivElement
     interactive?: boolean;
 }
 
-export const WaveGridCanvas = React.forwardRef<HTMLDivElement, WaveGridCanvasProps>(
+export const WaveGridCanvas = React.forwardRef<
+    HTMLDivElement,
+    WaveGridCanvasProps
+>(
     (
         {
             className,
@@ -30,13 +33,16 @@ export const WaveGridCanvas = React.forwardRef<HTMLDivElement, WaveGridCanvasPro
             interactive = true,
             ...props
         },
-        ref
+        ref,
     ) => {
         const containerRef = React.useRef<HTMLDivElement>(null);
         const canvasRef = React.useRef<HTMLCanvasElement>(null);
         const mouseRef = React.useRef<{ x: number; y: number } | null>(null);
 
-        React.useImperativeHandle(ref, () => containerRef.current as HTMLDivElement);
+        React.useImperativeHandle(
+            ref,
+            () => containerRef.current as HTMLDivElement,
+        );
 
         React.useEffect(() => {
             const canvas = canvasRef.current;
@@ -87,7 +93,10 @@ export const WaveGridCanvas = React.forwardRef<HTMLDivElement, WaveGridCanvasPro
                 if (colorStr.startsWith('--')) {
                     targetColor = `var(${colorStr})`;
                 }
-                if (!targetColor.includes('var(') && !targetColor.includes('--')) {
+                if (
+                    !targetColor.includes('var(') &&
+                    !targetColor.includes('--')
+                ) {
                     return targetColor;
                 }
                 try {
@@ -108,7 +117,7 @@ export const WaveGridCanvas = React.forwardRef<HTMLDivElement, WaveGridCanvasPro
 
                 const activeColor = resolveColor(
                     color || window.getComputedStyle(container).color,
-                    'rgba(16, 185, 129, 0.4)'
+                    'rgba(16, 185, 129, 0.4)',
                 );
 
                 time += speed * 0.05;
@@ -131,22 +140,25 @@ export const WaveGridCanvas = React.forwardRef<HTMLDivElement, WaveGridCanvasPro
                             const dx = mouseRef.current.x - x;
                             const dy = mouseRef.current.y - y;
                             dist = Math.sqrt(dx * dx + dy * dy);
-                            
+
                             // Proximity influence within 200px of mouse
                             if (dist < 220) {
-                                influence = (1 - dist / 220);
+                                influence = 1 - dist / 220;
                             }
                         } else {
                             // Subtle default pulsing wave in the center if no mouse
-                            const dx = (width * 0.5) - x;
-                            const dy = (height * 0.5) - y;
+                            const dx = width * 0.5 - x;
+                            const dy = height * 0.5 - y;
                             dist = Math.sqrt(dx * dx + dy * dy);
-                            influence = Math.sin(dist * 0.02 - time * 0.3) * 0.5 + 0.5;
+                            influence =
+                                Math.sin(dist * 0.02 - time * 0.3) * 0.5 + 0.5;
                         }
 
                         // Calculate scale & opacity based on influence and sine ripples
-                        const waveFactor = Math.sin(dist * 0.04 - time) * 0.5 + 0.5;
-                        const scale = 1.0 + (maxScale - 1.0) * influence * waveFactor;
+                        const waveFactor =
+                            Math.sin(dist * 0.04 - time) * 0.5 + 0.5;
+                        const scale =
+                            1.0 + (maxScale - 1.0) * influence * waveFactor;
                         const opacity = 0.15 + 0.65 * influence * waveFactor;
 
                         ctx.save();
@@ -191,7 +203,10 @@ export const WaveGridCanvas = React.forwardRef<HTMLDivElement, WaveGridCanvasPro
                 resizeObserver.disconnect();
                 if (interactive) {
                     container.removeEventListener('mousemove', handleMouseMove);
-                    container.removeEventListener('mouseleave', handleMouseLeave);
+                    container.removeEventListener(
+                        'mouseleave',
+                        handleMouseLeave,
+                    );
                 }
             };
         }, [gridSpacing, shape, maxScale, speed, color, interactive]);
@@ -199,7 +214,10 @@ export const WaveGridCanvas = React.forwardRef<HTMLDivElement, WaveGridCanvasPro
         return (
             <div
                 ref={containerRef}
-                className={cn('relative w-full h-full overflow-hidden select-none bg-background', className)}
+                className={cn(
+                    'relative h-full w-full overflow-hidden bg-background select-none',
+                    className,
+                )}
                 {...props}
             >
                 <canvas
@@ -209,7 +227,7 @@ export const WaveGridCanvas = React.forwardRef<HTMLDivElement, WaveGridCanvasPro
                 />
             </div>
         );
-    }
+    },
 );
 
 WaveGridCanvas.displayName = 'WaveGridCanvas';

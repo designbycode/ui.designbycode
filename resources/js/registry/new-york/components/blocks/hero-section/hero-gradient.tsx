@@ -28,15 +28,11 @@ export function HeroGradient() {
                 />
 
                 <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-                    <ButtonNeon
-                        className="flex items-center gap-2"
-                    >
+                    <ButtonNeon className="flex items-center gap-2">
                         Get Started
                         <ArrowRight className="size-4" />
                     </ButtonNeon>
-                    <ButtonGradient
-                        className="flex items-center gap-2"
-                    >
+                    <ButtonGradient className="flex items-center gap-2">
                         <Zap className="size-4 text-primary" />
                         Explore Components
                     </ButtonGradient>

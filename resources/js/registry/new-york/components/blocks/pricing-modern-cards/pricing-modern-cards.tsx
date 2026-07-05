@@ -79,7 +79,7 @@ export function PricingModernCards() {
     const [isYearly, setIsYearly] = useState(false);
 
     return (
-        <div className="mx-auto flex w-full max-w-5xl flex-col items-center gap-10 px-4 py-12 @container">
+        <div className="@container mx-auto flex w-full max-w-5xl flex-col items-center gap-10 px-4 py-12">
             {/* Header */}
             <div className="max-w-2xl space-y-4 text-center">
                 <Badge
@@ -88,43 +88,56 @@ export function PricingModernCards() {
                 >
                     Predictable Plans
                 </Badge>
-                <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl bg-gradient-to-r from-foreground via-foreground/90 to-muted-foreground bg-clip-text text-transparent">
+                <h2 className="bg-gradient-to-r from-foreground via-foreground/90 to-muted-foreground bg-clip-text text-3xl font-extrabold tracking-tight text-transparent sm:text-4xl">
                     Simple pricing. No hidden fees.
                 </h2>
-                <p className="text-sm text-muted-foreground max-w-sm mx-auto">
-                    Choose the perfect subscription package for your workload. Cancel anytime.
+                <p className="mx-auto max-w-sm text-sm text-muted-foreground">
+                    Choose the perfect subscription package for your workload.
+                    Cancel anytime.
                 </p>
             </div>
 
             {/* Toggle */}
             <div className="flex items-center justify-center gap-3">
-                <span className={cn('text-sm font-semibold', !isYearly ? 'text-foreground' : 'text-muted-foreground')}>
+                <span
+                    className={cn(
+                        'text-sm font-semibold',
+                        !isYearly ? 'text-foreground' : 'text-muted-foreground',
+                    )}
+                >
                     Monthly
                 </span>
-                <Switch
-                    checked={isYearly}
-                    onCheckedChange={setIsYearly}
-                />
-                <span className={cn('text-sm font-semibold flex items-center gap-1.5', isYearly ? 'text-foreground' : 'text-muted-foreground')}>
+                <Switch checked={isYearly} onCheckedChange={setIsYearly} />
+                <span
+                    className={cn(
+                        'flex items-center gap-1.5 text-sm font-semibold',
+                        isYearly ? 'text-foreground' : 'text-muted-foreground',
+                    )}
+                >
                     Yearly
-                    <Badge variant="secondary" className="bg-primary/10 text-primary text-[10px] py-0 px-1.5 border-0">
+                    <Badge
+                        variant="secondary"
+                        className="border-0 bg-primary/10 px-1.5 py-0 text-[10px] text-primary"
+                    >
                         2 months free
                     </Badge>
                 </span>
             </div>
 
             {/* Grid */}
-            <div className="grid w-full grid-cols-1 gap-6 @3xl:grid-cols-3 items-stretch">
+            <div className="grid w-full grid-cols-1 items-stretch gap-6 @3xl:grid-cols-3">
                 {tiers.map((tier, idx) => (
                     <Card
                         key={idx}
                         className={cn(
-                            'relative flex flex-col justify-between overflow-hidden bg-card/45 backdrop-blur-xs border transition-all duration-300 hover:scale-[1.01]',
-                            tier.popular ? 'border-primary ring-1 ring-primary/45 bg-card/60 shadow-lg' : 'shadow-sm'
+                            'relative flex flex-col justify-between overflow-hidden border bg-card/45 backdrop-blur-xs transition-all duration-300 hover:scale-[1.01]',
+                            tier.popular
+                                ? 'border-primary bg-card/60 shadow-lg ring-1 ring-primary/45'
+                                : 'shadow-sm',
                         )}
                     >
                         {tier.popular && (
-                            <div className="absolute top-3 right-3 flex items-center gap-1 rounded-full bg-primary/10 border border-primary/20 px-2.5 py-0.5 text-[8px] font-bold text-primary uppercase tracking-wider animate-pulse">
+                            <div className="absolute top-3 right-3 flex animate-pulse items-center gap-1 rounded-full border border-primary/20 bg-primary/10 px-2.5 py-0.5 text-[8px] font-bold tracking-wider text-primary uppercase">
                                 <Star className="size-2.5 fill-current text-primary" />
                                 Recommended
                             </div>
@@ -132,37 +145,48 @@ export function PricingModernCards() {
 
                         <CardHeader className="space-y-3 pb-6">
                             <div className="flex items-center gap-2">
-                                <div className="p-1.5 rounded bg-muted/50 border shrink-0">
+                                <div className="shrink-0 rounded border bg-muted/50 p-1.5">
                                     {tier.icon}
                                 </div>
-                                <CardTitle className="text-lg font-bold">{tier.name}</CardTitle>
+                                <CardTitle className="text-lg font-bold">
+                                    {tier.name}
+                                </CardTitle>
                             </div>
-                            <CardDescription className="text-xs min-h-[32px] leading-relaxed">
+                            <CardDescription className="min-h-[32px] text-xs leading-relaxed">
                                 {tier.description}
                             </CardDescription>
                         </CardHeader>
 
-                        <CardContent className="space-y-6 flex-grow pb-6">
+                        <CardContent className="flex-grow space-y-6 pb-6">
                             <div className="flex items-baseline">
-                                <span className="text-4xl font-extrabold font-mono tracking-tight text-foreground">
-                                    ${isYearly ? tier.yearlyPrice : tier.monthlyPrice}
+                                <span className="font-mono text-4xl font-extrabold tracking-tight text-foreground">
+                                    $
+                                    {isYearly
+                                        ? tier.yearlyPrice
+                                        : tier.monthlyPrice}
                                 </span>
-                                <span className="text-xs text-muted-foreground ml-1">/month</span>
+                                <span className="ml-1 text-xs text-muted-foreground">
+                                    /month
+                                </span>
                             </div>
 
-                            <ul className="space-y-3 text-xs border-t pt-6">
+                            <ul className="space-y-3 border-t pt-6 text-xs">
                                 {tier.features.map((feat, fIdx) => (
                                     <li
                                         key={fIdx}
                                         className={cn(
                                             'flex items-center gap-2',
-                                            feat.included ? 'text-foreground' : 'text-muted-foreground/60 line-through'
+                                            feat.included
+                                                ? 'text-foreground'
+                                                : 'text-muted-foreground/60 line-through',
                                         )}
                                     >
                                         <Check
                                             className={cn(
                                                 'size-4 shrink-0',
-                                                feat.included ? 'text-primary' : 'text-muted-foreground/30'
+                                                feat.included
+                                                    ? 'text-primary'
+                                                    : 'text-muted-foreground/30',
                                             )}
                                         />
                                         <span>{feat.text}</span>
@@ -173,7 +197,7 @@ export function PricingModernCards() {
 
                         <CardFooter className="pt-0">
                             <Button
-                                className="w-full text-xs h-9"
+                                className="h-9 w-full text-xs"
                                 variant={tier.popular ? 'default' : 'outline'}
                             >
                                 {tier.cta}
